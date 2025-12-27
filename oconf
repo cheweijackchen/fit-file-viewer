@@ -83,7 +83,7 @@ case ${1} in
         ;;
     watch)
         pushd frontend >/dev/null || exit
-        yarn quasar dev
+        yarn dev
         popd >/dev/null || exit
         ;;
     yarn)
