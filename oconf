@@ -1,0 +1,109 @@
+#!/usr/bin/env bash
+PWD=$(pwd)
+
+displayUsage() {
+    echo "Usage:" >&2
+    echo "##### Note below should be run outside container, aka before ${0} devcontainer bash" >&2
+    echo "${0} devcontainer   # Devcontainer operations" >&2
+    echo "##### Note below should be run inside container, aka after ${0} devcontainer bash" >&2
+    echo "${0} init                                 # Init project" >&2
+    echo "${0} update                               # Update project dependencies" >&2
+    echo "${0} watch                                # Start FE dev server" >&2
+    echo "${0} yarn                                 # Execute yarn in frontend/" >&2
+    echo "${0} test-fe [unit|e2e]                   # Run frontend test" >&2
+}
+
+init() {
+
+    if [ -f frontend/.env ]; then
+        echo "There is frontend/.env, skip"
+    else
+        pushd frontend >/dev/null || exit
+        cp .env.example .env
+        yarn install
+        popd >/dev/null || exit
+    fi
+}
+
+update() {
+    pushd frontend >/dev/null || exit
+    yarn install
+    popd >/dev/null || exit
+}
+
+devcontainer() {
+    pushd $PWD/.devcontainer >/dev/null
+    case ${1} in
+        start)
+            docker compose up -d
+            ;;
+        stop)
+            docker compose down
+            ;;
+        ps)
+            docker compose ps
+            ;;
+        bash)
+            docker compose exec nodejs bash
+            ;;
+        rebuild)
+            docker compose down
+            docker compose up --build -d
+            ;;
+        print)
+            if [ $# -lt 2 ]; then
+                echo "Host required, e.g." >&2
+                echo "${0} devcontainer print localhost" >&2
+                exit
+            fi
+            source .env
+            echo "http://${2}:${FE_DEV_PORT}/                   # frontend SPA, need to ./oconf watch first"
+            ;;
+        **)
+            echo "${0} devcontainer start         # start containers with docker compose" >&2
+            echo "${0} devcontainer stop          # stop containers with docker compose" >&2
+            echo "${0} devcontainer ps            # services started with docker compose" >&2
+            echo "${0} devcontainer bash          # start a bash inside container" >&2
+            echo "${0} devcontainer rebuild       # rebuild all services" >&2
+            echo "${0} devcontainer print [host]  # print all avail urls" >&2
+            ;;
+    esac
+    popd >/dev/null
+}
+
+case ${1} in
+    init)
+        init
+        ;;
+    update)
+        update
+        ;;
+    devcontainer)
+        devcontainer "${@:2}"
+        ;;
+    watch)
+        pushd frontend >/dev/null || exit
+        yarn quasar dev
+        popd >/dev/null || exit
+        ;;
+    yarn)
+        pushd frontend >/dev/null || exit
+        yarn ${@:2}
+        popd >/dev/null || exit
+        ;;
+    test-fe)
+        case ${2} in
+            unit)
+                pushd frontend >/dev/null || exit
+                yarn run ${3:-test:unit:watch}
+                popd >/dev/null || exit
+                ;;
+            e2e)
+                echo "TODO: add cypress e2e test framework"
+                ;;
+        esac
+        ;;
+    **)
+        displayUsage
+        ;;
+esac
