@@ -6,6 +6,8 @@ services:
     working_dir: /application
     volumes:
       - ..:/application
+    environment:
+      - FE_DEV_PORT
     ports:
       - "${FE_DEV_PORT}:${FE_DEV_PORT}"
     command: >
