@@ -2,7 +2,9 @@
   "recommendations": [
     "dbaeumer.vscode-eslint",
     "editorconfig.editorconfig",
-    "wayou.vscode-todo-highlight"
+    "wayou.vscode-todo-highlight",
+    "vunguyentuan.vscode-postcss",
+    "vunguyentuan.vscode-css-variables"
   ],
   "unwantedRecommendations": []
 }
