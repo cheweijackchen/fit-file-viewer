@@ -6,6 +6,10 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: path.join(__dirname, ''),
   },
+  sassOptions: {
+    implementation: 'sass-embedded',
+    additionalData: `@use "${path.join(process.cwd(), '_mantine').replace(/\\/g, '/')}" as mantine;`,
+  },
 };
 
 export default nextConfig;
