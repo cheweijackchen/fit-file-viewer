@@ -37,7 +37,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <MantineProvider theme={theme}>{children}</MantineProvider>gi
+        <MantineProvider theme={theme}>{children}</MantineProvider>
       </body>
     </html>
   );
