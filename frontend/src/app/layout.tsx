@@ -4,10 +4,10 @@ import {
   mantineHtmlProps,
   MantineProvider,
 } from "@mantine/core";
-import theme from "./theme";
+import theme from "@/styles/theme";
 import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
-import "./example.module.scss"
+// import "../style/globals.css";
+import "@/styles/globals.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

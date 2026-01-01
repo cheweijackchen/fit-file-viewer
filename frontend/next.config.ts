@@ -8,7 +8,7 @@ const nextConfig: NextConfig = {
   },
   sassOptions: {
     implementation: 'sass-embedded',
-    additionalData: `@use "${path.join(process.cwd(), '_mantine').replace(/\\/g, '/')}" as mantine;`,
+    additionalData: `@use "${path.join(process.cwd(), 'src/styles/_mantine').replace(/\\/g, '/')}" as mantine;`,
   },
 };
 
