@@ -3,6 +3,7 @@
     "dbaeumer.vscode-eslint",
     "editorconfig.editorconfig",
     "wayou.vscode-todo-highlight",
+    "bradlc.vscode-tailwindcss",
     "vunguyentuan.vscode-postcss",
     "vunguyentuan.vscode-css-variables"
   ],

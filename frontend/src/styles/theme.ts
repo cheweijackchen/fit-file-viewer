@@ -5,8 +5,8 @@ const theme = createTheme({
     sm: "36em", // 576px
     md: "48em", // 768px
     lg: "64em", // 1024px
-    xl: "75em", // 1200px
-    xxl: "88em", // 1400px
+    xl: "80em", // 1280px
+    "2xl": "96em", // 1536px
   }
 })
 
