@@ -240,6 +240,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@eslint-community/eslint-utils@npm:^4.9.0":
+  version: 4.9.1
+  resolution: "@eslint-community/eslint-utils@npm:4.9.1"
+  dependencies:
+    eslint-visitor-keys: "npm:^3.4.3"
+  peerDependencies:
+    eslint: ^6.0.0 || ^7.0.0 || >=8.0.0
+  checksum: 10c0/dc4ab5e3e364ef27e33666b11f4b86e1a6c1d7cbf16f0c6ff87b1619b3562335e9201a3d6ce806221887ff780ec9d828962a290bb910759fd40a674686503f02
+  languageName: node
+  linkType: hard
+
 "@eslint-community/regexpp@npm:^4.10.0, @eslint-community/regexpp@npm:^4.12.1":
   version: 4.12.2
   resolution: "@eslint-community/regexpp@npm:4.12.2"
@@ -1150,6 +1161,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@stylistic/eslint-plugin@npm:^5.6.1":
+  version: 5.6.1
+  resolution: "@stylistic/eslint-plugin@npm:5.6.1"
+  dependencies:
+    "@eslint-community/eslint-utils": "npm:^4.9.0"
+    "@typescript-eslint/types": "npm:^8.47.0"
+    eslint-visitor-keys: "npm:^4.2.1"
+    espree: "npm:^10.4.0"
+    estraverse: "npm:^5.3.0"
+    picomatch: "npm:^4.0.3"
+  peerDependencies:
+    eslint: ">=9.0.0"
+  checksum: 10c0/dfd33107209dac554a6b88d40813bfadd938e901ee7b853dfff9b66c9ffe0601790591865ad67e05f1f1061fc3c958087ad25efc1117375fe2487bfa69c44352
+  languageName: node
+  linkType: hard
+
 "@swc/helpers@npm:0.5.15":
   version: 0.5.15
   resolution: "@swc/helpers@npm:0.5.15"
@@ -1562,6 +1589,13 @@ __metadata:
   version: 8.50.1
   resolution: "@typescript-eslint/types@npm:8.50.1"
   checksum: 10c0/04e3c296d81293e370578762be6736fccd1581476f9d534938d42fe93968571fcaf26d7d8c3de52ed63a5af2c0b2da922b8ee2011fa5fb9fb401fc7f0916367a
+  languageName: node
+  linkType: hard
+
+"@typescript-eslint/types@npm:^8.47.0":
+  version: 8.51.0
+  resolution: "@typescript-eslint/types@npm:8.51.0"
+  checksum: 10c0/eb3473d0bb71eb886438f35887b620ffadae7853b281752a40c73158aee644d136adeb82549be7d7c30f346fe888b2e979dff7e30e67b35377e8281018034529
   languageName: node
   linkType: hard
 
@@ -3076,6 +3110,7 @@ __metadata:
     "@mantine/hooks": "npm:^8.3.10"
     "@mantine/modals": "npm:^8.3.10"
     "@mantine/notifications": "npm:^8.3.10"
+    "@stylistic/eslint-plugin": "npm:^5.6.1"
     "@tabler/icons-react": "npm:^3.36.0"
     "@tailwindcss/postcss": "npm:^4"
     "@types/node": "npm:^25.0.3"
