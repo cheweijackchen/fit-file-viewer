@@ -2,10 +2,7 @@
   "[javascript]": {
     "editor.tabSize": 2,
     "editor.formatOnPaste": false,
-    "editor.formatOnSave": true,
-    "editor.codeActionsOnSave": {
-      "source.fixAll.eslint": "explicit"
-    }
+    "editor.formatOnSave": true
   },
   "[typescript]": {
     "editor.tabSize": 2,
@@ -17,10 +14,16 @@
     "editor.formatOnPaste": false,
     "editor.formatOnSave": true
   },
+  "[javascript][typescript][typescriptreact]": {
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": "explicit"
+    }
+  },
   "[scss]": {
     "editor.tabSize": 2,
     "editor.formatOnSave": true
-  },
+  },  
+  "scssFormatter.singleQuote": true,
   "cSpell.words": [
     "mantine",
     "turbopack"
