@@ -1,25 +1,25 @@
-@use "sass:math";
+@use 'sass:math';
 
 // Define variables for your breakpoints,
 // values must be the same as in your theme
-$mantine-breakpoint-sm: "36em";
-$mantine-breakpoint-md: "48em";
-$mantine-breakpoint-lg: "64em";
-$mantine-breakpoint-xl: "80em";
-$mantine-breakpoint-2xl: "96em";
+$mantine-breakpoint-sm: '36em';
+$mantine-breakpoint-md: '48em';
+$mantine-breakpoint-lg: '64em';
+$mantine-breakpoint-xl: '80em';
+$mantine-breakpoint-2xl: '96em';
 
 @function rem($value) {
   @return #{math.div(math.div($value, $value * 0 + 1), 16)}rem;
 }
 
 @mixin light {
-  [data-mantine-color-scheme="light"] & {
+  [data-mantine-color-scheme='light'] & {
     @content;
   }
 }
 
 @mixin dark {
-  [data-mantine-color-scheme="dark"] & {
+  [data-mantine-color-scheme='dark'] & {
     @content;
   }
 }
@@ -52,13 +52,13 @@ $mantine-breakpoint-2xl: "96em";
 
 // Add direction mixins if you need rtl support
 @mixin rtl {
-  [dir="rtl"] & {
+  [dir='rtl'] & {
     @content;
   }
 }
 
 @mixin ltr {
-  [dir="ltr"] & {
+  [dir='ltr'] & {
     @content;
   }
 }
