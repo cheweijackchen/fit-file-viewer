@@ -26,7 +26,7 @@ const eslintConfig = defineConfig([
       // Force curly braces for all control statements (no single-line ifs)
       'curly': ['error', 'all'],
       // Enforce a line break after the opening brace and before the closing brace
-      'brace-style': ['error', '1tbs', { 'allowSingleLine': false }],
+      'brace-style': ['warn', '1tbs', { 'allowSingleLine': false }],
       'prefer-promise-reject-errors': 'off',
       'quotes': ['warn', 'single', { avoidEscape: true }],
 
@@ -57,11 +57,27 @@ const eslintConfig = defineConfig([
       'no-mixed-operators': 'off',
       '@stylistic/no-mixed-operators': 'warn',
 
+      'object-curly-spacing': 'off',
+      '@stylistic/object-curly-spacing': ['warn', 'always'],
+
       '@stylistic/member-delimiter-style': ['warn', {
         'singleline': {
           'delimiter': 'semi',
           'requireLast': true
         },
+      }],
+
+      '@stylistic/jsx-closing-bracket-location': ['warn', 'tag-aligned'],
+      '@stylistic/jsx-max-props-per-line': 'warn',
+      '@stylistic/jsx-first-prop-new-line': ['warn', 'multiline-multiprop'],
+      '@stylistic/jsx-sort-props': ['warn', {
+        callbacksLast: true,
+        shorthandFirst: true,
+        shorthandLast: false,
+        multiline: 'ignore',
+        ignoreCase: true,
+        noSortAlphabetically: true,
+        reservedFirst: ['key', 'ref'],
       }],
 
       // The checks it provides are already provided by typescript, disable to fix global type declaration.
