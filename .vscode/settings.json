@@ -23,6 +23,7 @@
     "editor.tabSize": 2,
     "editor.formatOnSave": true
   },  
+  "typescript.format.insertSpaceAfterOpeningAndBeforeClosingJsxExpressionBraces": false,
   "scssFormatter.singleQuote": true,
   "cSpell.words": [
     "mantine",
