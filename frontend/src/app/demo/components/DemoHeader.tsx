@@ -5,7 +5,7 @@ import {
   Flex,
   Group,
 } from '@mantine/core'
-// import ThemeSwitch from "../components/ThemeSwitch"
+import { ThemeSwitch } from '@/components/ThemeSwitch'
 
 interface Props {
   opened: boolean;
@@ -26,10 +26,11 @@ export function DemoHeader({ opened, toggle }: Props) {
         <Burger
           opened={opened}
           hiddenFrom="md"
-          size="sm"
+          size="md"
           onClick={toggle}
         />
       </Flex>
+      <ThemeSwitch></ThemeSwitch>
     </Group>
   )
 }
