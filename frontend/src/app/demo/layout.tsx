@@ -1,73 +1,53 @@
 'use client'
 
-import { AppShell, Overlay } from '@mantine/core'
-import { useDisclosure, useMediaQuery } from '@mantine/hooks'
-import { Suspense } from 'react'
+import { AppShell } from '@mantine/core'
+import { useDisclosure } from '@mantine/hooks'
 import { DemoHeader } from './components/DemoHeader'
 import { DemoNavbar } from './components/DemoNavbar'
-// import { useStore } from '../store/client/useStore'
+import classes from './DemoLayout.module.scss'
+import { useDemoStore } from '@/store/demo/useDemoStore'
 
 interface DemoLayoutProps {
   children: React.ReactNode;
 }
 
+const NAVBAR_WIDTH = 260
+const NAVBAR_COLLAPSED_WIDTH = 60
+const HEADER_HEIGHT = 60
+
 export default function DemoLayout({ children }: DemoLayoutProps) {
 
-  const [opened, { toggle, close }] = useDisclosure()
+  const [opened, { toggle }] = useDisclosure()
 
-  // const { isNavbarCollapse } = useStore()
-
-  const smallScreen = useMediaQuery('(max-width: 48em)')
-
-  // useEffect(() => {
-  //   if (opened && smallScreen) {
-  //     document.body.style.overflow = 'hidden'
-  //   } else {
-  //     document.body.style.overflow = 'visible'
-  //   }
-  // }, [opened, smallScreen])
+  const { isNavbarCollapse } = useDemoStore()
 
   return (
     <AppShell
-      padding="md"
+      layout="alt"
+      header={{ height: HEADER_HEIGHT }}
       navbar={{
-        // width: isNavbarCollapse ? 298 : 81,
-        width: 298,
-        breakpoint: 'sm',
+        width: isNavbarCollapse ? NAVBAR_WIDTH : NAVBAR_COLLAPSED_WIDTH,
+        breakpoint: 'md',
         collapsed: { mobile: !opened },
       }}
-      // classNames={{
-      //   navbar: classes.navbar,
-      //   header: classes.header,
-      //   main: classes.main,
-      // }}
-      header={{ height: 60 }}
+      padding="md"
+      classNames={{
+        navbar: classes.navbar,
+      }}
     >
       <AppShell.Header>
         <DemoHeader
           opened={opened}
           toggle={toggle}
         ></DemoHeader>
-        {/* <DemoHeader opened={opened} toggle={toggle} /> */}
       </AppShell.Header>
       <AppShell.Navbar
-        data-smallscreen={smallScreen}
-        // data-collapse={isNavbarCollapse}
+        data-collapse={isNavbarCollapse}
       >
         <DemoNavbar />
       </AppShell.Navbar>
       <AppShell.Main>
-        {opened && smallScreen && (
-          <Overlay
-            zIndex={100}
-            h="100vh"
-            color="#000"
-            backgroundOpacity={0.35}
-            blur={15}
-            onClick={close}
-          />
-        )}
-        <Suspense fallback={<div>Loading</div>}>{children}</Suspense>
+        {children}
       </AppShell.Main>
     </AppShell>
   )

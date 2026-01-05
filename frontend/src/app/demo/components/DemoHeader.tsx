@@ -1,22 +1,18 @@
+'use client'
+
 import {
   Burger,
   Flex,
   Group,
 } from '@mantine/core'
-import { useMediaQuery } from '@mantine/hooks'
-// import FullScreen from "../components/FullScreen"
 // import ThemeSwitch from "../components/ThemeSwitch"
-// import { useStore } from "../store/client/useStore"
 
 interface Props {
   opened: boolean;
   toggle: () => void;
 }
 
-
-export function DemoHeader ({ opened, toggle }: Props) {
-  const smallScreen = useMediaQuery('(max-width: 48em)')
-
+export function DemoHeader({ opened, toggle }: Props) {
   return (
     <Group
       h="100%"
@@ -27,21 +23,12 @@ export function DemoHeader ({ opened, toggle }: Props) {
         align="center"
         gap={16}
       >
-        {smallScreen ? (
-          <Burger
-            opened={opened}
-            hiddenFrom="sm"
-            size="sm"
-            onClick={toggle}
-          />
-        ) : (
-          <Burger
-            style={{ outline: 'none', }}
-            size="sm"
-            // opened={!isNavbarCollapse}
-            // onClick={toggleNavbar}
-          />
-        )}
+        <Burger
+          opened={opened}
+          hiddenFrom="md"
+          size="sm"
+          onClick={toggle}
+        />
       </Flex>
     </Group>
   )
