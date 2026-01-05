@@ -79,6 +79,8 @@ const eslintConfig = defineConfig([
         noSortAlphabetically: true,
         reservedFirst: ['key', 'ref'],
       }],
+      '@stylistic/jsx-indent': ['warn', 2],
+      '@stylistic/jsx-indent-props': ['warn', 2],
 
       // The checks it provides are already provided by typescript, disable to fix global type declaration.
       'no-undef': 'off',
