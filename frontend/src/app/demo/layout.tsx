@@ -1,6 +1,6 @@
 'use client'
 
-import { AppShell } from '@mantine/core'
+import { AppShell, ScrollArea } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 import { DemoHeader } from './components/DemoHeader'
 import { DemoNavbar } from './components/DemoNavbar'
@@ -26,7 +26,7 @@ export default function DemoLayout({ children }: DemoLayoutProps) {
       layout="alt"
       header={{ height: HEADER_HEIGHT }}
       navbar={{
-        width: isNavbarCollapse ? NAVBAR_WIDTH : NAVBAR_COLLAPSED_WIDTH,
+        width: isNavbarCollapse ? NAVBAR_COLLAPSED_WIDTH : NAVBAR_WIDTH,
         breakpoint: 'md',
         collapsed: { mobile: !opened },
       }}
@@ -44,7 +44,12 @@ export default function DemoLayout({ children }: DemoLayoutProps) {
       <AppShell.Navbar
         data-collapse={isNavbarCollapse}
       >
-        <DemoNavbar />
+        <AppShell.Section
+          grow
+          component={ScrollArea}
+        >
+          <DemoNavbar />
+        </AppShell.Section>
       </AppShell.Navbar>
       <AppShell.Main>
         {children}

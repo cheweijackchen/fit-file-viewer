@@ -9,14 +9,14 @@ export interface DemoSlice {
 
 const createDemoSlice: StateCreator<DemoSlice> = (set) => {
   return {
-    isNavbarCollapse: true,
+    isNavbarCollapse: false,
     openNavbar: () =>
       set((state) => {
-        return { ...state, isNavbarCollapse: true }
+        return { ...state, isNavbarCollapse: false }
       }),
     closeNavbar: () =>
       set((state) => {
-        return { ...state, isNavbarCollapse: false }
+        return { ...state, isNavbarCollapse: true }
       }),
     toggleNavbar: () =>
       set((state) => {
