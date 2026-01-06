@@ -5,6 +5,7 @@ import { IconChartBar, IconClipboardList, IconDeviceFloppy, IconIcons } from '@t
 import { useDemoStore } from '@/store/demo/useDemoStore';
 import { DemoNavbarSwitch } from './DemoNavbarSwitch';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation'
 
 interface Props {
   closeNavbar: () => void
@@ -39,6 +40,7 @@ const navLinks = [
 
 export function DemoNavbar({ closeNavbar }: Props) {
   const { isNavbarCollapse } = useDemoStore()
+  const pathname = usePathname()
 
   return (
     <Stack className="py-5 px-4">
@@ -88,12 +90,16 @@ export function DemoNavbar({ closeNavbar }: Props) {
           </Text>
           <Box w="100%">
             {navLinks.map(({ title, icon: NavIcon, children }) => {
+              const hasActiveLink = children.some(item => item.link === pathname)
+
               return (
                 <NavLink
                   key={title}
                   label={title}
                   leftSection={<NavIcon size={16} stroke={1.5} />}
                   childrenOffset={28}
+                  defaultOpened={hasActiveLink}
+                  className="rounded-lg"
                 >
                   {children?.map((entry) => {
                     return (
@@ -102,6 +108,8 @@ export function DemoNavbar({ closeNavbar }: Props) {
                         key={entry.title}
                         label={entry.title}
                         href={entry.link}
+                        active={entry.link === pathname}
+                        className="rounded-lg"
                         onClick={closeNavbar}
                       />
                     )
