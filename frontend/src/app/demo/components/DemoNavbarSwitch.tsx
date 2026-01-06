@@ -1,3 +1,5 @@
+'use client'
+
 import { rem, Switch } from '@mantine/core';
 import { useDemoStore } from '@/store/demo/useDemoStore';
 
