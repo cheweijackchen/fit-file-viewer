@@ -1,11 +1,12 @@
 'use client'
 
-import { Text, Flex, Group, Stack, ThemeIcon, NavLink, Box } from '@mantine/core';
-import { IconDeviceFloppy } from '@tabler/icons-react';
-import Link from 'next/link';
+import { Text, Flex, Group, Stack, ThemeIcon, NavLink, Box } from '@mantine/core'
+import { IconDeviceFloppy } from '@tabler/icons-react'
+import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useDemoStore } from '@/store/demo/useDemoStore';
-import { DemoNavbarSwitch } from './DemoNavbarSwitch';
+import useScreen from '@/hooks/useScreen'
+import { useDemoStore } from '@/store/demo/useDemoStore'
+import { DemoNavbarSwitch } from './DemoNavbarSwitch'
 import { demoNavLinks } from '../demoRoutes'
 
 interface Props {
@@ -14,7 +15,10 @@ interface Props {
 
 export function DemoNavbar({ closeNavbar }: Props) {
   const { isNavbarCollapse } = useDemoStore()
+  const { onMobile } = useScreen()
   const pathname = usePathname()
+
+  const isNavbarShown = !isNavbarCollapse || onMobile
 
   return (
     <Stack className="py-5 px-4">
@@ -26,7 +30,7 @@ export function DemoNavbar({ closeNavbar }: Props) {
         <Group
           w="100%"
           align="center"
-          justify={isNavbarCollapse ? 'center' : 'space-between'}
+          justify={isNavbarShown ? 'space-between' : 'center'}
         >
           <Flex
             align="center"
@@ -38,7 +42,7 @@ export function DemoNavbar({ closeNavbar }: Props) {
             >
               <IconDeviceFloppy style={{ width: '70%', height: '70%' }} />
             </ThemeIcon>
-            {!isNavbarCollapse && (
+            {isNavbarShown && (
               <Text
                 fw={600}
               >
@@ -53,18 +57,18 @@ export function DemoNavbar({ closeNavbar }: Props) {
         {isNavbarCollapse && (<DemoNavbarSwitch />)}
       </Stack>
 
-      {!isNavbarCollapse && (
+      {isNavbarShown && (
         <Stack
           w="100%"
           gap="sm"
-          align={isNavbarCollapse ? 'center' : 'start'}
+          align={isNavbarShown ? 'start' : 'center'}
         >
           <Text
             fz="xs"
             fw={500}
             tt="uppercase"
           >
-            {isNavbarCollapse ? 'NAV' : 'Navigation'}
+            Navigation
           </Text>
           <Box w="100%">
             {demoNavLinks.map(({ title, icon: NavIcon, children }) => {
