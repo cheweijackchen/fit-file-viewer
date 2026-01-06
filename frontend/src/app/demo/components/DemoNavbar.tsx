@@ -1,42 +1,16 @@
 'use client'
 
 import { Text, Flex, Group, Stack, ThemeIcon, NavLink, Box } from '@mantine/core';
-import { IconChartBar, IconClipboardList, IconDeviceFloppy, IconIcons } from '@tabler/icons-react';
+import { IconDeviceFloppy } from '@tabler/icons-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation'
 import { useDemoStore } from '@/store/demo/useDemoStore';
 import { DemoNavbarSwitch } from './DemoNavbarSwitch';
+import { demoNavLinks } from '../demoRoutes'
 
 interface Props {
   closeNavbar: () => void;
 }
-
-const navLinks = [
-  {
-    icon: IconIcons,
-    title: 'Components',
-    children: [
-      {
-        title: 'ComponentA',
-        link: '/demo/demo-component-a',
-      },
-      {
-        title: 'ComponentB',
-        link: '/demo/demo-component-b',
-      }
-    ]
-  },
-  {
-    icon: IconClipboardList,
-    title: 'Forms',
-    children: []
-  },
-  {
-    icon: IconChartBar,
-    title: 'Chart',
-    children: []
-  },
-]
 
 export function DemoNavbar({ closeNavbar }: Props) {
   const { isNavbarCollapse } = useDemoStore()
@@ -93,7 +67,7 @@ export function DemoNavbar({ closeNavbar }: Props) {
             {isNavbarCollapse ? 'NAV' : 'Navigation'}
           </Text>
           <Box w="100%">
-            {navLinks.map(({ title, icon: NavIcon, children }) => {
+            {demoNavLinks.map(({ title, icon: NavIcon, children }) => {
               const hasActiveLink = children.some(item => item.link === pathname)
 
               return (
