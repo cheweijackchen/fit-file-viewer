@@ -6,6 +6,10 @@ import { useDemoStore } from '@/store/demo/useDemoStore';
 import { DemoNavbarSwitch } from './DemoNavbarSwitch';
 import Link from 'next/link';
 
+interface Props {
+  closeNavbar: () => void
+}
+
 const navLinks = [
   {
     icon: IconIcons,
@@ -33,7 +37,7 @@ const navLinks = [
   },
 ]
 
-export function DemoNavbar() {
+export function DemoNavbar({ closeNavbar }: Props) {
   const { isNavbarCollapse } = useDemoStore()
 
   return (
@@ -97,7 +101,9 @@ export function DemoNavbar() {
                         component={Link}
                         key={entry.title}
                         label={entry.title}
-                        href={entry.link} />
+                        href={entry.link}
+                        onClick={closeNavbar}
+                      />
                     )
                   })}
                 </NavLink>

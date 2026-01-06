@@ -17,7 +17,12 @@ const HEADER_HEIGHT = 60
 
 export default function DemoLayout({ children }: DemoLayoutProps) {
 
-  const [opened, { toggle }] = useDisclosure()
+  const [
+    navbarOpened, {
+      toggle: toggleNavbar,
+      close: closeNavbar
+    }
+  ] = useDisclosure()
 
   const { isNavbarCollapse } = useDemoStore()
 
@@ -28,7 +33,7 @@ export default function DemoLayout({ children }: DemoLayoutProps) {
       navbar={{
         width: isNavbarCollapse ? NAVBAR_COLLAPSED_WIDTH : NAVBAR_WIDTH,
         breakpoint: 'md',
-        collapsed: { mobile: !opened },
+        collapsed: { mobile: !navbarOpened },
       }}
       padding="md"
       classNames={{
@@ -37,8 +42,8 @@ export default function DemoLayout({ children }: DemoLayoutProps) {
     >
       <AppShell.Header>
         <DemoHeader
-          opened={opened}
-          toggle={toggle}
+          opened={navbarOpened}
+          toggle={toggleNavbar}
         ></DemoHeader>
       </AppShell.Header>
       <AppShell.Navbar
@@ -48,7 +53,7 @@ export default function DemoLayout({ children }: DemoLayoutProps) {
           grow
           component={ScrollArea}
         >
-          <DemoNavbar />
+          <DemoNavbar closeNavbar={closeNavbar} />
         </AppShell.Section>
       </AppShell.Navbar>
       <AppShell.Main>
