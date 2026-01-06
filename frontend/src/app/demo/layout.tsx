@@ -2,10 +2,10 @@
 
 import { AppShell, ScrollArea } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
+import { useDemoStore } from '@/store/demo/useDemoStore'
 import { DemoHeader } from './components/DemoHeader'
 import { DemoNavbar } from './components/DemoNavbar'
 import classes from './DemoLayout.module.scss'
-import { useDemoStore } from '@/store/demo/useDemoStore'
 
 interface DemoLayoutProps {
   children: React.ReactNode;

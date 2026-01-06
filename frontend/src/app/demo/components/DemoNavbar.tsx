@@ -2,38 +2,38 @@
 
 import { Text, Flex, Group, Stack, ThemeIcon, NavLink, Box } from '@mantine/core';
 import { IconChartBar, IconClipboardList, IconDeviceFloppy, IconIcons } from '@tabler/icons-react';
-import { useDemoStore } from '@/store/demo/useDemoStore';
-import { DemoNavbarSwitch } from './DemoNavbarSwitch';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation'
+import { useDemoStore } from '@/store/demo/useDemoStore';
+import { DemoNavbarSwitch } from './DemoNavbarSwitch';
 
 interface Props {
-  closeNavbar: () => void
+  closeNavbar: () => void;
 }
 
 const navLinks = [
   {
     icon: IconIcons,
-    title: "Components",
+    title: 'Components',
     children: [
       {
-        title: "ComponentA",
-        link: "/demo/demo-component-a",
+        title: 'ComponentA',
+        link: '/demo/demo-component-a',
       },
       {
-        title: "ComponentB",
-        link: "/demo/demo-component-b",
+        title: 'ComponentB',
+        link: '/demo/demo-component-b',
       }
     ]
   },
   {
     icon: IconClipboardList,
-    title: "Forms",
+    title: 'Forms',
     children: []
   },
   {
     icon: IconChartBar,
-    title: "Chart",
+    title: 'Chart',
     children: []
   },
 ]
@@ -83,10 +83,14 @@ export function DemoNavbar({ closeNavbar }: Props) {
         <Stack
           w="100%"
           gap="sm"
-          align={isNavbarCollapse ? "center" : "start"}
+          align={isNavbarCollapse ? 'center' : 'start'}
         >
-          <Text fz="xs" fw={500} tt="uppercase">
-            {isNavbarCollapse ? "NAV" : "Navigation"}
+          <Text
+            fz="xs"
+            fw={500}
+            tt="uppercase"
+          >
+            {isNavbarCollapse ? 'NAV' : 'Navigation'}
           </Text>
           <Box w="100%">
             {navLinks.map(({ title, icon: NavIcon, children }) => {
@@ -96,7 +100,10 @@ export function DemoNavbar({ closeNavbar }: Props) {
                 <NavLink
                   key={title}
                   label={title}
-                  leftSection={<NavIcon size={16} stroke={1.5} />}
+                  leftSection={<NavIcon
+                    size={16}
+                    stroke={1.5}
+                               />}
                   childrenOffset={28}
                   defaultOpened={hasActiveLink}
                   className="rounded-lg"
@@ -104,8 +111,8 @@ export function DemoNavbar({ closeNavbar }: Props) {
                   {children?.map((entry) => {
                     return (
                       <NavLink
-                        component={Link}
                         key={entry.title}
+                        component={Link}
                         label={entry.title}
                         href={entry.link}
                         active={entry.link === pathname}
