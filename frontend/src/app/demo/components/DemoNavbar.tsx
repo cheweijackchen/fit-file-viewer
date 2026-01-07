@@ -78,10 +78,12 @@ export function DemoNavbar({ closeNavbar }: Props) {
                 <NavLink
                   key={title}
                   label={title}
-                  leftSection={<NavIcon
-                    size={16}
-                    stroke={1.5}
-                               />}
+                  leftSection={
+                    <NavIcon
+                      size={16}
+                      stroke={1.5}
+                    />
+                  }
                   childrenOffset={28}
                   defaultOpened={hasActiveLink}
                   className="rounded-lg"
