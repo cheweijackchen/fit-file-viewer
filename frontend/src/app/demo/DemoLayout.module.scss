@@ -1,0 +1,5 @@
+.navbar {
+  @media (max-width: mantine.$mantine-breakpoint-md) {
+    margin-top: calc(var(--app-shell-header-height));
+  }
+}

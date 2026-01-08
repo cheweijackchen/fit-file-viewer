@@ -27,6 +27,7 @@
   "scssFormatter.singleQuote": true,
   "cSpell.words": [
     "mantine",
+    "tabler",
     "turbopack"
   ]
 }
