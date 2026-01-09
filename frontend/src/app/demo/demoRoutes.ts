@@ -1,4 +1,4 @@
-import { IconChartBar, IconClipboardList, IconIcons } from '@tabler/icons-react';
+import { IconChartBar, IconClipboardList, IconIcons, IconPick } from '@tabler/icons-react';
 
 export const demoNavLinks = [
   {
@@ -12,17 +12,27 @@ export const demoNavLinks = [
       {
         title: 'ComponentB',
         link: '/demo/demo-component-b',
+      },
+    ]
+  },
+  {
+    icon: IconPick,
+    title: 'Functionalities',
+    children: [
+      {
+        title: 'Fit File Parser',
+        link: '/demo/demo-fit-file-parser'
       }
     ]
   },
   {
     icon: IconClipboardList,
-    title: 'Forms',
+    title: 'Form',
     children: []
   },
   {
     icon: IconChartBar,
-    title: 'Chart',
+    title: 'Charts',
     children: []
   },
 ]
