@@ -77,7 +77,7 @@ export function FitFileUploader({ onSuccess }: Props) {
           <Dropzone.Accept>
             <IconUpload
               size={52}
-              color="var(--mantine-color-blue-6)"
+              color="var(--mantine-color-yellow-4)"
               stroke={1.5}
             />
           </Dropzone.Accept>
