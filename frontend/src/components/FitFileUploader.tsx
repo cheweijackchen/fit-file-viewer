@@ -62,7 +62,7 @@ export function FitFileUploader({ onSuccess }: Props) {
     <Dropzone
       maxSize={MAX_FILE_SIZE_IN_BYTES}
       style={{
-        'border-width': '3px'
+        borderWidth: '3px'
       }}
       loading={parseLoading}
       onDrop={onFileDrop}
