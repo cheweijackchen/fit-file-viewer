@@ -1,5 +1,6 @@
 import { Stack, Text } from '@mantine/core';
 import { Dropzone, type FileWithPath } from '@mantine/dropzone';
+import { notifications } from '@mantine/notifications';
 import { IconBike, IconUpload, IconX } from '@tabler/icons-react';
 import FitParser from 'fit-file-parser';
 import { useState } from 'react';
@@ -13,6 +14,14 @@ export function FitFileUploader() {
 
   function onFileDrop(files: FileWithPath[]) {
     handleFitFile(files[0])
+  }
+
+  function showParsingErrorNotification (error: unknown) {
+    notifications.show({
+      title: 'Parsing Error',
+      message: JSON.stringify(error),
+      color: 'red'
+    })
   }
 
   async function handleFitFile(file: File) {
@@ -35,11 +44,10 @@ export function FitFileUploader() {
           setFileName(file.name)
         })
         .catch((error) => {
-          // TODO: error handling
-          console.warn('Parsing error:', error)
+          showParsingErrorNotification(error)
         })
     } catch (error) {
-
+      showParsingErrorNotification(error)
     } finally {
       setParseLoading(false)
     }
