@@ -40,7 +40,7 @@ export function AppHeader() {
         opened={isFitFileUploaderOpened}
         onClose={closeFitFileUploaderModal}
       >
-        <FitFileUploader></FitFileUploader>
+        <FitFileUploader onSuccess={closeFitFileUploaderModal}></FitFileUploader>
       </Modal >
     </>
   )

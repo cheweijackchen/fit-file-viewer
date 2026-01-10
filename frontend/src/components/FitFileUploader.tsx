@@ -6,9 +6,13 @@ import FitParser from 'fit-file-parser';
 import { useState } from 'react';
 import { useFitDataStore } from '@/store/app/useFitDataStore';
 
+interface Props {
+  onSuccess?: () => void;
+}
+
 const MAX_FILE_SIZE_IN_BYTES = 5 * (1024 ** 2)
 
-export function FitFileUploader() {
+export function FitFileUploader({ onSuccess }: Props) {
   const [parseLoading, setParseLoading] = useState(false)
   const { setFileName, setFitData } = useFitDataStore()
 
@@ -42,6 +46,7 @@ export function FitFileUploader() {
           console.log(data)
           setFitData(data)
           setFileName(file.name)
+          onSuccess?.()
         })
         .catch((error) => {
           showParsingErrorNotification(error)
