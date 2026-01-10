@@ -1,9 +1,13 @@
-import '@mantine/core/styles.css'
+import '@mantine/core/styles.css';
+// import other mantine extension styles after core package styles
+import '@mantine/dropzone/styles.css';
+import '@mantine/notifications/styles.css';
 import {
   ColorSchemeScript,
   mantineHtmlProps,
   MantineProvider,
 } from '@mantine/core';
+import { Notifications } from '@mantine/notifications';
 import '@/styles/globals.css';
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
@@ -40,7 +44,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <MantineProvider theme={theme}>{children}</MantineProvider>
+        <MantineProvider theme={theme}>
+          {children}
+          <Notifications />
+        </MantineProvider>
       </body>
     </html>
   );
