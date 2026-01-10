@@ -1,5 +1,6 @@
 import { Button, Flex, Group, Modal, Text } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks';
+import { IconUpload } from '@tabler/icons-react';
 import { FitFileUploader } from '@/components/FitFileUploader';
 import { ThemeSwitch } from '@/components/ThemeSwitch'
 import { useFitDataStore } from '@/store/app/useFitDataStore'
@@ -31,7 +32,13 @@ export function AppHeader() {
           <ThemeSwitch></ThemeSwitch>
           {
             hasFitData &&
-            <Button onClick={openFitFileUploaderModal}>Upload New File</Button>
+            <Button
+              px="xs"
+              onClick={openFitFileUploaderModal}
+            >
+              <IconUpload></IconUpload>
+              <span className="hidden md:block ml-2">Upload New File</span>
+            </Button>
           }
         </Flex>
       </Group>
