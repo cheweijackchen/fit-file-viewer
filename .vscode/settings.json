@@ -25,6 +25,7 @@
   },  
   "typescript.format.insertSpaceAfterOpeningAndBeforeClosingJsxExpressionBraces": false,
   "scssFormatter.singleQuote": true,
+  "files.insertFinalNewline": true,
   "cSpell.words": [
     "mantine",
     "tabler",

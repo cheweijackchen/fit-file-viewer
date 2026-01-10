@@ -1,3 +1,3 @@
-export default function DemoComponentB () {
+export default function DemoComponentB() {
   return <div>Demo ComponentB</div>
 }
