@@ -1,18 +1,31 @@
 import { Stack, Text } from '@mantine/core';
 import { Dropzone, type FileWithPath } from '@mantine/dropzone';
+import { notifications } from '@mantine/notifications';
 import { IconBike, IconUpload, IconX } from '@tabler/icons-react';
 import FitParser from 'fit-file-parser';
 import { useState } from 'react';
 import { useFitDataStore } from '@/store/app/useFitDataStore';
 
+interface Props {
+  onSuccess?: () => void;
+}
+
 const MAX_FILE_SIZE_IN_BYTES = 5 * (1024 ** 2)
 
-export function FitFileUploader() {
+export function FitFileUploader({ onSuccess }: Props) {
   const [parseLoading, setParseLoading] = useState(false)
   const { setFileName, setFitData } = useFitDataStore()
 
   function onFileDrop(files: FileWithPath[]) {
     handleFitFile(files[0])
+  }
+
+  function showParsingErrorNotification (error: unknown) {
+    notifications.show({
+      title: 'Parsing Error',
+      message: JSON.stringify(error),
+      color: 'red'
+    })
   }
 
   async function handleFitFile(file: File) {
@@ -33,13 +46,13 @@ export function FitFileUploader() {
           console.log(data)
           setFitData(data)
           setFileName(file.name)
+          onSuccess?.()
         })
         .catch((error) => {
-          // TODO: error handling
-          console.warn('Parsing error:', error)
+          showParsingErrorNotification(error)
         })
     } catch (error) {
-
+      showParsingErrorNotification(error)
     } finally {
       setParseLoading(false)
     }
@@ -49,7 +62,7 @@ export function FitFileUploader() {
     <Dropzone
       maxSize={MAX_FILE_SIZE_IN_BYTES}
       style={{
-        'border-width': '3px'
+        borderWidth: '3px'
       }}
       loading={parseLoading}
       onDrop={onFileDrop}
@@ -64,7 +77,7 @@ export function FitFileUploader() {
           <Dropzone.Accept>
             <IconUpload
               size={52}
-              color="var(--mantine-color-blue-6)"
+              color="var(--mantine-color-yellow-4)"
               stroke={1.5}
             />
           </Dropzone.Accept>

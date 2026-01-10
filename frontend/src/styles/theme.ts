@@ -57,6 +57,7 @@ const theme: MantineThemeOverride = createTheme({
     '3xl': rem('32px'),
   },
   primaryColor: 'yellow',
+  primaryShade: 5,
   components: {
     /** Put your mantine component override here */
     Container: Container.extend({

@@ -1,6 +1,6 @@
 'use client'
 
-import { ActionIcon, useMantineColorScheme, useComputedColorScheme } from '@mantine/core';
+import { ActionIcon, useMantineColorScheme, useComputedColorScheme, Button } from '@mantine/core';
 import { IconSun, IconMoon } from '@tabler/icons-react';
 import cx from 'clsx';
 import classes from './ThemeSwitch.module.scss';
@@ -13,7 +13,7 @@ export function ThemeSwitch() {
   return (
     <ActionIcon
       variant="default"
-      size="lg"
+      size="input-sm"
       aria-label="Toggle color scheme"
       onClick={() => setColorScheme(computedColorScheme === 'light' ? 'dark' : 'light')}
     >
