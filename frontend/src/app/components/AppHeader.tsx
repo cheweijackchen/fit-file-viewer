@@ -1,0 +1,47 @@
+import { Button, Flex, Group, Modal, Text } from '@mantine/core'
+import { useDisclosure } from '@mantine/hooks';
+import { FitFileUploader } from '@/components/FitFileUploader';
+import { ThemeSwitch } from '@/components/ThemeSwitch'
+import { useFitDataStore } from '@/store/app/useFitDataStore'
+
+export function AppHeader() {
+  const hasFitData = useFitDataStore(state => !!state.fitData)
+  const [isFitFileUploaderOpened, { open: openFitFileUploaderModal, close: closeFitFileUploaderModal }] = useDisclosure(false);
+
+  return (
+    <>
+      <Group
+        h="100%"
+        px="lg"
+        justify="space-between"
+      >
+        <Flex
+          align="center"
+          gap={16}
+        >
+          <Text
+            fz="h2"
+            fw="bold"
+          >FitFileViewer</Text>
+        </Flex>
+        <Flex
+          align="center"
+          gap={16}
+        >
+          <ThemeSwitch></ThemeSwitch>
+          {
+            hasFitData &&
+            <Button onClick={openFitFileUploaderModal}>Upload New File</Button>
+          }
+        </Flex>
+      </Group>
+      <Modal
+        centered
+        opened={isFitFileUploaderOpened}
+        onClose={closeFitFileUploaderModal}
+      >
+        <FitFileUploader></FitFileUploader>
+      </Modal >
+    </>
+  )
+}
