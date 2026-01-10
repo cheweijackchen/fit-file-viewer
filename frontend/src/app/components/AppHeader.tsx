@@ -27,7 +27,7 @@ export function AppHeader() {
         </Flex>
         <Flex
           align="center"
-          gap={16}
+          gap="xs"
         >
           <ThemeSwitch></ThemeSwitch>
           {
