@@ -1,5 +1,6 @@
-import { AppShell, Container } from '@mantine/core';
+import { AppShell } from '@mantine/core';
 import { AppHeader } from './AppHeader';
+import '@/styles/app/theme.scss';
 
 interface Props {
   children: React.ReactNode;
@@ -17,9 +18,9 @@ export default function AppLayout({ children }: Props) {
         <AppHeader></AppHeader>
       </AppShell.Header>
       <AppShell.Main className="flex">
-        <Container className="flex-1">
+        <div className="flex-1">
           {children}
-        </Container>
+        </div>
       </AppShell.Main>
     </AppShell>
   )
