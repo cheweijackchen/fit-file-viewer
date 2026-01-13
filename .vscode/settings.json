@@ -26,6 +26,7 @@
   "typescript.format.insertSpaceAfterOpeningAndBeforeClosingJsxExpressionBraces": false,
   "scssFormatter.singleQuote": true,
   "cSpell.words": [
+    "dotenvx",
     "mantine",
     "tabler",
     "turbopack"
