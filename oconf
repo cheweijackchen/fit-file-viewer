@@ -95,7 +95,7 @@ case ${1} in
         case ${2} in
             unit)
                 pushd frontend >/dev/null || exit
-                yarn run ${3:-test:unit:watch}
+                yarn run ${3:-test:unit}
                 popd >/dev/null || exit
                 ;;
             e2e)

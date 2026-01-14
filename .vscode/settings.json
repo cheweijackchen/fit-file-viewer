@@ -27,6 +27,7 @@
   "scssFormatter.singleQuote": true,
   "files.insertFinalNewline": true,
   "cSpell.words": [
+    "dotenvx",
     "mantine",
     "tabler",
     "turbopack"
