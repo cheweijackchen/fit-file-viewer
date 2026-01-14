@@ -32,7 +32,7 @@ describe('FitDataFormatter', () => {
       // Assert
       const result = formatter.format(FitDataField.distance, 1000);
       expect(result.unit).toBe('km');
-      expect(result.label).toBe('距離');
+      expect(result.label).toBe('Distance');
     });
 
     it('should accept imperial preset for output', () => {
@@ -92,7 +92,7 @@ describe('FitDataFormatter', () => {
 
         // Assert
         expect(result.value).toBe('3.11');
-        expect(result.unit).toBe('英里');
+        expect(result.unit).toBe('mi');
       });
 
       it('should display meters when output unit is meters', () => {
@@ -104,7 +104,7 @@ describe('FitDataFormatter', () => {
 
         // Assert
         expect(result.value).toBe('5234');
-        expect(result.unit).toBe('公尺');
+        expect(result.unit).toBe('m');
       });
 
       it('should convert meters to feet', () => {
@@ -116,7 +116,7 @@ describe('FitDataFormatter', () => {
 
         // Assert
         expect(result.value).toBe('328');
-        expect(result.unit).toBe('英尺');
+        expect(result.unit).toBe('ft');
       });
     });
 
@@ -149,7 +149,7 @@ describe('FitDataFormatter', () => {
 
         // Assert
         expect(result.value).toBe('6.21');
-        expect(result.unit).toBe('英里');
+        expect(result.unit).toBe('mi');
       });
     });
 
@@ -182,7 +182,7 @@ describe('FitDataFormatter', () => {
 
         // Assert
         expect(result.value).toBe('5.00');
-        expect(result.unit).toBe('英里');
+        expect(result.unit).toBe('mi');
       });
     });
 
@@ -569,7 +569,7 @@ describe('FitDataFormatter', () => {
       // Assert
       expect(result.value).toBe('153');
       expect(result.unit).toBe('bpm');
-      expect(result.label).toBe('心率');
+      expect(result.label).toBe('Heart Rate');
     });
 
     it('should round heart rate to nearest integer', () => {
@@ -660,7 +660,7 @@ describe('FitDataFormatter', () => {
 
       // Assert
       expect(result.value).toBe('10523');
-      expect(result.unit).toBe('步');
+      expect(result.unit).toBe('steps');
     });
 
     it('should format steps in English', () => {
@@ -994,7 +994,7 @@ describe('FitDataFormatter', () => {
       );
 
       // Assert
-      expect(displayString).toBe('3.11 英里');
+      expect(displayString).toBe('3.11 mi');
     });
   });
 
@@ -1031,7 +1031,7 @@ describe('FitDataFormatter', () => {
       const result = formatter.format(FitDataField.distance, distance);
 
       // Assert
-      expect(result.unit).toBe('公尺');
+      expect(result.unit).toBe('m');
     });
 
     it('should merge with existing options when updating partially', () => {
@@ -1159,8 +1159,8 @@ describe('FitDataFormatter', () => {
 
       // Assert
       expect(kmResult.unit).toBe('km');
-      expect(miResult.unit).toBe('英里');
-      expect(mResult.unit).toBe('公尺');
+      expect(miResult.unit).toBe('mi');
+      expect(mResult.unit).toBe('m');
     });
 
     it('should allow partial override without affecting other options', () => {
@@ -1174,8 +1174,8 @@ describe('FitDataFormatter', () => {
       const result = formatter2.format(FitDataField.distance, 5000, { lengthUnit: 'mi' });
 
       // Assert
-      expect(result.unit).toBe('英里'); // lengthUnit 被覆寫
-      expect(result.label).toBe('距離'); // language 保持預設
+      expect(result.unit).toBe('英里'); // lengthUnit is overridden
+      expect(result.label).toBe('距離'); // language remains default option
     });
   });
 
@@ -1199,7 +1199,7 @@ describe('FitDataFormatter', () => {
 
       // Assert
       expect(result.value).toBe('251');
-      expect(result.unit).toBe('公尺');
+      expect(result.unit).toBe('m');
     });
 
     it('should format elevation in feet', () => {
@@ -1211,7 +1211,7 @@ describe('FitDataFormatter', () => {
 
       // Assert
       expect(result.value).toBe('328');
-      expect(result.unit).toBe('英尺');
+      expect(result.unit).toBe('ft');
     });
   });
 
@@ -1231,7 +1231,7 @@ describe('FitDataFormatter', () => {
 
       // Assert
       expect(result.value).toBe('1');
-      expect(result.unit).toBe('公尺');
+      expect(result.unit).toBe('m');
     });
 
     it('should format stride length in km', () => {
@@ -1320,7 +1320,7 @@ describe('FitDataFormatter', () => {
     });
 
     it('should handle parser input conversion and output formatting', () => {
-      // Arrange - Parser 使用 m, m/s；輸出要 km, km/h
+      // Arrange - Parser units are m, m/s；output units are km, km/h
       const formatter = new FitDataFormatter(
         { lengthUnit: 'm', speedUnit: 'm/s' },
         { lengthUnit: 'km', speedUnit: 'km/h' }
@@ -1349,7 +1349,7 @@ describe('FitDataFormatter', () => {
 
       // Assert
       expect(metricResult.unit).toBe('km');
-      expect(metricResult.label).toBe('距離');
+      expect(metricResult.label).toBe('Distance');
       expect(imperialResult.unit).toBe('mi');
       expect(imperialResult.label).toBe('Distance');
     });
@@ -1388,7 +1388,7 @@ describe('FitDataFormatter', () => {
       expect(OutputPresets.metric.lengthUnit).toBe('km');
       expect(OutputPresets.metric.speedUnit).toBe('km/h');
       expect(OutputPresets.metric.temperatureUnit).toBe('celsius');
-      expect(OutputPresets.metric.language).toBe('zh-TW');
+      expect(OutputPresets.metric.language).toBe('en-US');
     });
 
     it('should have correct imperial preset values', () => {
