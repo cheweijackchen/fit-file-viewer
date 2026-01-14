@@ -7,7 +7,7 @@ export interface FitDataSlice {
   setFitData: (data: object) => void;
 }
 
-const createFitDataSlice: StateCreator<FitDataSlice> = (set, get) => {
+const createFitDataSlice: StateCreator<FitDataSlice> = (set) => {
   return {
     fileName: null,
     fitData: null,
