@@ -1,3 +1,10 @@
+const LanguageOption = {
+  zh: 'zh-TW',
+  en: 'en-US'
+} as const
+
+type LanguageOption = typeof LanguageOption[keyof typeof LanguageOption]
+
 interface FitParserOptions {
   lengthUnit?: 'm' | 'km' | 'mi';
   temperatureUnit?: 'celsius' | 'kelvin' | 'fahrenheit';
@@ -8,7 +15,7 @@ interface OutputUnitOptions {
   lengthUnit?: 'm' | 'km' | 'mi' | 'ft';
   temperatureUnit?: 'celsius' | 'fahrenheit';
   speedUnit?: 'm/s' | 'km/h' | 'mph';
-  language?: 'zh-TW' | 'en-US';
+  language?: LanguageOption;
 }
 
 const OutputPresets = {
@@ -16,13 +23,13 @@ const OutputPresets = {
     lengthUnit: 'km',
     temperatureUnit: 'celsius',
     speedUnit: 'km/h',
-    language: 'zh-TW',
+    language: LanguageOption.en,
   } as OutputUnitOptions,
   imperial: {
     lengthUnit: 'mi',
     temperatureUnit: 'fahrenheit',
     speedUnit: 'mph',
-    language: 'en-US',
+    language: LanguageOption.en,
   } as OutputUnitOptions,
 } as const
 
@@ -59,6 +66,26 @@ class FitDataFormatter {
   private parserOptions: Required<FitParserOptions>
   private defaultOutputOptions: Required<OutputUnitOptions>
 
+  private readonly labels: Record<FitDataField, { zh: string; en: string; }> = {
+    distance: { zh: '距離', en: 'Distance' },
+    speed: { zh: '速度', en: 'Speed' },
+    pace: { zh: '配速', en: 'Pace' },
+    heartRate: { zh: '心率', en: 'Heart Rate' },
+    cadence: { zh: '步頻', en: 'Cadence' },
+    power: { zh: '功率', en: 'Power' },
+    elevation: { zh: '海拔', en: 'Elevation' },
+    temperature: { zh: '溫度', en: 'Temperature' },
+    calories: { zh: '卡路里', en: 'Calories' },
+    duration: { zh: '時間', en: 'Duration' },
+    timestamp: { zh: '時間戳記', en: 'Timestamp' },
+    latitude: { zh: '緯度', en: 'Latitude' },
+    longitude: { zh: '經度', en: 'Longitude' },
+    grade: { zh: '坡度', en: 'Grade' },
+    verticalSpeed: { zh: '垂直速度', en: 'Vertical Speed' },
+    strideLength: { zh: '步幅', en: 'Stride Length' },
+    steps: { zh: '步數', en: 'Steps' },
+  }
+
   constructor(
     parserOptions: FitParserOptions = {},
     outputOptions: OutputUnitOptions | 'metric' | 'imperial' = 'metric'
@@ -76,7 +103,7 @@ class FitDataFormatter {
         lengthUnit: outputOptions.lengthUnit || 'km',
         temperatureUnit: outputOptions.temperatureUnit || 'celsius',
         speedUnit: outputOptions.speedUnit || 'km/h',
-        language: outputOptions.language || 'zh-TW',
+        language: outputOptions.language || LanguageOption.en,
       }
     }
   }
@@ -94,7 +121,7 @@ class FitDataFormatter {
     targetUnit: 'm' | 'km' | 'mi' | 'ft',
     language: string
   ): { value: string; unit: string; } {
-    const isZhTW = language === 'zh-TW'
+    const isZhTW = language === LanguageOption.zh
 
     switch (targetUnit) {
       case 'm':
@@ -210,28 +237,9 @@ class FitDataFormatter {
     }
   }
 
-  private getFieldLabel(field: FitDataField, language: string): string {
-    const isZhTW = language === 'zh-TW'
-    const labels: Record<FitDataField, { zh: string; en: string; }> = {
-      distance: { zh: '距離', en: 'Distance' },
-      speed: { zh: '速度', en: 'Speed' },
-      pace: { zh: '配速', en: 'Pace' },
-      heartRate: { zh: '心率', en: 'Heart Rate' },
-      cadence: { zh: '步頻', en: 'Cadence' },
-      power: { zh: '功率', en: 'Power' },
-      elevation: { zh: '海拔', en: 'Elevation' },
-      temperature: { zh: '溫度', en: 'Temperature' },
-      calories: { zh: '卡路里', en: 'Calories' },
-      duration: { zh: '時間', en: 'Duration' },
-      timestamp: { zh: '時間戳記', en: 'Timestamp' },
-      latitude: { zh: '緯度', en: 'Latitude' },
-      longitude: { zh: '經度', en: 'Longitude' },
-      grade: { zh: '坡度', en: 'Grade' },
-      verticalSpeed: { zh: '垂直速度', en: 'Vertical Speed' },
-      strideLength: { zh: '步幅', en: 'Stride Length' },
-      steps: { zh: '步數', en: 'Steps' },
-    }
-    return isZhTW ? labels[field].zh : labels[field].en
+  private getFieldLabel(field: FitDataField, language: LanguageOption): string {
+    const isZhTW = language === LanguageOption.zh
+    return isZhTW ? this.labels[field].zh : this.labels[field].en
   }
 
   format(
@@ -352,7 +360,8 @@ class FitDataFormatter {
         return {
           value: formatted,
           unit: '',
-          raw: value, label
+          raw: value,
+          label
         }
       }
 
@@ -391,7 +400,7 @@ class FitDataFormatter {
       case 'steps':
         return {
           value: Math.round(value).toString(),
-          unit: options.language === 'zh-TW' ? '步' : 'steps',
+          unit: options.language === LanguageOption.zh ? '步' : 'steps',
           raw: value,
           label,
         }
