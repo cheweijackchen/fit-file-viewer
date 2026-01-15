@@ -1,21 +1,22 @@
 import type { StateCreator } from 'zustand'
+import type { ParsedFit } from '@/model/fitParser'
 
 export interface FitDataSlice {
-  fileName: string | null;
-  fitData: object | null;
+  fileName: string | undefined;
+  fitData: ParsedFit | undefined;
   setFileName: (name: string) => void;
-  setFitData: (data: object) => void;
+  setFitData: (data: ParsedFit) => void;
 }
 
 const createFitDataSlice: StateCreator<FitDataSlice> = (set) => {
   return {
-    fileName: null,
-    fitData: null,
+    fileName: undefined,
+    fitData: undefined,
     setFileName: (name: string) =>
       set((state) => {
         return { ...state, fileName: name }
       }),
-    setFitData: (data: object) =>
+    setFitData: (data: ParsedFit) =>
       set((state) => {
         return { ...state, fitData: data }
       }),
