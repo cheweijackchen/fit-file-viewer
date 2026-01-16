@@ -25,7 +25,7 @@ export default function Home() {
           </Container>
         )
         : (
-          <Center className="h-full">
+          <Center className="h-full p-4">
             <FitFileUploader></FitFileUploader>
           </Center>
         )}
