@@ -1,45 +1,46 @@
 'use client'
 import { Box, Card, Stack, Text } from '@mantine/core'
 import { IconStopwatch, IconTrendingUp, IconTrendingDown, IconHeartbeat, IconRun, IconRulerMeasure } from '@tabler/icons-react';
-
-export function SummarySection () {
+import { useFitDataSummary } from '@/hooks/useFitDataSummary';
+export function SummarySection() {
+  const { summary } = useFitDataSummary()
 
   const cardList = [
     {
       name: 'total-time',
       icon: IconStopwatch,
       label: 'Total Time',
-      value: '01:00:00'
+      value: summary.totalTimerTime ?? '-'
     },
     {
-      name: 'total-ditaance',
+      name: 'total-distance',
       icon: IconRulerMeasure,
       label: 'Total Distance',
-      value: '10 km'
+      value: summary.totalDistance ?? '-'
     },
     {
       name: 'total-ascend',
       icon: IconTrendingUp,
       label: 'Total Ascent',
-      value: '1220 m'
+      value: summary.totalAscent ?? '-'
     },
     {
       name: 'total-descent',
       icon: IconTrendingDown,
       label: 'Total Descent',
-      value: '300 m'
+      value: summary.totalDescent ?? '-'
     },
     {
       name: 'average-pace',
       icon: IconRun,
       label: 'Avg. Pace',
-      value: '05:30 /km'
+      value: summary.averagePace ?? '-'
     },
     {
       name: 'average-heart-rate',
       icon: IconHeartbeat,
       label: 'Avg. Heart Rate',
-      value: '165 bpm'
+      value: summary.averageHeartRate ?? '-'
     },
   ]
 
@@ -49,17 +50,24 @@ export function SummarySection () {
         {
           cardList.map(item => {
             return (
-              <Card 
+              <Card
                 key={item.name}
                 radius="md"
               >
-                <Stack 
+                <Stack
                   align="center"
                   gap="0"
                 >
-                  <item.icon size={36}></item.icon>
-                  <Text size="lg">{item.value}</Text>
-                  <Text size="sm">{item.label}</Text>
+                  <item.icon size={30}></item.icon>
+                  <Text
+                    size="xl"
+                    fw="bold"
+                    className="text-nowrap"
+                  >{String(item.value)}</Text>
+                  <Text
+                    size="sm"
+                    className="text-nowrap"
+                  >{item.label}</Text>
                 </Stack>
               </Card>
             )
