@@ -1,0 +1,8 @@
+.bg-canvas-body {
+  @include mantine.light {
+    background-color: var(--mantine-color-gray-0);
+  }
+  @include mantine.dark {
+    background-color: var(--mantine-color-dark-5);
+  }
+}

@@ -3,10 +3,10 @@ import { useDisclosure } from '@mantine/hooks';
 import { IconUpload } from '@tabler/icons-react';
 import { FitFileUploader } from '@/components/FitFileUploader';
 import { ThemeSwitch } from '@/components/ThemeSwitch'
-import { useFitDataStore } from '@/store/app/useFitDataStore'
+import { useFitDataStoreBase } from '@/store/app/useFitDataStore'
 
 export function AppHeader() {
-  const hasFitData = useFitDataStore(state => !!state.fitData)
+  const hasFitData = useFitDataStoreBase(state => !!state.fitData)
   const [isFitFileUploaderOpened, { open: openFitFileUploaderModal, close: closeFitFileUploaderModal }] = useDisclosure(false);
 
   return (
