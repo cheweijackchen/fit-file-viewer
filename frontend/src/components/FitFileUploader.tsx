@@ -4,7 +4,8 @@ import { notifications } from '@mantine/notifications';
 import { IconBike, IconUpload, IconX } from '@tabler/icons-react';
 import FitParser from 'fit-file-parser';
 import { useState } from 'react';
-import { useFitDataStore } from '@/store/app/useFitDataStore';
+import { FIT_PARSER_LENGTH_UNIT, FIT_PARSER_SPEED_UNIT } from '@/constants/fitData';
+import { useFitDataActions } from '@/store/app/useFitDataStore';
 
 interface Props {
   onSuccess?: () => void;
@@ -14,13 +15,13 @@ const MAX_FILE_SIZE_IN_BYTES = 5 * (1024 ** 2)
 
 export function FitFileUploader({ onSuccess }: Props) {
   const [parseLoading, setParseLoading] = useState(false)
-  const { setFileName, setFitData } = useFitDataStore()
+  const { setFileName, setFitData } = useFitDataActions()
 
   function onFileDrop(files: FileWithPath[]) {
     handleFitFile(files[0])
   }
 
-  function showParsingErrorNotification (error: unknown) {
+  function showParsingErrorNotification(error: unknown) {
     notifications.show({
       title: 'Parsing Error',
       message: JSON.stringify(error),
@@ -37,8 +38,8 @@ export function FitFileUploader({ onSuccess }: Props) {
       const fitParser = new FitParser({
         force: true,
         mode: 'list',
-        speedUnit: 'km/h',
-        lengthUnit: 'km'
+        speedUnit: FIT_PARSER_SPEED_UNIT,
+        lengthUnit: FIT_PARSER_LENGTH_UNIT
       })
 
       await fitParser.parseAsync(buffer)
