@@ -12,7 +12,10 @@ export default function Home() {
     <AppLayout >
       {hasFitData
         ? (
-          <Container size="xxl">
+          <Container
+            size="xxl"
+            className="py-4"
+          >
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
               <div className="lg:col-span-7 2xl:col-span-6">
                 <SummarySection></SummarySection>

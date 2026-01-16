@@ -12,7 +12,6 @@ export default function AppLayout({ children }: Props) {
   return (
     <AppShell
       header={{ height: HEADER_HEIGHT }}
-      padding="md"
     >
       <AppShell.Header>
         <AppHeader></AppHeader>
