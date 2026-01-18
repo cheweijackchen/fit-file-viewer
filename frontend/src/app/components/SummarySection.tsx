@@ -1,5 +1,5 @@
 'use client'
-import { Box, Card, Stack, Text } from '@mantine/core'
+import { Card, Stack, Text } from '@mantine/core'
 import { IconStopwatch, IconTrendingUp, IconTrendingDown, IconHeartbeat, IconRun, IconRulerMeasure } from '@tabler/icons-react';
 import { useFitDataSummary } from '@/hooks/useFitDataSummary';
 export function SummarySection() {
@@ -45,35 +45,34 @@ export function SummarySection() {
   ]
 
   return (
-    <Box className='bg-canvas-body p-4 rounded-xl'>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
-        {
-          cardList.map(item => {
-            return (
-              <Card
-                key={item.name}
-                radius="md"
+    <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
+      {
+        cardList.map(item => {
+          return (
+            <Card
+              key={item.name}
+              radius="md"
+            >
+              <Stack
+                align="center"
+                gap="0"
               >
-                <Stack
-                  align="center"
-                  gap="0"
-                >
-                  <item.icon size={30}></item.icon>
-                  <Text
-                    size="xl"
-                    fw="bold"
-                    className="text-nowrap"
-                  >{String(item.value)}</Text>
-                  <Text
-                    size="sm"
-                    className="text-nowrap"
-                  >{item.label}</Text>
-                </Stack>
-              </Card>
-            )
-          })
-        }
-      </div>
-    </Box>
+                <item.icon size={30}></item.icon>
+                <Text
+                  size="xl"
+                  fw="bold"
+                  className="text-nowrap"
+                >{String(item.value)}</Text>
+                <Text
+                  size="sm"
+                  className="text-nowrap"
+                >{item.label}</Text>
+              </Stack>
+            </Card>
+          )
+        })
+      }
+    </div>
+    // </Box>
   )
 }

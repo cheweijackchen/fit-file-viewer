@@ -5,23 +5,28 @@ import '@mantine/notifications/styles.css';
 import {
   ColorSchemeScript,
   mantineHtmlProps,
-  MantineProvider,
 } from '@mantine/core';
-import { Notifications } from '@mantine/notifications';
 import '@/styles/globals.css';
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
-import theme from '@/styles/theme';
+import { Inter, Noto_Sans_TC, JetBrains_Mono } from 'next/font/google';
+import { RootProvider } from './components/RootProvider';
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
+const inter = Inter({
   subsets: ['latin'],
-});
+  variable: '--font-inter',
+})
 
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
+const notoSansTC = Noto_Sans_TC({
   subsets: ['latin'],
-});
+  weight: ['100', '300', '400', '500', '700', '900'],
+  variable: '--font-noto-sans-tc',
+})
+
+const jetBrainsMono = JetBrains_Mono({
+  subsets: ['latin'],
+  weight: ['100', '300', '400', '500', '700'],
+  variable: '--font-jetbrains-mono'
+})
 
 export const metadata: Metadata = {
   title: 'FitFileViewer',
@@ -42,12 +47,11 @@ export default function RootLayout({
         <ColorSchemeScript />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${inter.variable} ${notoSansTC.variable} ${jetBrainsMono.variable} antialiased`}
       >
-        <MantineProvider theme={theme}>
+        <RootProvider>
           {children}
-          <Notifications />
-        </MantineProvider>
+        </RootProvider>
       </body>
     </html>
   );
