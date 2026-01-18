@@ -29,7 +29,7 @@ export default function Home() {
         : (
           <>
             <HomeBanner className="pt-20 px-6 pb-12"></HomeBanner>
-            <Center className="py-6 px-6">
+            <Center className="pt-6 pb-20 px-6">
               <FitFileUploader></FitFileUploader>
             </Center>
           </>
