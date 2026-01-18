@@ -7,7 +7,11 @@ interface Props {
 export function HomeBanner({ className }: Props) {
   return (
     <div className={className}>
-      <Text className="mb-3">Fit File Viewer</Text>
+      <Text
+        tt="uppercase"
+        fw="bold"
+        mb="sm"
+      >Fit File Viewer</Text>
       <Title className="">
         <span
           style={{ color: 'var(--mantine-color-anchor)' }}
