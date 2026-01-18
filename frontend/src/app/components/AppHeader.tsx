@@ -1,4 +1,4 @@
-import { Button, Flex, Group, Modal, Text } from '@mantine/core'
+import { Button, Divider, Flex, Group, Modal, Text } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks';
 import { IconUpload } from '@tabler/icons-react';
 import { FitFileUploader } from '@/components/FitFileUploader';
@@ -13,7 +13,6 @@ export function AppHeader() {
     <>
       <Group
         h="100%"
-        px="lg"
         justify="space-between"
       >
         <Flex
@@ -21,7 +20,7 @@ export function AppHeader() {
           gap={16}
         >
           <Text
-            fz="h2"
+            fz="lg"
             fw="bold"
           >FitFileViewer</Text>
         </Flex>
@@ -49,6 +48,7 @@ export function AppHeader() {
       >
         <FitFileUploader onSuccess={closeFitFileUploaderModal}></FitFileUploader>
       </Modal >
+      <Divider></Divider>
     </>
   )
 }

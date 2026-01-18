@@ -13,7 +13,10 @@ export default function AppLayout({ children }: Props) {
     <AppShell
       header={{ height: HEADER_HEIGHT }}
     >
-      <AppShell.Header>
+      <AppShell.Header
+        withBorder={false}
+        className='px-6'
+      >
         <AppHeader></AppHeader>
       </AppShell.Header>
       <AppShell.Main className="flex">
