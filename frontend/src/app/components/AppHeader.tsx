@@ -20,6 +20,7 @@ export function AppHeader() {
           gap={16}
         >
           <Text
+            ff="mono"
             fz="lg"
             fw="bold"
           >FitFileViewer</Text>

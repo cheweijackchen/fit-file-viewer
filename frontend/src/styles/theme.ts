@@ -13,6 +13,8 @@ const CONTAINER_SIZES: Record<string, string> = {
 };
 
 const theme: MantineThemeOverride = createTheme({
+  fontFamily: 'Inter, Noto Sans TC, sans-serif', // Controls --mantine-font-family
+  fontFamilyMonospace: 'JetBrains Mono, monospace', // Controls --mantine-font-family-monospace
   breakpoints: {
     sm: '36em', // 576px
     md: '48em', // 768px
