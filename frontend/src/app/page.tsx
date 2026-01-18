@@ -4,6 +4,7 @@ import { Center, Container } from '@mantine/core';
 import { FitFileUploader } from '@/components/FitFileUploader';
 import { useFitDataStoreBase } from '@/store/app/useFitDataStore';
 import AppLayout from './components/AppLayout';
+import { HomeBanner } from './components/HomeBanner';
 import { SummarySection } from './components/SummarySection'
 
 export default function Home() {
@@ -26,9 +27,12 @@ export default function Home() {
           </Container>
         )
         : (
-          <Center className="h-full p-4">
-            <FitFileUploader></FitFileUploader>
-          </Center>
+          <>
+            <HomeBanner className="pt-20 px-6 pb-12"></HomeBanner>
+            <Center className="py-6 px-6">
+              <FitFileUploader></FitFileUploader>
+            </Center>
+          </>
         )}
     </AppLayout>
   )
