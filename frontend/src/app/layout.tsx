@@ -5,13 +5,11 @@ import '@mantine/notifications/styles.css';
 import {
   ColorSchemeScript,
   mantineHtmlProps,
-  MantineProvider,
 } from '@mantine/core';
-import { Notifications } from '@mantine/notifications';
 import '@/styles/globals.css';
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
-import theme from '@/styles/theme';
+import { RootProvider } from './components/RootProvider';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -44,10 +42,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <MantineProvider theme={theme}>
+        <RootProvider>
           {children}
-          <Notifications />
-        </MantineProvider>
+        </RootProvider>
       </body>
     </html>
   );
