@@ -52,27 +52,35 @@ export function SummarySection() {
             <Card
               key={item.name}
               radius="md"
+              p="md"
             >
               <Stack
-                align="center"
-                gap="0"
+                gap="2xl"
               >
-                <item.icon size={30}></item.icon>
-                <Text
-                  size="xl"
-                  fw="bold"
-                  className="text-nowrap"
-                >{String(item.value)}</Text>
-                <Text
-                  size="sm"
-                  className="text-nowrap"
-                >{item.label}</Text>
+                <item.icon
+                  size={30}
+                  color="var(--mantine-primary-color-filled)"
+                  className="mt-4 mx-auto"
+                ></item.icon>
+                <div>
+                  <Text
+                    size="xs"
+                    c="gray.5"
+                    fw="bolder"
+                    tt="uppercase"
+                    className="text-nowrap"
+                  >{item.label}</Text>
+                  <Text
+                    size="lg"
+                    fw="bold"
+                    className="text-nowrap"
+                  >{String(item.value)}</Text>
+                </div>
               </Stack>
             </Card>
           )
         })
       }
     </div>
-    // </Box>
   )
 }
