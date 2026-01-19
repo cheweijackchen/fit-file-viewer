@@ -8,12 +8,13 @@ import { FIT_PARSER_LENGTH_UNIT, FIT_PARSER_SPEED_UNIT } from '@/constants/fitDa
 import { useFitDataActions } from '@/store/app/useFitDataStore';
 
 interface Props {
+  className?: string;
   onSuccess?: () => void;
 }
 
 const MAX_FILE_SIZE_IN_BYTES = 5 * (1024 ** 2)
 
-export function FitFileUploader({ onSuccess }: Props) {
+export function FitFileUploader({ className, onSuccess }: Props) {
   const [parseLoading, setParseLoading] = useState(false)
   const { setFileName, setFitData } = useFitDataActions()
 
@@ -61,10 +62,10 @@ export function FitFileUploader({ onSuccess }: Props) {
 
   return (
     <Dropzone
+      bg="yellow.4"
+      bd="3px dashed yellow.2"
+      className={className}
       maxSize={MAX_FILE_SIZE_IN_BYTES}
-      style={{
-        borderWidth: '3px'
-      }}
       loading={parseLoading}
       onDrop={onFileDrop}
       onReject={(files) => console.log('rejected files', files)}
@@ -78,7 +79,7 @@ export function FitFileUploader({ onSuccess }: Props) {
           <Dropzone.Accept>
             <IconUpload
               size={52}
-              color="var(--mantine-color-yellow-4)"
+              color="var(--mantine-color-yellow-8)"
               stroke={1.5}
             />
           </Dropzone.Accept>
@@ -92,7 +93,7 @@ export function FitFileUploader({ onSuccess }: Props) {
           <Dropzone.Idle>
             <IconBike
               size={52}
-              color="var(--mantine-color-dimmed)"
+              color="white"
               stroke={1.5}
             />
           </Dropzone.Idle>
@@ -104,12 +105,18 @@ export function FitFileUploader({ onSuccess }: Props) {
         >
           <Text
             size="xl"
+            c="white"
+            fw="600"
+            ff="mono"
           >
             Upload your .fit file
           </Text>
           <Text
             size="sm"
             c="dimmed"
+            mt="xs"
+            ff="mono"
+            className="max-w-120"
           >
             Drag file here or click to select files, each file should not exceed 5mb.
           </Text>
