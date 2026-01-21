@@ -36,7 +36,7 @@ export default function Home() {
           <>
             <HomeBanner className="pt-20 px-6 pb-12"></HomeBanner>
             <Center className="pt-6 pb-20 px-6">
-              <FitFileUploader></FitFileUploader>
+              <FitFileUploader className="w-full md:w-4/5"></FitFileUploader>
             </Center>
           </>
         )}
