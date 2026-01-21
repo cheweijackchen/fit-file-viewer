@@ -1,14 +1,17 @@
 'use client'
 
-import { Center, Container } from '@mantine/core';
+import { Center, Container, Stack } from '@mantine/core';
 import { FitFileUploader } from '@/components/FitFileUploader';
-import { useFitDataStoreBase } from '@/store/app/useFitDataStore';
+import { HeartRateZoneCard } from '@/components/HeartRateZoneCard';
+import { useFitDataStore } from '@/store/app/useFitDataStore';
 import AppLayout from './components/AppLayout';
 import { HomeBanner } from './components/HomeBanner';
 import { SummarySection } from './components/SummarySection'
 
 export default function Home() {
-  const hasFitData = useFitDataStoreBase(state => !!state.fitData)
+  const fitData = useFitDataStore.use.fitData()
+  const hasFitData = !!fitData
+
   return (
     <AppLayout >
       {hasFitData
@@ -20,7 +23,10 @@ export default function Home() {
           >
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
               <div className="lg:col-span-7 2xl:col-span-6">
-                <SummarySection></SummarySection>
+                <Stack gap="md">
+                  <SummarySection></SummarySection>
+                  <HeartRateZoneCard fitData={fitData}></HeartRateZoneCard>
+                </Stack>
               </div>
               <div className="lg:col-span-7 2xl:col-span-6"></div>
             </div>
