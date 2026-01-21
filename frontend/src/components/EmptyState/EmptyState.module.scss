@@ -1,0 +1,9 @@
+.empty-state {
+  @include mantine.dark {
+    color: var(--mantine-color-gray-5);
+  }
+
+  @include mantine.light {
+    color: var(--mantine-color-dark-3);
+  }
+}
