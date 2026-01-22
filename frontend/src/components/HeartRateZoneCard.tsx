@@ -62,29 +62,33 @@ export function HeartRateZoneCard({ fitData }: Props) {
           gap="md"
         >
           {
-            donutChartData ?
-              <DonutChart
-                size={160}
-                thickness={30}
-                data={donutChartData}
-              /> :
-              <EmptyState />
-          }
-          <Box>
-            {donutChartData && donutChartData.map(zone => {
-              return (
-                <Flex key={zone.name}>
-                  <Indicator
-                    position="middle-start"
-                    color={zone.color}
-                    radius="xs"
-                    mx="md"
-                  ></Indicator>
-                  <Text fz="sm">{zone.name}</Text>
-                </Flex>
+            donutChartData
+              ? (
+                <>
+                  <DonutChart
+                    size={160}
+                    thickness={30}
+                    data={donutChartData}
+                  />
+                  <Box>
+                    {(donutChartData ?? []).map(zone => {
+                      return (
+                        <Flex key={zone.name}>
+                          <Indicator
+                            position="middle-start"
+                            color={zone.color}
+                            radius="xs"
+                            mx="md"
+                          ></Indicator>
+                          <Text fz="sm">{zone.name}</Text>
+                        </Flex>
+                      )
+                    })}
+                  </Box>
+                </>
               )
-            })}
-          </Box>
+              : <EmptyState />
+          }
         </Flex>
       </Stack>
     </Card>
