@@ -237,7 +237,6 @@ class HeartRateZoneAnalyzer {
     const total = records.length;
     const validRecords = total - invalidCount;
 
-    // 建立結果物件
     const data: ZoneStatistics['data'] = {
       zone1: { count: 0, percentage: 0 },
       zone2: { count: 0, percentage: 0 },
@@ -246,7 +245,6 @@ class HeartRateZoneAnalyzer {
       zone5: { count: 0, percentage: 0 }
     };
 
-    // 填入統計資料
     const zones: Array<NonNullable<HeartRateZone> | null> = ['zone1', 'zone2', 'zone3', 'zone4', 'zone5', null];
 
     zones.forEach(zone => {
