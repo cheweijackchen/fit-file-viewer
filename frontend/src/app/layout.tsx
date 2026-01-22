@@ -1,5 +1,6 @@
 import '@mantine/core/styles.css';
 // import other mantine extension styles after core package styles
+import '@mantine/charts/styles.css';
 import '@mantine/dropzone/styles.css';
 import '@mantine/notifications/styles.css';
 import {
