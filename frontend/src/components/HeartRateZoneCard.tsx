@@ -1,5 +1,5 @@
 import { DonutChart } from '@mantine/charts'
-import { Card, Stack, Title } from '@mantine/core';
+import { Box, Card, Flex, Indicator, Stack, Title, Text } from '@mantine/core';
 import { EmptyState } from '@/components/EmptyState'
 import { HeartRateZoneAnalyzer } from '@/lib/heartRateZoneAnalyzer'
 import { type ParsedFit } from '@/model/fitParser'
@@ -57,15 +57,35 @@ export function HeartRateZoneCard({ fitData }: Props) {
         gap="md"
       >
         <Title size="h5">Heart Rate Zones</Title>
-        {
-          donutChartData ?
-            <DonutChart
-              size={160}
-              thickness={30}
-              data={donutChartData}
-            /> :
-            <EmptyState />
-        }
+        <Flex
+          align="center"
+          gap="md"
+        >
+          {
+            donutChartData ?
+              <DonutChart
+                size={160}
+                thickness={30}
+                data={donutChartData}
+              /> :
+              <EmptyState />
+          }
+          <Box>
+            {donutChartData && donutChartData.map(zone => {
+              return (
+                <Flex key={zone.name}>
+                  <Indicator
+                    position="middle-start"
+                    color={zone.color}
+                    radius="xs"
+                    mx="md"
+                  ></Indicator>
+                  <Text fz="sm">{zone.name}</Text>
+                </Flex>
+              )
+            })}
+          </Box>
+        </Flex>
       </Stack>
     </Card>
   )
