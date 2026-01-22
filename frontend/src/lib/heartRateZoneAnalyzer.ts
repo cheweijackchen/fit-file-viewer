@@ -1,3 +1,5 @@
+import { HeartRateZoneLowerBounds } from '@/constants/heartRateZone';
+
 type HeartRateZone = 'zone1' | 'zone2' | 'zone3' | 'zone4' | 'zone5' | null;
 
 interface HeartRateZoneLowerBounds {
@@ -49,14 +51,7 @@ class HeartRateZoneAnalyzer {
   private maxHR: number;
   private hrReserve: number;
 
-  private readonly zoneLowerBounds: HeartRateZoneLowerBounds = {
-    zone1: 0.50,
-    zone2: 0.60,
-    zone3: 0.70,
-    zone4: 0.80,
-    zone5: 0.90,
-    max: 1.00
-  } as const;
+  private readonly zoneLowerBounds: HeartRateZoneLowerBounds = HeartRateZoneLowerBounds
 
   constructor(restingHR: number, maxHR: number) {
     if (restingHR >= maxHR) {
