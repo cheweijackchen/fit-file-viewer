@@ -4335,11 +4335,13 @@ __metadata:
     "@types/react": "npm:^19"
     "@types/react-dom": "npm:^19"
     "@vitejs/plugin-react": "npm:^5.1.2"
+    clsx: "npm:^2.1.1"
     dayjs: "npm:^1.11.19"
     eslint: "npm:^9"
     eslint-config-next: "npm:16.1.1"
     fit-file-parser: "npm:^2.1.0"
     jsdom: "npm:^27.4.0"
+    mantine-datatable: "npm:^8.3.13"
     next: "npm:16.1.1"
     postcss: "npm:^8.5.6"
     postcss-preset-mantine: "npm:^1.18.0"
@@ -5452,6 +5454,19 @@ __metadata:
     promise-retry: "npm:^2.0.1"
     ssri: "npm:^13.0.0"
   checksum: 10c0/525f74915660be60b616bcbd267c4a5b59481b073ba125e45c9c3a041bb1a47a2bd0ae79d028eb6f5f95bf9851a4158423f5068539c3093621abb64027e8e461
+  languageName: node
+  linkType: hard
+
+"mantine-datatable@npm:^8.3.13":
+  version: 8.3.13
+  resolution: "mantine-datatable@npm:8.3.13"
+  peerDependencies:
+    "@mantine/core": ">=8.3"
+    "@mantine/hooks": ">=8.3"
+    clsx: ">=2"
+    react: ">=19"
+    react-dom: ">=19"
+  checksum: 10c0/47f5338c449d4c2559cebc218fbd363470710e5369a5869f5c82a1260e2e758248ff7f097982734aacba621f614fe42cbbe5f1f2396d650605ca876c49334672
   languageName: node
   linkType: hard
 
