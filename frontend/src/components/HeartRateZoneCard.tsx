@@ -76,7 +76,7 @@ export function HeartRateZoneCard({ fitData }: Props) {
                     tooltipDataSource="segment"
                     tooltipProps={{ offset: 50 }}
                     styles={{
-                      tooltip: { 'min-width': '120px' }
+                      tooltip: { minWidth: '120px' }
                     }}
                     valueFormatter={formatDecimalToPercentage}
                   />
