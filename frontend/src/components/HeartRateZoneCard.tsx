@@ -1,15 +1,13 @@
 import { DonutChart } from '@mantine/charts'
 import { Box, Card, Flex, Indicator, Stack, Title, Text } from '@mantine/core';
 import { EmptyState } from '@/components/EmptyState'
+import { DEFAULT_MAX_HEART_RATE, DEFAULT_RESTING_HEART_RATE } from '@/constants/heartRate';
 import { HeartRateZoneAnalyzer } from '@/lib/heartRateZoneAnalyzer'
 import { type ParsedFit } from '@/model/fitParser'
 
 interface Props {
   fitData: ParsedFit;
 }
-
-const DEFAULT_RESTING_HEART_RATE = 60
-const DEFAULT_MAX_HEART_RATE = 200
 
 export function HeartRateZoneCard({ fitData }: Props) {
   const restingHeartRate = fitData?.user_profile?.resting_heart_rate ?? DEFAULT_RESTING_HEART_RATE

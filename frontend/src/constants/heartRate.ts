@@ -6,3 +6,6 @@ export const HeartRateZoneLowerBounds = {
   zone5: 0.90,
   max: 1.00
 } as const
+
+export const DEFAULT_RESTING_HEART_RATE = 60
+export const DEFAULT_MAX_HEART_RATE = 200
