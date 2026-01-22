@@ -52,7 +52,7 @@ export function HeartRateZoneCard({ fitData }: Props) {
     : null
 
   function formatDecimalToPercentage(value: number): string {
-    return `${value & 100}%`
+    return `${Math.round(value)}%`
   }
 
   return (
