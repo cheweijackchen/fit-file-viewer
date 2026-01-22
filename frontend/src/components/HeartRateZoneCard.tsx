@@ -51,6 +51,10 @@ export function HeartRateZoneCard({ fitData }: Props) {
     ]
     : null
 
+  function formatDecimalToPercentage(value: number): string {
+    return `${value & 100}%`
+  }
+
   return (
     <Card>
       <Stack
@@ -69,6 +73,12 @@ export function HeartRateZoneCard({ fitData }: Props) {
                     size={160}
                     thickness={30}
                     data={donutChartData}
+                    tooltipDataSource="segment"
+                    tooltipProps={{ offset: 50 }}
+                    styles={{
+                      tooltip: { 'min-width': '120px' }
+                    }}
+                    valueFormatter={formatDecimalToPercentage}
                   />
                   <Box>
                     {(donutChartData ?? []).map(zone => {
