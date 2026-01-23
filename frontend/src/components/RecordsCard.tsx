@@ -1,4 +1,4 @@
-import { Accordion } from '@mantine/core'
+import { Accordion, Group, NumberInput, Text } from '@mantine/core'
 import { DataTable } from 'mantine-datatable'
 import { useEffect, useState } from 'react';
 import { type ParsedRecord } from '@/model/fitParser'
@@ -79,14 +79,39 @@ export function RecordsCard({ records }: Props) {
         </Accordion.Control>
         <Accordion.Panel>
           <DataTable
+            highlightOnHover
+            backgroundColor="transparent"
             columns={columns}
             records={displayedRecords}
             totalRecords={records.length}
             recordsPerPage={pageSize}
             page={page}
             recordsPerPageOptions={PAGE_SIZES}
-            onPageChange={(p) => setPage(p)}
+            paginationWrapBreakpoint="lg"
             onRecordsPerPageChange={setPageSize}
+            onPageChange={setPage}
+            // custom "Jump to page" control using renderPagination callback
+            renderPagination={({ state, actions, Controls }) => (
+              <>
+                <Controls.Text />
+                <Controls.PageSizeSelector />
+                <Group gap="xs">
+                  <Text size={state.paginationSize}>Go to page</Text>
+                  <NumberInput
+                    hideControls
+                    // custom input height to match pagination button height
+                    styles={{ wrapper: { '--input-height-sm': '26px' } }}
+                    w={60}
+                    size={state.paginationSize}
+                    min={1}
+                    max={Math.ceil(records.length / pageSize)}
+                    value={page}
+                    onChange={(p) => (typeof p === 'number') && actions.setPage(p)}
+                  />
+                </Group>
+                <Controls.Pagination />
+              </>
+            )}
           ></DataTable>
         </Accordion.Panel>
       </Accordion.Item>
