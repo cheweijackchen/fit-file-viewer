@@ -4,6 +4,7 @@ import { EmptyState } from '@/components/EmptyState'
 import { DEFAULT_MAX_HEART_RATE, DEFAULT_RESTING_HEART_RATE } from '@/constants/heartRate';
 import { HeartRateZoneAnalyzer } from '@/lib/heartRateZoneAnalyzer'
 import { type ParsedFit } from '@/model/fitParser'
+import { HeartRateTrendGraph } from './HeartRateTrendGraph';
 
 interface Props {
   fitData: ParsedFit;
@@ -100,6 +101,13 @@ export function HeartRateZoneCard({ fitData }: Props) {
               )
               : <EmptyState />
           }
+          <div className="flex-1">
+            <HeartRateTrendGraph
+              records={fitData.records ?? []}
+              restingHeartRate={restingHeartRate}
+              maxHeartRate={maxHeartRate}
+            />
+          </div>
         </Flex>
       </Stack>
     </Card>
