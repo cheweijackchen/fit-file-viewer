@@ -99,14 +99,16 @@ export function RecordsCard({ records }: Props) {
           : null
         if (distance !== null) {
           return isRawData
-            ? <NumberFormatter
-              thousandSeparator
-              value={record.distance}
-            />
-            : <NumberFormatter
-              thousandSeparator
-              value={Math.round(distance)}
-            />
+            ? (
+              <NumberFormatter
+                thousandSeparator
+                value={record.distance}
+              />)
+            : (
+              <NumberFormatter
+                thousandSeparator
+                value={Math.round(distance)}
+              />)
         } else {
           return '-'
         }
@@ -139,14 +141,16 @@ export function RecordsCard({ records }: Props) {
           : null
         if (altitude !== null) {
           return isRawData
-            ? <NumberFormatter
-              thousandSeparator
-              value={record.enhanced_altitude}
-            />
-            : <NumberFormatter
-              thousandSeparator
-              value={Math.round(altitude)}
-            />
+            ? (
+              <NumberFormatter
+                thousandSeparator
+                value={record.enhanced_altitude}
+              />)
+            : (
+              <NumberFormatter
+                thousandSeparator
+                value={Math.round(altitude)}
+              />)
         } else {
           return '-'
         }
