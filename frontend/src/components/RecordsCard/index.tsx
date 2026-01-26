@@ -37,6 +37,7 @@ export function RecordsCard({ records }: Props) {
         <ColumnTitleWithUnit
           title="Timestamp"
           hiddenUnit={isRawData}
+          align="left"
         />
       ),
       noWrap: true,

@@ -4,12 +4,13 @@ interface Props {
   title: string;
   unit?: string;
   hiddenUnit?: boolean;
+  align?: 'left' | 'right' | 'center';
 }
 
 export function ColumnTitleWithUnit(props: Props) {
   return (
     <Stack
-      align="center"
+      align={props.align ?? 'center'}
       gap={0}
     >
       <div>{props.title}</div>
