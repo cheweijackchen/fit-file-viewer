@@ -4,6 +4,7 @@ import { DataTable, type DataTableColumn } from 'mantine-datatable'
 import { useEffect, useState } from 'react'
 import { convertFitDataLength } from '@/lib/converter'
 import { type ParsedRecord } from '@/model/fitParser'
+import { ColumnTitleWithUnit } from './components/ColumnTitleWithUnit'
 
 interface Props {
   records: ParsedRecord[];
@@ -32,6 +33,12 @@ export function RecordsCard({ records }: Props) {
   const columns: DataTableColumn<ParsedRecord>[] = [
     {
       accessor: 'timestamp',
+      title: (
+        <ColumnTitleWithUnit
+          title="Timestamp"
+          hiddenUnit={isRawData}
+        />
+      ),
       noWrap: true,
       render: record => isRawData
         ? dayjs(record.timestamp).format()
@@ -39,6 +46,13 @@ export function RecordsCard({ records }: Props) {
     },
     {
       accessor: 'position_lat',
+      title: (
+        <ColumnTitleWithUnit
+          title="Position Lat."
+          unit="°"
+          hiddenUnit={isRawData}
+        />
+      ),
       textAlign: isRawData ? 'left' : 'right',
       render: record => (isRawData
         ? record.position_lat
@@ -46,6 +60,13 @@ export function RecordsCard({ records }: Props) {
     },
     {
       accessor: 'position_long',
+      title: (
+        <ColumnTitleWithUnit
+          title="Position Long."
+          unit="°"
+          hiddenUnit={isRawData}
+        />
+      ),
       textAlign: isRawData ? 'left' : 'right',
       render: record => (isRawData
         ? record.position_long
@@ -53,10 +74,23 @@ export function RecordsCard({ records }: Props) {
     },
     {
       accessor: 'heart_rate',
-      textAlign: 'right'
+      textAlign: 'right',
+      title: (
+        <ColumnTitleWithUnit
+          title="Heart Rate"
+          unit="bpm"
+          hiddenUnit={isRawData}
+        />)
     },
     {
       accessor: 'distance',
+      title: (
+        <ColumnTitleWithUnit
+          title="Distance"
+          unit="m"
+          hiddenUnit={isRawData}
+        />
+      ),
       textAlign: isRawData ? 'left' : 'right',
       render: record => {
         const distance = (typeof record.distance === 'number')
@@ -79,25 +113,66 @@ export function RecordsCard({ records }: Props) {
     },
     {
       accessor: 'activity_type',
+      title: (
+        <ColumnTitleWithUnit
+          title="Activity Type"
+          hiddenUnit={isRawData}
+        />
+      ),
       textAlign: 'center',
       render: record => record.activity_type ?? '-'
     },
     {
-      accessor: 'enhanced_altitude'
+      accessor: 'enhanced_altitude',
+      title: (
+        <ColumnTitleWithUnit
+          title="Enhanced Altitude"
+          unit="m"
+          hiddenUnit={isRawData}
+        />
+      ),
     },
     {
-      accessor: 'enhanced_speed'
+      accessor: 'enhanced_speed',
+      title: (
+        <ColumnTitleWithUnit
+          title="Enhanced Speed"
+          unit="m/s"
+          hiddenUnit={isRawData}
+        />
+      ),
     },
     {
       accessor: 'cadence',
+      title: (
+        <ColumnTitleWithUnit
+          title="Cadence"
+          unit="rpm"
+          hiddenUnit={isRawData}
+        />
+      ),
       textAlign: 'right'
     },
     {
       accessor: 'fractional_cadence',
+      title: (
+        <ColumnTitleWithUnit
+          title="Fractional Cadence"
+          unit="rpm"
+          hiddenUnit={isRawData}
+        />
+      ),
       textAlign: 'right'
     },
     {
       accessor: 'power',
+      title: (
+        <ColumnTitleWithUnit
+          title="Power"
+          unit="w"
+          hiddenUnit={isRawData}
+        />
+      ),
       textAlign: 'right'
     },
   ]
