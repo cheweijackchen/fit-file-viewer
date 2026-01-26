@@ -2,7 +2,7 @@ import { Accordion, Group, NumberInput, Title, Text, Switch, Flex, NumberFormatt
 import dayjs from 'dayjs'
 import { DataTable, type DataTableColumn } from 'mantine-datatable'
 import { useEffect, useState } from 'react'
-import { convertFitDataLength } from '@/lib/converter'
+import { convertFitDataLength, convertFitDataSpeed } from '@/lib/converter'
 import { type ParsedRecord } from '@/model/fitParser'
 import { ColumnTitleWithUnit } from './components/ColumnTitleWithUnit'
 
@@ -74,7 +74,7 @@ export function RecordsCard({ records }: Props) {
     },
     {
       accessor: 'heart_rate',
-      textAlign: 'right',
+      textAlign: 'center',
       title: (
         <ColumnTitleWithUnit
           title="Heart Rate"
@@ -91,7 +91,7 @@ export function RecordsCard({ records }: Props) {
           hiddenUnit={isRawData}
         />
       ),
-      textAlign: isRawData ? 'left' : 'right',
+      textAlign: isRawData ? 'left' : 'center',
       render: record => {
         const distance = (typeof record.distance === 'number')
           ? convertFitDataLength(record.distance, 'm')
@@ -131,16 +131,42 @@ export function RecordsCard({ records }: Props) {
           hiddenUnit={isRawData}
         />
       ),
+      textAlign: 'center',
+      render: record => {
+        const altitude = (typeof record.enhanced_altitude === 'number')
+          ? convertFitDataLength(record.enhanced_altitude, 'm')
+          : null
+        if (altitude !== null) {
+          return isRawData
+            ? <NumberFormatter
+              thousandSeparator
+              value={record.enhanced_altitude}
+            />
+            : <NumberFormatter
+              thousandSeparator
+              value={Math.round(altitude)}
+            />
+        } else {
+          return '-'
+        }
+      }
     },
     {
       accessor: 'enhanced_speed',
       title: (
         <ColumnTitleWithUnit
           title="Enhanced Speed"
-          unit="m/s"
+          unit="min/km"
           hiddenUnit={isRawData}
         />
       ),
+      textAlign: 'center',
+      render: record => {
+        const speed = (typeof record.enhanced_speed === 'number')
+          ? convertFitDataSpeed(record.enhanced_speed, 'min/km').toFixed(2)
+          : null
+        return speed ?? '-'
+      }
     },
     {
       accessor: 'cadence',
@@ -162,7 +188,7 @@ export function RecordsCard({ records }: Props) {
           hiddenUnit={isRawData}
         />
       ),
-      textAlign: 'right'
+      textAlign: 'center'
     },
     {
       accessor: 'power',
@@ -173,7 +199,7 @@ export function RecordsCard({ records }: Props) {
           hiddenUnit={isRawData}
         />
       ),
-      textAlign: 'right'
+      textAlign: 'center'
     },
   ]
 
