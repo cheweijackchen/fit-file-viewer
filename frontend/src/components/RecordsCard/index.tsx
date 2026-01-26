@@ -213,7 +213,7 @@ export function RecordsCard({ records }: Props) {
       }}
       styles={{
         label: {
-          paddingRight: 'var(--mantine-spacing-sm',
+          paddingRight: 'var(--mantine-spacing-sm)',
           paddingLeft: 0
         }
       }}
