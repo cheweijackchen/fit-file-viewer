@@ -1,8 +1,9 @@
 import { AreaChart } from '@mantine/charts';
 import { LTTB } from 'downsample'
-// import { HeartRateZoneAnalyzer } from '@/lib/heartRateZoneAnalyzer'
+import { HeartRateZoneAnalyzer } from '@/lib/heartRateZoneAnalyzer'
 import { formatElapsedTime } from '@/lib/timeFormatter';
 import { type ParsedRecord } from '@/model/fitParser'
+import { type HeartRateZone } from '@/model/heartRate';
 
 interface Props {
   records: ParsedRecord[];
@@ -10,12 +11,14 @@ interface Props {
   maxHeartRate: number;
 }
 
-const CHART_WIDTH = 100
+// FIXME: add zone0 to type HeartRateZone
+type HeartRateChartData = ({ [x: string]: number; elapsedTime: number; } | { elapsedTime: number; zone0: number; })[]
+
+const CHART_WIDTH = 200
 const MIN_TICK_GAP = 50
 
 export function HeartRateTrendGraph({ records, restingHeartRate, maxHeartRate }: Props) {
-  // const analyzer = new HeartRateZoneAnalyzer(restingHeartRate, maxHeartRate)
-  // const heartRateZoneRange = analyzer.getZoneRanges()
+  const analyzer = new HeartRateZoneAnalyzer(restingHeartRate, maxHeartRate)
 
   const baseTime = records[0].timestamp.getTime()
   const heartRateTimestampList = records.flatMap(record =>
@@ -30,24 +33,53 @@ export function HeartRateTrendGraph({ records, restingHeartRate, maxHeartRate }:
 
   const downsampledRecords = downsample(heartRateTimestampList)
 
-  const chartData = downsampledRecords.map(record => {
-    return {
-      elapsedTime: record[0],
-      heartRate: record[1]
-    }
-  })
+  function convertDownsampledListToChartDataByZone(list: [number, number][]): HeartRateChartData {
+    const result = list.map((dataPoint, index) => {
+      const zone = analyzer.getZone(dataPoint[1])
+
+      // filling up gaps between zone areas
+      const next = (index < list.length - 1) ? list[index + 1] : null
+      const nextZone: HeartRateZone | null = list?.[index + 1]?.[1] ? analyzer.getZone(list[index + 1][1]) : null
+      const shouldAddNext = !!next && nextZone !== zone
+
+      return zone
+        ? {
+          elapsedTime: dataPoint[0],
+          [zone]: dataPoint[1],
+          ...shouldAddNext ? { [nextZone ?? 'zone0']: dataPoint[1] } : {}
+        }
+        : {
+          elapsedTime: dataPoint[0],
+          zone0: dataPoint[1],
+          ...shouldAddNext ? { [nextZone ?? 'zone0']: dataPoint[1] } : {}
+        }
+    })
+    return result
+  }
+
+  const chartData = convertDownsampledListToChartDataByZone(downsampledRecords)
 
   return (
     <AreaChart
       h={300}
       data={chartData}
       dataKey="elapsedTime"
-      type="stacked"
-      curveType="natural"
+      type="default"
+      curveType="monotone"
       withDots={false}
+      withGradient={false}
+      fillOpacity={1}
       series={[
-        { name: 'heartRate', color: 'yellow.4' }
+        { name: 'zone0', color: 'gray.5' },
+        { name: 'zone1', color: 'cyan.5' },
+        { name: 'zone2', color: 'teal.5' },
+        { name: 'zone3', color: 'yellow.4' },
+        { name: 'zone4', color: 'orange.5' },
+        { name: 'zone5', color: 'red.6' },
       ]}
+      areaProps={{
+        connectNulls: false
+      }}
       xAxisProps={{
         scale: 'time',
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
