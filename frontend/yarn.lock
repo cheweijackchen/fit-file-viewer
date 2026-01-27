@@ -3541,6 +3541,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"downsample@npm:^1.4.0":
+  version: 1.4.0
+  resolution: "downsample@npm:1.4.0"
+  checksum: 10c0/eaed3fe16f783277c6f16236c82f770197661ef1af2007c9fb7644cd2be0aac32d816a65ee313604b7aaa5dfd69e509dfd916c006823a083f5e762e74f699063
+  languageName: node
+  linkType: hard
+
 "dunder-proto@npm:^1.0.0, dunder-proto@npm:^1.0.1":
   version: 1.0.1
   resolution: "dunder-proto@npm:1.0.1"
@@ -4337,6 +4344,7 @@ __metadata:
     "@vitejs/plugin-react": "npm:^5.1.2"
     clsx: "npm:^2.1.1"
     dayjs: "npm:^1.11.19"
+    downsample: "npm:^1.4.0"
     eslint: "npm:^9"
     eslint-config-next: "npm:16.1.1"
     fit-file-parser: "npm:^2.1.0"

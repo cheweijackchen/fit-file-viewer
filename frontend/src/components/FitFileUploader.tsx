@@ -5,6 +5,7 @@ import { IconBike, IconUpload, IconX } from '@tabler/icons-react';
 import FitParser from 'fit-file-parser';
 import { useState } from 'react';
 import { FIT_PARSER_LENGTH_UNIT, FIT_PARSER_SPEED_UNIT } from '@/constants/fitData';
+import { type ParsedFit } from '@/model/fitParser';
 import { useFitDataActions } from '@/store/app/useFitDataStore';
 
 interface Props {
@@ -46,7 +47,7 @@ export function FitFileUploader({ className, onSuccess }: Props) {
       await fitParser.parseAsync(buffer)
         .then((data) => {
           console.log(data)
-          setFitData(data)
+          setFitData(data as ParsedFit)
           setFileName(file.name)
           onSuccess?.()
         })
