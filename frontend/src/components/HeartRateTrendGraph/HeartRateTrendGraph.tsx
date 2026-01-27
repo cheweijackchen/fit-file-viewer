@@ -4,6 +4,7 @@ import { HeartRateZoneAnalyzer } from '@/lib/heartRateZoneAnalyzer'
 import { formatElapsedTime } from '@/lib/timeFormatter';
 import { type ParsedRecord } from '@/model/fitParser'
 import { type HeartRateZone } from '@/model/heartRate';
+import { HeartRateZoneChartTooltip } from './components/HeartRateZoneChartTooltip';
 
 interface Props {
   records: ParsedRecord[];
@@ -90,8 +91,13 @@ export function HeartRateTrendGraph({ records, restingHeartRate, maxHeartRate }:
         domain: [restingHeartRate, maxHeartRate]
       }}
       tooltipProps={{
-        position: { x: 75, y: 180 },
-        labelFormatter: (value) => formatElapsedTime(value)
+        position: { y: 135 },
+        content: ({ label, payload }) => (
+          <HeartRateZoneChartTooltip
+            label={label}
+            payload={payload ? [...payload] : undefined}
+          />
+        )
       }}
     />
   )
