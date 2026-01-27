@@ -63,14 +63,15 @@ export function HeartRateZoneCard({ fitData }: Props) {
           size="h5"
           order={3}
         >Heart Rate Zones</Title>
-        <Flex
-          align="center"
-          gap="md"
-        >
+        <div className="flex flex-wrap gap-x-4 gap-y-6 align-center justify-center md:justify-left">
           {
             donutChartData
               ? (
-                <>
+                <Flex
+                  align="center"
+                  gap="md"
+                  className="w-auto"
+                >
                   <DonutChart
                     size={160}
                     thickness={30}
@@ -97,18 +98,18 @@ export function HeartRateZoneCard({ fitData }: Props) {
                       )
                     })}
                   </Box>
-                </>
+                </Flex>
               )
               : <EmptyState />
           }
-          <div className="flex-1">
+          <div className="w-full sm:flex-1">
             <HeartRateTrendGraph
               records={fitData.records ?? []}
               restingHeartRate={restingHeartRate}
               maxHeartRate={maxHeartRate}
             />
           </div>
-        </Flex>
+        </div>
       </Stack>
     </Card>
   )
