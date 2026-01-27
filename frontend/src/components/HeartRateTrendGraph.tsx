@@ -61,7 +61,7 @@ export function HeartRateTrendGraph({ records, restingHeartRate, maxHeartRate }:
 
   return (
     <AreaChart
-      h={300}
+      h={250}
       data={chartData}
       dataKey="elapsedTime"
       type="default"
