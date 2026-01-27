@@ -35,10 +35,10 @@ export function HeartRateZoneChartTooltip({ label, payload, restingHeartRate, ma
     >
       <Flex
         align="center"
-        gap="sm"
-        mr="sm"
+        gap="xs"
+        mr="xl"
       >
-        <svg className="w-4 h-4 min-w-4 min-h-4">
+        <svg className="w-3 h-3 min-w-3 min-h-3">
           <circle
             r={6}
             fill={getThemeColor(item.color, theme)}
@@ -70,14 +70,15 @@ export function HeartRateZoneChartTooltip({ label, payload, restingHeartRate, ma
       px="md"
       py="sm"
       shadow="md"
-      radius="md"
+      radius="sm"
       miw={150}
     >
       <Text
+        c="bright"
         fw={500}
         mb={5}
       >
-        {label && formatElapsedTime(Number(label), false)}
+        {label && formatElapsedTime(Number(label))}
       </Text>
       {zoneLabel}
     </Paper>
