@@ -1,0 +1,1 @@
+export { HeartRateTrendGraph } from './HeartRateTrendGraph'
