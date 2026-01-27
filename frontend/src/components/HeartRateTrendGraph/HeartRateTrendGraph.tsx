@@ -96,6 +96,8 @@ export function HeartRateTrendGraph({ records, restingHeartRate, maxHeartRate }:
           <HeartRateZoneChartTooltip
             label={label}
             payload={payload ? [...payload] : undefined}
+            restingHeartRate={restingHeartRate}
+            maxHeartRate={maxHeartRate}
           />
         )
       }}
