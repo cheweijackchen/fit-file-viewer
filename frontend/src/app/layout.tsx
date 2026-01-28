@@ -4,6 +4,7 @@ import 'mantine-datatable/styles.layer.css';
 import '@mantine/charts/styles.css';
 import '@mantine/dropzone/styles.css';
 import '@mantine/notifications/styles.css';
+import 'leaflet/dist/leaflet.css';
 import {
   ColorSchemeScript,
   mantineHtmlProps,

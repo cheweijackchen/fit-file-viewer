@@ -3,6 +3,7 @@
 import { Center, Container, Stack } from '@mantine/core';
 import { FitFileUploader } from '@/components/FitFileUploader';
 import { HeartRateZoneCard } from '@/components/HeartRateZoneCard';
+import FitTrackMap from '@/components/Map/FitTrackMap';
 import { RecordsCard } from '@/components/RecordsCard'
 import { useFitDataStore } from '@/store/app/useFitDataStore';
 import AppLayout from './components/AppLayout';
@@ -29,7 +30,20 @@ export default function Home() {
                   <HeartRateZoneCard fitData={fitData}></HeartRateZoneCard>
                 </Stack>
               </div>
-              <div className="lg:col-span-5 2xl:col-span-6"></div>
+              <div className="lg:col-span-5 2xl:col-span-6">
+                <FitTrackMap
+                  className="z-0 h-125 lg:h-full"
+                  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                  tracks={[{ id: 'TODO:', ...fitData } as any]}
+                  // height="500px"
+                  showZoomControls={true}
+                  showStartMarker={true}
+                  showEndMarker={true}
+                  showDistanceMarkers={true}
+                  distanceInterval={0.5} // 每 0.5 公里顯示標記
+                  minZoomForDistanceMarkers={16} // 縮放等級 16 以上才顯示距離標記
+                />
+              </div>
               <div className="lg:col-span-12">
                 <RecordsCard records={fitData.records ?? []}></RecordsCard>
               </div>
