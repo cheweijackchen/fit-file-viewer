@@ -3,14 +3,19 @@ import React, { useState, useMemo, useCallback } from 'react';
 import { MapContainer, TileLayer, Polyline } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import {
-  DEFAULT_DISTANCE_INTERVAL_KM,
-  DEFAULT_MIN_ZOOM_FOR_DISTANCE_MARKERS,
   DEFAULT_TRACK_COLORS,
   DEFAULT_ZOOM,
+  DISTANCE_MARKER_ZOOM_MAX,
+  DISTANCE_MARKER_ZOOM_MIN,
   OSM_ATTRIBUTION,
-  OSM_TILE_URL
+  OSM_TILE_URL,
+  ZOOM_TO_DISTANCE_INTERVAL_KM
 } from '@/constants/map';
-import { calculateDistanceMarkers, isValidCoordinate } from '@/lib/geoUtils';
+import {
+  calculateDistanceMarkers,
+  isValidCoordinate,
+  type DistanceMarkerPoint
+} from '@/lib/geoUtils';
 import { type DataFilterInfo } from '@/model/map';
 import { AutoFitBounds } from './components/AutoFitBounds';
 import { DataQualityInfo } from './components/DataQualityInfo';
@@ -51,10 +56,6 @@ export interface FitTrackMapProps {
   showEndMarker?: boolean;
   showDistanceMarkers?: boolean;
   showDataQualityInfo?: boolean; // 顯示資料品質資訊
-
-  // 距離標記設定
-  distanceInterval?: number; // 公里間隔，預設為 1
-  minZoomForDistanceMarkers?: number; // 最小縮放級別才顯示距離標記
 
   // 顏色設定
   defaultColors?: string[];
@@ -126,8 +127,6 @@ export function FitTrackMap({
   showEndMarker = true,
   showDistanceMarkers = true,
   showDataQualityInfo = false,
-  distanceInterval = DEFAULT_DISTANCE_INTERVAL_KM,
-  minZoomForDistanceMarkers = DEFAULT_MIN_ZOOM_FOR_DISTANCE_MARKERS,
   defaultColors = DEFAULT_TRACK_COLORS,
   tileLayerUrl = OSM_TILE_URL,
   tileLayerAttribution = OSM_ATTRIBUTION,
@@ -160,7 +159,7 @@ export function FitTrackMap({
     return [0, 0] as LatLngExpression;
   }, [bounds]);
 
-  /** tracks with metadata including color, positions, and distanceMarkers */
+  /** 為每條軌跡附加 color 和 positions（不含 distanceMarkers） */
   const tracksWithMetadata = useMemo(() => {
     return tracksArray.map((track, index) => {
       const color = track.color || defaultColors[index % defaultColors.length];
@@ -168,20 +167,35 @@ export function FitTrackMap({
         record.position_lat,
         record.position_long,
       ]);
-      const distanceMarkers = showDistanceMarkers
-        ? calculateDistanceMarkers(track.records, distanceInterval)
-        : [];
-
-      return { ...track, color, positions, distanceMarkers };
+      return { ...track, color, positions };
     });
-  }, [tracksArray, defaultColors, showDistanceMarkers, distanceInterval]);
+  }, [tracksArray, defaultColors]);
+
+  /**
+   * 根據 currentZoom 查表取得 interval，再計算各 track 的 distanceMarkers。
+   * zoom 變時 interval 會跳變，markers 隨之刷新。
+   */
+  const distanceMarkersByTrack = useMemo<Map<string, DistanceMarkerPoint[]>>(() => {
+    if (!showDistanceMarkers) {
+      return new Map();
+    }
+
+    const clampedZoom = Math.min(
+      Math.max(currentZoom, DISTANCE_MARKER_ZOOM_MIN),
+      DISTANCE_MARKER_ZOOM_MAX
+    );
+    const interval = ZOOM_TO_DISTANCE_INTERVAL_KM[clampedZoom];
+
+    const result = new Map<string, ReturnType<typeof calculateDistanceMarkers>>();
+    tracksWithMetadata.forEach((track) => {
+      result.set(track.id, calculateDistanceMarkers(track.records, interval));
+    });
+    return result;
+  }, [showDistanceMarkers, currentZoom, tracksWithMetadata]);
 
   const handleZoomChange = useCallback((zoom: number) => {
     setCurrentZoom(zoom);
   }, []);
-
-  // 決定是否顯示距離標記
-  const shouldShowDistanceMarkers = currentZoom >= minZoomForDistanceMarkers;
 
   return (
     <div
@@ -242,8 +256,7 @@ export function FitTrackMap({
 
             {/* 距離標記 */}
             {showDistanceMarkers &&
-              shouldShowDistanceMarkers &&
-              track.distanceMarkers.map((marker, idx) => (
+              (distanceMarkersByTrack.get(track.id) ?? []).map((marker, idx) => (
                 <DistanceMarker
                   key={`${track.id}-distance-${idx}`}
                   position={marker.position}

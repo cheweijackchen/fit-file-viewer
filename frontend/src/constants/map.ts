@@ -13,8 +13,31 @@ export const MAX_SEGMENT_DISTANCE_KM = 1;
 
 // map defaults
 export const DEFAULT_ZOOM = 13;
-export const DEFAULT_DISTANCE_INTERVAL_KM = 1;
-export const DEFAULT_MIN_ZOOM_FOR_DISTANCE_MARKERS = 12;
+/**
+ * Leaflet zoom level → 距離標記間隔（km）的對應表。
+ *
+ * zoom 每 +1 是畫面尺寸 ×2，因此適合的間隔大約每隔幾個 level 縮小一個刻度。
+ * 間隔值全部取自 1-2-5 進制序列，讓標記上的數值看起來自然。
+ * 表中沒列的 zoom（< 7 或 > 18）會用最接近端點的值。
+ */
+export const ZOOM_TO_DISTANCE_INTERVAL_KM: Record<number, number> = {
+  7: 500,
+  8: 200,
+  9: 100,
+  10: 50,
+  11: 20,
+  12: 10,
+  13: 5,
+  14: 2,
+  15: 1,
+  16: 1,
+  17: 0.5,
+  18: 0.2,
+};
+
+/** 對應表裡的最小和最大 zoom，用於 clamp 超出範圍的值 */
+export const DISTANCE_MARKER_ZOOM_MIN = 7;
+export const DISTANCE_MARKER_ZOOM_MAX = 18;
 
 /** AutoFitBounds 時四周的 padding（像素） */
 export const FIT_BOUNDS_PADDING = 50;

@@ -40,8 +40,6 @@ export default function Home() {
                   showStartMarker={true}
                   showEndMarker={true}
                   showDistanceMarkers={true}
-                  distanceInterval={0.5} // 每 0.5 公里顯示標記
-                  minZoomForDistanceMarkers={16} // 縮放等級 16 以上才顯示距離標記
                 />
               </div>
               <div className="lg:col-span-12">
