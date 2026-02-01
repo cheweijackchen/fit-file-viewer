@@ -1,80 +1,38 @@
-import React from 'react';
-import { useMap } from 'react-leaflet';
+import { ActionIcon } from '@mantine/core'
+import { IconMinus, IconPlus } from '@tabler/icons-react'
+import { useMap } from 'react-leaflet'
 
 export const ZoomControls: React.FC = () => {
-  const map = useMap();
+  const map = useMap()
 
   const handleZoomIn = () => {
-    map.zoomIn();
-  };
+    map.zoomIn()
+  }
 
   const handleZoomOut = () => {
-    map.zoomOut();
-  };
-
-  const buttonStyle: React.CSSProperties = {
-    width: '40px',
-    height: '40px',
-    backgroundColor: 'white',
-    border: '2px solid rgba(0,0,0,0.2)',
-    borderRadius: '8px',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    cursor: 'pointer',
-    fontSize: '20px',
-    fontWeight: 'bold',
-    color: '#333',
-    boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
-    transition: 'all 0.2s ease',
-    userSelect: 'none',
-  };
-
-  const hoverStyle: React.CSSProperties = {
-    backgroundColor: '#f5f5f5',
-    borderColor: 'rgba(0,0,0,0.3)',
-    transform: 'scale(1.05)',
-  };
-
-  const [zoomInHover, setZoomInHover] = React.useState(false);
-  const [zoomOutHover, setZoomOutHover] = React.useState(false);
+    map.zoomOut()
+  }
 
   return (
     <div
-      style={{
-        position: 'absolute',
-        top: '20px',
-        right: '20px',
-        zIndex: 1000,
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '8px',
-      }}
+      className="absolute top-5 right-5 z-1000 flex flex-col gap-2"
     >
-      <button
-        style={{
-          ...buttonStyle,
-          ...(zoomInHover ? hoverStyle : {}),
-        }}
-        aria-label="Zoom in"
+      <ActionIcon
+        size="input-sm"
+        variant="default"
+        aria-label="zoom in"
         onClick={handleZoomIn}
-        onMouseEnter={() => setZoomInHover(true)}
-        onMouseLeave={() => setZoomInHover(false)}
       >
-        +
-      </button>
-      <button
-        style={{
-          ...buttonStyle,
-          ...(zoomOutHover ? hoverStyle : {}),
-        }}
-        aria-label="Zoom out"
+        <IconPlus size={24} />
+      </ActionIcon>
+      <ActionIcon
+        size="input-sm"
+        variant="default"
+        aria-label="zoom out"
         onClick={handleZoomOut}
-        onMouseEnter={() => setZoomOutHover(true)}
-        onMouseLeave={() => setZoomOutHover(false)}
       >
-        −
-      </button>
+        <IconMinus size={24} />
+      </ActionIcon>
     </div>
-  );
-};
+  )
+}
