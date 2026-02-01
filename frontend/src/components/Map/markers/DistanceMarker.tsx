@@ -1,7 +1,7 @@
-import { DivIcon, type LatLngExpression } from 'leaflet';
-import React from 'react';
-import { renderToStaticMarkup } from 'react-dom/server';
-import { Marker } from 'react-leaflet';
+import { DivIcon, type LatLngExpression } from 'leaflet'
+import type { FC } from 'react'
+import { renderToStaticMarkup } from 'react-dom/server'
+import { Marker } from 'react-leaflet'
 
 interface DistanceMarkerProps {
   position: LatLngExpression;
@@ -9,51 +9,35 @@ interface DistanceMarkerProps {
   color: string;
 }
 
-// 距離標記圖標組件
-const DistanceIcon: React.FC<{ distance: number; color: string; }> = ({
+const DistanceIcon: FC<{ distance: number; color: string; }> = ({
   distance,
   color,
 }) => (
   <div
+    className="flex items-center justify-center bg-white whitespace-nowrap px-2 py-1 text-xs font-semibold leading-[normal]"
     style={{
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      minWidth: '40px',
-      height: '28px',
-      padding: '0 8px',
-      backgroundColor: 'white',
       border: `2px solid ${color}`,
-      borderRadius: '14px',
-      fontFamily: 'system-ui, -apple-system, sans-serif',
-      fontSize: '12px',
-      fontWeight: '600',
-      color: color,
-      boxShadow: '0 2px 6px rgba(0,0,0,0.15)',
-      whiteSpace: 'nowrap',
+      color: color
     }}
   >
-    {distance} km
+    {distance}
   </div>
-);
+)
 
-export const DistanceMarker: React.FC<DistanceMarkerProps> = ({
-  position,
-  distance,
-  color,
-}) => {
+
+export function DistanceMarker({ position, distance, color }: DistanceMarkerProps) {
   const icon = new DivIcon({
     html: renderToStaticMarkup(<DistanceIcon
       distance={distance}
       color={color}
     />),
     className: 'custom-distance-marker',
-    iconSize: [40, 28],
-    iconAnchor: [20, 14],
-  });
+    iconSize: [40, 25],
+    iconAnchor: [20, 12.5],
+  })
 
   return <Marker
     position={position}
     icon={icon}
-  />;
-};
+  />
+}
