@@ -57,6 +57,17 @@ export function calculateDistance(
 }
 
 /**
+ * Calculate the number of decimal places in a number.
+ * For example, 0.2 → 1、0.05 → 2、5 → 0。
+ * Used to format distance marker labels appropriately.
+ */
+function getDecimalPlaces(value: number): number {
+  const str = String(value);
+  const dotIndex = str.indexOf('.');
+  return dotIndex === -1 ? 0 : str.length - dotIndex - 1;
+}
+
+/**
  * Calculate distance markers at specified intervals along the track records.
  * Skips invalid coordinates and abnormal jumps.
  */
@@ -69,6 +80,7 @@ export function calculateDistanceMarkers(
   }
 
   const markers: DistanceMarkerPoint[] = [];
+  const decimalPlaces = getDecimalPlaces(interval)
   let accumulatedDistance = 0
   let nextMarkerDistance = interval
 
@@ -107,7 +119,7 @@ export function calculateDistanceMarkers(
 
       markers.push({
         position: [markerLat, markerLng],
-        distance: nextMarkerDistance,
+        distance: Number(nextMarkerDistance.toFixed(decimalPlaces))
       })
 
       nextMarkerDistance += interval
