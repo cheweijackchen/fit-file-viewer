@@ -1,8 +1,9 @@
 import { LatLngBounds, type LatLngExpression } from 'leaflet';
-import React, { useEffect, useMemo } from 'react';
-import { MapContainer, TileLayer, Polyline, useMap } from 'react-leaflet';
+import React, { useMemo, useCallback } from 'react';
+import { MapContainer, TileLayer, Polyline } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { AutoFitBounds } from './components/AutoFitBounds';
+import { ZoomMonitor } from './components/ZoomMonitor';
 import { ZoomControls } from './controls/ZoomControls';
 import { DistanceMarker } from './markers/DistanceMarker';
 import { EndMarker } from './markers/EndMarker';
@@ -266,25 +267,9 @@ export const FitTrackMap: React.FC<FitTrackMapProps> = ({
 
   const [currentZoom, setCurrentZoom] = React.useState(defaultZoom);
 
-  // 監控縮放等級的組件
-  const ZoomMonitor: React.FC = () => {
-    const map = useMap();
-
-    useEffect(() => {
-      const handleZoom = () => {
-        setCurrentZoom(map.getZoom());
-      };
-
-      map.on('zoomend', handleZoom);
-      setCurrentZoom(map.getZoom());
-
-      return () => {
-        map.off('zoomend', handleZoom);
-      };
-    }, [map]);
-
-    return null;
-  };
+  const handleZoomChange = useCallback((zoom: number) => {
+    setCurrentZoom(zoom);
+  }, []);
 
   // 計算資料品質統計
   const dataQualityStats = useMemo(() => {
@@ -359,7 +344,7 @@ export const FitTrackMap: React.FC<FitTrackMapProps> = ({
         />
 
         <AutoFitBounds bounds={bounds} />
-        <ZoomMonitor />
+        <ZoomMonitor onZoomChange={handleZoomChange} />
 
         {/* 渲染所有軌跡 */}
         {tracksWithMetadata.map((track) => (
