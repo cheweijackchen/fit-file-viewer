@@ -2,6 +2,7 @@ import { LatLngBounds, type LatLngExpression } from 'leaflet';
 import React, { useEffect, useMemo } from 'react';
 import { MapContainer, TileLayer, Polyline, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
+import { AutoFitBounds } from './components/AutoFitBounds';
 import { ZoomControls } from './controls/ZoomControls';
 import { DistanceMarker } from './markers/DistanceMarker';
 import { EndMarker } from './markers/EndMarker';
@@ -59,19 +60,6 @@ export interface FitTrackMapProps {
     filteredRecords: number;
   }) => void;
 }
-
-// 自動調整地圖視野的組件
-const AutoFitBounds: React.FC<{ bounds: LatLngBounds; }> = ({ bounds }) => {
-  const map = useMap();
-
-  useEffect(() => {
-    if (bounds.isValid()) {
-      map.fitBounds(bounds, { padding: [50, 50] });
-    }
-  }, [map, bounds]);
-
-  return null;
-};
 
 // 計算兩點之間的距離（公里）
 const calculateDistance = (
