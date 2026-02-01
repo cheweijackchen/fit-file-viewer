@@ -1,8 +1,19 @@
 import { LatLngBounds, type LatLngExpression } from 'leaflet';
-import React, { useMemo, useCallback } from 'react';
+import React, { useState, useMemo, useCallback } from 'react';
 import { MapContainer, TileLayer, Polyline } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
+import {
+  DEFAULT_DISTANCE_INTERVAL_KM,
+  DEFAULT_MIN_ZOOM_FOR_DISTANCE_MARKERS,
+  DEFAULT_TRACK_COLORS,
+  DEFAULT_ZOOM,
+  OSM_ATTRIBUTION,
+  OSM_TILE_URL
+} from '@/constants/map';
+import { calculateDistanceMarkers, isValidCoordinate } from '@/lib/geoUtils';
+import { type DataFilterInfo } from '@/model/map';
 import { AutoFitBounds } from './components/AutoFitBounds';
+import { DataQualityInfo } from './components/DataQualityInfo';
 import { ZoomMonitor } from './components/ZoomMonitor';
 import { ZoomControls } from './controls/ZoomControls';
 import { DistanceMarker } from './markers/DistanceMarker';
@@ -62,179 +73,85 @@ export interface FitTrackMapProps {
   }) => void;
 }
 
-// 計算兩點之間的距離（公里）
-const calculateDistance = (
-  lat1: number,
-  lon1: number,
-  lat2: number,
-  lon2: number
-): number => {
-  const R = 6371; // 地球半徑（公里）
-  const dLat = ((lat2 - lat1) * Math.PI) / 180;
-  const dLon = ((lon2 - lon1) * Math.PI) / 180;
-  const a =
-    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-    Math.cos((lat1 * Math.PI) / 180) *
-    Math.cos((lat2 * Math.PI) / 180) *
-    Math.sin(dLon / 2) *
-    Math.sin(dLon / 2);
-  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-  return R * c;
-};
+/** 將單一或多個 TrackData 標準化為陣列，並過濾無效座標點 */
+function normalizeAndFilterTracks(
+  tracks: TrackData | TrackData[],
+  onDataFiltered?: (info: DataFilterInfo) => void
+): TrackData[] {
+  const rawTracks = Array.isArray(tracks) ? tracks : [tracks];
 
-// 計算軌跡上的距離標記位置
-const calculateDistanceMarkers = (
-  records: FitRecord[],
-  interval: number
-): Array<{ position: LatLngExpression; distance: number; }> => {
-  if (records.length < 2) {
-    return [];
-  }
+  let totalRecords = 0;
+  let validRecords = 0;
 
-  const markers: Array<{ position: LatLngExpression; distance: number; }> = [];
-  let accumulatedDistance = 0;
-  let nextMarkerDistance = interval;
+  const filtered = rawTracks
+    .map((track) => {
+      totalRecords += track.records.length;
 
-  for (let i = 1; i < records.length; i++) {
-    const prev = records[i - 1];
-    const curr = records[i];
+      const validRecordsList = track.records.filter((record) =>
+        isValidCoordinate(record.position_lat, record.position_long)
+      );
+      validRecords += validRecordsList.length;
 
-    // 跳過無效的座標點
-    if (
-      !prev.position_lat || !prev.position_long ||
-      !curr.position_lat || !curr.position_long
-    ) {
-      continue;
-    }
+      return { ...track, records: validRecordsList };
+    })
+    .filter((track) => track.records.length > 0);
 
-    const segmentDistance = calculateDistance(
-      prev.position_lat,
-      prev.position_long,
-      curr.position_lat,
-      curr.position_long
-    );
+  onDataFiltered?.({
+    totalTracks: rawTracks.length,
+    totalRecords,
+    validRecords,
+    filteredRecords: totalRecords - validRecords,
+  });
 
-    // 跳過異常的距離（例如 GPS 跳點）
-    if (isNaN(segmentDistance) || segmentDistance > 1) {
-      continue;
-    }
+  return filtered;
+}
 
-    accumulatedDistance += segmentDistance;
+/** calculate the LatLngBounds that contains all tracks */
+function computeBounds(tracks: TrackData[]): LatLngBounds {
+  const bounds = new LatLngBounds([])
+  tracks.forEach((track) => {
+    track.records.forEach((record) => {
+      bounds.extend([record.position_lat, record.position_long])
+    })
+  })
+  return bounds;
+}
 
-    // 如果累積距離超過下一個標記點
-    while (accumulatedDistance >= nextMarkerDistance) {
-      // 在這個線段上插值找到精確的標記位置
-      const excessDistance = accumulatedDistance - nextMarkerDistance;
-      const ratio = 1 - excessDistance / segmentDistance;
-
-      const markerLat = prev.position_lat + (curr.position_lat - prev.position_lat) * ratio;
-      const markerLng = prev.position_long + (curr.position_long - prev.position_long) * ratio;
-
-      markers.push({
-        position: [markerLat, markerLng],
-        distance: nextMarkerDistance,
-      });
-
-      nextMarkerDistance += interval;
-    }
-  }
-
-  return markers;
-};
-
-export const FitTrackMap: React.FC<FitTrackMapProps> = ({
+export function FitTrackMap({
+  className,
   tracks,
-  // height = '600px',
-  defaultZoom = 13,
+  defaultZoom = DEFAULT_ZOOM,
   showZoomControls = true,
   showStartMarker = true,
   showEndMarker = true,
   showDistanceMarkers = true,
   showDataQualityInfo = false,
-  distanceInterval = 1,
-  minZoomForDistanceMarkers = 12,
-  defaultColors = [
-    '#FF6B6B', // 紅色
-    '#4ECDC4', // 青綠色
-    '#45B7D1', // 藍色
-    '#FFA07A', // 淺橙色
-    '#98D8C8', // 薄荷綠
-    '#FFD93D', // 黃色
-    '#6C5CE7', // 紫色
-    '#A8E6CF', // 淺綠色
-  ],
-  className,
-  tileLayerUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-  tileLayerAttribution = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+  distanceInterval = DEFAULT_DISTANCE_INTERVAL_KM,
+  minZoomForDistanceMarkers = DEFAULT_MIN_ZOOM_FOR_DISTANCE_MARKERS,
+  defaultColors = DEFAULT_TRACK_COLORS,
+  tileLayerUrl = OSM_TILE_URL,
+  tileLayerAttribution = OSM_ATTRIBUTION,
   onDataFiltered,
-}) => {
-  // 驗證座標是否有效
-  const isValidCoordinate = (lat?: number, lng?: number): boolean => {
-    return (
-      lat !== undefined &&
-      lat !== null &&
-      lng !== undefined &&
-      lng !== null &&
-      !isNaN(lat) &&
-      !isNaN(lng) &&
-      lat >= -90 &&
-      lat <= 90 &&
-      lng >= -180 &&
-      lng <= 180
-    );
-  };
+}: FitTrackMapProps) {
+  const [currentZoom, setCurrentZoom] = useState(defaultZoom);
 
-  // 標準化 tracks 為陣列，並過濾無效的座標點
-  const tracksArray = useMemo(() => {
-    const rawTracks = Array.isArray(tracks) ? tracks : [tracks];
+  // onDataFiltered 在 useMemo 的 deps 裡使用，
+  // 用 useCallback 穩定引用以避免不必要的重新計算
+  const stableOnDataFiltered = useCallback(
+    (info: DataFilterInfo) => {
+      onDataFiltered?.(info);
+    },
+    [onDataFiltered]
+  );
 
-    let totalRecords = 0;
-    let validRecords = 0;
+  const tracksArray = useMemo(
+    () => normalizeAndFilterTracks(tracks, stableOnDataFiltered),
+    [tracks, stableOnDataFiltered]
+  );
 
-    // 過濾每條軌跡中的無效記錄點
-    const filtered = rawTracks.map((track) => {
-      const originalLength = track.records.length;
-      totalRecords += originalLength;
+  const bounds = useMemo(() => computeBounds(tracksArray), [tracksArray])
 
-      const validRecordsList = track.records.filter((record) =>
-        isValidCoordinate(record.position_lat, record.position_long)
-      );
-
-      validRecords += validRecordsList.length;
-
-      return {
-        ...track,
-        records: validRecordsList,
-      };
-    }).filter((track) => track.records.length > 0); // 移除沒有有效點的軌跡
-
-    // 觸發回調函數
-    if (onDataFiltered) {
-      onDataFiltered({
-        totalTracks: rawTracks.length,
-        totalRecords,
-        validRecords,
-        filteredRecords: totalRecords - validRecords,
-      });
-    }
-
-    return filtered;
-  }, [tracks, onDataFiltered]);
-
-  // 計算所有軌跡的邊界
-  const bounds = useMemo(() => {
-    const bounds = new LatLngBounds([]);
-
-    tracksArray.forEach((track) => {
-      track.records.forEach((record) => {
-        bounds.extend([record.position_lat, record.position_long]);
-      });
-    });
-
-    return bounds;
-  }, [tracksArray]);
-
-  // 計算中心點
+  // center of the map
   const center = useMemo(() => {
     if (bounds.isValid()) {
       const c = bounds.getCenter();
@@ -243,7 +160,7 @@ export const FitTrackMap: React.FC<FitTrackMapProps> = ({
     return [0, 0] as LatLngExpression;
   }, [bounds]);
 
-  // 為每條軌跡分配顏色並計算距離標記
+  /** tracks with metadata including color, positions, and distanceMarkers */
   const tracksWithMetadata = useMemo(() => {
     return tracksArray.map((track, index) => {
       const color = track.color || defaultColors[index % defaultColors.length];
@@ -251,46 +168,17 @@ export const FitTrackMap: React.FC<FitTrackMapProps> = ({
         record.position_lat,
         record.position_long,
       ]);
-
       const distanceMarkers = showDistanceMarkers
         ? calculateDistanceMarkers(track.records, distanceInterval)
         : [];
 
-      return {
-        ...track,
-        color,
-        positions,
-        distanceMarkers,
-      };
+      return { ...track, color, positions, distanceMarkers };
     });
   }, [tracksArray, defaultColors, showDistanceMarkers, distanceInterval]);
-
-  const [currentZoom, setCurrentZoom] = React.useState(defaultZoom);
 
   const handleZoomChange = useCallback((zoom: number) => {
     setCurrentZoom(zoom);
   }, []);
-
-  // 計算資料品質統計
-  const dataQualityStats = useMemo(() => {
-    const rawTracks = Array.isArray(tracks) ? tracks : [tracks];
-    let totalRecords = 0;
-    let validRecords = 0;
-
-    rawTracks.forEach((track) => {
-      totalRecords += track.records.length;
-      validRecords += track.records.filter((record) =>
-        isValidCoordinate(record.position_lat, record.position_long)
-      ).length;
-    });
-
-    return {
-      totalRecords,
-      validRecords,
-      filteredRecords: totalRecords - validRecords,
-      qualityPercentage: totalRecords > 0 ? ((validRecords / totalRecords) * 100).toFixed(1) : '0',
-    };
-  }, [tracks]);
 
   // 決定是否顯示距離標記
   const shouldShowDistanceMarkers = currentZoom >= minZoomForDistanceMarkers;
@@ -300,37 +188,6 @@ export const FitTrackMap: React.FC<FitTrackMapProps> = ({
       className={`relative ${className || ''}`}
     // style={{ height }}
     >
-      {/* 資料品質資訊（可選） */}
-      {showDataQualityInfo && dataQualityStats.filteredRecords > 0 && (
-        <div
-          style={{
-            position: 'absolute',
-            top: '10px',
-            left: '10px',
-            zIndex: 1000,
-            backgroundColor: 'rgba(255, 255, 255, 0.95)',
-            padding: '8px 12px',
-            borderRadius: '8px',
-            boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
-            fontSize: '13px',
-            fontFamily: 'system-ui, sans-serif',
-          }}
-        >
-          <div style={{ fontWeight: '600', color: '#333', marginBottom: '4px' }}>
-            資料品質
-          </div>
-          <div style={{ color: '#666' }}>
-            有效點: {dataQualityStats.validRecords} / {dataQualityStats.totalRecords}
-            {' '}({dataQualityStats.qualityPercentage}%)
-          </div>
-          {dataQualityStats.filteredRecords > 0 && (
-            <div style={{ color: '#f59e0b', fontSize: '12px', marginTop: '2px' }}>
-              ⚠️ 已過濾 {dataQualityStats.filteredRecords} 個無效點
-            </div>
-          )}
-        </div>
-      )}
-
       <MapContainer
         center={center}
         zoom={defaultZoom}
@@ -345,6 +202,8 @@ export const FitTrackMap: React.FC<FitTrackMapProps> = ({
 
         <AutoFitBounds bounds={bounds} />
         <ZoomMonitor onZoomChange={handleZoomChange} />
+
+        {showDataQualityInfo && <DataQualityInfo tracks={tracksArray} />}
 
         {/* 渲染所有軌跡 */}
         {tracksWithMetadata.map((track) => (
