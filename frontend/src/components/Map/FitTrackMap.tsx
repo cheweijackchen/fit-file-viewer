@@ -1,7 +1,6 @@
 import { LatLngBounds, type LatLngExpression } from 'leaflet';
 import React, { useState, useMemo, useCallback } from 'react';
 import { MapContainer, TileLayer, Polyline, ScaleControl } from 'react-leaflet';
-import 'leaflet/dist/leaflet.css';
 import {
   DEFAULT_TRACK_COLORS,
   DEFAULT_ZOOM,
