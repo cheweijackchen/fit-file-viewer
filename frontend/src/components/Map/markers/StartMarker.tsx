@@ -1,51 +1,33 @@
-import { DivIcon, type LatLngExpression } from 'leaflet';
-import React from 'react';
-import { renderToStaticMarkup } from 'react-dom/server';
-import { Marker, Popup } from 'react-leaflet';
+import { DivIcon, type LatLngExpression } from 'leaflet'
+import { type FC } from 'react'
+import { renderToStaticMarkup } from 'react-dom/server'
+import { Marker, Popup } from 'react-leaflet'
 
 interface StartMarkerProps {
   position: LatLngExpression;
   color: string;
   trackName?: string;
+  showTooltip?: boolean;
 }
 
-// 起點圖標組件
-const StartIcon: React.FC<{ color: string; }> = ({ color }) => (
+const StartIcon: FC<{ color: string; }> = ({ color }) => (
   <div
-    style={{
-      width: '32px',
-      height: '32px',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      position: 'relative',
-    }}
+    className="relative w-8 h-8 flex items-center justify-center"
   >
-    {/* 外圈 */}
+    {/* outer circle */}
     <div
+      className="absolute w-8 h-8 rounded-2xl opacity-30"
       style={{
-        position: 'absolute',
-        width: '32px',
-        height: '32px',
-        borderRadius: '50%',
         backgroundColor: color,
-        opacity: 0.3,
         animation: 'pulse 2s ease-in-out infinite',
       }}
     />
-    {/* 內圈 */}
+    {/* inner circle */}
     <div
-      style={{
-        position: 'absolute',
-        width: '20px',
-        height: '20px',
-        borderRadius: '50%',
-        backgroundColor: color,
-        border: '3px solid white',
-        boxShadow: '0 2px 8px rgba(0,0,0,0.3)',
-      }}
+      className="absolute w-5 h-5 rounded-xl border-3 border-white shadow-md"
+      style={{ backgroundColor: color }}
     />
-    {/* 播放圖標 */}
+    {/* play icon */}
     <svg
       width="10"
       height="10"
@@ -58,26 +40,29 @@ const StartIcon: React.FC<{ color: string; }> = ({ color }) => (
       />
     </svg>
 
-    <style>{`
-      @keyframes pulse {
-        0%, 100% {
-          transform: scale(1);
-          opacity: 0.3;
-        }
-        50% {
-          transform: scale(1.2);
-          opacity: 0.1;
-        }
+    <style>
+      {
+        `@keyframes pulse {
+          0%, 100% {
+            transform: scale(1);
+            opacity: 0.3;
+          }
+          50% {
+            transform: scale(1.2);
+            opacity: 0.1;
+          }
+        }`
       }
-    `}</style>
+    </style>
   </div>
-);
+)
 
-export const StartMarker: React.FC<StartMarkerProps> = ({
+export function StartMarker({
   position,
   color,
   trackName,
-}) => {
+  showTooltip
+}: StartMarkerProps) {
   const icon = new DivIcon({
     html: renderToStaticMarkup(<StartIcon color={color} />),
     className: 'custom-marker-icon',
@@ -90,16 +75,16 @@ export const StartMarker: React.FC<StartMarkerProps> = ({
       position={position}
       icon={icon}
     >
-      <Popup>
-        <div style={{ fontFamily: 'system-ui, sans-serif' }}>
-          <strong>起點</strong>
+      {showTooltip && <Popup>
+        <div>
+          <strong>Origin</strong>
           {trackName && (
-            <div style={{ fontSize: '0.875rem', color: '#666', marginTop: '4px' }}>
+            <div className="text-sm mt-1">
               {trackName}
             </div>
           )}
         </div>
-      </Popup>
+      </Popup>}
     </Marker>
-  );
-};
+  )
+}
