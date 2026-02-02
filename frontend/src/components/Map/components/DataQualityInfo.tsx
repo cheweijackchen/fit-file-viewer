@@ -13,7 +13,6 @@ interface DataQualityStats {
   qualityPercentage: string;
 }
 
-/** 從 tracks 計算資料品質統計 */
 function computeDataQualityStats(tracks: TrackData[]): DataQualityStats {
   let totalRecords = 0;
   let validRecords = 0;
@@ -35,11 +34,6 @@ function computeDataQualityStats(tracks: TrackData[]): DataQualityStats {
   };
 }
 
-/**
- * 在地圖左上角顯示資料品質資訊。
- * 如果沒有無效資料點則不顯示。
- * 必須放置在 MapContainer 內部使用。
- */
 export function DataQualityInfo({ tracks }: DataQualityInfoProps) {
   const stats = useMemo(() => computeDataQualityStats(tracks), [tracks]);
 
