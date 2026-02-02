@@ -25,7 +25,6 @@ import { DistanceMarker } from './markers/DistanceMarker';
 import { EndMarker } from './markers/EndMarker';
 import { StartMarker } from './markers/StartMarker';
 
-// FIT 檔案 record 的介面定義
 export interface FitRecord {
   position_lat: number;
   position_long: number;
@@ -36,7 +35,6 @@ export interface FitRecord {
   distance?: number;
 }
 
-// 單條軌跡的資料結構
 export interface TrackData {
   id: string;
   name?: string;
@@ -44,28 +42,23 @@ export interface TrackData {
   color?: string;
 }
 
-// 組件的 Props
 export interface FitTrackMapProps {
   tracks: TrackData | TrackData[];
   height?: string;
   defaultZoom?: number;
 
-  // 功能開關
   showZoomControls?: boolean;
   showStartMarker?: boolean;
   showEndMarker?: boolean;
   showDistanceMarkers?: boolean;
-  showDataQualityInfo?: boolean; // 顯示資料品質資訊
+  showDataQualityInfo?: boolean;
 
-  // 顏色設定
   defaultColors?: string[];
   className?: string;
 
-  // 地圖設定
   tileLayerUrl?: string;
   tileLayerAttribution?: string;
 
-  // 回調函數
   onDataFiltered?: (info: {
     totalTracks: number;
     totalRecords: number;
@@ -74,7 +67,6 @@ export interface FitTrackMapProps {
   }) => void;
 }
 
-/** 將單一或多個 TrackData 標準化為陣列，並過濾無效座標點 */
 function normalizeAndFilterTracks(
   tracks: TrackData | TrackData[],
   onDataFiltered?: (info: DataFilterInfo) => void
@@ -134,8 +126,7 @@ export function FitTrackMap({
 }: FitTrackMapProps) {
   const [currentZoom, setCurrentZoom] = useState(defaultZoom);
 
-  // onDataFiltered 在 useMemo 的 deps 裡使用，
-  // 用 useCallback 穩定引用以避免不必要的重新計算
+  // use useCallback to avoid unnecessary computation
   const stableOnDataFiltered = useCallback(
     (info: DataFilterInfo) => {
       onDataFiltered?.(info);
@@ -159,7 +150,6 @@ export function FitTrackMap({
     return [0, 0] as LatLngExpression;
   }, [bounds]);
 
-  /** 為每條軌跡附加 color 和 positions（不含 distanceMarkers） */
   const tracksWithMetadata = useMemo(() => {
     return tracksArray.map((track, index) => {
       const color = track.color || defaultColors[index % defaultColors.length];
@@ -172,8 +162,7 @@ export function FitTrackMap({
   }, [tracksArray, defaultColors]);
 
   /**
-   * 根據 currentZoom 查表取得 interval，再計算各 track 的 distanceMarkers。
-   * zoom 變時 interval 會跳變，markers 隨之刷新。
+   * show distance markers with appropriate interval according to zoom level
    */
   const distanceMarkersByTrack = useMemo<Map<string, DistanceMarkerPoint[]>>(() => {
     if (!showDistanceMarkers) {
@@ -200,7 +189,6 @@ export function FitTrackMap({
   return (
     <div
       className={`relative ${className || ''}`}
-    // style={{ height }}
     >
       <MapContainer
         center={center}
@@ -219,10 +207,8 @@ export function FitTrackMap({
 
         {showDataQualityInfo && <DataQualityInfo tracks={tracksArray} />}
 
-        {/* 渲染所有軌跡 */}
         {tracksWithMetadata.map((track) => (
           <React.Fragment key={track.id}>
-            {/* 軌跡線 */}
             <Polyline
               positions={track.positions}
               color={track.color}
@@ -230,7 +216,6 @@ export function FitTrackMap({
               opacity={0.8}
             />
 
-            {/* 起點標記 */}
             {showStartMarker && track.records.length > 0 && (
               <StartMarker
                 position={[
@@ -242,7 +227,6 @@ export function FitTrackMap({
               />
             )}
 
-            {/* 終點標記 */}
             {showEndMarker && track.records.length > 0 && (
               <EndMarker
                 position={[
@@ -254,7 +238,6 @@ export function FitTrackMap({
               />
             )}
 
-            {/* 距離標記 */}
             {showDistanceMarkers &&
               (distanceMarkersByTrack.get(track.id) ?? []).map((marker, idx) => (
                 <DistanceMarker
@@ -267,7 +250,6 @@ export function FitTrackMap({
           </React.Fragment>
         ))}
 
-        {/* 縮放控制 */}
         {showZoomControls && <ZoomControls />}
 
         <ScaleControl position="bottomleft" />

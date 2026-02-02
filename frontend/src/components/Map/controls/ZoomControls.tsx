@@ -15,7 +15,7 @@ export const ZoomControls: React.FC = () => {
 
   return (
     <div
-      className="absolute top-5 right-5 z-1000 flex flex-col gap-2"
+      className="absolute top-2 right-2 z-1000 flex flex-col gap-1"
     >
       <ActionIcon
         size="input-sm"
