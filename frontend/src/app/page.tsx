@@ -1,6 +1,6 @@
 'use client'
 
-import { Center, Container, Stack } from '@mantine/core';
+import { Center, Container, Stack, useMantineTheme } from '@mantine/core';
 import { FitFileUploader } from '@/components/FitFileUploader';
 import { HeartRateZoneCard } from '@/components/HeartRateZoneCard';
 import FitTrackMap from '@/components/Map/FitTrackMap';
@@ -11,6 +11,8 @@ import { HomeBanner } from './components/HomeBanner';
 import { SummarySection } from './components/SummarySection'
 
 export default function Home() {
+  const theme = useMantineTheme()
+
   const fitData = useFitDataStore.use.fitData()
   const hasFitData = !!fitData
 
@@ -34,8 +36,8 @@ export default function Home() {
                 <FitTrackMap
                   className="z-0 h-125 lg:h-full"
                   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                  tracks={[{ id: 'TODO:', ...fitData } as any]}
-                  // height="500px"
+                  tracks={{ id: 'the-only-track', ...fitData } as any}
+                  defaultColors={[theme.colors.red[6]]}
                   showZoomControls={true}
                   showStartMarker={true}
                   showEndMarker={true}
