@@ -14,7 +14,7 @@ const DistanceIcon: FC<{ distance: number; color: string; }> = ({
   color,
 }) => (
   <div
-    className="flex items-center justify-center bg-white whitespace-nowrap px-2 py-1 text-xs font-semibold leading-[normal]"
+    className="flex items-center justify-center bg-white whitespace-nowrap px-1 py-0.5 text-xs font-semibold leading-[normal]"
     style={{
       border: `2px solid ${color}`,
       color: color
@@ -32,8 +32,8 @@ export function DistanceMarker({ position, distance, color }: DistanceMarkerProp
       color={color}
     />),
     className: 'custom-distance-marker',
-    iconSize: [40, 25],
-    iconAnchor: [20, 12.5],
+    iconSize: [36, 24],
+    iconAnchor: [18, 12],
   })
 
   return <Marker
