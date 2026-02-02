@@ -2,7 +2,7 @@ import { ActionIcon } from '@mantine/core'
 import { IconMinus, IconPlus } from '@tabler/icons-react'
 import { useMap } from 'react-leaflet'
 
-export const ZoomControls: React.FC = () => {
+export function ZoomControls() {
   const map = useMap()
 
   const handleZoomIn = () => {
