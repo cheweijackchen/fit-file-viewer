@@ -8,17 +8,15 @@ export const LATITUDE_MAX = 90;
 export const LONGITUDE_MIN = -180;
 export const LONGITUDE_MAX = 180;
 
-/** GPS 單段異常跳點的最大允許距離（公里） */
+/**maximum distance (km) between two consecutive points to be considered in the same segment */
 export const MAX_SEGMENT_DISTANCE_KM = 1;
 
 // map defaults
 export const DEFAULT_ZOOM = 13;
+
 /**
- * Leaflet zoom level → 距離標記間隔（km）的對應表。
- *
- * zoom 每 +1 是畫面尺寸 ×2，因此適合的間隔大約每隔幾個 level 縮小一個刻度。
- * 間隔值全部取自 1-2-5 進制序列，讓標記上的數值看起來自然。
- * 表中沒列的 zoom（< 7 或 > 18）會用最接近端點的值。
+ * mapping of leaflet zoom level and distance marker interval (km)
+ * zoom level not listed in the table will be clamped to the boundary level in the table
  */
 export const ZOOM_TO_DISTANCE_INTERVAL_KM: Record<number, number> = {
   7: 500,
@@ -35,11 +33,11 @@ export const ZOOM_TO_DISTANCE_INTERVAL_KM: Record<number, number> = {
   18: 0.2,
 };
 
-/** 對應表裡的最小和最大 zoom，用於 clamp 超出範圍的值 */
+// zoom level not listed in the table will be clamped to the min and max level in the table
 export const DISTANCE_MARKER_ZOOM_MIN = 7;
 export const DISTANCE_MARKER_ZOOM_MAX = 18;
 
-/** AutoFitBounds 時四周的 padding（像素） */
+/** padding of fit bounds (in pixels) */
 export const FIT_BOUNDS_PADDING = 50;
 
 // OpenStreetMap
@@ -49,14 +47,14 @@ export const OSM_ATTRIBUTION =
 
 // track color palette
 export const DEFAULT_TRACK_COLORS = [
-  '#FF6B6B', // 紅色
-  '#4ECDC4', // 青綠色
-  '#45B7D1', // 藍色
-  '#FFA07A', // 淺橙色
-  '#98D8C8', // 薄荷綠
-  '#FFD93D', // 黃色
-  '#6C5CE7', // 紫色
-  '#A8E6CF', // 淺綠色
+  '#FF6B6B', // red
+  '#4ECDC4', // green
+  '#45B7D1', // blue
+  '#FFA07A', // orange
+  '#98D8C8', // mint
+  '#FFD93D', // yellow
+  '#6C5CE7', // purple
+  '#A8E6CF', // light green
 ];
 
 // Polyline Style
