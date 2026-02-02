@@ -231,6 +231,7 @@ export function RecordsCard({ records }: Props) {
       chevronPosition="right"
       variant="contained"
       radius="md"
+      defaultValue="records"
     >
       <Accordion.Item
         key="records"
