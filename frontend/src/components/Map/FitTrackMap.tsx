@@ -6,6 +6,8 @@ import {
   DEFAULT_ZOOM,
   DISTANCE_MARKER_ZOOM_MAX,
   DISTANCE_MARKER_ZOOM_MIN,
+  MAX_ZOOM,
+  MIN_ZOOM,
   OSM_ATTRIBUTION,
   OSM_TILE_URL,
   ZOOM_TO_DISTANCE_INTERVAL_KM
@@ -192,8 +194,10 @@ export function FitTrackMap({
       <MapContainer
         center={center}
         zoom={defaultZoom}
-        style={{ height: '100%', width: '100%' }}
+        minZoom={MIN_ZOOM}
+        maxZoom={MAX_ZOOM}
         zoomControl={false}
+        style={{ height: '100%', width: '100%' }}
         className="rounded-lg shadow-lg"
       >
         <TileLayer

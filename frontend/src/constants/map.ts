@@ -12,15 +12,15 @@ export const LONGITUDE_MAX = 180;
 export const MAX_SEGMENT_DISTANCE_KM = 1;
 
 // map defaults
-export const DEFAULT_ZOOM = 13;
+export const DEFAULT_ZOOM = 13
+export const MIN_ZOOM = 5
+export const MAX_ZOOM = 18
 
 /**
  * mapping of leaflet zoom level and distance marker interval (km)
  * zoom level not listed in the table will be clamped to the boundary level in the table
  */
 export const ZOOM_TO_DISTANCE_INTERVAL_KM: Record<number, number> = {
-  7: 500,
-  8: 200,
   9: 100,
   10: 50,
   11: 20,
@@ -28,13 +28,13 @@ export const ZOOM_TO_DISTANCE_INTERVAL_KM: Record<number, number> = {
   13: 5,
   14: 2,
   15: 1,
-  16: 1,
-  17: 0.5,
-  18: 0.2,
+  16: 0.5,
+  17: 0.2,
+  18: 0.1,
 };
 
 // zoom level not listed in the table will be clamped to the min and max level in the table
-export const DISTANCE_MARKER_ZOOM_MIN = 7;
+export const DISTANCE_MARKER_ZOOM_MIN = 9;
 export const DISTANCE_MARKER_ZOOM_MAX = 18;
 
 /** padding of fit bounds (in pixels) */
