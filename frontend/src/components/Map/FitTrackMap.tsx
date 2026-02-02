@@ -53,7 +53,7 @@ export interface FitTrackMapProps {
   showDistanceMarkers?: boolean;
   showDataQualityInfo?: boolean;
 
-  defaultColors?: string[];
+  trackColors?: string[];
   className?: string;
 
   tileLayerUrl?: string;
@@ -119,7 +119,7 @@ export function FitTrackMap({
   showEndMarker = true,
   showDistanceMarkers = true,
   showDataQualityInfo = false,
-  defaultColors = DEFAULT_TRACK_COLORS,
+  trackColors = DEFAULT_TRACK_COLORS,
   tileLayerUrl = OSM_TILE_URL,
   tileLayerAttribution = OSM_ATTRIBUTION,
   onDataFiltered,
@@ -152,14 +152,14 @@ export function FitTrackMap({
 
   const tracksWithMetadata = useMemo(() => {
     return tracksArray.map((track, index) => {
-      const color = track.color || defaultColors[index % defaultColors.length];
+      const color = track.color || trackColors[index % trackColors.length];
       const positions: LatLngExpression[] = track.records.map((record) => [
         record.position_lat,
         record.position_long,
       ]);
       return { ...track, color, positions };
     });
-  }, [tracksArray, defaultColors]);
+  }, [tracksArray, trackColors]);
 
   /**
    * show distance markers with appropriate interval according to zoom level

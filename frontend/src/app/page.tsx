@@ -37,7 +37,7 @@ export default function Home() {
                   className="z-0 h-125 lg:h-full"
                   // eslint-disable-next-line @typescript-eslint/no-explicit-any
                   tracks={{ id: 'the-only-track', ...fitData } as any}
-                  defaultColors={[theme.colors.red[6]]}
+                  trackColors={[theme.colors.red[6]]}
                   showZoomControls={true}
                   showStartMarker={true}
                   showEndMarker={true}
