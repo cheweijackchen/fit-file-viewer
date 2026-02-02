@@ -62,6 +62,7 @@ export function HeartRateZoneCard({ fitData }: Props) {
         <Title
           size="h5"
           order={3}
+          c="bright"
         >Heart Rate Zones</Title>
         <div className="flex flex-wrap gap-x-4 gap-y-6 align-center justify-center md:justify-left">
           {
