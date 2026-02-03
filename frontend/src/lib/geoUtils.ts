@@ -33,7 +33,7 @@ export function isValidCoordinate(lat?: number | null, lng?: number | null): boo
 
 /**
  * Calculate the distance between two coordinates in kilometers.
- * User Haversine formula.
+ * Use Haversine formula.
  */
 export function calculateDistance(
   lat1: number,
