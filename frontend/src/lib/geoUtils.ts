@@ -109,7 +109,7 @@ export function calculateDistanceMarkers(
 
     accumulatedDistance += segmentDistance
 
-    // 在這個線段內可能需要放置多個標記（間隔很小時）
+    // there may be multiple markers in one segment when interval is small
     while (accumulatedDistance >= nextMarkerDistance) {
       const excessDistance = accumulatedDistance - nextMarkerDistance
       const ratio = 1 - (excessDistance / segmentDistance)
