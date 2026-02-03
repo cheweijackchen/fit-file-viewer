@@ -3,7 +3,7 @@
 import { Center, Container, Stack, useMantineTheme } from '@mantine/core';
 import { FitFileUploader } from '@/components/FitFileUploader';
 import { HeartRateZoneCard } from '@/components/HeartRateZoneCard';
-import FitTrackMap from '@/components/Map/FitTrackMap';
+import { FitTrackMap } from '@/components/Map/FitTrackMap';
 import { RecordsCard } from '@/components/RecordsCard'
 import { type TrackData } from '@/model/map';
 import { useFitDataStore } from '@/store/app/useFitDataStore';

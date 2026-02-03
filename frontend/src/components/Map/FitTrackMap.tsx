@@ -260,5 +260,3 @@ export function FitTrackMap({
     </div>
   )
 }
-
-export default FitTrackMap;
