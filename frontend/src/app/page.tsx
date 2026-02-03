@@ -5,6 +5,7 @@ import { FitFileUploader } from '@/components/FitFileUploader';
 import { HeartRateZoneCard } from '@/components/HeartRateZoneCard';
 import FitTrackMap from '@/components/Map/FitTrackMap';
 import { RecordsCard } from '@/components/RecordsCard'
+import { type TrackData } from '@/model/map';
 import { useFitDataStore } from '@/store/app/useFitDataStore';
 import AppLayout from './components/AppLayout';
 import { HomeBanner } from './components/HomeBanner';
@@ -35,13 +36,8 @@ export default function Home() {
               <div className="lg:col-span-5 2xl:col-span-6">
                 <FitTrackMap
                   className="z-0 h-125 lg:h-full"
-                  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                  tracks={{ id: 'the-only-track', ...fitData } as any}
+                  tracks={{ id: 'the-only-track', ...fitData } as TrackData}
                   trackColors={[theme.colors.red[6]]}
-                  showZoomControls={true}
-                  showStartMarker={true}
-                  showEndMarker={true}
-                  showDistanceMarkers={true}
                 />
               </div>
               <div className="lg:col-span-12">
