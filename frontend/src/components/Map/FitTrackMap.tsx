@@ -1,6 +1,6 @@
-import { LatLngBounds, type LatLngExpression } from 'leaflet';
-import React, { useState, useMemo, useCallback } from 'react';
-import { MapContainer, TileLayer, Polyline, ScaleControl } from 'react-leaflet';
+import { LatLngBounds, type LatLngExpression } from 'leaflet'
+import React, { useState, useMemo, useCallback } from 'react'
+import { MapContainer, TileLayer, Polyline, ScaleControl } from 'react-leaflet'
 import {
   DEFAULT_TRACK_COLORS,
   DEFAULT_ZOOM,
@@ -11,20 +11,20 @@ import {
   OSM_ATTRIBUTION,
   OSM_TILE_URL,
   ZOOM_TO_DISTANCE_INTERVAL_KM
-} from '@/constants/map';
+} from '@/constants/map'
 import {
   calculateDistanceMarkers,
   isValidCoordinate,
   type DistanceMarkerPoint
-} from '@/lib/geoUtils';
-import { type DataFilterInfo } from '@/model/map';
-import { AutoFitBounds } from './components/AutoFitBounds';
-import { DataQualityInfo } from './components/DataQualityInfo';
-import { ZoomMonitor } from './components/ZoomMonitor';
-import { ZoomControls } from './controls/ZoomControls';
-import { DistanceMarker } from './markers/DistanceMarker';
-import { EndMarker } from './markers/EndMarker';
-import { StartMarker } from './markers/StartMarker';
+} from '@/lib/geoUtils'
+import { type DataFilterInfo } from '@/model/map'
+import { AutoFitBounds } from './components/AutoFitBounds'
+import { DataQualityInfo } from './components/DataQualityInfo'
+import { ZoomMonitor } from './components/ZoomMonitor'
+import { ZoomControls } from './controls/ZoomControls'
+import { DistanceMarker } from './markers/DistanceMarker'
+import { EndMarker } from './markers/EndMarker'
+import { StartMarker } from './markers/StartMarker'
 
 export interface FitRecord {
   position_lat: number;
@@ -72,32 +72,32 @@ function normalizeAndFilterTracks(
   tracks: TrackData | TrackData[],
   onDataFiltered?: (info: DataFilterInfo) => void
 ): TrackData[] {
-  const rawTracks = Array.isArray(tracks) ? tracks : [tracks];
+  const rawTracks = Array.isArray(tracks) ? tracks : [tracks]
 
-  let totalRecords = 0;
-  let validRecords = 0;
+  let totalRecords = 0
+  let validRecords = 0
 
   const filtered = rawTracks
     .map((track) => {
-      totalRecords += track.records.length;
+      totalRecords += track.records.length
 
       const validRecordsList = track.records.filter((record) =>
         isValidCoordinate(record.position_lat, record.position_long)
-      );
-      validRecords += validRecordsList.length;
+      )
+      validRecords += validRecordsList.length
 
-      return { ...track, records: validRecordsList };
+      return { ...track, records: validRecordsList }
     })
-    .filter((track) => track.records.length > 0);
+    .filter((track) => track.records.length > 0)
 
   onDataFiltered?.({
     totalTracks: rawTracks.length,
     totalRecords,
     validRecords,
     filteredRecords: totalRecords - validRecords,
-  });
+  })
 
-  return filtered;
+  return filtered
 }
 
 /** calculate the LatLngBounds that contains all tracks */
@@ -108,7 +108,7 @@ function computeBounds(tracks: TrackData[]): LatLngBounds {
       bounds.extend([record.position_lat, record.position_long])
     })
   })
-  return bounds;
+  return bounds
 }
 
 export function FitTrackMap({
@@ -125,67 +125,67 @@ export function FitTrackMap({
   tileLayerAttribution = OSM_ATTRIBUTION,
   onDataFiltered,
 }: FitTrackMapProps) {
-  const [currentZoom, setCurrentZoom] = useState(defaultZoom);
+  const [currentZoom, setCurrentZoom] = useState(defaultZoom)
 
   // use useCallback to avoid unnecessary computation
   const stableOnDataFiltered = useCallback(
     (info: DataFilterInfo) => {
-      onDataFiltered?.(info);
+      onDataFiltered?.(info)
     },
     [onDataFiltered]
-  );
+  )
 
   const tracksArray = useMemo(
     () => normalizeAndFilterTracks(tracks, stableOnDataFiltered),
     [tracks, stableOnDataFiltered]
-  );
+  )
 
   const bounds = useMemo(() => computeBounds(tracksArray), [tracksArray])
 
   // center of the map
   const center = useMemo(() => {
     if (bounds.isValid()) {
-      const c = bounds.getCenter();
-      return [c.lat, c.lng] as LatLngExpression;
+      const c = bounds.getCenter()
+      return [c.lat, c.lng] as LatLngExpression
     }
-    return [0, 0] as LatLngExpression;
-  }, [bounds]);
+    return [0, 0] as LatLngExpression
+  }, [bounds])
 
   const tracksWithMetadata = useMemo(() => {
     return tracksArray.map((track, index) => {
-      const color = track.color || trackColors[index % trackColors.length];
+      const color = track.color || trackColors[index % trackColors.length]
       const positions: LatLngExpression[] = track.records.map((record) => [
         record.position_lat,
         record.position_long,
-      ]);
-      return { ...track, color, positions };
-    });
-  }, [tracksArray, trackColors]);
+      ])
+      return { ...track, color, positions }
+    })
+  }, [tracksArray, trackColors])
 
   /**
    * show distance markers with appropriate interval according to zoom level
    */
   const distanceMarkersByTrack = useMemo<Map<string, DistanceMarkerPoint[]>>(() => {
     if (!showDistanceMarkers) {
-      return new Map();
+      return new Map()
     }
 
     const clampedZoom = Math.min(
       Math.max(currentZoom, DISTANCE_MARKER_ZOOM_MIN),
       DISTANCE_MARKER_ZOOM_MAX
-    );
-    const interval = ZOOM_TO_DISTANCE_INTERVAL_KM[clampedZoom];
+    )
+    const interval = ZOOM_TO_DISTANCE_INTERVAL_KM[clampedZoom]
 
-    const result = new Map<string, ReturnType<typeof calculateDistanceMarkers>>();
+    const result = new Map<string, ReturnType<typeof calculateDistanceMarkers>>()
     tracksWithMetadata.forEach((track) => {
-      result.set(track.id, calculateDistanceMarkers(track.records, interval));
-    });
+      result.set(track.id, calculateDistanceMarkers(track.records, interval))
+    })
     return result;
-  }, [showDistanceMarkers, currentZoom, tracksWithMetadata]);
+  }, [showDistanceMarkers, currentZoom, tracksWithMetadata])
 
   const handleZoomChange = useCallback((zoom: number) => {
-    setCurrentZoom(zoom);
-  }, []);
+    setCurrentZoom(zoom)
+  }, [])
 
   return (
     <div
@@ -258,7 +258,7 @@ export function FitTrackMap({
         <ScaleControl position="bottomleft" />
       </MapContainer>
     </div>
-  );
-};
+  )
+}
 
 export default FitTrackMap;
