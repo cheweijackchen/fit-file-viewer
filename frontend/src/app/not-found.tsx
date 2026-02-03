@@ -1,7 +1,7 @@
 
-import { Button, Container, Flex } from '@mantine/core';
-import { NotFoundBackground } from './components/NotFoundBackground';
-import classes from './styles/NotFound.module.css';
+import { Button, Container, Flex } from '@mantine/core'
+import { NotFoundBackground } from './components/NotFoundBackground'
+import classes from './styles/NotFound.module.css'
 
 export default function NotFound() {
   return (

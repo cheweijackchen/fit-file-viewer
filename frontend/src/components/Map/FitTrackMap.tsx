@@ -180,7 +180,7 @@ export function FitTrackMap({
     tracksWithMetadata.forEach((track) => {
       result.set(track.id, calculateDistanceMarkers(track.records, interval))
     })
-    return result;
+    return result
   }, [showDistanceMarkers, currentZoom, tracksWithMetadata])
 
   const handleZoomChange = useCallback((zoom: number) => {

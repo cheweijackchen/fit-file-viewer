@@ -14,15 +14,15 @@ interface DataQualityStats {
 }
 
 function computeDataQualityStats(tracks: TrackData[]): DataQualityStats {
-  let totalRecords = 0;
-  let validRecords = 0;
+  let totalRecords = 0
+  let validRecords = 0
 
   tracks.forEach((track) => {
-    totalRecords += track.records.length;
+    totalRecords += track.records.length
     validRecords += track.records.filter((record) =>
       isValidCoordinate(record.position_lat, record.position_long)
-    ).length;
-  });
+    ).length
+  })
 
   return {
     totalRecords,
@@ -31,14 +31,14 @@ function computeDataQualityStats(tracks: TrackData[]): DataQualityStats {
     qualityPercentage: totalRecords > 0
       ? ((validRecords / totalRecords) * 100).toFixed(1)
       : '0',
-  };
+  }
 }
 
 export function DataQualityInfo({ tracks }: DataQualityInfoProps) {
-  const stats = useMemo(() => computeDataQualityStats(tracks), [tracks]);
+  const stats = useMemo(() => computeDataQualityStats(tracks), [tracks])
 
   if (stats.filteredRecords === 0) {
-    return null;
+    return null
   }
 
   return (
@@ -52,5 +52,5 @@ export function DataQualityInfo({ tracks }: DataQualityInfoProps) {
         ⚠️ 已過濾 {stats.filteredRecords} 個無效點
       </div>
     </div>
-  );
+  )
 }

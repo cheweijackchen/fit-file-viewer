@@ -1,7 +1,7 @@
-import { getFilteredChartTooltipPayload } from '@mantine/charts';
-import { Flex, getThemeColor, Paper, Text, useMantineTheme } from '@mantine/core';
-import { HeartRateZoneAnalyzer } from '@/lib/heartRateZoneAnalyzer';
-import { formatElapsedTime } from '@/lib/timeFormatter';
+import { getFilteredChartTooltipPayload } from '@mantine/charts'
+import { Flex, getThemeColor, Paper, Text, useMantineTheme } from '@mantine/core'
+import { HeartRateZoneAnalyzer } from '@/lib/heartRateZoneAnalyzer'
+import { formatElapsedTime } from '@/lib/timeFormatter'
 
 
 interface ChartTooltipProps {
@@ -16,7 +16,7 @@ export function HeartRateZoneChartTooltip({ label, payload, restingHeartRate, ma
   const theme = useMantineTheme()
 
   if (!payload) {
-    return null;
+    return null
   }
 
   const heartRateZoneAnalyzer = new HeartRateZoneAnalyzer(restingHeartRate, maxHeartRate)
@@ -32,7 +32,7 @@ export function HeartRateZoneChartTooltip({ label, payload, restingHeartRate, ma
       key={item.name}
       align="center"
       justify="space-between"
-    >
+           >
       <Flex
         align="center"
         gap="xs"
@@ -82,5 +82,5 @@ export function HeartRateZoneChartTooltip({ label, payload, restingHeartRate, ma
       </Text>
       {zoneLabel}
     </Paper>
-  );
+  )
 }

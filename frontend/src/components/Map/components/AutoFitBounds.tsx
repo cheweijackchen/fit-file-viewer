@@ -1,7 +1,7 @@
-import type { LatLngBounds } from 'leaflet';
-import { useEffect } from 'react';
-import { useMap } from 'react-leaflet';
-import { FIT_BOUNDS_PADDING } from '@/constants/map';
+import type { LatLngBounds } from 'leaflet'
+import { useEffect } from 'react'
+import { useMap } from 'react-leaflet'
+import { FIT_BOUNDS_PADDING } from '@/constants/map'
 
 export interface AutoFitBoundsProps {
   bounds: LatLngBounds;
@@ -13,13 +13,13 @@ export interface AutoFitBoundsProps {
  * Should be used inside a MapContainer.
  */
 export function AutoFitBounds({ bounds }: AutoFitBoundsProps) {
-  const map = useMap();
+  const map = useMap()
 
   useEffect(() => {
     if (bounds.isValid()) {
-      map.fitBounds(bounds, { padding: [FIT_BOUNDS_PADDING, FIT_BOUNDS_PADDING] });
+      map.fitBounds(bounds, { padding: [FIT_BOUNDS_PADDING, FIT_BOUNDS_PADDING] })
     }
-  }, [map, bounds]);
+  }, [map, bounds])
 
-  return null;
+  return null
 }

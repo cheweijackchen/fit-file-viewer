@@ -1,18 +1,18 @@
-import '@mantine/core/styles.css';
+import '@mantine/core/styles.css'
 // import other mantine extension styles after core package styles
-import 'mantine-datatable/styles.layer.css';
-import '@mantine/charts/styles.css';
-import '@mantine/dropzone/styles.css';
-import '@mantine/notifications/styles.css';
-import 'leaflet/dist/leaflet.css';
+import 'mantine-datatable/styles.layer.css'
+import '@mantine/charts/styles.css'
+import '@mantine/dropzone/styles.css'
+import '@mantine/notifications/styles.css'
+import 'leaflet/dist/leaflet.css'
 import {
   ColorSchemeScript,
   mantineHtmlProps,
-} from '@mantine/core';
-import '@/styles/globals.css';
-import type { Metadata } from 'next';
-import { Inter, Noto_Sans_TC, JetBrains_Mono } from 'next/font/google';
-import { RootProvider } from './components/RootProvider';
+} from '@mantine/core'
+import '@/styles/globals.css'
+import type { Metadata } from 'next'
+import { Inter, Noto_Sans_TC, JetBrains_Mono } from 'next/font/google'
+import { RootProvider } from './components/RootProvider'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -34,7 +34,7 @@ const jetBrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: 'FitFileViewer',
   description: 'View the raw content of your fit file.',
-};
+}
 
 export default function RootLayout({
   children,
@@ -57,5 +57,5 @@ export default function RootLayout({
         </RootProvider>
       </body>
     </html>
-  );
+  )
 }

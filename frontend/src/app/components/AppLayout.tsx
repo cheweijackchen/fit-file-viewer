@@ -1,7 +1,7 @@
-import { AppShell, Divider } from '@mantine/core';
-import { AppHeader } from './AppHeader';
-import '@/styles/app/theme.scss';
-import { AppFooter } from './AppFooter';
+import { AppShell, Divider } from '@mantine/core'
+import { AppFooter } from './AppFooter'
+import { AppHeader } from './AppHeader'
+import '@/styles/app/theme.scss'
 
 interface Props {
   children: React.ReactNode;

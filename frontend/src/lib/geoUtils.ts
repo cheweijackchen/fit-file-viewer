@@ -1,4 +1,4 @@
-import { type LatLngExpression } from 'leaflet';
+import { type LatLngExpression } from 'leaflet'
 import {
   EARTH_RADIUS_KM,
   LATITUDE_MIN,
@@ -6,8 +6,8 @@ import {
   LONGITUDE_MIN,
   LONGITUDE_MAX,
   MAX_SEGMENT_DISTANCE_KM,
-} from '@/constants/map';
-import { type FitRecord } from '@/model/map';
+} from '@/constants/map'
+import { type FitRecord } from '@/model/map'
 
 export interface DistanceMarkerPoint {
   position: LatLngExpression;
@@ -28,7 +28,7 @@ export function isValidCoordinate(lat?: number | null, lng?: number | null): boo
     lat <= LATITUDE_MAX &&
     lng >= LONGITUDE_MIN &&
     lng <= LONGITUDE_MAX
-  );
+  )
 }
 
 /**
@@ -47,9 +47,8 @@ export function calculateDistance(
   const dLng = toRad(lng2 - lng1)
 
   const a =
-    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-    Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) *
-    Math.sin(dLng / 2) * Math.sin(dLng / 2)
+    (Math.sin(dLat / 2) * Math.sin(dLat / 2)) +
+    (Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLng / 2) * Math.sin(dLng / 2))
 
   const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
 
@@ -62,9 +61,9 @@ export function calculateDistance(
  * Used to format distance marker labels appropriately.
  */
 function getDecimalPlaces(value: number): number {
-  const str = String(value);
-  const dotIndex = str.indexOf('.');
-  return dotIndex === -1 ? 0 : str.length - dotIndex - 1;
+  const str = String(value)
+  const dotIndex = str.indexOf('.')
+  return dotIndex === -1 ? 0 : str.length - dotIndex - 1
 }
 
 /**
@@ -76,10 +75,10 @@ export function calculateDistanceMarkers(
   interval: number
 ): DistanceMarkerPoint[] {
   if (records.length < 2) {
-    return [];
+    return []
   }
 
-  const markers: DistanceMarkerPoint[] = [];
+  const markers: DistanceMarkerPoint[] = []
   const decimalPlaces = getDecimalPlaces(interval)
   let accumulatedDistance = 0
   let nextMarkerDistance = interval
@@ -100,7 +99,7 @@ export function calculateDistanceMarkers(
       prev.position_long,
       curr.position_lat,
       curr.position_long
-    );
+    )
 
     // Skip abnormal jumps
     if (isNaN(segmentDistance) || segmentDistance > MAX_SEGMENT_DISTANCE_KM) {

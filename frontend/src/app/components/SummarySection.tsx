@@ -1,8 +1,8 @@
 'use client'
 import { Card, Stack, Text } from '@mantine/core'
-import { IconStopwatch, IconTrendingUp, IconTrendingDown, IconHeartbeat, IconRun, IconRulerMeasure } from '@tabler/icons-react';
-import { useFitDataSummary } from '@/hooks/useFitDataSummary';
-import useScreen from '@/hooks/useScreen';
+import { IconStopwatch, IconTrendingUp, IconTrendingDown, IconHeartbeat, IconRun, IconRulerMeasure } from '@tabler/icons-react'
+import { useFitDataSummary } from '@/hooks/useFitDataSummary'
+import useScreen from '@/hooks/useScreen'
 export function SummarySection() {
   const { summary } = useFitDataSummary()
   const { onMobile } = useScreen()
@@ -63,7 +63,7 @@ export function SummarySection() {
                   size={30}
                   color="var(--mantine-primary-color-filled)"
                   className="mt-4 mx-auto"
-                ></item.icon>}
+                              ></item.icon>}
                 <div>
                   <Text
                     size="xs"

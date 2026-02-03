@@ -1,10 +1,10 @@
-import { AreaChart } from '@mantine/charts';
+import { AreaChart } from '@mantine/charts'
 import { LTTB } from 'downsample'
 import { HeartRateZoneAnalyzer } from '@/lib/heartRateZoneAnalyzer'
-import { formatElapsedTime } from '@/lib/timeFormatter';
+import { formatElapsedTime } from '@/lib/timeFormatter'
 import { type ParsedRecord } from '@/model/fitParser'
-import { type HeartRateZone } from '@/model/heartRate';
-import { HeartRateZoneChartTooltip } from './components/HeartRateZoneChartTooltip';
+import { type HeartRateZone } from '@/model/heartRate'
+import { HeartRateZoneChartTooltip } from './components/HeartRateZoneChartTooltip'
 
 interface Props {
   records: ParsedRecord[];

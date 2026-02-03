@@ -1,15 +1,15 @@
-export const EARTH_RADIUS_KM = 6371;
+export const EARTH_RADIUS_KM = 6371
 
 // latitude valid range
-export const LATITUDE_MIN = -90;
-export const LATITUDE_MAX = 90;
+export const LATITUDE_MIN = -90
+export const LATITUDE_MAX = 90
 
 // longitude valid range
-export const LONGITUDE_MIN = -180;
-export const LONGITUDE_MAX = 180;
+export const LONGITUDE_MIN = -180
+export const LONGITUDE_MAX = 180
 
 /**maximum distance (km) between two consecutive points to be considered in the same segment */
-export const MAX_SEGMENT_DISTANCE_KM = 1;
+export const MAX_SEGMENT_DISTANCE_KM = 1
 
 // map defaults
 export const DEFAULT_ZOOM = 13
@@ -31,19 +31,19 @@ export const ZOOM_TO_DISTANCE_INTERVAL_KM: Record<number, number> = {
   16: 0.5,
   17: 0.2,
   18: 0.1,
-};
+}
 
 // zoom level not listed in the table will be clamped to the min and max level in the table
-export const DISTANCE_MARKER_ZOOM_MIN = 9;
-export const DISTANCE_MARKER_ZOOM_MAX = 18;
+export const DISTANCE_MARKER_ZOOM_MIN = 9
+export const DISTANCE_MARKER_ZOOM_MAX = 18
 
 /** padding of fit bounds (in pixels) */
-export const FIT_BOUNDS_PADDING = 50;
+export const FIT_BOUNDS_PADDING = 50
 
 // OpenStreetMap
-export const OSM_TILE_URL = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+export const OSM_TILE_URL = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
 export const OSM_ATTRIBUTION =
-  '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
+  '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 
 // track color palette
 export const DEFAULT_TRACK_COLORS = [
@@ -55,8 +55,8 @@ export const DEFAULT_TRACK_COLORS = [
   '#FFD93D', // yellow
   '#6C5CE7', // purple
   '#A8E6CF', // light green
-];
+]
 
 // Polyline Style
-export const POLYLINE_WEIGHT = 4;
-export const POLYLINE_OPACITY = 0.8;
+export const POLYLINE_WEIGHT = 4
+export const POLYLINE_OPACITY = 0.8

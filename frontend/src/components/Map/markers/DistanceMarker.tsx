@@ -27,17 +27,21 @@ const DistanceIcon: FC<{ distance: number; color: string; }> = ({
 
 export function DistanceMarker({ position, distance, color }: DistanceMarkerProps) {
   const icon = new DivIcon({
-    html: renderToStaticMarkup(<DistanceIcon
-      distance={distance}
-      color={color}
-    />),
+    html: renderToStaticMarkup(
+      <DistanceIcon
+        distance={distance}
+        color={color}
+      />
+    ),
     className: 'custom-distance-marker',
     iconSize: [36, 24],
     iconAnchor: [18, 12],
   })
 
-  return <Marker
-    position={position}
-    icon={icon}
-  />
+  return (
+    <Marker
+      position={position}
+      icon={icon}
+    />
+  )
 }

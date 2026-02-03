@@ -14,21 +14,21 @@ const PAGE_SIZES = [10, 15, 20, 50]
 
 export function RecordsCard({ records }: Props) {
   const [page, setPage] = useState(1)
-  const [pageSize, setPageSize] = useState(PAGE_SIZES[0]);
+  const [pageSize, setPageSize] = useState(PAGE_SIZES[0])
   const [displayedRecords, setDisplayedRecords] = useState(records.slice(0, pageSize))
   const [isRawData, setIsRawData] = useState(false)
 
   useEffect(() => {
-    const from = (page - 1) * pageSize;
-    const to = from + pageSize;
+    const from = (page - 1) * pageSize
+    const to = from + pageSize
     // eslint-disable-next-line react-hooks/set-state-in-effect
-    setDisplayedRecords(records.slice(from, to));
+    setDisplayedRecords(records.slice(from, to))
   }, [page, pageSize, records])
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
-    setPage(1);
-  }, [pageSize]);
+    setPage(1)
+  }, [pageSize])
 
   const columns: DataTableColumn<ParsedRecord>[] = [
     {

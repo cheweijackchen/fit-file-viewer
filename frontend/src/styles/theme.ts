@@ -10,7 +10,7 @@ const CONTAINER_SIZES: Record<string, string> = {
   lg: rem('600px'),
   xl: rem('1400px'),
   xxl: rem('1600px'),
-};
+}
 
 const theme: MantineThemeOverride = createTheme({
   fontFamily: 'Inter, Noto Sans TC, sans-serif', // Controls --mantine-font-family
@@ -98,4 +98,4 @@ const theme: MantineThemeOverride = createTheme({
   },
 })
 
-export default theme;
+export default theme

@@ -1,6 +1,6 @@
-import { FIT_PARSER_LENGTH_UNIT, FIT_PARSER_SPEED_UNIT } from '@/constants/fitData';
-import { FitDataField, FitDataFormatter } from '@/lib/fitDataFormatter';
-import { useFitDataStore } from '@/store/app/useFitDataStore';
+import { FIT_PARSER_LENGTH_UNIT, FIT_PARSER_SPEED_UNIT } from '@/constants/fitData'
+import { FitDataField, FitDataFormatter } from '@/lib/fitDataFormatter'
+import { useFitDataStore } from '@/store/app/useFitDataStore'
 
 
 export function useFitDataSummary() {
@@ -8,7 +8,7 @@ export function useFitDataSummary() {
   const formatter = new FitDataFormatter(
     { lengthUnit: FIT_PARSER_LENGTH_UNIT, speedUnit: FIT_PARSER_SPEED_UNIT }, // Parser input units
     { lengthUnit: FIT_PARSER_LENGTH_UNIT, speedUnit: FIT_PARSER_SPEED_UNIT } // Display output units
-  );
+  )
 
   const totalDistanceIndicator = fitData?.sessions?.[0]?.total_distance
     ? formatter.getDisplayString(FitDataField.distance, fitData.sessions[0].total_distance)

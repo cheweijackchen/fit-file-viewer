@@ -1,14 +1,14 @@
 'use client'
 
-import { ActionIcon, useMantineColorScheme, useComputedColorScheme } from '@mantine/core';
-import { IconSun, IconMoon } from '@tabler/icons-react';
-import cx from 'clsx';
-import classes from './ThemeSwitch.module.scss';
+import { ActionIcon, useMantineColorScheme, useComputedColorScheme } from '@mantine/core'
+import { IconSun, IconMoon } from '@tabler/icons-react'
+import cx from 'clsx'
+import classes from './ThemeSwitch.module.scss'
 
 export function ThemeSwitch() {
 
-  const { setColorScheme } = useMantineColorScheme();
-  const computedColorScheme = useComputedColorScheme('light', { getInitialValueInEffect: true });
+  const { setColorScheme } = useMantineColorScheme()
+  const computedColorScheme = useComputedColorScheme('light', { getInitialValueInEffect: true })
 
   return (
     <ActionIcon

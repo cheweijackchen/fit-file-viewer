@@ -1,10 +1,10 @@
 import { DonutChart } from '@mantine/charts'
-import { Box, Card, Flex, Indicator, Stack, Title, Text } from '@mantine/core';
+import { Box, Card, Flex, Indicator, Stack, Title, Text } from '@mantine/core'
 import { EmptyState } from '@/components/EmptyState'
-import { DEFAULT_MAX_HEART_RATE, DEFAULT_RESTING_HEART_RATE } from '@/constants/heartRate';
+import { DEFAULT_MAX_HEART_RATE, DEFAULT_RESTING_HEART_RATE } from '@/constants/heartRate'
 import { HeartRateZoneAnalyzer } from '@/lib/heartRateZoneAnalyzer'
 import { type ParsedFit } from '@/model/fitParser'
-import { HeartRateTrendGraph } from './HeartRateTrendGraph';
+import { HeartRateTrendGraph } from './HeartRateTrendGraph'
 
 interface Props {
   fitData: ParsedFit;
