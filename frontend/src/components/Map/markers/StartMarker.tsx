@@ -68,7 +68,7 @@ export function StartMarker({
     className: 'custom-marker-icon',
     iconSize: [32, 32],
     iconAnchor: [16, 16],
-  });
+  })
 
   return (
     <Marker

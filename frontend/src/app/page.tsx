@@ -1,14 +1,14 @@
 'use client'
 
-import { Center, Container, Stack, useMantineTheme } from '@mantine/core';
-import { FitFileUploader } from '@/components/FitFileUploader';
-import { HeartRateZoneCard } from '@/components/HeartRateZoneCard';
-import { FitTrackMap } from '@/components/Map/FitTrackMap';
+import { Center, Container, Stack, useMantineTheme } from '@mantine/core'
+import { FitFileUploader } from '@/components/FitFileUploader'
+import { HeartRateZoneCard } from '@/components/HeartRateZoneCard'
+import { FitTrackMap } from '@/components/Map/FitTrackMap'
 import { RecordsCard } from '@/components/RecordsCard'
-import { type TrackData } from '@/model/map';
-import { useFitDataStore } from '@/store/app/useFitDataStore';
-import AppLayout from './components/AppLayout';
-import { HomeBanner } from './components/HomeBanner';
+import { type TrackData } from '@/model/map'
+import { useFitDataStore } from '@/store/app/useFitDataStore'
+import AppLayout from './components/AppLayout'
+import { HomeBanner } from './components/HomeBanner'
 import { SummarySection } from './components/SummarySection'
 
 export default function Home() {

@@ -1,5 +1,5 @@
-import { FIT_PARSER_LENGTH_UNIT, FIT_PARSER_SPEED_UNIT } from '@/constants/fitData';
-import { METERS_PER_KILOMETER, METERS_PER_MILE, METERS_PER_FOOT, KMH_TO_MS_FACTOR, MPH_TO_MS_FACTOR, SECONDS_PER_MINUTE } from '@/constants/units';
+import { FIT_PARSER_LENGTH_UNIT, FIT_PARSER_SPEED_UNIT } from '@/constants/fitData'
+import { METERS_PER_KILOMETER, METERS_PER_MILE, METERS_PER_FOOT, KMH_TO_MS_FACTOR, MPH_TO_MS_FACTOR, SECONDS_PER_MINUTE } from '@/constants/units'
 
 type LengthUnit = 'm' | 'km' | 'mi' | 'ft'
 type SpeedUnit = 'm/s' | 'km/h' | 'mph' | 'min/km'

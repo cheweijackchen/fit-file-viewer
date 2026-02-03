@@ -1,4 +1,4 @@
-import { IconChartBar, IconClipboardList, IconIcons, IconPick } from '@tabler/icons-react';
+import { IconChartBar, IconClipboardList, IconIcons, IconPick } from '@tabler/icons-react'
 
 export const demoNavLinks = [
   {

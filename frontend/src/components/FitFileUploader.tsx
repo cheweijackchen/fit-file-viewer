@@ -1,12 +1,12 @@
-import { Stack, Text } from '@mantine/core';
-import { Dropzone, type FileWithPath } from '@mantine/dropzone';
-import { notifications } from '@mantine/notifications';
-import { IconBike, IconUpload, IconX } from '@tabler/icons-react';
-import FitParser from 'fit-file-parser';
-import { useState } from 'react';
-import { FIT_PARSER_LENGTH_UNIT, FIT_PARSER_SPEED_UNIT } from '@/constants/fitData';
-import { type ParsedFit } from '@/model/fitParser';
-import { useFitDataActions } from '@/store/app/useFitDataStore';
+import { Stack, Text } from '@mantine/core'
+import { Dropzone, type FileWithPath } from '@mantine/dropzone'
+import { notifications } from '@mantine/notifications'
+import { IconBike, IconUpload, IconX } from '@tabler/icons-react'
+import FitParser from 'fit-file-parser'
+import { useState } from 'react'
+import { FIT_PARSER_LENGTH_UNIT, FIT_PARSER_SPEED_UNIT } from '@/constants/fitData'
+import { type ParsedFit } from '@/model/fitParser'
+import { useFitDataActions } from '@/store/app/useFitDataStore'
 
 interface Props {
   className?: string;

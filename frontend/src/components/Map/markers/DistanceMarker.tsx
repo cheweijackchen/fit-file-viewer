@@ -30,7 +30,7 @@ export function DistanceMarker({ position, distance, color }: DistanceMarkerProp
     html: renderToStaticMarkup(<DistanceIcon
       distance={distance}
       color={color}
-    />),
+                               />),
     className: 'custom-distance-marker',
     iconSize: [36, 24],
     iconAnchor: [18, 12],
@@ -39,5 +39,5 @@ export function DistanceMarker({ position, distance, color }: DistanceMarkerProp
   return <Marker
     position={position}
     icon={icon}
-  />
+         />
 }

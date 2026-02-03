@@ -1,4 +1,4 @@
-import type { CSSVariablesResolver } from '@mantine/core';
+import type { CSSVariablesResolver } from '@mantine/core'
 
 export const mantineCssVariableResolver: CSSVariablesResolver = () => ({
   variables: {

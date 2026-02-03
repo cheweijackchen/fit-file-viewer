@@ -35,12 +35,12 @@ export default function DemoFitFileParser() {
 
     await fitParser.parseAsync(buffer)
       .then((data) => {
-        setFitData(data);
+        setFitData(data)
       })
       .catch((error) => {
         // TODO: error handling
-        console.warn('Parsing error:', error);
-      });
+        console.warn('Parsing error:', error)
+      })
   }
 
   return (

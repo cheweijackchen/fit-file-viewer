@@ -40,7 +40,7 @@ const EndIcon: FC<{ color: string; }> = ({ color }) => (
       style={{ backgroundColor: color }}
     />
   </div>
-);
+)
 
 export function EndMarker({
   position,

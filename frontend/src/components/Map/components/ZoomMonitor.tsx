@@ -1,5 +1,5 @@
-import { useEffect } from 'react';
-import { useMap } from 'react-leaflet';
+import { useEffect } from 'react'
+import { useMap } from 'react-leaflet'
 
 export interface ZoomMonitorProps {
   onZoomChange: (zoom: number) => void;
@@ -10,21 +10,21 @@ export interface ZoomMonitorProps {
  * Should be used inside a MapContainer.
  */
 export function ZoomMonitor({ onZoomChange }: ZoomMonitorProps) {
-  const map = useMap();
+  const map = useMap()
 
   useEffect(() => {
     const handleZoom = () => {
-      onZoomChange(map.getZoom());
-    };
+      onZoomChange(map.getZoom())
+    }
 
     // Sync initial zoom level
-    onZoomChange(map.getZoom());
+    onZoomChange(map.getZoom())
 
-    map.on('zoomend', handleZoom);
+    map.on('zoomend', handleZoom)
     return () => {
-      map.off('zoomend', handleZoom);
-    };
-  }, [map, onZoomChange]);
+      map.off('zoomend', handleZoom)
+    }
+  }, [map, onZoomChange])
 
-  return null;
+  return null
 }
