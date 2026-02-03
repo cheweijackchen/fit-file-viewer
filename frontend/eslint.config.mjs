@@ -81,6 +81,7 @@ const eslintConfig = defineConfig([
       }],
       '@stylistic/jsx-indent': ['warn', 2],
       '@stylistic/jsx-indent-props': ['warn', 2],
+      '@stylistic/semi': ['warn', 'never'],
 
       // The checks it provides are already provided by typescript, disable to fix global type declaration.
       'no-undef': 'off',
@@ -104,4 +105,4 @@ const eslintConfig = defineConfig([
   }
 ])
 
-export default eslintConfig;
+export default eslintConfig
