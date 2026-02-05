@@ -1,15 +1,27 @@
 'use client'
 
-import { Center, Container, Stack, useMantineTheme } from '@mantine/core'
+import { Card, Center, Container, Loader, Stack, useMantineTheme } from '@mantine/core'
+import dynamic from 'next/dynamic'
 import { FitFileUploader } from '@/components/FitFileUploader'
 import { HeartRateZoneCard } from '@/components/HeartRateZoneCard'
-import { FitTrackMap } from '@/components/Map/FitTrackMap'
 import { RecordsCard } from '@/components/RecordsCard'
 import { type TrackData } from '@/model/map'
 import { useFitDataStore } from '@/store/app/useFitDataStore'
 import AppLayout from './components/AppLayout'
 import { HomeBanner } from './components/HomeBanner'
 import { SummarySection } from './components/SummarySection'
+
+const MapNoSSR = dynamic(() => import('@/components/Map/FitTrackMap'), {
+  ssr: false,
+  loading: () => (
+    <Card
+      radius="md"
+      className="w-full h-125 lg:h-full"
+    >
+      <Loader className="m-auto" />
+    </Card>
+  )
+})
 
 export default function Home() {
   const theme = useMantineTheme()
@@ -34,7 +46,7 @@ export default function Home() {
                 </Stack>
               </div>
               <div className="lg:col-span-5 2xl:col-span-6">
-                <FitTrackMap
+                <MapNoSSR
                   className="z-0 h-125 lg:h-full"
                   tracks={{ id: 'the-only-track', ...fitData } as TrackData}
                   trackColors={[theme.colors.red[6]]}
