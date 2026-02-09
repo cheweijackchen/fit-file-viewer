@@ -37,6 +37,10 @@ export const demoNavLinks = [
       {
         title: 'HeartRateTrendGraph',
         link: '/demo/demo-heart-rate-trend-graph'
+      },
+      {
+        title: 'HeartRateDonutChart',
+        link: '/demo/demo-heart-rate-donut-chart'
       }
     ]
   },
