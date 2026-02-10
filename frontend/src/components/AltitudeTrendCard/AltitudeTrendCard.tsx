@@ -9,8 +9,33 @@ interface Props {
 }
 
 const CHART_RESOLUTION = 200
+const DISTANCE_TICK_GAP = 1000
 
 export function AltitudeTrendCard({ records }: Props) {
+
+  /**
+   * generate X axis ticks array
+   * @param totalDistance (m)
+   * @param interval (m)
+   * @returns number[] e.g. [0, 500, 1000, 1500, ...]
+   */
+  const getDistanceTicks = (totalDistance: number, interval: number): number[] => {
+    const ticks: number[] = []
+    for (let i = 0; i <= totalDistance; i += interval) {
+      ticks.push(i)
+    }
+    // if the last tick is very close to the total distance (e.g., less than 100m left),
+    // consider adding totalDistance as the last tick
+    // if (totalDistance - ticks[ticks.length - 1] > 100) {
+    //   ticks.push(totalDistance);
+    // }
+
+    return ticks
+  }
+  const totalDistance = (records.length > 0)
+    ? (records[records.length - 1].distance)
+    : undefined
+  const ticks = totalDistance ? getDistanceTicks(convertFitDataLength(totalDistance, 'm'), DISTANCE_TICK_GAP) : []
 
   const altitudeDistanceList = records.flatMap(record =>
     (record.distance !== undefined && record.enhanced_altitude !== undefined)
@@ -56,14 +81,15 @@ export function AltitudeTrendCard({ records }: Props) {
           withDots={false}
           withGradient={false}
           fillOpacity={1}
-          series={[{ name: 'altitude', color: 'yellow.4' }
-          ]}
+          series={[{ name: 'altitude', color: 'yellow.4' }]}
           areaProps={{
             connectNulls: false
           }}
           xAxisProps={{
+            type: 'number',
+            ticks: ticks,
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
-            tickFormatter: (value, index) => (value / 1000).toFixed(1) + ' km'
+            tickFormatter: (value, index) => parseFloat((value / 1000).toFixed(1)) + ' km' // removing trailing zero with parseFloat
           }}
         />
       </Stack>
