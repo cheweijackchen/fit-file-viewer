@@ -3,6 +3,7 @@ import { Card, Stack, Title } from '@mantine/core'
 import { LTTB } from 'downsample'
 import { convertFitDataLength } from '@/lib/converter'
 import type { ParsedRecord } from '@/model/fitParser'
+import { AltitudeTooltip } from './components/AltitudeTooltip'
 
 interface Props {
   records: ParsedRecord[];
@@ -38,10 +39,10 @@ export function AltitudeTrendCard({ records }: Props) {
   const ticks = totalDistance ? getDistanceTicks(convertFitDataLength(totalDistance, 'm'), DISTANCE_TICK_GAP) : []
 
   const altitudeDistanceList = records.flatMap(record =>
-    (record.distance !== undefined && record.enhanced_altitude !== undefined)
+    (record.distance !== undefined && (record.enhanced_altitude !== undefined || record.altitude !== undefined))
       ? [[
         Math.round(convertFitDataLength(record.distance, 'm')),
-        Math.round(convertFitDataLength(record.enhanced_altitude, 'm'))
+        Math.round(convertFitDataLength((record.enhanced_altitude ?? record.altitude) as number, 'm'))
       ] as [number, number]]
       : []
   )
@@ -90,6 +91,15 @@ export function AltitudeTrendCard({ records }: Props) {
             ticks: ticks,
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
             tickFormatter: (value, index) => parseFloat((value / 1000).toFixed(1)) + ' km' // removing trailing zero with parseFloat
+          }}
+          tooltipProps={{
+            position: { y: 125 },
+            offset: 25,
+            content: ({ payload }) => (
+              <AltitudeTooltip
+                payload={payload ? [...payload] : undefined}
+              />
+            )
           }}
         />
       </Stack>
