@@ -2,6 +2,7 @@
 
 import { Card, Center, Container, Loader, Stack, useMantineTheme } from '@mantine/core'
 import dynamic from 'next/dynamic'
+import { AltitudeTrendCard } from '@/components/AltitudeTrendCard'
 import { FitFileUploader } from '@/components/FitFileUploader'
 import { HeartRateZoneCard } from '@/components/HeartRateZoneCard'
 import { RecordsCard } from '@/components/RecordsCard'
@@ -51,6 +52,9 @@ export default function Home() {
                   tracks={{ id: 'the-only-track', ...fitData } as TrackData}
                   trackColors={[theme.colors.red[6]]}
                 />
+              </div>
+              <div className="lg:col-span-12">
+                <AltitudeTrendCard records={fitData.records ?? []}></AltitudeTrendCard>
               </div>
               <div className="lg:col-span-12">
                 <RecordsCard records={fitData.records ?? []}></RecordsCard>
