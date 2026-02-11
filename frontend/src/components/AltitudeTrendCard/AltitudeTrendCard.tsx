@@ -57,7 +57,6 @@ export function AltitudeTrendCard({ records }: Props) {
     return LTTB(data, CHART_RESOLUTION) as [number, number][]
   }
 
-  // TODO: useMemo
   const downsampledRecords = downsample(altitudeDistanceList)
 
   function convertDownsampledListToChartData(list: [number, number][]): { distance: number; altitude: number; }[] {
