@@ -1,5 +1,5 @@
 import { AreaChart } from '@mantine/charts'
-import { Card, Stack, Title } from '@mantine/core'
+import { Card, Stack, Title, useMantineColorScheme } from '@mantine/core'
 import { LTTB } from 'downsample'
 import { convertFitDataLength } from '@/lib/converter'
 import type { ParsedRecord } from '@/model/fitParser'
@@ -11,8 +11,14 @@ interface Props {
 
 const CHART_RESOLUTION = 200
 const DISTANCE_TICK_GAP = 1000
+const FILL_OPACITY_FOR_DARK_MODE = 1
+const FILL_OPACITY_FOR_LIGHT_MODE = 0.5
 
 export function AltitudeTrendCard({ records }: Props) {
+  const { colorScheme } = useMantineColorScheme()
+  const fillOpacity = (colorScheme === 'dark')
+    ? FILL_OPACITY_FOR_DARK_MODE
+    : FILL_OPACITY_FOR_LIGHT_MODE
 
   /**
    * generate X axis ticks array
@@ -81,7 +87,7 @@ export function AltitudeTrendCard({ records }: Props) {
           curveType="monotone"
           withDots={false}
           withGradient={false}
-          fillOpacity={1}
+          fillOpacity={fillOpacity}
           gridAxis="xy"
           gridProps={{ yAxisId: 'left' }} // horizontal grid lines missing without this will be fixed at Recharts 9.0
           series={[{ name: 'altitude', color: 'yellow.4' }]}
