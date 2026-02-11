@@ -82,6 +82,8 @@ export function AltitudeTrendCard({ records }: Props) {
           withDots={false}
           withGradient={false}
           fillOpacity={1}
+          gridAxis="xy"
+          gridProps={{ yAxisId: 'left' }} // horizontal grid lines missing without this will be fixed at Recharts 9.0
           series={[{ name: 'altitude', color: 'yellow.4' }]}
           areaProps={{
             connectNulls: false
@@ -91,6 +93,9 @@ export function AltitudeTrendCard({ records }: Props) {
             ticks: ticks,
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
             tickFormatter: (value, index) => parseFloat((value / 1000).toFixed(1)) + ' km' // removing trailing zero with parseFloat
+          }}
+          yAxisProps={{
+            tickCount: 6
           }}
           tooltipProps={{
             position: { y: 125 },
