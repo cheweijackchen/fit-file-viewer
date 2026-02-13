@@ -12,37 +12,43 @@ export function SummarySection() {
       name: 'total-distance',
       icon: IconRulerMeasure,
       label: 'Total Distance',
-      value: summary.totalDistance ?? '-'
+      value: summary.totalDistance?.value ?? '-',
+      unit: summary.totalDistance?.unit
     },
     {
       name: 'total-time',
       icon: IconStopwatch,
       label: 'Total Time',
-      value: summary.totalTimerTime ?? '-'
+      value: summary.totalTimerTime?.value ?? '-',
+      unit: summary.totalTimerTime?.unit
     },
     {
       name: 'average-heart-rate',
       icon: IconHeartbeat,
       label: 'Avg. Heart Rate',
-      value: summary.averageHeartRate ?? '-'
+      value: summary.averageHeartRate?.value ?? '-',
+      unit: summary.averageHeartRate?.unit
     },
     {
       name: 'average-pace',
       icon: IconRun,
       label: 'Avg. Pace',
-      value: summary.averagePace ?? '-'
+      value: summary.averagePace?.value ?? '-',
+      unit: '/km'
     },
     {
       name: 'total-ascend',
       icon: IconTrendingUp,
       label: 'Total Ascent',
-      value: summary.totalAscent ?? '-'
+      value: summary.totalAscent?.value ?? '-',
+      unit: summary.totalAscent?.unit
     },
     {
       name: 'total-descent',
       icon: IconTrendingDown,
       label: 'Total Descent',
-      value: summary.totalDescent ?? '-'
+      value: summary.totalDescent?.value ?? '-',
+      unit: summary.totalDescent?.unit
     },
   ]
 
@@ -57,14 +63,27 @@ export function SummarySection() {
               p="md"
             >
               <Stack
-                gap="2xl"
+                gap="xl"
               >
                 {!onMobile && <item.icon
                   size={30}
                   color="var(--mantine-primary-color-filled)"
                   className="mt-4 mx-auto"
-                              ></item.icon>}
+                ></item.icon>}
                 <div>
+                  <div className="flex items-end gap-1">
+                    <Text
+                      c="bright"
+                      size="2xl"
+                      fw="bold"
+                      className="text-nowrap"
+                    >{String(item.value)}</Text>
+                    <Text
+                      size="sm"
+                      c="gray.6"
+                      className="text-nowrap"
+                    >{item.unit}</Text>
+                  </div>
                   <Text
                     size="xs"
                     c="gray.5"
@@ -72,11 +91,6 @@ export function SummarySection() {
                     tt="uppercase"
                     className="text-nowrap"
                   >{item.label}</Text>
-                  <Text
-                    size="lg"
-                    fw="bold"
-                    className="text-nowrap"
-                  >{String(item.value)}</Text>
                 </div>
               </Stack>
             </Card>
