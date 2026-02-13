@@ -7,7 +7,7 @@ export function useFitDataSummary() {
   const fitData = useFitDataStore.use.fitData()
   const formatter = new FitDataFormatter(
     { lengthUnit: FIT_PARSER_LENGTH_UNIT, speedUnit: FIT_PARSER_SPEED_UNIT }, // Parser input units
-    { lengthUnit: FIT_PARSER_LENGTH_UNIT, speedUnit: FIT_PARSER_SPEED_UNIT } // Display output units
+    { lengthUnit: FIT_PARSER_LENGTH_UNIT, speedUnit: 'min/km' } // Display output units
   )
 
   const totalDistanceIndicator = fitData?.sessions?.[0]?.total_distance
