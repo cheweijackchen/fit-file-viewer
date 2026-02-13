@@ -40,13 +40,19 @@ export function useFitDataSummary() {
     ? formatter.format(FitDataField.speed, fitData.sessions[0].enhanced_avg_speed)
     : undefined
 
+  const caloriesIndicator = fitData?.sessions?.[0]?.total_calories
+
+  const powerIndicator = fitData?.sessions?.[0]?.avg_power
+
   const summary = {
     totalDistance: totalDistanceIndicator ?? distanceOfFinalRecordIndicator,
     totalAscent: totalAscentIndicator,
     totalDescent: totalDescentIndicator,
     averageHeartRate: averageHeartRateIndicator,
     averagePace: averagePaceIndicator,
-    totalTimerTime: totalTimerTimeIndicator
+    totalTimerTime: totalTimerTimeIndicator,
+    calories: caloriesIndicator,
+    power: powerIndicator
   }
 
   return {

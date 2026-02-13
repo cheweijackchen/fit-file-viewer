@@ -1,6 +1,6 @@
 'use client'
 import { Card, Stack, Text } from '@mantine/core'
-import { IconStopwatch, IconTrendingUp, IconTrendingDown, IconHeartbeat, IconRun, IconRulerMeasure } from '@tabler/icons-react'
+import { IconStopwatch, IconTrendingUp, IconTrendingDown, IconHeartbeat, IconRun, IconRulerMeasure, IconFlame, IconBolt } from '@tabler/icons-react'
 import { useFitDataSummary } from '@/hooks/useFitDataSummary'
 import useScreen from '@/hooks/useScreen'
 export function SummarySection() {
@@ -49,6 +49,20 @@ export function SummarySection() {
       label: 'Total Descent',
       value: summary.totalDescent?.value ?? '-',
       unit: summary.totalDescent?.unit
+    },
+    {
+      name: 'calories',
+      icon: IconFlame,
+      label: 'Calories',
+      value: summary.calories ?? '-',
+      unit: 'kcal'
+    },
+    {
+      name: 'power',
+      icon: IconBolt,
+      label: 'Avg. Power',
+      value: summary.power ?? '-',
+      unit: 'W'
     },
   ]
 
