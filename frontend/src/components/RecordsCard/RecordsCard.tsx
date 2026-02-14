@@ -126,37 +126,6 @@ export function RecordsCard({ records }: Props) {
       render: record => record.activity_type ?? '-'
     },
     {
-      accessor: 'altitude',
-      title: (
-        <ColumnTitleWithUnit
-          title="Altitude"
-          unit="m"
-          hiddenUnit={isRawData}
-        />
-      ),
-      textAlign: 'center',
-      render: record => {
-        const altitude = (typeof record.altitude === 'number')
-          ? convertFitDataLength(record.altitude, 'm')
-          : null
-        if (altitude !== null) {
-          return isRawData
-            ? (
-              <NumberFormatter
-                thousandSeparator
-                value={record.altitude}
-              />)
-            : (
-              <NumberFormatter
-                thousandSeparator
-                value={Math.round(altitude)}
-              />)
-        } else {
-          return '-'
-        }
-      }
-    },
-    {
       accessor: 'enhanced_altitude',
       title: (
         <ColumnTitleWithUnit
