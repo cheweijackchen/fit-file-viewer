@@ -50,7 +50,8 @@ export default function Home() {
                 <MapNoSSR
                   className="z-0 h-125 lg:h-full"
                   tracks={{ id: 'the-only-track', ...fitData } as TrackData}
-                  trackColors={[theme.colors.red[6]]}
+                  trackColors={[theme.colors.yellow[5]]}
+                  borderedTrack={true}
                 />
               </div>
               <div className="lg:col-span-12">
@@ -63,12 +64,15 @@ export default function Home() {
           </Container>
         )
         : (
-          <>
+          <Container
+            size="xxl"
+            px={0}
+          >
             <HomeBanner className="pt-20 px-6 pb-12"></HomeBanner>
             <Center className="pt-6 pb-20 px-6">
-              <FitFileUploader className="w-full md:w-4/5"></FitFileUploader>
+              <FitFileUploader className="w-full"></FitFileUploader>
             </Center>
-          </>
+          </Container>
         )}
     </AppLayout>
   )
