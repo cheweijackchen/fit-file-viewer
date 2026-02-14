@@ -53,10 +53,8 @@ export interface FitTrackMapProps {
   showEndMarker?: boolean;
   showDistanceMarkers?: boolean;
   showDataQualityInfo?: boolean;
-  borderedTrack?: boolean;
 
   trackColors?: string[];
-  trackBorderColor?: string;
   className?: string;
 
   tileLayerUrl?: string;
@@ -122,9 +120,7 @@ export default function FitTrackMap({
   showEndMarker = true,
   showDistanceMarkers = true,
   showDataQualityInfo = false,
-  borderedTrack = false,
   trackColors = DEFAULT_TRACK_COLORS,
-  trackBorderColor = 'black',
   tileLayerUrl = OSM_TILE_URL,
   tileLayerAttribution = OSM_ATTRIBUTION,
   onDataFiltered,
@@ -216,16 +212,11 @@ export default function FitTrackMap({
 
         {tracksWithMetadata.map((track) => (
           <React.Fragment key={track.id}>
-            {borderedTrack && (
-              <Polyline
-                positions={track.positions}
-                color={trackBorderColor}
-                weight={7}
-              />)}
             <Polyline
               positions={track.positions}
               color={track.color}
               weight={4}
+              opacity={0.8}
             />
 
             {showStartMarker && track.records.length > 0 && (

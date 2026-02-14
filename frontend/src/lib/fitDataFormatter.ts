@@ -14,7 +14,7 @@ interface FitParserOptions {
 interface OutputUnitOptions {
   lengthUnit?: 'm' | 'km' | 'mi' | 'ft';
   temperatureUnit?: 'celsius' | 'fahrenheit';
-  speedUnit?: 'm/s' | 'km/h' | 'mph' | 'min/km';
+  speedUnit?: 'm/s' | 'km/h' | 'mph';
   language?: LanguageOption;
 }
 
@@ -22,7 +22,7 @@ const OutputPresets = {
   metric: {
     lengthUnit: 'km',
     temperatureUnit: 'celsius',
-    speedUnit: 'min/km',
+    speedUnit: 'km/h',
     language: LanguageOption.en,
   } as OutputUnitOptions,
   imperial: {
@@ -102,7 +102,7 @@ class FitDataFormatter {
       this.defaultOutputOptions = {
         lengthUnit: outputOptions.lengthUnit || 'km',
         temperatureUnit: outputOptions.temperatureUnit || 'celsius',
-        speedUnit: outputOptions.speedUnit || 'min/km',
+        speedUnit: outputOptions.speedUnit || 'km/h',
         language: outputOptions.language || LanguageOption.en,
       }
     }
@@ -183,7 +183,7 @@ class FitDataFormatter {
 
   private formatSpeed(
     valueInMPS: number,
-    targetUnit: 'm/s' | 'km/h' | 'mph' | 'min/km'
+    targetUnit: 'm/s' | 'km/h' | 'mph'
   ): { value: string; unit: string; } {
     switch (targetUnit) {
       case 'm/s':
@@ -201,20 +201,12 @@ class FitDataFormatter {
           value: (valueInMPS * 2.23694).toFixed(1),
           unit: 'mph',
         }
-      case 'min/km':
-        const paceInMinutes = 1000 / (valueInMPS * 60)
-        const minutes = Math.floor(paceInMinutes)
-        const seconds = Math.round((paceInMinutes - minutes) * 60)
-        return {
-          value: `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`,
-          unit: 'min/km',
-        }
     }
   }
 
   private formatPace(
     valueInMPS: number,
-    targetUnit: 'm/s' | 'km/h' | 'mph' | 'min/km'
+    targetUnit: 'm/s' | 'km/h' | 'mph'
   ): { value: string; unit: string; } {
     if (valueInMPS === 0) {
       const unit = targetUnit === 'mph' ? 'min/mi' : 'min/km'
@@ -227,7 +219,6 @@ class FitDataFormatter {
     switch (targetUnit) {
       case 'm/s':
       case 'km/h':
-      case 'min/km':
         paceInMinutes = 1000 / (valueInMPS * 60) // min/km
         unit = 'min/km'
         break
@@ -241,7 +232,7 @@ class FitDataFormatter {
     const seconds = Math.round((paceInMinutes - minutes) * 60)
 
     return {
-      value: `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`,
+      value: `${minutes}:${seconds.toString().padStart(2, '0')}`,
       unit,
     }
   }

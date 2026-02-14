@@ -33,15 +33,6 @@ export const demoNavLinks = [
   {
     icon: IconChartBar,
     title: 'Charts',
-    children: [
-      {
-        title: 'HeartRateTrendGraph',
-        link: '/demo/demo-heart-rate-trend-graph'
-      },
-      {
-        title: 'HeartRateDonutChart',
-        link: '/demo/demo-heart-rate-donut-chart'
-      }
-    ]
+    children: []
   },
 ]
