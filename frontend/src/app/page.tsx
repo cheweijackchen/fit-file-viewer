@@ -50,7 +50,8 @@ export default function Home() {
                 <MapNoSSR
                   className="z-0 h-125 lg:h-full"
                   tracks={{ id: 'the-only-track', ...fitData } as TrackData}
-                  trackColors={[theme.colors.red[6]]}
+                  trackColors={[theme.colors.yellow[5]]}
+                  borderedTrack={true}
                 />
               </div>
               <div className="lg:col-span-12">
