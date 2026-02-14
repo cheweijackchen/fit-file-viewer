@@ -16,7 +16,6 @@ export default function AppLayout({ children }: Props) {
     >
       <AppShell.Header
         withBorder={false}
-        className='px-6'
       >
         <AppHeader></AppHeader>
       </AppShell.Header>

@@ -8,8 +8,10 @@ services:
       - ..:/application
     environment:
       - FE_DEV_PORT
+      - FE_SSR_PORT
     ports:
       - "${FE_DEV_PORT}:${FE_DEV_PORT}"
+      - "${FE_SSR_PORT}:${FE_SSR_PORT}"
     command: >
       bash -c 'for((i=1;;i+=2)); do sleep 1 && echo "Counter: $$i"; done'
     profiles:

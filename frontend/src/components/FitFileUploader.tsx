@@ -74,9 +74,10 @@ export function FitFileUploader({ className, onSuccess }: Props) {
       <Stack
         align="center"
         gap="xl"
+        py="3xl"
         style={{ pointerEvents: 'none' }}
       >
-        <div className="pt-6">
+        <div>
           <Dropzone.Accept>
             <IconUpload
               size={52}
