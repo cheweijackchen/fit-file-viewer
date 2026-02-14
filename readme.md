@@ -19,5 +19,4 @@ The .FIT format is a binary file protocol developed by ANT+. It is the industry 
 ### Interactive Mapping
 - Route Trace: High-fidelity rendering of the activity path on an interactive map.
 - Distance Markers: Automatic distance markers (e.g., every 1km or 5km) to help users visualize their pace and progress over specific segments.
-
     
