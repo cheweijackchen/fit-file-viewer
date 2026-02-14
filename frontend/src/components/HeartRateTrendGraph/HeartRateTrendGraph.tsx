@@ -1,3 +1,5 @@
+'use client'
+
 import { AreaChart } from '@mantine/charts'
 import { LTTB } from 'downsample'
 import { HeartRateZoneAnalyzer } from '@/lib/heartRateZoneAnalyzer'

@@ -1,4 +1,4 @@
-import { Button, Divider, Flex, Group, Modal, Text } from '@mantine/core'
+import { Button, Container, Divider, Flex, Group, Modal, Text } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 import { IconUpload } from '@tabler/icons-react'
 import { FitFileUploader } from '@/components/FitFileUploader'
@@ -11,39 +11,46 @@ export function AppHeader() {
 
   return (
     <>
-      <Group
+      <Container
+        size="xxl"
         h="100%"
-        justify="space-between"
+        px={24}
       >
-        <Flex
-          align="center"
-          gap={16}
+        <Group
+          h="100%"
+          justify="space-between"
         >
-          <Text
-            ff="mono"
-            fz="lg"
-            fw="bold"
-          >FitFileViewer</Text>
-        </Flex>
-        <Flex
-          align="center"
-          gap="xs"
-        >
-          <ThemeSwitch></ThemeSwitch>
-          {
-            hasFitData &&
-            <Button
-              px="xs"
-              onClick={openFitFileUploaderModal}
-            >
-              <IconUpload></IconUpload>
-              <span className="hidden md:block ml-2">Upload New File</span>
-            </Button>
-          }
-        </Flex>
-      </Group>
+          <Flex
+            align="center"
+            gap={16}
+          >
+            <Text
+              ff="mono"
+              fz="lg"
+              fw="bold"
+            >FitFileViewer</Text>
+          </Flex>
+          <Flex
+            align="center"
+            gap="xs"
+          >
+            <ThemeSwitch></ThemeSwitch>
+            {
+              hasFitData &&
+              <Button
+                px="xs"
+                onClick={openFitFileUploaderModal}
+              >
+                <IconUpload></IconUpload>
+                <span className="hidden md:block ml-2">Upload New File</span>
+              </Button>
+            }
+          </Flex>
+        </Group>
+      </Container>
       <Modal
         centered
+        size="lg"
         opened={isFitFileUploaderOpened}
         onClose={closeFitFileUploaderModal}
       >

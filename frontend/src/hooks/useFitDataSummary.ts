@@ -7,38 +7,42 @@ export function useFitDataSummary() {
   const fitData = useFitDataStore.use.fitData()
   const formatter = new FitDataFormatter(
     { lengthUnit: FIT_PARSER_LENGTH_UNIT, speedUnit: FIT_PARSER_SPEED_UNIT }, // Parser input units
-    { lengthUnit: FIT_PARSER_LENGTH_UNIT, speedUnit: FIT_PARSER_SPEED_UNIT } // Display output units
+    { lengthUnit: FIT_PARSER_LENGTH_UNIT, speedUnit: 'min/km' } // Display output units
   )
 
   const totalDistanceIndicator = fitData?.sessions?.[0]?.total_distance
-    ? formatter.getDisplayString(FitDataField.distance, fitData.sessions[0].total_distance)
+    ? formatter.format(FitDataField.distance, fitData.sessions[0].total_distance)
     : undefined
   const distanceOfFinalRecord = (fitData?.records && (fitData?.records?.length > 0))
     ? fitData.records[fitData.records.length - 1]?.distance
     : undefined
   const distanceOfFinalRecordIndicator = distanceOfFinalRecord
-    ? formatter.getDisplayString(FitDataField.distance, distanceOfFinalRecord)
+    ? formatter.format(FitDataField.distance, distanceOfFinalRecord)
     : undefined
 
   const totalAscentIndicator = fitData?.sessions?.[0]?.total_ascent
-    ? formatter.getDisplayString(FitDataField.elevation, fitData.sessions[0].total_ascent)
+    ? formatter.format(FitDataField.elevation, fitData.sessions[0].total_ascent, { lengthUnit: 'm' })
     : undefined
 
   const totalDescentIndicator = fitData?.sessions?.[0]?.total_descent
-    ? formatter.getDisplayString(FitDataField.elevation, fitData.sessions[0].total_descent)
+    ? formatter.format(FitDataField.elevation, fitData.sessions[0].total_descent, { lengthUnit: 'm' })
     : undefined
 
   const averageHeartRateIndicator = fitData?.sessions?.[0]?.avg_heart_rate
-    ? formatter.getDisplayString(FitDataField.heartRate, fitData.sessions[0].avg_heart_rate)
+    ? formatter.format(FitDataField.heartRate, fitData.sessions[0].avg_heart_rate)
     : undefined
 
   const totalTimerTimeIndicator = fitData?.sessions?.[0]?.total_timer_time
-    ? formatter.getDisplayString(FitDataField.duration, fitData.sessions[0].total_timer_time)
+    ? formatter.format(FitDataField.duration, fitData.sessions[0].total_timer_time)
     : undefined
 
   const averagePaceIndicator = fitData?.sessions?.[0]?.enhanced_avg_speed
-    ? formatter.getDisplayString(FitDataField.speed, fitData.sessions[0].enhanced_avg_speed)
+    ? formatter.format(FitDataField.speed, fitData.sessions[0].enhanced_avg_speed)
     : undefined
+
+  const caloriesIndicator = fitData?.sessions?.[0]?.total_calories
+
+  const powerIndicator = fitData?.sessions?.[0]?.avg_power
 
   const summary = {
     totalDistance: totalDistanceIndicator ?? distanceOfFinalRecordIndicator,
@@ -46,7 +50,9 @@ export function useFitDataSummary() {
     totalDescent: totalDescentIndicator,
     averageHeartRate: averageHeartRateIndicator,
     averagePace: averagePaceIndicator,
-    totalTimerTime: totalTimerTimeIndicator
+    totalTimerTime: totalTimerTimeIndicator,
+    calories: caloriesIndicator,
+    power: powerIndicator
   }
 
   return {
