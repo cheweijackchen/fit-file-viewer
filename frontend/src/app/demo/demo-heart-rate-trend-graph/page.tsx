@@ -1,6 +1,7 @@
 'use client'
 
 import { Text, Card, Slider, Stack, Title } from '@mantine/core'
+import { useElementSize } from '@mantine/hooks'
 import { useState } from 'react'
 import { HeartRateTrendGraph } from '@/components/HeartRateTrendGraph'
 import type { ParsedRecord } from '@/model/fitParser'
@@ -11,6 +12,7 @@ export default function DemoHeartRateTrendGraph() {
   const [restingHeartRate, setRestingHeartRate] = useState(65)
   const [maxHeartRateTmp, setMaxHeartRateTmp] = useState(195)
   const [maxHeartRate, setMaxHeartRate] = useState(195)
+  const { ref: heartRateGraphContainerRef, width: heartRateGraphContainerRefWidth } = useElementSize()
 
   return (
     <Card>
@@ -18,12 +20,12 @@ export default function DemoHeartRateTrendGraph() {
         <Title
           order={3}
         >Heart Rate Trend Graph</Title>
-        <div>
-          <HeartRateTrendGraph
+        <div ref={heartRateGraphContainerRef}>
+          {heartRateGraphContainerRefWidth > 0 && <HeartRateTrendGraph
             records={mockedRecords as ParsedRecord[]}
             restingHeartRate={restingHeartRate}
             maxHeartRate={maxHeartRate}
-          />
+          />}
         </div>
         <div className="max-w-100">
           <div className="flex items-end gap-2">
