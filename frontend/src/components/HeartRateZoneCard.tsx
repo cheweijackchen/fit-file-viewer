@@ -1,12 +1,17 @@
 import { Card, Stack, Title } from '@mantine/core'
+import dynamic from 'next/dynamic'
 import { DEFAULT_MAX_HEART_RATE, DEFAULT_RESTING_HEART_RATE } from '@/constants/heartRate'
 import { type ParsedFit } from '@/model/fitParser'
 import { HeartRateDonutChart } from './HeartRateDonutChart'
-import { HeartRateTrendGraph } from './HeartRateTrendGraph'
 
 interface Props {
   fitData: ParsedFit;
 }
+
+const HeartRateTrendGraphNoSSR = dynamic(
+  () => import('./HeartRateTrendGraph').then((mod) => mod.HeartRateTrendGraph),
+  { ssr: false }
+)
 
 export function HeartRateZoneCard({ fitData }: Props) {
   const restingHeartRate = fitData?.user_profile?.resting_heart_rate ?? DEFAULT_RESTING_HEART_RATE
@@ -29,7 +34,7 @@ export function HeartRateZoneCard({ fitData }: Props) {
             maxHeartRate={maxHeartRate}
           />
           <div className="w-full sm:flex-1">
-            <HeartRateTrendGraph
+            <HeartRateTrendGraphNoSSR
               records={fitData.records ?? []}
               restingHeartRate={restingHeartRate}
               maxHeartRate={maxHeartRate}
