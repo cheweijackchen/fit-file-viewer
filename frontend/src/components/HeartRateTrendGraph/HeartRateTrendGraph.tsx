@@ -29,6 +29,7 @@ export function HeartRateTrendGraph({ records, restingHeartRate, maxHeartRate }:
       ? [[record.timestamp.getTime() - baseTime, record.heart_rate] as [number, number]]
       : []
   )
+  console.log('heartRateTimestampList: ', heartRateTimestampList)
 
   function downsample(data: [number, number][]): [number, number][] {
     return LTTB(data, CHART_WIDTH) as [number, number][]
@@ -61,6 +62,11 @@ export function HeartRateTrendGraph({ records, restingHeartRate, maxHeartRate }:
   }
 
   const chartData = convertDownsampledListToChartDataByZone(downsampledRecords)
+  console.log('chartData: ', chartData)
+
+  const startTime = downsampledRecords?.[0]?.[0] ?? 0
+  const endTime = downsampledRecords?.[downsampledRecords.length - 1]?.[0] ?? 0
+  console.log('startTime: ', startTime, ', endTime: ', endTime)
 
   return (
     <AreaChart
@@ -87,7 +93,8 @@ export function HeartRateTrendGraph({ records, restingHeartRate, maxHeartRate }:
         scale: 'time',
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         tickFormatter: (value, index) => formatElapsedTime(value, false),
-        minTickGap: MIN_TICK_GAP
+        minTickGap: MIN_TICK_GAP,
+        domain: [startTime, endTime]
       }}
       yAxisProps={{
         domain: [restingHeartRate, maxHeartRate]
