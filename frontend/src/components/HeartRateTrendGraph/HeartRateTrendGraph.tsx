@@ -84,7 +84,6 @@ export function HeartRateTrendGraph({ records, restingHeartRate, maxHeartRate }:
         connectNulls: false
       }}
       xAxisProps={{
-        type: 'number',
         scale: 'time',
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         tickFormatter: (value, index) => formatElapsedTime(value, false),
