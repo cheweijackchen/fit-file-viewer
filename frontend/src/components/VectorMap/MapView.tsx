@@ -1,37 +1,18 @@
 import maplibregl from 'maplibre-gl'
 import type { Map } from 'maplibre-gl'
-import type { StyleSpecification } from 'maplibre-gl'
 import { useRef, useEffect, useState } from 'react'
 import { TrackLayer } from '@/components/VectorMap/TrackLayer'
 import { TrackPopup } from '@/components/VectorMap/TrackPopup'
+import {
+  useBaseMap,
+  DEFAULT_BASE_MAP,
+  VECTOR_STYLE_URL,
+  type BaseMapId,
+} from '@/hooks/useBaseMap'
 import { useTrackFitBounds } from '@/hooks/useTrackFitBounds'
 import type { ParsedTrack } from '@/model/gpx'
 
-
-// const MAP_STYLE =
-//   'https://tiles.openfreemap.org/styles/liberty' as unknown as StyleSpecification
-
-const MAP_STYLE: StyleSpecification = {
-  version: 8,
-  sources: {
-    'esri-satellite': {
-      type: 'raster',
-      tiles: [
-        'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
-      ],
-      tileSize: 256,
-      attribution: 'Tiles © Esri',
-      maxzoom: 19,
-    }
-  },
-  layers: [
-    {
-      id: 'esri-satellite-layer',
-      type: 'raster',
-      source: 'esri-satellite',
-    },
-  ],
-}
+import { BaseMapSelector } from './BaseMapSelector'
 
 interface MapViewProps {
   track: ParsedTrack | null;
@@ -40,11 +21,11 @@ interface MapViewProps {
 
 export function MapView({ track, highlightedIndex }: MapViewProps) {
   const containerRef = useRef<HTMLDivElement>(null)
-  // Store the map instance in state so child components re-render correctly
-  // when the map becomes available. Reading mapRef.current during render is
-  // disallowed in React 19.
   const [map, setMap] = useState<Map | null>(null)
   const [isMapReady, setIsMapReady] = useState(false)
+  const [baseMap, setBaseMap] = useState<BaseMapId>(DEFAULT_BASE_MAP)
+
+  const { applyBaseMap } = useBaseMap()
 
   // Initialize map once
   useEffect(() => {
@@ -55,41 +36,25 @@ export function MapView({ track, highlightedIndex }: MapViewProps) {
 
     const instance = new maplibregl.Map({
       container,
-      style: MAP_STYLE,
+      style: VECTOR_STYLE_URL,
       center: [121.0, 24.0],
       zoom: 7,
       pitch: 45,
       bearing: 0,
-      canvasContextAttributes: {
-        antialias: true,
-      },
+      centerClampedToGround: false,
     })
 
     instance.addControl(
       new maplibregl.NavigationControl({ visualizePitch: true }),
       'top-right',
     )
-    instance.addControl(new maplibregl.ScaleControl({ unit: 'metric' }), 'bottom-left')
+    instance.addControl(
+      new maplibregl.ScaleControl({ unit: 'metric' }),
+      'bottom-left',
+    )
     instance.addControl(new maplibregl.FullscreenControl(), 'top-right')
 
     instance.on('load', () => {
-      // Add Terrarium raster-DEM — free, no API key required.
-      // To switch to Maptiler, replace tiles with:
-      // https://api.maptiler.com/tiles/terrain-rgb/tiles.json?key=YOUR_KEY
-      // and change encoding to 'mapbox'
-      instance.addSource('terrain-dem', {
-        type: 'raster-dem',
-        encoding: 'terrarium',
-        tiles: [
-          'https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png',
-        ],
-        tileSize: 256,
-        maxzoom: 15,
-        attribution: 'Terrain © Mapzen / AWS',
-      })
-
-      instance.setTerrain({ source: 'terrain-dem', exaggeration: 1.5 })
-
       setIsMapReady(true)
     })
 
@@ -103,18 +68,28 @@ export function MapView({ track, highlightedIndex }: MapViewProps) {
 
   }, [])
 
+  // Apply baseMap whenever selection changes or map becomes ready.
+  // applyBaseMap is unconditional — no diffing — so this always
+  // produces the correct visual state regardless of initial value.
+  useEffect(() => {
+    if (!map || !isMapReady) {
+      return
+    }
+    applyBaseMap(map, baseMap)
+  }, [map, isMapReady, baseMap, applyBaseMap])
+
   const points = track?.points ?? []
 
   useTrackFitBounds(map, points, isMapReady)
 
   return (
-    <div className="relative w-full h-full">
+    // position: relative so absolute children (selector, controls) are anchored here
+    <div style={{ position: 'relative', width: '100%', height: '100%' }}>
       <div
         ref={containerRef}
-        className="w-full h-full"
+        style={{ width: '100%', height: '100%' }}
       />
 
-      {/* Render track layers as logic-only components */}
       <TrackLayer
         map={map}
         points={points}
@@ -126,6 +101,16 @@ export function MapView({ track, highlightedIndex }: MapViewProps) {
         points={points}
         isMapReady={isMapReady}
       />
+
+      {/* z-index must exceed MapLibre canvas (which sits at z-index 0) */}
+      <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 20 }}>
+        <div style={{ pointerEvents: 'auto' }}>
+          <BaseMapSelector
+            value={baseMap}
+            onChange={setBaseMap}
+          />
+        </div>
+      </div>
     </div>
   )
 }
