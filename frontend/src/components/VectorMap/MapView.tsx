@@ -51,28 +51,25 @@ export function MapView({ track, highlightedIndex }: MapViewProps) {
     instance.addControl(new maplibregl.FullscreenControl(), 'top-right')
 
     instance.on('load', () => {
+      // Add Terrarium raster-DEM — free, no API key required.
+      // To switch to Maptiler, replace tiles with:
+      // https://api.maptiler.com/tiles/terrain-rgb/tiles.json?key=YOUR_KEY
+      // and change encoding to 'mapbox'
+      instance.addSource('terrain-dem', {
+        type: 'raster-dem',
+        encoding: 'terrarium',
+        tiles: [
+          'https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png',
+        ],
+        tileSize: 256,
+        maxzoom: 15,
+        attribution: 'Terrain © Mapzen / AWS',
+      })
+
+      instance.setTerrain({ source: 'terrain-dem', exaggeration: 1.5 })
+
       setIsMapReady(true)
     })
-    // instance.on('load', () => {
-    //   // Add Terrarium raster-DEM — free, no API key required.
-    //   // To switch to Maptiler, replace tiles with:
-    //   // https://api.maptiler.com/tiles/terrain-rgb/tiles.json?key=YOUR_KEY
-    //   // and change encoding to 'mapbox'
-    //   instance.addSource('terrain-dem', {
-    //     type: 'raster-dem',
-    //     encoding: 'terrarium',
-    //     tiles: [
-    //       'https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png',
-    //     ],
-    //     tileSize: 256,
-    //     maxzoom: 15,
-    //     attribution: 'Terrain © Mapzen / AWS',
-    //   })
-
-    //   instance.setTerrain({ source: 'terrain-dem', exaggeration: 1.5 })
-
-    //   setIsMapReady(true)
-    // })
 
     setMap(instance)
 
