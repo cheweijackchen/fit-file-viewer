@@ -10,8 +10,8 @@ export const demoNavLinks = [
         link: '/demo/demo-component-a',
       },
       {
-        title: 'ComponentB',
-        link: '/demo/demo-component-b',
+        title: 'VectorMap',
+        link: '/demo/demo-vector-map',
       },
     ]
   },
