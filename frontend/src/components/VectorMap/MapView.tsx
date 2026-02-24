@@ -8,8 +8,30 @@ import { useTrackFitBounds } from '@/hooks/useTrackFitBounds'
 import type { ParsedTrack } from '@/model/gpx'
 
 
-const MAP_STYLE =
-  'https://tiles.openfreemap.org/styles/liberty' as unknown as StyleSpecification
+// const MAP_STYLE =
+//   'https://tiles.openfreemap.org/styles/liberty' as unknown as StyleSpecification
+
+const MAP_STYLE: StyleSpecification = {
+  version: 8,
+  sources: {
+    'esri-satellite': {
+      type: 'raster',
+      tiles: [
+        'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+      ],
+      tileSize: 256,
+      attribution: 'Tiles © Esri',
+      maxzoom: 19,
+    }
+  },
+  layers: [
+    {
+      id: 'esri-satellite-layer',
+      type: 'raster',
+      source: 'esri-satellite',
+    },
+  ],
+}
 
 interface MapViewProps {
   track: ParsedTrack | null;
