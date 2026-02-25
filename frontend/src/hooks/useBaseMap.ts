@@ -5,37 +5,35 @@ import { useCallback } from 'react'
 // BaseMap definitions
 // ---------------------------------------------------------------------------
 
-export type BaseMapId = 'vector' | 'satellite' | 'satellite-roads'
+export type BaseMapMode = 'standard' | 'satellite' | 'hybrid'
 
 export interface BaseMapOption {
-  id: BaseMapId;
+  id: BaseMapMode;
   label: string;
 }
 
 export const BASE_MAP_OPTIONS: BaseMapOption[] = [
-  { id: 'vector', label: '地形圖' },
-  { id: 'satellite', label: '衛星圖' },
-  { id: 'satellite-roads', label: '衛星 + 道路' },
+  { id: 'standard', label: '標準' },
+  { id: 'satellite', label: '衛星' },
+  { id: 'hybrid', label: '混合' },
 ]
 
-export const DEFAULT_BASE_MAP: BaseMapId = 'vector'
+export const DEFAULT_BASE_MAP: BaseMapMode = 'standard'
 
-// Vector style served by OpenFreeMap — no API key required
 export const VECTOR_STYLE_URL = 'https://tiles.openfreemap.org/styles/liberty'
 
-// ESRI World Imagery — free, no API key, non-commercial use
 const SATELLITE_TILES =
   'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'
 
 const SATELLITE_SOURCE_ID = 'esri-satellite'
 const SATELLITE_LAYER_ID = 'esri-satellite-layer'
 const TERRAIN_SOURCE_ID = 'terrain-dem'
+const HILLSHADE_LAYER_ID = 'terrain-hillshade'
 
-// Layers that should always stay visible regardless of mode (GPX track layers)
 const ALWAYS_VISIBLE = /^gpx-/i
 
 // ---------------------------------------------------------------------------
-// Layer visibility rules for satellite modes
+// Layer visibility rules
 // ---------------------------------------------------------------------------
 
 const MATCH_TYPE = {
@@ -51,10 +49,7 @@ interface LayerRule {
   visible: boolean;
 }
 
-// Rules are evaluated in order — last match wins.
-// This allows a specific EXACT rule to override a broader PREFIX rule.
-// null result (no rule matched) means: leave the layer's original visibility.
-const SATELLITE_ROADS_RULES: LayerRule[] = [
+const HYBRID_LAYER_RULES: LayerRule[] = [
   { match: 'background', type: MATCH_TYPE.EXACT, visible: false },
   { match: 'landcover', type: MATCH_TYPE.PREFIX, visible: false },
   { match: 'landuse', type: MATCH_TYPE.PREFIX, visible: false },
@@ -66,6 +61,7 @@ const SATELLITE_ROADS_RULES: LayerRule[] = [
   { match: 'water', type: MATCH_TYPE.EXACT, visible: false },
 ]
 
+// Returns null when no rule matches — caller should leave the layer untouched.
 function resolveVisibility(layerId: string, rules: LayerRule[]): boolean | null {
   let result: boolean | null = null
   for (const rule of rules) {
@@ -79,103 +75,149 @@ function resolveVisibility(layerId: string, rules: LayerRule[]): boolean | null 
 }
 
 // ---------------------------------------------------------------------------
-// Helper: add terrain DEM (idempotent)
+// Helpers
 // ---------------------------------------------------------------------------
-function ensureTerrain(map: Map): void {
-  if (!map.getSource(TERRAIN_SOURCE_ID)) {
-    map.addSource(TERRAIN_SOURCE_ID, {
-      type: 'raster-dem',
-      encoding: 'terrarium',
-      tiles: [
-        'https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png',
-      ],
-      tileSize: 256,
-      maxzoom: 15,
-      attribution: 'Terrain Mapzen / AWS',
-    })
-  }
-  map.setTerrain({ source: TERRAIN_SOURCE_ID, exaggeration: 1.5 })
-}
 
-// ---------------------------------------------------------------------------
-// Helper: add satellite raster source + layer at the very bottom
-// ---------------------------------------------------------------------------
-function addSatelliteLayer(map: Map): void {
-  if (!map.getSource(SATELLITE_SOURCE_ID)) {
-    map.addSource(SATELLITE_SOURCE_ID, {
-      type: 'raster',
-      tiles: [SATELLITE_TILES],
-      tileSize: 256,
-      attribution: 'Tiles © Esri',
-      maxzoom: 19,
-    })
-  }
-
-  if (!map.getLayer(SATELLITE_LAYER_ID)) {
-    const firstLayerId = map.getStyle().layers[0]?.id
-    map.addLayer(
-      { id: SATELLITE_LAYER_ID, type: 'raster', source: SATELLITE_SOURCE_ID },
-      firstLayerId,
-    )
-  }
-}
-
-// ---------------------------------------------------------------------------
-// Helper: remove satellite raster layer + source
-// ---------------------------------------------------------------------------
-function removeSatelliteLayer(map: Map): void {
-  if (map.getLayer(SATELLITE_LAYER_ID)) {
-    map.removeLayer(SATELLITE_LAYER_ID)
-  }
-  if (map.getSource(SATELLITE_SOURCE_ID)) {
-    map.removeSource(SATELLITE_SOURCE_ID)
-  }
-}
-
-// ---------------------------------------------------------------------------
-// Core: unconditionally apply a baseMap mode
-// No diffing — always sets every layer to the correct visibility state.
-// This ensures correctness on first load and after any mode switch.
-// ---------------------------------------------------------------------------
-function applyMode(map: Map, id: BaseMapId): void {
-  if (id === 'vector') {
-    removeSatelliteLayer(map)
-    for (const layer of map.getStyle().layers) {
-      if (ALWAYS_VISIBLE.test(layer.id)) {
-        continue
-      }
-      map.setLayoutProperty(layer.id, 'visibility', 'visible')
+function ensureTerrain(map: Map, enabled: boolean): void {
+  if (enabled) {
+    if (!map.getSource(TERRAIN_SOURCE_ID)) {
+      map.addSource(TERRAIN_SOURCE_ID, {
+        type: 'raster-dem',
+        encoding: 'terrarium',
+        tiles: [
+          'https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png',
+        ],
+        tileSize: 256,
+        maxzoom: 15,
+        attribution: 'Terrain Mapzen / AWS',
+      })
     }
-  } else if (id === 'satellite') {
-    addSatelliteLayer(map)
-    for (const layer of map.getStyle().layers) {
-      if (ALWAYS_VISIBLE.test(layer.id)) {
-        continue
-      }
-      if (layer.id === SATELLITE_LAYER_ID) {
-        continue
-      }
-      map.setLayoutProperty(layer.id, 'visibility', 'none')
+    map.setTerrain({ source: TERRAIN_SOURCE_ID, exaggeration: 1.5 })
+
+    if (!map.getLayer(HILLSHADE_LAYER_ID)) {
+      // Insert hillshade above landcover/landuse but below roads and labels.
+      // Find the first road layer as the insertion point.
+      const firstRoadLayer = map.getStyle().layers.find((l) =>
+        l.id.startsWith('road') || l.id.startsWith('tunnel') || l.id.startsWith('bridge') || l.id.startsWith('waterway'),
+      )
+      map.addLayer(
+        {
+          id: HILLSHADE_LAYER_ID,
+          type: 'hillshade',
+          source: TERRAIN_SOURCE_ID,
+          paint: {
+            'hillshade-exaggeration': 0.5,
+            'hillshade-shadow-color': '#000000',
+            'hillshade-highlight-color': '#ffffff',
+            'hillshade-accent-color': '#000000',
+            'hillshade-illumination-anchor': 'viewport',
+          },
+        },
+        firstRoadLayer?.id,
+      )
+    } else {
+      map.setLayoutProperty(HILLSHADE_LAYER_ID, 'visibility', 'visible')
     }
   } else {
-    // satellite-roads: satellite underlay + roads/labels on top,
-    // with fine-grained control via SATELLITE_ROADS_RULES
-    addSatelliteLayer(map)
-    for (const layer of map.getStyle().layers) {
-      if (ALWAYS_VISIBLE.test(layer.id)) {
-        continue
+    map.setTerrain(null)
+    if (map.getLayer(HILLSHADE_LAYER_ID)) {
+      map.setLayoutProperty(HILLSHADE_LAYER_ID, 'visibility', 'none')
+    }
+  }
+}
+
+function setSatelliteLayer(map: Map, visible: boolean): void {
+  if (visible) {
+    if (!map.getSource(SATELLITE_SOURCE_ID)) {
+      map.addSource(SATELLITE_SOURCE_ID, {
+        type: 'raster',
+        tiles: [SATELLITE_TILES],
+        tileSize: 256,
+        attribution: 'Tiles © Esri',
+        maxzoom: 19,
+      })
+    }
+    if (!map.getLayer(SATELLITE_LAYER_ID)) {
+      const firstLayerId = map.getStyle().layers[0]?.id
+      map.addLayer(
+        { id: SATELLITE_LAYER_ID, type: 'raster', source: SATELLITE_SOURCE_ID },
+        firstLayerId,
+      )
+    }
+  } else {
+    if (map.getLayer(SATELLITE_LAYER_ID)) {
+      map.removeLayer(SATELLITE_LAYER_ID)
+    }
+    if (map.getSource(SATELLITE_SOURCE_ID)) {
+      map.removeSource(SATELLITE_SOURCE_ID)
+    }
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Core: unconditionally apply a mode
+// ---------------------------------------------------------------------------
+
+interface ApplyModeOptions {
+  showTerrain: boolean;
+}
+
+function applyMode(map: Map, mode: BaseMapMode, { showTerrain }: ApplyModeOptions): void {
+  switch (mode) {
+    case 'satellite': {
+      setSatelliteLayer(map, true)
+      for (const layer of map.getStyle().layers) {
+        if (ALWAYS_VISIBLE.test(layer.id)) {
+          continue
+        }
+        if (layer.id === SATELLITE_LAYER_ID) {
+          continue
+        }
+        if (layer.id === HILLSHADE_LAYER_ID) {
+          continue
+        }
+        map.setLayoutProperty(layer.id, 'visibility', 'none')
       }
-      if (layer.id === SATELLITE_LAYER_ID) {
-        continue
+      break
+    }
+
+    case 'hybrid': {
+      setSatelliteLayer(map, true)
+      for (const layer of map.getStyle().layers) {
+        if (ALWAYS_VISIBLE.test(layer.id)) {
+          continue
+        }
+        if (layer.id === SATELLITE_LAYER_ID) {
+          continue
+        }
+        if (layer.id === HILLSHADE_LAYER_ID) {
+          continue
+        }
+        const visible = resolveVisibility(layer.id, HYBRID_LAYER_RULES)
+        if (visible !== null) {
+          map.setLayoutProperty(layer.id, 'visibility', visible ? 'visible' : 'none')
+        }
       }
-      const visible = resolveVisibility(layer.id, SATELLITE_ROADS_RULES)
-      if (visible !== null) {
-        map.setLayoutProperty(layer.id, 'visibility', visible ? 'visible' : 'none')
+      break
+    }
+
+    case 'standard':
+    default: {
+      setSatelliteLayer(map, false)
+      for (const layer of map.getStyle().layers) {
+        if (ALWAYS_VISIBLE.test(layer.id)) {
+          continue
+        }
+        if (layer.id === HILLSHADE_LAYER_ID) {
+          continue
+        }
+        map.setLayoutProperty(layer.id, 'visibility', 'visible')
       }
+      break
     }
   }
 
-  ensureTerrain(map)
+  ensureTerrain(map, showTerrain)
 }
 
 // ---------------------------------------------------------------------------
@@ -183,16 +225,19 @@ function applyMode(map: Map, id: BaseMapId): void {
 // ---------------------------------------------------------------------------
 
 interface UseBaseMapReturn {
-  applyBaseMap: (map: Map, id: BaseMapId) => void;
+  applyBaseMap: (map: Map, mode: BaseMapMode, options?: Partial<ApplyModeOptions>) => void;
 }
 
 export function useBaseMap(): UseBaseMapReturn {
-  const applyBaseMap = useCallback((map: Map, id: BaseMapId) => {
-    if (!map.isStyleLoaded()) {
-      return
-    }
-    applyMode(map, id)
-  }, [])
+  const applyBaseMap = useCallback(
+    (map: Map, mode: BaseMapMode, options: Partial<ApplyModeOptions> = {}) => {
+      if (!map.isStyleLoaded()) {
+        return
+      }
+      applyMode(map, mode, { showTerrain: true, ...options })
+    },
+    [],
+  )
 
   return { applyBaseMap }
 }

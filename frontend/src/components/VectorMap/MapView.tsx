@@ -7,7 +7,7 @@ import {
   useBaseMap,
   DEFAULT_BASE_MAP,
   VECTOR_STYLE_URL,
-  type BaseMapId,
+  type BaseMapMode,
 } from '@/hooks/useBaseMap'
 import { useTrackFitBounds } from '@/hooks/useTrackFitBounds'
 import type { ParsedTrack } from '@/model/gpx'
@@ -23,7 +23,7 @@ export function MapView({ track, highlightedIndex }: MapViewProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const [map, setMap] = useState<Map | null>(null)
   const [isMapReady, setIsMapReady] = useState(false)
-  const [baseMap, setBaseMap] = useState<BaseMapId>(DEFAULT_BASE_MAP)
+  const [baseMap, setBaseMap] = useState<BaseMapMode>(DEFAULT_BASE_MAP)
 
   const { applyBaseMap } = useBaseMap()
 

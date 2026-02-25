@@ -1,9 +1,9 @@
 import { useRef, useEffect, useState } from 'react'
-import { BASE_MAP_OPTIONS, type BaseMapId } from '../../hooks/useBaseMap'
+import { BASE_MAP_OPTIONS, type BaseMapMode } from '@/hooks/useBaseMap'
 
 interface BaseMapSelectorProps {
-  value: BaseMapId;
-  onChange: (id: BaseMapId) => void;
+  value: BaseMapMode;
+  onChange: (mapMode: BaseMapMode) => void;
 }
 
 export function BaseMapSelector({ value, onChange }: BaseMapSelectorProps) {
