@@ -4,7 +4,7 @@ import { useRef, useEffect, useState } from 'react'
 import { TrackLayer } from '@/components/VectorMap/TrackLayer'
 import { TrackPopup } from '@/components/VectorMap/TrackPopup'
 import {
-  useBaseMap,
+  applyBaseMap,
   DEFAULT_BASE_MAP,
   VECTOR_STYLE_URL,
   type BaseMapMode,
@@ -24,8 +24,6 @@ export function MapView({ track, highlightedIndex }: MapViewProps) {
   const [map, setMap] = useState<Map | null>(null)
   const [isMapReady, setIsMapReady] = useState(false)
   const [baseMap, setBaseMap] = useState<BaseMapMode>(DEFAULT_BASE_MAP)
-
-  const { applyBaseMap } = useBaseMap()
 
   // Initialize map once
   useEffect(() => {
@@ -76,7 +74,7 @@ export function MapView({ track, highlightedIndex }: MapViewProps) {
       return
     }
     applyBaseMap(map, baseMap)
-  }, [map, isMapReady, baseMap, applyBaseMap])
+  }, [map, isMapReady, baseMap])
 
   const points = track?.points ?? []
 

@@ -1,5 +1,4 @@
 import type { Map } from 'maplibre-gl'
-import { useCallback } from 'react'
 
 // ---------------------------------------------------------------------------
 // BaseMap definitions
@@ -230,23 +229,17 @@ function applyMode(map: Map, mode: BaseMapMode, { showTerrain }: ApplyModeOption
 }
 
 // ---------------------------------------------------------------------------
-// Hook
+// Public API
 // ---------------------------------------------------------------------------
 
-interface UseBaseMapReturn {
-  applyBaseMap: (map: Map, mode: BaseMapMode, options?: Partial<ApplyModeOptions>) => void;
-}
-
-export function useBaseMap(): UseBaseMapReturn {
-  const applyBaseMap = useCallback(
-    (map: Map, mode: BaseMapMode, options: Partial<ApplyModeOptions> = {}) => {
-      // if (!map.isStyleLoaded()) {
-      //   return
-      // }
-      applyMode(map, mode, { showTerrain: true, ...options })
-    },
-    [],
-  )
-
-  return { applyBaseMap }
+export function applyBaseMap(
+  map: Map,
+  mode: BaseMapMode,
+  options: Partial<ApplyModeOptions> = {},
+): void {
+  try {
+    applyMode(map, mode, { showTerrain: true, ...options })
+  } catch (err) {
+    console.warn('[applyBaseMap] ', err)
+  }
 }
