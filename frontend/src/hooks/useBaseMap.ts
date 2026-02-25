@@ -77,9 +77,13 @@ function resolveVisibility(layerId: string, rules: LayerRule[]): boolean | null 
 // ---------------------------------------------------------------------------
 // Helpers
 // ---------------------------------------------------------------------------
+interface TerrainOptions {
+  terrain: boolean;
+  hillshade: boolean;
+}
 
-function ensureTerrain(map: Map, enabled: boolean): void {
-  if (enabled) {
+function ensureTerrain(map: Map, { terrain, hillshade }: TerrainOptions): void {
+  if (terrain) {
     if (!map.getSource(TERRAIN_SOURCE_ID)) {
       map.addSource(TERRAIN_SOURCE_ID, {
         type: 'raster-dem',
@@ -93,12 +97,16 @@ function ensureTerrain(map: Map, enabled: boolean): void {
       })
     }
     map.setTerrain({ source: TERRAIN_SOURCE_ID, exaggeration: 1.5 })
+  } else {
+    map.setTerrain(null)
+  }
 
+  if (hillshade) {
     if (!map.getLayer(HILLSHADE_LAYER_ID)) {
       // Insert hillshade above landcover/landuse but below roads and labels.
       // Find the first road layer as the insertion point.
       const firstRoadLayer = map.getStyle().layers.find((l) =>
-        l.id.startsWith('road') || l.id.startsWith('tunnel') || l.id.startsWith('bridge') || l.id.startsWith('waterway'),
+        l.id.startsWith('road') || l.id.startsWith('tunnel') || l.id.startsWith('bridge'),
       )
       map.addLayer(
         {
@@ -119,7 +127,6 @@ function ensureTerrain(map: Map, enabled: boolean): void {
       map.setLayoutProperty(HILLSHADE_LAYER_ID, 'visibility', 'visible')
     }
   } else {
-    map.setTerrain(null)
     if (map.getLayer(HILLSHADE_LAYER_ID)) {
       map.setLayoutProperty(HILLSHADE_LAYER_ID, 'visibility', 'none')
     }
@@ -178,6 +185,7 @@ function applyMode(map: Map, mode: BaseMapMode, { showTerrain }: ApplyModeOption
         }
         map.setLayoutProperty(layer.id, 'visibility', 'none')
       }
+      ensureTerrain(map, { terrain: showTerrain, hillshade: false })
       break
     }
 
@@ -198,6 +206,7 @@ function applyMode(map: Map, mode: BaseMapMode, { showTerrain }: ApplyModeOption
           map.setLayoutProperty(layer.id, 'visibility', visible ? 'visible' : 'none')
         }
       }
+      ensureTerrain(map, { terrain: showTerrain, hillshade: false })
       break
     }
 
@@ -213,11 +222,10 @@ function applyMode(map: Map, mode: BaseMapMode, { showTerrain }: ApplyModeOption
         }
         map.setLayoutProperty(layer.id, 'visibility', 'visible')
       }
+      ensureTerrain(map, { terrain: showTerrain, hillshade: showTerrain })
       break
     }
   }
-
-  ensureTerrain(map, showTerrain)
 }
 
 // ---------------------------------------------------------------------------
@@ -231,9 +239,9 @@ interface UseBaseMapReturn {
 export function useBaseMap(): UseBaseMapReturn {
   const applyBaseMap = useCallback(
     (map: Map, mode: BaseMapMode, options: Partial<ApplyModeOptions> = {}) => {
-      if (!map.isStyleLoaded()) {
-        return
-      }
+      // if (!map.isStyleLoaded()) {
+      //   return
+      // }
       applyMode(map, mode, { showTerrain: true, ...options })
     },
     [],
