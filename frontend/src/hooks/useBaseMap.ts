@@ -201,10 +201,11 @@ function applyMode(map: Map, mode: BaseMapMode, { showTerrain }: ApplyModeOption
         if (layer.id === HILLSHADE_LAYER_ID) {
           continue
         }
-        const visible = resolveVisibility(layer.id, HYBRID_LAYER_RULES)
-        if (visible !== null) {
-          map.setLayoutProperty(layer.id, 'visibility', visible ? 'visible' : 'none')
-        }
+        // null means no rule matched — default to visible so that switching
+        // from satellite (where everything is hidden) correctly restores
+        // road and label layers that are not covered by any rule.
+        const visible = resolveVisibility(layer.id, HYBRID_LAYER_RULES) ?? true
+        map.setLayoutProperty(layer.id, 'visibility', visible ? 'visible' : 'none')
       }
       ensureTerrain(map, { terrain: showTerrain, hillshade: false })
       break
