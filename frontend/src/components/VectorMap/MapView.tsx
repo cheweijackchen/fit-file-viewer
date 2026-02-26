@@ -40,6 +40,7 @@ export function MapView({ track, highlightedIndex }: MapViewProps) {
       pitch: 45,
       bearing: 0,
       centerClampedToGround: false,
+      trackResize: false,
     })
 
     instance.addControl(
@@ -56,9 +57,25 @@ export function MapView({ track, highlightedIndex }: MapViewProps) {
       setIsMapReady(true)
     })
 
+    let rafId: number | null = null
+    const resizeObserver = new ResizeObserver(() => {
+      if (rafId !== null) {
+        cancelAnimationFrame(rafId)
+      }
+      rafId = requestAnimationFrame(() => {
+        instance.resize()
+        rafId = null
+      })
+    })
+    resizeObserver.observe(container)
+
     setMap(instance)
 
     return () => {
+      resizeObserver.disconnect()
+      if (rafId !== null) {
+        cancelAnimationFrame(rafId)
+      }
       instance.remove()
       setMap(null)
       setIsMapReady(false)
