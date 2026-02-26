@@ -183,22 +183,6 @@ export type ParsedRecord = Omit<OriginalRecord, 'timestamp'> & { timestamp: Date
 
 ---
 
-## ESLint 規則摘要
-
-- **分號**：不使用 (`@stylistic/semi: never`)
-- **引號**：單引號 (`quotes: single`)
-- **大括號**：所有控制語句必須有 (`curly: all`)
-- **Type imports**：必須使用 `import type` 的 inline style
-  ```typescript
-  import { type ParsedFit, doSomething } from './fitParser'
-  ```
-- **Import 排序**：index → builtin → external → internal → sibling/parent (字母升冪)
-- **JSX Props 排序**：shorthand first，callbacks last，key/ref 保留優先
-- **不使用的變數**：error (`@typescript-eslint/no-unused-vars`)
-- **物件大括號間距**：必須有空格 (`{ key: value }`)
-
----
-
 ## 注意事項
 
 ### FIT 檔案解析
