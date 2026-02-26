@@ -13,6 +13,8 @@ import { useTrackFitBounds } from '@/hooks/useTrackFitBounds'
 import type { ParsedTrack } from '@/model/gpx'
 
 import { BaseMapSelector } from './BaseMapSelector'
+import { MapControlPanel } from './MapControlPanel'
+import { TerrainToggle } from './TerrainToggle'
 
 interface MapViewProps {
   track: ParsedTrack | null;
@@ -24,6 +26,7 @@ export function MapView({ track, highlightedIndex }: MapViewProps) {
   const [map, setMap] = useState<Map | null>(null)
   const [isMapReady, setIsMapReady] = useState(false)
   const [baseMap, setBaseMap] = useState<BaseMapMode>(DEFAULT_BASE_MAP)
+  const [showTerrain, setShowTerrain] = useState(true)
 
   // Initialize map once
   useEffect(() => {
@@ -90,8 +93,8 @@ export function MapView({ track, highlightedIndex }: MapViewProps) {
     if (!map || !isMapReady) {
       return
     }
-    applyBaseMap(map, baseMap)
-  }, [map, isMapReady, baseMap])
+    applyBaseMap(map, baseMap, { showTerrain })
+  }, [map, isMapReady, baseMap, showTerrain])
 
   const points = track?.points ?? []
 
@@ -119,12 +122,16 @@ export function MapView({ track, highlightedIndex }: MapViewProps) {
 
       {/* z-index must exceed MapLibre canvas (which sits at z-index 0) */}
       <div className="absolute inset-0 pointer-events-none z-20">
-        <div className="absolute bottom-4 right-4 pointer-events-auto">
+        <MapControlPanel>
+          <TerrainToggle
+            value={showTerrain}
+            onChange={setShowTerrain}
+          />
           <BaseMapSelector
             value={baseMap}
             onChange={setBaseMap}
           />
-        </div>
+        </MapControlPanel>
       </div>
     </div>
   )
