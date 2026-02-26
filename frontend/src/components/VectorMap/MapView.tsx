@@ -118,8 +118,8 @@ export function MapView({ track, highlightedIndex }: MapViewProps) {
       />
 
       {/* z-index must exceed MapLibre canvas (which sits at z-index 0) */}
-      <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 20 }}>
-        <div style={{ pointerEvents: 'auto' }}>
+      <div className="absolute inset-0 pointer-events-none z-20">
+        <div className="absolute bottom-4 right-4 pointer-events-auto">
           <BaseMapSelector
             value={baseMap}
             onChange={setBaseMap}
