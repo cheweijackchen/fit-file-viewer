@@ -5,6 +5,7 @@ import '@mantine/charts/styles.css'
 import '@mantine/dropzone/styles.css'
 import '@mantine/notifications/styles.css'
 import 'leaflet/dist/leaflet.css'
+import 'maplibre-gl/dist/maplibre-gl.css'
 import {
   ColorSchemeScript,
   mantineHtmlProps,
