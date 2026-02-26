@@ -207,9 +207,20 @@ export type ParsedRecord = Omit<OriginalRecord, 'timestamp'> & { timestamp: Date
 - 大型 FIT 檔需用 `downsample` 函式庫降採樣再傳給圖表
 
 ### 樣式系統
-- **主題色彩/間距**：優先使用 Mantine 主題變數 (`var(--mantine-color-xxx)`)
-- **排版/響應式**：使用 Tailwind utility class (`grid-cols-1 lg:grid-cols-12`)
-- **SCSS**：自訂元件樣式，Mantine 變數透過 `_mantine.scss` 自動注入
+
+**排版原則：**
+- 排版（flex, grid, spacing, RWD breakpoint）一律使用 **Tailwind utility class**，不使用 Mantine 的 `Flex`、`Stack`、`Group`
+- 有底色或需要視覺分隔的區塊，使用 Mantine 的 `Card`、`Paper` 等容器元件
+
+**樣式客製化優先順序（由高到低）：**
+1. **Component-specific props**：優先使用元件本身提供的 props（`color`、`size`、`variant` 等）
+2. **Tailwind CSS**：能覆蓋樣式時優先使用；若 specificity 低於 Mantine 預設樣式而無效，則跳過
+3. **SCSS modules**：Tailwind 和 component props 都無法解決時，使用 SCSS modules，並透過元件的 `classNames` prop 注入
+4. **避免** Mantine 的 `style` / `styles` prop；若不得不用且超過 3–4 個屬性，應抽成獨立的 `.module.scss` 樣式檔
+
+**主題變數：**
+- 色彩與間距優先使用 Mantine CSS 變數 (`var(--mantine-color-xxx)`)
+- Mantine SCSS 變數透過 `src/styles/_mantine.scss` 自動注入（可在 SCSS 中直接使用）
 
 ### 環境變數
 - `FE_DEV_PORT`：開發伺服器 port
