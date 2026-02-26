@@ -143,6 +143,11 @@ export function ComponentName({ className, onSuccess }: Props) {
 }
 ```
 
+### Component 拆分原則
+- **每個 `.tsx` 檔案原則上只定義一個 React Component**
+- 如需輔助元件，應建立子資料夾並拆成獨立檔案（參考 `HeartRateTrendGraph/components/` 模式）
+- **例外**：不對外 export 且 < 20 行的純 UI 小型輔助 component，可與主 component 同檔存放
+
 ### Zustand Store 模式
 ```typescript
 // Slice 定義
