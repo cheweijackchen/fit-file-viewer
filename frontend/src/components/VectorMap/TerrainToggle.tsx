@@ -12,6 +12,7 @@ export function TerrainToggle({ value, onChange }: Props) {
       label={value ? 'Disable Terrain' : 'Enable Terrain'}
       position="left"
       withinPortal={false}
+      openDelay={750}
     >
       <ActionIcon
         size="lg"

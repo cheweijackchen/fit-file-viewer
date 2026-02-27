@@ -18,6 +18,7 @@ export function BaseMapSelector({ value, onChange }: Props) {
         label="Select Map Style"
         position="left"
         withinPortal={false}
+        openDelay={750}
       >
         <Menu.Target>
           <ActionIcon
