@@ -110,6 +110,9 @@ export function MapView({ track, highlightedIndex }: MapViewProps) {
       terrain: showTerrain,
       hillshade: showTerrain && baseMap === 'standard',
     })
+    setTimeout(() => {
+      map.easeTo({ pitch: showTerrain ? 45 : 0, duration: 1000 })
+    }, 1000)
   }, [map, isMapReady, showTerrain, baseMap])
 
   const maplibreTooltip = useMapControlTooltip(wrapperRef)
