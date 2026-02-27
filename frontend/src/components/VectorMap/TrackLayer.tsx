@@ -110,17 +110,24 @@ export function TrackLayer({
       if (!map) {
         return
       }
-      const layers = [LAYER_POINTS, LAYER_LINE, LAYER_LINE_SHADOW]
-      const sources = [SOURCE_LINE, SOURCE_POINTS]
-      for (const layer of layers) {
-        if (map.getLayer(layer)) {
-          map.removeLayer(layer)
+      // Guard against map being already destroyed by MapView's cleanup,
+      // which may run before this child cleanup due to React's effect order.
+      try {
+        const layers = [LAYER_POINTS, LAYER_LINE, LAYER_LINE_SHADOW]
+        const sources = [SOURCE_LINE, SOURCE_POINTS]
+        for (const layer of layers) {
+          if (map.getLayer(layer)) {
+            map.removeLayer(layer)
+          }
         }
-      }
-      for (const source of sources) {
-        if (map.getSource(source)) {
-          map.removeSource(source)
+        for (const source of sources) {
+          if (map.getSource(source)) {
+            map.removeSource(source)
+          }
         }
+      } catch {
+        // map.remove() was already called by the parent (MapView) before this
+        // cleanup ran, leaving map.style undefined. Nothing to clean up.
       }
       addedRef.current = false
     }
