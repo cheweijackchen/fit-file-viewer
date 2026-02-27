@@ -15,6 +15,7 @@ import type { ParsedTrack } from '@/model/gpx'
 
 import { BaseMapSelector } from './BaseMapSelector'
 import { MapControlPanel } from './MapControlPanel'
+import styles from './MapView.module.scss'
 import { TerrainToggle } from './TerrainToggle'
 
 interface MapViewProps {
@@ -118,6 +119,7 @@ export function MapView({ track, highlightedIndex }: MapViewProps) {
     // position: relative so absolute children (selector, controls) are anchored here
     <div
       ref={wrapperRef}
+      className={styles.wrapper}
       style={{ position: 'relative', width: '100%', height: '100%' }}
     >
       <div

@@ -4,7 +4,7 @@ interface Props {
 
 export function MapControlPanel({ children }: Props) {
   return (
-    <div className="absolute bottom-4 right-4 flex flex-col gap-2 pointer-events-auto">
+    <div className="absolute top-44.5 right-2.5 flex flex-col gap-2.5 pointer-events-auto">
       {children}
     </div>
   )
