@@ -12,10 +12,12 @@ export function BaseMapSelector({ value, onChange }: Props) {
     <Menu
       position="bottom-end"
       offset={6}
+      withinPortal={false}
     >
       <Tooltip
         label="Select Map Style"
         position="left"
+        withinPortal={false}
       >
         <Menu.Target>
           <ActionIcon

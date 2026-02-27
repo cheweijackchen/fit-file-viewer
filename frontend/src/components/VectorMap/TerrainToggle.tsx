@@ -11,6 +11,7 @@ export function TerrainToggle({ value, onChange }: Props) {
     <Tooltip
       label={value ? 'Disable Terrain' : 'Enable Terrain'}
       position="left"
+      withinPortal={false}
     >
       <ActionIcon
         size="lg"
