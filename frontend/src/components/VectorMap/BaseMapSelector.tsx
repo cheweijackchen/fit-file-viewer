@@ -1,4 +1,4 @@
-import { Menu, ActionIcon } from '@mantine/core'
+import { Menu, ActionIcon, Tooltip } from '@mantine/core'
 import { IconStack2 } from '@tabler/icons-react'
 import { BASE_MAP_OPTIONS, type BaseMapMode } from '@/hooks/useBaseMap'
 
@@ -13,15 +13,20 @@ export function BaseMapSelector({ value, onChange }: Props) {
       position="top-end"
       offset={6}
     >
-      <Menu.Target>
-        <ActionIcon
-          size={36}
-          variant="default"
-          aria-label="選擇底圖"
-        >
-          <IconStack2 size={20} />
-        </ActionIcon>
-      </Menu.Target>
+      <Tooltip
+        label="Select Map Style"
+        position="left"
+      >
+        <Menu.Target>
+          <ActionIcon
+            size={36}
+            variant="default"
+            aria-label="選擇底圖"
+          >
+            <IconStack2 size={20} />
+          </ActionIcon>
+        </Menu.Target>
+      </Tooltip>
       <Menu.Dropdown>
         {BASE_MAP_OPTIONS.map((option) => (
           <Menu.Item

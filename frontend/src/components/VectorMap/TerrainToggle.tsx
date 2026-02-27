@@ -9,7 +9,7 @@ interface Props {
 export function TerrainToggle({ value, onChange }: Props) {
   return (
     <Tooltip
-      label="切換地形"
+      label={value ? 'Disable Terrain' : 'Enable Terrain'}
       position="left"
     >
       <ActionIcon
