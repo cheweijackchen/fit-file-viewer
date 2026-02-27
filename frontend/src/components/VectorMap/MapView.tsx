@@ -17,6 +17,7 @@ import { BaseMapSelector } from './BaseMapSelector'
 import { MapControlPanel } from './MapControlPanel'
 import styles from './MapView.module.scss'
 import { TerrainToggle } from './TerrainToggle'
+import { useMapControlTooltip } from './useMapControlTooltip'
 
 interface MapViewProps {
   track: ParsedTrack | null;
@@ -111,6 +112,8 @@ export function MapView({ track, highlightedIndex }: MapViewProps) {
     })
   }, [map, isMapReady, showTerrain, baseMap])
 
+  const maplibreTooltip = useMapControlTooltip(wrapperRef)
+
   const points = track?.points ?? []
 
   useTrackFitBounds(map, points, isMapReady)
@@ -138,6 +141,17 @@ export function MapView({ track, highlightedIndex }: MapViewProps) {
         points={points}
         isMapReady={isMapReady}
       />
+
+      {maplibreTooltip !== null && (
+        <div
+          className={styles['maplibre-tooltip']}
+          style={{ right: maplibreTooltip.right, top: maplibreTooltip.top }}
+          role="tooltip"
+          aria-hidden="true"
+        >
+          {maplibreTooltip.text}
+        </div>
+      )}
 
       {/* z-index must exceed MapLibre canvas (which sits at z-index 0) */}
       <div className="absolute inset-0 pointer-events-none z-20">

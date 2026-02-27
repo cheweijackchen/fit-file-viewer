@@ -15,7 +15,7 @@ export function BaseMapSelector({ value, onChange }: Props) {
       withinPortal={false}
     >
       <Tooltip
-        label="Select Map Style"
+        label="Select map style"
         position="left"
         withinPortal={false}
         openDelay={750}

@@ -9,7 +9,7 @@ interface Props {
 export function TerrainToggle({ value, onChange }: Props) {
   return (
     <Tooltip
-      label={value ? 'Disable Terrain' : 'Enable Terrain'}
+      label={value ? 'Disable terrain' : 'Enable terrain'}
       position="left"
       withinPortal={false}
       openDelay={750}
