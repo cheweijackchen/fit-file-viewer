@@ -74,36 +74,73 @@ function resolveVisibility(layerId: string, rules: LayerRule[]): boolean | null 
 }
 
 // ---------------------------------------------------------------------------
-// Helpers
+// Satellite layer — ensure once, toggle visibility thereafter
 // ---------------------------------------------------------------------------
-interface TerrainOptions {
+
+function ensureSatelliteLayer(map: Map): void {
+  if (!map.getSource(SATELLITE_SOURCE_ID)) {
+    map.addSource(SATELLITE_SOURCE_ID, {
+      type: 'raster',
+      tiles: [SATELLITE_TILES],
+      tileSize: 256,
+      attribution: 'Tiles © Esri',
+      maxzoom: 19,
+    })
+  }
+  if (!map.getLayer(SATELLITE_LAYER_ID)) {
+    const firstLayerId = map.getStyle().layers[0]?.id
+    map.addLayer(
+      { id: SATELLITE_LAYER_ID, type: 'raster', source: SATELLITE_SOURCE_ID },
+      firstLayerId,
+    )
+  }
+}
+
+function setSatelliteVisibility(map: Map, visible: boolean): void {
+  if (visible) {
+    ensureSatelliteLayer(map)
+  }
+  if (map.getLayer(SATELLITE_LAYER_ID)) {
+    map.setLayoutProperty(SATELLITE_LAYER_ID, 'visibility', visible ? 'visible' : 'none')
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Terrain & hillshade
+// ---------------------------------------------------------------------------
+
+export interface TerrainOptions {
   terrain: boolean;
   hillshade: boolean;
 }
 
-function ensureTerrain(map: Map, { terrain, hillshade }: TerrainOptions): void {
+function ensureTerrainSource(map: Map): void {
+  if (!map.getSource(TERRAIN_SOURCE_ID)) {
+    map.addSource(TERRAIN_SOURCE_ID, {
+      type: 'raster-dem',
+      encoding: 'terrarium',
+      tiles: [
+        'https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png',
+      ],
+      tileSize: 256,
+      maxzoom: 15,
+      attribution: 'Terrain Mapzen / AWS',
+    })
+  }
+}
+
+function applyTerrainInternal(map: Map, { terrain, hillshade }: TerrainOptions): void {
   if (terrain) {
-    if (!map.getSource(TERRAIN_SOURCE_ID)) {
-      map.addSource(TERRAIN_SOURCE_ID, {
-        type: 'raster-dem',
-        encoding: 'terrarium',
-        tiles: [
-          'https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png',
-        ],
-        tileSize: 256,
-        maxzoom: 15,
-        attribution: 'Terrain Mapzen / AWS',
-      })
-    }
+    ensureTerrainSource(map)
     map.setTerrain({ source: TERRAIN_SOURCE_ID, exaggeration: 1.5 })
   } else {
     map.setTerrain(null)
   }
 
   if (hillshade) {
+    ensureTerrainSource(map)
     if (!map.getLayer(HILLSHADE_LAYER_ID)) {
       // Insert hillshade above landcover/landuse but below roads and labels.
-      // Find the first road layer as the insertion point.
       const firstRoadLayer = map.getStyle().layers.find((l) =>
         l.id.startsWith('road') || l.id.startsWith('tunnel') || l.id.startsWith('bridge'),
       )
@@ -132,46 +169,14 @@ function ensureTerrain(map: Map, { terrain, hillshade }: TerrainOptions): void {
   }
 }
 
-function setSatelliteLayer(map: Map, visible: boolean): void {
-  if (visible) {
-    if (!map.getSource(SATELLITE_SOURCE_ID)) {
-      map.addSource(SATELLITE_SOURCE_ID, {
-        type: 'raster',
-        tiles: [SATELLITE_TILES],
-        tileSize: 256,
-        attribution: 'Tiles © Esri',
-        maxzoom: 19,
-      })
-    }
-    if (!map.getLayer(SATELLITE_LAYER_ID)) {
-      const firstLayerId = map.getStyle().layers[0]?.id
-      map.addLayer(
-        { id: SATELLITE_LAYER_ID, type: 'raster', source: SATELLITE_SOURCE_ID },
-        firstLayerId,
-      )
-    }
-  } else {
-    if (map.getLayer(SATELLITE_LAYER_ID)) {
-      map.removeLayer(SATELLITE_LAYER_ID)
-    }
-    if (map.getSource(SATELLITE_SOURCE_ID)) {
-      map.removeSource(SATELLITE_SOURCE_ID)
-    }
-  }
-}
-
 // ---------------------------------------------------------------------------
-// Core: unconditionally apply a mode
+// Base map mode — handles satellite + vector layer visibility
 // ---------------------------------------------------------------------------
 
-interface ApplyModeOptions {
-  showTerrain: boolean;
-}
-
-function applyMode(map: Map, mode: BaseMapMode, { showTerrain }: ApplyModeOptions): void {
+function applyBaseMapModeInternal(map: Map, mode: BaseMapMode): void {
   switch (mode) {
     case 'satellite': {
-      setSatelliteLayer(map, true)
+      setSatelliteVisibility(map, true)
       for (const layer of map.getStyle().layers) {
         if (ALWAYS_VISIBLE.test(layer.id)) {
           continue
@@ -184,12 +189,11 @@ function applyMode(map: Map, mode: BaseMapMode, { showTerrain }: ApplyModeOption
         }
         map.setLayoutProperty(layer.id, 'visibility', 'none')
       }
-      ensureTerrain(map, { terrain: showTerrain, hillshade: false })
       break
     }
 
     case 'hybrid': {
-      setSatelliteLayer(map, true)
+      setSatelliteVisibility(map, true)
       for (const layer of map.getStyle().layers) {
         if (ALWAYS_VISIBLE.test(layer.id)) {
           continue
@@ -206,13 +210,12 @@ function applyMode(map: Map, mode: BaseMapMode, { showTerrain }: ApplyModeOption
         const visible = resolveVisibility(layer.id, HYBRID_LAYER_RULES) ?? true
         map.setLayoutProperty(layer.id, 'visibility', visible ? 'visible' : 'none')
       }
-      ensureTerrain(map, { terrain: showTerrain, hillshade: false })
       break
     }
 
     case 'standard':
     default: {
-      setSatelliteLayer(map, false)
+      setSatelliteVisibility(map, false)
       for (const layer of map.getStyle().layers) {
         if (ALWAYS_VISIBLE.test(layer.id)) {
           continue
@@ -222,7 +225,6 @@ function applyMode(map: Map, mode: BaseMapMode, { showTerrain }: ApplyModeOption
         }
         map.setLayoutProperty(layer.id, 'visibility', 'visible')
       }
-      ensureTerrain(map, { terrain: showTerrain, hillshade: showTerrain })
       break
     }
   }
@@ -232,14 +234,18 @@ function applyMode(map: Map, mode: BaseMapMode, { showTerrain }: ApplyModeOption
 // Public API
 // ---------------------------------------------------------------------------
 
-export function applyBaseMap(
-  map: Map,
-  mode: BaseMapMode,
-  options: Partial<ApplyModeOptions> = {},
-): void {
+export function applyBaseMapMode(map: Map, mode: BaseMapMode): void {
   try {
-    applyMode(map, mode, { showTerrain: true, ...options })
+    applyBaseMapModeInternal(map, mode)
   } catch (err) {
-    console.warn('[applyBaseMap] ', err)
+    console.warn('[applyBaseMapMode] ', err)
+  }
+}
+
+export function applyTerrain(map: Map, options: TerrainOptions): void {
+  try {
+    applyTerrainInternal(map, options)
+  } catch (err) {
+    console.warn('[applyTerrain] ', err)
   }
 }

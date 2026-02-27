@@ -4,7 +4,8 @@ import { useRef, useEffect, useState } from 'react'
 import { TrackLayer } from '@/components/VectorMap/TrackLayer'
 import { TrackPopup } from '@/components/VectorMap/TrackPopup'
 import {
-  applyBaseMap,
+  applyBaseMapMode,
+  applyTerrain,
   DEFAULT_BASE_MAP,
   VECTOR_STYLE_URL,
   type BaseMapMode,
@@ -86,15 +87,24 @@ export function MapView({ track, highlightedIndex }: MapViewProps) {
 
   }, [])
 
-  // Apply baseMap whenever selection changes or map becomes ready.
-  // applyBaseMap is unconditional — no diffing — so this always
-  // produces the correct visual state regardless of initial value.
+  // Apply base map mode (satellite layer + vector layer visibility)
   useEffect(() => {
     if (!map || !isMapReady) {
       return
     }
-    applyBaseMap(map, baseMap, { showTerrain })
-  }, [map, isMapReady, baseMap, showTerrain])
+    applyBaseMapMode(map, baseMap)
+  }, [map, isMapReady, baseMap])
+
+  // Apply terrain & hillshade (hillshade only in standard mode)
+  useEffect(() => {
+    if (!map || !isMapReady) {
+      return
+    }
+    applyTerrain(map, {
+      terrain: showTerrain,
+      hillshade: showTerrain && baseMap === 'standard',
+    })
+  }, [map, isMapReady, showTerrain, baseMap])
 
   const points = track?.points ?? []
 
