@@ -1,4 +1,4 @@
-import type { Map } from 'maplibre-gl'
+import type { GeoJSONSource, Map } from 'maplibre-gl'
 import { useEffect, useRef } from 'react'
 import {
   trackPointsToLineString,
@@ -30,7 +30,18 @@ export function TrackLayer({
 
   // Add or update GeoJSON sources and layers when points change
   useEffect(() => {
-    if (!map || !isMapReady || points.length === 0) {
+    if (!map || !isMapReady) {
+      return
+    }
+
+    if (points.length === 0) {
+      if (addedRef.current) {
+        const emptyCollection = { type: 'FeatureCollection' as const, features: [] }
+        const lineSrc = map.getSource(SOURCE_LINE) as GeoJSONSource | undefined
+        const pointsSrc = map.getSource(SOURCE_POINTS) as GeoJSONSource | undefined
+        lineSrc?.setData(emptyCollection)
+        pointsSrc?.setData(emptyCollection)
+      }
       return
     }
 
@@ -68,14 +79,10 @@ export function TrackLayer({
       addedRef.current = true
     } else {
       // Update existing sources
-      const lineSrc = map.getSource(SOURCE_LINE)
-      const pointsSrc = map.getSource(SOURCE_POINTS)
-      if (lineSrc?.type === 'geojson') {
-        lineSrc.setData(lineFeature)
-      }
-      if (pointsSrc?.type === 'geojson') {
-        pointsSrc.setData(pointCollection)
-      }
+      const lineSrc = map.getSource(SOURCE_LINE) as GeoJSONSource | undefined
+      const pointsSrc = map.getSource(SOURCE_POINTS) as GeoJSONSource | undefined
+      lineSrc?.setData(lineFeature)
+      pointsSrc?.setData(pointCollection)
     }
   }, [map, points, isMapReady])
 
