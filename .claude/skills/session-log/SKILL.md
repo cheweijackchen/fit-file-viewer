@@ -9,7 +9,7 @@ Create a session log for the current conversation.
 **Step 1 — Gather metadata**
 
 Run these two commands:
-- `date +%Y-%m-%d` → today's date
+- `date '+%Y-%m-%d %H:%M:%S'` → current date and time
 - `git branch --show-current` → current branch name
 
 **Step 2 — Determine topic slug**
@@ -30,7 +30,7 @@ Use this exact structure:
 ```
 # <Title (human-readable, Title Case)>
 
-**Date:** YYYY-MM-DD
+**Date:** YYYY-MM-DD HH:MM:SS
 **Branch:** <branch>
 
 ---
