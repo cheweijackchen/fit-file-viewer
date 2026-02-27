@@ -137,6 +137,11 @@ $ai-size-lg: calc(2.125rem * var(--mantine-scale));
     }
   }
 
+  // === Canvas cursor ===
+  :global(.maplibregl-canvas) {
+    cursor: crosshair !important;
+  }
+
   // === Scale control ===
   :global(.maplibregl-ctrl-scale) {
     background: var(--mantine-color-default);
