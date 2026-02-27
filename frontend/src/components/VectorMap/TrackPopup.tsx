@@ -1,6 +1,13 @@
+'use client'
+
+import { MantineProvider, Text } from '@mantine/core'
+import { IconMapPin } from '@tabler/icons-react'
 import maplibregl, { type Map } from 'maplibre-gl'
 import { useEffect, useRef } from 'react'
+import { flushSync } from 'react-dom'
+import { createRoot, type Root } from 'react-dom/client'
 import type { TrackPoint } from '@/model/gpx'
+import theme from '@/styles/theme'
 
 const LAYER_LINE = 'gpx-track-line-layer'
 
@@ -8,6 +15,56 @@ interface TrackPopupProps {
   map: Map | null;
   points: TrackPoint[];
   isMapReady: boolean;
+}
+
+interface ContentProps {
+  index: number;
+  elevation: string;
+  time: string;
+  lat: string;
+  lon: string;
+}
+
+function TrackPopupContent({ index, elevation, time, lat, lon }: ContentProps) {
+  const rows = [
+    ['海拔', elevation],
+    ['時間', time],
+    ['緯度', lat],
+    ['經度', lon],
+  ] as const
+
+  return (
+    <div className="flex flex-col gap-1 min-w-32">
+      <div className="flex items-center gap-1.5 mb-1.5">
+        <IconMapPin
+          size={14}
+          stroke={2}
+          color="var(--mantine-color-orange-5)"
+        />
+        <Text
+          fw={600}
+          size="sm"
+          c="orange.5"
+        >
+          軌跡點 #{index}
+        </Text>
+      </div>
+      {rows.map(([label, value]) => (
+        <div
+          key={label}
+          className="flex justify-between gap-6"
+        >
+          <Text
+            size="xs"
+            c="dimmed"
+          >
+            {label}
+          </Text>
+          <Text size="xs">{value}</Text>
+        </div>
+      ))}
+    </div>
+  )
 }
 
 function formatTime(date: Date): string {
@@ -28,6 +85,7 @@ function formatTime(date: Date): string {
  */
 export function TrackPopup({ map, points, isMapReady }: TrackPopupProps) {
   const popupRef = useRef<maplibregl.Popup | null>(null)
+  const rootRef = useRef<Root | null>(null)
 
   useEffect(() => {
     if (!map || !isMapReady || points.length === 0) {
@@ -61,7 +119,6 @@ export function TrackPopup({ map, points, isMapReady }: TrackPopupProps) {
       }
 
       const nearest = points[nearestIndex]!
-
       const elevStr =
         nearest.elevation !== null
           ? `${nearest.elevation.toFixed(1)} m`
@@ -71,18 +128,29 @@ export function TrackPopup({ map, points, isMapReady }: TrackPopupProps) {
       const lonStr = nearest.lon.toFixed(6)
 
       popupRef.current?.remove()
+      rootRef.current?.unmount()
 
-      popupRef.current = new maplibregl.Popup({ closeButton: true, maxWidth: '260px' })
-        .setLngLat([nearest.lon, nearest.lat])
-        .setHTML(
-          `<div style="line-height:1.7">
-            <div style="color:#f97316;font-weight:600;margin-bottom:6px">📍 軌跡點 #${nearestIndex + 1}</div>
-            <div><span style="color:#8b949e">海拔</span>&nbsp;&nbsp;${elevStr}</div>
-            <div><span style="color:#8b949e">時間</span>&nbsp;&nbsp;${timeStr}</div>
-            <div><span style="color:#8b949e">緯度</span>&nbsp;&nbsp;${latStr}</div>
-            <div><span style="color:#8b949e">經度</span>&nbsp;&nbsp;${lonStr}</div>
-          </div>`,
+      const container = document.createElement('div')
+      const root = createRoot(container)
+      rootRef.current = root
+
+      flushSync(() => {
+        root.render(
+          <MantineProvider theme={theme}>
+            <TrackPopupContent
+              index={nearestIndex + 1}
+              elevation={elevStr}
+              time={timeStr}
+              lat={latStr}
+              lon={lonStr}
+            />
+          </MantineProvider>,
         )
+      })
+
+      popupRef.current = new maplibregl.Popup({ closeButton: true, maxWidth: '280px' })
+        .setLngLat([nearest.lon, nearest.lat])
+        .setDOMContent(container)
         .addTo(map)
     }
 
@@ -95,6 +163,8 @@ export function TrackPopup({ map, points, isMapReady }: TrackPopupProps) {
       map.off('mouseleave', LAYER_LINE, onMouseLeave)
       map.off('click', LAYER_LINE, onLineClick)
       popupRef.current?.remove()
+      rootRef.current?.unmount()
+      rootRef.current = null
     }
   }, [map, points, isMapReady])
 

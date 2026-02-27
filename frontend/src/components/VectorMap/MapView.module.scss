@@ -83,6 +83,35 @@ $ai-size-lg: calc(2.125rem * var(--mantine-scale));
     mask-image: $icon-minimize;
   }
 
+  // === Popup — match Mantine Paper appearance ===
+  :global(.maplibregl-popup-content) {
+    background: var(--mantine-color-body);
+    border: 1px solid var(--mantine-color-default-border);
+    border-radius: var(--mantine-radius-md);
+    box-shadow: var(--mantine-shadow-md);
+    padding: var(--mantine-spacing-sm);
+    color: var(--mantine-color-text);
+    font-family: var(--mantine-font-family);
+  }
+
+  :global(.maplibregl-popup-close-button) {
+    right: 4px;
+    top: 8px;
+    width: 22px;
+    height: 22px;
+    padding: 0;
+    font-size: 18px;
+    line-height: 22px;
+    text-align: center;
+    border-radius: var(--mantine-radius-sm);
+    color: var(--mantine-color-dimmed);
+
+    @include mantine.hover {
+      background: var(--mantine-color-default-hover);
+      color: var(--mantine-color-text);
+    }
+  }
+
   // === Scale control ===
   :global(.maplibregl-ctrl-scale) {
     background: var(--mantine-color-default);
