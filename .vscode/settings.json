@@ -35,8 +35,10 @@
     "landuse",
     "LTTB",
     "mantine",
+    "maplibre",
     "maplibregl",
     "maxzoom",
+    "minzoom",
     "Noto",
     "tabler",
     "turbopack"

@@ -28,6 +28,7 @@ const SATELLITE_SOURCE_ID = 'esri-satellite'
 const SATELLITE_LAYER_ID = 'esri-satellite-layer'
 const TERRAIN_SOURCE_ID = 'terrain-dem'
 const HILLSHADE_LAYER_ID = 'terrain-hillshade'
+const MOUNTAIN_PEAK_LAYER_ID = 'natural-peak'
 
 const ALWAYS_VISIBLE = /^gpx-/i
 
@@ -94,6 +95,60 @@ function ensureSatelliteLayer(map: Map): void {
       firstLayerId,
     )
   }
+}
+
+// ---------------------------------------------------------------------------
+// Mountain peak layer
+// ---------------------------------------------------------------------------
+
+function findVectorSourceId(map: Map): string | undefined {
+  const { layers, sources } = map.getStyle()
+  // Reuse the same vector source as the existing POI layers
+  const poiLayer = layers.find(l => l.id.startsWith('poi_'))
+  if (poiLayer && 'source' in poiLayer) {
+    return poiLayer.source as string
+  }
+  // Fallback: any vector source
+  return Object.keys(sources).find((id) => sources[id].type === 'vector')
+}
+
+function ensureMountainPeakLayer(map: Map): void {
+  if (map.getLayer(MOUNTAIN_PEAK_LAYER_ID)) {
+    return
+  }
+  const sourceId = findVectorSourceId(map)
+  if (!sourceId) {
+    return
+  }
+  map.addLayer({
+    id: MOUNTAIN_PEAK_LAYER_ID,
+    type: 'symbol',
+    source: sourceId,
+    'source-layer': 'mountain_peak',
+    minzoom: 10,
+    layout: {
+      'icon-image': 'triangle',
+      'icon-size': 0.8,
+      'icon-anchor': 'bottom',
+      'text-field': [
+        'format',
+        ['get', 'name'], {},
+        '\n', {},
+        ['case', ['has', 'ele'], ['concat', ['get', 'ele'], 'm'], ''],
+        { 'font-scale': 0.85 },
+      ],
+      'text-size': 14,
+      'text-anchor': 'top',
+      'text-offset': [0, 0.2],
+      'text-optional': true,
+    },
+    paint: {
+      'icon-color': '#5B3F20',
+      'text-color': '#5B3F20',
+      'text-halo-color': 'white',
+      'text-halo-width': 1.5,
+    },
+  })
 }
 
 function setSatelliteVisibility(map: Map, visible: boolean): void {
@@ -176,6 +231,7 @@ function applyTerrainInternal(map: Map, { terrain, hillshade }: TerrainOptions):
 function applyBaseMapModeInternal(map: Map, mode: BaseMapMode): void {
   switch (mode) {
     case 'satellite': {
+      ensureMountainPeakLayer(map)
       setSatelliteVisibility(map, true)
       for (const layer of map.getStyle().layers) {
         if (ALWAYS_VISIBLE.test(layer.id)) {
@@ -185,14 +241,20 @@ function applyBaseMapModeInternal(map: Map, mode: BaseMapMode): void {
           continue
         }
         if (layer.id === HILLSHADE_LAYER_ID) {
+          continue
+        }
+        if (layer.id === MOUNTAIN_PEAK_LAYER_ID) {
           continue
         }
         map.setLayoutProperty(layer.id, 'visibility', 'none')
       }
+      // Hide peaks on pure satellite — they'd clutter the imagery
+      map.setLayoutProperty(MOUNTAIN_PEAK_LAYER_ID, 'visibility', 'none')
       break
     }
 
     case 'hybrid': {
+      ensureMountainPeakLayer(map)
       setSatelliteVisibility(map, true)
       for (const layer of map.getStyle().layers) {
         if (ALWAYS_VISIBLE.test(layer.id)) {
@@ -202,6 +264,9 @@ function applyBaseMapModeInternal(map: Map, mode: BaseMapMode): void {
           continue
         }
         if (layer.id === HILLSHADE_LAYER_ID) {
+          continue
+        }
+        if (layer.id === MOUNTAIN_PEAK_LAYER_ID) {
           continue
         }
         // null means no rule matched — default to visible so that switching
@@ -210,11 +275,13 @@ function applyBaseMapModeInternal(map: Map, mode: BaseMapMode): void {
         const visible = resolveVisibility(layer.id, HYBRID_LAYER_RULES) ?? true
         map.setLayoutProperty(layer.id, 'visibility', visible ? 'visible' : 'none')
       }
+      map.setLayoutProperty(MOUNTAIN_PEAK_LAYER_ID, 'visibility', 'visible')
       break
     }
 
     case 'standard':
     default: {
+      ensureMountainPeakLayer(map)
       setSatelliteVisibility(map, false)
       for (const layer of map.getStyle().layers) {
         if (ALWAYS_VISIBLE.test(layer.id)) {
@@ -223,8 +290,12 @@ function applyBaseMapModeInternal(map: Map, mode: BaseMapMode): void {
         if (layer.id === HILLSHADE_LAYER_ID) {
           continue
         }
+        if (layer.id === MOUNTAIN_PEAK_LAYER_ID) {
+          continue
+        }
         map.setLayoutProperty(layer.id, 'visibility', 'visible')
       }
+      map.setLayoutProperty(MOUNTAIN_PEAK_LAYER_ID, 'visibility', 'visible')
       break
     }
   }
