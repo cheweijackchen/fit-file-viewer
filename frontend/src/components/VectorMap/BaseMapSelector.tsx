@@ -10,7 +10,7 @@ interface Props {
 export function BaseMapSelector({ value, onChange }: Props) {
   return (
     <Menu
-      position="top-end"
+      position="bottom-end"
       offset={6}
     >
       <Tooltip

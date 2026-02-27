@@ -29,7 +29,7 @@ export function MapView({ track, highlightedIndex }: MapViewProps) {
   const [map, setMap] = useState<Map | null>(null)
   const [isMapReady, setIsMapReady] = useState(false)
   const [baseMap, setBaseMap] = useState<BaseMapMode>(DEFAULT_BASE_MAP)
-  const [showTerrain, setShowTerrain] = useState(true)
+  const [showTerrain, setShowTerrain] = useState(false)
 
   // Initialize map once
   useEffect(() => {
@@ -43,7 +43,7 @@ export function MapView({ track, highlightedIndex }: MapViewProps) {
       style: VECTOR_STYLE_URL,
       center: [121.0, 24.0],
       zoom: 7,
-      pitch: 45,
+      pitch: 0,
       bearing: 0,
       centerClampedToGround: false,
       trackResize: false,
