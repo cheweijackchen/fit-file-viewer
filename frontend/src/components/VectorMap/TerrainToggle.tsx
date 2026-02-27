@@ -1,5 +1,5 @@
 import { ActionIcon, Tooltip } from '@mantine/core'
-import { IconMountain } from '@tabler/icons-react'
+import { IconMountain, IconMountainFilled } from '@tabler/icons-react'
 
 interface Props {
   value: boolean;
@@ -8,14 +8,21 @@ interface Props {
 
 export function TerrainToggle({ value, onChange }: Props) {
   return (
-    <Tooltip label="切換地形" position="left">
+    <Tooltip
+      label="切換地形"
+      position="left"
+    >
       <ActionIcon
         size={36}
-        variant={value ? 'filled' : 'default'}
+        variant="default"
         aria-label="切換地形"
         onClick={() => onChange(!value)}
       >
-        <IconMountain size={20} />
+        {value ? (
+          <IconMountainFilled size={20} />
+        ) : (
+          <IconMountain size={20} />
+        )}
       </ActionIcon>
     </Tooltip>
   )
