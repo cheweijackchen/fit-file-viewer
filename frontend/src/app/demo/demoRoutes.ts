@@ -1,4 +1,4 @@
-import { IconChartBar, IconClipboardList, IconIcons, IconPick } from '@tabler/icons-react'
+import { IconChartBar, IconClipboardList, IconIcons, IconMap2, IconPick } from '@tabler/icons-react'
 
 export const demoNavLinks = [
   {
@@ -8,11 +8,17 @@ export const demoNavLinks = [
       {
         title: 'ComponentA',
         link: '/demo/demo-component-a',
-      },
+      }
+    ]
+  },
+  {
+    icon: IconMap2,
+    title: 'Maps',
+    children: [
       {
-        title: 'VectorMap',
+        title: 'MapLibre GL Map',
         link: '/demo/demo-vector-map',
-      },
+      }
     ]
   },
   {
