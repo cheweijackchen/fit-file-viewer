@@ -42,20 +42,6 @@ export function TrackLayer({
       map.addSource(SOURCE_LINE, { type: 'geojson', data: lineFeature })
       map.addSource(SOURCE_POINTS, { type: 'geojson', data: pointCollection })
 
-      // --- Shadow / glow under the line ---
-      map.addLayer({
-        id: LAYER_LINE_SHADOW,
-        type: 'line',
-        source: SOURCE_LINE,
-        layout: { 'line-cap': 'round', 'line-join': 'round' },
-        paint: {
-          'line-color': '#f97316',
-          'line-width': 10,
-          'line-opacity': 0.25,
-          'line-blur': 4,
-        },
-      })
-
       // --- Main track line ---
       map.addLayer({
         id: LAYER_LINE,
@@ -64,8 +50,7 @@ export function TrackLayer({
         layout: { 'line-cap': 'round', 'line-join': 'round' },
         paint: {
           'line-color': '#f97316',
-          'line-width': 3,
-          'line-opacity': 0.95,
+          'line-width': 5,
         },
       })
 
@@ -76,10 +61,7 @@ export function TrackLayer({
         source: SOURCE_POINTS,
         paint: {
           'circle-radius': 4,
-          'circle-color': '#fff',
-          'circle-stroke-color': '#f97316',
-          'circle-stroke-width': 2,
-          'circle-opacity': 0,
+          'circle-color': '#f97316',
         },
       })
 
