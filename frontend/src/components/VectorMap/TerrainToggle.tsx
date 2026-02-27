@@ -13,7 +13,7 @@ export function TerrainToggle({ value, onChange }: Props) {
       position="left"
     >
       <ActionIcon
-        size={36}
+        size="lg"
         variant="default"
         aria-label="切換地形"
         onClick={() => onChange(!value)}

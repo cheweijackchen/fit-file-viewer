@@ -19,7 +19,7 @@ export function BaseMapSelector({ value, onChange }: Props) {
       >
         <Menu.Target>
           <ActionIcon
-            size={36}
+            size="lg"
             variant="default"
             aria-label="選擇底圖"
           >

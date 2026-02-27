@@ -10,6 +10,8 @@ $icon-minus: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' v
 $icon-maximize: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 8v-2a2 2 0 0 1 2 -2h2'/%3E%3Cpath d='M4 16v2a2 2 0 0 0 2 2h2'/%3E%3Cpath d='M16 4h2a2 2 0 0 1 2 2v2'/%3E%3Cpath d='M16 20h2a2 2 0 0 0 2 -2v-2'/%3E%3C/svg%3E");
 $icon-minimize: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M15 19v-2a2 2 0 0 1 2 -2h2'/%3E%3Cpath d='M15 5v2a2 2 0 0 0 2 2h2'/%3E%3Cpath d='M5 15h2a2 2 0 0 1 2 2v2'/%3E%3Cpath d='M5 9h2a2 2 0 0 0 2 -2v-2'/%3E%3C/svg%3E");
 
+$ai-size-lg: calc(2.125rem * var(--mantine-scale));
+
 .wrapper {
   // === Control group container ===
   :global(.maplibregl-ctrl-group) {
@@ -25,8 +27,8 @@ $icon-minimize: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg
 
   // === Buttons ===
   :global(.maplibregl-ctrl-group button) {
-    width: 36px;
-    height: 36px;
+    width: $ai-size-lg;
+    height: $ai-size-lg;
 
     @include mantine.hover {
       background-color: var(--mantine-color-default-hover);
