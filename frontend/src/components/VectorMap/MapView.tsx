@@ -24,6 +24,7 @@ interface MapViewProps {
 
 export function MapView({ track, highlightedIndex }: MapViewProps) {
   const containerRef = useRef<HTMLDivElement>(null)
+  const wrapperRef = useRef<HTMLDivElement>(null)
   const [map, setMap] = useState<Map | null>(null)
   const [isMapReady, setIsMapReady] = useState(false)
   const [baseMap, setBaseMap] = useState<BaseMapMode>(DEFAULT_BASE_MAP)
@@ -55,7 +56,10 @@ export function MapView({ track, highlightedIndex }: MapViewProps) {
       new maplibregl.ScaleControl({ unit: 'metric' }),
       'bottom-left',
     )
-    instance.addControl(new maplibregl.FullscreenControl(), 'top-right')
+    instance.addControl(
+      new maplibregl.FullscreenControl({ container: wrapperRef.current ?? undefined }),
+      'top-right',
+    )
 
     instance.on('load', () => {
       setIsMapReady(true)
@@ -112,7 +116,10 @@ export function MapView({ track, highlightedIndex }: MapViewProps) {
 
   return (
     // position: relative so absolute children (selector, controls) are anchored here
-    <div style={{ position: 'relative', width: '100%', height: '100%' }}>
+    <div
+      ref={wrapperRef}
+      style={{ position: 'relative', width: '100%', height: '100%' }}
+    >
       <div
         ref={containerRef}
         style={{ width: '100%', height: '100%' }}
