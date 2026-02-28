@@ -27,6 +27,7 @@ interface UseTrackPlaybackOptions {
   map: Map | null;
   points: TrackPoint[];
   enabled: boolean;
+  terrain?: boolean;
 }
 
 const FALLBACK_SPEED_MPS = 3    // m/s assumed when no timestamps
@@ -35,6 +36,7 @@ const UI_UPDATE_INTERVAL = 100  // ms between React state updates
 const CAMERA_EASE_MS = 200     // map.easeTo duration per frame
 const PLAYBACK_PITCH = 50      // degrees
 const PLAYBACK_ZOOM = 15.5
+const PLAYBACK_ZOOM_TERRAIN = 14.5  // zoom out when 3-D terrain is active
 
 function calcBearing(from: [number, number], to: [number, number]): number {
   const toRad = (d: number) => (d * Math.PI) / 180
@@ -58,6 +60,7 @@ function lerpBearing(start: number, end: number, t: number): number {
   }
   return (start + (diff * t) + 360) % 360
 }
+
 
 function interpolate(points: PlaybackPoint[], virtualTime: number): [number, number] {
   if (points.length === 0) {
@@ -156,7 +159,7 @@ function calcPlaybackBearings(points: PlaybackPoint[]): PlaybackBearings {
   return { start: startBearing, end: (startBearing + 180) % 360 }
 }
 
-export function useTrackPlayback({ map, points, enabled }: UseTrackPlaybackOptions): UseTrackPlaybackResult {
+export function useTrackPlayback({ map, points, enabled, terrain }: UseTrackPlaybackOptions): UseTrackPlaybackResult {
   const playbackPoints = useMemo(() => normalizePoints(points), [points])
   const playbackBearings = useMemo(() => calcPlaybackBearings(playbackPoints), [playbackPoints])
   const totalDuration = playbackPoints.length > 0 ? playbackPoints[playbackPoints.length - 1].elapsed : 0
@@ -180,6 +183,7 @@ export function useTrackPlayback({ map, points, enabled }: UseTrackPlaybackOptio
   const totalDurationRef = useRef(totalDuration)
   const mapRef = useRef(map)
   const playbackBearingsRef = useRef(playbackBearings)
+  const terrainRef = useRef(terrain ?? false)
 
   // Sync all mutable refs after each render (useLayoutEffect runs before paint)
   useLayoutEffect(() => {
@@ -189,6 +193,7 @@ export function useTrackPlayback({ map, points, enabled }: UseTrackPlaybackOptio
     totalDurationRef.current = totalDuration
     mapRef.current = map
     playbackBearingsRef.current = playbackBearings
+    terrainRef.current = terrain ?? false
   })
 
   // The animation tick — stored in a ref so it can call itself recursively.
@@ -225,11 +230,13 @@ export function useTrackPlayback({ map, points, enabled }: UseTrackPlaybackOptio
         virtualTime / dur,
       )
 
+      const elevation = m.queryTerrainElevation(pos) ?? 0
       m.easeTo({
         center: pos,
+        elevation,
         bearing: bearingRef.current,
         pitch: PLAYBACK_PITCH,
-        zoom: PLAYBACK_ZOOM,
+        zoom: terrainRef.current ? PLAYBACK_ZOOM_TERRAIN : PLAYBACK_ZOOM,
         duration: CAMERA_EASE_MS,
         easing: t => t,
       })
@@ -305,11 +312,13 @@ export function useTrackPlayback({ map, points, enabled }: UseTrackPlaybackOptio
       cancelRaf()
       rafIdRef.current = requestAnimationFrame(ts => animateFnRef.current(ts))
     } else {
+      const elevation = mapRef.current?.queryTerrainElevation(pos) ?? 0
       mapRef.current?.easeTo({
         center: pos,
+        elevation,
         bearing: bearingRef.current,
         pitch: PLAYBACK_PITCH,
-        zoom: PLAYBACK_ZOOM,
+        zoom: terrainRef.current ? PLAYBACK_ZOOM_TERRAIN : PLAYBACK_ZOOM,
         duration: 400,
       })
     }

@@ -128,7 +128,7 @@ export function MapView({ track, highlightedIndex }: MapViewProps) {
 
   useTrackFitBounds(map, points, isMapReady)
 
-  const playback = useTrackPlayback({ map, points, enabled: playbackOpen })
+  const playback = useTrackPlayback({ map, points, enabled: playbackOpen, terrain: showTerrain })
 
   function handleClosePlayback() {
     playback.pause()
