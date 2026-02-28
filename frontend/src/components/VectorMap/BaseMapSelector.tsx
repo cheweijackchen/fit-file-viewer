@@ -1,6 +1,14 @@
-import { Menu, ActionIcon, Tooltip } from '@mantine/core'
-import { IconStack2 } from '@tabler/icons-react'
+import { Popover, ActionIcon, Tooltip, Text, UnstyledButton } from '@mantine/core'
+import { IconStack2, IconMap, IconSatellite, IconWorld } from '@tabler/icons-react'
+import { type ComponentType } from 'react'
 import { BASE_MAP_OPTIONS, type BaseMapMode } from '@/hooks/useBaseMap'
+import styles from './BaseMapSelector.module.scss'
+
+const OPTION_ICONS: Record<BaseMapMode, ComponentType<{ size?: number; }>> = {
+  standard: IconMap,
+  satellite: IconSatellite,
+  hybrid: IconWorld,
+}
 
 interface Props {
   value: BaseMapMode;
@@ -9,7 +17,7 @@ interface Props {
 
 export function BaseMapSelector({ value, onChange }: Props) {
   return (
-    <Menu
+    <Popover
       position="bottom-end"
       offset={6}
       withinPortal={false}
@@ -20,7 +28,7 @@ export function BaseMapSelector({ value, onChange }: Props) {
         withinPortal={false}
         openDelay={750}
       >
-        <Menu.Target>
+        <Popover.Target>
           <ActionIcon
             size="lg"
             variant="default"
@@ -28,19 +36,44 @@ export function BaseMapSelector({ value, onChange }: Props) {
           >
             <IconStack2 size={20} />
           </ActionIcon>
-        </Menu.Target>
+        </Popover.Target>
       </Tooltip>
-      <Menu.Dropdown>
-        {BASE_MAP_OPTIONS.map((option) => (
-          <Menu.Item
-            key={option.id}
-            fw={option.id === value ? 600 : undefined}
-            onClick={() => onChange(option.id)}
-          >
-            {option.label}
-          </Menu.Item>
-        ))}
-      </Menu.Dropdown>
-    </Menu>
+      <Popover.Dropdown p="xs">
+        <Text
+          size="xs"
+          fw={600}
+          c="dimmed"
+          mb="xs"
+        >
+          Map Style
+        </Text>
+        <div className="flex gap-2">
+          {BASE_MAP_OPTIONS.map((option) => {
+            const Icon = OPTION_ICONS[option.id]
+            const isSelected = option.id === value
+            return (
+              <UnstyledButton
+                key={option.id}
+                className={styles.tile}
+                data-selected={isSelected || undefined}
+                onClick={() => onChange(option.id)}
+              >
+                <div className={styles.thumbnail}>
+                  <Icon size={24} />
+                </div>
+                <Text
+                  size="xs"
+                  ta="center"
+                  mt={4}
+                  fw={isSelected ? 600 : undefined}
+                >
+                  {option.label}
+                </Text>
+              </UnstyledButton>
+            )
+          })}
+        </div>
+      </Popover.Dropdown>
+    </Popover>
   )
 }
