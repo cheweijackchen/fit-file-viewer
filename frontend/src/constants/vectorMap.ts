@@ -15,3 +15,7 @@ export const SOURCE_POINTS = 'gpx-track-points'
 export const LAYER_LINE = 'gpx-track-line-layer'
 export const LAYER_LINE_SHADOW = 'gpx-track-line-shadow'
 export const LAYER_POINTS = 'gpx-track-points-layer'
+
+// Playback position marker
+export const SOURCE_PLAYBACK = 'playback-position'
+export const LAYER_PLAYBACK = 'playback-position-layer'
