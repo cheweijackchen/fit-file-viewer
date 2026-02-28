@@ -1,10 +1,11 @@
 import type { Map } from 'maplibre-gl'
+import { BaseMapMode } from '@/constants/vectorMap'
+
+export type { BaseMapMode }
 
 // ---------------------------------------------------------------------------
 // BaseMap definitions
 // ---------------------------------------------------------------------------
-
-export type BaseMapMode = 'standard' | 'satellite' | 'hybrid'
 
 export interface BaseMapOption {
   id: BaseMapMode;
@@ -12,12 +13,12 @@ export interface BaseMapOption {
 }
 
 export const BASE_MAP_OPTIONS: BaseMapOption[] = [
-  { id: 'standard', label: '標準' },
-  { id: 'satellite', label: '衛星' },
-  { id: 'hybrid', label: '混合' },
+  { id: BaseMapMode.Standard, label: '標準' },
+  { id: BaseMapMode.Satellite, label: '衛星' },
+  { id: BaseMapMode.Hybrid, label: '混合' },
 ]
 
-export const DEFAULT_BASE_MAP: BaseMapMode = 'standard'
+export const DEFAULT_BASE_MAP: BaseMapMode = BaseMapMode.Standard
 
 export const VECTOR_STYLE_URL = 'https://tiles.openfreemap.org/styles/liberty'
 
@@ -230,7 +231,7 @@ function applyTerrainInternal(map: Map, { terrain, hillshade }: TerrainOptions):
 
 function applyBaseMapModeInternal(map: Map, mode: BaseMapMode): void {
   switch (mode) {
-    case 'satellite': {
+    case BaseMapMode.Satellite: {
       ensureMountainPeakLayer(map)
       setSatelliteVisibility(map, true)
       for (const layer of map.getStyle().layers) {
@@ -253,7 +254,7 @@ function applyBaseMapModeInternal(map: Map, mode: BaseMapMode): void {
       break
     }
 
-    case 'hybrid': {
+    case BaseMapMode.Hybrid: {
       ensureMountainPeakLayer(map)
       setSatelliteVisibility(map, true)
       for (const layer of map.getStyle().layers) {
@@ -279,7 +280,7 @@ function applyBaseMapModeInternal(map: Map, mode: BaseMapMode): void {
       break
     }
 
-    case 'standard':
+    case BaseMapMode.Standard:
     default: {
       ensureMountainPeakLayer(map)
       setSatelliteVisibility(map, false)
