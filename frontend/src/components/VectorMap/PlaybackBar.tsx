@@ -1,7 +1,6 @@
 import { ActionIcon, SegmentedControl, Slider, Text, Tooltip } from '@mantine/core'
 import { IconPlayerPause, IconPlayerPlay, IconX } from '@tabler/icons-react'
 import { formatElapsedTime } from '@/lib/timeFormatter'
-import styles from './PlaybackBar.module.scss'
 
 const SPEED_OPTIONS = [
   { value: '1', label: '1×' },
@@ -34,8 +33,8 @@ export function PlaybackBar({
   onClose,
 }: Props) {
   return (
-    <div className={styles.bar}>
-      <div className={styles.row}>
+    <div className="absolute bottom-2.5 left-25 right-2.5 pointer-events-auto bg-black/62 backdrop-blur rounded-(--mantine-radius-md) px-3.5 py-2.5 shadow-(--mantine-shadow-md)">
+      <div className="flex items-center gap-2.5">
         <Tooltip
           label={isPlaying ? 'Pause' : 'Play'}
           position="top"
@@ -55,7 +54,7 @@ export function PlaybackBar({
           </ActionIcon>
         </Tooltip>
 
-        <div className={styles.sliderWrap}>
+        <div className="flex flex-1 flex-col gap-1 min-w-0">
           <Slider
             value={progress * 100}
             min={0}
@@ -69,7 +68,7 @@ export function PlaybackBar({
           <Text
             size="xs"
             c="white"
-            className={styles.time}
+            className="opacity-75 whitespace-nowrap"
           >
             {formatElapsedTime(currentTime * 1000)} / {formatElapsedTime(totalDuration * 1000)}
           </Text>
