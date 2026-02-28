@@ -13,12 +13,17 @@ const LAYER_LINE = 'gpx-track-line-layer'
 const LAYER_LINE_SHADOW = 'gpx-track-line-shadow'
 const LAYER_POINTS = 'gpx-track-points-layer'
 
+interface TrackLayerOptions {
+  showTrackPoints?: boolean;
+}
+
 interface TrackLayerProps {
   map: Map | null;
   points: TrackPoint[];
   isMapReady: boolean;
   /** Highlighted point index from elevation profile hover */
   highlightedIndex: number | null;
+  options?: TrackLayerOptions;
 }
 
 export function TrackLayer({
@@ -26,8 +31,11 @@ export function TrackLayer({
   points,
   isMapReady,
   highlightedIndex,
+  options,
 }: TrackLayerProps) {
   const theme = useMantineTheme()
+  const lineColor = theme.colors.yellow[5]
+  const pointColor = theme.colors.yellow[6]
 
   const addedRef = useRef(false)
 
@@ -63,7 +71,7 @@ export function TrackLayer({
         source: SOURCE_LINE,
         layout: { 'line-cap': 'round', 'line-join': 'round' },
         paint: {
-          'line-color': theme.colors.yellow[5],
+          'line-color': lineColor,
           'line-width': 5,
         },
       })
@@ -75,7 +83,8 @@ export function TrackLayer({
         source: SOURCE_POINTS,
         paint: {
           'circle-radius': 5,
-          'circle-color': theme.colors.yellow[6],
+          'circle-color': pointColor,
+          'circle-opacity': 0,
         },
       })
 
@@ -87,7 +96,7 @@ export function TrackLayer({
       lineSrc?.setData(lineFeature)
       pointsSrc?.setData(pointCollection)
     }
-  }, [map, points, isMapReady])
+  }, [map, points, isMapReady, lineColor, pointColor])
 
   // Update highlighted point circle opacity via feature-state or filter
   useEffect(() => {
@@ -95,7 +104,9 @@ export function TrackLayer({
       return
     }
 
-    if (highlightedIndex === null) {
+    if (options?.showTrackPoints) {
+      map.setPaintProperty(LAYER_POINTS, 'circle-opacity', 1)
+    } else if (highlightedIndex === null) {
       map.setPaintProperty(LAYER_POINTS, 'circle-opacity', 0)
     } else {
       map.setPaintProperty(LAYER_POINTS, 'circle-opacity', [
@@ -105,7 +116,7 @@ export function TrackLayer({
         0,
       ])
     }
-  }, [map, highlightedIndex])
+  }, [map, highlightedIndex, options?.showTrackPoints])
 
   // Cleanup on unmount
   useEffect(() => {

@@ -13,8 +13,8 @@ import {
 import { useTrackFitBounds } from '@/hooks/useTrackFitBounds'
 import type { ParsedTrack } from '@/model/gpx'
 
-import { BaseMapSelector } from './BaseMapSelector'
 import { MapControlPanel } from './MapControlPanel'
+import { MapOptionsPanel } from './MapOptionsPanel'
 import styles from './MapView.module.scss'
 import { TerrainToggle } from './TerrainToggle'
 import { useMapControlTooltip } from './useMapControlTooltip'
@@ -31,6 +31,7 @@ export function MapView({ track, highlightedIndex }: MapViewProps) {
   const [isMapReady, setIsMapReady] = useState(false)
   const [baseMap, setBaseMap] = useState<BaseMapMode>(DEFAULT_BASE_MAP)
   const [showTerrain, setShowTerrain] = useState(false)
+  const [showTrackPoints, setShowTrackPoints] = useState(false)
 
   // Initialize map once
   useEffect(() => {
@@ -138,6 +139,7 @@ export function MapView({ track, highlightedIndex }: MapViewProps) {
         points={points}
         isMapReady={isMapReady}
         highlightedIndex={highlightedIndex}
+        options={{ showTrackPoints }}
       />
       <TrackPopup
         map={map}
@@ -163,9 +165,11 @@ export function MapView({ track, highlightedIndex }: MapViewProps) {
             value={showTerrain}
             onChange={setShowTerrain}
           />
-          <BaseMapSelector
+          <MapOptionsPanel
             value={baseMap}
+            showTrackPoints={showTrackPoints}
             onChange={setBaseMap}
+            onTrackPointsChange={setShowTrackPoints}
           />
         </MapControlPanel>
       </div>
