@@ -1,3 +1,4 @@
+import { useMantineTheme } from '@mantine/core'
 import type { GeoJSONSource, Map } from 'maplibre-gl'
 import { useEffect, useRef } from 'react'
 import {
@@ -26,6 +27,8 @@ export function TrackLayer({
   isMapReady,
   highlightedIndex,
 }: TrackLayerProps) {
+  const theme = useMantineTheme()
+
   const addedRef = useRef(false)
 
   // Add or update GeoJSON sources and layers when points change
@@ -60,7 +63,7 @@ export function TrackLayer({
         source: SOURCE_LINE,
         layout: { 'line-cap': 'round', 'line-join': 'round' },
         paint: {
-          'line-color': '#f97316',
+          'line-color': theme.colors.yellow[5],
           'line-width': 5,
         },
       })
@@ -71,8 +74,8 @@ export function TrackLayer({
         type: 'circle',
         source: SOURCE_POINTS,
         paint: {
-          'circle-radius': 4,
-          'circle-color': '#f97316',
+          'circle-radius': 5,
+          'circle-color': theme.colors.yellow[6],
         },
       })
 

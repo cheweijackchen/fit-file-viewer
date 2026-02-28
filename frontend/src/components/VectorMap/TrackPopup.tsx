@@ -39,12 +39,12 @@ function TrackPopupContent({ index, elevation, time, lat, lon }: ContentProps) {
         <IconMapPin
           size={14}
           stroke={2}
-          color="var(--mantine-color-orange-5)"
+          color="var(--mantine-color-yellow-6)"
         />
         <Text
           fw={600}
           size="sm"
-          c="orange.5"
+          c="yellow.6"
         >
           軌跡點 #{index}
         </Text>
