@@ -6,10 +6,9 @@ import maplibregl, { type Map } from 'maplibre-gl'
 import { useEffect, useRef } from 'react'
 import { flushSync } from 'react-dom'
 import { createRoot, type Root } from 'react-dom/client'
+import { LAYER_LINE } from '@/constants/vectorMap'
 import type { TrackPoint } from '@/model/gpx'
 import theme from '@/styles/theme'
-
-const LAYER_LINE = 'gpx-track-line-layer'
 
 interface TrackPopupProps {
   map: Map | null;

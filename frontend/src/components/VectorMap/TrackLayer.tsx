@@ -2,16 +2,17 @@ import { useMantineTheme } from '@mantine/core'
 import type { GeoJSONSource, Map } from 'maplibre-gl'
 import { useEffect, useRef } from 'react'
 import {
+  LAYER_LINE,
+  LAYER_LINE_SHADOW,
+  LAYER_POINTS,
+  SOURCE_LINE,
+  SOURCE_POINTS,
+} from '@/constants/vectorMap'
+import {
   trackPointsToLineString,
   trackPointsToPointCollection,
 } from '@/lib/gpxToGeoJson'
 import type { TrackPoint } from '@/model/gpx'
-
-const SOURCE_LINE = 'gpx-track-line'
-const SOURCE_POINTS = 'gpx-track-points'
-const LAYER_LINE = 'gpx-track-line-layer'
-const LAYER_LINE_SHADOW = 'gpx-track-line-shadow'
-const LAYER_POINTS = 'gpx-track-points-layer'
 
 interface TrackLayerOptions {
   showTrackPoints?: boolean;
