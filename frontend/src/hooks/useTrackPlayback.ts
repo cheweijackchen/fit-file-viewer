@@ -29,10 +29,9 @@ interface UseTrackPlaybackOptions {
   enabled: boolean;
 }
 
-const FALLBACK_SPEED_MPS = 3   // m/s assumed when no timestamps
-const LOOK_AHEAD_SECONDS = 30  // virtual seconds to look ahead for bearing
-const BEARING_SMOOTH = 0.15    // exponential smoothing factor
-const UI_UPDATE_INTERVAL = 100 // ms between React state updates
+const FALLBACK_SPEED_MPS = 3    // m/s assumed when no timestamps
+const OUT_AND_BACK_RATIO = 0.15 // end-to-start dist < 15% of total path → out-and-back
+const UI_UPDATE_INTERVAL = 100  // ms between React state updates
 const CAMERA_EASE_MS = 200     // map.easeTo duration per frame
 const PLAYBACK_PITCH = 50      // degrees
 const PLAYBACK_ZOOM = 15.5
@@ -49,15 +48,15 @@ function calcBearing(from: [number, number], to: [number, number]): number {
   return ((((Math.atan2(y, x) * 180) / Math.PI) + 360) % 360)
 }
 
-function smoothBearing(current: number, target: number, factor: number): number {
-  let diff = target - current
+function lerpBearing(start: number, end: number, t: number): number {
+  let diff = end - start
   if (diff > 180) {
     diff -= 360
   }
   if (diff < -180) {
     diff += 360
   }
-  return (current + (diff * factor) + 360) % 360
+  return (start + (diff * t) + 360) % 360
 }
 
 function interpolate(points: PlaybackPoint[], virtualTime: number): [number, number] {
@@ -123,8 +122,43 @@ function normalizePoints(points: TrackPoint[]): PlaybackPoint[] {
   return result
 }
 
+interface PlaybackBearings {
+  start: number;
+  end: number;
+}
+
+function calcPlaybackBearings(points: PlaybackPoint[]): PlaybackBearings {
+  if (points.length < 2) {
+    return { start: 0, end: 0 }
+  }
+  const first = points[0]
+  const last = points[points.length - 1]
+
+  let totalLength = 0
+  for (let i = 1; i < points.length; i++) {
+    totalLength += calculateDistance(points[i - 1].lat, points[i - 1].lon, points[i].lat, points[i].lon)
+  }
+
+  const directDist = calculateDistance(first.lat, first.lon, last.lat, last.lon)
+  let apexPoint: PlaybackPoint = last
+  if (totalLength > 0 && (directDist / totalLength) < OUT_AND_BACK_RATIO) {
+    let maxDist = 0
+    for (const p of points) {
+      const d = calculateDistance(first.lat, first.lon, p.lat, p.lon)
+      if (d > maxDist) {
+        maxDist = d
+        apexPoint = p
+      }
+    }
+  }
+
+  const startBearing = calcBearing([first.lon, first.lat], [apexPoint.lon, apexPoint.lat])
+  return { start: startBearing, end: (startBearing + 180) % 360 }
+}
+
 export function useTrackPlayback({ map, points, enabled }: UseTrackPlaybackOptions): UseTrackPlaybackResult {
   const playbackPoints = useMemo(() => normalizePoints(points), [points])
+  const playbackBearings = useMemo(() => calcPlaybackBearings(playbackPoints), [playbackPoints])
   const totalDuration = playbackPoints.length > 0 ? playbackPoints[playbackPoints.length - 1].elapsed : 0
 
   // UI state (triggers re-renders for the PlaybackBar)
@@ -145,6 +179,7 @@ export function useTrackPlayback({ map, points, enabled }: UseTrackPlaybackOptio
   const playbackPointsRef = useRef(playbackPoints)
   const totalDurationRef = useRef(totalDuration)
   const mapRef = useRef(map)
+  const playbackBearingsRef = useRef(playbackBearings)
 
   // Sync all mutable refs after each render (useLayoutEffect runs before paint)
   useLayoutEffect(() => {
@@ -153,6 +188,7 @@ export function useTrackPlayback({ map, points, enabled }: UseTrackPlaybackOptio
     playbackPointsRef.current = playbackPoints
     totalDurationRef.current = totalDuration
     mapRef.current = map
+    playbackBearingsRef.current = playbackBearings
   })
 
   // The animation tick — stored in a ref so it can call itself recursively.
@@ -183,12 +219,11 @@ export function useTrackPlayback({ map, points, enabled }: UseTrackPlaybackOptio
       }
 
       const pos = interpolate(pts, virtualTime)
-      const lookaheadTime = Math.min(virtualTime + LOOK_AHEAD_SECONDS, dur)
-      const lookaheadPos = interpolate(pts, lookaheadTime)
-      const dx = Math.abs(lookaheadPos[0] - pos[0]) + Math.abs(lookaheadPos[1] - pos[1])
-      if (dx > 1e-7) {
-        bearingRef.current = smoothBearing(bearingRef.current, calcBearing(pos, lookaheadPos), BEARING_SMOOTH)
-      }
+      bearingRef.current = lerpBearing(
+        playbackBearingsRef.current.start,
+        playbackBearingsRef.current.end,
+        virtualTime / dur,
+      )
 
       m.easeTo({
         center: pos,
@@ -260,15 +295,16 @@ export function useTrackPlayback({ map, points, enabled }: UseTrackPlaybackOptio
     const pos = interpolate(playbackPointsRef.current, virtualTime)
     setCurrentPosition([pos[0], pos[1]])
 
+    bearingRef.current = lerpBearing(
+      playbackBearingsRef.current.start,
+      playbackBearingsRef.current.end,
+      clamped,
+    )
+
     if (isPlayingRef.current) {
       cancelRaf()
       rafIdRef.current = requestAnimationFrame(ts => animateFnRef.current(ts))
     } else {
-      const lookaheadPos = interpolate(
-        playbackPointsRef.current,
-        Math.min(virtualTime + LOOK_AHEAD_SECONDS, totalDurationRef.current),
-      )
-      bearingRef.current = calcBearing(pos, lookaheadPos)
       mapRef.current?.easeTo({
         center: pos,
         bearing: bearingRef.current,
@@ -296,7 +332,7 @@ export function useTrackPlayback({ map, points, enabled }: UseTrackPlaybackOptio
     cancelRaf()
     isPlayingRef.current = false
     seekOffsetRef.current = 0
-    bearingRef.current = 0
+    bearingRef.current = playbackBearingsRef.current.start
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setIsPlaying(false)
     setProgress(0)

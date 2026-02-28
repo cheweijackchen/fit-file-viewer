@@ -45,9 +45,9 @@ export function PlaybackPositionLayer({ map, isMapReady, position }: Props) {
       type: 'circle',
       source: SOURCE_PLAYBACK,
       paint: {
-        'circle-radius': 9,
+        'circle-radius': 4,
         'circle-color': '#ffffff',
-        'circle-stroke-width': 3,
+        'circle-stroke-width': 4,
         'circle-stroke-color': theme.colors.blue[5],
       },
     })
