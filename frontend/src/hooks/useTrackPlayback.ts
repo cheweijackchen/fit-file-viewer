@@ -38,6 +38,11 @@ const PLAYBACK_PITCH = 50      // degrees
 const PLAYBACK_ZOOM = 15.5
 const PLAYBACK_ZOOM_TERRAIN = 14.5  // zoom out when 3-D terrain is active
 
+// Logarithmic playback target: T = K × ln(distanceKm + 1)
+// Calibration: ~10 km → 28 s | ~50 km → 47 s | ~100 km → 55 s | ~200 km → 64 s
+const LOG_PLAYBACK_K = 25.0
+const MIN_PLAYBACK_SECONDS = 20
+
 function calcBearing(from: [number, number], to: [number, number]): number {
   const toRad = (d: number) => (d * Math.PI) / 180
   const lon1 = toRad(from[0])
@@ -130,6 +135,13 @@ interface PlaybackBearings {
   end: number;
 }
 
+function calcTargetPlaybackSeconds(totalDistanceKm: number): number {
+  if (totalDistanceKm <= 0) {
+    return MIN_PLAYBACK_SECONDS
+  }
+  return Math.max(MIN_PLAYBACK_SECONDS, LOG_PLAYBACK_K * Math.log(totalDistanceKm + 1))
+}
+
 function calcPlaybackBearings(points: PlaybackPoint[]): PlaybackBearings {
   if (points.length < 2) {
     return { start: 0, end: 0 }
@@ -163,6 +175,19 @@ export function useTrackPlayback({ map, points, enabled, terrain }: UseTrackPlay
   const playbackPoints = useMemo(() => normalizePoints(points), [points])
   const playbackBearings = useMemo(() => calcPlaybackBearings(playbackPoints), [playbackPoints])
   const totalDuration = playbackPoints.length > 0 ? playbackPoints[playbackPoints.length - 1].elapsed : 0
+  const totalDistanceKm = useMemo(() => {
+    let dist = 0
+    for (let i = 1; i < playbackPoints.length; i++) {
+      dist += calculateDistance(
+        playbackPoints[i - 1].lat,
+        playbackPoints[i - 1].lon,
+        playbackPoints[i].lat,
+        playbackPoints[i].lon,
+      )
+    }
+    return dist
+  }, [playbackPoints])
+  const baseSpeed = totalDuration > 0 ? totalDuration / calcTargetPlaybackSeconds(totalDistanceKm) : 1
 
   // UI state (triggers re-renders for the PlaybackBar)
   const [isPlaying, setIsPlaying] = useState(false)
@@ -178,6 +203,7 @@ export function useTrackPlayback({ map, points, enabled, terrain }: UseTrackPlay
   const bearingRef = useRef(0)         // current smoothed bearing
   const lastUiRef = useRef(0)          // timestamp of last React state flush
   const speedRef = useRef(1)           // mirrors speed state for use inside rAF
+  const baseSpeedRef = useRef(baseSpeed) // auto-computed multiplier to hit target playback duration
   const isPlayingRef = useRef(false)   // mirrors isPlaying for use inside callbacks
   const playbackPointsRef = useRef(playbackPoints)
   const totalDurationRef = useRef(totalDuration)
@@ -188,6 +214,7 @@ export function useTrackPlayback({ map, points, enabled, terrain }: UseTrackPlay
   // Sync all mutable refs after each render (useLayoutEffect runs before paint)
   useLayoutEffect(() => {
     speedRef.current = speed
+    baseSpeedRef.current = baseSpeed
     isPlayingRef.current = isPlaying
     playbackPointsRef.current = playbackPoints
     totalDurationRef.current = totalDuration
@@ -198,7 +225,7 @@ export function useTrackPlayback({ map, points, enabled, terrain }: UseTrackPlay
 
   // The animation tick — stored in a ref so it can call itself recursively.
   // Uses only refs and stable setState functions, so it never needs to be recreated.
-  const animateFnRef = useRef<(ts: number) => void>(() => {})
+  const animateFnRef = useRef<(ts: number) => void>(() => { })
 
   useEffect(() => {
     animateFnRef.current = (timestamp: number) => {
@@ -210,7 +237,7 @@ export function useTrackPlayback({ map, points, enabled, terrain }: UseTrackPlay
       }
 
       const realElapsed = timestamp - playStartRealRef.current
-      const virtualTime = seekOffsetRef.current + ((realElapsed * speedRef.current) / 1000)
+      const virtualTime = seekOffsetRef.current + ((realElapsed * baseSpeedRef.current * speedRef.current) / 1000)
 
       if (virtualTime >= dur) {
         rafIdRef.current = null
@@ -276,7 +303,7 @@ export function useTrackPlayback({ map, points, enabled, terrain }: UseTrackPlay
   function pause() {
     const realElapsed = performance.now() - playStartRealRef.current
     seekOffsetRef.current = Math.min(
-      seekOffsetRef.current + ((realElapsed * speedRef.current) / 1000),
+      seekOffsetRef.current + ((realElapsed * baseSpeedRef.current * speedRef.current) / 1000),
       totalDurationRef.current,
     )
     cancelRaf()
@@ -328,7 +355,7 @@ export function useTrackPlayback({ map, points, enabled, terrain }: UseTrackPlay
     if (isPlayingRef.current) {
       const realElapsed = performance.now() - playStartRealRef.current
       seekOffsetRef.current = Math.min(
-        seekOffsetRef.current + ((realElapsed * speedRef.current) / 1000),
+        seekOffsetRef.current + ((realElapsed * baseSpeedRef.current * speedRef.current) / 1000),
         totalDurationRef.current,
       )
       playStartRealRef.current = performance.now()
