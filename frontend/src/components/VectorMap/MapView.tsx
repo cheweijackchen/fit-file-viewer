@@ -130,11 +130,6 @@ export function MapView({ track, highlightedIndex }: MapViewProps) {
 
   const playback = useTrackPlayback({ map, points, enabled: playbackOpen, terrain: showTerrain })
 
-  function handleClosePlayback() {
-    playback.pause()
-    setPlaybackOpen(false)
-  }
-
   return (
     // position: relative so absolute children (selector, controls) are anchored here
     <div
@@ -223,7 +218,6 @@ export function MapView({ track, highlightedIndex }: MapViewProps) {
             onToggle={playback.toggle}
             onSeek={playback.seek}
             onSpeedChange={playback.setSpeed}
-            onClose={handleClosePlayback}
           />
         )}
       </div>

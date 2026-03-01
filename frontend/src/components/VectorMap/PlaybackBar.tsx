@@ -1,13 +1,7 @@
-import { ActionIcon, SegmentedControl, Slider, Text, Tooltip } from '@mantine/core'
-import { IconPlayerPause, IconPlayerPlay, IconX } from '@tabler/icons-react'
+import { ActionIcon, Slider, Text, Tooltip } from '@mantine/core'
+import { IconPlayerPause, IconPlayerPlay } from '@tabler/icons-react'
 import { formatElapsedTime } from '@/lib/timeFormatter'
-
-const SPEED_OPTIONS = [
-  { value: '1', label: '1×' },
-  { value: '2', label: '2×' },
-  { value: '4', label: '4×' },
-  { value: '8', label: '8×' },
-]
+import { PlaybackSpeedControl } from './PlaybackSpeedControl'
 
 interface Props {
   isPlaying: boolean;
@@ -18,7 +12,6 @@ interface Props {
   onToggle: () => void;
   onSeek: (progress: number) => void;
   onSpeedChange: (speed: number) => void;
-  onClose: () => void;
 }
 
 export function PlaybackBar({
@@ -30,7 +23,6 @@ export function PlaybackBar({
   onToggle,
   onSeek,
   onSpeedChange,
-  onClose,
 }: Props) {
   return (
     <div className="absolute bottom-2.5 left-25 right-2.5 pointer-events-auto bg-black/62 backdrop-blur rounded-(--mantine-radius-md) px-3.5 py-2.5 shadow-(--mantine-shadow-md)">
@@ -74,30 +66,10 @@ export function PlaybackBar({
           </Text>
         </div>
 
-        <SegmentedControl
-          value={String(speed)}
-          data={SPEED_OPTIONS}
-          size="xs"
-          color="blue"
-          onChange={v => onSpeedChange(Number(v))}
+        <PlaybackSpeedControl
+          speed={speed}
+          onSpeedChange={onSpeedChange}
         />
-
-        <Tooltip
-          label="Close"
-          position="top"
-          withinPortal={false}
-          openDelay={500}
-        >
-          <ActionIcon
-            variant="subtle"
-            color="white"
-            size="sm"
-            aria-label="Close playback bar"
-            onClick={onClose}
-          >
-            <IconX size={14} />
-          </ActionIcon>
-        </Tooltip>
       </div>
     </div>
   )
