@@ -9,12 +9,14 @@ $icon-plus: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' vi
 $icon-minus: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12l14 0'/%3E%3C/svg%3E");
 $icon-maximize: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 8v-2a2 2 0 0 1 2 -2h2'/%3E%3Cpath d='M4 16v2a2 2 0 0 0 2 2h2'/%3E%3Cpath d='M16 4h2a2 2 0 0 1 2 2v2'/%3E%3Cpath d='M16 20h2a2 2 0 0 0 2 -2v-2'/%3E%3C/svg%3E");
 $icon-minimize: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M15 19v-2a2 2 0 0 1 2 -2h2'/%3E%3Cpath d='M15 5v2a2 2 0 0 0 2 2h2'/%3E%3Cpath d='M5 15h2a2 2 0 0 1 2 2v2'/%3E%3Cpath d='M5 9h2a2 2 0 0 0 2 -2v-2'/%3E%3C/svg%3E");
+$icon-compass: url('data:image/svg+xml;charset=utf-8,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%20standalone%3D%22no%22%3F%3E%0A%3C!DOCTYPE%20svg%20PUBLIC%20%22-%2F%2FW3C%2F%2FDTD%20SVG%201.1%2F%2FEN%22%20%22http%3A%2F%2Fwww.w3.org%2FGraphics%2FSVG%2F1.1%2FDTD%2Fsvg11.dtd%22%3E%0A%3Csvg%20width%3D%22100%25%22%20height%3D%22100%25%22%20viewBox%3D%220%200%2033%2033%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20xml%3Aspace%3D%22preserve%22%20xmlns%3Aserif%3D%22http%3A%2F%2Fwww.serif.com%2F%22%20style%3D%22fill-rule%3Aevenodd%3Bclip-rule%3Aevenodd%3Bstroke-linejoin%3Around%3Bstroke-miterlimit%3A2%3B%22%3E%0A%20%20%20%20%3Cg%20transform%3D%22matrix(1%2C0%2C0%2C1%2C-3.24298%2C2.63257)%22%3E%0A%20%20%20%20%20%20%20%20%3Cg%20transform%3D%22matrix(1.20712%2C0%2C0%2C1.20712%2C14.9145%2C2.51292)%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M2.5%2C9.406L0%2C9.406L4%2C17.875L8%2C9.406L5.5%2C9.406C5.483%2C10.22%204.818%2C10.875%204%2C10.875C3.182%2C10.875%202.517%2C10.22%202.5%2C9.406Z%22%20style%3D%22fill%3Argb(29%2C50%2C98)%3Bfill-opacity%3A0.35%3B%22%2F%3E%0A%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%20%20%20%20%3Cg%20transform%3D%22matrix(1.20712%2C0%2C0%2C1.20712%2C14.9145%2C2.51292)%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M4%2C0.938L0%2C9.406L2.5%2C9.406L2.5%2C9.375C2.5%2C8.547%203.172%2C7.875%204%2C7.875C4.828%2C7.875%205.5%2C8.547%205.5%2C9.375L5.5%2C9.406L8%2C9.406L4%2C0.938Z%22%20style%3D%22fill%3Argb(68%2C73%2C82)%3B%22%2F%3E%0A%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E%0A');
 
 // Dark mode variants — same paths, stroke='white' for visibility on dark backgrounds
 $icon-dark-plus: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 5l0 14'/%3E%3Cpath d='M5 12l14 0'/%3E%3C/svg%3E");
 $icon-dark-minus: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12l14 0'/%3E%3C/svg%3E");
 $icon-dark-maximize: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 8v-2a2 2 0 0 1 2 -2h2'/%3E%3Cpath d='M4 16v2a2 2 0 0 0 2 2h2'/%3E%3Cpath d='M16 4h2a2 2 0 0 1 2 2v2'/%3E%3Cpath d='M16 20h2a2 2 0 0 0 2 -2v-2'/%3E%3C/svg%3E");
 $icon-dark-minimize: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M15 19v-2a2 2 0 0 1 2 -2h2'/%3E%3Cpath d='M15 5v2a2 2 0 0 0 2 2h2'/%3E%3Cpath d='M5 15h2a2 2 0 0 1 2 2v2'/%3E%3Cpath d='M5 9h2a2 2 0 0 0 2 -2v-2'/%3E%3C/svg%3E");
+$icon-dark-compass: url('data:image/svg+xml;charset=utf-8,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%20standalone%3D%22no%22%3F%3E%0A%3C!DOCTYPE%20svg%20PUBLIC%20%22-%2F%2FW3C%2F%2FDTD%20SVG%201.1%2F%2FEN%22%20%22http%3A%2F%2Fwww.w3.org%2FGraphics%2FSVG%2F1.1%2FDTD%2Fsvg11.dtd%22%3E%0A%3Csvg%20width%3D%22100%25%22%20height%3D%22100%25%22%20viewBox%3D%220%200%2033%2033%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20xml%3Aspace%3D%22preserve%22%20xmlns%3Aserif%3D%22http%3A%2F%2Fwww.serif.com%2F%22%20style%3D%22fill-rule%3Aevenodd%3Bclip-rule%3Aevenodd%3Bstroke-linejoin%3Around%3Bstroke-miterlimit%3A2%3B%22%3E%0A%20%20%20%20%3Cg%20transform%3D%22matrix(1%2C0%2C0%2C1%2C-3.24298%2C2.63257)%22%3E%0A%20%20%20%20%20%20%20%20%3Cg%20transform%3D%22matrix(1.20712%2C0%2C0%2C1.20712%2C14.9145%2C2.51292)%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M2.5%2C9.406L0%2C9.406L4%2C17.875L8%2C9.406L5.5%2C9.406C5.483%2C10.22%204.818%2C10.875%204%2C10.875C3.182%2C10.875%202.517%2C10.22%202.5%2C9.406Z%22%20style%3D%22fill%3A%23ccc%3B%3B%22%2F%3E%0A%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%20%20%20%20%3Cg%20transform%3D%22matrix(1.20712%2C0%2C0%2C1.20712%2C14.9145%2C2.51292)%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M4%2C0.938L0%2C9.406L2.5%2C9.406L2.5%2C9.375C2.5%2C8.547%203.172%2C7.875%204%2C7.875C4.828%2C7.875%205.5%2C8.547%205.5%2C9.375L5.5%2C9.406L8%2C9.406L4%2C0.938Z%22%20style%3D%22fill%3A%23c92a2a%3B%22%2F%3E%0A%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E%0A');
 
 $ai-size-lg: calc(2.125rem * var(--mantine-scale));
 
@@ -75,18 +77,20 @@ $ai-size-lg: calc(2.125rem * var(--mantine-scale));
     }
   }
 
-  // Compass: MapLibre injects an inline SVG (not background-image).
-  // Disable mask so inline SVG shows; override polygon fill for dark mode support.
+  // Compass
   :global(.maplibregl-ctrl-group button.maplibregl-ctrl-compass .maplibregl-ctrl-icon) {
-    background-color: transparent;
-  }
+    @include mantine.light {
+      background-image: $icon-compass;
+      // &:hover {
+      //   filter: brightness(0) saturate(100%) invert(76%) sepia(57%) saturate(721%) hue-rotate(344deg) brightness(104%)
+      //     contrast(98%);
+      // }
+    }
+    @include mantine.dark {
+      background-image: $icon-dark-compass;
+    }
 
-  :global(.maplibregl-ctrl-compass-arrow polygon#north) {
-    fill: var(--mantine-color-default-color);
-  }
-
-  :global(.maplibregl-ctrl-compass-arrow polygon#south) {
-    fill: var(--mantine-color-dimmed);
+    background-size: 29px 29px;
   }
 
   // Fullscreen → IconMaximize
