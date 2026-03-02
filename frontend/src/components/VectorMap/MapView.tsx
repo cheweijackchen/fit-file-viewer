@@ -131,9 +131,21 @@ export function MapView({ track, highlightedIndex }: MapViewProps) {
 
   const playback = useTrackPlayback({ map, points, enabled: playbackOpen, terrain: showTerrain })
 
+  // Auto-play after all useTrackPlayback effects settle on the render where
+  // playbackOpen becomes true. Calling play() synchronously in the event handler
+  // would race against useTrackPlayback's effect cleanups (which run during the
+  // same re-render). This effect is registered after useTrackPlayback so it
+  // always runs last.
+  // play() reads only from refs, so a stale closure is safe.
+  useEffect(() => {
+    if (playbackOpen) {
+      playback.play()
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [playbackOpen])
+
   function handleOpenPlayback() {
     setPlaybackOpen(true)
-    playback.play()
   }
 
   return (
