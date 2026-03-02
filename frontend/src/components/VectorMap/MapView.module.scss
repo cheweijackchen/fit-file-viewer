@@ -1,7 +1,7 @@
 // Override MapLibre GL JS control styles to match Mantine ActionIcon (variant="default", size={36}).
 // Uses :global(.selector) (function form) — Turbopack does not support :global {} block form
 // with class selectors inside. Each rule explicitly lists the full MapLibre selector path.
-// Icons replaced using CSS mask-image with Tabler icon SVG data URIs.
+// Icons replaced using CSS background-image with Tabler icon SVG data URIs.
 
 // Tabler icon SVG data URIs (stroke-based, 24×24 viewBox)
 // Paths sourced from @tabler/icons-react v3.36.0
@@ -9,6 +9,12 @@ $icon-plus: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' vi
 $icon-minus: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12l14 0'/%3E%3C/svg%3E");
 $icon-maximize: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 8v-2a2 2 0 0 1 2 -2h2'/%3E%3Cpath d='M4 16v2a2 2 0 0 0 2 2h2'/%3E%3Cpath d='M16 4h2a2 2 0 0 1 2 2v2'/%3E%3Cpath d='M16 20h2a2 2 0 0 0 2 -2v-2'/%3E%3C/svg%3E");
 $icon-minimize: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M15 19v-2a2 2 0 0 1 2 -2h2'/%3E%3Cpath d='M15 5v2a2 2 0 0 0 2 2h2'/%3E%3Cpath d='M5 15h2a2 2 0 0 1 2 2v2'/%3E%3Cpath d='M5 9h2a2 2 0 0 0 2 -2v-2'/%3E%3C/svg%3E");
+
+// Dark mode variants — same paths, stroke='white' for visibility on dark backgrounds
+$icon-dark-plus: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 5l0 14'/%3E%3Cpath d='M5 12l14 0'/%3E%3C/svg%3E");
+$icon-dark-minus: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12l14 0'/%3E%3C/svg%3E");
+$icon-dark-maximize: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 8v-2a2 2 0 0 1 2 -2h2'/%3E%3Cpath d='M4 16v2a2 2 0 0 0 2 2h2'/%3E%3Cpath d='M16 4h2a2 2 0 0 1 2 2v2'/%3E%3Cpath d='M16 20h2a2 2 0 0 0 2 -2v-2'/%3E%3C/svg%3E");
+$icon-dark-minimize: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M15 19v-2a2 2 0 0 1 2 -2h2'/%3E%3Cpath d='M15 5v2a2 2 0 0 0 2 2h2'/%3E%3Cpath d='M5 15h2a2 2 0 0 1 2 2v2'/%3E%3Cpath d='M5 9h2a2 2 0 0 0 2 -2v-2'/%3E%3C/svg%3E");
 
 $ai-size-lg: calc(2.125rem * var(--mantine-scale));
 
@@ -39,30 +45,40 @@ $ai-size-lg: calc(2.125rem * var(--mantine-scale));
     border-top: 1px solid var(--mantine-color-default-border);
   }
 
-  // === Icon base: mask-image replaces background-image ===
+  // === Icon base: background-image replaces MapLibre's sprite ===
   :global(.maplibregl-ctrl-group .maplibregl-ctrl-icon) {
     background-image: none;
-    background-color: var(--mantine-color-default-color);
-    mask-repeat: no-repeat;
-    mask-position: center;
-    mask-size: 20px 20px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 20px 20px;
   }
 
   // Zoom In → IconPlus
   :global(.maplibregl-ctrl-group button.maplibregl-ctrl-zoom-in .maplibregl-ctrl-icon) {
-    mask-image: $icon-plus;
+    @include mantine.light {
+      background-image: $icon-plus;
+    }
+
+    @include mantine.dark {
+      background-image: $icon-dark-plus;
+    }
   }
 
   // Zoom Out → IconMinus
   :global(.maplibregl-ctrl-group button.maplibregl-ctrl-zoom-out .maplibregl-ctrl-icon) {
-    mask-image: $icon-minus;
+    @include mantine.light {
+      background-image: $icon-minus;
+    }
+
+    @include mantine.dark {
+      background-image: $icon-dark-minus;
+    }
   }
 
   // Compass: MapLibre injects an inline SVG (not background-image).
   // Disable mask so inline SVG shows; override polygon fill for dark mode support.
   :global(.maplibregl-ctrl-group button.maplibregl-ctrl-compass .maplibregl-ctrl-icon) {
     background-color: transparent;
-    mask-image: none;
   }
 
   :global(.maplibregl-ctrl-compass-arrow polygon#north) {
@@ -75,12 +91,24 @@ $ai-size-lg: calc(2.125rem * var(--mantine-scale));
 
   // Fullscreen → IconMaximize
   :global(.maplibregl-ctrl-group button.maplibregl-ctrl-fullscreen .maplibregl-ctrl-icon) {
-    mask-image: $icon-maximize;
+    @include mantine.light {
+      background-image: $icon-maximize;
+    }
+
+    @include mantine.dark {
+      background-image: $icon-dark-maximize;
+    }
   }
 
   // Exit fullscreen → IconMinimize
   :global(.maplibregl-ctrl-group button.maplibregl-ctrl-shrink .maplibregl-ctrl-icon) {
-    mask-image: $icon-minimize;
+    @include mantine.light {
+      background-image: $icon-minimize;
+    }
+
+    @include mantine.dark {
+      background-image: $icon-dark-minimize;
+    }
   }
 
   // === Popup — match Mantine Paper appearance ===
