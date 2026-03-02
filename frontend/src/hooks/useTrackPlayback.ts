@@ -376,15 +376,23 @@ export function useTrackPlayback({ map, points, enabled, terrain }: UseTrackPlay
     setCurrentPosition(null)
   }, [playbackPoints])
 
-  // Restore overview on disable / unmount
+  // Cancel RAF on unmount regardless of playback state
+  useEffect(() => cancelRaf, []) // eslint-disable-line react-hooks/exhaustive-deps -- intentional empty deps for unmount-only
+
+  // Restore overview and reset state when playback is disabled
+  // No cleanup return here — if enabled transitions false → true, the RAF
+  // started by play() must not be cancelled by an effect cleanup
   useEffect(() => {
     if (!enabled) {
       cancelRaf()
-      if (isPlayingRef.current) {
-        isPlayingRef.current = false
-        // eslint-disable-next-line react-hooks/set-state-in-effect
-        setIsPlaying(false)
-      }
+      isPlayingRef.current = false
+      seekOffsetRef.current = 0
+      bearingRef.current = playbackBearingsRef.current.start
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setIsPlaying(false)
+      setProgress(0)
+      setCurrentTime(0)
+      setCurrentPosition(null)
       if (map && points.length > 0) {
         const bounds = new maplibregl.LngLatBounds()
         for (const p of points) {
@@ -393,7 +401,6 @@ export function useTrackPlayback({ map, points, enabled, terrain }: UseTrackPlay
         map.fitBounds(bounds, { padding: 80, pitch: 50, duration: 1200 })
       }
     }
-    return cancelRaf
   }, [enabled, map, points])
 
   return { isPlaying, progress, currentTime, totalDuration, speed, currentPosition, play, pause, toggle, seek, setSpeed }
