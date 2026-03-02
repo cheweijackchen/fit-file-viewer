@@ -173,7 +173,9 @@ $ai-size-lg: calc(2.125rem * var(--mantine-scale));
   :global(.maplibregl-canvas) {
     cursor: crosshair !important;
   }
+}
 
+.wrapper {
   // === Scale control ===
   :global(.maplibregl-ctrl-scale) {
     background: var(--mantine-color-default);
@@ -184,5 +186,12 @@ $ai-size-lg: calc(2.125rem * var(--mantine-scale));
     font-size: var(--mantine-font-size-xs);
     padding-inline: 4px;
     box-shadow: none;
+  }
+}
+
+.playing {
+  :global(.maplibregl-ctrl-top-right),
+  :global(.maplibregl-ctrl-bottom-left) {
+    display: none;
   }
 }
