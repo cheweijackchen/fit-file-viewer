@@ -1,5 +1,6 @@
 import { Stack, Text } from '@mantine/core'
 import { Dropzone, type FileWithPath } from '@mantine/dropzone'
+import { notifications } from '@mantine/notifications'
 import { IconMap, IconUpload, IconX } from '@tabler/icons-react'
 
 interface Props {
@@ -10,18 +11,24 @@ interface Props {
 
 export function GpxFileUploader({ className, onFile, isParsing }: Props) {
   function onDrop(files: FileWithPath[]) {
-    const file = files[0]
-    if (file?.name.toLowerCase().endsWith('.gpx')) {
-      onFile(file)
-    }
+    onFile(files[0])
+  }
+
+  function onReject() {
+    notifications.show({
+      title: '不支援的檔案格式',
+      message: '請上傳 .gpx 格式的檔案',
+      color: 'red'
+    })
   }
 
   return (
     <Dropzone
       className={className}
       loading={isParsing}
+      accept={{ 'application/gpx+xml': ['.gpx'] }}
       onDrop={onDrop}
-      onReject={(files) => console.log('rejected files', files)}
+      onReject={onReject}
     >
       <Stack
         align="center"
