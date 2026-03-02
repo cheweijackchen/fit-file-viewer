@@ -25,7 +25,7 @@ export function PlaybackBar({
   onSpeedChange,
 }: Props) {
   return (
-    <div className="absolute bottom-2.5 left-25 right-2.5 pointer-events-auto bg-black/62 backdrop-blur rounded-(--mantine-radius-md) px-3.5 py-2.5 shadow-(--mantine-shadow-md)">
+    <div className="absolute bottom-2.5 left-2.5 right-2.5 pointer-events-auto bg-black/62 backdrop-blur rounded-(--mantine-radius-md) px-3.5 py-2.5 shadow-(--mantine-shadow-md)">
       <div className="flex items-center gap-2.5">
         <Tooltip
           label={isPlaying ? 'Pause' : 'Play'}

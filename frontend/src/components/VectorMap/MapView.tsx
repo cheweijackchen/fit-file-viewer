@@ -1,5 +1,5 @@
 import { ActionIcon, Tooltip } from '@mantine/core'
-import { IconPlayerPlay, IconPlayerPlayFilled } from '@tabler/icons-react'
+import { IconX } from '@tabler/icons-react'
 import maplibregl from 'maplibre-gl'
 import type { Map } from 'maplibre-gl'
 import { useRef, useEffect, useState } from 'react'
@@ -20,6 +20,7 @@ import { MapControlPanel } from './MapControlPanel'
 import { MapOptionsPanel } from './MapOptionsPanel'
 import styles from './MapView.module.scss'
 import { PlaybackBar } from './PlaybackBar'
+import { PlaybackButton } from './PlaybackButton'
 import { PlaybackPositionLayer } from './PlaybackPositionLayer'
 import { TerrainToggle } from './TerrainToggle'
 import { useMapControlTooltip } from './useMapControlTooltip'
@@ -130,6 +131,11 @@ export function MapView({ track, highlightedIndex }: MapViewProps) {
 
   const playback = useTrackPlayback({ map, points, enabled: playbackOpen, terrain: showTerrain })
 
+  function handleOpenPlayback() {
+    setPlaybackOpen(true)
+    playback.play()
+  }
+
   return (
     // position: relative so absolute children (selector, controls) are anchored here
     <div
@@ -176,37 +182,48 @@ export function MapView({ track, highlightedIndex }: MapViewProps) {
 
       {/* z-index must exceed MapLibre canvas (which sits at z-index 0) */}
       <div className="absolute inset-0 pointer-events-none z-20">
-        <MapControlPanel>
-          <Tooltip
-            label={playbackOpen ? 'Close flyover' : 'Flyover'}
-            position="left"
-            withinPortal={false}
-            openDelay={750}
-          >
-            <ActionIcon
-              size="lg"
-              variant={playbackOpen ? 'filled' : 'default'}
-              color={playbackOpen ? 'blue' : undefined}
-              disabled={points.length < 2}
-              aria-label="Toggle track flyover playback"
-              onClick={() => setPlaybackOpen(v => !v)}
+        {/* Close button at top-left: visible whenever playback is open */}
+        {playbackOpen && (
+          <div className="absolute top-2.5 left-2.5 pointer-events-auto">
+            <Tooltip
+              label="Close flyover"
+              position="right"
+              withinPortal={false}
+              openDelay={750}
             >
-              {playbackOpen
-                ? <IconPlayerPlayFilled size={20} />
-                : <IconPlayerPlay size={20} />}
-            </ActionIcon>
-          </Tooltip>
-          <TerrainToggle
-            value={showTerrain}
-            onChange={setShowTerrain}
-          />
-          <MapOptionsPanel
-            value={baseMap}
-            showTrackPoints={showTrackPoints}
-            onChange={setBaseMap}
-            onTrackPointsChange={setShowTrackPoints}
-          />
-        </MapControlPanel>
+              <ActionIcon
+                size="lg"
+                variant="default"
+                aria-label="Close flyover"
+                onClick={() => setPlaybackOpen(false)}
+              >
+                <IconX size={20} />
+              </ActionIcon>
+            </Tooltip>
+          </div>
+        )}
+
+        {/* Control panel: hidden while playing, shown when paused or playback closed */}
+        {!playback.isPlaying && (
+          <MapControlPanel>
+            <TerrainToggle
+              value={showTerrain}
+              onChange={setShowTerrain}
+            />
+            <MapOptionsPanel
+              value={baseMap}
+              showTrackPoints={showTrackPoints}
+              onChange={setBaseMap}
+              onTrackPointsChange={setShowTrackPoints}
+            />
+            {!playbackOpen && (
+              <PlaybackButton
+                disabled={points.length < 2}
+                onClick={handleOpenPlayback}
+              />
+            )}
+          </MapControlPanel>
+        )}
 
         {playbackOpen && playback.totalDuration > 0 && (
           <PlaybackBar
