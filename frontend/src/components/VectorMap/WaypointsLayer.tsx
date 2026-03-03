@@ -118,6 +118,7 @@ export function WaypointsLayer({ map, isMapReady, waypoints, show, showLabels }:
         'circle-radius': 13,
         'circle-color': '#ffffff',
         'circle-opacity': 0.7,
+        'circle-pitch-scale': 'viewport',
       },
     })
 
@@ -132,6 +133,7 @@ export function WaypointsLayer({ map, isMapReady, waypoints, show, showLabels }:
         'circle-color': markerColor,
         'circle-stroke-width': 2.5,
         'circle-stroke-color': '#ffffff',
+        'circle-pitch-scale': 'viewport',
       },
     })
 
