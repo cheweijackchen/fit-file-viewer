@@ -4,7 +4,6 @@ import maplibregl from 'maplibre-gl'
 import type { Map } from 'maplibre-gl'
 import { useRef, useEffect, useState } from 'react'
 import { TrackLayer } from '@/components/VectorMap/TrackLayer'
-import { TrackPopup } from '@/components/VectorMap/TrackPopup'
 import { LAYER_WAYPOINTS_HALO } from '@/constants/vectorMap'
 import {
   applyBaseMapMode,
@@ -26,6 +25,7 @@ import { PlaybackPositionLayer } from './PlaybackPositionLayer'
 import { TerrainToggle } from './TerrainToggle'
 import { useMapControlTooltip } from './useMapControlTooltip'
 import { WaypointsLayer } from './WaypointsLayer'
+import { TrackPopupLayer } from '@/components/VectorMap/TrackPopupLayer'
 
 interface MapViewProps {
   track: ParsedTrack | null;
@@ -146,7 +146,7 @@ export function MapView({ track, highlightedIndex }: MapViewProps) {
     if (playbackOpen) {
       playback.play()
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [playbackOpen])
 
   function handleOpenPlayback() {
@@ -173,7 +173,7 @@ export function MapView({ track, highlightedIndex }: MapViewProps) {
         options={{ showTrackPoints }}
         insertBefore={LAYER_WAYPOINTS_HALO}
       />
-      <TrackPopup
+      <TrackPopupLayer
         map={map}
         points={points}
         isMapReady={isMapReady}

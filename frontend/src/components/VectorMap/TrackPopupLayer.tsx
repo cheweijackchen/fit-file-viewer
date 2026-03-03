@@ -10,7 +10,7 @@ import { LAYER_LINE, LAYER_WAYPOINTS } from '@/constants/vectorMap'
 import type { TrackPoint } from '@/model/gpx'
 import theme from '@/styles/theme'
 
-interface TrackPopupProps {
+interface Props {
   map: Map | null;
   points: TrackPoint[];
   isMapReady: boolean;
@@ -83,7 +83,7 @@ function formatTime(date: Date): string {
  * On click, shows a MapLibre popup with elevation and time info
  * for the nearest track point.
  */
-export function TrackPopup({ map, points, isMapReady, showTrackPoints }: TrackPopupProps) {
+export function TrackPopupLayer({ map, points, isMapReady, showTrackPoints }: Props) {
   const popupRef = useRef<maplibregl.Popup | null>(null)
   const rootRef = useRef<Root | null>(null)
 
