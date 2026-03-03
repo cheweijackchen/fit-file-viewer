@@ -177,6 +177,7 @@ export function MapView({ track, highlightedIndex }: MapViewProps) {
         map={map}
         points={points}
         isMapReady={isMapReady}
+        showTrackPoints={showTrackPoints}
       />
       <WaypointsLayer
         map={map}

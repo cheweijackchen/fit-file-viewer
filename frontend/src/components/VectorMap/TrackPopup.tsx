@@ -14,6 +14,7 @@ interface TrackPopupProps {
   map: Map | null;
   points: TrackPoint[];
   isMapReady: boolean;
+  showTrackPoints: boolean;
 }
 
 interface ContentProps {
@@ -82,12 +83,12 @@ function formatTime(date: Date): string {
  * On click, shows a MapLibre popup with elevation and time info
  * for the nearest track point.
  */
-export function TrackPopup({ map, points, isMapReady }: TrackPopupProps) {
+export function TrackPopup({ map, points, isMapReady, showTrackPoints }: TrackPopupProps) {
   const popupRef = useRef<maplibregl.Popup | null>(null)
   const rootRef = useRef<Root | null>(null)
 
   useEffect(() => {
-    if (!map || !isMapReady || points.length === 0) {
+    if (!map || !isMapReady || points.length === 0 || !showTrackPoints) {
       return
     }
 
@@ -165,7 +166,7 @@ export function TrackPopup({ map, points, isMapReady }: TrackPopupProps) {
       rootRef.current?.unmount()
       rootRef.current = null
     }
-  }, [map, points, isMapReady])
+  }, [map, points, isMapReady, showTrackPoints])
 
   return null
 }
