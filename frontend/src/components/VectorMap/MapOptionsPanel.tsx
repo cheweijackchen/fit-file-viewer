@@ -15,12 +15,12 @@ const OPTION_ICONS: Record<BaseMapMode, ComponentType<{ size?: number; }>> = {
 interface Props {
   value: BaseMapMode;
   onChange: (mapMode: BaseMapMode) => void;
-  showTrackPoints: boolean;
   onTrackPointsChange: (value: boolean) => void;
-  showWaypoints: boolean;
   onWaypointsChange: (value: boolean) => void;
-  showWaypointLabels: boolean;
   onWaypointLabelsChange: (value: boolean) => void;
+  showTrackPoints: boolean;
+  showWaypoints: boolean;
+  showWaypointLabels: boolean;
   hasWaypoints: boolean;
 }
 
