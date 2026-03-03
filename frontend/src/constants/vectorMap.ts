@@ -16,6 +16,11 @@ export const LAYER_LINE = 'gpx-track-line-layer'
 export const LAYER_LINE_SHADOW = 'gpx-track-line-shadow'
 export const LAYER_POINTS = 'gpx-track-points-layer'
 
+// Waypoint markers
+export const SOURCE_WAYPOINTS = 'gpx-waypoints'
+export const LAYER_WAYPOINTS_HALO = 'gpx-waypoints-halo-layer'
+export const LAYER_WAYPOINTS = 'gpx-waypoints-layer'
+
 // Playback position marker
 export const SOURCE_PLAYBACK = 'playback-position'
 export const LAYER_PLAYBACK = 'playback-position-layer'

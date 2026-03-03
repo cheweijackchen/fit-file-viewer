@@ -1,5 +1,5 @@
 import type { GeoJSON, Feature, LineString, FeatureCollection, Point } from 'geojson'
-import type { TrackPoint } from '@/model/gpx'
+import type { TrackPoint, Waypoint } from '@/model/gpx'
 
 /**
  * Convert an array of TrackPoints to a GeoJSON LineString Feature.
@@ -48,6 +48,40 @@ export function trackPointsToPointCollection(
           p.elevation !== null
             ? [p.lon, p.lat, p.elevation]
             : [p.lon, p.lat],
+      },
+    })),
+  }
+}
+
+/**
+ * Convert an array of Waypoints to a GeoJSON FeatureCollection of Points.
+ * Each feature carries the waypoint metadata (name, description, elevation, time)
+ * as properties for use in popup rendering.
+ */
+export function waypointsToPointCollection(
+  waypoints: Waypoint[],
+): FeatureCollection<Point> {
+  return {
+    type: 'FeatureCollection',
+    features: waypoints.map((wp, index) => ({
+      type: 'Feature',
+      id: index,
+      properties: {
+        index,
+        name: wp.name,
+        description: wp.description,
+        symbol: wp.symbol,
+        elevation: wp.elevation,
+        time: wp.time?.toISOString() ?? null,
+        lat: wp.lat,
+        lon: wp.lon,
+      },
+      geometry: {
+        type: 'Point',
+        coordinates:
+          wp.elevation !== null
+            ? [wp.lon, wp.lat, wp.elevation]
+            : [wp.lon, wp.lat],
       },
     })),
   }

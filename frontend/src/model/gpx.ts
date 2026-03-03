@@ -17,8 +17,19 @@ export interface TrackStats {
   duration: number | null;   // seconds
 }
 
+export interface Waypoint {
+  lat: number;
+  lon: number;
+  elevation: number | null;
+  name: string | null;
+  description: string | null;
+  symbol: string | null;
+  time: Date | null;
+}
+
 export interface ParsedTrack {
   name: string;
   points: TrackPoint[];
+  waypoints: Waypoint[];
   stats: TrackStats;
 }

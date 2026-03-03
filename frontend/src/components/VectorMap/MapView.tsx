@@ -24,6 +24,7 @@ import { PlaybackButton } from './PlaybackButton'
 import { PlaybackPositionLayer } from './PlaybackPositionLayer'
 import { TerrainToggle } from './TerrainToggle'
 import { useMapControlTooltip } from './useMapControlTooltip'
+import { WaypointsLayer } from './WaypointsLayer'
 
 interface MapViewProps {
   track: ParsedTrack | null;
@@ -38,6 +39,7 @@ export function MapView({ track, highlightedIndex }: MapViewProps) {
   const [baseMap, setBaseMap] = useState<BaseMapMode>(DEFAULT_BASE_MAP)
   const [showTerrain, setShowTerrain] = useState(false)
   const [showTrackPoints, setShowTrackPoints] = useState(false)
+  const [showWaypoints, setShowWaypoints] = useState(true)
   const [playbackOpen, setPlaybackOpen] = useState(false)
 
   // Initialize map once
@@ -126,6 +128,7 @@ export function MapView({ track, highlightedIndex }: MapViewProps) {
   const maplibreTooltip = useMapControlTooltip(wrapperRef)
 
   const points = track?.points ?? []
+  const waypoints = track?.waypoints ?? []
 
   useTrackFitBounds(map, points, isMapReady)
 
@@ -171,6 +174,12 @@ export function MapView({ track, highlightedIndex }: MapViewProps) {
         map={map}
         points={points}
         isMapReady={isMapReady}
+      />
+      <WaypointsLayer
+        map={map}
+        isMapReady={isMapReady}
+        waypoints={waypoints}
+        show={showWaypoints}
       />
 
       {playbackOpen && (
@@ -225,8 +234,11 @@ export function MapView({ track, highlightedIndex }: MapViewProps) {
             <MapOptionsPanel
               value={baseMap}
               showTrackPoints={showTrackPoints}
+              showWaypoints={showWaypoints}
+              hasWaypoints={waypoints.length > 0}
               onChange={setBaseMap}
               onTrackPointsChange={setShowTrackPoints}
+              onWaypointsChange={setShowWaypoints}
             />
             {!playbackOpen && (
               <PlaybackButton

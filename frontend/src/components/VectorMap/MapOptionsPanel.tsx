@@ -17,9 +17,20 @@ interface Props {
   onChange: (mapMode: BaseMapMode) => void;
   showTrackPoints: boolean;
   onTrackPointsChange: (value: boolean) => void;
+  showWaypoints: boolean;
+  onWaypointsChange: (value: boolean) => void;
+  hasWaypoints: boolean;
 }
 
-export function MapOptionsPanel({ value, onChange, showTrackPoints, onTrackPointsChange }: Props) {
+export function MapOptionsPanel({
+  value,
+  onChange,
+  showTrackPoints,
+  onTrackPointsChange,
+  showWaypoints,
+  onWaypointsChange,
+  hasWaypoints,
+}: Props) {
   return (
     <Popover
       position="bottom-end"
@@ -87,12 +98,21 @@ export function MapOptionsPanel({ value, onChange, showTrackPoints, onTrackPoint
           </Tabs.Panel>
 
           <Tabs.Panel value="settings">
-            <Switch
-              label="Show track points"
-              size="sm"
-              checked={showTrackPoints}
-              onChange={(e) => onTrackPointsChange(e.currentTarget.checked)}
-            />
+            <div className="flex flex-col gap-2">
+              <Switch
+                label="Show track points"
+                size="sm"
+                checked={showTrackPoints}
+                onChange={(e) => onTrackPointsChange(e.currentTarget.checked)}
+              />
+              <Switch
+                label="Show waypoints"
+                size="sm"
+                checked={showWaypoints}
+                disabled={!hasWaypoints}
+                onChange={(e) => onWaypointsChange(e.currentTarget.checked)}
+              />
+            </div>
           </Tabs.Panel>
         </Tabs>
       </Popover.Dropdown>

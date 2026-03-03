@@ -1,7 +1,7 @@
 import { parseGPX } from '@we-gold/gpxjs'
 import { useState, useCallback } from 'react'
 import { computeTrackStats } from '@/lib/elevationUtils'
-import type { ParsedTrack, TrackPoint } from '@/model/gpx'
+import type { ParsedTrack, TrackPoint, Waypoint } from '@/model/gpx'
 
 type ParseState =
   | { status: 'idle'; }
@@ -62,7 +62,21 @@ export function useGpxParser(): UseGpxParserReturn {
           }
         }
 
-        // Fallback: use waypoints when there are no track points
+        // Collect named waypoints (POIs separate from the track)
+        const parsedWaypoints: Waypoint[] = gpx.waypoints.map((wp) => ({
+          lat: wp.latitude,
+          lon: wp.longitude,
+          elevation: wp.elevation ?? null,
+          name: wp.name,
+          description: wp.description ?? wp.comment,
+          symbol: wp.symbol,
+          time: wp.time,
+        }))
+
+        // Fallback: use waypoints as track when there are no track points.
+        // In this case they are already the track, so don't show them again
+        // as separate waypoint markers.
+        let separateWaypoints = parsedWaypoints
         if (points.length === 0 && gpx.waypoints.length > 0) {
           for (const wp of gpx.waypoints) {
             points.push({
@@ -72,6 +86,7 @@ export function useGpxParser(): UseGpxParserReturn {
               time: wp.time ? new Date(wp.time) : null,
             })
           }
+          separateWaypoints = []
         }
 
         if (points.length === 0) {
@@ -88,7 +103,7 @@ export function useGpxParser(): UseGpxParserReturn {
 
         setState({
           status: 'success',
-          track: { name, points, stats },
+          track: { name, points, waypoints: separateWaypoints, stats },
         })
       } catch (err) {
         setState({
