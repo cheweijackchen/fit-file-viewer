@@ -3,9 +3,9 @@
 import { useState, useEffect, useRef } from 'react'
 
 interface TooltipState {
-  text: string
-  right: number
-  top: number
+  text: string;
+  right: number;
+  top: number;
 }
 
 export function useMapControlTooltip(
@@ -16,7 +16,9 @@ export function useMapControlTooltip(
 
   useEffect(() => {
     const wrapper = wrapperRef.current
-    if (!wrapper) return
+    if (!wrapper) {
+      return
+    }
 
     function clearTimer() {
       if (timerRef.current !== null) {
@@ -27,7 +29,9 @@ export function useMapControlTooltip(
 
     function handleMouseOver(e: MouseEvent) {
       const button = (e.target as Element).closest('.maplibregl-ctrl-group button')
-      if (!(button instanceof HTMLButtonElement)) return
+      if (!(button instanceof HTMLButtonElement)) {
+        return
+      }
 
       // Sync: re-strip title in case MapLibre re-set it (e.g. after fullscreen toggle)
       if (button.title) {
@@ -36,7 +40,9 @@ export function useMapControlTooltip(
       }
 
       const text = button.getAttribute('data-mltip') ?? ''
-      if (!text) return
+      if (!text) {
+        return
+      }
 
       clearTimer()
       timerRef.current = setTimeout(() => {
@@ -51,7 +57,9 @@ export function useMapControlTooltip(
     }
 
     function handleMouseOut(e: MouseEvent) {
-      if (!(e.target as Element).closest('.maplibregl-ctrl-group button')) return
+      if (!(e.target as Element).closest('.maplibregl-ctrl-group button')) {
+        return
+      }
       clearTimer()
       setTooltip(null)
     }

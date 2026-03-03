@@ -377,7 +377,7 @@ export function useTrackPlayback({ map, points, enabled, terrain }: UseTrackPlay
   }, [playbackPoints])
 
   // Cancel RAF on unmount regardless of playback state
-  useEffect(() => cancelRaf, []) // eslint-disable-line react-hooks/exhaustive-deps -- intentional empty deps for unmount-only
+  useEffect(() => cancelRaf, [])
 
   // Restore overview and reset state when playback is disabled
   // No cleanup return here — if enabled transitions false → true, the RAF

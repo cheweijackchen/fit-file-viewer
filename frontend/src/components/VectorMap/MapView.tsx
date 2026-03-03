@@ -4,6 +4,7 @@ import maplibregl from 'maplibre-gl'
 import type { Map } from 'maplibre-gl'
 import { useRef, useEffect, useState } from 'react'
 import { TrackLayer } from '@/components/VectorMap/TrackLayer'
+import { TrackPopupLayer } from '@/components/VectorMap/TrackPopupLayer'
 import { LAYER_WAYPOINTS_HALO } from '@/constants/vectorMap'
 import {
   applyBaseMapMode,
@@ -25,7 +26,6 @@ import { PlaybackPositionLayer } from './PlaybackPositionLayer'
 import { TerrainToggle } from './TerrainToggle'
 import { useMapControlTooltip } from './useMapControlTooltip'
 import { WaypointsLayer } from './WaypointsLayer'
-import { TrackPopupLayer } from '@/components/VectorMap/TrackPopupLayer'
 
 interface MapViewProps {
   track: ParsedTrack | null;
@@ -127,7 +127,7 @@ export function MapView({ track, highlightedIndex }: MapViewProps) {
     }, 1000)
   }, [map, isMapReady, showTerrain, baseMap])
 
-  const maplibreTooltip = useMapControlTooltip(wrapperRef)
+  const mapControlTooltip = useMapControlTooltip(wrapperRef)
 
   const points = track?.points ?? []
   const waypoints = track?.waypoints ?? []
@@ -195,14 +195,14 @@ export function MapView({ track, highlightedIndex }: MapViewProps) {
         />
       )}
 
-      {maplibreTooltip !== null && (
+      {mapControlTooltip !== null && (
         <div
-          className={styles['maplibre-tooltip']}
-          style={{ right: maplibreTooltip.right, top: maplibreTooltip.top }}
+          className={styles['map-control-tooltip']}
+          style={{ right: mapControlTooltip.right, top: mapControlTooltip.top }}
           role="tooltip"
           aria-hidden="true"
         >
-          {maplibreTooltip.text}
+          {mapControlTooltip.text}
         </div>
       )}
 
