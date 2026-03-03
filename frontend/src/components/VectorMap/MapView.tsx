@@ -5,6 +5,7 @@ import type { Map } from 'maplibre-gl'
 import { useRef, useEffect, useState } from 'react'
 import { TrackLayer } from '@/components/VectorMap/TrackLayer'
 import { TrackPopup } from '@/components/VectorMap/TrackPopup'
+import { LAYER_WAYPOINTS_HALO } from '@/constants/vectorMap'
 import {
   applyBaseMapMode,
   applyTerrain,
@@ -169,6 +170,7 @@ export function MapView({ track, highlightedIndex }: MapViewProps) {
         isMapReady={isMapReady}
         highlightedIndex={highlightedIndex}
         options={{ showTrackPoints }}
+        insertBefore={LAYER_WAYPOINTS_HALO}
       />
       <TrackPopup
         map={map}

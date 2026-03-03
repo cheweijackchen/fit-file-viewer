@@ -5,7 +5,6 @@ import {
   LAYER_LINE,
   LAYER_LINE_SHADOW,
   LAYER_POINTS,
-  LAYER_WAYPOINTS_HALO,
   SOURCE_LINE,
   SOURCE_POINTS,
 } from '@/constants/vectorMap'
@@ -26,6 +25,8 @@ interface TrackLayerProps {
   /** Highlighted point index from elevation profile hover */
   highlightedIndex: number | null;
   options?: TrackLayerOptions;
+  /** Insert track layers below this layer ID if it exists (used by MapView to enforce z-order). */
+  insertBefore?: string;
 }
 
 export function TrackLayer({
@@ -34,6 +35,7 @@ export function TrackLayer({
   isMapReady,
   highlightedIndex,
   options,
+  insertBefore,
 }: TrackLayerProps) {
   const theme = useMantineTheme()
   const lineColor = theme.colors.yellow[5]
@@ -66,12 +68,12 @@ export function TrackLayer({
       map.addSource(SOURCE_LINE, { type: 'geojson', data: lineFeature })
       map.addSource(SOURCE_POINTS, { type: 'geojson', data: pointCollection })
 
-      // Insert track layers below the waypoint layers if they already exist.
+      // Insert track layers below the specified layer if it already exists.
       // This handles the normal flow where the map is ready before a track is
       // loaded: WaypointsLayer adds its layers first, then the user drops a
       // file and TrackLayer's effect fires. Without beforeId the track layers
       // would be appended to the top, hiding the waypoints underneath.
-      const beforeId = map.getLayer(LAYER_WAYPOINTS_HALO) ? LAYER_WAYPOINTS_HALO : undefined
+      const beforeId = insertBefore && map.getLayer(insertBefore) ? insertBefore : undefined
 
       // --- Main track line ---
       map.addLayer(
@@ -111,7 +113,7 @@ export function TrackLayer({
       lineSrc?.setData(lineFeature)
       pointsSrc?.setData(pointCollection)
     }
-  }, [map, points, isMapReady, lineColor, pointColor])
+  }, [map, points, isMapReady, lineColor, pointColor, insertBefore])
 
   // Update highlighted point circle opacity via feature-state or filter
   useEffect(() => {
