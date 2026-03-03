@@ -6,7 +6,7 @@ import maplibregl, { type Map } from 'maplibre-gl'
 import { useEffect, useRef } from 'react'
 import { flushSync } from 'react-dom'
 import { createRoot, type Root } from 'react-dom/client'
-import { LAYER_LINE } from '@/constants/vectorMap'
+import { LAYER_LINE, LAYER_WAYPOINTS } from '@/constants/vectorMap'
 import type { TrackPoint } from '@/model/gpx'
 import theme from '@/styles/theme'
 
@@ -101,6 +101,14 @@ export function TrackPopup({ map, points, isMapReady, showTrackPoints }: TrackPo
     }
 
     const onLineClick = (e: maplibregl.MapMouseEvent) => {
+      // If a waypoint marker is at this location, let WaypointsLayer handle the click
+      if (
+        map.getLayer(LAYER_WAYPOINTS)
+        && map.queryRenderedFeatures(e.point, { layers: [LAYER_WAYPOINTS] }).length > 0
+      ) {
+        return
+      }
+
       const clickedLng = e.lngLat.lng
       const clickedLat = e.lngLat.lat
 
