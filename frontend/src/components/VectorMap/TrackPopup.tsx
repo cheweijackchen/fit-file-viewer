@@ -28,9 +28,9 @@ interface ContentProps {
 function TrackPopupContent({ index, elevation, time, lat, lon }: ContentProps) {
   const rows = [
     ['海拔', elevation],
-    ['時間', time],
     ['緯度', lat],
     ['經度', lon],
+    ['時間', time],
   ] as const
 
   return (
