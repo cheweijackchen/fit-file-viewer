@@ -133,6 +133,11 @@ export function WaypointsLayer({ map, isMapReady, waypoints, show }: Props) {
       },
     })
 
+    // Explicitly move waypoint layers to the top so they are always rendered
+    // above the track layers regardless of React effect execution order.
+    map.moveLayer(LAYER_WAYPOINTS_HALO)
+    map.moveLayer(LAYER_WAYPOINTS)
+
     addedRef.current = true
 
     return () => {
