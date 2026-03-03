@@ -1,6 +1,6 @@
 'use client'
 
-import { Alert, Button, Paper, Text } from '@mantine/core'
+import { Alert, Button, Paper, Text, Title } from '@mantine/core'
 import { IconAlertTriangle, IconMapPin, IconX } from '@tabler/icons-react'
 
 import { GpxFileUploader } from '@/components/GpxFileUploader'
@@ -24,13 +24,14 @@ export function Sidebar({ track, parseState, onFile, onReset }: Props) {
     <aside className="w-70 flex flex-col mr-4 overflow-hidden shrink-0">
       {/* Header */}
       <div className="">
-        <Text
-          size="sm"
+        <Title
+          size="h3"
+          order={3}
           fw={700}
           className="tracking-wider"
         >
           GPX 3D 軌跡地圖
-        </Text>
+        </Title>
         <Text
           size="xs"
           c="dimmed"
@@ -63,18 +64,19 @@ export function Sidebar({ track, parseState, onFile, onReset }: Props) {
           {/* Track name */}
           <Paper
             p="xs"
-            bg="orange.0"
-            bd="1px solid orange.3"
+            bg="blue.0"
+            bd="1px solid blue.3"
           >
-            <div className="flex items-center gap-1.5">
+            <div className="flex items-start gap-1.5">
               <IconMapPin
                 size={14}
-                color="var(--mantine-color-orange-6)"
+                color="var(--mantine-color-blue-6)"
+                className="mt-0.5"
               />
               <Text
                 size="sm"
                 fw={600}
-                c="orange.6"
+                c="blue.6"
                 className="flex-1 break-all"
               >
                 {track.name}

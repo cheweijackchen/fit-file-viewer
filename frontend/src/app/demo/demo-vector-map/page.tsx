@@ -18,7 +18,7 @@ export default function DemoVectorMap() {
   }, [reset])
 
   return (
-    <div style={{ display: 'flex', height: '100vh', overflow: 'hidden' }}>
+    <div className="flex">
       <Sidebar
         track={track}
         parseState={parseState}
@@ -27,8 +27,8 @@ export default function DemoVectorMap() {
       />
 
       {/* Right: map + elevation profile */}
-      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
-        <div style={{ flex: 1, position: 'relative', minHeight: 0 }}>
+      <div className="flex flex-1 column">
+        <div className="flex-1 h-[calc(100vh-92px)]">
           <MapView
             track={track}
             highlightedIndex={highlightedIndex}
