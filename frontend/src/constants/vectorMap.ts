@@ -20,6 +20,7 @@ export const LAYER_POINTS = 'gpx-track-points-layer'
 export const SOURCE_WAYPOINTS = 'gpx-waypoints'
 export const LAYER_WAYPOINTS_HALO = 'gpx-waypoints-halo-layer'
 export const LAYER_WAYPOINTS = 'gpx-waypoints-layer'
+export const LAYER_WAYPOINTS_LABELS = 'gpx-waypoints-labels-layer'
 
 // Playback position marker
 export const SOURCE_PLAYBACK = 'playback-position'

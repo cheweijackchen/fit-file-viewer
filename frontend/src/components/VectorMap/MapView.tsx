@@ -41,6 +41,7 @@ export function MapView({ track, highlightedIndex }: MapViewProps) {
   const [showTerrain, setShowTerrain] = useState(false)
   const [showTrackPoints, setShowTrackPoints] = useState(false)
   const [showWaypoints, setShowWaypoints] = useState(true)
+  const [showWaypointLabels, setShowWaypointLabels] = useState(true)
   const [playbackOpen, setPlaybackOpen] = useState(false)
 
   // Initialize map once
@@ -182,6 +183,7 @@ export function MapView({ track, highlightedIndex }: MapViewProps) {
         isMapReady={isMapReady}
         waypoints={waypoints}
         show={showWaypoints}
+        showLabels={showWaypointLabels}
       />
 
       {playbackOpen && (
@@ -237,10 +239,12 @@ export function MapView({ track, highlightedIndex }: MapViewProps) {
               value={baseMap}
               showTrackPoints={showTrackPoints}
               showWaypoints={showWaypoints}
+              showWaypointLabels={showWaypointLabels}
               hasWaypoints={waypoints.length > 0}
               onChange={setBaseMap}
               onTrackPointsChange={setShowTrackPoints}
               onWaypointsChange={setShowWaypoints}
+              onWaypointLabelsChange={setShowWaypointLabels}
             />
             {!playbackOpen && (
               <PlaybackButton

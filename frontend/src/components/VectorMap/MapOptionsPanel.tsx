@@ -19,6 +19,8 @@ interface Props {
   onTrackPointsChange: (value: boolean) => void;
   showWaypoints: boolean;
   onWaypointsChange: (value: boolean) => void;
+  showWaypointLabels: boolean;
+  onWaypointLabelsChange: (value: boolean) => void;
   hasWaypoints: boolean;
 }
 
@@ -29,6 +31,8 @@ export function MapOptionsPanel({
   onTrackPointsChange,
   showWaypoints,
   onWaypointsChange,
+  showWaypointLabels,
+  onWaypointLabelsChange,
   hasWaypoints,
 }: Props) {
   return (
@@ -111,6 +115,13 @@ export function MapOptionsPanel({
                 checked={showWaypoints}
                 disabled={!hasWaypoints}
                 onChange={(e) => onWaypointsChange(e.currentTarget.checked)}
+              />
+              <Switch
+                label="Show waypoint labels"
+                size="sm"
+                checked={showWaypointLabels}
+                disabled={!hasWaypoints || !showWaypoints}
+                onChange={(e) => onWaypointLabelsChange(e.currentTarget.checked)}
               />
             </div>
           </Tabs.Panel>

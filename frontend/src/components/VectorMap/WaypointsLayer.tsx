@@ -7,6 +7,7 @@ import { createRoot, type Root } from 'react-dom/client'
 import {
   LAYER_WAYPOINTS,
   LAYER_WAYPOINTS_HALO,
+  LAYER_WAYPOINTS_LABELS,
   SOURCE_WAYPOINTS,
 } from '@/constants/vectorMap'
 import { waypointsToPointCollection } from '@/lib/gpxToGeoJson'
@@ -18,6 +19,7 @@ interface Props {
   isMapReady: boolean;
   waypoints: Waypoint[];
   show: boolean;
+  showLabels: boolean;
 }
 
 interface PopupContentProps {
@@ -87,7 +89,7 @@ function WaypointPopupContent({ waypoint }: PopupContentProps) {
   )
 }
 
-export function WaypointsLayer({ map, isMapReady, waypoints, show }: Props) {
+export function WaypointsLayer({ map, isMapReady, waypoints, show, showLabels }: Props) {
   const theme = useMantineTheme()
   const markerColor = theme.colors.orange[5]!
 
@@ -133,10 +135,31 @@ export function WaypointsLayer({ map, isMapReady, waypoints, show }: Props) {
       },
     })
 
+    // Text labels above each waypoint
+    map.addLayer({
+      id: LAYER_WAYPOINTS_LABELS,
+      type: 'symbol',
+      source: SOURCE_WAYPOINTS,
+      layout: {
+        'text-field': ['get', 'name'],
+        'text-anchor': 'bottom',
+        'text-offset': [0, -1.8],
+        'text-size': 12,
+        'text-font': ['Open Sans Regular', 'Arial Unicode MS Regular'],
+        visibility: show && showLabels ? 'visible' : 'none',
+      },
+      paint: {
+        'text-color': '#333333',
+        'text-halo-color': '#ffffff',
+        'text-halo-width': 2,
+      },
+    })
+
     // Explicitly move waypoint layers to the top so they are always rendered
     // above the track layers regardless of React effect execution order.
     map.moveLayer(LAYER_WAYPOINTS_HALO)
     map.moveLayer(LAYER_WAYPOINTS)
+    map.moveLayer(LAYER_WAYPOINTS_LABELS)
 
     addedRef.current = true
 
@@ -145,6 +168,9 @@ export function WaypointsLayer({ map, isMapReady, waypoints, show }: Props) {
         popupRef.current?.remove()
         rootRef.current?.unmount()
         rootRef.current = null
+        if (map.getLayer(LAYER_WAYPOINTS_LABELS)) {
+          map.removeLayer(LAYER_WAYPOINTS_LABELS)
+        }
         if (map.getLayer(LAYER_WAYPOINTS)) {
           map.removeLayer(LAYER_WAYPOINTS)
         }
@@ -187,6 +213,17 @@ export function WaypointsLayer({ map, isMapReady, waypoints, show }: Props) {
       popupRef.current?.remove()
     }
   }, [map, show])
+
+  // Toggle label visibility
+  useEffect(() => {
+    if (!map || !addedRef.current) {
+      return
+    }
+    const visibility = show && showLabels ? 'visible' : 'none'
+    if (map.getLayer(LAYER_WAYPOINTS_LABELS)) {
+      map.setLayoutProperty(LAYER_WAYPOINTS_LABELS, 'visibility', visibility)
+    }
+  }, [map, show, showLabels])
 
   // Click interaction: show popup for the nearest waypoint
   useEffect(() => {
