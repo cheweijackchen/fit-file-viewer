@@ -122,10 +122,17 @@ export function MapView({ track, highlightedIndex }: MapViewProps) {
       terrain: showTerrain,
       hillshade: showTerrain && baseMap === 'standard',
     })
+  }, [map, isMapReady, showTerrain, baseMap])
+
+  // Animate pitch only when terrain toggle changes, not on map style switch
+  useEffect(() => {
+    if (!map || !isMapReady) {
+      return
+    }
     setTimeout(() => {
       map.easeTo({ pitch: showTerrain ? 45 : 0, duration: 1000 })
     }, 1000)
-  }, [map, isMapReady, showTerrain, baseMap])
+  }, [map, isMapReady, showTerrain])
 
   const maplibreTooltip = useMapControlTooltip(wrapperRef)
 
