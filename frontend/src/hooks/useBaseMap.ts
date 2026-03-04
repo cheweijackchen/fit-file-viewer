@@ -186,11 +186,17 @@ function ensureTerrainSource(map: Map): void {
 }
 
 function applyTerrainInternal(map: Map, { terrain, hillshade }: TerrainOptions): void {
+  const currentTerrain = map.getTerrain()
+
   if (terrain) {
     ensureTerrainSource(map)
-    map.setTerrain({ source: TERRAIN_SOURCE_ID, exaggeration: 1.5 })
+    if (!currentTerrain) {
+      map.setTerrain({ source: TERRAIN_SOURCE_ID, exaggeration: 1.5 })
+    }
   } else {
-    map.setTerrain(null)
+    if (currentTerrain) {
+      map.setTerrain(null)
+    }
   }
 
   if (hillshade) {
