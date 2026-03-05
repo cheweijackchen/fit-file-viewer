@@ -6,15 +6,15 @@ import { useRef, useEffect, useState } from 'react'
 import { TrackLayer } from '@/components/VectorMap/TrackLayer'
 import { TrackPopupLayer } from '@/components/VectorMap/TrackPopupLayer'
 import { LAYER_WAYPOINTS_HALO } from '@/constants/vectorMap'
+import { useTrackFitBounds } from '@/hooks/useTrackFitBounds'
+import { useTrackPlayback } from '@/hooks/useTrackPlayback'
 import {
   applyBaseMapMode,
   applyTerrain,
   DEFAULT_BASE_MAP,
   VECTOR_STYLE_URL,
   type BaseMapMode,
-} from '@/hooks/useBaseMap'
-import { useTrackFitBounds } from '@/hooks/useTrackFitBounds'
-import { useTrackPlayback } from '@/hooks/useTrackPlayback'
+} from '@/lib/baseMap'
 import type { ParsedTrack } from '@/model/gpx'
 
 import { MapControlPanel } from './MapControlPanel'

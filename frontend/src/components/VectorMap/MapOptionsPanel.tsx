@@ -3,7 +3,7 @@
 import { Popover, ActionIcon, Tooltip, Text, UnstyledButton, Tabs, Switch } from '@mantine/core'
 import { IconStack2, IconMap, IconSatellite, IconWorld } from '@tabler/icons-react'
 import { type ComponentType } from 'react'
-import { BASE_MAP_OPTIONS, type BaseMapMode } from '@/hooks/useBaseMap'
+import { BASE_MAP_OPTIONS, type BaseMapMode } from '@/lib/baseMap'
 import styles from './MapOptionsPanel.module.scss'
 
 const OPTION_ICONS: Record<BaseMapMode, ComponentType<{ size?: number; }>> = {
