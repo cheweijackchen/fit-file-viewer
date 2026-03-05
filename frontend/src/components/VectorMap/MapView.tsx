@@ -5,15 +5,13 @@ import type { Map } from 'maplibre-gl'
 import { useRef, useEffect, useState } from 'react'
 import { TrackLayer } from '@/components/VectorMap/TrackLayer'
 import { TrackPopupLayer } from '@/components/VectorMap/TrackPopupLayer'
-import { LAYER_WAYPOINTS_HALO } from '@/constants/vectorMap'
+import { type BaseMapMode, LAYER_WAYPOINTS_HALO, VECTOR_STYLE_URL } from '@/constants/vectorMap'
 import { useTrackFitBounds } from '@/hooks/useTrackFitBounds'
 import { useTrackPlayback } from '@/hooks/useTrackPlayback'
 import {
   applyBaseMapMode,
   applyTerrain,
   DEFAULT_BASE_MAP,
-  VECTOR_STYLE_URL,
-  type BaseMapMode,
 } from '@/lib/baseMap'
 import type { ParsedTrack } from '@/model/gpx'
 
