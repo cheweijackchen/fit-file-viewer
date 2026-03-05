@@ -1,5 +1,6 @@
 import { ActionIcon, Tooltip } from '@mantine/core'
 import { IconX } from '@tabler/icons-react'
+import clsx from 'clsx'
 import maplibregl from 'maplibre-gl'
 import type { Map } from 'maplibre-gl'
 import { useRef, useEffect, useState } from 'react'
@@ -25,12 +26,12 @@ import { TerrainToggle } from './TerrainToggle'
 import { useMapControlTooltip } from './useMapControlTooltip'
 import { WaypointsLayer } from './WaypointsLayer'
 
-interface MapViewProps {
+interface Props {
   track: ParsedTrack | null;
   highlightedIndex: number | null;
 }
 
-export function MapView({ track, highlightedIndex }: MapViewProps) {
+export function MapView({ track, highlightedIndex }: Props) {
   const containerRef = useRef<HTMLDivElement>(null)
   const wrapperRef = useRef<HTMLDivElement>(null)
   const [map, setMap] = useState<Map | null>(null)
@@ -127,9 +128,10 @@ export function MapView({ track, highlightedIndex }: MapViewProps) {
     if (!map || !isMapReady) {
       return
     }
-    setTimeout(() => {
+    const id = setTimeout(() => {
       map.easeTo({ pitch: showTerrain ? 45 : 0, duration: 1000 })
     }, 1000)
+    return () => clearTimeout(id)
   }, [map, isMapReady, showTerrain])
 
   const maplibreTooltip = useMapControlTooltip(wrapperRef)
@@ -154,20 +156,15 @@ export function MapView({ track, highlightedIndex }: MapViewProps) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [playbackOpen])
 
-  function handleOpenPlayback() {
-    setPlaybackOpen(true)
-  }
-
   return (
     // position: relative so absolute children (selector, controls) are anchored here
     <div
       ref={wrapperRef}
-      className={`${styles.wrapper}${playback.isPlaying ? ` ${styles.playing}` : ''}`}
-      style={{ position: 'relative', width: '100%', height: '100%' }}
+      className={clsx(styles.wrapper, playback.isPlaying && styles.playing, 'relative w-full h-full')}
     >
       <div
         ref={containerRef}
-        style={{ width: '100%', height: '100%' }}
+        className="w-full h-full"
       />
 
       <TrackLayer
@@ -255,7 +252,7 @@ export function MapView({ track, highlightedIndex }: MapViewProps) {
             {!playbackOpen && (
               <PlaybackButton
                 disabled={points.length < 2}
-                onClick={handleOpenPlayback}
+                onClick={() => setPlaybackOpen(true)}
               />
             )}
           </MapControlPanel>
