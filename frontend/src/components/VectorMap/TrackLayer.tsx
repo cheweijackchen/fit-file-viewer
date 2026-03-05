@@ -100,6 +100,7 @@ export function TrackLayer({
             'circle-radius': 5,
             'circle-color': pointColor,
             'circle-opacity': 0,
+            'circle-pitch-scale': 'viewport',
           },
         },
         beforeId,

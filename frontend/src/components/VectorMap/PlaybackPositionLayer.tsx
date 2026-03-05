@@ -49,6 +49,7 @@ export function PlaybackPositionLayer({ map, isMapReady, position }: Props) {
         'circle-color': '#ffffff',
         'circle-stroke-width': 4,
         'circle-stroke-color': theme.colors.blue[5],
+        'circle-pitch-scale': 'viewport',
       },
     })
 

@@ -31,20 +31,19 @@ function WaypointPopupContent({ waypoint }: PopupContentProps) {
     ['海拔', waypoint.elevation !== null ? `${waypoint.elevation.toFixed(1)} m` : '—'],
     ['緯度', waypoint.lat.toFixed(6)],
     ['經度', waypoint.lon.toFixed(6)],
+    ...(waypoint.time
+      ? [[
+          '時間',
+          waypoint.time.toLocaleString('zh-TW', {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit',
+          }),
+        ] as [string, string]]
+      : []),
   ]
-
-  if (waypoint.time) {
-    rows.push([
-      '時間',
-      waypoint.time.toLocaleString('zh-TW', {
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit',
-        hour: '2-digit',
-        minute: '2-digit',
-      }),
-    ])
-  }
 
   return (
     <div className="flex flex-col gap-1 min-w-32">
@@ -103,65 +102,71 @@ export function WaypointsLayer({ map, isMapReady, waypoints, show, showLabels }:
       return
     }
 
-    map.addSource(SOURCE_WAYPOINTS, {
-      type: 'geojson',
-      data: waypointsToPointCollection(waypoints),
-    })
+    try {
+      map.addSource(SOURCE_WAYPOINTS, {
+        type: 'geojson',
+        data: waypointsToPointCollection(waypoints),
+      })
 
-    // White halo for contrast against the basemap
-    map.addLayer({
-      id: LAYER_WAYPOINTS_HALO,
-      type: 'circle',
-      source: SOURCE_WAYPOINTS,
-      layout: { visibility: show ? 'visible' : 'none' },
-      paint: {
-        'circle-radius': 13,
-        'circle-color': '#ffffff',
-        'circle-opacity': 0.7,
-      },
-    })
+      // White halo for contrast against the base map
+      map.addLayer({
+        id: LAYER_WAYPOINTS_HALO,
+        type: 'circle',
+        source: SOURCE_WAYPOINTS,
+        layout: { visibility: show ? 'visible' : 'none' },
+        paint: {
+          'circle-radius': 13,
+          'circle-color': '#ffffff',
+          'circle-opacity': 0.7,
+          'circle-pitch-scale': 'viewport',
+        },
+      })
 
-    // Filled orange dot
-    map.addLayer({
-      id: LAYER_WAYPOINTS,
-      type: 'circle',
-      source: SOURCE_WAYPOINTS,
-      layout: { visibility: show ? 'visible' : 'none' },
-      paint: {
-        'circle-radius': 8,
-        'circle-color': markerColor,
-        'circle-stroke-width': 2.5,
-        'circle-stroke-color': '#ffffff',
-      },
-    })
+      // Filled orange dot
+      map.addLayer({
+        id: LAYER_WAYPOINTS,
+        type: 'circle',
+        source: SOURCE_WAYPOINTS,
+        layout: { visibility: show ? 'visible' : 'none' },
+        paint: {
+          'circle-radius': 8,
+          'circle-color': markerColor,
+          'circle-stroke-width': 2.5,
+          'circle-stroke-color': '#ffffff',
+          'circle-pitch-scale': 'viewport',
+        },
+      })
 
-    // Text labels above each waypoint
-    map.addLayer({
-      id: LAYER_WAYPOINTS_LABELS,
-      type: 'symbol',
-      source: SOURCE_WAYPOINTS,
-      layout: {
-        'text-field': ['get', 'name'],
-        'text-anchor': 'bottom',
-        'text-offset': [0, -1.8],
-        'text-size': 12,
-        'text-font': ['Open Sans Regular', 'Arial Unicode MS Regular'],
-        visibility: show && showLabels ? 'visible' : 'none',
-      },
-      paint: {
-        'text-color': '#333333',
-        'text-halo-color': '#ffffff',
-        'text-halo-width': 2,
-      },
-    })
+      // Text labels above each waypoint
+      map.addLayer({
+        id: LAYER_WAYPOINTS_LABELS,
+        type: 'symbol',
+        source: SOURCE_WAYPOINTS,
+        layout: {
+          'text-field': ['get', 'name'],
+          'text-anchor': 'bottom',
+          'text-offset': [0, -1.8],
+          'text-size': 12,
+          'text-font': ['Open Sans Regular', 'Arial Unicode MS Regular'],
+          visibility: show && showLabels ? 'visible' : 'none',
+        },
+        paint: {
+          'text-color': '#333333',
+          'text-halo-color': '#ffffff',
+          'text-halo-width': 2,
+        },
+      })
 
-    // Explicitly move waypoint layers to the top so they are always rendered
-    // above the track layers regardless of React effect execution order.
-    map.moveLayer(LAYER_WAYPOINTS_HALO)
-    map.moveLayer(LAYER_WAYPOINTS)
-    map.moveLayer(LAYER_WAYPOINTS_LABELS)
+      // Explicitly move waypoint layers to the top so they are always rendered
+      // above the track layers regardless of React effect execution order.
+      map.moveLayer(LAYER_WAYPOINTS_HALO)
+      map.moveLayer(LAYER_WAYPOINTS)
+      map.moveLayer(LAYER_WAYPOINTS_LABELS)
 
-    addedRef.current = true
+      addedRef.current = true
+    } catch {
+      // map may have been destroyed or source/layer already exists
+    }
 
     return () => {
       try {
@@ -197,31 +202,24 @@ export function WaypointsLayer({ map, isMapReady, waypoints, show, showLabels }:
     src?.setData(waypointsToPointCollection(waypoints))
   }, [map, waypoints])
 
-  // Toggle layer visibility
+  // Toggle layer and label visibility
   useEffect(() => {
     if (!map || !addedRef.current) {
       return
     }
-    const visibility = show ? 'visible' : 'none'
+    const dotsVisibility = show ? 'visible' : 'none'
+    const labelsVisibility = show && showLabels ? 'visible' : 'none'
     if (map.getLayer(LAYER_WAYPOINTS)) {
-      map.setLayoutProperty(LAYER_WAYPOINTS, 'visibility', visibility)
+      map.setLayoutProperty(LAYER_WAYPOINTS, 'visibility', dotsVisibility)
     }
     if (map.getLayer(LAYER_WAYPOINTS_HALO)) {
-      map.setLayoutProperty(LAYER_WAYPOINTS_HALO, 'visibility', visibility)
+      map.setLayoutProperty(LAYER_WAYPOINTS_HALO, 'visibility', dotsVisibility)
+    }
+    if (map.getLayer(LAYER_WAYPOINTS_LABELS)) {
+      map.setLayoutProperty(LAYER_WAYPOINTS_LABELS, 'visibility', labelsVisibility)
     }
     if (!show) {
       popupRef.current?.remove()
-    }
-  }, [map, show])
-
-  // Toggle label visibility
-  useEffect(() => {
-    if (!map || !addedRef.current) {
-      return
-    }
-    const visibility = show && showLabels ? 'visible' : 'none'
-    if (map.getLayer(LAYER_WAYPOINTS_LABELS)) {
-      map.setLayoutProperty(LAYER_WAYPOINTS_LABELS, 'visibility', visibility)
     }
   }, [map, show, showLabels])
 
@@ -238,41 +236,32 @@ export function WaypointsLayer({ map, isMapReady, waypoints, show, showLabels }:
       map.getCanvas().style.cursor = ''
     }
 
-    const onClick = (e: maplibregl.MapMouseEvent) => {
-      const { lng, lat } = e.lngLat
-
-      let nearestIndex = 0
-      let minDist = Infinity
-      for (let i = 0; i < waypoints.length; i++) {
-        const wp = waypoints[i]!
-        const dist = (wp.lat - lat) ** 2 + (wp.lon - lng) ** 2
-        if (dist < minDist) {
-          minDist = dist
-          nearestIndex = i
-        }
-      }
-
-      const nearest = waypoints[nearestIndex]!
-
+    function showWaypointPopup(waypoint: Waypoint) {
       popupRef.current?.remove()
       rootRef.current?.unmount()
-
       const container = document.createElement('div')
       const root = createRoot(container)
       rootRef.current = root
-
       flushSync(() => {
         root.render(
           <MantineProvider theme={appTheme}>
-            <WaypointPopupContent waypoint={nearest} />
+            <WaypointPopupContent waypoint={waypoint} />
           </MantineProvider>,
         )
       })
-
       popupRef.current = new maplibregl.Popup({ closeButton: true, maxWidth: '280px' })
-        .setLngLat([nearest.lon, nearest.lat])
+        .setLngLat([waypoint.lon, waypoint.lat])
         .setDOMContent(container)
-        .addTo(map)
+        .addTo(map!)
+    }
+
+    const onClick = (e: maplibregl.MapMouseEvent) => {
+      const { lng, lat } = e.lngLat
+      const nearest = waypoints.reduce((best, wp) => {
+        const dist = ((wp.lat - lat) ** 2) + ((wp.lon - lng) ** 2)
+        return dist < best.dist ? { wp, dist } : best
+      }, { wp: waypoints[0]!, dist: Infinity }).wp
+      showWaypointPopup(nearest)
     }
 
     map.on('mouseenter', LAYER_WAYPOINTS, onMouseEnter)

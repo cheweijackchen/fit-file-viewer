@@ -7,13 +7,16 @@ export const BaseMapMode = {
 
 export type BaseMapMode = typeof BaseMapMode[keyof typeof BaseMapMode]
 
+// Vector tile style
+export const VECTOR_STYLE_URL = 'https://tiles.openfreemap.org/styles/liberty'
+
 // MapLibre GL source IDs
 export const SOURCE_LINE = 'gpx-track-line'
 export const SOURCE_POINTS = 'gpx-track-points'
 
 // MapLibre GL layer IDs
 export const LAYER_LINE = 'gpx-track-line-layer'
-export const LAYER_LINE_SHADOW = 'gpx-track-line-shadow'
+export const LAYER_LINE_SHADOW = 'gpx-track-line-shadow-layer'
 export const LAYER_POINTS = 'gpx-track-points-layer'
 
 // Waypoint markers

@@ -35,15 +35,32 @@ Use this exact structure:
 
 ---
 
-## Q: <exact wording of the user's question>
+## Summary
 
-**A:**
+- <bullet: what was accomplished or decided — one line each>
+- <...>
+
+Sections in this log:
+- Q1 Topic — one-line description
+- Q2 Topic — one-line description
+
+---
+
+## <Q1 Topic (kebab-case as anchor, Title Case as heading)>
+
+**Q:** <exact wording of the user's question>
+
+**Plan:** *(include verbatim only if plan mode was used for this question; omit section otherwise)*
+
+<Paste the full plan content exactly as it appeared — do not summarize or rewrite.>
+
+**Answer:**
 
 <Full answer content — include all explanations, comparisons, tables, and code blocks exactly as they appeared in the conversation. Do not summarize.>
 
 ---
 
-(repeat for each Q&A exchange in the session)
+(repeat for each significant Q&A exchange in the session)
 
 ---
 
@@ -61,7 +78,8 @@ Use this exact structure:
 ```
 
 **Rules:**
-- Include **every** Q&A exchange in the session, in order
-- Reproduce answers **in full** — not as bullet-point summaries
-- If a question was answered with a table or code example, include it verbatim
+- Include every **significant** Q&A exchange in order; skip pure execution prompts (`/commit`, `/session-log`, one-word confirmations like "好" / "繼續")
+- **Summary at top** must be written first — it is the reader's TL;DR and index
+- **Plan sections**: if plan mode was used, paste the final plan verbatim; never summarize it
+- **Answer sections**: reproduce in full — not as bullet-point summaries; include tables and code blocks verbatim
 - Do not ask for confirmation — create the file immediately
