@@ -68,12 +68,15 @@ export function TrackLayer({
       map.addSource(SOURCE_LINE, { type: 'geojson', data: lineFeature })
       map.addSource(SOURCE_POINTS, { type: 'geojson', data: pointCollection })
 
-      // Insert track layers below the specified layer if it already exists.
-      // This handles the normal flow where the map is ready before a track is
-      // loaded: WaypointsLayer adds its layers first, then the user drops a
-      // file and TrackLayer's effect fires. Without beforeId the track layers
-      // would be appended to the top, hiding the waypoints underneath.
-      const beforeId = insertBefore && map.getLayer(insertBefore) ? insertBefore : undefined
+      // Find the first symbol (label) layer in the base map style.
+      // Inserting before it places the track above terrain/roads but below
+      // all place-name / road-name labels — the standard pattern for data
+      // layers in vector tile maps.
+      // Falls back to `insertBefore` (LAYER_WAYPOINTS_HALO) as a last resort
+      // for styles with no symbol layers (e.g. pure satellite).
+      const firstSymbolLayerId = map.getStyle().layers.find(l => l.type === 'symbol')?.id
+      const beforeId = firstSymbolLayerId
+        ?? (insertBefore && map.getLayer(insertBefore) ? insertBefore : undefined)
 
       // --- Main track line ---
       map.addLayer(
