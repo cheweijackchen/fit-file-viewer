@@ -112,27 +112,42 @@ export function MapView({ track, highlightedIndex }: Props) {
     applyBaseMapMode(map, baseMap)
   }, [map, isMapReady, baseMap])
 
-  // Apply terrain & hillshade (hillshade only in standard mode)
-  useEffect(() => {
-    if (!map || !isMapReady) {
-      return
-    }
-    applyTerrain(map, {
-      terrain: showTerrain,
-      hillshade: showTerrain && baseMap === 'standard',
-    })
-  }, [map, isMapReady, showTerrain, baseMap])
+  const prevShowTerrainRef = useRef(showTerrain)
 
-  // Animate pitch only when terrain toggle changes, not on map style switch
+  // Apply terrain & hillshade, and sequence pitch animation to avoid camera offset
   useEffect(() => {
     if (!map || !isMapReady) {
       return
     }
-    const id = setTimeout(() => {
-      map.easeTo({ pitch: showTerrain ? 45 : 0, duration: 1000 })
-    }, 1000)
-    return () => clearTimeout(id)
-  }, [map, isMapReady, showTerrain])
+
+    const terrainChanged = prevShowTerrainRef.current !== showTerrain
+    prevShowTerrainRef.current = showTerrain
+
+    // When only baseMap changes (e.g. hillshade on/off), update without animation
+    if (!terrainChanged) {
+      applyTerrain(map, {
+        terrain: showTerrain,
+        hillshade: showTerrain && baseMap === 'standard',
+      })
+      return
+    }
+
+    if (showTerrain) {
+      // Enable terrain first, then tilt the camera
+      applyTerrain(map, { terrain: true, hillshade: baseMap === 'standard' })
+      const id = setTimeout(() => {
+        map.easeTo({ pitch: 45, duration: 1000 })
+      }, 1000)
+      return () => clearTimeout(id)
+    } else {
+      // Pitch back to flat first; only remove terrain after the animation ends
+      // to avoid the 3D→2D reprojection causing a visible offset at pitch=45
+      map.easeTo({ pitch: 0, duration: 800 })
+      map.once('moveend', () => {
+        applyTerrain(map, { terrain: false, hillshade: false })
+      })
+    }
+  }, [map, isMapReady, showTerrain, baseMap])
 
   const mapControlTooltip = useMapControlTooltip(wrapperRef)
 
