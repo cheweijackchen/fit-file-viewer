@@ -46,7 +46,7 @@ export function useMapControlTooltip(
 
       clearTimer()
       timerRef.current = setTimeout(() => {
-        const wrapperRect = wrapper.getBoundingClientRect()
+        const wrapperRect = wrapper!.getBoundingClientRect()
         const buttonRect = button.getBoundingClientRect()
         setTooltip({
           text,
