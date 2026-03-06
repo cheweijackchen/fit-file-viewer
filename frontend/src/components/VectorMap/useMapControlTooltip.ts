@@ -8,6 +8,8 @@ interface TooltipState {
   top: number;
 }
 
+const TOOLTIP_DELAY_TIME = 750
+
 export function useMapControlTooltip(
   wrapperRef: React.RefObject<HTMLDivElement | null>,
 ): TooltipState | null {
@@ -51,9 +53,9 @@ export function useMapControlTooltip(
         setTooltip({
           text,
           right: wrapperRect.right - buttonRect.left + 8,
-          top: buttonRect.top - wrapperRect.top + buttonRect.height / 2,
+          top: buttonRect.top - wrapperRect.top + (buttonRect.height / 2),
         })
-      }, 750)
+      }, TOOLTIP_DELAY_TIME)
     }
 
     function handleMouseOut(e: MouseEvent) {
