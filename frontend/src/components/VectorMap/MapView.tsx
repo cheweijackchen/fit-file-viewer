@@ -114,6 +114,11 @@ export function MapView({ track, highlightedIndex }: Props) {
     applyBaseMapMode(map, baseMap)
   }, [map, isMapReady, baseMap])
 
+  // Sync contour visibility with base map mode
+  useEffect(() => {
+    setShowContour(baseMap === 'standard')
+  }, [baseMap])
+
   // Apply contour lines
   useEffect(() => {
     if (!map || !isMapReady) {
