@@ -134,7 +134,7 @@ export function MapView({ track, highlightedIndex }: Props) {
     return () => clearTimeout(id)
   }, [map, isMapReady, showTerrain])
 
-  const maplibreTooltip = useMapControlTooltip(wrapperRef)
+  const mapControlTooltip = useMapControlTooltip(wrapperRef)
 
   const points = track?.points ?? []
   const waypoints = track?.waypoints ?? []
@@ -197,14 +197,14 @@ export function MapView({ track, highlightedIndex }: Props) {
         />
       )}
 
-      {maplibreTooltip !== null && (
+      {mapControlTooltip !== null && (
         <div
-          className={styles['maplibre-tooltip']}
-          style={{ right: maplibreTooltip.right, top: maplibreTooltip.top }}
+          className={styles['map-control-tooltip']}
+          style={{ right: mapControlTooltip.right, top: mapControlTooltip.top }}
           role="tooltip"
           aria-hidden="true"
         >
-          {maplibreTooltip.text}
+          {mapControlTooltip.text}
         </div>
       )}
 

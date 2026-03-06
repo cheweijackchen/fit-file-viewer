@@ -145,7 +145,7 @@ $ai-size-lg: calc(2.125rem * var(--mantine-scale));
   }
 
   // === MapLibre control button tooltips (Mantine-styled) ===
-  .maplibre-tooltip {
+  .map-control-tooltip {
     position: absolute;
     transform: translateY(-50%);
     pointer-events: none;
