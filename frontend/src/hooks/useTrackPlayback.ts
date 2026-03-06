@@ -28,6 +28,7 @@ interface UseTrackPlaybackOptions {
   points: TrackPoint[];
   enabled: boolean;
   terrain?: boolean;
+  durationMode?: PlaybackDurationMode;
 }
 
 const FALLBACK_SPEED_MPS = 3    // m/s assumed when no timestamps
@@ -42,6 +43,9 @@ const PLAYBACK_ZOOM_TERRAIN = 14.5  // zoom out when 3-D terrain is active
 // Calibration: ~10 km → 28 s | ~50 km → 47 s | ~100 km → 55 s | ~200 km → 64 s
 const LOG_PLAYBACK_K = 25.0
 const MIN_PLAYBACK_SECONDS = 20
+// Linear playback target: T = totalDuration / FACTOR
+// Calibration: 1 h → 30 s | 3 h → 90 s
+const LINEAR_PLAYBACK_FACTOR = 120
 
 function calcBearing(from: [number, number], to: [number, number]): number {
   const toRad = (d: number) => (d * Math.PI) / 180
@@ -135,11 +139,24 @@ interface PlaybackBearings {
   end: number;
 }
 
-function calcTargetPlaybackSeconds(totalDistanceKm: number): number {
-  if (totalDistanceKm <= 0) {
-    return MIN_PLAYBACK_SECONDS
-  }
+export type PlaybackDurationMode = 'linear' | 'logarithmic'
+
+function calcLogTargetPlaybackSeconds(totalDistanceKm: number): number {
   return Math.max(MIN_PLAYBACK_SECONDS, LOG_PLAYBACK_K * Math.log(totalDistanceKm + 1))
+}
+
+function calcLinearTargetPlaybackSeconds(totalDuration: number): number {
+  return Math.max(MIN_PLAYBACK_SECONDS, totalDuration / LINEAR_PLAYBACK_FACTOR)
+}
+
+function calcBaseSpeed(totalDuration: number, totalDistanceKm: number, mode: PlaybackDurationMode): number {
+  if (totalDuration <= 0) {
+    return 1
+  }
+  const targetSeconds = mode === 'logarithmic'
+    ? calcLogTargetPlaybackSeconds(totalDistanceKm)
+    : calcLinearTargetPlaybackSeconds(totalDuration)
+  return totalDuration / targetSeconds
 }
 
 function calcPlaybackBearings(points: PlaybackPoint[]): PlaybackBearings {
@@ -171,7 +188,7 @@ function calcPlaybackBearings(points: PlaybackPoint[]): PlaybackBearings {
   return { start: startBearing, end: (startBearing + 180) % 360 }
 }
 
-export function useTrackPlayback({ map, points, enabled, terrain }: UseTrackPlaybackOptions): UseTrackPlaybackResult {
+export function useTrackPlayback({ map, points, enabled, terrain, durationMode = 'linear' }: UseTrackPlaybackOptions): UseTrackPlaybackResult {
   const playbackPoints = useMemo(() => normalizePoints(points), [points])
   const playbackBearings = useMemo(() => calcPlaybackBearings(playbackPoints), [playbackPoints])
   const totalDuration = playbackPoints.length > 0 ? playbackPoints[playbackPoints.length - 1].elapsed : 0
@@ -187,7 +204,7 @@ export function useTrackPlayback({ map, points, enabled, terrain }: UseTrackPlay
     }
     return dist
   }, [playbackPoints])
-  const baseSpeed = totalDuration > 0 ? totalDuration / calcTargetPlaybackSeconds(totalDistanceKm) : 1
+  const baseSpeed = calcBaseSpeed(totalDuration, totalDistanceKm, durationMode)
 
   // UI state (triggers re-renders for the PlaybackBar)
   const [isPlaying, setIsPlaying] = useState(false)

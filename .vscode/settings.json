@@ -33,6 +33,7 @@
     "hillshade",
     "landcover",
     "landuse",
+    "lerp",
     "LTTB",
     "mantine",
     "maplibre",
