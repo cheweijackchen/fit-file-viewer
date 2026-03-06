@@ -9,6 +9,8 @@ interface PlaybackPoint {
   elapsed: number; // seconds from activity start
 }
 
+export type PlaybackDurationMode = 'linear' | 'logarithmic'
+
 export interface UseTrackPlaybackResult {
   isPlaying: boolean;
   progress: number;               // 0–1
@@ -38,6 +40,7 @@ const CAMERA_EASE_MS = 200     // map.easeTo duration per frame
 const PLAYBACK_PITCH = 50      // degrees
 const PLAYBACK_ZOOM = 15.5
 const PLAYBACK_ZOOM_TERRAIN = 14.5  // zoom out when 3-D terrain is active
+const SEEK_EASE_MS = 400            // map.easeTo duration when seeking while paused
 
 // Logarithmic playback target: T = K × ln(distanceKm + 1)
 // Calibration: ~10 km → 28 s | ~50 km → 47 s | ~100 km → 55 s | ~200 km → 64 s
@@ -69,7 +72,6 @@ function lerpBearing(start: number, end: number, t: number): number {
   }
   return (start + (diff * t) + 360) % 360
 }
-
 
 function interpolate(points: PlaybackPoint[], virtualTime: number): [number, number] {
   if (points.length === 0) {
@@ -139,8 +141,6 @@ interface PlaybackBearings {
   end: number;
 }
 
-export type PlaybackDurationMode = 'linear' | 'logarithmic'
-
 function calcLogTargetPlaybackSeconds(totalDistanceKm: number): number {
   return Math.max(MIN_PLAYBACK_SECONDS, LOG_PLAYBACK_K * Math.log(totalDistanceKm + 1))
 }
@@ -157,6 +157,10 @@ function calcBaseSpeed(totalDuration: number, totalDistanceKm: number, mode: Pla
     ? calcLogTargetPlaybackSeconds(totalDistanceKm)
     : calcLinearTargetPlaybackSeconds(totalDuration)
   return totalDuration / targetSeconds
+}
+
+function calcVirtualTime(realElapsed: number, seekOffset: number, baseSpeed: number, speed: number): number {
+  return seekOffset + ((realElapsed * baseSpeed * speed) / 1000)
 }
 
 function calcPlaybackBearings(points: PlaybackPoint[]): PlaybackBearings {
@@ -254,7 +258,7 @@ export function useTrackPlayback({ map, points, enabled, terrain, durationMode =
       }
 
       const realElapsed = timestamp - playStartRealRef.current
-      const virtualTime = seekOffsetRef.current + ((realElapsed * baseSpeedRef.current * speedRef.current) / 1000)
+      const virtualTime = calcVirtualTime(realElapsed, seekOffsetRef.current, baseSpeedRef.current, speedRef.current)
 
       if (virtualTime >= dur) {
         rafIdRef.current = null
@@ -303,6 +307,17 @@ export function useTrackPlayback({ map, points, enabled, terrain, durationMode =
     }
   }
 
+  function resetPlaybackState() {
+    cancelRaf()
+    isPlayingRef.current = false
+    seekOffsetRef.current = 0
+    bearingRef.current = playbackBearingsRef.current.start
+    setIsPlaying(false)
+    setProgress(0)
+    setCurrentTime(0)
+    setCurrentPosition(null)
+  }
+
   function play() {
     if (!mapRef.current || playbackPointsRef.current.length === 0 || totalDurationRef.current === 0) {
       return
@@ -320,7 +335,7 @@ export function useTrackPlayback({ map, points, enabled, terrain, durationMode =
   function pause() {
     const realElapsed = performance.now() - playStartRealRef.current
     seekOffsetRef.current = Math.min(
-      seekOffsetRef.current + ((realElapsed * baseSpeedRef.current * speedRef.current) / 1000),
+      calcVirtualTime(realElapsed, seekOffsetRef.current, baseSpeedRef.current, speedRef.current),
       totalDurationRef.current,
     )
     cancelRaf()
@@ -363,7 +378,7 @@ export function useTrackPlayback({ map, points, enabled, terrain, durationMode =
         bearing: bearingRef.current,
         pitch: PLAYBACK_PITCH,
         zoom: terrainRef.current ? PLAYBACK_ZOOM_TERRAIN : PLAYBACK_ZOOM,
-        duration: 400,
+        duration: SEEK_EASE_MS,
       })
     }
   }
@@ -372,7 +387,7 @@ export function useTrackPlayback({ map, points, enabled, terrain, durationMode =
     if (isPlayingRef.current) {
       const realElapsed = performance.now() - playStartRealRef.current
       seekOffsetRef.current = Math.min(
-        seekOffsetRef.current + ((realElapsed * baseSpeedRef.current * speedRef.current) / 1000),
+        calcVirtualTime(realElapsed, seekOffsetRef.current, baseSpeedRef.current, speedRef.current),
         totalDurationRef.current,
       )
       playStartRealRef.current = performance.now()
@@ -382,15 +397,8 @@ export function useTrackPlayback({ map, points, enabled, terrain, durationMode =
 
   // Reset animation state whenever the track changes
   useEffect(() => {
-    cancelRaf()
-    isPlayingRef.current = false
-    seekOffsetRef.current = 0
-    bearingRef.current = playbackBearingsRef.current.start
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setIsPlaying(false)
-    setProgress(0)
-    setCurrentTime(0)
-    setCurrentPosition(null)
+    resetPlaybackState()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [playbackPoints])
 
   // Cancel RAF on unmount regardless of playback state
@@ -401,15 +409,7 @@ export function useTrackPlayback({ map, points, enabled, terrain, durationMode =
   // started by play() must not be cancelled by an effect cleanup
   useEffect(() => {
     if (!enabled) {
-      cancelRaf()
-      isPlayingRef.current = false
-      seekOffsetRef.current = 0
-      bearingRef.current = playbackBearingsRef.current.start
-      // eslint-disable-next-line react-hooks/set-state-in-effect
-      setIsPlaying(false)
-      setProgress(0)
-      setCurrentTime(0)
-      setCurrentPosition(null)
+      resetPlaybackState()
       if (map && points.length > 0) {
         const bounds = new maplibregl.LngLatBounds()
         for (const p of points) {
@@ -418,6 +418,7 @@ export function useTrackPlayback({ map, points, enabled, terrain, durationMode =
         map.fitBounds(bounds, { padding: 80, pitch: 50, duration: 1200 })
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [enabled, map, points])
 
   return { isPlaying, progress, currentTime, totalDuration, speed, currentPosition, play, pause, toggle, seek, setSpeed }
