@@ -148,19 +148,26 @@ export function MapView({ track, highlightedIndex }: Props) {
     }
 
     if (showTerrain) {
-      // Enable terrain first, then tilt the camera
+      // Enable terrain first, then tilt the camera only if pitch is at default (0°)
       applyTerrain(map, { terrain: true, hillshade: baseMap === 'standard' })
-      const id = setTimeout(() => {
-        map.easeTo({ pitch: 45, duration: 1000 })
-      }, 1000)
-      return () => clearTimeout(id)
+      if (map.getPitch() === 0) {
+        const id = setTimeout(() => {
+          map.easeTo({ pitch: 45, duration: 1000 })
+        }, 1000)
+        return () => clearTimeout(id)
+      }
     } else {
-      // Pitch back to flat first; only remove terrain after the animation ends
-      // to avoid the 3D→2D reprojection causing a visible offset at pitch=45
-      map.easeTo({ pitch: 0, duration: 800 })
-      map.once('moveend', () => {
+      if (map.getPitch() === 45) {
+        // Pitch back to flat first; only remove terrain after the animation ends
+        // to avoid the 3D→2D re-projection causing a visible offset at pitch=45
+        map.easeTo({ pitch: 0, duration: 800 })
+        map.once('moveend', () => {
+          applyTerrain(map, { terrain: false, hillshade: false })
+        })
+      } else {
+        // User has a custom pitch; remove terrain immediately without changing pitch
         applyTerrain(map, { terrain: false, hillshade: false })
-      })
+      }
     }
   }, [map, isMapReady, showTerrain, baseMap])
 
