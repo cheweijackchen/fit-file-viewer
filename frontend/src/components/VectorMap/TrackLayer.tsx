@@ -1,0 +1,172 @@
+import { useMantineTheme } from '@mantine/core'
+import type { GeoJSONSource, Map } from 'maplibre-gl'
+import { useEffect, useRef } from 'react'
+import {
+  LAYER_LINE,
+  LAYER_LINE_SHADOW,
+  LAYER_POINTS,
+  SOURCE_LINE,
+  SOURCE_POINTS,
+} from '@/constants/vectorMap'
+import {
+  trackPointsToLineString,
+  trackPointsToPointCollection,
+} from '@/lib/gpxToGeoJson'
+import type { TrackPoint } from '@/model/gpx'
+
+interface TrackLayerOptions {
+  showTrackPoints?: boolean;
+}
+
+interface TrackLayerProps {
+  map: Map | null;
+  points: TrackPoint[];
+  isMapReady: boolean;
+  /** Highlighted point index from elevation profile hover */
+  highlightedIndex: number | null;
+  options?: TrackLayerOptions;
+  /** Insert track layers below this layer ID if it exists (used by MapView to enforce z-order). */
+  insertBefore?: string;
+}
+
+export function TrackLayer({
+  map,
+  points,
+  isMapReady,
+  highlightedIndex,
+  options,
+  insertBefore,
+}: TrackLayerProps) {
+  const theme = useMantineTheme()
+  const lineColor = theme.colors.yellow[5]
+  const pointColor = theme.colors.yellow[6]
+
+  const addedRef = useRef(false)
+
+  // Add or update GeoJSON sources and layers when points change
+  useEffect(() => {
+    if (!map || !isMapReady) {
+      return
+    }
+
+    if (points.length === 0) {
+      if (addedRef.current) {
+        const emptyCollection = { type: 'FeatureCollection' as const, features: [] }
+        const lineSrc = map.getSource(SOURCE_LINE) as GeoJSONSource | undefined
+        const pointsSrc = map.getSource(SOURCE_POINTS) as GeoJSONSource | undefined
+        lineSrc?.setData(emptyCollection)
+        pointsSrc?.setData(emptyCollection)
+      }
+      return
+    }
+
+    const lineFeature = trackPointsToLineString(points)
+    const pointCollection = trackPointsToPointCollection(points)
+
+    if (!addedRef.current) {
+      // --- Sources ---
+      map.addSource(SOURCE_LINE, { type: 'geojson', data: lineFeature })
+      map.addSource(SOURCE_POINTS, { type: 'geojson', data: pointCollection })
+
+      // Find the first symbol (label) layer in the base map style.
+      // Inserting before it places the track above terrain/roads but below
+      // all place-name / road-name labels — the standard pattern for data
+      // layers in vector tile maps.
+      // Falls back to `insertBefore` (LAYER_WAYPOINTS_HALO) as a last resort
+      // for styles with no symbol layers (e.g. pure satellite).
+      const firstSymbolLayerId = map.getStyle().layers.find(l => l.type === 'symbol')?.id
+      const beforeId = firstSymbolLayerId
+        ?? (insertBefore && map.getLayer(insertBefore) ? insertBefore : undefined)
+
+      // --- Main track line ---
+      map.addLayer(
+        {
+          id: LAYER_LINE,
+          type: 'line',
+          source: SOURCE_LINE,
+          layout: { 'line-cap': 'round', 'line-join': 'round' },
+          paint: {
+            'line-color': lineColor,
+            'line-width': 5,
+          },
+        },
+        beforeId,
+      )
+
+      // --- Track points (invisible by default, shown on hover/highlight) ---
+      map.addLayer(
+        {
+          id: LAYER_POINTS,
+          type: 'circle',
+          source: SOURCE_POINTS,
+          paint: {
+            'circle-radius': 5,
+            'circle-color': pointColor,
+            'circle-opacity': 0,
+            'circle-pitch-scale': 'viewport',
+          },
+        },
+        beforeId,
+      )
+
+      addedRef.current = true
+    } else {
+      // Update existing sources
+      const lineSrc = map.getSource(SOURCE_LINE) as GeoJSONSource | undefined
+      const pointsSrc = map.getSource(SOURCE_POINTS) as GeoJSONSource | undefined
+      lineSrc?.setData(lineFeature)
+      pointsSrc?.setData(pointCollection)
+    }
+  }, [map, points, isMapReady, lineColor, pointColor, insertBefore])
+
+  // Update highlighted point circle opacity via feature-state or filter
+  useEffect(() => {
+    if (!map || !addedRef.current) {
+      return
+    }
+
+    if (options?.showTrackPoints) {
+      map.setPaintProperty(LAYER_POINTS, 'circle-opacity', 1)
+    } else if (highlightedIndex === null) {
+      map.setPaintProperty(LAYER_POINTS, 'circle-opacity', 0)
+    } else {
+      map.setPaintProperty(LAYER_POINTS, 'circle-opacity', [
+        'case',
+        ['==', ['id'], highlightedIndex],
+        1,
+        0,
+      ])
+    }
+  }, [map, highlightedIndex, options?.showTrackPoints])
+
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {
+      if (!map) {
+        return
+      }
+      // Guard against map being already destroyed by MapView's cleanup,
+      // which may run before this child cleanup due to React's effect order.
+      try {
+        const layers = [LAYER_POINTS, LAYER_LINE, LAYER_LINE_SHADOW]
+        const sources = [SOURCE_LINE, SOURCE_POINTS]
+        for (const layer of layers) {
+          if (map.getLayer(layer)) {
+            map.removeLayer(layer)
+          }
+        }
+        for (const source of sources) {
+          if (map.getSource(source)) {
+            map.removeSource(source)
+          }
+        }
+      } catch {
+        // map.remove() was already called by the parent (MapView) before this
+        // cleanup ran, leaving map.style undefined. Nothing to clean up.
+      }
+      addedRef.current = false
+    }
+  }, [map])
+
+  return null
+}

@@ -1,0 +1,197 @@
+// Override MapLibre GL JS control styles to match Mantine ActionIcon (variant="default", size={36}).
+// Uses :global(.selector) (function form) — Turbopack does not support :global {} block form
+// with class selectors inside. Each rule explicitly lists the full MapLibre selector path.
+// Icons replaced using CSS background-image with Tabler icon SVG data URIs.
+
+// Tabler icon SVG data URIs (stroke-based, 24×24 viewBox)
+// Paths sourced from @tabler/icons-react v3.36.0
+$icon-plus: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 5l0 14'/%3E%3Cpath d='M5 12l14 0'/%3E%3C/svg%3E");
+$icon-minus: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12l14 0'/%3E%3C/svg%3E");
+$icon-maximize: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 8v-2a2 2 0 0 1 2 -2h2'/%3E%3Cpath d='M4 16v2a2 2 0 0 0 2 2h2'/%3E%3Cpath d='M16 4h2a2 2 0 0 1 2 2v2'/%3E%3Cpath d='M16 20h2a2 2 0 0 0 2 -2v-2'/%3E%3C/svg%3E");
+$icon-minimize: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M15 19v-2a2 2 0 0 1 2 -2h2'/%3E%3Cpath d='M15 5v2a2 2 0 0 0 2 2h2'/%3E%3Cpath d='M5 15h2a2 2 0 0 1 2 2v2'/%3E%3Cpath d='M5 9h2a2 2 0 0 0 2 -2v-2'/%3E%3C/svg%3E");
+$icon-compass: url('data:image/svg+xml;charset=utf-8,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%20standalone%3D%22no%22%3F%3E%0A%3C!DOCTYPE%20svg%20PUBLIC%20%22-%2F%2FW3C%2F%2FDTD%20SVG%201.1%2F%2FEN%22%20%22http%3A%2F%2Fwww.w3.org%2FGraphics%2FSVG%2F1.1%2FDTD%2Fsvg11.dtd%22%3E%0A%3Csvg%20width%3D%22100%25%22%20height%3D%22100%25%22%20viewBox%3D%220%200%2033%2033%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20xml%3Aspace%3D%22preserve%22%20xmlns%3Aserif%3D%22http%3A%2F%2Fwww.serif.com%2F%22%20style%3D%22fill-rule%3Aevenodd%3Bclip-rule%3Aevenodd%3Bstroke-linejoin%3Around%3Bstroke-miterlimit%3A2%3B%22%3E%0A%20%20%20%20%3Cg%20transform%3D%22matrix(1%2C0%2C0%2C1%2C-3.24298%2C2.63257)%22%3E%0A%20%20%20%20%20%20%20%20%3Cg%20transform%3D%22matrix(1.20712%2C0%2C0%2C1.20712%2C14.9145%2C2.51292)%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M2.5%2C9.406L0%2C9.406L4%2C17.875L8%2C9.406L5.5%2C9.406C5.483%2C10.22%204.818%2C10.875%204%2C10.875C3.182%2C10.875%202.517%2C10.22%202.5%2C9.406Z%22%20style%3D%22fill%3Argb(29%2C50%2C98)%3Bfill-opacity%3A0.35%3B%22%2F%3E%0A%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%20%20%20%20%3Cg%20transform%3D%22matrix(1.20712%2C0%2C0%2C1.20712%2C14.9145%2C2.51292)%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M4%2C0.938L0%2C9.406L2.5%2C9.406L2.5%2C9.375C2.5%2C8.547%203.172%2C7.875%204%2C7.875C4.828%2C7.875%205.5%2C8.547%205.5%2C9.375L5.5%2C9.406L8%2C9.406L4%2C0.938Z%22%20style%3D%22fill%3Argb(68%2C73%2C82)%3B%22%2F%3E%0A%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E%0A');
+
+// Dark mode variants — same paths, stroke='white' for visibility on dark backgrounds
+$icon-dark-plus: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 5l0 14'/%3E%3Cpath d='M5 12l14 0'/%3E%3C/svg%3E");
+$icon-dark-minus: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12l14 0'/%3E%3C/svg%3E");
+$icon-dark-maximize: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 8v-2a2 2 0 0 1 2 -2h2'/%3E%3Cpath d='M4 16v2a2 2 0 0 0 2 2h2'/%3E%3Cpath d='M16 4h2a2 2 0 0 1 2 2v2'/%3E%3Cpath d='M16 20h2a2 2 0 0 0 2 -2v-2'/%3E%3C/svg%3E");
+$icon-dark-minimize: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M15 19v-2a2 2 0 0 1 2 -2h2'/%3E%3Cpath d='M15 5v2a2 2 0 0 0 2 2h2'/%3E%3Cpath d='M5 15h2a2 2 0 0 1 2 2v2'/%3E%3Cpath d='M5 9h2a2 2 0 0 0 2 -2v-2'/%3E%3C/svg%3E");
+$icon-dark-compass: url('data:image/svg+xml;charset=utf-8,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%20standalone%3D%22no%22%3F%3E%0A%3C!DOCTYPE%20svg%20PUBLIC%20%22-%2F%2FW3C%2F%2FDTD%20SVG%201.1%2F%2FEN%22%20%22http%3A%2F%2Fwww.w3.org%2FGraphics%2FSVG%2F1.1%2FDTD%2Fsvg11.dtd%22%3E%0A%3Csvg%20width%3D%22100%25%22%20height%3D%22100%25%22%20viewBox%3D%220%200%2033%2033%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20xml%3Aspace%3D%22preserve%22%20xmlns%3Aserif%3D%22http%3A%2F%2Fwww.serif.com%2F%22%20style%3D%22fill-rule%3Aevenodd%3Bclip-rule%3Aevenodd%3Bstroke-linejoin%3Around%3Bstroke-miterlimit%3A2%3B%22%3E%0A%20%20%20%20%3Cg%20transform%3D%22matrix(1%2C0%2C0%2C1%2C-3.24298%2C2.63257)%22%3E%0A%20%20%20%20%20%20%20%20%3Cg%20transform%3D%22matrix(1.20712%2C0%2C0%2C1.20712%2C14.9145%2C2.51292)%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M2.5%2C9.406L0%2C9.406L4%2C17.875L8%2C9.406L5.5%2C9.406C5.483%2C10.22%204.818%2C10.875%204%2C10.875C3.182%2C10.875%202.517%2C10.22%202.5%2C9.406Z%22%20style%3D%22fill%3A%23ccc%3B%3B%22%2F%3E%0A%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%20%20%20%20%3Cg%20transform%3D%22matrix(1.20712%2C0%2C0%2C1.20712%2C14.9145%2C2.51292)%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M4%2C0.938L0%2C9.406L2.5%2C9.406L2.5%2C9.375C2.5%2C8.547%203.172%2C7.875%204%2C7.875C4.828%2C7.875%205.5%2C8.547%205.5%2C9.375L5.5%2C9.406L8%2C9.406L4%2C0.938Z%22%20style%3D%22fill%3A%23c92a2a%3B%22%2F%3E%0A%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E%0A');
+
+$ai-size-lg: calc(2.125rem * var(--mantine-scale));
+
+.wrapper {
+  // === Control group container ===
+  :global(.maplibregl-ctrl-group) {
+    background: var(--mantine-color-default);
+    border: 1px solid var(--mantine-color-default-border);
+    border-radius: var(--mantine-radius-sm);
+    overflow: hidden;
+  }
+
+  :global(.maplibregl-ctrl-group:not(:empty)) {
+    box-shadow: none;
+  }
+
+  // === Buttons ===
+  :global(.maplibregl-ctrl-group button) {
+    width: $ai-size-lg;
+    height: $ai-size-lg;
+
+    @include mantine.hover {
+      background-color: var(--mantine-color-default-hover);
+    }
+  }
+
+  :global(.maplibregl-ctrl-group button + button) {
+    border-top: 1px solid var(--mantine-color-default-border);
+  }
+
+  // === Icon base: background-image replaces MapLibre's sprite ===
+  :global(.maplibregl-ctrl-group .maplibregl-ctrl-icon) {
+    background-image: none;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 20px 20px;
+  }
+
+  // Zoom In → IconPlus
+  :global(.maplibregl-ctrl-group button.maplibregl-ctrl-zoom-in .maplibregl-ctrl-icon) {
+    @include mantine.light {
+      background-image: $icon-plus;
+    }
+
+    @include mantine.dark {
+      background-image: $icon-dark-plus;
+    }
+  }
+
+  // Zoom Out → IconMinus
+  :global(.maplibregl-ctrl-group button.maplibregl-ctrl-zoom-out .maplibregl-ctrl-icon) {
+    @include mantine.light {
+      background-image: $icon-minus;
+    }
+
+    @include mantine.dark {
+      background-image: $icon-dark-minus;
+    }
+  }
+
+  // Compass
+  :global(.maplibregl-ctrl-group button.maplibregl-ctrl-compass .maplibregl-ctrl-icon) {
+    @include mantine.light {
+      background-image: $icon-compass;
+      // &:hover {
+      //   filter: brightness(0) saturate(100%) invert(76%) sepia(57%) saturate(721%) hue-rotate(344deg) brightness(104%)
+      //     contrast(98%);
+      // }
+    }
+    @include mantine.dark {
+      background-image: $icon-dark-compass;
+    }
+
+    background-size: 29px 29px;
+  }
+
+  // Fullscreen → IconMaximize
+  :global(.maplibregl-ctrl-group button.maplibregl-ctrl-fullscreen .maplibregl-ctrl-icon) {
+    @include mantine.light {
+      background-image: $icon-maximize;
+    }
+
+    @include mantine.dark {
+      background-image: $icon-dark-maximize;
+    }
+  }
+
+  // Exit fullscreen → IconMinimize
+  :global(.maplibregl-ctrl-group button.maplibregl-ctrl-shrink .maplibregl-ctrl-icon) {
+    @include mantine.light {
+      background-image: $icon-minimize;
+    }
+
+    @include mantine.dark {
+      background-image: $icon-dark-minimize;
+    }
+  }
+
+  // === Popup — match Mantine Paper appearance ===
+  :global(.maplibregl-popup-content) {
+    background: var(--mantine-color-body);
+    border: 1px solid var(--mantine-color-default-border);
+    border-radius: var(--mantine-radius-md);
+    box-shadow: var(--mantine-shadow-md);
+    padding: var(--mantine-spacing-sm);
+    color: var(--mantine-color-text);
+    font-family: var(--mantine-font-family);
+  }
+
+  :global(.maplibregl-popup-close-button) {
+    right: 4px;
+    top: 8px;
+    width: 22px;
+    height: 22px;
+    padding: 0;
+    font-size: 18px;
+    line-height: 22px;
+    text-align: center;
+    border-radius: var(--mantine-radius-sm);
+    color: var(--mantine-color-dimmed);
+
+    @include mantine.hover {
+      background: var(--mantine-color-default-hover);
+      color: var(--mantine-color-text);
+    }
+  }
+
+  // === MapLibre control button tooltips (Mantine-styled) ===
+  .map-control-tooltip {
+    position: absolute;
+    transform: translateY(-50%);
+    pointer-events: none;
+    z-index: 30;
+
+    // Exact values from @mantine/core/styles/Tooltip.css
+    padding: calc(var(--mantine-spacing-xs) / 2) var(--mantine-spacing-xs);
+    font-family: var(--mantine-font-family);
+    font-size: var(--mantine-font-size-sm);
+    border-radius: var(--mantine-radius-default);
+    white-space: nowrap;
+
+    @include mantine.light {
+      background-color: var(--mantine-color-gray-9);
+      color: var(--mantine-color-white);
+    }
+
+    @include mantine.dark {
+      background-color: var(--mantine-color-gray-2);
+      color: var(--mantine-color-black);
+    }
+  }
+
+  // === Canvas cursor ===
+  :global(.maplibregl-canvas) {
+    cursor: crosshair;
+  }
+}
+
+.wrapper {
+  // === Scale control ===
+  :global(.maplibregl-ctrl-scale) {
+    background: var(--mantine-color-default);
+    border-color: var(--mantine-color-default-border);
+    border-top: none;
+    color: var(--mantine-color-dimmed);
+    font-family: var(--mantine-font-family);
+    font-size: var(--mantine-font-size-xs);
+    padding-inline: 4px;
+    box-shadow: none;
+  }
+}
+
+.playing {
+  :global(.maplibregl-ctrl-top-right),
+  :global(.maplibregl-ctrl-bottom-left) {
+    display: none;
+  }
+}
