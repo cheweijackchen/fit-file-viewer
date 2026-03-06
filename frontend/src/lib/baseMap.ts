@@ -1,4 +1,5 @@
-import type { Map } from 'maplibre-gl'
+import mlcontour from 'maplibre-contour'
+import maplibregl, { type Map } from 'maplibre-gl'
 import { BaseMapMode } from '@/constants/vectorMap'
 
 
@@ -22,11 +23,30 @@ export const DEFAULT_BASE_MAP: BaseMapMode = BaseMapMode.Standard
 const SATELLITE_TILES =
   'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'
 
+const TERRARIUM_TILES =
+  'https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png'
+
 const SOURCE_SATELLITE = 'esri-satellite'
 const LAYER_SATELLITE = 'esri-satellite-layer'
 const SOURCE_TERRAIN = 'terrain-dem'
 const LAYER_HILLSHADE = 'terrain-hillshade-layer'
 const LAYER_MOUNTAIN_PEAK = 'mountain-peak-layer'
+
+const SOURCE_CONTOUR = 'contour-source'
+const LAYER_CONTOUR_LINE = 'contour-line-layer'
+const LAYER_CONTOUR_LABEL = 'contour-label-layer'
+const CONTOUR_SOURCE_LAYER = 'contours'
+
+// Singleton: registered once per page load so all map instances share the same
+// protocol handler. setupMaplibre only adds addProtocol handlers — safe to call
+// before the map is created.
+const contourDemSource = new mlcontour.DemSource({
+  url: TERRARIUM_TILES,
+  encoding: 'terrarium',
+  maxzoom: 15,
+  worker: true,
+})
+contourDemSource.setupMaplibre(maplibregl)
 
 const ALWAYS_VISIBLE = /^gpx-/i
 
@@ -83,7 +103,7 @@ function ensureSatelliteLayer(map: Map): void {
       tiles: [SATELLITE_TILES],
       tileSize: 256,
       attribution: 'Tiles © Esri',
-      maxzoom: 19,
+      maxzoom: 23,
     })
   }
   if (!map.getLayer(LAYER_SATELLITE)) {
@@ -173,7 +193,7 @@ function ensureTerrainSource(map: Map): void {
       type: 'raster-dem',
       encoding: 'terrarium',
       tiles: [
-        'https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png',
+        TERRARIUM_TILES,
       ],
       tileSize: 256,
       maxzoom: 15,
@@ -250,6 +270,9 @@ function applyBaseMapModeInternal(map: Map, mode: BaseMapMode): void {
         if (layer.id === LAYER_MOUNTAIN_PEAK) {
           continue
         }
+        if (layer.id === LAYER_CONTOUR_LINE || layer.id === LAYER_CONTOUR_LABEL) {
+          continue
+        }
         map.setLayoutProperty(layer.id, 'visibility', 'none')
       }
       // Hide peaks on pure satellite — they'd clutter the imagery
@@ -271,6 +294,9 @@ function applyBaseMapModeInternal(map: Map, mode: BaseMapMode): void {
           continue
         }
         if (layer.id === LAYER_MOUNTAIN_PEAK) {
+          continue
+        }
+        if (layer.id === LAYER_CONTOUR_LINE || layer.id === LAYER_CONTOUR_LABEL) {
           continue
         }
         // null means no rule matched — default to visible so that switching
@@ -297,10 +323,99 @@ function applyBaseMapModeInternal(map: Map, mode: BaseMapMode): void {
         if (layer.id === LAYER_MOUNTAIN_PEAK) {
           continue
         }
+        if (layer.id === LAYER_CONTOUR_LINE || layer.id === LAYER_CONTOUR_LABEL) {
+          continue
+        }
         map.setLayoutProperty(layer.id, 'visibility', 'visible')
       }
       map.setLayoutProperty(LAYER_MOUNTAIN_PEAK, 'visibility', 'visible')
       break
+    }
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Contour lines
+// ---------------------------------------------------------------------------
+
+function ensureContourLayers(map: Map): void {
+  if (!map.getSource(SOURCE_CONTOUR)) {
+    map.addSource(SOURCE_CONTOUR, {
+      type: 'vector',
+      tiles: [contourDemSource.contourProtocolUrl({
+        thresholds: {
+          11: [200, 1000],
+          14: [50, 200],
+        },
+        elevationKey: 'ele',
+        levelKey: 'level',
+        contourLayer: CONTOUR_SOURCE_LAYER,
+      })],
+      maxzoom: 15,
+    })
+  }
+
+  if (!map.getLayer(LAYER_CONTOUR_LINE)) {
+    // Insert below road layers so contours sit under roads but above terrain fill.
+    const firstRoadLayer = map.getStyle().layers.find((l) =>
+      l.id.startsWith('road') || l.id.startsWith('tunnel') || l.id.startsWith('bridge'),
+    )
+    map.addLayer(
+      {
+        id: LAYER_CONTOUR_LINE,
+        type: 'line',
+        source: SOURCE_CONTOUR,
+        'source-layer': CONTOUR_SOURCE_LAYER,
+        paint: {
+          'line-color': [
+            'match', ['get', 'level'],
+            1, '#8B7355',
+            '#C4A882',
+          ],
+          'line-width': [
+            'match', ['get', 'level'],
+            1, 1.2,
+            0.6,
+          ],
+          'line-opacity': 0.75,
+        },
+      },
+      firstRoadLayer?.id,
+    )
+  }
+
+  if (!map.getLayer(LAYER_CONTOUR_LABEL)) {
+    map.addLayer({
+      id: LAYER_CONTOUR_LABEL,
+      type: 'symbol',
+      source: SOURCE_CONTOUR,
+      'source-layer': CONTOUR_SOURCE_LAYER,
+      filter: ['==', ['get', 'level'], 1],
+      layout: {
+        'symbol-placement': 'line',
+        'text-field': ['concat', ['to-string', ['get', 'ele']], 'm'],
+        'text-size': 11,
+      },
+      paint: {
+        'text-color': '#5B4A2E',
+        'text-halo-color': 'rgba(255,255,255,0.8)',
+        'text-halo-width': 1.5,
+      },
+    })
+  }
+}
+
+function applyContourInternal(map: Map, enabled: boolean): void {
+  if (enabled) {
+    ensureContourLayers(map)
+    map.setLayoutProperty(LAYER_CONTOUR_LINE, 'visibility', 'visible')
+    map.setLayoutProperty(LAYER_CONTOUR_LABEL, 'visibility', 'visible')
+  } else {
+    if (map.getLayer(LAYER_CONTOUR_LINE)) {
+      map.setLayoutProperty(LAYER_CONTOUR_LINE, 'visibility', 'none')
+    }
+    if (map.getLayer(LAYER_CONTOUR_LABEL)) {
+      map.setLayoutProperty(LAYER_CONTOUR_LABEL, 'visibility', 'none')
     }
   }
 }
@@ -322,5 +437,13 @@ export function applyTerrain(map: Map, options: TerrainOptions): void {
     applyTerrainInternal(map, options)
   } catch (err) {
     console.warn('[applyTerrain] ', err)
+  }
+}
+
+export function applyContour(map: Map, enabled: boolean): void {
+  try {
+    applyContourInternal(map, enabled)
+  } catch (err) {
+    console.warn('[applyContour] ', err)
   }
 }

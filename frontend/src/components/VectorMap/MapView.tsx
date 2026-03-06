@@ -11,6 +11,7 @@ import { useTrackFitBounds } from '@/hooks/useTrackFitBounds'
 import { useTrackPlayback } from '@/hooks/useTrackPlayback'
 import {
   applyBaseMapMode,
+  applyContour,
   applyTerrain,
   DEFAULT_BASE_MAP,
 } from '@/lib/baseMap'
@@ -38,6 +39,7 @@ export function MapView({ track, highlightedIndex }: Props) {
   const [isMapReady, setIsMapReady] = useState(false)
   const [baseMap, setBaseMap] = useState<BaseMapMode>(DEFAULT_BASE_MAP)
   const [showTerrain, setShowTerrain] = useState(false)
+  const [showContour, setShowContour] = useState(true)
   const [showTrackPoints, setShowTrackPoints] = useState(false)
   const [showWaypoints, setShowWaypoints] = useState(true)
   const [showWaypointLabels, setShowWaypointLabels] = useState(true)
@@ -111,6 +113,14 @@ export function MapView({ track, highlightedIndex }: Props) {
     }
     applyBaseMapMode(map, baseMap)
   }, [map, isMapReady, baseMap])
+
+  // Apply contour lines
+  useEffect(() => {
+    if (!map || !isMapReady) {
+      return
+    }
+    applyContour(map, showContour)
+  }, [map, isMapReady, showContour])
 
   const prevShowTerrainRef = useRef(showTerrain)
 
@@ -258,11 +268,13 @@ export function MapView({ track, highlightedIndex }: Props) {
               showTrackPoints={showTrackPoints}
               showWaypoints={showWaypoints}
               showWaypointLabels={showWaypointLabels}
+              showContour={showContour}
               hasWaypoints={waypoints.length > 0}
               onChange={setBaseMap}
               onTrackPointsChange={setShowTrackPoints}
               onWaypointsChange={setShowWaypoints}
               onWaypointLabelsChange={setShowWaypointLabels}
+              onContourChange={setShowContour}
             />
             {!playbackOpen && (
               <PlaybackButton

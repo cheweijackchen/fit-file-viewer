@@ -27,6 +27,7 @@
     "fit-file-parser": "^2.1.0",
     "leaflet": "^1.9.4",
     "mantine-datatable": "^8.3.13",
+    "maplibre-contour": "^0.1.0",
     "maplibre-gl": "^5.19.0",
     "next": "16.1.1",
     "react": "19.2.3",

@@ -19,9 +19,11 @@ interface Props {
   onTrackPointsChange: (value: boolean) => void;
   onWaypointsChange: (value: boolean) => void;
   onWaypointLabelsChange: (value: boolean) => void;
+  onContourChange: (value: boolean) => void;
   showTrackPoints: boolean;
   showWaypoints: boolean;
   showWaypointLabels: boolean;
+  showContour: boolean;
   hasWaypoints: boolean;
 }
 
@@ -34,6 +36,8 @@ export function MapOptionsPanel({
   onWaypointsChange,
   showWaypointLabels,
   onWaypointLabelsChange,
+  showContour,
+  onContourChange,
   hasWaypoints,
 }: Props) {
   return (
@@ -123,6 +127,12 @@ export function MapOptionsPanel({
                 checked={showWaypointLabels}
                 disabled={!hasWaypoints || !showWaypoints}
                 onChange={(e) => onWaypointLabelsChange(e.currentTarget.checked)}
+              />
+              <Switch
+                label="Show contours"
+                size="sm"
+                checked={showContour}
+                onChange={(e) => onContourChange(e.currentTarget.checked)}
               />
             </div>
           </Tabs.Panel>
