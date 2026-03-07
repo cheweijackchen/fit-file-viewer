@@ -53,7 +53,10 @@ export default function DemoFitTrackMap() {
         padding={0}
         className="overflow-hidden"
       >
-        <FitTrackMap className="h-[calc(100vh-140px)]" tracks={mockTrack} />
+        <FitTrackMap
+          className="h-[calc(100vh-140px)]"
+          tracks={mockTrack}
+        />
       </Card>
     </Stack>
   )
