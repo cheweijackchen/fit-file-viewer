@@ -11,17 +11,18 @@ import type { ParsedTrack } from '@/model/gpx'
 import { StatBadge } from './StatBadge'
 
 interface Props {
+  className?: string;
   track: ParsedTrack | null;
   parseState: ReturnType<typeof useGpxParser>['state'];
   onFile: (file: File) => void;
   onReset: () => void;
 }
 
-export function Sidebar({ track, parseState, onFile, onReset }: Props) {
+export function Sidebar({ className, track, parseState, onFile, onReset }: Props) {
   const isParsing = parseState.status === 'parsing'
 
   return (
-    <aside className="w-70 flex flex-col mr-4 overflow-hidden shrink-0">
+    <aside className={className}>
       {/* Header */}
       <div className="">
         <Title

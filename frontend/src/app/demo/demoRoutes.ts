@@ -18,6 +18,10 @@ export const demoNavLinks = [
       {
         title: 'MapLibre GL Map',
         link: '/demo/demo-vector-map',
+      },
+      {
+        title: 'FitTrackMap',
+        link: '/demo/demo-fit-track-map',
       }
     ]
   },
