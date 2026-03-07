@@ -1,10 +1,22 @@
 'use client'
 
+import { Card, Loader } from '@mantine/core'
+import dynamic from 'next/dynamic'
 import { useCallback, useState } from 'react'
-import { MapView } from '@/components/VectorMap/MapView'
 import { useGpxParser } from '@/hooks/useGpxParser'
-
 import { Sidebar } from './components/Sidebar'
+
+const MapNoSSR = dynamic(() => import('@/components/VectorMap/MapView').then((mod) => mod.MapView), {
+  ssr: false,
+  loading: () => (
+    <Card
+      radius="md"
+      className="w-full h-125 lg:h-full"
+    >
+      <Loader className="m-auto" />
+    </Card>
+  )
+})
 
 export default function DemoVectorMap() {
   const { state: parseState, parseFile, reset } = useGpxParser()
@@ -30,7 +42,7 @@ export default function DemoVectorMap() {
       {/* Right: map + elevation profile */}
       <div className="flex flex-1 column">
         <div className="flex-1 h-[calc(100vh-92px)] min-w-1">
-          <MapView
+          <MapNoSSR
             track={track}
             highlightedIndex={highlightedIndex}
           />
