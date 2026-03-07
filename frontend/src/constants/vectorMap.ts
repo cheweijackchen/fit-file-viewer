@@ -1,0 +1,30 @@
+// Base map modes
+export const BaseMapMode = {
+  Standard: 'standard',
+  Satellite: 'satellite',
+  Hybrid: 'hybrid',
+} as const
+
+export type BaseMapMode = typeof BaseMapMode[keyof typeof BaseMapMode]
+
+// Vector tile style
+export const VECTOR_STYLE_URL = 'https://tiles.openfreemap.org/styles/liberty'
+
+// MapLibre GL source IDs
+export const SOURCE_LINE = 'gpx-track-line'
+export const SOURCE_POINTS = 'gpx-track-points'
+
+// MapLibre GL layer IDs
+export const LAYER_LINE = 'gpx-track-line-layer'
+export const LAYER_LINE_SHADOW = 'gpx-track-line-shadow-layer'
+export const LAYER_POINTS = 'gpx-track-points-layer'
+
+// Waypoint markers
+export const SOURCE_WAYPOINTS = 'gpx-waypoints'
+export const LAYER_WAYPOINTS_HALO = 'gpx-waypoints-halo-layer'
+export const LAYER_WAYPOINTS = 'gpx-waypoints-layer'
+export const LAYER_WAYPOINTS_LABELS = 'gpx-waypoints-labels-layer'
+
+// Playback position marker
+export const SOURCE_PLAYBACK = 'playback-position'
+export const LAYER_PLAYBACK = 'playback-position-layer'
