@@ -18,8 +18,9 @@ export default function DemoVectorMap() {
   }, [reset])
 
   return (
-    <div className="flex">
+    <div className="flex flex-wrap">
       <Sidebar
+        className="w-full sm:w-70 flex flex-col mr-4 overflow-hidden shrink-0"
         track={track}
         parseState={parseState}
         onFile={parseFile}
@@ -28,7 +29,7 @@ export default function DemoVectorMap() {
 
       {/* Right: map + elevation profile */}
       <div className="flex flex-1 column">
-        <div className="flex-1 h-[calc(100vh-92px)]">
+        <div className="flex-1 h-[calc(100vh-92px)] min-w-1">
           <MapView
             track={track}
             highlightedIndex={highlightedIndex}
