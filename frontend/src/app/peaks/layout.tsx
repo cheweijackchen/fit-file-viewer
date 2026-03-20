@@ -11,8 +11,8 @@ export default function PeaksLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div>
+    <>
       {children}
-    </div>
+    </>
   )
 }
