@@ -1,9 +1,6 @@
-import type { Metadata } from 'next'
+'use client'
 
-export const metadata: Metadata = {
-  title: '台灣百岳追蹤器',
-  description: '追蹤你的台灣百岳攀登進度',
-}
+import { AppShell } from '@mantine/core'
 
 export default function PeaksLayout({
   children,
@@ -11,8 +8,10 @@ export default function PeaksLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <>
-      {children}
-    </>
+    <AppShell>
+      <AppShell.Main>
+        {children}
+      </AppShell.Main>
+    </AppShell>
   )
 }
