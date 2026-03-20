@@ -20,31 +20,16 @@ export function PeaksActionBar({
 }: Props) {
   return (
     <div className="flex flex-col gap-3 w-full">
-      <TextInput
-        placeholder="搜尋山名..."
-        value={searchValue}
-        leftSection={<IconSearch
-          size={16}
-          color="#B0B0B0"
-        />}
-        radius={4}
-        styles={{
-          input: {
-            backgroundColor: '#FAFAF8',
-            borderColor: '#E8E5E0',
-            fontSize: 14,
-          },
-        }}
-        onChange={(e) => onSearchChange(e.currentTarget.value)}
-      />
       <div className="flex gap-2 w-full">
         <TextInput
           placeholder="你的名字"
           value={userName}
-          leftSection={<IconUser
-            size={16}
-            color="#B0B0B0"
-          />}
+          leftSection={
+            <IconUser
+              size={16}
+              color="#B0B0B0"
+            />
+          }
           radius={4}
           className="flex-1"
           styles={{
@@ -64,6 +49,25 @@ export function PeaksActionBar({
           產生分享圖片
         </Button>
       </div>
+      <TextInput
+        placeholder="搜尋山名..."
+        value={searchValue}
+        leftSection={
+          <IconSearch
+            size={16}
+            color="#B0B0B0"
+          />
+        }
+        radius={4}
+        styles={{
+          input: {
+            backgroundColor: '#FAFAF8',
+            borderColor: '#E8E5E0',
+            fontSize: 14,
+          },
+        }}
+        onChange={(e) => onSearchChange(e.currentTarget.value)}
+      />
     </div>
   )
 }
