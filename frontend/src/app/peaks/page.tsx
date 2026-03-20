@@ -94,11 +94,10 @@ export default function PeaksPage() {
   return (
     <div className="flex h-screen">
       <div
-        className="flex flex-col w-90 shrink-0 overflow-hidden"
+        className="flex flex-col w-90 py-6 px-4 shrink-0 overflow-hidden"
         style={{
           backgroundColor: '#FFFFFF',
           borderRight: '1px solid #E8E5E0',
-          padding: '32px 28px 24px 28px',
         }}
       >
         {panelContent}
