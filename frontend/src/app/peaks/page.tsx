@@ -37,7 +37,10 @@ export default function PeaksPage() {
   const panelContent = (
     <>
       <div className="flex flex-col gap-5">
-        <PeaksHeader onClear={clearAll} />
+        <PeaksHeader
+          showClear={checkedSet.size > 0}
+          onClear={clearAll}
+        />
         <PeaksProgress
           completedCount={checkedPeakIds.length}
           total={TOTAL_PEAKS}

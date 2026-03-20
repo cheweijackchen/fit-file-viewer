@@ -6,15 +6,16 @@ import { IconRotate } from '@tabler/icons-react'
 import { ConfirmModal } from '@/components/ConfirmModal'
 
 interface Props {
+  showClear: boolean;
   onClear: () => void;
 }
 
-export function PeaksHeader({ onClear }: Props) {
-  const [opened, { open, close }] = useDisclosure(false)
+export function PeaksHeader({ showClear, onClear }: Props) {
+  const [opened, { open: openConfirmClearDialog, close: closeConfirmClearDialog }] = useDisclosure(false)
 
   function handleConfirmClear() {
     onClear()
-    close()
+    closeConfirmClearDialog()
   }
 
   return (
@@ -35,21 +36,23 @@ export function PeaksHeader({ onClear }: Props) {
           Taiwan 100 Peaks Tracker
         </Text>
       </div>
-      <Button
-        variant="default"
-        size="xs"
-        c="dimmed"
-        leftSection={<IconRotate size={14} />}
-        onClick={open}
-      >
-        清除紀錄
-      </Button>
+      {showClear && (
+        <Button
+          variant="default"
+          size="xs"
+          c="dimmed"
+          leftSection={<IconRotate size={14} />}
+          onClick={openConfirmClearDialog}
+        >
+          清除紀錄
+        </Button>
+      )}
       <ConfirmModal
         opened={opened}
         title="清除紀錄"
         description="確定要清除所有勾選紀錄嗎？"
         onOk={handleConfirmClear}
-        onCancel={close}
+        onCancel={closeConfirmClearDialog}
       />
     </div>
   )
