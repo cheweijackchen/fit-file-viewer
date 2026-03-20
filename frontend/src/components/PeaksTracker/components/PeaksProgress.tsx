@@ -1,6 +1,6 @@
 'use client'
 
-import { Progress } from '@mantine/core'
+import { Progress, Text } from '@mantine/core'
 
 interface Props {
   completedCount: number;
@@ -14,34 +14,38 @@ export function PeaksProgress({ completedCount, total }: Props) {
     <div className="flex flex-col gap-2.5 w-full">
       <div className="flex items-end justify-between w-full">
         <div className="flex items-end gap-1">
-          <span
-            className="text-sm"
-            style={{ color: '#8C8C8C' }}
+          <Text
+            component="span"
+            size="sm"
+            c="dimmed"
           >
             已完成
-          </span>
-          <span
-            className="text-[32px] font-semibold leading-none"
-            style={{
-              letterSpacing: -1,
-              color: '#1A1A1A'
-            }}
+          </Text>
+          <Text
+            component="span"
+            fz={32}
+            fw={600}
+            lh={1}
+            style={{ letterSpacing: -1 }}
           >
             {completedCount}
-          </span>
-          <span
-            className="text-sm"
-            style={{ color: '#8C8C8C' }}
+          </Text>
+          <Text
+            component="span"
+            size="sm"
+            c="dimmed"
           >
             / {total} 座
-          </span>
+          </Text>
         </div>
-        <span
-          className="text-sm font-medium"
-          style={{ color: '#8C8C8C' }}
+        <Text
+          component="span"
+          size="sm"
+          fw={500}
+          c="dimmed"
         >
           {percentage}%
-        </span>
+        </Text>
       </div>
       <Progress
         value={percentage}

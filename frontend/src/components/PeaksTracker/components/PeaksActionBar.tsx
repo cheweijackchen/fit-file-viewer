@@ -1,6 +1,6 @@
 'use client'
 
-import { TextInput } from '@mantine/core'
+import { Button, TextInput } from '@mantine/core'
 import { IconSearch, IconUser, IconShare2 } from '@tabler/icons-react'
 
 interface Props {
@@ -56,17 +56,13 @@ export function PeaksActionBar({
           }}
           onChange={(e) => onUserNameChange(e.currentTarget.value)}
         />
-        <button
-          className="flex items-center gap-1.5 rounded px-4.5 py-2.5 text-[13px] font-semibold cursor-pointer shrink-0"
-          style={{
-            backgroundColor: '#F0C142',
-            color: '#1A1A1A'
-          }}
+        <Button
+          leftSection={<IconShare2 size={16} />}
+          className="shrink-0"
           onClick={onShare}
         >
-          <IconShare2 size={16} />
           產生分享圖片
-        </button>
+        </Button>
       </div>
     </div>
   )
