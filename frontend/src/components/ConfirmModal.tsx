@@ -3,13 +3,13 @@
 import { Button, Modal, Text } from '@mantine/core'
 
 interface Props {
-  opened: boolean
-  title: string
-  description: string
-  onOk: () => void
-  onCancel: () => void
-  confirmLabel?: string
-  cancelLabel?: string
+  opened: boolean;
+  title: string;
+  description: string;
+  onOk: () => void;
+  onCancel: () => void;
+  confirmLabel?: string;
+  cancelLabel?: string;
 }
 
 export function ConfirmModal({
@@ -25,15 +25,21 @@ export function ConfirmModal({
     <Modal
       centered
       opened={opened}
-      onClose={onCancel}
       title={title}
       size="sm"
+      onClose={onCancel}
     >
-      <Text size="sm" c="dimmed">
+      <Text
+        size="sm"
+        c="dimmed"
+      >
         {description}
       </Text>
       <div className="flex justify-end gap-2 mt-6">
-        <Button variant="default" onClick={onCancel}>
+        <Button
+          variant="default"
+          onClick={onCancel}
+        >
           {cancelLabel}
         </Button>
         <Button onClick={onOk}>
