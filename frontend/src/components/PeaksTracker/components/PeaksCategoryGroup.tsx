@@ -1,5 +1,6 @@
 'use client'
 
+import { Button } from '@mantine/core'
 import { IconChevronDown, IconChevronRight } from '@tabler/icons-react'
 import type { PeakGroup } from '@/lib/peakGrouper'
 import { PeakCheckboxItem } from './PeakCheckboxItem'
@@ -44,34 +45,37 @@ export function PeaksCategoryGroup({
   return (
     <div>
       <div
-        className="flex items-center justify-between py-2.5 px-1 cursor-pointer"
+        className="flex items-center justify-between py-1.5 px-1 cursor-pointer"
         onClick={onToggle}
       >
         <div className="flex items-center gap-2">
           <ChevronIcon
             size={16}
-            color={hasChecked ? '#1A1A1A' : '#8C8C8C'}
+            color={hasChecked ? 'var(--mantine-color-dark-9)' : 'var(--mantine-color-gray-6)'}
           />
           <span
             className="text-sm font-semibold"
-            style={{ color: hasChecked ? '#1A1A1A' : '#8C8C8C' }}
+            style={{ color: hasChecked ? 'var(--mantine-color-dark-9)' : 'var(--mantine-color-gray-6)' }}
           >
             {group.category}
           </span>
           <span
             className="text-xs font-medium"
-            style={{ color: hasChecked ? '#8C8C8C' : '#B0B0B0' }}
+            style={{ color: hasChecked ? 'var(--mantine-color-gray-6)' : 'var(--mantine-color-gray-5)' }}
           >
             {checkedCount}/{totalCount}
           </span>
         </div>
-        <span
-          className="text-xs font-medium cursor-pointer"
-          style={{ color: hasChecked ? '#F0C142' : '#D0D0D0' }}
+        <Button
+          variant="subtle"
+          size="compact-xs"
+          color={hasChecked ? 'yellow.5' : 'gray.4'}
+          className="text-xs font-medium"
+          p={4}
           onClick={handleSelectAll}
         >
-          全選
-        </span>
+          {allChecked ? '取消全選' : '全選'}
+        </Button>
       </div>
 
       {isExpanded && group.peaks.map((entry) => (
