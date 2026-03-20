@@ -1,16 +1,19 @@
 'use client'
 
+import { useDisclosure } from '@mantine/hooks'
 import { IconRotate } from '@tabler/icons-react'
+import { ConfirmModal } from '@/components/ConfirmModal'
 
 interface Props {
   onClear: () => void;
 }
 
 export function PeaksHeader({ onClear }: Props) {
-  function handleClear() {
-    if (window.confirm('確定要清除所有勾選紀錄嗎？')) {
-      onClear()
-    }
+  const [opened, { open, close }] = useDisclosure(false)
+
+  function handleConfirmClear() {
+    onClear()
+    close()
   }
 
   return (
@@ -38,11 +41,18 @@ export function PeaksHeader({ onClear }: Props) {
           backgroundColor: '#F5F5F3',
           color: '#8C8C8C'
         }}
-        onClick={handleClear}
+        onClick={open}
       >
         <IconRotate size={14} />
         清除紀錄
       </button>
+      <ConfirmModal
+        opened={opened}
+        title="清除紀錄"
+        description="確定要清除所有勾選紀錄嗎？"
+        onOk={handleConfirmClear}
+        onCancel={close}
+      />
     </div>
   )
 }
