@@ -4,6 +4,7 @@ import type { Map } from 'maplibre-gl'
 import { useEffect, useMemo, useRef } from 'react'
 import { flushSync } from 'react-dom'
 import { createRoot, type Root } from 'react-dom/client'
+import { MountainCategory } from '@/constants/peaks'
 import { peakGroups, type PeakGroup } from '@/lib/peakGrouper'
 import { usePeaksStore, usePeaksActions } from '@/store/peaks/usePeaksStore'
 import appTheme from '@/styles/theme'
@@ -20,7 +21,7 @@ interface CategoryData {
 }
 
 function computeCategoryData(): CategoryData[] {
-  return peakGroups.map((group) => {
+  return peakGroups.filter((group) => group.category !== MountainCategory.Other).map((group) => {
     const lats = group.peaks.map((p) => p.peak.coordinate.lat)
     const lngs = group.peaks.map((p) => p.peak.coordinate.lng)
     const avgLat = lats.reduce((a, b) => a + b, 0) / lats.length
