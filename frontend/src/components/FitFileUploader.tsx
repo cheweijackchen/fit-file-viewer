@@ -1,3 +1,5 @@
+'use client'
+
 import { Stack, Text } from '@mantine/core'
 import { Dropzone, type FileWithPath } from '@mantine/dropzone'
 import { notifications } from '@mantine/notifications'
