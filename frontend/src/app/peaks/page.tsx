@@ -1,6 +1,7 @@
 'use client'
 
 import { Divider } from '@mantine/core'
+import dynamic from 'next/dynamic'
 import { useMemo, useState } from 'react'
 import { BottomSheet } from '@/components/BottomSheet'
 import { PeaksActionBar } from '@/components/PeaksTracker/components/PeaksActionBar'
@@ -10,6 +11,11 @@ import { PeaksProgress } from '@/components/PeaksTracker/components/PeaksProgres
 import useScreen from '@/hooks/useScreen'
 import { peakGroups, TOTAL_PEAKS } from '@/lib/peakGrouper'
 import { usePeaksStore, usePeaksActions } from '@/store/peaks/usePeaksStore'
+
+const PeaksMapNoSSR = dynamic(
+  () => import('@/components/PeaksTracker/components/PeaksMap').then(mod => mod.PeaksMap),
+  { ssr: false },
+)
 
 export default function PeaksPage() {
   const checkedPeakIds = usePeaksStore.use.checkedPeakIds()
@@ -70,17 +76,7 @@ export default function PeaksPage() {
   if (onMobile) {
     return (
       <div className="relative h-screen">
-        <div
-          className="h-full flex items-center justify-center"
-          style={{ backgroundColor: '#FAFAF8' }}
-        >
-          <span
-            className="text-lg"
-            style={{ color: '#B0B0B0' }}
-          >
-            地圖功能即將推出
-          </span>
-        </div>
+        <PeaksMapNoSSR />
         <BottomSheet>
           <div className="flex flex-col px-5 pb-4">
             {panelContent}
@@ -103,16 +99,8 @@ export default function PeaksPage() {
         {panelContent}
       </div>
 
-      <div
-        className="flex-1 flex items-center justify-center"
-        style={{ backgroundColor: '#FAFAF8' }}
-      >
-        <span
-          className="text-lg"
-          style={{ color: '#B0B0B0' }}
-        >
-          地圖功能即將推出
-        </span>
+      <div className="flex-1">
+        <PeaksMapNoSSR />
       </div>
     </div>
   )
