@@ -20,7 +20,8 @@ const eslintConfig = defineConfig([
       '@stylistic': stylistic,
     },
     rules: {
-      'arrow-parens': 'off', 'one-var': 'off',
+      'arrow-parens': 'off',
+      'one-var': 'off',
       'no-void': 'off',
       'multiline-ternary': 'off',
       // Force curly braces for all control statements (no single-line ifs)
@@ -59,6 +60,9 @@ const eslintConfig = defineConfig([
 
       'object-curly-spacing': 'off',
       '@stylistic/object-curly-spacing': ['warn', 'always'],
+
+      '@stylistic/object-curly-newline': ['warn', { 'consistent': true }],
+      'object-property-newline': ['warn', { 'allowAllPropertiesOnSameLine': false }],
 
       '@stylistic/member-delimiter-style': ['warn', {
         'singleline': {

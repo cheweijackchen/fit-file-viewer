@@ -1,0 +1,16 @@
+.sheet {
+  transition: height 0.2s ease;
+
+  &[data-dragging='true'] {
+    transition: none;
+  }
+}
+
+.handle {
+  touch-action: none;
+  cursor: grab;
+
+  &:active {
+    cursor: grabbing;
+  }
+}
