@@ -79,6 +79,7 @@ export function PeakMarkersLayer({ map, isMapReady }: Props) {
   const markersRef = useRef<Map<string, MarkerEntry> | null>(null)
   const popupRef = useRef<maplibregl.Popup | null>(null)
   const rootRef = useRef<Root | null>(null)
+  const containerRef = useRef<HTMLDivElement | null>(null)
   const openPeakIdRef = useRef<string | null>(null)
 
   // Create markers once when map is ready
@@ -155,7 +156,7 @@ export function PeakMarkersLayer({ map, isMapReady }: Props) {
 
     // Re-render popup if one is open
     const openId = openPeakIdRef.current
-    if (openId && rootRef.current) {
+    if (openId && containerRef.current) {
       const peak = Taiwan100MountainPeak[openId as keyof typeof Taiwan100MountainPeak]
       if (peak) {
         renderPopupContent(openId, peak)
@@ -165,12 +166,16 @@ export function PeakMarkersLayer({ map, isMapReady }: Props) {
   }, [checkedSet])
 
   function renderPopupContent(peakId: string, peak: typeof Taiwan100MountainPeak[keyof typeof Taiwan100MountainPeak]) {
-    if (!rootRef.current) {
+    if (!containerRef.current) {
       return
     }
+    rootRef.current?.unmount()
+    const root = createRoot(containerRef.current)
+    rootRef.current = root
+
     const isChecked = checkedSet.has(peakId)
     flushSync(() => {
-      rootRef.current!.render(
+      root.render(
         <MantineProvider theme={appTheme}>
           <PeakMarkerPopup
             name={peak.name}
@@ -191,8 +196,7 @@ export function PeakMarkersLayer({ map, isMapReady }: Props) {
     rootRef.current?.unmount()
 
     const container = document.createElement('div')
-    const root = createRoot(container)
-    rootRef.current = root
+    containerRef.current = container
     openPeakIdRef.current = peakId
 
     renderPopupContent(peakId, peak)

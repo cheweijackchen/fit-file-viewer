@@ -107,6 +107,7 @@ export function PeakCategoryMarkersLayer({ map, isMapReady }: Props) {
   const markersRef = useRef<Map<number, MarkerEntry> | null>(null)
   const popupRef = useRef<maplibregl.Popup | null>(null)
   const rootRef = useRef<Root | null>(null)
+  const containerRef = useRef<HTMLDivElement | null>(null)
   const openCategoryIndexRef = useRef<number | null>(null)
 
   // Create markers once when map is ready
@@ -201,23 +202,27 @@ export function PeakCategoryMarkersLayer({ map, isMapReady }: Props) {
 
     // Re-render popup if one is open
     const openIndex = openCategoryIndexRef.current
-    if (openIndex !== null && rootRef.current) {
+    if (openIndex !== null && containerRef.current) {
       renderPopupContent(openIndex)
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [checkedSet])
 
   function renderPopupContent(index: number) {
-    if (!rootRef.current) {
+    if (!containerRef.current) {
       return
     }
+    rootRef.current?.unmount()
+    const root = createRoot(containerRef.current)
+    rootRef.current = root
+
     const data = categoryData[index]!
     const checkedCount = data.peakIds.filter((id) => checkedSet.has(id)).length
     const totalCount = data.group.peaks.length
     const allChecked = checkedCount === totalCount
 
     flushSync(() => {
-      rootRef.current!.render(
+      root.render(
         <MantineProvider theme={appTheme}>
           <PeakCategoryMarkerPopup
             category={data.group.category}
@@ -242,8 +247,7 @@ export function PeakCategoryMarkersLayer({ map, isMapReady }: Props) {
     rootRef.current?.unmount()
 
     const container = document.createElement('div')
-    const root = createRoot(container)
-    rootRef.current = root
+    containerRef.current = container
     openCategoryIndexRef.current = index
 
     renderPopupContent(index)
