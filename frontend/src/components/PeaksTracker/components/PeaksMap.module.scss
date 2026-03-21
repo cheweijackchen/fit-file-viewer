@@ -8,15 +8,13 @@
 
 // Peak marker styles for PeaksMap DOM markers
 .marker {
-  display: flex;
-  align-items: center;
-  gap: 4px;
+  position: relative;
+  width: 22px;
+  height: 22px;
   cursor: pointer;
 }
 
 .triangle {
-  flex-shrink: 0;
-
   path {
     fill: var(--mantine-color-gray-5);
     stroke: #fff;
@@ -29,6 +27,11 @@
 }
 
 .label {
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-left: 4px;
   display: flex;
   align-items: center;
   gap: 4px;
@@ -54,15 +57,13 @@
 // Category marker styles
 
 .categoryMarker {
-  display: flex;
-  align-items: center;
-  gap: 4px;
+  position: relative;
+  width: 28px;
+  height: 28px;
   cursor: pointer;
 }
 
 .categoryTriangle {
-  flex-shrink: 0;
-
   path {
     fill: var(--mantine-color-gray-4);
     stroke: #fff;
@@ -76,6 +77,11 @@
 }
 
 .categoryLabel {
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-left: 4px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;

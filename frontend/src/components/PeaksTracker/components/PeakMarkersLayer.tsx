@@ -40,11 +40,14 @@ interface PeakMarkerElements {
 
 function createPeakMarkerElement(name: string, elevation: number): PeakMarkerElements {
   const el = document.createElement('div')
-  el.className = styles.marker!
+
+  const inner = document.createElement('div')
+  inner.className = styles.marker!
+  el.appendChild(inner)
 
   const triangleEl = createTriangleSvg(22)
   triangleEl.classList.add(styles.triangle!)
-  el.appendChild(triangleEl)
+  inner.appendChild(triangleEl)
 
   const label = document.createElement('div')
   label.className = styles.label!
@@ -59,7 +62,7 @@ function createPeakMarkerElement(name: string, elevation: number): PeakMarkerEle
 
   label.appendChild(nameSpan)
   label.appendChild(elevSpan)
-  el.appendChild(label)
+  inner.appendChild(label)
 
   return {
     el,
@@ -95,7 +98,7 @@ export function PeakMarkersLayer({ map, isMapReady }: Props) {
 
       const marker = new maplibregl.Marker({
         element: el,
-        anchor: 'bottom',
+        anchor: 'center',
       })
         .setLngLat([peak.coordinate.lng, peak.coordinate.lat])
         .addTo(map)

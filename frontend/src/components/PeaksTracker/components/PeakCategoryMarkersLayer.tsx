@@ -62,11 +62,14 @@ function createCategoryMarkerElement(
   totalCount: number,
 ): CategoryMarkerElements {
   const el = document.createElement('div')
-  el.className = styles.categoryMarker!
+
+  const inner = document.createElement('div')
+  inner.className = styles.categoryMarker!
+  el.appendChild(inner)
 
   const triangleEl = createTriangleSvg(28)
   triangleEl.classList.add(styles.categoryTriangle!)
-  el.appendChild(triangleEl)
+  inner.appendChild(triangleEl)
 
   const label = document.createElement('div')
   label.className = styles.categoryLabel!
@@ -81,7 +84,7 @@ function createCategoryMarkerElement(
 
   label.appendChild(nameSpan)
   label.appendChild(countEl)
-  el.appendChild(label)
+  inner.appendChild(label)
 
   return {
     el,
@@ -126,7 +129,7 @@ export function PeakCategoryMarkersLayer({ map, isMapReady }: Props) {
 
       const marker = new maplibregl.Marker({
         element: el,
-        anchor: 'bottom',
+        anchor: 'center',
       })
         .setLngLat(data.center)
         .addTo(map)
