@@ -107,6 +107,7 @@ export function PeakCategoryMarkersLayer({ map, isMapReady }: Props) {
   const markersRef = useRef<Map<number, MarkerEntry> | null>(null)
   const popupRef = useRef<maplibregl.Popup | null>(null)
   const rootRef = useRef<Root | null>(null)
+  const openCategoryIndexRef = useRef<number | null>(null)
 
   // Create markers once when map is ready
   useEffect(() => {
@@ -171,7 +172,7 @@ export function PeakCategoryMarkersLayer({ map, isMapReady }: Props) {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [map, isMapReady])
 
-  // Update checked visual state
+  // Update checked visual state and re-render open popup
   useEffect(() => {
     if (!markersRef.current) {
       return
@@ -197,23 +198,26 @@ export function PeakCategoryMarkersLayer({ map, isMapReady }: Props) {
         entry.countEl.classList.remove(styles.categoryCountActive!)
       }
     })
+
+    // Re-render popup if one is open
+    const openIndex = openCategoryIndexRef.current
+    if (openIndex !== null && rootRef.current) {
+      renderPopupContent(openIndex)
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [checkedSet])
 
-  function showCategoryPopup(index: number) {
+  function renderPopupContent(index: number) {
+    if (!rootRef.current) {
+      return
+    }
     const data = categoryData[index]!
-    popupRef.current?.remove()
-    rootRef.current?.unmount()
-
-    const container = document.createElement('div')
-    const root = createRoot(container)
-    rootRef.current = root
-
     const checkedCount = data.peakIds.filter((id) => checkedSet.has(id)).length
     const totalCount = data.group.peaks.length
     const allChecked = checkedCount === totalCount
 
     flushSync(() => {
-      root.render(
+      rootRef.current!.render(
         <MantineProvider theme={appTheme}>
           <PeakCategoryMarkerPopup
             category={data.group.category}
@@ -226,20 +230,37 @@ export function PeakCategoryMarkersLayer({ map, isMapReady }: Props) {
               } else {
                 checkAllInCategory(data.peakIds)
               }
-              popupRef.current?.remove()
             }}
           />
         </MantineProvider>,
       )
     })
+  }
 
-    popupRef.current = new maplibregl.Popup({
+  function showCategoryPopup(index: number) {
+    popupRef.current?.remove()
+    rootRef.current?.unmount()
+
+    const container = document.createElement('div')
+    const root = createRoot(container)
+    rootRef.current = root
+    openCategoryIndexRef.current = index
+
+    renderPopupContent(index)
+
+    const popup = new maplibregl.Popup({
       closeButton: true,
       maxWidth: '240px',
     })
-      .setLngLat(data.center)
+      .setLngLat(categoryData[index]!.center)
       .setDOMContent(container)
       .addTo(map!)
+
+    popup.on('close', () => {
+      openCategoryIndexRef.current = null
+    })
+
+    popupRef.current = popup
   }
 
   return null

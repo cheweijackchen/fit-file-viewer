@@ -79,6 +79,7 @@ export function PeakMarkersLayer({ map, isMapReady }: Props) {
   const markersRef = useRef<Map<string, MarkerEntry> | null>(null)
   const popupRef = useRef<maplibregl.Popup | null>(null)
   const rootRef = useRef<Root | null>(null)
+  const openPeakIdRef = useRef<string | null>(null)
 
   // Create markers once when map is ready
   useEffect(() => {
@@ -139,7 +140,7 @@ export function PeakMarkersLayer({ map, isMapReady }: Props) {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [map, isMapReady])
 
-  // Update checked visual state
+  // Update checked visual state and re-render open popup
   useEffect(() => {
     if (!markersRef.current) {
       return
@@ -151,20 +152,25 @@ export function PeakMarkersLayer({ map, isMapReady }: Props) {
         triangleEl.classList.remove(styles.triangleChecked!)
       }
     }
+
+    // Re-render popup if one is open
+    const openId = openPeakIdRef.current
+    if (openId && rootRef.current) {
+      const peak = Taiwan100MountainPeak[openId as keyof typeof Taiwan100MountainPeak]
+      if (peak) {
+        renderPopupContent(openId, peak)
+      }
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [checkedSet])
 
-  function showPeakPopup(peakId: string, peak: typeof Taiwan100MountainPeak[keyof typeof Taiwan100MountainPeak]) {
-    popupRef.current?.remove()
-    rootRef.current?.unmount()
-
-    const container = document.createElement('div')
-    const root = createRoot(container)
-    rootRef.current = root
-
+  function renderPopupContent(peakId: string, peak: typeof Taiwan100MountainPeak[keyof typeof Taiwan100MountainPeak]) {
+    if (!rootRef.current) {
+      return
+    }
     const isChecked = checkedSet.has(peakId)
-
     flushSync(() => {
-      root.render(
+      rootRef.current!.render(
         <MantineProvider theme={appTheme}>
           <PeakMarkerPopup
             name={peak.name}
@@ -173,20 +179,37 @@ export function PeakMarkersLayer({ map, isMapReady }: Props) {
             isChecked={isChecked}
             onToggle={() => {
               togglePeak(peakId)
-              popupRef.current?.remove()
             }}
           />
         </MantineProvider>,
       )
     })
+  }
 
-    popupRef.current = new maplibregl.Popup({
+  function showPeakPopup(peakId: string, peak: typeof Taiwan100MountainPeak[keyof typeof Taiwan100MountainPeak]) {
+    popupRef.current?.remove()
+    rootRef.current?.unmount()
+
+    const container = document.createElement('div')
+    const root = createRoot(container)
+    rootRef.current = root
+    openPeakIdRef.current = peakId
+
+    renderPopupContent(peakId, peak)
+
+    const popup = new maplibregl.Popup({
       closeButton: true,
       maxWidth: '240px',
     })
       .setLngLat([peak.coordinate.lng, peak.coordinate.lat])
       .setDOMContent(container)
       .addTo(map!)
+
+    popup.on('close', () => {
+      openPeakIdRef.current = null
+    })
+
+    popupRef.current = popup
   }
 
   return null
