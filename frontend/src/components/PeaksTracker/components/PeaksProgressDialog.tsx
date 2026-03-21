@@ -3,7 +3,7 @@
 import { Badge, Button, Divider, Modal, RingProgress, Text } from '@mantine/core'
 import { IconCheck, IconDownload } from '@tabler/icons-react'
 import html2canvas from 'html2canvas-pro'
-import { useCallback, useMemo, useRef } from 'react'
+import { useCallback, useMemo, useRef, useState } from 'react'
 import { Taiwan100MountainPeak, type MountainPeak } from '@/constants/peaks'
 
 interface Props {
@@ -46,6 +46,7 @@ const categoryGroups = groupPeaksByCategory()
 
 export function PeaksProgressDialog({ opened, checkedIds, userName, onClose }: Props) {
   const contentRef = useRef<HTMLDivElement>(null)
+  const [exportLoading, setExportLoading] = useState(false)
 
   const completedCount = useMemo(() => {
     return Object.keys(Taiwan100MountainPeak).filter(id => checkedIds.has(id)).length
@@ -58,11 +59,16 @@ export function PeaksProgressDialog({ opened, checkedIds, userName, onClose }: P
     if (!contentRef.current) {
       return
     }
-    const canvas = await html2canvas(contentRef.current, { scale: 2 })
-    const link = document.createElement('a')
-    link.download = userName ? `${userName}的台灣百岳進度.png` : '台灣百岳進度.png'
-    link.href = canvas.toDataURL('image/png')
-    link.click()
+    setExportLoading(true)
+    try {
+      const canvas = await html2canvas(contentRef.current, { scale: 2 })
+      const link = document.createElement('a')
+      link.download = userName ? `${userName}的台灣百岳進度.png` : '台灣百岳進度.png'
+      link.href = canvas.toDataURL('image/png')
+      link.click()
+    } finally {
+      setExportLoading(false)
+    }
   }, [userName])
 
   return (
@@ -186,7 +192,9 @@ export function PeaksProgressDialog({ opened, checkedIds, userName, onClose }: P
 
       <div className="flex justify-center mt-4">
         <Button
+          disabled={exportLoading}
           leftSection={<IconDownload size={16} />}
+          loading={exportLoading}
           variant="light"
           onClick={handleExport}
         >
