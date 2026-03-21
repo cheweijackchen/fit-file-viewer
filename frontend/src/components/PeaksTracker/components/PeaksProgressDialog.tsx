@@ -1,8 +1,9 @@
 'use client'
 
-import { Badge, Divider, Modal, RingProgress, Text } from '@mantine/core'
-import { IconCheck } from '@tabler/icons-react'
-import { useMemo } from 'react'
+import { Badge, Button, Divider, Modal, RingProgress, Text } from '@mantine/core'
+import { IconCheck, IconDownload } from '@tabler/icons-react'
+import { toPng } from 'html-to-image'
+import { useCallback, useMemo, useRef } from 'react'
 import { Taiwan100MountainPeak, type MountainPeak } from '@/constants/peaks'
 
 interface Props {
@@ -44,12 +45,25 @@ function groupPeaksByCategory(): CategoryGroup[] {
 const categoryGroups = groupPeaksByCategory()
 
 export function PeaksProgressDialog({ opened, checkedIds, userName, onClose }: Props) {
+  const contentRef = useRef<HTMLDivElement>(null)
+
   const completedCount = useMemo(() => {
     return Object.keys(Taiwan100MountainPeak).filter(id => checkedIds.has(id)).length
   }, [checkedIds])
 
   const total = Object.keys(Taiwan100MountainPeak).length
   const percentage = Math.round((completedCount / total) * 100)
+
+  const handleExport = useCallback(async () => {
+    if (!contentRef.current) {
+      return
+    }
+    const dataUrl = await toPng(contentRef.current, { pixelRatio: 2 })
+    const link = document.createElement('a')
+    link.download = '台灣百岳進度.png'
+    link.href = dataUrl
+    link.click()
+  }, [])
 
   return (
     <Modal
@@ -60,109 +74,124 @@ export function PeaksProgressDialog({ opened, checkedIds, userName, onClose }: P
       padding="lg"
       onClose={onClose}
     >
-      {/* Header */}
-      <div className="flex items-start justify-between mb-6">
-        <div>
-          <Text
-            fw={700}
-            size="xl"
-          >
-            台灣百岳登頂紀錄
-          </Text>
-          <Text
-            c="dimmed"
-            size="sm"
-          >
-            Taiwan 100 Peaks Progress Tracker
-          </Text>
-        </div>
-        {userName && (
-          <Badge
-            size="xl"
-            variant="gradient"
-            gradient={{
-              from: 'yellow',
-              to: 'orange',
-            }}
-          >
-            {userName}
-          </Badge>
-        )}
-      </div>
-
-      {/* Progress */}
-      <div className="flex flex-col items-center mb-8">
-        <RingProgress
-          roundCaps
-          label={
-            <div className="flex flex-col items-center">
-              <Text
-                c="dimmed"
-                size="xs"
-              >
-                目前進度
-              </Text>
-              <Text
-                fw={700}
-                size="xl"
-              >
-                {completedCount}/{total}
-              </Text>
-            </div>
-          }
-          sections={[{
-            value: percentage,
-            color: 'yellow',
-          }]}
-          size={160}
-          thickness={14}
-        />
-      </div>
-
-      {/* Peaks Grid */}
-      <div className="columns-2 md:columns-3 lg:columns-4 gap-4">
-        {categoryGroups.map(group => (
-          <div
-            key={group.category}
-            className="break-inside-avoid mb-4"
-          >
+      <div
+        ref={contentRef}
+        className="bg-white p-4"
+      >
+        {/* Header */}
+        <div className="flex items-start justify-between mb-6">
+          <div>
             <Text
-              c="dark"
               fw={700}
+              size="xl"
+            >
+              台灣百岳登頂紀錄
+            </Text>
+            <Text
+              c="dimmed"
               size="sm"
             >
-              {group.category}
+              Taiwan 100 Peaks Progress Tracker
             </Text>
-            <Divider className="my-1" />
-            <div className="flex flex-col gap-1">
-              {group.peaks.map(({ id, peak }) => {
-                const checked = checkedIds.has(id)
-                return (
-                  <div
-                    key={id}
-                    className="flex items-center gap-1.5"
-                  >
-                    {checked
-                      ? (
-                        <IconCheck
-                          className="text-yellow-500 shrink-0"
-                          size={14}
-                        />
-                      )
-                      : <div className="w-3.5 shrink-0" />}
-                    <Text
-                      c={checked ? undefined : 'dimmed'}
-                      fw={checked ? 600 : 400}
-                      size="xs"
-                    >
-                      {peak.name} {peak.elevation}m
-                    </Text>
-                  </div>
-                )
-              })}
-            </div>
           </div>
-        ))}
+          {userName && (
+            <Badge
+              size="xl"
+              variant="gradient"
+              gradient={{
+                from: 'yellow',
+                to: 'orange',
+              }}
+            >
+              {userName}
+            </Badge>
+          )}
+        </div>
+
+        {/* Progress */}
+        <div className="flex flex-col items-center mb-8">
+          <RingProgress
+            roundCaps
+            label={
+              <div className="flex flex-col items-center">
+                <Text
+                  c="dimmed"
+                  size="xs"
+                >
+                  目前進度
+                </Text>
+                <Text
+                  fw={700}
+                  size="xl"
+                >
+                  {completedCount}/{total}
+                </Text>
+              </div>
+            }
+            sections={[{
+              value: percentage,
+              color: 'yellow',
+            }]}
+            size={160}
+            thickness={14}
+          />
+        </div>
+
+        {/* Peaks Grid */}
+        <div className="columns-2 md:columns-3 lg:columns-4 gap-4">
+          {categoryGroups.map(group => (
+            <div
+              key={group.category}
+              className="break-inside-avoid mb-4"
+            >
+              <Text
+                c="dark"
+                fw={700}
+                size="sm"
+              >
+                {group.category}
+              </Text>
+              <Divider className="my-1" />
+              <div className="flex flex-col gap-1">
+                {group.peaks.map(({ id, peak }) => {
+                  const checked = checkedIds.has(id)
+                  return (
+                    <div
+                      key={id}
+                      className="flex items-center gap-1.5"
+                    >
+                      {checked
+                        ? (
+                          <IconCheck
+                            className="text-yellow-500 shrink-0"
+                            size={14}
+                          />
+                        )
+                        : <div className="w-3.5 shrink-0" />}
+                      <Text
+                        c={checked ? undefined : 'dimmed'}
+                        fw={checked ? 600 : 400}
+                        size="xs"
+                      >
+                        {peak.name} {peak.elevation}m
+                      </Text>
+                    </div>
+                  )
+                })}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="flex justify-center mt-4">
+        <Button
+          leftSection={<IconDownload size={16} />}
+          variant="light"
+          onClick={handleExport}
+        >
+          下載圖片
+        </Button>
       </div>
     </Modal>
   )
