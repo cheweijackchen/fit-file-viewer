@@ -44,13 +44,13 @@
 }
 
 .peakName {
-  font-size: var(--mantine-font-size-xs);
+  font-size: var(--mantine-font-size-sm);
   font-weight: 600;
   color: var(--mantine-color-text);
 }
 
 .peakElevation {
-  font-size: 10px;
+  font-size: var(--mantine-font-size-xs);
   color: var(--mantine-color-dimmed);
 }
 
@@ -95,13 +95,13 @@
 }
 
 .categoryName {
-  font-size: var(--mantine-font-size-xs);
+  font-size: var(--mantine-font-size-md);
   font-weight: 600;
   color: var(--mantine-color-text);
 }
 
 .categoryCount {
-  font-size: 10px;
+  font-size: var(--mantine-font-size-xs);
   color: var(--mantine-color-dimmed);
 }
 
