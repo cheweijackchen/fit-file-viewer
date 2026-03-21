@@ -108,6 +108,9 @@ export function PeakCategoryMarkersLayer({ map, isMapReady }: Props) {
     [checkedPeakIds],
   )
 
+  const checkedSetRef = useRef(checkedSet)
+  checkedSetRef.current = checkedSet
+
   const markersRef = useRef<Map<number, MarkerEntry> | null>(null)
   const popupRef = useRef<maplibregl.Popup | null>(null)
   const rootRef = useRef<Root | null>(null)
@@ -237,7 +240,8 @@ export function PeakCategoryMarkersLayer({ map, isMapReady }: Props) {
     rootRef.current = root
 
     const data = categoryData[index]!
-    const checkedCount = data.peakIds.filter((id) => checkedSet.has(id)).length
+    const currentCheckedSet = checkedSetRef.current
+    const checkedCount = data.peakIds.filter((id) => currentCheckedSet.has(id)).length
     const totalCount = data.group.peaks.length
     const allChecked = checkedCount === totalCount
 

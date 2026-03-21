@@ -100,7 +100,7 @@ export default function PeaksPage() {
       </div>
 
       <div className="flex-1">
-        <PeaksMapNoSSR debug />
+        <PeaksMapNoSSR />
       </div>
     </div>
   )

@@ -80,6 +80,9 @@ export function PeakMarkersLayer({ map, isMapReady }: Props) {
     [checkedPeakIds],
   )
 
+  const checkedSetRef = useRef(checkedSet)
+  checkedSetRef.current = checkedSet
+
   const markersRef = useRef<Map<string, MarkerEntry> | null>(null)
   const popupRef = useRef<maplibregl.Popup | null>(null)
   const rootRef = useRef<Root | null>(null)
@@ -186,7 +189,7 @@ export function PeakMarkersLayer({ map, isMapReady }: Props) {
     const root = createRoot(containerRef.current)
     rootRef.current = root
 
-    const isChecked = checkedSet.has(peakId)
+    const isChecked = checkedSetRef.current.has(peakId)
     flushSync(() => {
       root.render(
         <MantineProvider theme={appTheme}>
