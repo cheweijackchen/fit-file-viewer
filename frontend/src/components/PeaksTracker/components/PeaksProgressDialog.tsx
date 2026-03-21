@@ -91,7 +91,7 @@ export function PeaksProgressDialog({ opened, checkedIds, userName, onClose }: P
         className="bg-white p-6"
       >
         {/* Header */}
-        <div className="flex items-start justify-between mb-6">
+        <div className="flex items-center justify-between mb-6">
           <div>
             <Text
               fw={700}
@@ -150,7 +150,7 @@ export function PeaksProgressDialog({ opened, checkedIds, userName, onClose }: P
         </div>
 
         {/* Peaks Grid */}
-        <div className="columns-2 md:columns-3 lg:columns-4 gap-4">
+        <div className="columns-2 md:columns-3 lg:columns-4 gap-6">
           {categoryGroups.map(group => (
             <div
               key={group.category}
@@ -180,13 +180,23 @@ export function PeaksProgressDialog({ opened, checkedIds, userName, onClose }: P
                           />
                         )
                         : <div className="w-3.5 shrink-0" />}
-                      <Text
-                        c={checked ? undefined : 'dimmed'}
-                        fw={checked ? 600 : 400}
-                        size="xs"
-                      >
-                        {peak.name} {peak.elevation}m
-                      </Text>
+                      <div className="flex flex-1 gap-1 justify-between">
+                        <Text
+                          c={checked ? undefined : 'dimmed'}
+                          fw={checked ? 600 : 400}
+                          size="xs"
+                        >
+                          {peak.name}
+                        </Text>
+                        <Text
+                          c={checked ? undefined : 'dimmed'}
+                          fw={checked ? 600 : 400}
+                          ff="mono"
+                          size="xs"
+                        >
+                          {peak.elevation}m
+                        </Text>
+                      </div>
                     </div>
                   )
                 })}
