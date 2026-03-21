@@ -31,7 +31,7 @@ export default function PeaksPage() {
   } = usePeaksActions()
 
   const [searchQuery, setSearchQuery] = useState('')
-  const [shareDialogOpened, setShareDialogOpened] = useState(false)
+  const [recordDialogOpened, setRecordDialogOpened] = useState(false)
   const { onMobile } = useScreen()
 
   const checkedSet = useMemo(
@@ -39,8 +39,8 @@ export default function PeaksPage() {
     [checkedPeakIds],
   )
 
-  function handleShare() {
-    setShareDialogOpened(true)
+  function handleShowRecords() {
+    setRecordDialogOpened(true)
   }
 
   const searchInput = (
@@ -64,7 +64,7 @@ export default function PeaksPage() {
       <PeaksActionBar
         userName={userName}
         onUserNameChange={setUserName}
-        onShare={handleShare}
+        onAction={handleShowRecords}
       />
     </div>
   )
@@ -83,10 +83,10 @@ export default function PeaksPage() {
 
   const progressDialog = (
     <PeaksProgressDialog
-      opened={shareDialogOpened}
+      opened={recordDialogOpened}
       checkedIds={checkedSet}
       userName={userName}
-      onClose={() => setShareDialogOpened(false)}
+      onClose={() => setRecordDialogOpened(false)}
     />
   )
 

@@ -1,18 +1,18 @@
 'use client'
 
 import { Button, TextInput } from '@mantine/core'
-import { IconUser, IconShare2 } from '@tabler/icons-react'
+import { IconUser, IconCampfire } from '@tabler/icons-react'
 
 interface Props {
   userName: string;
   onUserNameChange: (value: string) => void;
-  onShare: () => void;
+  onAction: () => void;
 }
 
 export function PeaksActionBar({
   userName,
   onUserNameChange,
-  onShare,
+  onAction,
 }: Props) {
   return (
     <div className="flex gap-2 w-full">
@@ -37,11 +37,11 @@ export function PeaksActionBar({
         onChange={(e) => onUserNameChange(e.currentTarget.value)}
       />
       <Button
-        leftSection={<IconShare2 size={16} />}
+        leftSection={<IconCampfire size={16} />}
         className="shrink-0"
-        onClick={onShare}
+        onClick={onAction}
       >
-        產生圖片
+        紀錄
       </Button>
     </div>
   )
