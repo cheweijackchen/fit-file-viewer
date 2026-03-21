@@ -122,6 +122,15 @@ export function PeakMarkersLayer({ map, isMapReady }: Props) {
 
     markersRef.current = markers
 
+    // Apply checked state that may have been hydrated from localStorage
+    // before markers were created
+    const initialChecked = new Set(usePeaksStore.getState().checkedPeakIds)
+    for (const [id, { triangleEl }] of markers.entries()) {
+      if (initialChecked.has(id)) {
+        triangleEl.classList.add(styles.triangleChecked!)
+      }
+    }
+
     function onZoom() {
       const zoom = map!.getZoom()
       const visible = zoom >= ZOOM_THRESHOLD

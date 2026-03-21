@@ -154,6 +154,22 @@ export function PeakCategoryMarkersLayer({ map, isMapReady }: Props) {
 
     markersRef.current = markers
 
+    // Apply checked state that may have been hydrated from localStorage
+    // before markers were created
+    const initialChecked = new Set(usePeaksStore.getState().checkedPeakIds)
+    categoryData.forEach((data, index) => {
+      const entry = markers.get(index)
+      if (!entry) {
+        return
+      }
+      const checkedCount = data.peakIds.filter((id) => initialChecked.has(id)).length
+      if (checkedCount > 0) {
+        entry.triangleEl.classList.add(styles.categoryTriangleChecked!)
+        entry.countEl.classList.add(styles.categoryCountActive!)
+      }
+      entry.countEl.textContent = `${checkedCount}/${data.group.peaks.length}`
+    })
+
     function onZoom() {
       const zoom = map!.getZoom()
       const visible = zoom < ZOOM_THRESHOLD
