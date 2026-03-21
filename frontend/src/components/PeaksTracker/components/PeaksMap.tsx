@@ -39,7 +39,12 @@ export function PeaksMap() {
       center: [121.0, 24.0],
       zoom: 7,
       trackResize: false,
+      dragRotate: false,
+      touchPitch: false,
+      pitchWithRotate: false,
     })
+
+    instance.touchZoomRotate.disableRotation()
 
     instance.addControl(
       new maplibregl.NavigationControl({ showCompass: false }),
