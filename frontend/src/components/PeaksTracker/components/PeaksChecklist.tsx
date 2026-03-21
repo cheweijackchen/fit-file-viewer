@@ -1,10 +1,12 @@
 'use client'
 
+import clsx from 'clsx'
 import { useMemo, useState } from 'react'
 import type { PeakGroup } from '@/lib/peakGrouper'
 import { PeaksCategoryGroup } from './PeaksCategoryGroup'
 
 interface Props {
+  className: string;
   groups: PeakGroup[];
   searchQuery: string;
   checkedIds: Set<string>;
@@ -14,6 +16,7 @@ interface Props {
 }
 
 export function PeaksChecklist({
+  className,
   groups,
   searchQuery,
   checkedIds,
@@ -59,7 +62,7 @@ export function PeaksChecklist({
   }, [groups, searchQuery])
 
   return (
-    <div className="flex-1 overflow-y-auto pt-4">
+    <div className={clsx('flex-1 overflow-y-auto', className)}>
       {filteredGroups.map((group) => (
         <PeaksCategoryGroup
           key={group.category}

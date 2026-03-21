@@ -46,7 +46,7 @@ export function PeaksActionBar({
           className="shrink-0"
           onClick={onShare}
         >
-          產生分享圖片
+          產生圖片
         </Button>
       </div>
       <TextInput

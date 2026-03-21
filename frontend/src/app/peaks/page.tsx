@@ -59,9 +59,9 @@ export default function PeaksPage() {
           onUserNameChange={setUserName}
           onShare={handleShare}
         />
-        <Divider color="#E8E5E0" />
       </div>
       <PeaksChecklist
+        className="mt-4"
         groups={peakGroups}
         searchQuery={searchQuery}
         checkedIds={checkedSet}
@@ -90,7 +90,7 @@ export default function PeaksPage() {
   return (
     <div className="flex h-screen">
       <div
-        className="flex flex-col w-90 py-6 px-4 shrink-0 overflow-hidden"
+        className="flex flex-col w-80 py-6 px-4 shrink-0 overflow-hidden"
         style={{
           backgroundColor: '#FFFFFF',
           borderRight: '1px solid #E8E5E0',
