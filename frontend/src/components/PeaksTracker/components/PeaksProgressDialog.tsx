@@ -60,10 +60,10 @@ export function PeaksProgressDialog({ opened, checkedIds, userName, onClose }: P
     }
     const canvas = await html2canvas(contentRef.current, { scale: 2 })
     const link = document.createElement('a')
-    link.download = '台灣百岳進度.png'
+    link.download = userName ? `${userName}的台灣百岳進度.png` : '台灣百岳進度.png'
     link.href = canvas.toDataURL('image/png')
     link.click()
-  }, [])
+  }, [userName])
 
   return (
     <Modal
