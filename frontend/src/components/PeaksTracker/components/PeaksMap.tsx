@@ -1,3 +1,4 @@
+import { LoadingOverlay } from '@mantine/core'
 import clsx from 'clsx'
 import maplibregl from 'maplibre-gl'
 import type { Map } from 'maplibre-gl'
@@ -93,7 +94,7 @@ export function PeaksMap() {
   }, [])
 
   return (
-    <div className={clsx(mapStyles.wrapper, peaksStyles.wrapper, 'w-full h-full')}>
+    <div className={clsx(mapStyles.wrapper, peaksStyles.wrapper, 'relative w-full h-full')}>
       <div
         ref={containerRef}
         className="w-full h-full"
@@ -106,6 +107,7 @@ export function PeaksMap() {
         map={map}
         isMapReady={isMapReady}
       />
+      <LoadingOverlay visible={!isMapReady} />
     </div>
   )
 }
