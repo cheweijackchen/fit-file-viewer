@@ -25,7 +25,7 @@
     "dayjs": "^1.11.19",
     "downsample": "^1.4.0",
     "fit-file-parser": "^2.1.0",
-    "html-to-image": "^1.11.13",
+    "html2canvas-pro": "^2.0.2",
     "leaflet": "^1.9.4",
     "mantine-datatable": "^8.3.13",
     "maplibre-contour": "^0.1.0",

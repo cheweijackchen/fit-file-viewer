@@ -2,7 +2,7 @@
 
 import { Badge, Button, Divider, Modal, RingProgress, Text } from '@mantine/core'
 import { IconCheck, IconDownload } from '@tabler/icons-react'
-import { toPng } from 'html-to-image'
+import html2canvas from 'html2canvas-pro'
 import { useCallback, useMemo, useRef } from 'react'
 import { Taiwan100MountainPeak, type MountainPeak } from '@/constants/peaks'
 
@@ -58,10 +58,10 @@ export function PeaksProgressDialog({ opened, checkedIds, userName, onClose }: P
     if (!contentRef.current) {
       return
     }
-    const dataUrl = await toPng(contentRef.current, { pixelRatio: 2 })
+    const canvas = await html2canvas(contentRef.current, { scale: 2 })
     const link = document.createElement('a')
     link.download = '台灣百岳進度.png'
-    link.href = dataUrl
+    link.href = canvas.toDataURL('image/png')
     link.click()
   }, [])
 
