@@ -11,6 +11,7 @@ import { PeakCategoryMarkerPopup } from './PeakCategoryMarkerPopup'
 import styles from './PeaksMap.module.scss'
 
 const ZOOM_THRESHOLD = 9
+const TRIANGLE_SIZE = 28
 
 interface CategoryData {
   group: PeakGroup;
@@ -67,7 +68,7 @@ function createCategoryMarkerElement(
   inner.className = styles.categoryMarker!
   el.appendChild(inner)
 
-  const triangleEl = createTriangleSvg(28)
+  const triangleEl = createTriangleSvg(TRIANGLE_SIZE)
   triangleEl.classList.add(styles.categoryTriangle!)
   inner.appendChild(triangleEl)
 
@@ -258,6 +259,7 @@ export function PeakCategoryMarkersLayer({ map, isMapReady }: Props) {
     const popup = new maplibregl.Popup({
       closeButton: true,
       maxWidth: '240px',
+      offset: [0, -TRIANGLE_SIZE / 2],
     })
       .setLngLat(categoryData[index]!.center)
       .setDOMContent(container)

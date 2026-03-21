@@ -11,6 +11,7 @@ import { PeakMarkerPopup } from './PeakMarkerPopup'
 import styles from './PeaksMap.module.scss'
 
 const ZOOM_THRESHOLD = 9
+const TRIANGLE_SIZE = 22
 
 interface Props {
   map: Map | null;
@@ -45,7 +46,7 @@ function createPeakMarkerElement(name: string, elevation: number): PeakMarkerEle
   inner.className = styles.marker!
   el.appendChild(inner)
 
-  const triangleEl = createTriangleSvg(22)
+  const triangleEl = createTriangleSvg(TRIANGLE_SIZE)
   triangleEl.classList.add(styles.triangle!)
   inner.appendChild(triangleEl)
 
@@ -207,6 +208,7 @@ export function PeakMarkersLayer({ map, isMapReady }: Props) {
     const popup = new maplibregl.Popup({
       closeButton: true,
       maxWidth: '240px',
+      offset: [0, -TRIANGLE_SIZE / 2],
     })
       .setLngLat([peak.coordinate.lng, peak.coordinate.lat])
       .setDOMContent(container)
