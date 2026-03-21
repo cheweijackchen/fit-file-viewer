@@ -83,7 +83,7 @@ export function PeakMarkersLayer({ map, isMapReady }: Props) {
   const checkedSetRef = useRef(checkedSet)
   checkedSetRef.current = checkedSet
 
-  const markersRef = useRef<Map<string, MarkerEntry> | null>(null)
+  const markersRef = useRef<globalThis.Map<string, MarkerEntry> | null>(null)
   const popupRef = useRef<maplibregl.Popup | null>(null)
   const rootRef = useRef<Root | null>(null)
   const containerRef = useRef<HTMLDivElement | null>(null)
