@@ -65,14 +65,14 @@
 
   path {
     fill: var(--mantine-color-gray-4);
-    stroke: var(--mantine-color-gray-4);
+    stroke: #fff;
     stroke-width: 1.5;
   }
 }
 
 .categoryTriangleChecked path {
   fill: var(--mantine-color-yellow-5);
-  stroke: var(--mantine-color-yellow-5);
+  stroke: #fff;
 }
 
 .categoryLabel {
