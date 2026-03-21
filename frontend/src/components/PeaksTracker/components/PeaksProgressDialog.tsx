@@ -91,7 +91,7 @@ export function PeaksProgressDialog({ opened, checkedIds, userName, onClose }: P
         className="bg-white p-6"
       >
         {/* Header */}
-        <div className="flex items-center justify-between mb-6">
+        <div className="flex justify-between mb-6 gap-2">
           <div>
             <Text
               fw={700}
@@ -103,11 +103,12 @@ export function PeaksProgressDialog({ opened, checkedIds, userName, onClose }: P
               c="dimmed"
               size="sm"
             >
-              Taiwan 100 Peaks Progress Tracker
+              Taiwan 100 Peaks Progress
             </Text>
           </div>
           {userName && (
             <Badge
+              className="flex-none"
               size="xl"
               variant="gradient"
               gradient={{

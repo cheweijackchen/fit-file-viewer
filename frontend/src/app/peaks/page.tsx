@@ -51,7 +51,7 @@ export default function PeaksPage() {
   )
 
   const panelHeader = (
-    <div className="flex flex-col gap-5">
+    <div className="flex flex-col gap-3 sm:gap-4">
       <PeaksHeader
         showClear={checkedSet.size > 0}
         onClear={clearAll}
@@ -71,7 +71,7 @@ export default function PeaksPage() {
 
   const peaksList = (
     <PeaksChecklist
-      className="mt-4"
+      className="sm:mt-4"
       groups={peakGroups}
       searchQuery={searchQuery}
       checkedIds={checkedSet}

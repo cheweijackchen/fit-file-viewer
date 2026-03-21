@@ -4,6 +4,7 @@ import { Button, Text, Title } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 import { IconRotate } from '@tabler/icons-react'
 import { ConfirmModal } from '@/components/ConfirmModal'
+import useScreen from '@/hooks/useScreen'
 
 interface Props {
   showClear: boolean;
@@ -11,6 +12,7 @@ interface Props {
 }
 
 export function PeaksHeader({ showClear, onClear }: Props) {
+  const { onMobile } = useScreen()
   const [opened, { open: openConfirmClearDialog, close: closeConfirmClearDialog }] = useDisclosure(false)
 
   function handleConfirmClear() {
@@ -23,7 +25,7 @@ export function PeaksHeader({ showClear, onClear }: Props) {
       <div className="flex flex-col gap-1">
         <Title
           order={1}
-          fz={28}
+          fz={onMobile ? 'h4' : 28}
           fw={600}
           style={{ letterSpacing: -1 }}
         >
@@ -33,7 +35,7 @@ export function PeaksHeader({ showClear, onClear }: Props) {
           size="xs"
           c="dimmed"
         >
-          Taiwan 100 Peaks Tracker
+          Taiwan 100 Peaks
         </Text>
       </div>
       {showClear && (

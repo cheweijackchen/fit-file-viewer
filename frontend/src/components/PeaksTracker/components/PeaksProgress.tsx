@@ -1,6 +1,7 @@
 'use client'
 
 import { Progress, Text } from '@mantine/core'
+import useScreen from '@/hooks/useScreen'
 
 interface Props {
   completedCount: number;
@@ -8,6 +9,7 @@ interface Props {
 }
 
 export function PeaksProgress({ completedCount, total }: Props) {
+  const { onMobile } = useScreen()
   const percentage = total > 0 ? Math.round((completedCount / total) * 100) : 0
 
   return (
@@ -23,10 +25,9 @@ export function PeaksProgress({ completedCount, total }: Props) {
           </Text>
           <Text
             component="span"
-            fz={32}
+            fz={onMobile ? 'md' : 32}
             fw={600}
-            lh={1}
-            style={{ letterSpacing: -1 }}
+            lh={onMobile ? undefined : 1}
           >
             {completedCount}
           </Text>
