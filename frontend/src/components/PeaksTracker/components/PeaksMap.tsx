@@ -1,7 +1,29 @@
 import maplibregl from 'maplibre-gl'
+import type { Map } from 'maplibre-gl'
 import { useRef, useEffect } from 'react'
 import styles from '@/components/VectorMap/MapView.module.scss'
 import { VECTOR_STYLE_URL } from '@/constants/vectorMap'
+
+const LABEL_LAYERS = [
+  'label_other',
+  'label_village',
+  'label_town',
+  'label_state',
+  'label_city',
+  'label_city_capital',
+  'label_country_3',
+  'label_country_2',
+  'label_country_1',
+]
+
+function applyDimmedLabels(map: Map) {
+  const dimmed = getComputedStyle(document.documentElement)
+    .getPropertyValue('--mantine-color-dimmed').trim()
+
+  for (const id of LABEL_LAYERS) {
+    map.setPaintProperty(id, 'text-color', dimmed)
+  }
+}
 
 export function PeaksMap() {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -28,6 +50,10 @@ export function PeaksMap() {
       'bottom-left',
     )
 
+    instance.on('load', () => {
+      applyDimmedLabels(instance)
+    })
+
     let rafId: number | null = null
     const resizeObserver = new ResizeObserver(() => {
       if (rafId !== null) {
@@ -50,7 +76,7 @@ export function PeaksMap() {
   }, [])
 
   return (
-    <div className={`${styles.wrapper} w-full h-full`}>
+    <div className={`${styles.wrapper} w-full h-full grayscale-85`}>
       <div
         ref={containerRef}
         className="w-full h-full"
