@@ -8,6 +8,7 @@ import { PeaksActionBar } from '@/components/PeaksTracker/components/PeaksAction
 import { PeaksChecklist } from '@/components/PeaksTracker/components/PeaksChecklist'
 import { PeaksHeader } from '@/components/PeaksTracker/components/PeaksHeader'
 import { PeaksProgress } from '@/components/PeaksTracker/components/PeaksProgress'
+import { PeaksProgressDialog } from '@/components/PeaksTracker/components/PeaksProgressDialog'
 import useScreen from '@/hooks/useScreen'
 import { peakGroups, TOTAL_PEAKS } from '@/lib/peakGrouper'
 import { usePeaksStore, usePeaksActions } from '@/store/peaks/usePeaksStore'
@@ -29,6 +30,7 @@ export default function PeaksPage() {
   } = usePeaksActions()
 
   const [searchQuery, setSearchQuery] = useState('')
+  const [shareDialogOpened, setShareDialogOpened] = useState(false)
   const { onMobile } = useScreen()
 
   const checkedSet = useMemo(
@@ -37,7 +39,7 @@ export default function PeaksPage() {
   )
 
   function handleShare() {
-    // TODO: 產生分享圖片
+    setShareDialogOpened(true)
   }
 
   const panelContent = (
@@ -72,16 +74,26 @@ export default function PeaksPage() {
     </>
   )
 
+  const progressDialog = (
+    <PeaksProgressDialog
+      opened={shareDialogOpened}
+      checkedIds={checkedSet}
+      userName={userName}
+      onClose={() => setShareDialogOpened(false)}
+    />
+  )
+
   // Mobile layout: full-screen map + bottom sheet
   if (onMobile) {
     return (
       <div className="relative h-screen">
-        <PeaksMapNoSSR debug />
+        <PeaksMapNoSSR />
         <BottomSheet>
           <div className="flex flex-col px-5 pb-4">
             {panelContent}
           </div>
         </BottomSheet>
+        {progressDialog}
       </div>
     )
   }
@@ -102,6 +114,7 @@ export default function PeaksPage() {
       <div className="flex-1">
         <PeaksMapNoSSR />
       </div>
+      {progressDialog}
     </div>
   )
 }
