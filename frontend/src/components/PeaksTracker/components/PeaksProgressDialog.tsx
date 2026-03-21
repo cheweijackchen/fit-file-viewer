@@ -75,6 +75,12 @@ export function PeaksProgressDialog({ opened, checkedIds, userName, onClose }: P
     <Modal
       centered
       withCloseButton
+      classNames={{
+        content: '!overflow-visible',
+        header: '!absolute !p-0 !min-h-0 right-0 top-0 z-10 !overflow-visible',
+        close: '!absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 z-10 rounded-full !bg-[var(--mantine-color-body)] shadow transition-transform duration-200 hover:translate-x-[calc(50%-2px)] hover:-translate-y-[calc(50%-2px)]',
+        body: '!overflow-y-auto !max-h-[89vh] !px-0 rounded-lg',
+      }}
       opened={opened}
       size="xl"
       padding="lg"
@@ -82,7 +88,7 @@ export function PeaksProgressDialog({ opened, checkedIds, userName, onClose }: P
     >
       <div
         ref={contentRef}
-        className="bg-white p-4"
+        className="bg-white p-6"
       >
         {/* Header */}
         <div className="flex items-start justify-between mb-6">
