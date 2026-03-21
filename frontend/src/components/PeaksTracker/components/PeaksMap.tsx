@@ -1,8 +1,12 @@
+import clsx from 'clsx'
 import maplibregl from 'maplibre-gl'
 import type { Map } from 'maplibre-gl'
-import { useRef, useEffect } from 'react'
-import styles from '@/components/VectorMap/MapView.module.scss'
+import { useRef, useEffect, useState } from 'react'
+import mapStyles from '@/components/VectorMap/MapView.module.scss'
 import { VECTOR_STYLE_URL } from '@/constants/vectorMap'
+import { PeakCategoryMarkersLayer } from './PeakCategoryMarkersLayer'
+import { PeakMarkersLayer } from './PeakMarkersLayer'
+import peaksStyles from './PeaksMap.module.scss'
 
 const LABEL_LAYERS = [
   'label_other',
@@ -27,6 +31,9 @@ function applyDimmedLabels(map: Map) {
 
 export function PeaksMap() {
   const containerRef = useRef<HTMLDivElement>(null)
+  const [map, setMap] = useState<Map | null>(null)
+  const [isMapReady, setIsMapReady] = useState(false)
+
   useEffect(() => {
     const container = containerRef.current
     if (!container) {
@@ -57,7 +64,10 @@ export function PeaksMap() {
 
     instance.on('load', () => {
       applyDimmedLabels(instance)
+      setIsMapReady(true)
     })
+
+    setMap(instance)
 
     let rafId: number | null = null
     const resizeObserver = new ResizeObserver(() => {
@@ -77,14 +87,24 @@ export function PeaksMap() {
         cancelAnimationFrame(rafId)
       }
       instance.remove()
+      setMap(null)
+      setIsMapReady(false)
     }
   }, [])
 
   return (
-    <div className={`${styles.wrapper} w-full h-full grayscale-85`}>
+    <div className={clsx(mapStyles.wrapper, peaksStyles.wrapper, 'w-full h-full')}>
       <div
         ref={containerRef}
         className="w-full h-full"
+      />
+      <PeakMarkersLayer
+        map={map}
+        isMapReady={isMapReady}
+      />
+      <PeakCategoryMarkersLayer
+        map={map}
+        isMapReady={isMapReady}
       />
     </div>
   )
