@@ -42,7 +42,7 @@ function createPeakMarkerElement(name: string, elevation: number): PeakMarkerEle
   const el = document.createElement('div')
   el.className = styles.marker!
 
-  const triangleEl = createTriangleSvg(14)
+  const triangleEl = createTriangleSvg(22)
   triangleEl.classList.add(styles.triangle!)
   el.appendChild(triangleEl)
 
@@ -138,7 +138,7 @@ export function PeakMarkersLayer({ map, isMapReady }: Props) {
       }
       markersRef.current = null
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [map, isMapReady])
 
   // Update checked visual state and re-render open popup
@@ -162,7 +162,7 @@ export function PeakMarkersLayer({ map, isMapReady }: Props) {
         renderPopupContent(openId, peak)
       }
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [checkedSet])
 
   function renderPopupContent(peakId: string, peak: typeof Taiwan100MountainPeak[keyof typeof Taiwan100MountainPeak]) {

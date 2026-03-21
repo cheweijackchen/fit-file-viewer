@@ -64,7 +64,7 @@ function createCategoryMarkerElement(
   const el = document.createElement('div')
   el.className = styles.categoryMarker!
 
-  const triangleEl = createTriangleSvg(12)
+  const triangleEl = createTriangleSvg(28)
   triangleEl.classList.add(styles.categoryTriangle!)
   el.appendChild(triangleEl)
 
@@ -170,7 +170,7 @@ export function PeakCategoryMarkersLayer({ map, isMapReady }: Props) {
       }
       markersRef.current = null
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [map, isMapReady])
 
   // Update checked visual state and re-render open popup
@@ -205,7 +205,7 @@ export function PeakCategoryMarkersLayer({ map, isMapReady }: Props) {
     if (openIndex !== null && containerRef.current) {
       renderPopupContent(openIndex)
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [checkedSet])
 
   function renderPopupContent(index: number) {
