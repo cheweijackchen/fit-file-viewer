@@ -5,6 +5,7 @@ import type { Map } from 'maplibre-gl'
 import { useRef, useEffect, useState } from 'react'
 import mapStyles from '@/components/VectorMap/MapView.module.scss'
 import { VECTOR_STYLE_URL } from '@/constants/vectorMap'
+import { MapDebugOverlay } from './MapDebugOverlay'
 import { PeakCategoryMarkersLayer } from './PeakCategoryMarkersLayer'
 import { PeakMarkersLayer } from './PeakMarkersLayer'
 import peaksStyles from './PeaksMap.module.scss'
@@ -30,11 +31,14 @@ function applyDimmedLabels(map: Map) {
   }
 }
 
-export function PeaksMap() {
+interface Props {
+  debug?: boolean;
+}
+
+export function PeaksMap({ debug = false }: Props) {
   const containerRef = useRef<HTMLDivElement>(null)
   const [map, setMap] = useState<Map | null>(null)
   const [isMapReady, setIsMapReady] = useState(false)
-
   useEffect(() => {
     const container = containerRef.current
     if (!container) {
@@ -108,6 +112,12 @@ export function PeaksMap() {
         isMapReady={isMapReady}
       />
       <LoadingOverlay visible={!isMapReady} />
+      {debug && (
+        <MapDebugOverlay
+          map={map}
+          isMapReady={isMapReady}
+        />
+      )}
     </div>
   )
 }

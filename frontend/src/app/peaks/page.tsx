@@ -76,7 +76,7 @@ export default function PeaksPage() {
   if (onMobile) {
     return (
       <div className="relative h-screen">
-        <PeaksMapNoSSR />
+        <PeaksMapNoSSR debug />
         <BottomSheet>
           <div className="flex flex-col px-5 pb-4">
             {panelContent}
@@ -100,7 +100,7 @@ export default function PeaksPage() {
       </div>
 
       <div className="flex-1">
-        <PeaksMapNoSSR />
+        <PeaksMapNoSSR debug />
       </div>
     </div>
   )
