@@ -9,6 +9,7 @@ import { PeaksChecklist } from '@/components/PeaksTracker/components/PeaksCheckl
 import { PeaksHeader } from '@/components/PeaksTracker/components/PeaksHeader'
 import { PeaksProgress } from '@/components/PeaksTracker/components/PeaksProgress'
 import { PeaksProgressDialog } from '@/components/PeaksTracker/components/PeaksProgressDialog'
+import { PeaksSearchInput } from '@/components/PeaksTracker/components/PeaksSearchInput'
 import useScreen from '@/hooks/useScreen'
 import { peakGroups, TOTAL_PEAKS } from '@/lib/peakGrouper'
 import { usePeaksStore, usePeaksActions } from '@/store/peaks/usePeaksStore'
@@ -42,36 +43,42 @@ export default function PeaksPage() {
     setShareDialogOpened(true)
   }
 
-  const panelContent = (
-    <>
-      <div className="flex flex-col gap-5">
-        <PeaksHeader
-          showClear={checkedSet.size > 0}
-          onClear={clearAll}
-        />
-        <PeaksProgress
-          completedCount={checkedPeakIds.length}
-          total={TOTAL_PEAKS}
-        />
-        <Divider color="#E8E5E0" />
-        <PeaksActionBar
-          searchValue={searchQuery}
-          userName={userName}
-          onSearchChange={setSearchQuery}
-          onUserNameChange={setUserName}
-          onShare={handleShare}
-        />
-      </div>
-      <PeaksChecklist
-        className="mt-4"
-        groups={peakGroups}
-        searchQuery={searchQuery}
-        checkedIds={checkedSet}
-        onTogglePeak={togglePeak}
-        onSelectAll={checkAllInCategory}
-        onDeselectAll={uncheckAllInCategory}
+  const searchInput = (
+    <PeaksSearchInput
+      value={searchQuery}
+      onChange={setSearchQuery}
+    />
+  )
+
+  const panelHeader = (
+    <div className="flex flex-col gap-5">
+      <PeaksHeader
+        showClear={checkedSet.size > 0}
+        onClear={clearAll}
       />
-    </>
+      <PeaksProgress
+        completedCount={checkedPeakIds.length}
+        total={TOTAL_PEAKS}
+      />
+      <Divider color="#E8E5E0" />
+      <PeaksActionBar
+        userName={userName}
+        onUserNameChange={setUserName}
+        onShare={handleShare}
+      />
+    </div>
+  )
+
+  const peaksList = (
+    <PeaksChecklist
+      className="mt-4"
+      groups={peakGroups}
+      searchQuery={searchQuery}
+      checkedIds={checkedSet}
+      onTogglePeak={togglePeak}
+      onSelectAll={checkAllInCategory}
+      onDeselectAll={uncheckAllInCategory}
+    />
   )
 
   const progressDialog = (
@@ -90,7 +97,11 @@ export default function PeaksPage() {
         <PeaksMapNoSSR />
         <BottomSheet>
           <div className="flex flex-col px-5 pb-4">
-            {panelContent}
+            {panelHeader}
+            <div className="sticky top-0 z-10 bg-white py-3">
+              {searchInput}
+            </div>
+            {peaksList}
           </div>
         </BottomSheet>
         {progressDialog}
@@ -108,7 +119,11 @@ export default function PeaksPage() {
           borderRight: '1px solid #E8E5E0',
         }}
       >
-        {panelContent}
+        {panelHeader}
+        <div className="mt-4">
+          {searchInput}
+        </div>
+        {peaksList}
       </div>
 
       <div className="flex-1">
