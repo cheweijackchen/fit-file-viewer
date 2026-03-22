@@ -116,8 +116,11 @@ export function ContourMapView({ showPeaks, onShowPeaksChange }: Props) {
     )
 
     instance.on('load', () => {
-      // Hide all default vector style layers
+      // Hide all default vector style layers (keep background to avoid black screen in fullscreen)
       for (const layer of instance.getStyle().layers) {
+        if (layer.id === 'background') {
+          continue
+        }
         instance.setLayoutProperty(layer.id, 'visibility', 'none')
       }
 
