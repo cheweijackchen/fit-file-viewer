@@ -6,6 +6,7 @@ import html2canvas from 'html2canvas-pro'
 import Image from 'next/image'
 import { useCallback, useMemo, useRef, useState } from 'react'
 import contourBg from '@/assets/contour-nanyu-mountain.png'
+import { getAvailableCompanions, getCompanionById } from '@/constants/animalCompanions'
 import { getHikerTitle, type HikerTitleStyle, HikerTitleStyleOptions } from '@/constants/hikerTitles'
 import { Taiwan100MountainPeak, type MountainPeak } from '@/constants/peaks'
 import { usePeaksStore, usePeaksActions } from '@/store/peaks/usePeaksStore'
@@ -56,6 +57,7 @@ export function PeaksProgressDialog({ opened, checkedIds, onClose }: Props) {
   const contentRef = useRef<HTMLDivElement>(null)
   const [exportLoading, setExportLoading] = useState(false)
   const [titleStyle, setTitleStyle] = useState<HikerTitleStyle | null>(null)
+  const [companionId, setCompanionId] = useState<string | null>(null)
 
   const userName = usePeaksStore.use.userName()
   const { setUserName } = usePeaksActions()
@@ -66,6 +68,20 @@ export function PeaksProgressDialog({ opened, checkedIds, onClose }: Props) {
 
   const total = Object.keys(Taiwan100MountainPeak).length
   const percentage = Math.round((completedCount / total) * 100)
+
+  const companionSelectData = useMemo(() => {
+    return getAvailableCompanions(completedCount).map(c => ({
+      value: c.id,
+      label: c.label,
+    }))
+  }, [completedCount])
+
+  const selectedCompanion = useMemo(() => {
+    if (!companionId) {
+      return undefined
+    }
+    return getCompanionById(companionId)
+  }, [companionId])
 
   const currentTitle = useMemo(() => {
     if (!titleStyle) {
@@ -154,31 +170,45 @@ export function PeaksProgressDialog({ opened, checkedIds, onClose }: Props) {
 
         {/* Progress */}
         <div className="flex justify-center items-center gap-6 mb-8">
-          <RingProgress
-            roundCaps
-            label={
-              <div className="flex flex-col items-center">
-                <Text
-                  c="dimmed"
-                  size="xs"
-                >
-                  目前進度
-                </Text>
-                <Text
-                  fw={700}
-                  size="xl"
-                >
-                  {completedCount}/{total}
-                </Text>
-              </div>
-            }
-            sections={[{
-              value: percentage,
-              color: 'yellow',
-            }]}
-            size={160}
-            thickness={14}
-          />
+          <div className="relative flex-none">
+            {selectedCompanion && (
+              <Image
+                alt={selectedCompanion.label}
+                className="pointer-events-none absolute z-10"
+                src={selectedCompanion.image}
+                style={{
+                  width: selectedCompanion.width,
+                  top: selectedCompanion.top,
+                  left: selectedCompanion.left,
+                }}
+              />
+            )}
+            <RingProgress
+              roundCaps
+              label={
+                <div className="flex flex-col items-center">
+                  <Text
+                    c="dimmed"
+                    size="xs"
+                  >
+                    目前進度
+                  </Text>
+                  <Text
+                    fw={700}
+                    size="xl"
+                  >
+                    {completedCount}/{total}
+                  </Text>
+                </div>
+              }
+              sections={[{
+                value: percentage,
+                color: 'yellow',
+              }]}
+              size={160}
+              thickness={14}
+            />
+          </div>
           {currentTitle && (
             <div className="flex flex-col flex-1 min-w-0">
               <Text
@@ -225,6 +255,13 @@ export function PeaksProgressDialog({ opened, checkedIds, onClose }: Props) {
             data={titleStyleSelectData}
             value={titleStyle}
             onChange={value => setTitleStyle(value as HikerTitleStyle | null)}
+          />
+          <Select
+            clearable
+            placeholder="選擇你的山林夥伴"
+            data={companionSelectData}
+            value={companionId}
+            onChange={setCompanionId}
           />
           <Button
             disabled={exportLoading}
