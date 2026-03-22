@@ -79,7 +79,12 @@ export function PeaksProgressDialog({ opened, checkedIds, userName, onClose }: P
         content: '!overflow-visible',
         header: '!absolute !p-0 !min-h-0 right-0 top-0 z-10 !overflow-visible',
         close: '!absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 z-10 rounded-full !bg-[var(--mantine-color-body)] shadow transition-transform duration-200 hover:translate-x-[calc(50%-2px)] hover:-translate-y-[calc(50%-2px)]',
-        body: '!overflow-y-auto !max-h-[89vh] !px-0 rounded-lg',
+        body: '!overflow-y-auto !px-0 rounded-lg',
+      }}
+      styles={{
+        body: {
+          'max-height': 'calc(100dvh - var(--modal-y-offset) * 2)'
+        }
       }}
       opened={opened}
       size="xl"
