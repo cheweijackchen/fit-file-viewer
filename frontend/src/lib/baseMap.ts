@@ -338,15 +338,43 @@ function applyBaseMapModeInternal(map: Map, mode: BaseMapMode): void {
 // Contour lines
 // ---------------------------------------------------------------------------
 
-export function ensureContourLayers(map: Map): void {
-  if (!map.getSource(SOURCE_CONTOUR)) {
-    map.addSource(SOURCE_CONTOUR, {
+const DEFAULT_THRESHOLDS: Record<number, number[]> = {
+  11: [200, 1000],
+  14: [50, 200],
+}
+
+export interface ContourLayerIds {
+  line: string;
+  label: string;
+}
+
+export interface EnsureContourLayersOptions {
+  thresholds?: Record<number, number[]>;
+  lineColor?: maplibregl.ExpressionSpecification | string;
+  lineWidth?: maplibregl.ExpressionSpecification | number;
+  lineOpacity?: number;
+}
+
+function contourIdSuffix(thresholds: Record<number, number[]>): string {
+  const minZoom = Math.min(...Object.keys(thresholds).map(Number))
+  return thresholds === DEFAULT_THRESHOLDS ? '' : `-z${minZoom}`
+}
+
+export function ensureContourLayers(
+  map: Map,
+  options?: EnsureContourLayersOptions,
+): ContourLayerIds {
+  const thresholds = options?.thresholds ?? DEFAULT_THRESHOLDS
+  const suffix = contourIdSuffix(thresholds)
+  const sourceId = `${SOURCE_CONTOUR}${suffix}`
+  const lineLayerId = `${LAYER_CONTOUR_LINE}${suffix}`
+  const labelLayerId = `${LAYER_CONTOUR_LABEL}${suffix}`
+
+  if (!map.getSource(sourceId)) {
+    map.addSource(sourceId, {
       type: 'vector',
       tiles: [contourDemSource.contourProtocolUrl({
-        thresholds: {
-          11: [200, 1000],
-          14: [50, 200],
-        },
+        thresholds,
         elevationKey: 'ele',
         levelKey: 'level',
         contourLayer: CONTOUR_SOURCE_LAYER,
@@ -355,40 +383,40 @@ export function ensureContourLayers(map: Map): void {
     })
   }
 
-  if (!map.getLayer(LAYER_CONTOUR_LINE)) {
+  if (!map.getLayer(lineLayerId)) {
     // Insert below road layers so contours sit under roads but above terrain fill.
     const firstRoadLayer = map.getStyle().layers.find((l) =>
       l.id.startsWith('road') || l.id.startsWith('tunnel') || l.id.startsWith('bridge'),
     )
     map.addLayer(
       {
-        id: LAYER_CONTOUR_LINE,
+        id: lineLayerId,
         type: 'line',
-        source: SOURCE_CONTOUR,
+        source: sourceId,
         'source-layer': CONTOUR_SOURCE_LAYER,
         paint: {
-          'line-color': [
+          'line-color': options?.lineColor ?? [
             'match', ['get', 'level'],
             1, '#8B7355',
             '#C4A882',
           ],
-          'line-width': [
+          'line-width': options?.lineWidth ?? [
             'match', ['get', 'level'],
             1, 1.2,
             0.6,
           ],
-          'line-opacity': 0.75,
+          'line-opacity': options?.lineOpacity ?? 0.75,
         },
       },
       firstRoadLayer?.id,
     )
   }
 
-  if (!map.getLayer(LAYER_CONTOUR_LABEL)) {
+  if (!map.getLayer(labelLayerId)) {
     map.addLayer({
-      id: LAYER_CONTOUR_LABEL,
+      id: labelLayerId,
       type: 'symbol',
-      source: SOURCE_CONTOUR,
+      source: sourceId,
       'source-layer': CONTOUR_SOURCE_LAYER,
       filter: ['==', ['get', 'level'], 1],
       layout: {
@@ -403,13 +431,18 @@ export function ensureContourLayers(map: Map): void {
       },
     })
   }
+
+  return {
+    line: lineLayerId,
+    label: labelLayerId,
+  }
 }
 
 function applyContourInternal(map: Map, enabled: boolean): void {
   if (enabled) {
-    ensureContourLayers(map)
-    map.setLayoutProperty(LAYER_CONTOUR_LINE, 'visibility', 'visible')
-    map.setLayoutProperty(LAYER_CONTOUR_LABEL, 'visibility', 'visible')
+    const ids = ensureContourLayers(map)
+    map.setLayoutProperty(ids.line, 'visibility', 'visible')
+    map.setLayoutProperty(ids.label, 'visibility', 'visible')
   } else {
     if (map.getLayer(LAYER_CONTOUR_LINE)) {
       map.setLayoutProperty(LAYER_CONTOUR_LINE, 'visibility', 'none')

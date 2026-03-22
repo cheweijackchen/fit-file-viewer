@@ -5,11 +5,7 @@ import type { Map } from 'maplibre-gl'
 import { useRef, useEffect, useState } from 'react'
 import { Taiwan100MountainPeak } from '@/constants/peaks'
 import { VECTOR_STYLE_URL } from '@/constants/vectorMap'
-import {
-  ensureContourLayers,
-  LAYER_CONTOUR_LINE,
-  LAYER_CONTOUR_LABEL,
-} from '@/lib/baseMap'
+import { ensureContourLayers } from '@/lib/baseMap'
 
 import { MountainPeakToggle } from './MountainPeakToggle'
 import { MapControlPanel } from '../VectorMap/MapControlPanel'
@@ -125,13 +121,22 @@ export function ContourMapView({ showPeaks, onShowPeaksChange }: Props) {
         instance.setLayoutProperty(layer.id, 'visibility', 'none')
       }
 
-      // Add contour layers with custom styling
-      ensureContourLayers(instance)
-      instance.setPaintProperty(LAYER_CONTOUR_LINE, 'line-color', CONTOUR_LINE_COLOR)
-      instance.setPaintProperty(LAYER_CONTOUR_LINE, 'line-width', CONTOUR_LINE_WIDTH)
-      instance.setPaintProperty(LAYER_CONTOUR_LINE, 'line-opacity', 1)
-      instance.setLayoutProperty(LAYER_CONTOUR_LINE, 'visibility', 'visible')
-      instance.setLayoutProperty(LAYER_CONTOUR_LABEL, 'visibility', 'visible')
+      // Add contour layers with custom styling and lower zoom thresholds
+      const contourIds = ensureContourLayers(instance, {
+        thresholds: {
+          1: [2000, 10000],
+          5: [1000, 5000],
+          8: [500, 2000],
+          11: [200, 1000],
+          12: [100, 500],
+          14: [50, 200],
+        },
+        lineColor: CONTOUR_LINE_COLOR,
+        lineWidth: CONTOUR_LINE_WIDTH,
+        lineOpacity: 1,
+      })
+      instance.setLayoutProperty(contourIds.line, 'visibility', 'visible')
+      instance.setLayoutProperty(contourIds.label, 'visibility', 'visible')
 
       // Add Taiwan 100 peaks layer (visible at all zoom levels)
       ensureTaiwan100PeaksLayer(instance)
