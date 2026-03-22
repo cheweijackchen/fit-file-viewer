@@ -3,7 +3,9 @@
 import { Badge, Button, Divider, Modal, RingProgress, Text } from '@mantine/core'
 import { IconCheck, IconDownload } from '@tabler/icons-react'
 import html2canvas from 'html2canvas-pro'
+import Image from 'next/image'
 import { useCallback, useMemo, useRef, useState } from 'react'
+import contourBg from '@/assets/contour-nanyu-mountain.png'
 import { getHikerTitle } from '@/constants/hikerTitles'
 import { Taiwan100MountainPeak, type MountainPeak } from '@/constants/peaks'
 
@@ -98,10 +100,17 @@ export function PeaksProgressDialog({ opened, checkedIds, userName, onClose }: P
     >
       <div
         ref={contentRef}
-        className="bg-white p-6"
+        className="relative overflow-hidden bg-white p-6"
       >
+        {/* Contour background decoration */}
+        <Image
+          alt=""
+          className="pointer-events-none absolute -top-4 -right-50 sm:-right-40 md:-right-4 w-95 opacity-10"
+          src={contourBg}
+        />
+
         {/* Header */}
-        <div className="flex justify-between mb-6 gap-2">
+        <div className="relative z-10 flex justify-between mb-6 gap-2">
           <div>
             <Text
               fw={700}
