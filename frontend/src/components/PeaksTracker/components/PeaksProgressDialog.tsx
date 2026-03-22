@@ -153,7 +153,7 @@ export function PeaksProgressDialog({ opened, checkedIds, onClose }: Props) {
         </div>
 
         {/* Progress */}
-        <div className="flex items-center gap-6 mb-8">
+        <div className="flex justify-center items-center gap-6 mb-8">
           <RingProgress
             roundCaps
             label={
@@ -180,7 +180,7 @@ export function PeaksProgressDialog({ opened, checkedIds, onClose }: Props) {
             thickness={14}
           />
           {currentTitle && (
-            <div className="flex flex-col gap-1 flex-1 min-w-0">
+            <div className="flex flex-col flex-1 min-w-0">
               <Text
                 fw={700}
                 size="xl"
@@ -194,9 +194,8 @@ export function PeaksProgressDialog({ opened, checkedIds, onClose }: Props) {
                 {currentTitle.titleEn}
               </Text>
               <Text
-                c="dimmed"
                 size="xs"
-                className="mt-1"
+                mt="sm"
               >
                 {currentTitle.description}
               </Text>
