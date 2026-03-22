@@ -7,6 +7,7 @@ import { Taiwan100MountainPeak } from '@/constants/peaks'
 import { VECTOR_STYLE_URL } from '@/constants/vectorMap'
 import { ensureContourLayers } from '@/lib/baseMap'
 
+import { CaptureMapButton } from './CaptureMapButton'
 import { MountainPeakToggle } from './MountainPeakToggle'
 import { MapControlPanel } from '../VectorMap/MapControlPanel'
 import styles from '../VectorMap/MapView.module.scss'
@@ -194,6 +195,10 @@ export function ContourMapView({ showPeaks, onShowPeaksChange }: Props) {
 
       <div className="absolute inset-0 pointer-events-none z-20">
         <MapControlPanel>
+          <CaptureMapButton
+            map={map}
+            isMapReady={isMapReady}
+          />
           <MountainPeakToggle
             value={showPeaks}
             onChange={onShowPeaksChange}
