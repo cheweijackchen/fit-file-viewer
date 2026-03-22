@@ -1,14 +1,14 @@
 import clsx from 'clsx'
+import type { FeatureCollection, Point } from 'geojson'
 import maplibregl from 'maplibre-gl'
 import type { Map } from 'maplibre-gl'
 import { useRef, useEffect, useState } from 'react'
+import { Taiwan100MountainPeak } from '@/constants/peaks'
 import { VECTOR_STYLE_URL } from '@/constants/vectorMap'
 import {
   ensureContourLayers,
-  ensureMountainPeakLayer,
   LAYER_CONTOUR_LINE,
   LAYER_CONTOUR_LABEL,
-  LAYER_MOUNTAIN_PEAK,
 } from '@/lib/baseMap'
 
 import { MountainPeakToggle } from './MountainPeakToggle'
@@ -17,6 +17,66 @@ import styles from '../VectorMap/MapView.module.scss'
 
 const CONTOUR_LINE_COLOR = '#000000'
 const CONTOUR_LINE_WIDTH = 3
+
+const SOURCE_TAIWAN_100_PEAKS = 'taiwan-100-peaks-source'
+const LAYER_TAIWAN_100_PEAKS = 'taiwan-100-peaks-layer'
+
+function buildPeaksGeoJson(): FeatureCollection<Point> {
+  const features = Object.values(Taiwan100MountainPeak).map((peak) => ({
+    type: 'Feature' as const,
+    geometry: {
+      type: 'Point' as const,
+      coordinates: [peak.coordinate.lng, peak.coordinate.lat],
+    },
+    properties: {
+      name: peak.name,
+      elevation: peak.elevation,
+    },
+  }))
+  return {
+    type: 'FeatureCollection',
+    features
+  }
+}
+
+function ensureTaiwan100PeaksLayer(map: Map): void {
+  if (!map.getSource(SOURCE_TAIWAN_100_PEAKS)) {
+    map.addSource(SOURCE_TAIWAN_100_PEAKS, {
+      type: 'geojson',
+      data: buildPeaksGeoJson(),
+    })
+  }
+
+  if (!map.getLayer(LAYER_TAIWAN_100_PEAKS)) {
+    map.addLayer({
+      id: LAYER_TAIWAN_100_PEAKS,
+      type: 'symbol',
+      source: SOURCE_TAIWAN_100_PEAKS,
+      layout: {
+        'icon-image': 'triangle',
+        'icon-size': 0.8,
+        'icon-anchor': 'bottom',
+        'text-field': [
+          'format',
+          ['get', 'name'], {},
+          '\n', {},
+          ['concat', ['to-string', ['get', 'elevation']], 'm'],
+          { 'font-scale': 0.85 },
+        ],
+        'text-size': 14,
+        'text-anchor': 'top',
+        'text-offset': [0, 0.2],
+        'text-optional': true,
+      },
+      paint: {
+        'icon-color': '#5B3F20',
+        'text-color': '#5B3F20',
+        'text-halo-color': 'white',
+        'text-halo-width': 1.5,
+      },
+    })
+  }
+}
 
 interface Props {
   showPeaks: boolean;
@@ -73,9 +133,8 @@ export function ContourMapView({ showPeaks, onShowPeaksChange }: Props) {
       instance.setLayoutProperty(LAYER_CONTOUR_LINE, 'visibility', 'visible')
       instance.setLayoutProperty(LAYER_CONTOUR_LABEL, 'visibility', 'visible')
 
-      // Add mountain peak layer
-      ensureMountainPeakLayer(instance)
-      instance.setLayoutProperty(LAYER_MOUNTAIN_PEAK, 'visibility', 'visible')
+      // Add Taiwan 100 peaks layer (visible at all zoom levels)
+      ensureTaiwan100PeaksLayer(instance)
 
       setIsMapReady(true)
     })
@@ -110,8 +169,8 @@ export function ContourMapView({ showPeaks, onShowPeaksChange }: Props) {
     if (!map || !isMapReady) {
       return
     }
-    if (map.getLayer(LAYER_MOUNTAIN_PEAK)) {
-      map.setLayoutProperty(LAYER_MOUNTAIN_PEAK, 'visibility', showPeaks ? 'visible' : 'none')
+    if (map.getLayer(LAYER_TAIWAN_100_PEAKS)) {
+      map.setLayoutProperty(LAYER_TAIWAN_100_PEAKS, 'visibility', showPeaks ? 'visible' : 'none')
     }
   }, [map, isMapReady, showPeaks])
 
