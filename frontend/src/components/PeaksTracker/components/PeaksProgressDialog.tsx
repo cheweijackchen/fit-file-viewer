@@ -4,6 +4,7 @@ import { Badge, Button, Divider, Modal, RingProgress, Text } from '@mantine/core
 import { IconCheck, IconDownload } from '@tabler/icons-react'
 import html2canvas from 'html2canvas-pro'
 import { useCallback, useMemo, useRef, useState } from 'react'
+import { getHikerTitle } from '@/constants/hikerTitles'
 import { Taiwan100MountainPeak, type MountainPeak } from '@/constants/peaks'
 
 interface Props {
@@ -54,6 +55,10 @@ export function PeaksProgressDialog({ opened, checkedIds, userName, onClose }: P
 
   const total = Object.keys(Taiwan100MountainPeak).length
   const percentage = Math.round((completedCount / total) * 100)
+
+  const currentTitle = useMemo(() => {
+    return getHikerTitle(completedCount)
+  }, [completedCount])
 
   const handleExport = useCallback(async () => {
     if (!contentRef.current) {
@@ -127,7 +132,7 @@ export function PeaksProgressDialog({ opened, checkedIds, userName, onClose }: P
         </div>
 
         {/* Progress */}
-        <div className="flex flex-col items-center mb-8">
+        <div className="flex items-center gap-6 mb-8">
           <RingProgress
             roundCaps
             label={
@@ -153,6 +158,29 @@ export function PeaksProgressDialog({ opened, checkedIds, userName, onClose }: P
             size={160}
             thickness={14}
           />
+          {currentTitle && (
+            <div className="flex flex-col gap-1 flex-1 min-w-0">
+              <Text
+                fw={700}
+                size="xl"
+              >
+                {currentTitle.title}
+              </Text>
+              <Text
+                c="dimmed"
+                size="sm"
+              >
+                {currentTitle.titleEn}
+              </Text>
+              <Text
+                c="dimmed"
+                size="xs"
+                className="mt-1"
+              >
+                {currentTitle.description}
+              </Text>
+            </div>
+          )}
         </div>
 
         {/* Peaks Grid */}
