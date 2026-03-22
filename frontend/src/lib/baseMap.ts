@@ -30,11 +30,11 @@ const SOURCE_SATELLITE = 'esri-satellite'
 const LAYER_SATELLITE = 'esri-satellite-layer'
 const SOURCE_TERRAIN = 'terrain-dem'
 const LAYER_HILLSHADE = 'terrain-hillshade-layer'
-const LAYER_MOUNTAIN_PEAK = 'mountain-peak-layer'
+export const LAYER_MOUNTAIN_PEAK = 'mountain-peak-layer'
 
 const SOURCE_CONTOUR = 'contour-source'
-const LAYER_CONTOUR_LINE = 'contour-line-layer'
-const LAYER_CONTOUR_LABEL = 'contour-label-layer'
+export const LAYER_CONTOUR_LINE = 'contour-line-layer'
+export const LAYER_CONTOUR_LABEL = 'contour-label-layer'
 const CONTOUR_SOURCE_LAYER = 'contours'
 
 // Singleton: registered once per page load so all map instances share the same
@@ -130,7 +130,7 @@ function findVectorSourceId(map: Map): string | undefined {
   return Object.keys(sources).find((id) => sources[id].type === 'vector')
 }
 
-function ensureMountainPeakLayer(map: Map): void {
+export function ensureMountainPeakLayer(map: Map): void {
   if (map.getLayer(LAYER_MOUNTAIN_PEAK)) {
     return
   }
@@ -338,7 +338,7 @@ function applyBaseMapModeInternal(map: Map, mode: BaseMapMode): void {
 // Contour lines
 // ---------------------------------------------------------------------------
 
-function ensureContourLayers(map: Map): void {
+export function ensureContourLayers(map: Map): void {
   if (!map.getSource(SOURCE_CONTOUR)) {
     map.addSource(SOURCE_CONTOUR, {
       type: 'vector',
