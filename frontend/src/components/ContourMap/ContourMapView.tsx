@@ -9,6 +9,7 @@ import { ensureContourLayers } from '@/lib/baseMap'
 
 import { CaptureMapButton } from './CaptureMapButton'
 import { MountainPeakToggle } from './MountainPeakToggle'
+import { MapDebugOverlay } from '../PeaksTracker/components/MapDebugOverlay'
 import { MapControlPanel } from '../VectorMap/MapControlPanel'
 import styles from '../VectorMap/MapView.module.scss'
 
@@ -78,9 +79,10 @@ function ensureTaiwan100PeaksLayer(map: Map): void {
 interface Props {
   showPeaks: boolean;
   onShowPeaksChange: (value: boolean) => void;
+  debug?: boolean;
 }
 
-export function ContourMapView({ showPeaks, onShowPeaksChange }: Props) {
+export function ContourMapView({ showPeaks, onShowPeaksChange, debug = false }: Props) {
   const containerRef = useRef<HTMLDivElement>(null)
   const wrapperRef = useRef<HTMLDivElement>(null)
   const [map, setMap] = useState<Map | null>(null)
@@ -205,6 +207,12 @@ export function ContourMapView({ showPeaks, onShowPeaksChange }: Props) {
           />
         </MapControlPanel>
       </div>
+      {debug && (
+        <MapDebugOverlay
+          map={map}
+          isMapReady={isMapReady}
+        />
+      )}
     </div>
   )
 }
