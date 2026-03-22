@@ -1,18 +1,18 @@
 'use client'
 
-import { Badge, Button, Divider, Modal, RingProgress, Text } from '@mantine/core'
-import { IconCheck, IconDownload } from '@tabler/icons-react'
+import { Badge, Button, Divider, Modal, RingProgress, Select, Text, TextInput } from '@mantine/core'
+import { IconCheck, IconDownload, IconUser } from '@tabler/icons-react'
 import html2canvas from 'html2canvas-pro'
 import Image from 'next/image'
 import { useCallback, useMemo, useRef, useState } from 'react'
 import contourBg from '@/assets/contour-nanyu-mountain.png'
-import { getHikerTitle } from '@/constants/hikerTitles'
+import { getHikerTitle, type HikerTitleStyle, HikerTitleStyleOptions } from '@/constants/hikerTitles'
 import { Taiwan100MountainPeak, type MountainPeak } from '@/constants/peaks'
+import { usePeaksStore, usePeaksActions } from '@/store/peaks/usePeaksStore'
 
 interface Props {
   opened: boolean;
   checkedIds: Set<string>;
-  userName: string;
   onClose: () => void;
 }
 
@@ -47,9 +47,18 @@ function groupPeaksByCategory(): CategoryGroup[] {
 
 const categoryGroups = groupPeaksByCategory()
 
-export function PeaksProgressDialog({ opened, checkedIds, userName, onClose }: Props) {
+const titleStyleSelectData = HikerTitleStyleOptions.map(opt => ({
+  value: opt.value,
+  label: opt.label,
+}))
+
+export function PeaksProgressDialog({ opened, checkedIds, onClose }: Props) {
   const contentRef = useRef<HTMLDivElement>(null)
   const [exportLoading, setExportLoading] = useState(false)
+  const [titleStyle, setTitleStyle] = useState<HikerTitleStyle | null>(null)
+
+  const userName = usePeaksStore.use.userName()
+  const { setUserName } = usePeaksActions()
 
   const completedCount = useMemo(() => {
     return Object.keys(Taiwan100MountainPeak).filter(id => checkedIds.has(id)).length
@@ -59,8 +68,11 @@ export function PeaksProgressDialog({ opened, checkedIds, userName, onClose }: P
   const percentage = Math.round((completedCount / total) * 100)
 
   const currentTitle = useMemo(() => {
-    return getHikerTitle(completedCount)
-  }, [completedCount])
+    if (!titleStyle) {
+      return undefined
+    }
+    return getHikerTitle(completedCount, titleStyle)
+  }, [completedCount, titleStyle])
 
   const handleExport = useCallback(async () => {
     if (!contentRef.current) {
@@ -192,6 +204,40 @@ export function PeaksProgressDialog({ opened, checkedIds, userName, onClose }: P
           )}
         </div>
 
+        {/* Form Section - hidden during export */}
+        <div
+          data-html2canvas-ignore
+          className="mb-6 flex flex-col gap-3 rounded-lg border-2 border-dashed border-gray-300 p-4"
+        >
+          <TextInput
+            placeholder="你的名字"
+            value={userName}
+            leftSection={
+              <IconUser
+                size={16}
+                color="#B0B0B0"
+              />
+            }
+            onChange={(e) => setUserName(e.currentTarget.value)}
+          />
+          <Select
+            clearable
+            placeholder="選擇頭銜風格"
+            data={titleStyleSelectData}
+            value={titleStyle}
+            onChange={value => setTitleStyle(value as HikerTitleStyle | null)}
+          />
+          <Button
+            disabled={exportLoading}
+            leftSection={<IconDownload size={16} />}
+            loading={exportLoading}
+            variant="light"
+            onClick={handleExport}
+          >
+            下載圖片
+          </Button>
+        </div>
+
         {/* Peaks Grid */}
         <div className="columns-2 md:columns-3 lg:columns-4 gap-6">
           {categoryGroups.map(group => (
@@ -247,18 +293,6 @@ export function PeaksProgressDialog({ opened, checkedIds, userName, onClose }: P
             </div>
           ))}
         </div>
-      </div>
-
-      <div className="flex justify-center mt-4">
-        <Button
-          disabled={exportLoading}
-          leftSection={<IconDownload size={16} />}
-          loading={exportLoading}
-          variant="light"
-          onClick={handleExport}
-        >
-          下載圖片
-        </Button>
       </div>
     </Modal>
   )
