@@ -7,13 +7,18 @@ import mythicalPangolin from '@/assets/animals/mythical-beast-pangolin.png'
 import pangolin from '@/assets/animals/pangolin-01.png'
 import yellowThroatedMarten from '@/assets/animals/yellow-throated-marten-01.png'
 
+export interface CompanionPosition {
+  readonly top: number;
+  readonly left: number;
+}
+
 export interface AnimalCompanion {
   readonly id: string;
   readonly label: string;
   readonly image: StaticImageData;
   readonly width: number;
-  readonly top: number;
-  readonly left: number;
+  readonly positionLeft: CompanionPosition;
+  readonly positionRight: CompanionPosition;
   readonly mythical: boolean;
 }
 
@@ -23,8 +28,14 @@ export const AnimalCompanions: AnimalCompanion[] = [
     label: '台灣黑熊',
     image: formosaBear,
     width: 120,
-    top: 40,
-    left: 85,
+    positionLeft: {
+      top: 40,
+      left: -69,
+    },
+    positionRight: {
+      top: 40,
+      left: 85,
+    },
     mythical: false,
   },
   {
@@ -32,8 +43,14 @@ export const AnimalCompanions: AnimalCompanion[] = [
     label: '長鬃山羊',
     image: formosaSerow,
     width: 85,
-    top: 55,
-    left: 103,
+    positionLeft: {
+      top: 55,
+      left: -45,
+    },
+    positionRight: {
+      top: 55,
+      left: 103,
+    },
     mythical: false,
   },
   {
@@ -41,8 +58,14 @@ export const AnimalCompanions: AnimalCompanion[] = [
     label: '石虎',
     image: leopardCat,
     width: 70,
-    top: 75,
-    left: 105,
+    positionLeft: {
+      top: 75,
+      left: -30,
+    },
+    positionRight: {
+      top: 75,
+      left: 105,
+    },
     mythical: false,
   },
   {
@@ -50,8 +73,14 @@ export const AnimalCompanions: AnimalCompanion[] = [
     label: '穿山甲',
     image: pangolin,
     width: 80,
-    top: 75,
-    left: 110,
+    positionLeft: {
+      top: 72,
+      left: -40,
+    },
+    positionRight: {
+      top: 75,
+      left: 110,
+    },
     mythical: false,
   },
   {
@@ -59,8 +88,14 @@ export const AnimalCompanions: AnimalCompanion[] = [
     label: '黃喉貂',
     image: yellowThroatedMarten,
     width: 75,
-    top: 80,
-    left: 110,
+    positionLeft: {
+      top: 80,
+      left: -18,
+    },
+    positionRight: {
+      top: 80,
+      left: 110,
+    },
     mythical: false,
   },
   {
@@ -68,8 +103,14 @@ export const AnimalCompanions: AnimalCompanion[] = [
     label: '神獸黑熊',
     image: mythicalBear,
     width: 110,
-    top: 50,
-    left: 88,
+    positionLeft: {
+      top: 45,
+      left: -69,
+    },
+    positionRight: {
+      top: 50,
+      left: 88,
+    },
     mythical: true,
   },
   {
@@ -77,8 +118,14 @@ export const AnimalCompanions: AnimalCompanion[] = [
     label: '神獸穿山甲',
     image: mythicalPangolin,
     width: 80,
-    top: 70,
-    left: 108,
+    positionLeft: {
+      top: 70,
+      left: -40,
+    },
+    positionRight: {
+      top: 70,
+      left: 108,
+    },
     mythical: true,
   },
 ]

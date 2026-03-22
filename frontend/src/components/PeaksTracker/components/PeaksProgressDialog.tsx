@@ -178,8 +178,8 @@ export function PeaksProgressDialog({ opened, checkedIds, onClose }: Props) {
                 src={selectedCompanion.image}
                 style={{
                   width: selectedCompanion.width,
-                  top: selectedCompanion.top,
-                  left: selectedCompanion.left,
+                  top: (currentTitle ? selectedCompanion.positionRight : selectedCompanion.positionLeft).top,
+                  left: (currentTitle ? selectedCompanion.positionRight : selectedCompanion.positionLeft).left,
                 }}
               />
             )}
