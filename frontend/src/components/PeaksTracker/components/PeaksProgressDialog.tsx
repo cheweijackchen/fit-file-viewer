@@ -140,7 +140,7 @@ export function PeaksProgressDialog({ opened, checkedIds, onClose }: Props) {
         {/* Contour background decoration */}
         <Image
           alt=""
-          className="pointer-events-none absolute -top-4 -right-50 sm:-right-40 md:-right-4 w-95 opacity-10"
+          className="pointer-events-none absolute -top-4 -right-50 sm:-right-40 md:-right-4 w-95 opacity-8"
           src={contourBg}
         />
 
@@ -340,7 +340,7 @@ export function PeaksProgressDialog({ opened, checkedIds, onClose }: Props) {
         {/* Contour background decoration - bottom left */}
         <Image
           alt=""
-          className="pointer-events-none absolute -bottom-4 -left-40 sm:-left-20 md:-left-4 w-95 opacity-10"
+          className="pointer-events-none absolute -bottom-4 -left-40 sm:-left-20 md:-left-4 w-95 opacity-8"
           src={contourBgBottomLeft}
         />
 
