@@ -45,7 +45,7 @@ export function BottomSheet({
     >
       {/* Toggle Button */}
       <button
-        className="absolute -top-7 left-1/2 flex h-7 w-12 -translate-x-1/2 cursor-pointer items-center justify-center rounded-t-lg border-none bg-white shadow-[0_-2px_8px_rgba(0,0,0,0.08)]"
+        className="absolute -top-7 left-1/2 flex h-7 w-12 -translate-x-1/2 cursor-pointer items-center justify-center rounded-t-lg border-none bg-(--mantine-color-body) shadow-[0_-2px_8px_rgba(0,0,0,0.08)]"
         aria-label={isCollapsed ? 'Expand sheet' : 'Collapse sheet'}
         onClick={toggleCollapse}
       >
