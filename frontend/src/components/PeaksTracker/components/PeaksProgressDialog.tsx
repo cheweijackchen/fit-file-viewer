@@ -1,10 +1,10 @@
 'use client'
 
 import { Badge, Button, Divider, Modal, RingProgress, Select, Text, TextInput } from '@mantine/core'
-import { IconCheck, IconDownload, IconUser } from '@tabler/icons-react'
+import { IconCheck, IconDownload, IconShare, IconUser } from '@tabler/icons-react'
 import html2canvas from 'html2canvas-pro'
 import Image from 'next/image'
-import { useCallback, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import contourBgBottomLeft from '@/assets/contour-map-mount-yun-flipped.webp'
 import contourBg from '@/assets/contour-nanyu-mountain.png'
 import { getHikerTitle, type HikerTitleStyle, HikerTitleStyleOptions } from '@/constants/hikerTitles'
@@ -59,8 +59,17 @@ export function PeaksProgressDialog({ opened, checkedIds, onClose }: Props) {
   const contentRef = useRef<HTMLDivElement>(null)
   const { onVerticalMobile } = useScreen()
   const [exportLoading, setExportLoading] = useState(false)
+  const [shareLoading, setShareLoading] = useState(false)
+  const [canShare, setCanShare] = useState(false)
   const [titleStyle, setTitleStyle] = useState<HikerTitleStyle | null>(null)
   const [companionId, setCompanionId] = useState<string | null>(null)
+
+  useEffect(() => {
+    if (typeof navigator.share === 'function' && typeof navigator.canShare === 'function') {
+      const testFile = new File([], 'test.png', { type: 'image/png' })
+      setCanShare(navigator.canShare({ files: [testFile] }))
+    }
+  }, [])
 
   const userName = usePeaksStore.use.userName()
   const { setUserName } = usePeaksActions()
@@ -93,27 +102,62 @@ export function PeaksProgressDialog({ opened, checkedIds, onClose }: Props) {
     return getHikerTitle(completedCount, titleStyle)
   }, [completedCount, titleStyle])
 
-  const handleExport = useCallback(async () => {
+  const generateCanvas = useCallback(async () => {
     if (!contentRef.current) {
-      return
+      return null
     }
+    return html2canvas(contentRef.current, {
+      scale: 2,
+      onclone: (_doc, element) => {
+        const footer = element.querySelector('[data-export-footer]')
+        footer?.classList.remove('hidden')
+      },
+    })
+  }, [])
+
+  const getFileName = useCallback(() => {
+    return userName ? `${userName}的台灣百岳進度.png` : '台灣百岳進度.png'
+  }, [userName])
+
+  const handleExport = useCallback(async () => {
     setExportLoading(true)
     try {
-      const canvas = await html2canvas(contentRef.current, {
-        scale: 2,
-        onclone: (_doc, element) => {
-          const footer = element.querySelector('[data-export-footer]')
-          footer?.classList.remove('hidden')
-        },
-      })
+      const canvas = await generateCanvas()
+      if (!canvas) {
+        return
+      }
       const link = document.createElement('a')
-      link.download = userName ? `${userName}的台灣百岳進度.png` : '台灣百岳進度.png'
+      link.download = getFileName()
       link.href = canvas.toDataURL('image/png')
       link.click()
     } finally {
       setExportLoading(false)
     }
-  }, [userName])
+  }, [generateCanvas, getFileName])
+
+  const handleShare = useCallback(async () => {
+    setShareLoading(true)
+    try {
+      const canvas = await generateCanvas()
+      if (!canvas) {
+        return
+      }
+      const blob = await new Promise<Blob>((resolve, reject) => {
+        canvas.toBlob(
+          b => b ? resolve(b) : reject(new Error('Failed to create blob')),
+          'image/png',
+        )
+      })
+      const file = new File([blob], getFileName(), { type: 'image/png' })
+      await navigator.share({ files: [file] })
+    } catch (error) {
+      if (error instanceof Error && error.name !== 'AbortError') {
+        console.error('Share failed:', error)
+      }
+    } finally {
+      setShareLoading(false)
+    }
+  }, [generateCanvas, getFileName])
 
   return (
     <Modal
@@ -274,15 +318,30 @@ export function PeaksProgressDialog({ opened, checkedIds, onClose }: Props) {
             value={companionId}
             onChange={setCompanionId}
           />
-          <Button
-            disabled={exportLoading}
-            leftSection={<IconDownload size={16} />}
-            loading={exportLoading}
-            variant="light"
-            onClick={handleExport}
-          >
-            下載圖片
-          </Button>
+          <div className="flex justify-end gap-2">
+            <Button
+              className="max-md:flex-1"
+              disabled={exportLoading || shareLoading}
+              leftSection={<IconDownload size={16} />}
+              loading={exportLoading}
+              variant="filled"
+              onClick={handleExport}
+            >
+              下載圖片
+            </Button>
+            {canShare && (
+              <Button
+                className="max-md:flex-1"
+                disabled={exportLoading || shareLoading}
+                leftSection={<IconShare size={16} />}
+                loading={shareLoading}
+                variant="outline"
+                onClick={handleShare}
+              >
+                分享圖片
+              </Button>
+            )}
+          </div>
         </div>
 
         {/* Peaks Grid */}
