@@ -4,7 +4,9 @@ import formosaSerow from '@/assets/animals/formosa-serow-01.webp'
 import leopardCat from '@/assets/animals/leopard-cat-01.webp'
 import mythicalBear from '@/assets/animals/mythical-beast-formosa-bear-sitting.webp'
 import mythicalPangolin from '@/assets/animals/mythical-beast-pangolin.webp'
+import mythicalDeer from '@/assets/animals/mythical-beast-sambar-deer.webp'
 import pangolin from '@/assets/animals/pangolin-01.webp'
+import sambarDeer from '@/assets/animals/sambar-deer-01.webp'
 import scopsOwl from '@/assets/animals/scops-owl-01.webp'
 import taiwanBlueMagpie from '@/assets/animals/taiwan-blue-magpie-01.webp'
 import yellowThroatedMarten from '@/assets/animals/yellow-throated-marten-01.webp'
@@ -40,6 +42,21 @@ export const HikingCompanions: HikingCompanion[] = [
     positionRight: {
       top: 40,
       left: 102,
+    },
+    mythical: false,
+  },
+  {
+    id: 'sambar-deer',
+    label: '水鹿',
+    image: sambarDeer,
+    width: 85,
+    positionLeft: {
+      top: 0,
+      left: -48,
+    },
+    positionRight: {
+      top: 0,
+      left: 115,
     },
     mythical: false,
   },
@@ -192,6 +209,21 @@ export const HikingCompanions: HikingCompanion[] = [
       left: 88,
     },
     mythical: true,
+  },
+  {
+    id: 'mythical-deer',
+    label: '神獸水鹿',
+    image: mythicalDeer,
+    width: 240,
+    positionLeft: {
+      top: 15,
+      left: -103,
+    },
+    positionRight: {
+      top: 15,
+      left: 60,
+    },
+    mythical: false,
   },
   {
     id: 'mythical-pangolin',
