@@ -59,7 +59,7 @@ export function BottomSheet({
         <>
           {/* Drag Handle */}
           <div
-            className={`${styles.handle} flex shrink-0 items-center justify-center pt-1 pb-2`}
+            className={`${styles.handle} flex shrink-0 items-center justify-center py-2`}
             {...handleProps}
           >
             <div className="h-1 w-10 rounded-full bg-gray-300" />
