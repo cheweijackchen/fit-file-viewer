@@ -25,7 +25,7 @@ export const HikerTitleStyleOptions: { value: HikerTitleStyle; label: string; }[
   },
   {
     value: HikerTitleStyle.Meme,
-    label: '幹話版'
+    label: '軟骨換貼紙計劃'
   },
 ]
 
@@ -209,28 +209,28 @@ const MemeHikerTitles: readonly HikerTitle[] = [
     max: 30,
     title: '箭竹洗臉機',
     titleEn: 'Bamboo Face-Washer',
-    description: '開始走一些沒路的路，每天早上被濕透的箭竹甩臉甩到懷疑人生，還要假裝很享受自然。',
+    description: '每天早上被濕透的箭竹甩臉甩到懷疑人生，「這就是大地的洗禮」。',
   },
   {
     min: 31,
     max: 40,
     title: '輕量化偏執狂',
     titleEn: 'Gram Counter',
-    description: '為了省 10 克把牙刷柄鋸掉，結果上山後發現自己多帶了兩公斤的脂肪，完全是邏輯鬼才。',
+    description: '為了省 10 克把牙刷柄鋸掉，結果上山後發現自己多帶了兩公斤的脂肪，是在鬧？',
   },
   {
     min: 41,
     max: 50,
-    title: '假性協作員',
-    titleEn: 'Pseudo-Porter',
-    description: '背著 20 公斤氣喘如牛，被路過的真協作穿著藍白拖、扛著瓦斯桶超車，瞬間覺得自己練那什麼腿？',
+    title: '高海拔醉氧族',
+    titleEn: 'Oxygen-Drunk Bummer',
+    description: '待在海拔 3000 公尺以上才覺得清醒，一回到平地就醉氧、反應遲鈍，甚至覺得台北的空氣有毒。',
   },
   {
     min: 51,
     max: 60,
-    title: '山屋歐吉桑',
-    titleEn: 'Cabin Grump',
-    description: '只要有人半夜三點整理塑膠袋就會瞬間暴怒，但在山上十天不洗澡卻覺得自己聞起來像大自然的芬多精。',
+    title: '山屋靜音過濾器',
+    titleEn: 'Cabin NC Filter',
+    description: '你已經不再是那個被山屋噪音折磨的凡人，而是一個行走的人體耳塞，對山屋裡的各種聲音都能自動過濾，甚至還能幫忙轉發給其他人。「外界的頻率再亂，也 ping 不進我那進入 Silent Mode 的靈魂。」',
   },
   {
     min: 61,
@@ -242,23 +242,23 @@ const MemeHikerTitles: readonly HikerTitle[] = [
   {
     min: 71,
     max: 80,
-    title: '膝蓋火葬場',
-    titleEn: 'Knee Crematorium',
-    description: '下坡時膝蓋發出的喀喀聲比無線電還響。每走一步都在問：「我為什麼不在家吹冷氣？」',
+    title: '天氣賭徒',
+    titleEn: 'The Meteorological Gambler',
+    description: '開了好幾個視窗，從 Windy、中央氣象局到 Facebook 登山借問站，分析了三天三夜，最後決定入山的理由通常是：「我覺得今天雲的形狀看起來很吉利。」結果登頂時遇到暴雨白牆，還要濕著身子對天空大喊：「這不是雨，這是山靈在幫我做全身 SPA 兼壓力測試！」 你的登山紀錄不是 .gpx 軌跡，而是你的博弈帳單。',
   },
   {
     min: 81,
     max: 90,
-    title: '濾水器本體',
-    titleEn: 'Living Water Filter',
-    description: '喝過各種顏色的看天池水（咖啡色、墨綠色），腸胃已經進化到可以過濾紅蟲，身體對土地充滿敬畏。',
+    title: '看天池水品水師',
+    titleEn: 'Pond Water Sommelier',
+    description: '喝過各種顏色的看天池水，能輕易分辨這碗水是「紅蟲風味」還是「腐植質後韻」。胃壁已鍍膜。',
   },
   {
-    min: 91,
+    min: 90,
     max: 99,
-    title: '百岳收集奴',
-    titleEn: 'Peak-Collecting Slave',
-    description: '已經不知道為什麼要爬了，純粹是為了那該死的數字。就算山頂白牆一片，也要對著空氣露出尷尬又不失禮貌的微笑。',
+    title: '集點卡人質',
+    titleEn: 'The Point-Card Hostage',
+    description: '你的百岳集點卡已經貼到了 9x 個，剩下最後那幾格空白，就像深夜裡對著你尖叫的 Bug 一樣，讓你寢食難安。你已經不在乎山頂有沒有展望，你只在乎那個三角點能不能幫你「蓋章」',
   },
   {
     min: 100,
