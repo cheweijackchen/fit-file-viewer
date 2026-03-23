@@ -45,7 +45,7 @@ export function BottomSheet({
     >
       {/* Toggle Button */}
       <button
-        className="absolute -top-7 left-1/2 flex h-7 w-12 -translate-x-1/2 cursor-pointer items-center justify-center rounded-t-lg border-none bg-white shadow-[0_-2px_8px_rgba(0,0,0,0.08)]"
+        className="absolute -top-7 left-1/2 flex h-7 w-12 -translate-x-1/2 cursor-pointer items-center justify-center rounded-t-lg border-none bg-(--mantine-color-body) shadow-[0_-2px_8px_rgba(0,0,0,0.08)]"
         aria-label={isCollapsed ? 'Expand sheet' : 'Collapse sheet'}
         onClick={toggleCollapse}
       >
@@ -59,7 +59,7 @@ export function BottomSheet({
         <>
           {/* Drag Handle */}
           <div
-            className={`${styles.handle} flex shrink-0 items-center justify-center pt-1 pb-2`}
+            className={`${styles.handle} flex shrink-0 items-center justify-center py-2`}
             {...handleProps}
           >
             <div className="h-1 w-10 rounded-full bg-gray-300" />
