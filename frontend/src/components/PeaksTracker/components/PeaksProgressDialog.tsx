@@ -96,7 +96,13 @@ export function PeaksProgressDialog({ opened, checkedIds, onClose }: Props) {
     }
     setExportLoading(true)
     try {
-      const canvas = await html2canvas(contentRef.current, { scale: 2 })
+      const canvas = await html2canvas(contentRef.current, {
+        scale: 2,
+        onclone: (_doc, element) => {
+          const footer = element.querySelector('[data-export-footer]')
+          footer?.classList.remove('hidden')
+        },
+      })
       const link = document.createElement('a')
       link.download = userName ? `${userName}的台灣百岳進度.png` : '台灣百岳進度.png'
       link.href = canvas.toDataURL('image/png')
@@ -114,7 +120,7 @@ export function PeaksProgressDialog({ opened, checkedIds, onClose }: Props) {
         content: '!overflow-visible',
         header: '!absolute !p-0 !min-h-0 right-0 top-0 z-10 !overflow-visible',
         close: '!absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 z-10 rounded-full !bg-[var(--mantine-color-body)] shadow transition-transform duration-200 hover:translate-x-[calc(50%-2px)] hover:-translate-y-[calc(50%-2px)]',
-        body: '!overflow-y-auto !px-0 rounded-lg',
+        body: '!overflow-y-auto !p-0 rounded-lg',
       }}
       styles={{
         body: {
@@ -328,6 +334,19 @@ export function PeaksProgressDialog({ opened, checkedIds, onClose }: Props) {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Footer - shown only in exported image */}
+        <div
+          data-export-footer
+          className="hidden mt-6 border-t border-gray-200 pt-3 text-center"
+        >
+          <Text
+            c="dimmed"
+            size="xs"
+          >
+            @whitefurjack ・ 哥爬的不是山，是活著的感覺。
+          </Text>
         </div>
       </div>
     </Modal>
