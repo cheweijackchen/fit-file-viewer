@@ -95,7 +95,7 @@ export default function PeaksPage() {
         <BottomSheet>
           <div className="flex flex-col px-5 pb-4">
             {panelHeader}
-            <div className="sticky top-0 z-10 bg-white py-3 flex flex-col gap-3">
+            <div className="sticky top-0 z-10 bg-(--mantine-color-body) py-3 flex flex-col gap-3">
               <PeaksActionBar onAction={handleShowRecords} />
               {searchInput}
             </div>

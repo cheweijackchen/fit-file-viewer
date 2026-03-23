@@ -220,7 +220,7 @@ export function PeaksProgressDialog({ opened, checkedIds, onClose }: Props) {
     >
       <div
         ref={contentRef}
-        className="relative overflow-hidden bg-white p-6"
+        className="relative overflow-hidden bg-(--mantine-color-body) p-6"
       >
         {/* Contour background decoration */}
         <Image
