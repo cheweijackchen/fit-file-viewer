@@ -5,14 +5,18 @@ import leopardCat from '@/assets/animals/leopard-cat-01.png'
 import mythicalBear from '@/assets/animals/mythical-beast-formosa-bear-sitting.png'
 import mythicalPangolin from '@/assets/animals/mythical-beast-pangolin.png'
 import pangolin from '@/assets/animals/pangolin-01.png'
+import scopsOwl from '@/assets/animals/scops-owl-01.png'
+import taiwanBlueMagpie from '@/assets/animals/taiwan-blue-magpie-01.png'
 import yellowThroatedMarten from '@/assets/animals/yellow-throated-marten-01.png'
+import femaleHiker01 from '@/assets/hikers/female-hiker-01-short-hair.png'
+import maleHiker01 from '@/assets/hikers/male-hiker-01-grey-hair-with-camera.png'
 
 export interface CompanionPosition {
   readonly top: number;
   readonly left: number;
 }
 
-export interface AnimalCompanion {
+export interface HikingCompanion {
   readonly id: string;
   readonly label: string;
   readonly image: StaticImageData;
@@ -22,7 +26,7 @@ export interface AnimalCompanion {
   readonly mythical: boolean;
 }
 
-export const AnimalCompanions: AnimalCompanion[] = [
+export const HikingCompanions: HikingCompanion[] = [
   {
     id: 'formosa-bear',
     label: '台灣黑熊',
@@ -34,7 +38,7 @@ export const AnimalCompanions: AnimalCompanion[] = [
     },
     positionRight: {
       top: 40,
-      left: 85,
+      left: 102,
     },
     mythical: false,
   },
@@ -99,6 +103,66 @@ export const AnimalCompanions: AnimalCompanion[] = [
     mythical: false,
   },
   {
+    id: 'taiwan-blue-magpie',
+    label: '台灣藍鵲',
+    image: taiwanBlueMagpie,
+    width: 120,
+    positionLeft: {
+      top: -25,
+      left: -30,
+    },
+    positionRight: {
+      top: -25,
+      left: -30,
+    },
+    mythical: false,
+  },
+  {
+    id: 'scops-owl',
+    label: '角鴞',
+    image: scopsOwl,
+    width: 120,
+    positionLeft: {
+      top: -15,
+      left: -20,
+    },
+    positionRight: {
+      top: -15,
+      left: -20,
+    },
+    mythical: false,
+  },
+  {
+    id: 'female-hiker-01',
+    label: '短髮姑娘',
+    image: femaleHiker01,
+    width: 110,
+    positionLeft: {
+      top: -25,
+      left: -50,
+    },
+    positionRight: {
+      top: -25,
+      left: 102,
+    },
+    mythical: false,
+  },
+  {
+    id: 'male-hiker-01',
+    label: '你的好朋友 白毛 ：）',
+    image: maleHiker01,
+    width: 120,
+    positionLeft: {
+      top: -40,
+      left: -60,
+    },
+    positionRight: {
+      top: -32,
+      left: 98,
+    },
+    mythical: false,
+  },
+  {
     id: 'mythical-bear',
     label: '神獸黑熊',
     image: mythicalBear,
@@ -130,10 +194,10 @@ export const AnimalCompanions: AnimalCompanion[] = [
   },
 ]
 
-export function getAvailableCompanions(completedCount: number): AnimalCompanion[] {
-  return AnimalCompanions.filter(c => !c.mythical || completedCount >= 100)
+export function getAvailableCompanions(completedCount: number): HikingCompanion[] {
+  return HikingCompanions.filter(c => !c.mythical || completedCount >= 100)
 }
 
-export function getCompanionById(id: string): AnimalCompanion | undefined {
-  return AnimalCompanions.find(c => c.id === id)
+export function getCompanionById(id: string): HikingCompanion | undefined {
+  return HikingCompanions.find(c => c.id === id)
 }

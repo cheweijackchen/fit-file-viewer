@@ -6,8 +6,8 @@ import html2canvas from 'html2canvas-pro'
 import Image from 'next/image'
 import { useCallback, useMemo, useRef, useState } from 'react'
 import contourBg from '@/assets/contour-nanyu-mountain.png'
-import { getAvailableCompanions, getCompanionById } from '@/constants/animalCompanions'
 import { getHikerTitle, type HikerTitleStyle, HikerTitleStyleOptions } from '@/constants/hikerTitles'
+import { getAvailableCompanions, getCompanionById } from '@/constants/hikingCompanions'
 import { Taiwan100MountainPeak, type MountainPeak } from '@/constants/peaks'
 import { usePeaksStore, usePeaksActions } from '@/store/peaks/usePeaksStore'
 
@@ -169,7 +169,7 @@ export function PeaksProgressDialog({ opened, checkedIds, onClose }: Props) {
         </div>
 
         {/* Progress */}
-        <div className="flex justify-center items-center gap-6 mb-8">
+        <div className="flex justify-center items-center gap-6 sm:gap-12 mb-8">
           <div className="relative flex-none">
             {selectedCompanion && (
               <Image
