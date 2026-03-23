@@ -55,6 +55,36 @@ const titleStyleSelectData = HikerTitleStyleOptions.map(opt => ({
   label: opt.label,
 }))
 
+/**
+ * Fix: html2canvas doesn't handle CSS transform on SVG properly.
+ * Convert CSS rotate to SVG transform attribute so RingProgress renders correctly.
+ */
+function fixRingProgressSvgTransformForExport(element: HTMLElement) {
+  const svgElements = element.querySelectorAll('svg')
+  svgElements.forEach((svg) => {
+    const style = window.getComputedStyle(svg)
+    const transform = style.transform
+    if (transform && transform !== 'none') {
+      const width = svg.getAttribute('width') || svg.getBoundingClientRect().width
+      const height = svg.getAttribute('height') || svg.getBoundingClientRect().height
+      const cx = Number(width) / 2
+      const cy = Number(height) / 2
+
+      // Wrap all SVG children in a <g> with the rotation
+      // html2canvas can't handle CSS/SVG-root transforms, but <g transform> is SVG-native
+      const g = document.createElementNS('http://www.w3.org/2000/svg', 'g')
+      g.setAttribute('transform', `rotate(-90, ${cx}, ${cy})`)
+      while (svg.firstChild) {
+        g.appendChild(svg.firstChild)
+      }
+      svg.appendChild(g)
+
+      // Remove the CSS transform
+      svg.style.setProperty('transform', 'none', 'important')
+    }
+  })
+}
+
 export function PeaksProgressDialog({ opened, checkedIds, onClose }: Props) {
   const contentRef = useRef<HTMLDivElement>(null)
   const { onVerticalMobile } = useScreen()
@@ -111,6 +141,7 @@ export function PeaksProgressDialog({ opened, checkedIds, onClose }: Props) {
       onclone: (_doc, element) => {
         const footer = element.querySelector('[data-export-footer]')
         footer?.classList.remove('hidden')
+        fixRingProgressSvgTransformForExport(element)
       },
     })
   }, [])
