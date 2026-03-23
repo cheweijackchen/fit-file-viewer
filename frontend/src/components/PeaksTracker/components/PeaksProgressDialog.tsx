@@ -1,14 +1,14 @@
 'use client'
 
 import { Badge, Button, Divider, Modal, RingProgress, Select, Text, TextInput } from '@mantine/core'
-import { IconCheck, IconDownload, IconShare, IconUser } from '@tabler/icons-react'
+import { IconCheck, IconCrownFilled, IconDownload, IconPawFilled, IconShare, IconStarFilled, IconUser, IconUserFilled } from '@tabler/icons-react'
 import html2canvas from 'html2canvas-pro'
 import Image from 'next/image'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import contourBgBottomLeft from '@/assets/contour-map-mount-yun-flipped.webp'
 import contourBg from '@/assets/contour-nanyu-mountain.png'
 import { getHikerTitle, type HikerTitleStyle, HikerTitleStyleOptions } from '@/constants/hikerTitles'
-import { getAvailableCompanions, getCompanionById } from '@/constants/hikingCompanions'
+import { type CompanionType, getAvailableCompanions, getCompanionById } from '@/constants/hikingCompanions'
 import { Taiwan100MountainPeak, type MountainPeak } from '@/constants/peaks'
 import useScreen from '@/hooks/useScreen'
 import { usePeaksStore, usePeaksActions } from '@/store/peaks/usePeaksStore'
@@ -54,6 +54,13 @@ const titleStyleSelectData = HikerTitleStyleOptions.map(opt => ({
   value: opt.value,
   label: opt.label,
 }))
+
+const companionTypeIcons: Record<CompanionType, typeof IconPawFilled> = {
+  animal: IconPawFilled,
+  mythical: IconCrownFilled,
+  hiker: IconUserFilled,
+  special: IconStarFilled,
+}
 
 /**
  * Fix: html2canvas doesn't handle CSS transform on SVG properly.
@@ -115,6 +122,7 @@ export function PeaksProgressDialog({ opened, checkedIds, onClose }: Props) {
     return getAvailableCompanions(completedCount).map(c => ({
       value: c.id,
       label: c.label,
+      companionType: c.companionType,
     }))
   }, [completedCount])
 
@@ -346,6 +354,16 @@ export function PeaksProgressDialog({ opened, checkedIds, onClose }: Props) {
             placeholder="選擇你的山林夥伴"
             comboboxProps={{ withinPortal: false }}
             data={companionSelectData}
+            renderOption={({ option }) => {
+              const companion = companionSelectData.find(c => c.value === option.value)
+              const Icon = companion ? companionTypeIcons[companion.companionType] : null
+              return (
+                <div className="flex items-center gap-2">
+                  {Icon && <Icon size={14} />}
+                  <span>{option.label}</span>
+                </div>
+              )
+            }}
             value={companionId}
             onChange={setCompanionId}
           />
