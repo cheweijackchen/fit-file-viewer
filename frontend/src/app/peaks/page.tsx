@@ -21,13 +21,11 @@ const PeaksMapNoSSR = dynamic(
 
 export default function PeaksPage() {
   const checkedPeakIds = usePeaksStore.use.checkedPeakIds()
-  const userName = usePeaksStore.use.userName()
   const {
     togglePeak,
     checkAllInCategory,
     uncheckAllInCategory,
     clearAll,
-    setUserName,
   } = usePeaksActions()
 
   const [searchQuery, setSearchQuery] = useState('')
@@ -62,8 +60,6 @@ export default function PeaksPage() {
       />
       <Divider color="#E8E5E0" />
       <PeaksActionBar
-        userName={userName}
-        onUserNameChange={setUserName}
         onAction={handleShowRecords}
       />
     </div>
@@ -85,7 +81,6 @@ export default function PeaksPage() {
     <PeaksProgressDialog
       opened={recordDialogOpened}
       checkedIds={checkedSet}
-      userName={userName}
       onClose={() => setRecordDialogOpened(false)}
     />
   )

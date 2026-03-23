@@ -22,6 +22,10 @@ export const demoNavLinks = [
       {
         title: 'FitTrackMap',
         link: '/demo/demo-fit-track-map',
+      },
+      {
+        title: 'Contour Map',
+        link: '/demo/demo-contour-map',
       }
     ]
   },
