@@ -157,7 +157,7 @@ export const HikingCompanions: HikingCompanion[] = [
       left: -60,
     },
     positionRight: {
-      top: -32,
+      top: -40,
       left: 98,
     },
     mythical: false,
