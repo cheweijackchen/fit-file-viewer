@@ -9,6 +9,7 @@ import scopsOwl from '@/assets/animals/scops-owl-01.webp'
 import taiwanBlueMagpie from '@/assets/animals/taiwan-blue-magpie-01.webp'
 import yellowThroatedMarten from '@/assets/animals/yellow-throated-marten-01.webp'
 import femaleHiker01 from '@/assets/hikers/female-hiker-01-short-hair.webp'
+import femaleHiker02 from '@/assets/hikers/female-hiker-02-long-hair-with-green-outfit.webp'
 import maleHiker01 from '@/assets/hikers/male-hiker-01-grey-hair-with-camera.webp'
 
 export interface CompanionPosition {
@@ -136,6 +137,21 @@ export const HikingCompanions: HikingCompanion[] = [
     id: 'female-hiker-01',
     label: '短髮姑娘',
     image: femaleHiker01,
+    width: 110,
+    positionLeft: {
+      top: -25,
+      left: -50,
+    },
+    positionRight: {
+      top: -25,
+      left: 102,
+    },
+    mythical: false,
+  },
+  {
+    id: 'female-hiker-02',
+    label: '長髮姑娘',
+    image: femaleHiker02,
     width: 110,
     positionLeft: {
       top: -25,
