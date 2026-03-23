@@ -243,7 +243,7 @@ export function PeaksProgressDialog({ opened, checkedIds, onClose }: Props) {
         {/* Form Section - hidden during export */}
         <div
           data-html2canvas-ignore
-          className="mb-6 flex flex-col gap-3 rounded-lg border-2 border-dashed border-gray-300 p-4"
+          className="mb-10 flex flex-col gap-3 rounded-lg border-2 border-dashed border-gray-300 p-4"
         >
           <TextInput
             placeholder="你的名字"
