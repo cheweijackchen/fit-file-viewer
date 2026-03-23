@@ -35,7 +35,7 @@ export const HikingCompanions: HikingCompanion[] = [
     width: 120,
     positionLeft: {
       top: 40,
-      left: -69,
+      left: -66,
     },
     positionRight: {
       top: 40,
@@ -114,7 +114,7 @@ export const HikingCompanions: HikingCompanion[] = [
     },
     positionRight: {
       top: -25,
-      left: -30,
+      left: 100,
     },
     mythical: false,
   },
@@ -129,7 +129,7 @@ export const HikingCompanions: HikingCompanion[] = [
     },
     positionRight: {
       top: -15,
-      left: -20,
+      left: 90,
     },
     mythical: false,
   },
