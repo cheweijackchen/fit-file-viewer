@@ -5,6 +5,7 @@ import { IconCheck, IconDownload, IconUser } from '@tabler/icons-react'
 import html2canvas from 'html2canvas-pro'
 import Image from 'next/image'
 import { useCallback, useMemo, useRef, useState } from 'react'
+import contourBgBottomLeft from '@/assets/contour-map-mount-yun-flipped.webp'
 import contourBg from '@/assets/contour-nanyu-mountain.png'
 import { getHikerTitle, type HikerTitleStyle, HikerTitleStyleOptions } from '@/constants/hikerTitles'
 import { getAvailableCompanions, getCompanionById } from '@/constants/hikingCompanions'
@@ -335,6 +336,13 @@ export function PeaksProgressDialog({ opened, checkedIds, onClose }: Props) {
             </div>
           ))}
         </div>
+
+        {/* Contour background decoration - bottom left */}
+        <Image
+          alt=""
+          className="pointer-events-none absolute -bottom-4 -left-40 sm:-left-20 md:-left-4 w-95 opacity-10"
+          src={contourBgBottomLeft}
+        />
 
         {/* Footer - shown only in exported image */}
         <div
