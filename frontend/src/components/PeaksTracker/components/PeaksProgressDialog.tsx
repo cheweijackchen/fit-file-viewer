@@ -118,7 +118,7 @@ export function PeaksProgressDialog({ opened, checkedIds, onClose }: Props) {
       centered
       withCloseButton
       classNames={{
-        content: '!overflow-visible',
+        content: '!overflow-visible !relative',
         header: '!absolute !p-0 !min-h-0 right-0 top-0 z-10 !overflow-visible',
         close: '!absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 z-10 rounded-full !bg-[var(--mantine-color-body)] shadow transition-transform duration-200 hover:translate-x-[calc(50%-2px)] hover:-translate-y-[calc(50%-2px)]',
         body: '!overflow-y-auto !p-0 rounded-lg',
@@ -259,6 +259,7 @@ export function PeaksProgressDialog({ opened, checkedIds, onClose }: Props) {
           <Select
             clearable
             placeholder="選擇頭銜風格"
+            comboboxProps={{ withinPortal: false }}
             data={titleStyleSelectData}
             value={titleStyle}
             onChange={value => setTitleStyle(value as HikerTitleStyle | null)}
@@ -266,6 +267,7 @@ export function PeaksProgressDialog({ opened, checkedIds, onClose }: Props) {
           <Select
             clearable
             placeholder="選擇你的山林夥伴"
+            comboboxProps={{ withinPortal: false }}
             data={companionSelectData}
             value={companionId}
             onChange={setCompanionId}
