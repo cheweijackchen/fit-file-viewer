@@ -16,6 +16,8 @@ import yellowThroatedMarten from '@/assets/animals/yellow-throated-marten-01.web
 import femaleHiker01 from '@/assets/hikers/female-hiker-01-short-hair.webp'
 import femaleHiker02 from '@/assets/hikers/female-hiker-02-long-hair-with-green-outfit.webp'
 import femaleHiker03 from '@/assets/hikers/female-hiker-03.webp'
+import femaleHiker04 from '@/assets/hikers/female-hiker-04.webp'
+import maleHiker02 from '@/assets/hikers/male-hiker-02.webp'
 import maleHiker03 from '@/assets/hikers/male-hiker-03.webp'
 import myself02 from '@/assets/hikers/myself-02-with-camera.webp'
 
@@ -254,6 +256,38 @@ export const HikingCompanions: HikingCompanion[] = [
     positionLeft: {
       top: -25,
       left: -50,
+    },
+    positionRight: {
+      top: -25,
+      left: 102,
+    },
+    mythical: false,
+    companionType: 'hiker',
+  },
+  {
+    id: 'female-hiker-04',
+    label: '登山女子 D',
+    image: femaleHiker04,
+    width: 110,
+    positionLeft: {
+      top: -25,
+      left: -50,
+    },
+    positionRight: {
+      top: -25,
+      left: 102,
+    },
+    mythical: false,
+    companionType: 'hiker',
+  },
+  {
+    id: 'male-hiker-02',
+    label: '登山男子 B',
+    image: maleHiker02,
+    width: 110,
+    positionLeft: {
+      top: -25,
+      left: -55,
     },
     positionRight: {
       top: -25,
