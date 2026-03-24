@@ -1,7 +1,9 @@
 'use client'
 
-import { Badge, Button, Divider, Modal, RingProgress, Select, Text, TextInput } from '@mantine/core'
+import { Badge, Button, Divider, Modal, RingProgress, Select, Switch, Text, TextInput } from '@mantine/core'
+import { notifications } from '@mantine/notifications'
 import { IconCheck, IconCrownFilled, IconDownload, IconPawFilled, IconShare, IconStarFilled, IconUser, IconUserFilled } from '@tabler/icons-react'
+import clsx from 'clsx'
 import html2canvas from 'html2canvas-pro'
 import Image from 'next/image'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
@@ -62,6 +64,32 @@ const companionTypeIcons: Record<CompanionType, typeof IconPawFilled> = {
   special: IconStarFilled,
 }
 
+const MAX_CANVAS_PIXELS = 16_777_216 // iOS Safari conservative limit
+const CANVAS_TIMEOUT_MS = 15_000
+
+function getOptimalScale(element: HTMLElement, overrideWidth?: number): number {
+  const width = overrideWidth ?? element.offsetWidth
+  const height = element.offsetHeight
+  const idealScale = Math.max(window.devicePixelRatio, 2)
+  const scaledPixels = width * idealScale * height * idealScale
+
+  if (scaledPixels <= MAX_CANVAS_PIXELS) {
+    return idealScale
+  }
+
+  const maxSafeScale = Math.sqrt(MAX_CANVAS_PIXELS / (width * height))
+  return Math.floor(maxSafeScale * 10) / 10
+}
+
+function withTimeout<T>(promise: Promise<T>, ms: number): Promise<T> {
+  return Promise.race([
+    promise,
+    new Promise<never>((_, reject) =>
+      setTimeout(() => reject(new Error('圖片產生逾時，請稍後再試')), ms),
+    ),
+  ])
+}
+
 /**
  * Fix: html2canvas doesn't handle CSS transform on SVG properly.
  * Convert CSS rotate to SVG transform attribute so RingProgress renders correctly.
@@ -94,12 +122,14 @@ function fixRingProgressSvgTransformForExport(element: HTMLElement) {
 
 export function PeaksProgressDialog({ opened, checkedIds, onClose }: Props) {
   const contentRef = useRef<HTMLDivElement>(null)
-  const { onVerticalMobile } = useScreen()
+  const { onMobile } = useScreen()
   const [exportLoading, setExportLoading] = useState(false)
   const [shareLoading, setShareLoading] = useState(false)
   const [canShare, setCanShare] = useState(false)
   const [titleStyle, setTitleStyle] = useState<HikerTitleStyle | null>(null)
   const [companionId, setCompanionId] = useState<string | null>(null)
+  const [useDesktopWidth, setUseDesktopWidth] = useState(false)
+  const [useMobileWidth, setUseMobileWidth] = useState(false)
 
   useEffect(() => {
     if (typeof navigator.share === 'function' && typeof navigator.canShare === 'function') {
@@ -144,15 +174,22 @@ export function PeaksProgressDialog({ opened, checkedIds, onClose }: Props) {
     if (!contentRef.current) {
       return null
     }
-    return html2canvas(contentRef.current, {
-      scale: 2,
+    const overrideWidth = useMobileWidth ? 375 : (useDesktopWidth ? 768 : undefined)
+    const scale = getOptimalScale(contentRef.current, overrideWidth)
+    return withTimeout(html2canvas(contentRef.current, {
+      scale,
+      width: overrideWidth,
+      windowWidth: overrideWidth,
       onclone: (_doc, element) => {
+        if (overrideWidth) {
+          element.style.width = `${overrideWidth}px`
+        }
         const footer = element.querySelector('[data-export-footer]')
         footer?.classList.remove('hidden')
         fixRingProgressSvgTransformForExport(element)
       },
-    })
-  }, [])
+    }), CANVAS_TIMEOUT_MS)
+  }, [useDesktopWidth, useMobileWidth])
 
   const getFileName = useCallback(() => {
     return userName ? `${userName}的台灣百岳進度.png` : '台灣百岳進度.png'
@@ -169,6 +206,12 @@ export function PeaksProgressDialog({ opened, checkedIds, onClose }: Props) {
       link.download = getFileName()
       link.href = canvas.toDataURL('image/png')
       link.click()
+    } catch (error) {
+      notifications.show({
+        title: '下載失敗',
+        message: error instanceof Error ? error.message : '圖片下載時發生未知錯誤',
+        color: 'red',
+      })
     } finally {
       setExportLoading(false)
     }
@@ -191,7 +234,11 @@ export function PeaksProgressDialog({ opened, checkedIds, onClose }: Props) {
       await navigator.share({ files: [file] })
     } catch (error) {
       if (error instanceof Error && error.name !== 'AbortError') {
-        console.error('Share failed:', error)
+        notifications.show({
+          title: '分享失敗',
+          message: error.message,
+          color: 'red',
+        })
       }
     } finally {
       setShareLoading(false)
@@ -261,17 +308,19 @@ export function PeaksProgressDialog({ opened, checkedIds, onClose }: Props) {
         </div>
 
         {/* Progress */}
-        <div className="flex justify-center items-center gap-1 sm:gap-12 mb-8">
-          <div className="relative flex-none ml-6">
+        <div className="flex justify-center items-center gap-1 sm:gap-4 mb-8">
+          <div
+            className={clsx('relative flex-none ml-6', companionId && 'sm:ml-15')}
+          >
             {selectedCompanion && (
               <Image
                 alt={selectedCompanion.label}
-                className="pointer-events-none absolute z-10"
+                className="pointer-events-none absolute z-10 max-w-none!"
                 src={selectedCompanion.image}
                 style={{
                   width: selectedCompanion.width,
-                  top: ((currentTitle && !onVerticalMobile) ? selectedCompanion.positionRight : selectedCompanion.positionLeft).top,
-                  left: ((currentTitle && !onVerticalMobile) ? selectedCompanion.positionRight : selectedCompanion.positionLeft).left,
+                  top: selectedCompanion.positionLeft.top,
+                  left: selectedCompanion.positionLeft.left,
                 }}
               />
             )}
@@ -367,7 +416,31 @@ export function PeaksProgressDialog({ opened, checkedIds, onClose }: Props) {
             value={companionId}
             onChange={setCompanionId}
           />
-          <div className="flex justify-end gap-2">
+          {onMobile && (
+            <Switch
+              className="mr-auto"
+              classNames={{
+                track: '!cursor-pointer',
+                input: 'cursor-pointer',
+              }}
+              label="寬版圖片（適合桌面瀏覽）"
+              checked={useDesktopWidth}
+              onChange={e => setUseDesktopWidth(e.currentTarget.checked)}
+            />
+          )}
+          <div className="flex justify-end items-center gap-2">
+            {!onMobile && (
+              <Switch
+                className="mr-auto"
+                classNames={{
+                  track: '!cursor-pointer',
+                  input: 'cursor-pointer',
+                }}
+                label="窄版圖片(適合手機瀏覽)"
+                checked={useMobileWidth}
+                onChange={e => setUseMobileWidth(e.currentTarget.checked)}
+              />
+            )}
             <Button
               className="max-md:flex-1"
               disabled={exportLoading || shareLoading}

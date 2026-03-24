@@ -16,6 +16,8 @@ import yellowThroatedMarten from '@/assets/animals/yellow-throated-marten-01.web
 import femaleHiker01 from '@/assets/hikers/female-hiker-01-short-hair.webp'
 import femaleHiker02 from '@/assets/hikers/female-hiker-02-long-hair-with-green-outfit.webp'
 import femaleHiker03 from '@/assets/hikers/female-hiker-03.webp'
+import femaleHiker04 from '@/assets/hikers/female-hiker-04.webp'
+import maleHiker02 from '@/assets/hikers/male-hiker-02.webp'
 import maleHiker03 from '@/assets/hikers/male-hiker-03.webp'
 import myself02 from '@/assets/hikers/myself-02-with-camera.webp'
 
@@ -90,14 +92,14 @@ export const HikingCompanions: HikingCompanion[] = [
     id: 'sambar-deer',
     label: '水鹿',
     image: sambarDeer,
-    width: 85,
+    width: 100,
     positionLeft: {
-      top: 0,
+      top: -20,
       left: -48,
     },
     positionRight: {
-      top: 0,
-      left: 115,
+      top: -20,
+      left: 112,
     },
     mythical: false,
     companionType: 'animal',
@@ -263,13 +265,45 @@ export const HikingCompanions: HikingCompanion[] = [
     companionType: 'hiker',
   },
   {
+    id: 'female-hiker-04',
+    label: '登山女子 D',
+    image: femaleHiker04,
+    width: 110,
+    positionLeft: {
+      top: -25,
+      left: -50,
+    },
+    positionRight: {
+      top: -25,
+      left: 102,
+    },
+    mythical: false,
+    companionType: 'hiker',
+  },
+  {
+    id: 'male-hiker-02',
+    label: '登山男子 B',
+    image: maleHiker02,
+    width: 110,
+    positionLeft: {
+      top: -25,
+      left: -55,
+    },
+    positionRight: {
+      top: -25,
+      left: 102,
+    },
+    mythical: false,
+    companionType: 'hiker',
+  },
+  {
     id: 'male-hiker-03',
     label: '登山男子 C',
     image: maleHiker03,
     width: 110,
     positionLeft: {
       top: -25,
-      left: -50,
+      left: -55,
     },
     positionRight: {
       top: -25,
@@ -298,14 +332,14 @@ export const HikingCompanions: HikingCompanion[] = [
     id: 'mythical-bear',
     label: '神獸黑熊',
     image: mythicalBear,
-    width: 110,
+    width: 200,
     positionLeft: {
-      top: 45,
-      left: -69,
+      top: -10,
+      left: -120,
     },
     positionRight: {
-      top: 50,
-      left: 88,
+      top: -10,
+      left: 40,
     },
     mythical: true,
     companionType: 'mythical',
@@ -314,14 +348,14 @@ export const HikingCompanions: HikingCompanion[] = [
     id: 'mythical-deer',
     label: '神獸水鹿',
     image: mythicalDeer,
-    width: 240,
+    width: 180,
     positionLeft: {
-      top: 15,
-      left: -103,
+      top: 0,
+      left: -110,
     },
     positionRight: {
-      top: 15,
-      left: 60,
+      top: 0,
+      left: 48,
     },
     mythical: true,
     companionType: 'mythical',
