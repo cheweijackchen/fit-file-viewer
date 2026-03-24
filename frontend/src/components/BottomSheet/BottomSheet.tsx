@@ -39,7 +39,7 @@ export function BottomSheet({
 
   return (
     <div
-      className={`${styles.sheet} fixed bottom-0 left-0 right-0 z-100 flex flex-col overflow-visible rounded-t-2xl bg-white shadow-[0_-4px_20px_rgba(0,0,0,0.1)]`}
+      className={`${styles.sheet} fixed bottom-0 left-0 right-0 z-100 flex flex-col overflow-visible rounded-t-2xl bg-(--mantine-color-body) shadow-[0_-4px_20px_rgba(0,0,0,0.1)]`}
       style={{ height }}
       data-dragging={isDragging}
     >

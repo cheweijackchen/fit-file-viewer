@@ -1,14 +1,14 @@
 'use client'
 
 import { Badge, Button, Divider, Modal, RingProgress, Select, Text, TextInput } from '@mantine/core'
-import { IconCheck, IconDownload, IconShare, IconUser } from '@tabler/icons-react'
+import { IconCheck, IconCrownFilled, IconDownload, IconPawFilled, IconShare, IconStarFilled, IconUser, IconUserFilled } from '@tabler/icons-react'
 import html2canvas from 'html2canvas-pro'
 import Image from 'next/image'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import contourBgBottomLeft from '@/assets/contour-map-mount-yun-flipped.webp'
 import contourBg from '@/assets/contour-nanyu-mountain.png'
 import { getHikerTitle, type HikerTitleStyle, HikerTitleStyleOptions } from '@/constants/hikerTitles'
-import { getAvailableCompanions, getCompanionById } from '@/constants/hikingCompanions'
+import { type CompanionType, getAvailableCompanions, getCompanionById } from '@/constants/hikingCompanions'
 import { Taiwan100MountainPeak, type MountainPeak } from '@/constants/peaks'
 import useScreen from '@/hooks/useScreen'
 import { usePeaksStore, usePeaksActions } from '@/store/peaks/usePeaksStore'
@@ -55,6 +55,43 @@ const titleStyleSelectData = HikerTitleStyleOptions.map(opt => ({
   label: opt.label,
 }))
 
+const companionTypeIcons: Record<CompanionType, typeof IconPawFilled> = {
+  animal: IconPawFilled,
+  mythical: IconCrownFilled,
+  hiker: IconUserFilled,
+  special: IconStarFilled,
+}
+
+/**
+ * Fix: html2canvas doesn't handle CSS transform on SVG properly.
+ * Convert CSS rotate to SVG transform attribute so RingProgress renders correctly.
+ */
+function fixRingProgressSvgTransformForExport(element: HTMLElement) {
+  const svgElements = element.querySelectorAll('svg')
+  svgElements.forEach((svg) => {
+    const style = window.getComputedStyle(svg)
+    const transform = style.transform
+    if (transform && transform !== 'none') {
+      const width = svg.getAttribute('width') || svg.getBoundingClientRect().width
+      const height = svg.getAttribute('height') || svg.getBoundingClientRect().height
+      const cx = Number(width) / 2
+      const cy = Number(height) / 2
+
+      // Wrap all SVG children in a <g> with the rotation
+      // html2canvas can't handle CSS/SVG-root transforms, but <g transform> is SVG-native
+      const g = document.createElementNS('http://www.w3.org/2000/svg', 'g')
+      g.setAttribute('transform', `rotate(-90, ${cx}, ${cy})`)
+      while (svg.firstChild) {
+        g.appendChild(svg.firstChild)
+      }
+      svg.appendChild(g)
+
+      // Remove the CSS transform
+      svg.style.setProperty('transform', 'none', 'important')
+    }
+  })
+}
+
 export function PeaksProgressDialog({ opened, checkedIds, onClose }: Props) {
   const contentRef = useRef<HTMLDivElement>(null)
   const { onVerticalMobile } = useScreen()
@@ -85,6 +122,7 @@ export function PeaksProgressDialog({ opened, checkedIds, onClose }: Props) {
     return getAvailableCompanions(completedCount).map(c => ({
       value: c.id,
       label: c.label,
+      companionType: c.companionType,
     }))
   }, [completedCount])
 
@@ -111,6 +149,7 @@ export function PeaksProgressDialog({ opened, checkedIds, onClose }: Props) {
       onclone: (_doc, element) => {
         const footer = element.querySelector('[data-export-footer]')
         footer?.classList.remove('hidden')
+        fixRingProgressSvgTransformForExport(element)
       },
     })
   }, [])
@@ -181,7 +220,7 @@ export function PeaksProgressDialog({ opened, checkedIds, onClose }: Props) {
     >
       <div
         ref={contentRef}
-        className="relative overflow-hidden bg-white p-6"
+        className="relative overflow-hidden bg-(--mantine-color-body) p-6"
       >
         {/* Contour background decoration */}
         <Image
@@ -315,6 +354,16 @@ export function PeaksProgressDialog({ opened, checkedIds, onClose }: Props) {
             placeholder="選擇你的山林夥伴"
             comboboxProps={{ withinPortal: false }}
             data={companionSelectData}
+            renderOption={({ option }) => {
+              const companion = companionSelectData.find(c => c.value === option.value)
+              const Icon = companion ? companionTypeIcons[companion.companionType] : null
+              return (
+                <div className="flex items-center gap-2">
+                  {Icon && <Icon size={14} />}
+                  <span>{option.label}</span>
+                </div>
+              )
+            }}
             value={companionId}
             onChange={setCompanionId}
           />

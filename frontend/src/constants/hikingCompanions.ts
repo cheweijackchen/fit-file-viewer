@@ -1,21 +1,30 @@
 import type { StaticImageData } from 'next/image'
-import formosaBear from '@/assets/animals/formosa-bear-01.webp'
+import formosaBear01 from '@/assets/animals/formosa-bear-01.webp'
+import formosaBear02 from '@/assets/animals/formosa-bear-02.webp'
+import formosaBear03 from '@/assets/animals/formosa-bear-03.webp'
 import formosaSerow from '@/assets/animals/formosa-serow-01.webp'
 import leopardCat from '@/assets/animals/leopard-cat-01.webp'
-import mythicalBear from '@/assets/animals/mythical-beast-formosa-bear-sitting.webp'
+import monkey from '@/assets/animals/monkey-01.webp'
+import mythicalBear from '@/assets/animals/mythical-beast-formosa-bear.webp'
 import mythicalPangolin from '@/assets/animals/mythical-beast-pangolin.webp'
+import mythicalDeer from '@/assets/animals/mythical-beast-sambar-deer.webp'
 import pangolin from '@/assets/animals/pangolin-01.webp'
+import sambarDeer from '@/assets/animals/sambar-deer-01.webp'
 import scopsOwl from '@/assets/animals/scops-owl-01.webp'
 import taiwanBlueMagpie from '@/assets/animals/taiwan-blue-magpie-01.webp'
 import yellowThroatedMarten from '@/assets/animals/yellow-throated-marten-01.webp'
 import femaleHiker01 from '@/assets/hikers/female-hiker-01-short-hair.webp'
 import femaleHiker02 from '@/assets/hikers/female-hiker-02-long-hair-with-green-outfit.webp'
-import maleHiker01 from '@/assets/hikers/male-hiker-01-grey-hair-with-camera.webp'
+import femaleHiker03 from '@/assets/hikers/female-hiker-03.webp'
+import maleHiker03 from '@/assets/hikers/male-hiker-03.webp'
+import myself02 from '@/assets/hikers/myself-02-with-camera.webp'
 
 export interface CompanionPosition {
   readonly top: number;
   readonly left: number;
 }
+
+export type CompanionType = 'animal' | 'mythical' | 'hiker' | 'special'
 
 export interface HikingCompanion {
   readonly id: string;
@@ -25,13 +34,14 @@ export interface HikingCompanion {
   readonly positionLeft: CompanionPosition;
   readonly positionRight: CompanionPosition;
   readonly mythical: boolean;
+  readonly companionType: CompanionType;
 }
 
 export const HikingCompanions: HikingCompanion[] = [
   {
-    id: 'formosa-bear',
-    label: '台灣黑熊',
-    image: formosaBear,
+    id: 'formosa-bear-01',
+    label: '台灣黑熊（坐姿）',
+    image: formosaBear01,
     width: 120,
     positionLeft: {
       top: 40,
@@ -42,6 +52,71 @@ export const HikingCompanions: HikingCompanion[] = [
       left: 102,
     },
     mythical: false,
+    companionType: 'animal',
+  },
+  {
+    id: 'formosa-bear-02',
+    label: '台灣黑熊（站姿）',
+    image: formosaBear02,
+    width: 120,
+    positionLeft: {
+      top: 50,
+      left: -55,
+    },
+    positionRight: {
+      top: 40,
+      left: 100,
+    },
+    mythical: false,
+    companionType: 'animal',
+  },
+  {
+    id: 'formosa-bear-03',
+    label: '台灣黑熊（立姿）',
+    image: formosaBear03,
+    width: 90,
+    positionLeft: {
+      top: 10,
+      left: -50,
+    },
+    positionRight: {
+      top: 10,
+      left: 115,
+    },
+    mythical: false,
+    companionType: 'animal',
+  },
+  {
+    id: 'sambar-deer',
+    label: '水鹿',
+    image: sambarDeer,
+    width: 85,
+    positionLeft: {
+      top: 0,
+      left: -48,
+    },
+    positionRight: {
+      top: 0,
+      left: 115,
+    },
+    mythical: false,
+    companionType: 'animal',
+  },
+  {
+    id: 'monkey',
+    label: '台灣獼猴',
+    image: monkey,
+    width: 90,
+    positionLeft: {
+      top: 70,
+      left: -35,
+    },
+    positionRight: {
+      top: 70,
+      left: 116
+    },
+    mythical: false,
+    companionType: 'animal',
   },
   {
     id: 'formosa-serow',
@@ -57,6 +132,7 @@ export const HikingCompanions: HikingCompanion[] = [
       left: 103,
     },
     mythical: false,
+    companionType: 'animal',
   },
   {
     id: 'leopard-cat',
@@ -72,6 +148,7 @@ export const HikingCompanions: HikingCompanion[] = [
       left: 105,
     },
     mythical: false,
+    companionType: 'animal',
   },
   {
     id: 'pangolin',
@@ -87,6 +164,7 @@ export const HikingCompanions: HikingCompanion[] = [
       left: 110,
     },
     mythical: false,
+    companionType: 'animal',
   },
   {
     id: 'yellow-throated-marten',
@@ -102,6 +180,7 @@ export const HikingCompanions: HikingCompanion[] = [
       left: 110,
     },
     mythical: false,
+    companionType: 'animal',
   },
   {
     id: 'taiwan-blue-magpie',
@@ -117,6 +196,7 @@ export const HikingCompanions: HikingCompanion[] = [
       left: 100,
     },
     mythical: false,
+    companionType: 'animal',
   },
   {
     id: 'scops-owl',
@@ -132,10 +212,11 @@ export const HikingCompanions: HikingCompanion[] = [
       left: 90,
     },
     mythical: false,
+    companionType: 'animal',
   },
   {
     id: 'female-hiker-01',
-    label: '短髮姑娘',
+    label: '登山女子 A',
     image: femaleHiker01,
     width: 110,
     positionLeft: {
@@ -147,10 +228,11 @@ export const HikingCompanions: HikingCompanion[] = [
       left: 102,
     },
     mythical: false,
+    companionType: 'hiker',
   },
   {
     id: 'female-hiker-02',
-    label: '長髮姑娘',
+    label: '登山女子 B',
     image: femaleHiker02,
     width: 110,
     positionLeft: {
@@ -162,21 +244,55 @@ export const HikingCompanions: HikingCompanion[] = [
       left: 102,
     },
     mythical: false,
+    companionType: 'hiker',
+  },
+  {
+    id: 'female-hiker-03',
+    label: '登山女子 C',
+    image: femaleHiker03,
+    width: 110,
+    positionLeft: {
+      top: -25,
+      left: -50,
+    },
+    positionRight: {
+      top: -25,
+      left: 102,
+    },
+    mythical: false,
+    companionType: 'hiker',
+  },
+  {
+    id: 'male-hiker-03',
+    label: '登山男子 C',
+    image: maleHiker03,
+    width: 110,
+    positionLeft: {
+      top: -25,
+      left: -50,
+    },
+    positionRight: {
+      top: -25,
+      left: 102,
+    },
+    mythical: false,
+    companionType: 'hiker',
   },
   {
     id: 'male-hiker-01',
     label: '你的好朋友 白毛 ：）',
-    image: maleHiker01,
+    image: myself02,
     width: 120,
     positionLeft: {
-      top: -40,
+      top: -25,
       left: -60,
     },
     positionRight: {
-      top: -40,
+      top: -25,
       left: 98,
     },
     mythical: false,
+    companionType: 'special',
   },
   {
     id: 'mythical-bear',
@@ -192,6 +308,23 @@ export const HikingCompanions: HikingCompanion[] = [
       left: 88,
     },
     mythical: true,
+    companionType: 'mythical',
+  },
+  {
+    id: 'mythical-deer',
+    label: '神獸水鹿',
+    image: mythicalDeer,
+    width: 240,
+    positionLeft: {
+      top: 15,
+      left: -103,
+    },
+    positionRight: {
+      top: 15,
+      left: 60,
+    },
+    mythical: true,
+    companionType: 'mythical',
   },
   {
     id: 'mythical-pangolin',
@@ -207,6 +340,7 @@ export const HikingCompanions: HikingCompanion[] = [
       left: 108,
     },
     mythical: true,
+    companionType: 'mythical',
   },
 ]
 
