@@ -103,6 +103,7 @@ export function PeaksProgressDialog({ opened, checkedIds, onClose }: Props) {
   const [titleStyle, setTitleStyle] = useState<HikerTitleStyle | null>(null)
   const [companionId, setCompanionId] = useState<string | null>(null)
   const [useDesktopWidth, setUseDesktopWidth] = useState(false)
+  const [useMobileWidth, setUseMobileWidth] = useState(false)
 
   useEffect(() => {
     if (typeof navigator.share === 'function' && typeof navigator.canShare === 'function') {
@@ -147,21 +148,21 @@ export function PeaksProgressDialog({ opened, checkedIds, onClose }: Props) {
     if (!contentRef.current) {
       return null
     }
-    const desktopWidth = 768
+    const overrideWidth = useMobileWidth ? 375 : (useDesktopWidth ? 768 : undefined)
     return html2canvas(contentRef.current, {
       scale: 2,
-      width: useDesktopWidth ? desktopWidth : undefined,
-      windowWidth: useDesktopWidth ? desktopWidth : undefined,
+      width: overrideWidth,
+      windowWidth: overrideWidth,
       onclone: (_doc, element) => {
-        if (useDesktopWidth) {
-          element.style.width = `${desktopWidth}px`
+        if (overrideWidth) {
+          element.style.width = `${overrideWidth}px`
         }
         const footer = element.querySelector('[data-export-footer]')
         footer?.classList.remove('hidden')
         fixRingProgressSvgTransformForExport(element)
       },
     })
-  }, [useDesktopWidth])
+  }, [useDesktopWidth, useMobileWidth])
 
   const getFileName = useCallback(() => {
     return userName ? `${userName}的台灣百岳進度.png` : '台灣百岳進度.png'
@@ -396,6 +397,14 @@ export function PeaksProgressDialog({ opened, checkedIds, onClose }: Props) {
             />
           )}
           <div className="flex justify-end items-center gap-2">
+            {!onMobile && (
+              <Switch
+                className="mr-auto"
+                label="窄版圖片(適合手機瀏覽)"
+                checked={useMobileWidth}
+                onChange={e => setUseMobileWidth(e.currentTarget.checked)}
+              />
+            )}
             <Button
               className="max-md:flex-1"
               disabled={exportLoading || shareLoading}
