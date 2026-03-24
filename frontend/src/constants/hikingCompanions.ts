@@ -1,8 +1,11 @@
 import type { StaticImageData } from 'next/image'
-import formosaBear from '@/assets/animals/formosa-bear-01.webp'
+import formosaBear01 from '@/assets/animals/formosa-bear-01.webp'
+import formosaBear02 from '@/assets/animals/formosa-bear-02.webp'
+import formosaBear03 from '@/assets/animals/formosa-bear-03.webp'
 import formosaSerow from '@/assets/animals/formosa-serow-01.webp'
 import leopardCat from '@/assets/animals/leopard-cat-01.webp'
-import mythicalBear from '@/assets/animals/mythical-beast-formosa-bear-sitting.webp'
+import monkey from '@/assets/animals/monkey-01.webp'
+import mythicalBear from '@/assets/animals/mythical-beast-formosa-bear.webp'
 import mythicalPangolin from '@/assets/animals/mythical-beast-pangolin.webp'
 import mythicalDeer from '@/assets/animals/mythical-beast-sambar-deer.webp'
 import pangolin from '@/assets/animals/pangolin-01.webp'
@@ -12,7 +15,9 @@ import taiwanBlueMagpie from '@/assets/animals/taiwan-blue-magpie-01.webp'
 import yellowThroatedMarten from '@/assets/animals/yellow-throated-marten-01.webp'
 import femaleHiker01 from '@/assets/hikers/female-hiker-01-short-hair.webp'
 import femaleHiker02 from '@/assets/hikers/female-hiker-02-long-hair-with-green-outfit.webp'
-import maleHiker01 from '@/assets/hikers/male-hiker-01-grey-hair-with-camera.webp'
+import femaleHiker03 from '@/assets/hikers/female-hiker-03.webp'
+import maleHiker03 from '@/assets/hikers/male-hiker-03.webp'
+import myself02 from '@/assets/hikers/myself-02-with-camera.webp'
 
 export interface CompanionPosition {
   readonly top: number;
@@ -34,9 +39,9 @@ export interface HikingCompanion {
 
 export const HikingCompanions: HikingCompanion[] = [
   {
-    id: 'formosa-bear',
-    label: '台灣黑熊',
-    image: formosaBear,
+    id: 'formosa-bear-01',
+    label: '台灣黑熊（坐姿）',
+    image: formosaBear01,
     width: 120,
     positionLeft: {
       top: 40,
@@ -45,6 +50,38 @@ export const HikingCompanions: HikingCompanion[] = [
     positionRight: {
       top: 40,
       left: 102,
+    },
+    mythical: false,
+    companionType: 'animal',
+  },
+  {
+    id: 'formosa-bear-02',
+    label: '台灣黑熊（站姿）',
+    image: formosaBear02,
+    width: 120,
+    positionLeft: {
+      top: 50,
+      left: -55,
+    },
+    positionRight: {
+      top: 40,
+      left: 100,
+    },
+    mythical: false,
+    companionType: 'animal',
+  },
+  {
+    id: 'formosa-bear-03',
+    label: '台灣黑熊（立姿）',
+    image: formosaBear03,
+    width: 90,
+    positionLeft: {
+      top: 10,
+      left: -50,
+    },
+    positionRight: {
+      top: 10,
+      left: 115,
     },
     mythical: false,
     companionType: 'animal',
@@ -61,6 +98,22 @@ export const HikingCompanions: HikingCompanion[] = [
     positionRight: {
       top: 0,
       left: 115,
+    },
+    mythical: false,
+    companionType: 'animal',
+  },
+  {
+    id: 'monkey',
+    label: '台灣獼猴',
+    image: monkey,
+    width: 90,
+    positionLeft: {
+      top: 70,
+      left: -35,
+    },
+    positionRight: {
+      top: 70,
+      left: 116
     },
     mythical: false,
     companionType: 'animal',
@@ -194,16 +247,48 @@ export const HikingCompanions: HikingCompanion[] = [
     companionType: 'hiker',
   },
   {
+    id: 'female-hiker-03',
+    label: '登山女子 C',
+    image: femaleHiker03,
+    width: 110,
+    positionLeft: {
+      top: -25,
+      left: -50,
+    },
+    positionRight: {
+      top: -25,
+      left: 102,
+    },
+    mythical: false,
+    companionType: 'hiker',
+  },
+  {
+    id: 'male-hiker-03',
+    label: '登山男子 C',
+    image: maleHiker03,
+    width: 110,
+    positionLeft: {
+      top: -25,
+      left: -50,
+    },
+    positionRight: {
+      top: -25,
+      left: 102,
+    },
+    mythical: false,
+    companionType: 'hiker',
+  },
+  {
     id: 'male-hiker-01',
     label: '你的好朋友 白毛 ：）',
-    image: maleHiker01,
+    image: myself02,
     width: 120,
     positionLeft: {
-      top: -40,
+      top: -25,
       left: -60,
     },
     positionRight: {
-      top: -40,
+      top: -25,
       left: 98,
     },
     mythical: false,
