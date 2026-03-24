@@ -418,6 +418,11 @@ export function PeaksProgressDialog({ opened, checkedIds, onClose }: Props) {
           />
           {onMobile && (
             <Switch
+              className="mr-auto"
+              classNames={{
+                track: '!cursor-pointer',
+                input: 'cursor-pointer',
+              }}
               label="寬版圖片（適合桌面瀏覽）"
               checked={useDesktopWidth}
               onChange={e => setUseDesktopWidth(e.currentTarget.checked)}
@@ -427,6 +432,10 @@ export function PeaksProgressDialog({ opened, checkedIds, onClose }: Props) {
             {!onMobile && (
               <Switch
                 className="mr-auto"
+                classNames={{
+                  track: '!cursor-pointer',
+                  input: 'cursor-pointer',
+                }}
                 label="窄版圖片(適合手機瀏覽)"
                 checked={useMobileWidth}
                 onChange={e => setUseMobileWidth(e.currentTarget.checked)}
