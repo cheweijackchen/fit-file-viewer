@@ -1,6 +1,6 @@
 'use client'
 
-import { Badge, Button, Divider, Modal, RingProgress, Select, Text, TextInput } from '@mantine/core'
+import { Badge, Button, Divider, Modal, RingProgress, Select, Switch, Text, TextInput } from '@mantine/core'
 import { notifications } from '@mantine/notifications'
 import { IconCheck, IconCrownFilled, IconDownload, IconPawFilled, IconShare, IconStarFilled, IconUser, IconUserFilled } from '@tabler/icons-react'
 import clsx from 'clsx'
@@ -12,6 +12,7 @@ import contourBg from '@/assets/contour-nanyu-mountain.png'
 import { getHikerTitle, type HikerTitleStyle, HikerTitleStyleOptions } from '@/constants/hikerTitles'
 import { type CompanionType, getAvailableCompanions, getCompanionById } from '@/constants/hikingCompanions'
 import { Taiwan100MountainPeak, type MountainPeak } from '@/constants/peaks'
+import useScreen from '@/hooks/useScreen'
 import { usePeaksStore, usePeaksActions } from '@/store/peaks/usePeaksStore'
 
 interface Props {
@@ -95,12 +96,13 @@ function fixRingProgressSvgTransformForExport(element: HTMLElement) {
 
 export function PeaksProgressDialog({ opened, checkedIds, onClose }: Props) {
   const contentRef = useRef<HTMLDivElement>(null)
-  // const { onVerticalMobile } = useScreen()
+  const { onMobile } = useScreen()
   const [exportLoading, setExportLoading] = useState(false)
   const [shareLoading, setShareLoading] = useState(false)
   const [canShare, setCanShare] = useState(false)
   const [titleStyle, setTitleStyle] = useState<HikerTitleStyle | null>(null)
   const [companionId, setCompanionId] = useState<string | null>(null)
+  const [useDesktopWidth, setUseDesktopWidth] = useState(false)
 
   useEffect(() => {
     if (typeof navigator.share === 'function' && typeof navigator.canShare === 'function') {
@@ -145,15 +147,21 @@ export function PeaksProgressDialog({ opened, checkedIds, onClose }: Props) {
     if (!contentRef.current) {
       return null
     }
+    const desktopWidth = 768
     return html2canvas(contentRef.current, {
       scale: 2,
+      width: useDesktopWidth ? desktopWidth : undefined,
+      windowWidth: useDesktopWidth ? desktopWidth : undefined,
       onclone: (_doc, element) => {
+        if (useDesktopWidth) {
+          element.style.width = `${desktopWidth}px`
+        }
         const footer = element.querySelector('[data-export-footer]')
         footer?.classList.remove('hidden')
         fixRingProgressSvgTransformForExport(element)
       },
     })
-  }, [])
+  }, [useDesktopWidth])
 
   const getFileName = useCallback(() => {
     return userName ? `${userName}的台灣百岳進度.png` : '台灣百岳進度.png'
@@ -380,7 +388,14 @@ export function PeaksProgressDialog({ opened, checkedIds, onClose }: Props) {
             value={companionId}
             onChange={setCompanionId}
           />
-          <div className="flex justify-end gap-2">
+          {onMobile && (
+            <Switch
+              label="寬版圖片（適合桌面瀏覽）"
+              checked={useDesktopWidth}
+              onChange={e => setUseDesktopWidth(e.currentTarget.checked)}
+            />
+          )}
+          <div className="flex justify-end items-center gap-2">
             <Button
               className="max-md:flex-1"
               disabled={exportLoading || shareLoading}
