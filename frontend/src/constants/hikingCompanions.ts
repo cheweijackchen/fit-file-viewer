@@ -269,7 +269,7 @@ export const HikingCompanions: HikingCompanion[] = [
     width: 110,
     positionLeft: {
       top: -25,
-      left: -50,
+      left: -55,
     },
     positionRight: {
       top: -25,
@@ -298,14 +298,14 @@ export const HikingCompanions: HikingCompanion[] = [
     id: 'mythical-bear',
     label: '神獸黑熊',
     image: mythicalBear,
-    width: 110,
+    width: 200,
     positionLeft: {
-      top: 45,
-      left: -69,
+      top: -10,
+      left: -120,
     },
     positionRight: {
-      top: 50,
-      left: 88,
+      top: -10,
+      left: 40,
     },
     mythical: true,
     companionType: 'mythical',
@@ -314,14 +314,14 @@ export const HikingCompanions: HikingCompanion[] = [
     id: 'mythical-deer',
     label: '神獸水鹿',
     image: mythicalDeer,
-    width: 240,
+    width: 180,
     positionLeft: {
-      top: 15,
-      left: -103,
+      top: 0,
+      left: -110,
     },
     positionRight: {
-      top: 15,
-      left: 60,
+      top: 0,
+      left: 48,
     },
     mythical: true,
     companionType: 'mythical',

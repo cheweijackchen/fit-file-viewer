@@ -266,7 +266,7 @@ export function PeaksProgressDialog({ opened, checkedIds, onClose }: Props) {
             {selectedCompanion && (
               <Image
                 alt={selectedCompanion.label}
-                className="pointer-events-none absolute z-10"
+                className="pointer-events-none absolute z-10 max-w-none!"
                 src={selectedCompanion.image}
                 style={{
                   width: selectedCompanion.width,
