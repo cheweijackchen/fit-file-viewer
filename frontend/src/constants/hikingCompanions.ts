@@ -90,14 +90,14 @@ export const HikingCompanions: HikingCompanion[] = [
     id: 'sambar-deer',
     label: '水鹿',
     image: sambarDeer,
-    width: 85,
+    width: 100,
     positionLeft: {
-      top: 0,
+      top: -20,
       left: -48,
     },
     positionRight: {
-      top: 0,
-      left: 115,
+      top: -20,
+      left: 112,
     },
     mythical: false,
     companionType: 'animal',
