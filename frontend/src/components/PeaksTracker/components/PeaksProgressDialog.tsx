@@ -64,6 +64,32 @@ const companionTypeIcons: Record<CompanionType, typeof IconPawFilled> = {
   special: IconStarFilled,
 }
 
+const MAX_CANVAS_PIXELS = 16_777_216 // iOS Safari conservative limit
+const CANVAS_TIMEOUT_MS = 15_000
+
+function getOptimalScale(element: HTMLElement, overrideWidth?: number): number {
+  const width = overrideWidth ?? element.offsetWidth
+  const height = element.offsetHeight
+  const idealScale = Math.max(window.devicePixelRatio, 2)
+  const scaledPixels = width * idealScale * height * idealScale
+
+  if (scaledPixels <= MAX_CANVAS_PIXELS) {
+    return idealScale
+  }
+
+  const maxSafeScale = Math.sqrt(MAX_CANVAS_PIXELS / (width * height))
+  return Math.floor(maxSafeScale * 10) / 10
+}
+
+function withTimeout<T>(promise: Promise<T>, ms: number): Promise<T> {
+  return Promise.race([
+    promise,
+    new Promise<never>((_, reject) =>
+      setTimeout(() => reject(new Error('圖片產生逾時，請稍後再試')), ms),
+    ),
+  ])
+}
+
 /**
  * Fix: html2canvas doesn't handle CSS transform on SVG properly.
  * Convert CSS rotate to SVG transform attribute so RingProgress renders correctly.
@@ -149,8 +175,9 @@ export function PeaksProgressDialog({ opened, checkedIds, onClose }: Props) {
       return null
     }
     const overrideWidth = useMobileWidth ? 375 : (useDesktopWidth ? 768 : undefined)
-    return html2canvas(contentRef.current, {
-      scale: 2,
+    const scale = getOptimalScale(contentRef.current, overrideWidth)
+    return withTimeout(html2canvas(contentRef.current, {
+      scale,
       width: overrideWidth,
       windowWidth: overrideWidth,
       onclone: (_doc, element) => {
@@ -161,7 +188,7 @@ export function PeaksProgressDialog({ opened, checkedIds, onClose }: Props) {
         footer?.classList.remove('hidden')
         fixRingProgressSvgTransformForExport(element)
       },
-    })
+    }), CANVAS_TIMEOUT_MS)
   }, [useDesktopWidth, useMobileWidth])
 
   const getFileName = useCallback(() => {
