@@ -2,6 +2,7 @@
 
 import { Badge, Button, Divider, Modal, RingProgress, Select, Text, TextInput } from '@mantine/core'
 import { IconCheck, IconCrownFilled, IconDownload, IconPawFilled, IconShare, IconStarFilled, IconUser, IconUserFilled } from '@tabler/icons-react'
+import clsx from 'clsx'
 import html2canvas from 'html2canvas-pro'
 import Image from 'next/image'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
@@ -10,7 +11,7 @@ import contourBg from '@/assets/contour-nanyu-mountain.png'
 import { getHikerTitle, type HikerTitleStyle, HikerTitleStyleOptions } from '@/constants/hikerTitles'
 import { type CompanionType, getAvailableCompanions, getCompanionById } from '@/constants/hikingCompanions'
 import { Taiwan100MountainPeak, type MountainPeak } from '@/constants/peaks'
-import useScreen from '@/hooks/useScreen'
+// import useScreen from '@/hooks/useScreen'
 import { usePeaksStore, usePeaksActions } from '@/store/peaks/usePeaksStore'
 
 interface Props {
@@ -94,7 +95,7 @@ function fixRingProgressSvgTransformForExport(element: HTMLElement) {
 
 export function PeaksProgressDialog({ opened, checkedIds, onClose }: Props) {
   const contentRef = useRef<HTMLDivElement>(null)
-  const { onVerticalMobile } = useScreen()
+  // const { onVerticalMobile } = useScreen()
   const [exportLoading, setExportLoading] = useState(false)
   const [shareLoading, setShareLoading] = useState(false)
   const [canShare, setCanShare] = useState(false)
@@ -261,8 +262,10 @@ export function PeaksProgressDialog({ opened, checkedIds, onClose }: Props) {
         </div>
 
         {/* Progress */}
-        <div className="flex justify-center items-center gap-1 sm:gap-12 mb-8">
-          <div className="relative flex-none ml-6">
+        <div className="flex justify-center items-center gap-1 sm:gap-4 mb-8">
+          <div
+            className={clsx('relative flex-none ml-6', companionId && 'sm:ml-15')}
+          >
             {selectedCompanion && (
               <Image
                 alt={selectedCompanion.label}
@@ -270,8 +273,8 @@ export function PeaksProgressDialog({ opened, checkedIds, onClose }: Props) {
                 src={selectedCompanion.image}
                 style={{
                   width: selectedCompanion.width,
-                  top: ((currentTitle && !onVerticalMobile) ? selectedCompanion.positionRight : selectedCompanion.positionLeft).top,
-                  left: ((currentTitle && !onVerticalMobile) ? selectedCompanion.positionRight : selectedCompanion.positionLeft).left,
+                  top: selectedCompanion.positionLeft.top,
+                  left: selectedCompanion.positionLeft.left,
                 }}
               />
             )}
