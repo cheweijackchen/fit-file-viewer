@@ -1,6 +1,7 @@
 'use client'
 
 import { Badge, Button, Divider, Modal, RingProgress, Select, Text, TextInput } from '@mantine/core'
+import { notifications } from '@mantine/notifications'
 import { IconCheck, IconCrownFilled, IconDownload, IconPawFilled, IconShare, IconStarFilled, IconUser, IconUserFilled } from '@tabler/icons-react'
 import clsx from 'clsx'
 import html2canvas from 'html2canvas-pro'
@@ -11,7 +12,6 @@ import contourBg from '@/assets/contour-nanyu-mountain.png'
 import { getHikerTitle, type HikerTitleStyle, HikerTitleStyleOptions } from '@/constants/hikerTitles'
 import { type CompanionType, getAvailableCompanions, getCompanionById } from '@/constants/hikingCompanions'
 import { Taiwan100MountainPeak, type MountainPeak } from '@/constants/peaks'
-// import useScreen from '@/hooks/useScreen'
 import { usePeaksStore, usePeaksActions } from '@/store/peaks/usePeaksStore'
 
 interface Props {
@@ -170,6 +170,12 @@ export function PeaksProgressDialog({ opened, checkedIds, onClose }: Props) {
       link.download = getFileName()
       link.href = canvas.toDataURL('image/png')
       link.click()
+    } catch (error) {
+      notifications.show({
+        title: '下載失敗',
+        message: error instanceof Error ? error.message : '圖片下載時發生未知錯誤',
+        color: 'red',
+      })
     } finally {
       setExportLoading(false)
     }
@@ -192,7 +198,11 @@ export function PeaksProgressDialog({ opened, checkedIds, onClose }: Props) {
       await navigator.share({ files: [file] })
     } catch (error) {
       if (error instanceof Error && error.name !== 'AbortError') {
-        console.error('Share failed:', error)
+        notifications.show({
+          title: '分享失敗',
+          message: error.message,
+          color: 'red',
+        })
       }
     } finally {
       setShareLoading(false)
