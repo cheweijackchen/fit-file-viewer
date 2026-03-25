@@ -392,6 +392,7 @@ export function PeaksProgressDialog({ opened, checkedIds, onClose }: Props) {
           />
           <Select
             clearable
+            className="clear-btn-hover"
             placeholder="選擇頭銜風格"
             comboboxProps={{ withinPortal: false }}
             data={titleStyleSelectData}
@@ -400,6 +401,7 @@ export function PeaksProgressDialog({ opened, checkedIds, onClose }: Props) {
           />
           <Select
             clearable
+            className="clear-btn-hover"
             placeholder="選擇你的山林夥伴"
             comboboxProps={{ withinPortal: false }}
             data={companionSelectData}

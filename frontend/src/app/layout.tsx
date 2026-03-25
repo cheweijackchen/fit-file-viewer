@@ -11,6 +11,7 @@ import {
   mantineHtmlProps,
 } from '@mantine/core'
 import '@/styles/globals.css'
+import '@/styles/app/theme.scss'
 import type { Metadata } from 'next'
 import { Inter, Noto_Sans_TC, JetBrains_Mono } from 'next/font/google'
 import { RootProvider } from './components/RootProvider'
