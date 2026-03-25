@@ -9,7 +9,7 @@ import { ensureContourLayers } from '@/lib/baseMap'
 
 import { CaptureMapButton } from './CaptureMapButton'
 import { MountainPeakToggle } from './MountainPeakToggle'
-import { MapDebugOverlay } from '../PeaksTracker/components/MapDebugOverlay'
+import { MapDebugOverlay } from '../peaks/MapDebugOverlay'
 import { MapControlPanel } from '../VectorMap/MapControlPanel'
 import styles from '../VectorMap/MapView.module.scss'
 

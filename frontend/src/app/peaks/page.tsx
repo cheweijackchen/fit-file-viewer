@@ -4,18 +4,18 @@ import { Divider } from '@mantine/core'
 import dynamic from 'next/dynamic'
 import { useMemo, useState } from 'react'
 import { BottomSheet } from '@/components/BottomSheet'
-import { PeaksActionBar } from '@/components/PeaksTracker/components/PeaksActionBar'
-import { PeaksChecklist } from '@/components/PeaksTracker/components/PeaksChecklist'
-import { PeaksHeader } from '@/components/PeaksTracker/components/PeaksHeader'
-import { PeaksProgress } from '@/components/PeaksTracker/components/PeaksProgress'
-import { PeaksProgressDialog } from '@/components/PeaksTracker/components/PeaksProgressDialog'
-import { PeaksSearchInput } from '@/components/PeaksTracker/components/PeaksSearchInput'
+import { PeaksActionBar } from '@/components/peaks/PeaksActionBar'
+import { PeaksChecklist } from '@/components/peaks/PeaksChecklist'
+import { PeaksHeader } from '@/components/peaks/PeaksHeader'
+import { PeaksProgress } from '@/components/peaks/PeaksProgress'
+import { PeaksProgressDialog } from '@/components/peaks/PeaksProgressDialog'
+import { PeaksSearchInput } from '@/components/peaks/PeaksSearchInput'
 import useScreen from '@/hooks/useScreen'
 import { peakGroups, TOTAL_PEAKS } from '@/lib/peakGrouper'
 import { usePeaksStore, usePeaksActions } from '@/store/peaks/usePeaksStore'
 
 const PeaksMapNoSSR = dynamic(
-  () => import('@/components/PeaksTracker/components/PeaksMap').then(mod => mod.PeaksMap),
+  () => import('@/components/peaks/PeaksMap').then(mod => mod.PeaksMap),
   { ssr: false },
 )
 
