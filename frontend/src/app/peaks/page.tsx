@@ -113,7 +113,7 @@ export default function PeaksPage() {
       <div
         className="flex flex-col w-80 py-6 px-4 shrink-0 overflow-hidden"
         style={{
-          backgroundColor: '#FFFFFF',
+          backgroundColor: 'var(--mantine-color-body)',
           borderRight: '1px solid #E8E5E0',
         }}
       >

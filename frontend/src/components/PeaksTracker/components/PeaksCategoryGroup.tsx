@@ -2,6 +2,7 @@
 
 import { Button } from '@mantine/core'
 import { IconChevronDown, IconChevronRight } from '@tabler/icons-react'
+import clsx from 'clsx'
 import type { PeakGroup } from '@/lib/peakGrouper'
 import { PeakCheckboxItem } from './PeakCheckboxItem'
 
@@ -51,17 +52,21 @@ export function PeaksCategoryGroup({
         <div className="flex items-center gap-2">
           <ChevronIcon
             size={16}
-            color={hasChecked ? 'var(--mantine-color-dark-9)' : 'var(--mantine-color-gray-6)'}
+            color={hasChecked ? 'var(--text-emphasis)' : 'var(--text-secondary)'}
           />
           <span
-            className="text-sm font-semibold"
-            style={{ color: hasChecked ? 'var(--mantine-color-dark-9)' : 'var(--mantine-color-gray-6)' }}
+            className={clsx(
+              'text-sm font-semibold',
+              hasChecked ? 'text-(--text-emphasis)' : 'text-(--text-secondary)',
+            )}
           >
             {group.category}
           </span>
           <span
-            className="text-xs font-medium"
-            style={{ color: hasChecked ? 'var(--mantine-color-gray-6)' : 'var(--mantine-color-gray-5)' }}
+            className={clsx(
+              'text-xs font-medium',
+              hasChecked ? 'text-(--text-subtitle)' : 'text-(--text-muted)',
+            )}
           >
             {checkedCount}/{totalCount}
           </span>
