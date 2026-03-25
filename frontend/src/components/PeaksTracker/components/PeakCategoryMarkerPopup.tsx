@@ -35,7 +35,7 @@ export function PeakCategoryMarkerPopup({
       <Button
         fullWidth
         size="xs"
-        variant="light"
+        variant="outline"
         mt={4}
         onClick={onToggleAll}
       >
