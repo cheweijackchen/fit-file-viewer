@@ -44,7 +44,7 @@ export function PeakMarkerPopup({
       <Button
         fullWidth
         size="xs"
-        variant="light"
+        variant="outline"
         mt={4}
         onClick={onToggle}
       >

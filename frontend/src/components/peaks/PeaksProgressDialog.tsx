@@ -1,9 +1,11 @@
 'use client'
 
-import { Badge, Button, Divider, Modal, RingProgress, Select, Switch, Text, TextInput } from '@mantine/core'
+import { Badge, Button, Modal, RingProgress, Select, Switch, Text, TextInput } from '@mantine/core'
+import { useDebouncedValue } from '@mantine/hooks'
 import { notifications } from '@mantine/notifications'
-import { IconCheck, IconCrownFilled, IconDownload, IconPawFilled, IconShare, IconStarFilled, IconUser, IconUserFilled } from '@tabler/icons-react'
+import { IconCrownFilled, IconDownload, IconPawFilled, IconShare, IconStarFilled, IconUser, IconUserFilled } from '@tabler/icons-react'
 import clsx from 'clsx'
+import dayjs from 'dayjs'
 import html2canvas from 'html2canvas-pro'
 import Image from 'next/image'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
@@ -11,46 +13,16 @@ import contourBgBottomLeft from '@/assets/contour-map-mount-yun-flipped.webp'
 import contourBg from '@/assets/contour-nanyu-mountain.png'
 import { getHikerTitle, type HikerTitleStyle, HikerTitleStyleOptions } from '@/constants/hikerTitles'
 import { type CompanionType, getAvailableCompanions, getCompanionById } from '@/constants/hikingCompanions'
-import { Taiwan100MountainPeak, type MountainPeak } from '@/constants/peaks'
+import { Taiwan100MountainPeak } from '@/constants/peaks'
 import useScreen from '@/hooks/useScreen'
 import { usePeaksStore, usePeaksActions } from '@/store/peaks/usePeaksStore'
+import { PeaksProgressGrid } from './PeaksProgressGrid'
 
 interface Props {
   opened: boolean;
   checkedIds: Set<string>;
   onClose: () => void;
 }
-
-interface CategoryGroup {
-  category: string;
-  peaks: {
-    id: string;
-    peak: MountainPeak;
-  }[];
-}
-
-function groupPeaksByCategory(): CategoryGroup[] {
-  const map = new Map<string, {
-    id: string;
-    peak: MountainPeak;
-  }[]>()
-
-  for (const [id, peak] of Object.entries(Taiwan100MountainPeak)) {
-    const list = map.get(peak.category) ?? []
-    list.push({
-      id,
-      peak,
-    })
-    map.set(peak.category, list)
-  }
-
-  return Array.from(map.entries()).map(([category, peaks]) => ({
-    category,
-    peaks,
-  }))
-}
-
-const categoryGroups = groupPeaksByCategory()
 
 const titleStyleSelectData = HikerTitleStyleOptions.map(opt => ({
   value: opt.value,
@@ -130,6 +102,7 @@ export function PeaksProgressDialog({ opened, checkedIds, onClose }: Props) {
   const [companionId, setCompanionId] = useState<string | null>(null)
   const [useDesktopWidth, setUseDesktopWidth] = useState(false)
   const [useMobileWidth, setUseMobileWidth] = useState(false)
+  const [showDate, setShowDate] = useState(false)
 
   useEffect(() => {
     if (typeof navigator.share === 'function' && typeof navigator.canShare === 'function') {
@@ -140,6 +113,13 @@ export function PeaksProgressDialog({ opened, checkedIds, onClose }: Props) {
 
   const userName = usePeaksStore.use.userName()
   const { setUserName } = usePeaksActions()
+
+  const [userNameInput, setUserNameInput] = useState(userName)
+  const [debouncedUserName] = useDebouncedValue(userNameInput, 500)
+
+  useEffect(() => {
+    setUserName(debouncedUserName)
+  }, [debouncedUserName, setUserName])
 
   const completedCount = useMemo(() => {
     return Object.keys(Taiwan100MountainPeak).filter(id => checkedIds.has(id)).length
@@ -184,12 +164,19 @@ export function PeaksProgressDialog({ opened, checkedIds, onClose }: Props) {
         if (overrideWidth) {
           element.style.width = `${overrideWidth}px`
         }
+
         const footer = element.querySelector('[data-export-footer]')
-        footer?.classList.remove('hidden')
+        footer?.classList?.remove('hidden')
+
+        if (showDate) {
+          const dateEl = element.querySelector('[data-export-date]')
+          dateEl?.classList?.remove('hidden')
+        }
+
         fixRingProgressSvgTransformForExport(element)
       },
     }), CANVAS_TIMEOUT_MS)
-  }, [useDesktopWidth, useMobileWidth])
+  }, [useDesktopWidth, useMobileWidth, showDate])
 
   const getFileName = useCallback(() => {
     return userName ? `${userName}的台灣百岳進度.png` : '台灣百岳進度.png'
@@ -280,6 +267,7 @@ export function PeaksProgressDialog({ opened, checkedIds, onClose }: Props) {
         <div className="relative z-10 flex justify-between mb-6 gap-2">
           <div>
             <Text
+              c="bright"
               fw={700}
               size="xl"
             >
@@ -308,7 +296,7 @@ export function PeaksProgressDialog({ opened, checkedIds, onClose }: Props) {
         </div>
 
         {/* Progress */}
-        <div className="flex justify-center items-center gap-1 sm:gap-4 mb-8">
+        <div className="flex justify-center items-center gap-1 sm:gap-4">
           <div
             className={clsx('relative flex-none ml-6', companionId && 'sm:ml-15')}
           >
@@ -335,6 +323,7 @@ export function PeaksProgressDialog({ opened, checkedIds, onClose }: Props) {
                     目前進度
                   </Text>
                   <Text
+                    c="bright"
                     fw={700}
                     size="xl"
                   >
@@ -377,21 +366,22 @@ export function PeaksProgressDialog({ opened, checkedIds, onClose }: Props) {
         {/* Form Section - hidden during export */}
         <div
           data-html2canvas-ignore
-          className="mb-10 flex flex-col gap-3 rounded-lg border-2 border-dashed border-gray-300 p-4"
+          className="mt-8 flex flex-col gap-3 rounded-lg border-2 border-dashed border-gray-300 p-4"
         >
           <TextInput
             placeholder="你的名字"
-            value={userName}
+            value={userNameInput}
             leftSection={
               <IconUser
                 size={16}
                 color="#B0B0B0"
               />
             }
-            onChange={(e) => setUserName(e.currentTarget.value)}
+            onChange={(e) => setUserNameInput(e.currentTarget.value)}
           />
           <Select
             clearable
+            className="clear-btn-hover"
             placeholder="選擇頭銜風格"
             comboboxProps={{ withinPortal: false }}
             data={titleStyleSelectData}
@@ -400,6 +390,7 @@ export function PeaksProgressDialog({ opened, checkedIds, onClose }: Props) {
           />
           <Select
             clearable
+            className="clear-btn-hover"
             placeholder="選擇你的山林夥伴"
             comboboxProps={{ withinPortal: false }}
             data={companionSelectData}
@@ -416,22 +407,21 @@ export function PeaksProgressDialog({ opened, checkedIds, onClose }: Props) {
             value={companionId}
             onChange={setCompanionId}
           />
-          {onMobile && (
-            <Switch
-              className="mr-auto"
-              classNames={{
-                track: '!cursor-pointer',
-                input: 'cursor-pointer',
-              }}
-              label="寬版圖片（適合桌面瀏覽）"
-              checked={useDesktopWidth}
-              onChange={e => setUseDesktopWidth(e.currentTarget.checked)}
-            />
-          )}
-          <div className="flex justify-end items-center gap-2">
-            {!onMobile && (
+          <div className="flex flex-col sm:flex-row gap-3">
+            {onMobile ? (
               <Switch
-                className="mr-auto"
+                className="flex-none"
+                classNames={{
+                  track: '!cursor-pointer',
+                  input: 'cursor-pointer',
+                }}
+                label="寬版圖片（適合桌面瀏覽）"
+                checked={useDesktopWidth}
+                onChange={e => setUseDesktopWidth(e.currentTarget.checked)}
+              />
+            ) : (
+              <Switch
+                className="flex-none"
                 classNames={{
                   track: '!cursor-pointer',
                   input: 'cursor-pointer',
@@ -441,6 +431,18 @@ export function PeaksProgressDialog({ opened, checkedIds, onClose }: Props) {
                 onChange={e => setUseMobileWidth(e.currentTarget.checked)}
               />
             )}
+            <Switch
+              className="flex-none"
+              classNames={{
+                track: '!cursor-pointer',
+                input: 'cursor-pointer',
+              }}
+              label="紀錄日期"
+              checked={showDate}
+              onChange={e => setShowDate(e.currentTarget.checked)}
+            />
+          </div>
+          <div className="flex justify-end items-center gap-2 mt-4 md:mt-0">
             <Button
               className="max-md:flex-1"
               disabled={exportLoading || shareLoading}
@@ -466,61 +468,24 @@ export function PeaksProgressDialog({ opened, checkedIds, onClose }: Props) {
           </div>
         </div>
 
-        {/* Peaks Grid */}
-        <div className="columns-2 md:columns-3 lg:columns-4 gap-6">
-          {categoryGroups.map(group => (
-            <div
-              key={group.category}
-              className="break-inside-avoid mb-4"
-            >
-              <Text
-                c="dark"
-                fw={700}
-                size="sm"
-              >
-                {group.category}
-              </Text>
-              <Divider className="my-1" />
-              <div className="flex flex-col gap-1">
-                {group.peaks.map(({ id, peak }) => {
-                  const checked = checkedIds.has(id)
-                  return (
-                    <div
-                      key={id}
-                      className="flex items-center gap-1.5"
-                    >
-                      {checked
-                        ? (
-                          <IconCheck
-                            className="text-yellow-500 shrink-0"
-                            size={14}
-                          />
-                        )
-                        : <div className="w-3.5 shrink-0" />}
-                      <div className="flex flex-1 gap-1 justify-between">
-                        <Text
-                          c={checked ? undefined : 'dimmed'}
-                          fw={checked ? 600 : 400}
-                          size="xs"
-                        >
-                          {peak.name}
-                        </Text>
-                        <Text
-                          c={checked ? undefined : 'dimmed'}
-                          fw={checked ? 600 : 400}
-                          ff="mono"
-                          size="xs"
-                        >
-                          {peak.elevation}m
-                        </Text>
-                      </div>
-                    </div>
-                  )
-                })}
-              </div>
-            </div>
-          ))}
+        {/* Date info - shown only in exported image when enabled */}
+        <div
+          data-export-date
+          className="hidden mt-4 text-right"
+        >
+          <Text
+            c="dimmed"
+            size="xs"
+          >
+            紀錄日期：{dayjs().format('YYYY/MM/DD')}
+          </Text>
         </div>
+
+        {/* Peaks Grid */}
+        <PeaksProgressGrid
+          className="mt-8"
+          checkedIds={checkedIds}
+        />
 
         {/* Contour background decoration - bottom left */}
         <Image

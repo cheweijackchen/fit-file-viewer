@@ -24,6 +24,7 @@ export function PeaksHeader({ showClear, onClear }: Props) {
     <div className="flex items-start justify-between w-full">
       <div className="flex flex-col gap-1">
         <Title
+          c="bright"
           order={1}
           fz={onMobile ? 'h4' : 28}
           fw={600}

@@ -17,6 +17,8 @@ import femaleHiker01 from '@/assets/hikers/female-hiker-01-short-hair.webp'
 import femaleHiker02 from '@/assets/hikers/female-hiker-02-long-hair-with-green-outfit.webp'
 import femaleHiker03 from '@/assets/hikers/female-hiker-03.webp'
 import femaleHiker04 from '@/assets/hikers/female-hiker-04.webp'
+import femaleHiker05 from '@/assets/hikers/female-hiker-05.webp'
+import maleHiker01 from '@/assets/hikers/male-hiker-01.webp'
 import maleHiker02 from '@/assets/hikers/male-hiker-02.webp'
 import maleHiker03 from '@/assets/hikers/male-hiker-03.webp'
 import myself02 from '@/assets/hikers/myself-02-with-camera.webp'
@@ -281,6 +283,38 @@ export const HikingCompanions: HikingCompanion[] = [
     companionType: 'hiker',
   },
   {
+    id: 'female-hiker-05',
+    label: '登山女子 E',
+    image: femaleHiker05,
+    width: 110,
+    positionLeft: {
+      top: -25,
+      left: -50,
+    },
+    positionRight: {
+      top: -25,
+      left: 102,
+    },
+    mythical: false,
+    companionType: 'hiker',
+  },
+  {
+    id: 'male-hiker-01',
+    label: '登山男子 A',
+    image: maleHiker01,
+    width: 110,
+    positionLeft: {
+      top: -20,
+      left: -50,
+    },
+    positionRight: {
+      top: -20,
+      left: 102,
+    },
+    mythical: false,
+    companionType: 'hiker',
+  },
+  {
     id: 'male-hiker-02',
     label: '登山男子 B',
     image: maleHiker02,
@@ -313,7 +347,7 @@ export const HikingCompanions: HikingCompanion[] = [
     companionType: 'hiker',
   },
   {
-    id: 'male-hiker-01',
+    id: 'myself-02',
     label: '你的好朋友 白毛 ：）',
     image: myself02,
     width: 120,

@@ -1,18 +1,26 @@
 'use client'
 
 import { TextInput } from '@mantine/core'
+import { useDebouncedValue } from '@mantine/hooks'
 import { IconSearch } from '@tabler/icons-react'
+import { useEffect, useState } from 'react'
 
 interface Props {
-  value: string;
   onChange: (value: string) => void;
 }
 
-export function PeaksSearchInput({ value, onChange }: Props) {
+export function PeaksSearchInput({ onChange }: Props) {
+  const [inputValue, setInputValue] = useState('')
+  const [debouncedInputValue] = useDebouncedValue(inputValue, 300)
+
+  useEffect(() => {
+    onChange(debouncedInputValue)
+  }, [debouncedInputValue, onChange])
+
   return (
     <TextInput
       placeholder="搜尋山名..."
-      value={value}
+      value={inputValue}
       leftSection={
         <IconSearch
           size={16}
@@ -27,7 +35,7 @@ export function PeaksSearchInput({ value, onChange }: Props) {
           fontSize: 14,
         },
       }}
-      onChange={(e) => onChange(e.currentTarget.value)}
+      onChange={(e) => setInputValue(e.currentTarget.value)}
     />
   )
 }

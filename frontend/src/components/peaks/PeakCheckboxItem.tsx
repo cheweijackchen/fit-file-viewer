@@ -1,6 +1,6 @@
 'use client'
 
-import { Checkbox } from '@mantine/core'
+import { Checkbox, Text } from '@mantine/core'
 import type { MountainPeak } from '@/constants/peaks'
 
 interface Props {
@@ -32,22 +32,23 @@ export function PeakCheckboxItem({ id, peak, isChecked, onToggle }: Props) {
           onChange={() => onToggle(id)}
           onClick={(e) => e.stopPropagation()}
         />
-        <span
-          className="text-[13px]"
-          style={{
-            fontWeight: isChecked ? 500 : 400,
-            color: isChecked ? '#1A1A1A' : '#5A5A5A',
-          }}
+        <Text
+          component="span"
+          size="13px"
+          fw={isChecked ? 500 : 400}
+          c={isChecked ? 'var(--text-emphasis)' : 'var(--text-secondary)'}
         >
           {peak.name}
-        </span>
+        </Text>
       </div>
-      <span
-        className="text-xs font-medium"
-        style={{ color: isChecked ? '#8C8C8C' : '#B0B0B0' }}
+      <Text
+        component="span"
+        size="xs"
+        fw={500}
+        c={isChecked ? 'var(--text-subtitle)' : 'var(--text-muted)'}
       >
         {elevation}m
-      </span>
+      </Text>
     </div>
   )
 }
