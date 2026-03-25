@@ -1,8 +1,10 @@
 import { Divider, Text } from '@mantine/core'
 import { IconCheck } from '@tabler/icons-react'
+import clsx from 'clsx'
 import { type MountainPeak, Taiwan100MountainPeak } from '@/constants/peaks'
 
 interface Props {
+  className: string;
   checkedIds: Set<string>;
 }
 
@@ -37,9 +39,9 @@ function groupPeaksByCategory(): CategoryGroup[] {
 
 const categoryGroups = groupPeaksByCategory()
 
-export function PeaksProgressGrid({ checkedIds }: Props) {
+export function PeaksProgressGrid({ className, checkedIds }: Props) {
   return (
-    <div className="columns-2 md:columns-3 lg:columns-4 gap-6">
+    <div className={clsx(className, 'columns-2 md:columns-3 lg:columns-4 gap-6')}>
       {categoryGroups.map(group => (
         <div
           key={group.category}

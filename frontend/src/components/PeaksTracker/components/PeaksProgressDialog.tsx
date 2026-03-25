@@ -5,6 +5,7 @@ import { useDebouncedValue } from '@mantine/hooks'
 import { notifications } from '@mantine/notifications'
 import { IconCrownFilled, IconDownload, IconPawFilled, IconShare, IconStarFilled, IconUser, IconUserFilled } from '@tabler/icons-react'
 import clsx from 'clsx'
+import dayjs from 'dayjs'
 import html2canvas from 'html2canvas-pro'
 import Image from 'next/image'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
@@ -101,6 +102,7 @@ export function PeaksProgressDialog({ opened, checkedIds, onClose }: Props) {
   const [companionId, setCompanionId] = useState<string | null>(null)
   const [useDesktopWidth, setUseDesktopWidth] = useState(false)
   const [useMobileWidth, setUseMobileWidth] = useState(false)
+  const [showDate, setShowDate] = useState(false)
 
   useEffect(() => {
     if (typeof navigator.share === 'function' && typeof navigator.canShare === 'function') {
@@ -162,12 +164,19 @@ export function PeaksProgressDialog({ opened, checkedIds, onClose }: Props) {
         if (overrideWidth) {
           element.style.width = `${overrideWidth}px`
         }
+
         const footer = element.querySelector('[data-export-footer]')
-        footer?.classList.remove('hidden')
+        footer?.classList?.remove('hidden')
+
+        if (showDate) {
+          const dateEl = element.querySelector('[data-export-date]')
+          dateEl?.classList?.remove('hidden')
+        }
+
         fixRingProgressSvgTransformForExport(element)
       },
     }), CANVAS_TIMEOUT_MS)
-  }, [useDesktopWidth, useMobileWidth])
+  }, [useDesktopWidth, useMobileWidth, showDate])
 
   const getFileName = useCallback(() => {
     return userName ? `${userName}的台灣百岳進度.png` : '台灣百岳進度.png'
@@ -287,7 +296,7 @@ export function PeaksProgressDialog({ opened, checkedIds, onClose }: Props) {
         </div>
 
         {/* Progress */}
-        <div className="flex justify-center items-center gap-1 sm:gap-4 mb-8">
+        <div className="flex justify-center items-center gap-1 sm:gap-4">
           <div
             className={clsx('relative flex-none ml-6', companionId && 'sm:ml-15')}
           >
@@ -357,7 +366,7 @@ export function PeaksProgressDialog({ opened, checkedIds, onClose }: Props) {
         {/* Form Section - hidden during export */}
         <div
           data-html2canvas-ignore
-          className="mb-10 flex flex-col gap-3 rounded-lg border-2 border-dashed border-gray-300 p-4"
+          className="mt-8 flex flex-col gap-3 rounded-lg border-2 border-dashed border-gray-300 p-4"
         >
           <TextInput
             placeholder="你的名字"
@@ -398,22 +407,21 @@ export function PeaksProgressDialog({ opened, checkedIds, onClose }: Props) {
             value={companionId}
             onChange={setCompanionId}
           />
-          {onMobile && (
-            <Switch
-              className="mr-auto"
-              classNames={{
-                track: '!cursor-pointer',
-                input: 'cursor-pointer',
-              }}
-              label="寬版圖片（適合桌面瀏覽）"
-              checked={useDesktopWidth}
-              onChange={e => setUseDesktopWidth(e.currentTarget.checked)}
-            />
-          )}
-          <div className="flex justify-end items-center gap-2 mt-4 md:mt-0">
-            {!onMobile && (
+          <div className="flex flex-col sm:flex-row gap-3">
+            {onMobile ? (
               <Switch
-                className="mr-auto"
+                className="flex-none"
+                classNames={{
+                  track: '!cursor-pointer',
+                  input: 'cursor-pointer',
+                }}
+                label="寬版圖片（適合桌面瀏覽）"
+                checked={useDesktopWidth}
+                onChange={e => setUseDesktopWidth(e.currentTarget.checked)}
+              />
+            ) : (
+              <Switch
+                className="flex-none"
                 classNames={{
                   track: '!cursor-pointer',
                   input: 'cursor-pointer',
@@ -423,6 +431,18 @@ export function PeaksProgressDialog({ opened, checkedIds, onClose }: Props) {
                 onChange={e => setUseMobileWidth(e.currentTarget.checked)}
               />
             )}
+            <Switch
+              className="flex-none"
+              classNames={{
+                track: '!cursor-pointer',
+                input: 'cursor-pointer',
+              }}
+              label="紀錄日期"
+              checked={showDate}
+              onChange={e => setShowDate(e.currentTarget.checked)}
+            />
+          </div>
+          <div className="flex justify-end items-center gap-2 mt-4 md:mt-0">
             <Button
               className="max-md:flex-1"
               disabled={exportLoading || shareLoading}
@@ -448,8 +468,24 @@ export function PeaksProgressDialog({ opened, checkedIds, onClose }: Props) {
           </div>
         </div>
 
+        {/* Date info - shown only in exported image when enabled */}
+        <div
+          data-export-date
+          className="hidden mt-4 text-right"
+        >
+          <Text
+            c="dimmed"
+            size="xs"
+          >
+            紀錄日期：{dayjs().format('YYYY/MM/DD')}
+          </Text>
+        </div>
+
         {/* Peaks Grid */}
-        <PeaksProgressGrid checkedIds={checkedIds} />
+        <PeaksProgressGrid
+          className="mt-8"
+          checkedIds={checkedIds}
+        />
 
         {/* Contour background decoration - bottom left */}
         <Image
