@@ -24,6 +24,7 @@ export function PeaksProgress({ completedCount, total }: Props) {
             已完成
           </Text>
           <Text
+            c="bright"
             component="span"
             fz={onMobile ? 'md' : 32}
             fw={600}
