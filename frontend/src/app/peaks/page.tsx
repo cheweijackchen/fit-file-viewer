@@ -43,7 +43,6 @@ export default function PeaksPage() {
 
   const searchInput = (
     <PeaksSearchInput
-      value={searchQuery}
       onChange={setSearchQuery}
     />
   )
