@@ -1,6 +1,7 @@
 'use client'
 
 import { Badge, Button, Divider, Modal, RingProgress, Select, Switch, Text, TextInput } from '@mantine/core'
+import { useDebouncedValue } from '@mantine/hooks'
 import { notifications } from '@mantine/notifications'
 import { IconCheck, IconCrownFilled, IconDownload, IconPawFilled, IconShare, IconStarFilled, IconUser, IconUserFilled } from '@tabler/icons-react'
 import clsx from 'clsx'
@@ -140,6 +141,13 @@ export function PeaksProgressDialog({ opened, checkedIds, onClose }: Props) {
 
   const userName = usePeaksStore.use.userName()
   const { setUserName } = usePeaksActions()
+
+  const [userNameInput, setUserNameInput] = useState(userName)
+  const [debouncedUserName] = useDebouncedValue(userNameInput, 500)
+
+  useEffect(() => {
+    setUserName(debouncedUserName)
+  }, [debouncedUserName, setUserName])
 
   const completedCount = useMemo(() => {
     return Object.keys(Taiwan100MountainPeak).filter(id => checkedIds.has(id)).length
@@ -381,14 +389,14 @@ export function PeaksProgressDialog({ opened, checkedIds, onClose }: Props) {
         >
           <TextInput
             placeholder="你的名字"
-            value={userName}
+            value={userNameInput}
             leftSection={
               <IconUser
                 size={16}
                 color="#B0B0B0"
               />
             }
-            onChange={(e) => setUserName(e.currentTarget.value)}
+            onChange={(e) => setUserNameInput(e.currentTarget.value)}
           />
           <Select
             clearable
