@@ -428,7 +428,7 @@ export function PeaksProgressDialog({ opened, checkedIds, onClose }: Props) {
               onChange={e => setUseDesktopWidth(e.currentTarget.checked)}
             />
           )}
-          <div className="flex justify-end items-center gap-2">
+          <div className="flex justify-end items-center gap-2 mt-4 md:mt-0">
             {!onMobile && (
               <Switch
                 className="mr-auto"
