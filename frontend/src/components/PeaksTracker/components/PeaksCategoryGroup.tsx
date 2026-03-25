@@ -1,8 +1,7 @@
 'use client'
 
-import { Button } from '@mantine/core'
+import { Button, Text } from '@mantine/core'
 import { IconChevronDown, IconChevronRight } from '@tabler/icons-react'
-import clsx from 'clsx'
 import type { PeakGroup } from '@/lib/peakGrouper'
 import { PeakCheckboxItem } from './PeakCheckboxItem'
 
@@ -54,22 +53,22 @@ export function PeaksCategoryGroup({
             size={16}
             color={hasChecked ? 'var(--text-emphasis)' : 'var(--text-secondary)'}
           />
-          <span
-            className={clsx(
-              'text-sm font-semibold',
-              hasChecked ? 'text-(--text-emphasis)' : 'text-(--text-secondary)',
-            )}
+          <Text
+            component="span"
+            size="sm"
+            fw={600}
+            c={hasChecked ? 'var(--text-emphasis)' : 'var(--text-secondary)'}
           >
             {group.category}
-          </span>
-          <span
-            className={clsx(
-              'text-xs font-medium',
-              hasChecked ? 'text-(--text-subtitle)' : 'text-(--text-muted)',
-            )}
+          </Text>
+          <Text
+            component="span"
+            size="xs"
+            fw={500}
+            c={hasChecked ? 'var(--text-subtitle)' : 'var(--text-muted)'}
           >
             {checkedCount}/{totalCount}
-          </span>
+          </Text>
         </div>
         <Button
           variant="subtle"

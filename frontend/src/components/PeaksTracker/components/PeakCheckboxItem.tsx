@@ -1,7 +1,6 @@
 'use client'
 
-import { Checkbox } from '@mantine/core'
-import clsx from 'clsx'
+import { Checkbox, Text } from '@mantine/core'
 import type { MountainPeak } from '@/constants/peaks'
 
 interface Props {
@@ -33,23 +32,23 @@ export function PeakCheckboxItem({ id, peak, isChecked, onToggle }: Props) {
           onChange={() => onToggle(id)}
           onClick={(e) => e.stopPropagation()}
         />
-        <span
-          className={clsx(
-            'text-[13px]',
-            isChecked ? 'font-medium text-(--text-emphasis)' : 'font-normal text-(--text-secondary)',
-          )}
+        <Text
+          component="span"
+          size="13px"
+          fw={isChecked ? 500 : 400}
+          c={isChecked ? 'var(--text-emphasis)' : 'var(--text-secondary)'}
         >
           {peak.name}
-        </span>
+        </Text>
       </div>
-      <span
-        className={clsx(
-          'text-xs font-medium',
-          isChecked ? 'text-(--text-subtitle)' : 'text-(--text-muted)',
-        )}
+      <Text
+        component="span"
+        size="xs"
+        fw={500}
+        c={isChecked ? 'var(--text-subtitle)' : 'var(--text-muted)'}
       >
         {elevation}m
-      </span>
+      </Text>
     </div>
   )
 }
