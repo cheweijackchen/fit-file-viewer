@@ -46,7 +46,7 @@ export function PeaksProgressGrid({ checkedIds }: Props) {
           className="break-inside-avoid mb-4"
         >
           <Text
-            c="dark"
+            // c="var(--text-secondary)"
             fw={700}
             size="sm"
           >
@@ -71,7 +71,7 @@ export function PeaksProgressGrid({ checkedIds }: Props) {
                     : <div className="w-3.5 shrink-0" />}
                   <div className="flex flex-1 gap-1 justify-between">
                     <Text
-                      c={checked ? undefined : 'dimmed'}
+                      c={checked ? 'bright' : 'dimmed'}
                       fw={checked ? 600 : 400}
                       size="xs"
                     >

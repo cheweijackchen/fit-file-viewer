@@ -258,6 +258,7 @@ export function PeaksProgressDialog({ opened, checkedIds, onClose }: Props) {
         <div className="relative z-10 flex justify-between mb-6 gap-2">
           <div>
             <Text
+              c="bright"
               fw={700}
               size="xl"
             >
@@ -313,6 +314,7 @@ export function PeaksProgressDialog({ opened, checkedIds, onClose }: Props) {
                     目前進度
                   </Text>
                   <Text
+                    c="bright"
                     fw={700}
                     size="xl"
                   >
