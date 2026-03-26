@@ -32,11 +32,17 @@
 }
 
 .checkbox-hover-effect {
+  cursor: pointer;
+  .mantine-Checkbox-label {
+    cursor: pointer;
+  }
+
   .mantine-Checkbox-inner {
     &::before {
+      pointer-events: none;
       content: '';
       position: absolute;
-      inset: 0;
+      inset: -6px;
       border-radius: 50%;
       background: var(--checkbox-color, currentColor);
       transform: scale(0);
@@ -52,6 +58,6 @@
   }
 
   &.mantine-Checkbox-root:not([data-disabled]):hover .mantine-Checkbox-inner::before {
-    transform: scale(2);
+    transform: scale(1);
   }
 }

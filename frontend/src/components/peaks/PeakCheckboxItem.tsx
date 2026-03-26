@@ -15,41 +15,41 @@ export function PeakCheckboxItem({ id, peak, isChecked, onToggle }: Props) {
 
   return (
     <div
-      className="flex items-center justify-between py-2 px-1 pl-7 cursor-pointer"
-      onClick={() => onToggle(id)}
+      className="ml-5"
     >
-      <div className="flex items-center gap-2.5">
-        <Checkbox
-          className="checkbox-hover-effect"
-          checked={isChecked}
-          color="#F0C142"
-          size="xs"
-          radius={3}
-          styles={{
-            input: {
-              cursor: 'pointer',
-            },
-          }}
-          onChange={() => onToggle(id)}
-          onClick={(e) => e.stopPropagation()}
-        />
-        <Text
-          component="span"
-          size="13px"
-          fw={isChecked ? 500 : 400}
-          c={isChecked ? 'var(--text-emphasis)' : 'var(--text-secondary)'}
-        >
-          {peak.name}
-        </Text>
-      </div>
-      <Text
-        component="span"
+      <Checkbox
+        className="py-2 px-1 pl-2 checkbox-hover-effect cursor-pointer"
+        checked={isChecked}
         size="xs"
-        fw={500}
-        c={isChecked ? 'var(--text-subtitle)' : 'var(--text-muted)'}
-      >
-        {elevation}m
-      </Text>
+        radius={3}
+        label={
+          <div className="flex items-center justify-between w-full cursor-pointer">
+            <Text
+              component="div"
+              className="flex-1 cursor-pointer"
+              size="13px"
+              fw={isChecked ? 500 : 400}
+              c={isChecked ? 'var(--text-emphasis)' : 'var(--text-secondary)'}
+            >
+              {peak.name}
+            </Text>
+            <Text
+              component="div"
+              size="xs"
+              fw={500}
+              c={isChecked ? 'var(--text-subtitle)' : 'var(--text-muted)'}
+            >
+              {elevation}m
+            </Text>
+          </div>
+        }
+        styles={{ input: { cursor: 'pointer' } }}
+        classNames={{
+          labelWrapper: 'w-full',
+        }}
+        onChange={() => onToggle(id)}
+      />
+      {/* </div> */}
     </div>
   )
 }
