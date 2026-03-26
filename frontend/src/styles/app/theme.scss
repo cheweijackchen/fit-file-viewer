@@ -30,3 +30,28 @@
     z-index: 1;
   }
 }
+
+.checkbox-hover-effect {
+  .mantine-Checkbox-inner {
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: var(--checkbox-color, currentColor);
+      transform: scale(0);
+      transition: transform .22s cubic-bezier(0, 0, .2, 1);
+
+      @include mantine.light {
+        opacity: 0.2;
+      }
+      @include mantine.dark {
+        opacity: 0.5;
+      }
+    }
+  }
+
+  &.mantine-Checkbox-root:not([data-disabled]):hover .mantine-Checkbox-inner::before {
+    transform: scale(2);
+  }
+}

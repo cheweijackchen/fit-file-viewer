@@ -20,6 +20,7 @@ export function PeakCheckboxItem({ id, peak, isChecked, onToggle }: Props) {
     >
       <div className="flex items-center gap-2.5">
         <Checkbox
+          className="checkbox-hover-effect"
           checked={isChecked}
           color="#F0C142"
           size="xs"
