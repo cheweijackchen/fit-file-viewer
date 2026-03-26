@@ -77,14 +77,27 @@ components/
 
 ## 常用指令
 
-> 所有指令在 `frontend/` 目錄下執行。
+> **所有指令必須在 Docker container 內執行**，不可在 host 直接執行。
 
+透過以下方式在 container 內執行指令：
 ```bash
-npm run dev         # 啟動開發伺服器 (port 由 $FE_DEV_PORT 控制)
-npm run build       # 建構 production bundle
-npm start           # 啟動 production 伺服器 (port 由 $FE_SSR_PORT 控制)
-npm run lint        # 執行 ESLint 檢查
-npm run test:unit   # 執行 Vitest 單元測試
+cd .devcontainer && docker compose exec nodejs bash -c "cd /application/frontend && <command>"
+```
+範例：
+```bash
+# 建構
+cd .devcontainer && docker compose exec nodejs bash -c "cd /application/frontend && yarn build"
+# 啟動 dev server 驗證 runtime（使用 CLAUDE_CODE_DEV_PORT）
+cd .devcontainer && docker compose exec -d nodejs bash -c "cd /application/frontend && yarn next dev -p \$CLAUDE_CODE_DEV_PORT"
+# 檢查頁面是否有錯誤
+# 讀取 port（CLAUDE_CODE_DEV_PORT 定義在 .devcontainer/.env）
+curl -s http://localhost:$CLAUDE_CODE_DEV_PORT/ | grep 'data-next-error-message'
+# 停止 dev server
+cd .devcontainer && docker compose exec nodejs bash -c "kill \$(pgrep -f 'next dev -p')"
+# Lint
+cd .devcontainer && docker compose exec nodejs bash -c "cd /application/frontend && yarn lint"
+# 單元測試
+cd .devcontainer && docker compose exec nodejs bash -c "cd /application/frontend && yarn test:unit"
 ```
 
 ---
