@@ -1,79 +1,34 @@
-'use client'
-
-import { Card, Center, Container, Loader, Stack, useMantineTheme } from '@mantine/core'
-import dynamic from 'next/dynamic'
-import { AltitudeTrendCard } from '@/components/AltitudeTrendCard'
-import { FitFileUploader } from '@/components/FitFileUploader'
-import { HeartRateZoneCard } from '@/components/HeartRateZoneCard'
-import { RecordsCard } from '@/components/RecordsCard'
-import { type TrackData } from '@/model/map'
-import { useFitDataStore } from '@/store/app/useFitDataStore'
+import { Center, Container, Text, Title } from '@mantine/core'
+import { IconBarrierBlock } from '@tabler/icons-react'
 import AppLayout from './components/AppLayout'
-import { HomeBanner } from './components/HomeBanner'
-import { SummarySection } from './components/SummarySection'
 
-const MapNoSSR = dynamic(() => import('@/components/Map/FitTrackMap'), {
-  ssr: false,
-  loading: () => (
-    <Card
-      radius="md"
-      className="w-full h-125 lg:h-full"
-    >
-      <Loader className="m-auto" />
-    </Card>
-  )
-})
-
-export default function Home() {
-  const theme = useMantineTheme()
-
-  const fitData = useFitDataStore.use.fitData()
-  const hasFitData = !!fitData
-
+export default function LandingPage() {
   return (
-    <AppLayout >
-      {hasFitData
-        ? (
-          <Container
-            size="xxl"
-            className="py-4"
-            px={24}
-          >
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
-              <div className="lg:col-span-7 2xl:col-span-6">
-                <Stack gap="md">
-                  <SummarySection></SummarySection>
-                  <HeartRateZoneCard fitData={fitData}></HeartRateZoneCard>
-                </Stack>
-              </div>
-              <div className="lg:col-span-5 2xl:col-span-6">
-                <MapNoSSR
-                  className="z-0 h-125 lg:h-full"
-                  tracks={{ id: 'the-only-track', ...fitData } as TrackData}
-                  trackColors={[theme.colors.yellow[5]]}
-                  borderedTrack={true}
-                />
-              </div>
-              <div className="lg:col-span-12">
-                <AltitudeTrendCard records={fitData.records ?? []}></AltitudeTrendCard>
-              </div>
-              <div className="lg:col-span-12">
-                <RecordsCard records={fitData.records ?? []}></RecordsCard>
-              </div>
-            </div>
-          </Container>
-        )
-        : (
-          <Container
-            size="xxl"
-            px={0}
-          >
-            <HomeBanner className="pt-20 px-6 pb-12"></HomeBanner>
-            <Center className="pt-6 pb-20 px-6">
-              <FitFileUploader className="w-full"></FitFileUploader>
-            </Center>
-          </Container>
-        )}
+    <AppLayout>
+      <Container
+        size="sm"
+        className="py-40"
+      >
+        <Center>
+          <div className="text-center">
+            <IconBarrierBlock
+              size={64}
+              stroke={1.5}
+              color="var(--mantine-color-yellow-5)"
+              className="mx-auto mb-4"
+            />
+            <Title order={2}>
+              Under Construction
+            </Title>
+            <Text
+              c="dimmed"
+              mt="md"
+            >
+              We are working on a brand new landing page. Stay tuned!
+            </Text>
+          </div>
+        </Center>
+      </Container>
     </AppLayout>
   )
 }

@@ -4,7 +4,7 @@ interface Props {
   className: string;
 }
 
-export function HomeBanner({ className }: Props) {
+export function Banner({ className }: Props) {
   return (
     <div className={className}>
       <Text

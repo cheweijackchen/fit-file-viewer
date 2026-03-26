@@ -1,3 +1,5 @@
+'use client'
+
 import { AppShell, Divider } from '@mantine/core'
 import { AppFooter } from './AppFooter'
 import { AppHeader } from './AppHeader'
