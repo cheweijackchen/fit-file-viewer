@@ -52,20 +52,40 @@ app/
 **目標：** 建立資料夾結構、Landing Page 骨架、Header
 
 **檔案：**
-- `app/components/landing/LandingHeader.tsx`
+- `app/components/landing/LandingHeader.tsx`（新增）
 - `app/page.tsx`（改寫）
 
-**LandingHeader 細節：**
-- 左側：TrailKit Logo（icon + 文字）
-- 中間：導航連結（Tools, About, Blog, Community）— 使用 Mantine `Anchor` 或 `Text`
-- 右側：Get Started 按鈕（Mantine `Button` color="yellow"）
-- 佈局：`<Container size="xl">` + Tailwind flex
-- 不使用 AppShell，直接用 `<header>` + sticky 定位
+**色彩對應（所有色碼改用 Mantine 色彩）：**
+| 設計稿色碼 | Mantine 對應 |
+|---|---|
+| `#D9B44A` (logo icon) | `var(--mantine-color-yellow-5)` (primary) |
+| `#FCC419` (CTA 背景) | `Button` color="yellow" (primary) |
+| `#1A1918` (logo 文字) | `var(--text-emphasis)` |
+| `#6D6C6A` (導航文字) | `<Text>` 預設顏色（不加 `c` prop） |
+| `#FFFFFF` (header 背景) | `var(--mantine-color-body)` |
+
+**LandingHeader 結構：**
+```
+<header> (bg: var(--mantine-color-body), sticky top)
+  <Container size="xl"> + flex justify-between items-center
+    ├─ Logo: IconMountain (color=primary) + "TrailKit" (var(--text-emphasis))
+    └─ Nav: flex items-center gap-8
+         ├─ Tools (Mantine Menu trigger → dropdown)
+         │    ├─ FIT File Viewer → /fit-file-viewer
+         │    └─ Peaks Tracker  → /peaks
+         ├─ About / Blog / Community (Text 連結)
+         ├─ ThemeSwitch（復用 @/components/ThemeSwitch）
+         └─ Get Started (Button color="yellow" radius="xl")
+```
+
+**RWD：**
+- md 以上：Logo 左 + Nav 右（如設計稿）
+- md 以下：隱藏導航文字連結，保留 Logo + ThemeSwitch + CTA
 
 **Dark mode 注意：**
-- Header 背景：使用 `var(--mantine-color-body)` 而非硬編碼白色
-- 導航文字：使用 Mantine `<Text>` 預設顏色（自動支援 dark mode）
-- Logo 文字：使用 `var(--text-emphasis)`
+- Header 背景：`var(--mantine-color-body)`
+- 導航文字：`<Text>` 預設顏色（自動支援 dark mode）
+- Logo 文字：`var(--text-emphasis)`
 
 ---
 
@@ -263,6 +283,12 @@ app/
 - 不要硬編碼 `#FFFFFF` 作為背景 → 用 `var(--mantine-color-body)`
 - 不要硬編碼文字顏色 → 用 Mantine Text 預設或 CSS 變數
 - 不要在淺色背景上使用固定深色文字 → 確保 dark mode 下自動反轉
+
+---
+
+## 必遵規則
+
+- **實作每個 Section 前，必須先使用 Pencil MCP 工具讀取 `landing-page.pen` 設計稿**（透過 `batch_get` 或 `get_screenshot` 取得對應區塊的設計細節），確保實作與設計稿一致。不可僅依賴本計劃文字描述進行實作。
 
 ---
 
