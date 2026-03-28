@@ -98,6 +98,8 @@ cd .devcontainer && docker compose exec nodejs bash -c "kill \$(pgrep -f 'next d
 cd .devcontainer && docker compose exec nodejs bash -c "cd /application/frontend && yarn lint"
 # 單元測試
 cd .devcontainer && docker compose exec nodejs bash -c "cd /application/frontend && yarn test:unit"
+# E2E 測試（使用 CLAUDE_CODE_DEV_PORT）
+cd .devcontainer && docker compose exec nodejs bash -c "cd /application/frontend && PLAYWRIGHT_PORT=\$CLAUDE_CODE_DEV_PORT yarn test:e2e"
 ```
 
 ---

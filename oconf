@@ -99,7 +99,9 @@ case ${1} in
                 popd >/dev/null || exit
                 ;;
             e2e)
-                echo "TODO: add cypress e2e test framework"
+                pushd frontend >/dev/null || exit
+                yarn run test:e2e
+                popd >/dev/null || exit
                 ;;
         esac
         ;;
