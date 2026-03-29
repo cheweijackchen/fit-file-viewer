@@ -298,7 +298,7 @@ export function PeaksProgressDialog({ opened, checkedIds, onClose }: Props) {
         {/* Progress */}
         <div className="flex justify-center items-center gap-1 sm:gap-4">
           <div
-            className={clsx('relative flex-none ml-6', companionId && 'sm:ml-15')}
+            className={clsx('relative flex-none ', companionId && titleStyle && 'ml-6 sm:ml-15')}
           >
             {selectedCompanion && (
               <Image
