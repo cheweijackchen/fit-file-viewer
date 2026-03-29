@@ -137,7 +137,7 @@ export function LandingHeader() {
                     component="a"
                     href="#"
                     variant="subtle"
-                    c="dark.6"
+                    c="bright"
                     className={classes.link}
                     onClick={e => e.preventDefault()}
                   >
@@ -179,7 +179,7 @@ export function LandingHeader() {
                 component="a"
                 href="#"
                 variant="subtle"
-                c="dark.6"
+                c="bright"
                 className={classes.link}
                 onClick={e => e.preventDefault()}
               >
@@ -189,7 +189,7 @@ export function LandingHeader() {
                 component="a"
                 href="#"
                 variant="subtle"
-                c="dark.6"
+                c="bright"
                 className={classes.link}
                 onClick={e => e.preventDefault()}
               >
@@ -199,7 +199,7 @@ export function LandingHeader() {
                 component="a"
                 href="#"
                 variant="subtle"
-                c="dark.6"
+                c="bright"
                 className={classes.link}
                 onClick={e => e.preventDefault()}
               >
@@ -268,7 +268,7 @@ export function LandingHeader() {
             component="a"
             href="#"
             variant="subtle"
-            c="dark.6"
+            c="bright"
             className={classes.link}
             onClick={e => e.preventDefault()}
           >
@@ -278,7 +278,7 @@ export function LandingHeader() {
             component="a"
             href="#"
             variant="subtle"
-            c="dark.6"
+            c="bright"
             className={classes.link}
             onClick={e => e.preventDefault()}
           >
@@ -288,7 +288,7 @@ export function LandingHeader() {
             component="a"
             href="#"
             variant="subtle"
-            c="dark.6"
+            c="bright"
             className={classes.link}
             onClick={e => e.preventDefault()}
           >

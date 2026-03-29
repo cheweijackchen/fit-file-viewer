@@ -69,6 +69,7 @@ export function LandingFeatureCards() {
 
           <Title
             order={2}
+            c="bright"
             className="text-4xl! max-md:text-3xl!"
             style={{
               letterSpacing: -0.5
