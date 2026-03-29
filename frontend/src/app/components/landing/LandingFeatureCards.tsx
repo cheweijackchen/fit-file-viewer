@@ -87,7 +87,7 @@ export function LandingFeatureCards() {
           </Text>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 sm:w-3/5 md:w-full mx-auto">
           {cards.map(card => (
             <Card
               key={card.title}
