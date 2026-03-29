@@ -1,8 +1,8 @@
 'use client'
 
-import { Button, Text, Title } from '@mantine/core'
+import { ActionIcon, Button, Text, Title } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
-import { IconRotate } from '@tabler/icons-react'
+import { IconHome, IconRotate } from '@tabler/icons-react'
 import { ConfirmModal } from '@/components/ConfirmModal'
 import useScreen from '@/hooks/useScreen'
 
@@ -39,17 +39,30 @@ export function PeaksHeader({ showClear, onClear }: Props) {
           Taiwan 100 Peaks
         </Text>
       </div>
-      {showClear && (
-        <Button
+      <div className="flex gap-2">
+        {showClear && (
+          <Button
+            variant="default"
+            size="sm"
+            c="dimmed"
+            leftSection={<IconRotate size={14} />}
+            onClick={openConfirmClearDialog}
+          >
+            清除紀錄
+          </Button>
+        )}
+        <ActionIcon
+          component="a"
+          href="/"
           variant="default"
-          size="xs"
-          c="dimmed"
-          leftSection={<IconRotate size={14} />}
-          onClick={openConfirmClearDialog}
+          size="input-sm"
         >
-          清除紀錄
-        </Button>
-      )}
+          <IconHome
+            stroke={1.5}
+          ></IconHome>
+        </ActionIcon>
+
+      </div>
       <ConfirmModal
         opened={opened}
         title="清除紀錄"
