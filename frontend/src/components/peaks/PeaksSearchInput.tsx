@@ -24,17 +24,15 @@ export function PeaksSearchInput({ onChange }: Props) {
       leftSection={
         <IconSearch
           size={16}
-          color="#B0B0B0"
+          color="var(--mantine-color-gray-5)"
         />
       }
-      radius={4}
       styles={{
         input: {
-          backgroundColor: '#FAFAF8',
-          borderColor: '#E8E5E0',
-          fontSize: 14,
+          borderColor: '#E8E5E0'
         },
       }}
+      variant="filled"
       onChange={(e) => setInputValue(e.currentTarget.value)}
     />
   )
