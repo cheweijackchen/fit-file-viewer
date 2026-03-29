@@ -19,6 +19,7 @@ import {
 } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 import { IconChevronDown, IconFileAnalytics, IconMountain } from '@tabler/icons-react'
+import clsx from 'clsx'
 import Link from 'next/link'
 import { ThemeSwitch } from '@/components/ThemeSwitch'
 import classes from './LandingHeader.module.scss'
@@ -132,8 +133,11 @@ export function LandingHeader() {
                 position="bottom"
               >
                 <HoverCard.Target>
-                  <a
+                  <Button
+                    component="a"
                     href="#"
+                    variant="subtle"
+                    c="dark.6"
                     className={classes.link}
                     onClick={e => e.preventDefault()}
                   >
@@ -149,7 +153,7 @@ export function LandingHeader() {
                         color="var(--mantine-color-yellow-5)"
                       />
                     </Center>
-                  </a>
+                  </Button>
                 </HoverCard.Target>
 
                 <HoverCard.Dropdown style={{ overflow: 'hidden' }}>
@@ -171,27 +175,36 @@ export function LandingHeader() {
                 </HoverCard.Dropdown>
               </HoverCard>
 
-              <a
+              <Button
+                component="a"
                 href="#"
+                variant="subtle"
+                c="dark.6"
                 className={classes.link}
                 onClick={e => e.preventDefault()}
               >
                 About
-              </a>
-              <a
+              </Button>
+              <Button
+                component="a"
                 href="#"
+                variant="subtle"
+                c="dark.6"
                 className={classes.link}
                 onClick={e => e.preventDefault()}
               >
                 Blog
-              </a>
-              <a
+              </Button>
+              <Button
+                component="a"
                 href="#"
+                variant="subtle"
+                c="dark.6"
                 className={classes.link}
                 onClick={e => e.preventDefault()}
               >
                 Community
-              </a>
+              </Button>
             </Group>
 
             <Group>
@@ -230,10 +243,10 @@ export function LandingHeader() {
           h="calc(100vh - 80px)"
           mx="-md"
         >
-          <Divider my="sm" />
+          <Divider mb="sm" />
 
           <UnstyledButton
-            className={classes.link}
+            className={clsx(classes.link, 'max-md:w-full')}
             onClick={toggleTools}
           >
             <Center inline>
@@ -251,27 +264,36 @@ export function LandingHeader() {
           </UnstyledButton>
           <Collapse in={toolsOpened}>{toolLinks}</Collapse>
 
-          <a
+          <Button
+            component="a"
             href="#"
+            variant="subtle"
+            c="dark.6"
             className={classes.link}
             onClick={e => e.preventDefault()}
           >
             About
-          </a>
-          <a
+          </Button>
+          <Button
+            component="a"
             href="#"
+            variant="subtle"
+            c="dark.6"
             className={classes.link}
             onClick={e => e.preventDefault()}
           >
             Blog
-          </a>
-          <a
+          </Button>
+          <Button
+            component="a"
             href="#"
+            variant="subtle"
+            c="dark.6"
             className={classes.link}
             onClick={e => e.preventDefault()}
           >
             Community
-          </a>
+          </Button>
 
           <Divider my="sm" />
 

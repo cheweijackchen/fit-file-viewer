@@ -38,12 +38,10 @@ export function LandingHero() {
         </Badge>
 
         <Title
-          order={1}
-          className="max-w-[900px] max-md:text-[40px]"
+          order={2}
+          c="white"
+          className="max-w-[900px] max-md:text-[40px]! text-[64px]!"
           style={{
-            fontSize: 64,
-            fontWeight: 700,
-            color: 'white',
             letterSpacing: -1,
           }}
         >
@@ -51,9 +49,8 @@ export function LandingHero() {
         </Title>
 
         <Text
-          size="xl"
           c="gray.2"
-          className="max-w-[700px] max-md:text-base"
+          className="max-w-[700px] text-lg! md:text-xl!"
           style={{ lineHeight: 1.5 }}
         >
           Analyze your trails, track your peaks, and visualize every adventure — all in your browser, no data leaves your device.

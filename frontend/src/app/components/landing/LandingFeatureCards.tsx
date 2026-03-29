@@ -53,7 +53,7 @@ const cards: FeatureCard[] = [
 
 export function LandingFeatureCards() {
   return (
-    <section className={`${classes.section} py-20`}>
+    <section className="py-20">
       <Container size="xl">
         <div className="flex flex-col items-center text-center gap-3">
           <Badge
@@ -69,9 +69,8 @@ export function LandingFeatureCards() {
 
           <Title
             order={2}
+            className="text-4xl! max-md:text-3xl!"
             style={{
-              fontSize: 42,
-              fontWeight: 700,
               letterSpacing: -0.5
             }}
           >
