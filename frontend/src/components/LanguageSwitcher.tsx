@@ -4,6 +4,8 @@ import { Button, Menu } from '@mantine/core'
 import { IconChevronDown, IconWorld } from '@tabler/icons-react'
 import { useLocale } from 'next-intl'
 import { LOCALES, type Locale } from '@/i18n/routing'
+import { use } from 'react'
+import { useRouter } from 'next/navigation'
 
 const LOCALE_LABELS: Record<Locale, string> = {
   'en-US': 'English',
@@ -14,11 +16,12 @@ const LOCALE_STORAGE_KEY = 'locale'
 
 export function LanguageSwitcher() {
   const locale = useLocale() as Locale
+  const router = useRouter()
 
   function switchLocale(target: Locale) {
     localStorage.setItem(LOCALE_STORAGE_KEY, target)
     document.cookie = `NEXT_LOCALE=${target}; path=/; max-age=${60 * 60 * 24 * 7}`
-    window.location.href = `/${target}`
+    router.push(`/${target}`)
   }
 
   return (
