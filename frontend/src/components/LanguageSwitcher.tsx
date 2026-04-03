@@ -31,8 +31,8 @@ export function LanguageSwitcher() {
           variant="subtle"
           color="bright"
           leftSection={<IconWorld size={16} />}
-          rightSection={<IconChevronDown size={14} />}
           size="sm"
+          className="light-hover-effect"
         >
           {LOCALE_LABELS[locale]}
         </Button>
