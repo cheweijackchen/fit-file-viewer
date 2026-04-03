@@ -1,0 +1,107 @@
+{
+  "landing": {
+    "hero": {
+      "badge": "免費 · 隱私優先的登山工具",
+      "title": "你的完整登山工具箱",
+      "description": "分析你的路線、追蹤山峰紀錄、視覺化每一次冒險——完全在瀏覽器中完成，資料不會離開你的裝置。",
+      "ctaPrimary": "探索工具",
+      "ctaSecondary": "查看示範"
+    },
+    "header": {
+      "brand": "TrailKit",
+      "tools": "工具",
+      "about": "關於",
+      "blog": "部落格",
+      "community": "社群",
+      "getStarted": "立即開始",
+      "navigation": "導覽",
+      "toolsDropdown": {
+        "title": "工具",
+        "fitFileViewer": {
+          "title": "FIT 檔案檢視器",
+          "description": "在瀏覽器中分析你的 Garmin FIT 檔案"
+        },
+        "peaksTracker": {
+          "title": "百岳登頂紀錄",
+          "description": "追蹤並視覺化你的登頂紀錄"
+        }
+      }
+    },
+    "feature-cards": {
+      "badge": "核心工具",
+      "title": "登山所需，一應俱全",
+      "description": "專為登山者打造的瀏覽器工具，無需帳號即可使用。",
+      "cards": {
+        "peaks-tracker": {
+          "badgeText": "熱門",
+          "title": "百岳登頂紀錄",
+          "description": "記錄並視覺化你到訪過的每一座山峰。在互動地圖上查看山峰分布，並與朋友分享你的成果。",
+          "linkText": "開啟百岳登頂紀錄"
+        },
+        "fit-file-viewer": {
+          "badgeText": "必備",
+          "title": "FIT 檔案檢視器",
+          "description": "上傳運動手錶的 FIT 檔案，立即查看心率區間、海拔剖面、GPS 軌跡與詳細的活動摘要。",
+          "linkText": "開啟 FIT 檢視器"
+        },
+        "trail-map": {
+          "badgeText": "地圖",
+          "title": "3D 路線地圖",
+          "description": "在互動式 3D 地圖上視覺化你的登山路線，支援地形、衛星影像、等高線與軌跡動畫播放。",
+          "linkText": "開啟路線地圖"
+        }
+      }
+    },
+    "privacy": {
+      "badge": "為何選擇 TRAILKIT",
+      "title": "專為重視隱私的登山者打造",
+      "description": "你的 GPS 資料、心率與路線記錄永遠不會離開你的瀏覽器。就是這樣。",
+      "stats": {
+        "processing": {
+          "value": "100%",
+          "label": "本地端運算"
+        },
+        "uploaded": {
+          "value": "0 位元組",
+          "label": "上傳至伺服器"
+        },
+        "account": {
+          "value": "無需帳號",
+          "label": "即可開始使用"
+        },
+        "openSource": {
+          "value": "開放原始碼",
+          "label": "永久免費"
+        }
+      }
+    },
+    "coming-soon": {
+      "badge": "即將推出",
+      "title": "更多工具陸續上線",
+      "description": "我們正在打造更多隱私優先的工具，讓每一次登山體驗更完整。",
+      "cards": {
+        "trail-planner": {
+          "title": "路線規劃器",
+          "description": "規劃路線、估算時間，出發前與朋友分享行程。"
+        },
+        "elevation-analyzer": {
+          "title": "海拔分析器",
+          "description": "詳細的爬升/下降圖表，附帶坡度分析，評估路線難度。"
+        },
+        "weather-overlay": {
+          "title": "天氣疊加層",
+          "description": "將歷史天氣資料疊加在登山時間軸與 GPS 軌跡上。"
+        },
+        "gpx-converter": {
+          "title": "GPX 轉換器",
+          "description": "在 FIT、GPX、KML 格式之間轉換，輕鬆合併或分割軌跡檔案。"
+        }
+      }
+    }
+  },
+  "not-found": {
+    "title": "這裡沒有東西",
+    "description": "你嘗試開啟的頁面不存在。可能是網址輸入錯誤，或頁面已移至其他位置。如果你認為這是錯誤，請聯絡客服。",
+    "back": "回到首頁"
+  }
+}
