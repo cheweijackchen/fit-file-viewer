@@ -3,37 +3,23 @@
 import { Badge, Container, Title } from '@mantine/core'
 import { IconShieldCheck } from '@tabler/icons-react'
 import clsx from 'clsx'
+import { useTranslations } from 'next-intl'
 
-interface StatCard {
-  value: string;
-  valueClass: string;
-  label: string;
+interface StatConfig {
+  key: string
+  valueClass: string
 }
 
-const stats: StatCard[] = [
-  {
-    value: '100%',
-    valueClass: 'text-(--mantine-color-yellow-4)',
-    label: 'Client-Side Processing',
-  },
-  {
-    value: '0 Bytes',
-    valueClass: 'text-(--mantine-color-orange-4)',
-    label: 'Uploaded to Servers',
-  },
-  {
-    value: 'No Account',
-    valueClass: 'text-(--mantine-color-cyan-2)',
-    label: 'Required to Get Started',
-  },
-  {
-    value: 'Open Source',
-    valueClass: 'text-(--mantine-color-green-1)',
-    label: 'Free Forever',
-  },
+const statConfigs: StatConfig[] = [
+  { key: 'processing', valueClass: 'text-(--mantine-color-yellow-4)' },
+  { key: 'uploaded', valueClass: 'text-(--mantine-color-orange-4)' },
+  { key: 'account', valueClass: 'text-(--mantine-color-cyan-2)' },
+  { key: 'openSource', valueClass: 'text-(--mantine-color-green-1)' },
 ]
 
 export function LandingPrivacy() {
+  const t = useTranslations('landing')
+
   return (
     <section className="py-20 bg-(--mantine-color-dark-9)">
       <Container size="xl">
@@ -51,7 +37,7 @@ export function LandingPrivacy() {
               },
             }}
           >
-            WHY TRAILKIT
+            {t('privacy.badge')}
           </Badge>
 
           <Title
@@ -59,29 +45,29 @@ export function LandingPrivacy() {
             className="text-4xl! max-md:text-3xl! max-w-200 text-center text-(--mantine-color-white)"
             style={{ letterSpacing: -0.5 }}
           >
-            Built for Hikers Who Care About Privacy
+            {t('privacy.title')}
           </Title>
 
           <p className="text-lg text-(--mantine-color-dark-2)">
-            Your GPS data, heart rate, and trail logs never leave your browser. Period.
+            {t('privacy.description')}
           </p>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-12">
-          {stats.map(stat => (
+          {statConfigs.map(stat => (
             <div
-              key={stat.value}
+              key={stat.key}
               className="flex flex-col items-center gap-2 p-6 bg-white/4 border border-white/7 rounded-(--mantine-radius-lg)"
             >
               <span
                 className={clsx('text-3xl font-bold', stat.valueClass)}
                 style={{ letterSpacing: -1 }}
               >
-                {stat.value}
+                {t(`privacy.stats.${stat.key}.value`)}
               </span>
 
               <span className="text-sm font-medium text-center text-(--mantine-color-dark-2)">
-                {stat.label}
+                {t(`privacy.stats.${stat.key}.label`)}
               </span>
             </div>
           ))}

@@ -21,27 +21,30 @@ import { useDisclosure } from '@mantine/hooks'
 import { IconChevronDown, IconFileAnalytics, IconMountain } from '@tabler/icons-react'
 import clsx from 'clsx'
 import Link from 'next/link'
+import { useTranslations } from 'next-intl'
+import { LanguageSwitcher } from '@/components/LanguageSwitcher'
 import { ThemeSwitch } from '@/components/ThemeSwitch'
 import classes from './LandingHeader.module.scss'
 
-const toolsData = [
-  {
-    icon: IconFileAnalytics,
-    title: 'FIT File Viewer',
-    description: 'Analyze your Garmin FIT files in the browser',
-    href: '/fit-file-viewer',
-  },
-  {
-    icon: IconMountain,
-    title: 'Peaks Tracker',
-    description: 'Track and visualize your peak bagging progress',
-    href: '/peaks',
-  },
-]
-
 export function LandingHeader() {
+  const t = useTranslations('landing')
   const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] = useDisclosure(false)
   const [toolsOpened, { toggle: toggleTools }] = useDisclosure(false)
+
+  const toolsData = [
+    {
+      icon: IconFileAnalytics,
+      title: t('header.toolsDropdown.fitFileViewer.title'),
+      description: t('header.toolsDropdown.fitFileViewer.description'),
+      href: '/fit-file-viewer',
+    },
+    {
+      icon: IconMountain,
+      title: t('header.toolsDropdown.peaksTracker.title'),
+      description: t('header.toolsDropdown.peaksTracker.description'),
+      href: '/peaks',
+    },
+  ]
 
   const toolLinks = toolsData.map(item => (
     <UnstyledButton
@@ -116,7 +119,7 @@ export function LandingHeader() {
                   color: 'var(--text-emphasis)',
                 }}
               >
-                TrailKit
+                {t('header.brand')}
               </Text>
             </Link>
 
@@ -146,7 +149,7 @@ export function LandingHeader() {
                         component="span"
                         mr={5}
                       >
-                        Tools
+                        {t('header.tools')}
                       </Box>
                       <IconChevronDown
                         size={16}
@@ -161,7 +164,7 @@ export function LandingHeader() {
                     justify="space-between"
                     px="md"
                   >
-                    <Text fw={500}>Tools</Text>
+                    <Text fw={500}>{t('header.toolsDropdown.title')}</Text>
                   </Group>
 
                   <Divider my="sm" />
@@ -183,7 +186,7 @@ export function LandingHeader() {
                 className={classes.link}
                 onClick={e => e.preventDefault()}
               >
-                About
+                {t('header.about')}
               </Button>
               <Button
                 component="a"
@@ -193,7 +196,7 @@ export function LandingHeader() {
                 className={classes.link}
                 onClick={e => e.preventDefault()}
               >
-                Blog
+                {t('header.blog')}
               </Button>
               <Button
                 component="a"
@@ -203,11 +206,12 @@ export function LandingHeader() {
                 className={classes.link}
                 onClick={e => e.preventDefault()}
               >
-                Community
+                {t('header.community')}
               </Button>
             </Group>
 
             <Group>
+              <LanguageSwitcher />
               <ThemeSwitch />
               <Button
                 component={Link}
@@ -217,7 +221,7 @@ export function LandingHeader() {
                 size="sm"
                 visibleFrom="md"
               >
-                Get Started
+                {t('header.getStarted')}
               </Button>
               <Burger
                 hiddenFrom="md"
@@ -234,7 +238,7 @@ export function LandingHeader() {
         opened={drawerOpened}
         size="100%"
         padding="md"
-        title="Navigation"
+        title={t('header.navigation')}
         hiddenFrom="md"
         zIndex={1000000}
         onClose={closeDrawer}
@@ -254,7 +258,7 @@ export function LandingHeader() {
                 component="span"
                 mr={5}
               >
-                Tools
+                {t('header.tools')}
               </Box>
               <IconChevronDown
                 size={16}
@@ -272,7 +276,7 @@ export function LandingHeader() {
             className={classes.link}
             onClick={e => e.preventDefault()}
           >
-            About
+            {t('header.about')}
           </Button>
           <Button
             component="a"
@@ -282,7 +286,7 @@ export function LandingHeader() {
             className={classes.link}
             onClick={e => e.preventDefault()}
           >
-            Blog
+            {t('header.blog')}
           </Button>
           <Button
             component="a"
@@ -292,7 +296,7 @@ export function LandingHeader() {
             className={classes.link}
             onClick={e => e.preventDefault()}
           >
-            Community
+            {t('header.community')}
           </Button>
 
           <Divider my="sm" />
@@ -310,7 +314,7 @@ export function LandingHeader() {
               radius="xl"
               onClick={closeDrawer}
             >
-              Get Started
+              {t('header.getStarted')}
             </Button>
           </Group>
         </ScrollArea>

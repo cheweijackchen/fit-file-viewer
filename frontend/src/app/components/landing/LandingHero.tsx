@@ -4,9 +4,12 @@ import { Badge, Button, Container, Text, Title } from '@mantine/core'
 import { IconArrowRight, IconCompass } from '@tabler/icons-react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useTranslations } from 'next-intl'
 import heroImage from '@/assets/hero.webp'
 
 export function LandingHero() {
+  const t = useTranslations('landing')
+
   return (
     <section className="relative h-[620px] overflow-hidden flex items-center justify-center max-md:h-[520px]">
       <Image
@@ -34,7 +37,7 @@ export function LandingHero() {
             root: { textTransform: 'none' },
           }}
         >
-          Free & Privacy-First Hiking Tools
+          {t('hero.badge')}
         </Badge>
 
         <Title
@@ -45,7 +48,7 @@ export function LandingHero() {
             letterSpacing: -1,
           }}
         >
-          Your Complete Hiking Toolkit
+          {t('hero.title')}
         </Title>
 
         <Text
@@ -53,7 +56,7 @@ export function LandingHero() {
           className="max-w-[700px] text-lg! md:text-xl!"
           style={{ lineHeight: 1.5 }}
         >
-          Analyze your trails, track your peaks, and visualize every adventure — all in your browser, no data leaves your device.
+          {t('hero.description')}
         </Text>
 
         <div className="flex gap-4 max-sm:flex-col max-sm:w-full">
@@ -65,7 +68,7 @@ export function LandingHero() {
             radius="xl"
             rightSection={<IconArrowRight size={18} />}
           >
-            Explore Tools
+            {t('hero.ctaPrimary')}
           </Button>
           <Button
             component={Link}
@@ -81,7 +84,7 @@ export function LandingHero() {
               },
             }}
           >
-            View Demo
+            {t('hero.ctaSecondary')}
           </Button>
         </div>
       </Container>

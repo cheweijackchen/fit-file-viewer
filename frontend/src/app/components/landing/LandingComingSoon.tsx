@@ -2,48 +2,46 @@
 
 import { Badge, Card, Container, Text, Title } from '@mantine/core'
 import { IconMapPin, IconRepeat, IconSparkles, IconSunWind, IconTrendingUp } from '@tabler/icons-react'
+import { useTranslations } from 'next-intl'
 import type { ComponentType, CSSProperties } from 'react'
 
-interface ComingSoonCard {
-  icon: ComponentType<{ size: number; style?: CSSProperties; }>;
-  iconColor: string;
-  iconBgClass: string;
-  title: string;
-  description: string;
+interface CardConfig {
+  key: string
+  icon: ComponentType<{ size: number; style?: CSSProperties }>
+  iconColor: string
+  iconBgClass: string
 }
 
-const cards: ComingSoonCard[] = [
+const cardConfigs: CardConfig[] = [
   {
+    key: 'trail-planner',
     icon: IconMapPin,
     iconColor: 'var(--mantine-color-yellow-5)',
     iconBgClass: 'bg-(--mantine-color-yellow-1)/90',
-    title: 'Trail Planner',
-    description: 'Plan routes, estimate time, and share trails with friends before you go.',
   },
   {
+    key: 'elevation-analyzer',
     icon: IconTrendingUp,
     iconColor: 'var(--mantine-color-orange-4)',
     iconBgClass: 'bg-(--mantine-color-orange-1)/40',
-    title: 'Elevation Analyzer',
-    description: 'Detailed elevation gain/loss charts with gradient analysis for trail difficulty.',
   },
   {
+    key: 'weather-overlay',
     icon: IconSunWind,
     iconColor: 'var(--mantine-color-cyan-6)',
     iconBgClass: 'bg-(--mantine-color-cyan-1)/40',
-    title: 'Weather Overlay',
-    description: 'See historical weather conditions overlaid on your hike timeline and GPS track.',
   },
   {
+    key: 'gpx-converter',
     icon: IconRepeat,
     iconColor: 'var(--mantine-color-green-6)',
     iconBgClass: 'bg-(--mantine-color-green-2)/20',
-    title: 'GPX Converter',
-    description: 'Convert between FIT, GPX, and KML formats. Merge or split track files effortlessly.',
   },
 ]
 
 export function LandingComingSoon() {
+  const t = useTranslations('landing')
+
   return (
     <section className="py-20 bg-(--mantine-color-gray-0) dark:bg-(--mantine-color-dark-5)">
       <Container size="xl">
@@ -56,7 +54,7 @@ export function LandingComingSoon() {
             leftSection={<IconSparkles size={14} />}
             styles={{ root: { textTransform: 'none' } }}
           >
-            COMING SOON
+            {t('coming-soon.badge')}
           </Badge>
 
           <Title
@@ -65,21 +63,21 @@ export function LandingComingSoon() {
             className="text-4xl! max-md:text-3xl!"
             style={{ letterSpacing: -0.5 }}
           >
-            More Tools on the Way
+            {t('coming-soon.title')}
           </Title>
 
           <Text
             c="dimmed"
             size="lg"
           >
-            We&apos;re building more privacy-first tools to make every hike better.
+            {t('coming-soon.description')}
           </Text>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
-          {cards.map(card => (
+          {cardConfigs.map(card => (
             <Card
-              key={card.title}
+              key={card.key}
               withBorder
               radius="lg"
               shadow="sm"
@@ -100,7 +98,7 @@ export function LandingComingSoon() {
                   size="lg"
                   style={{ letterSpacing: -0.2 }}
                 >
-                  {card.title}
+                  {t(`coming-soon.cards.${card.key}.title`)}
                 </Text>
 
                 <Text
@@ -108,7 +106,7 @@ export function LandingComingSoon() {
                   size="sm"
                   style={{ lineHeight: 1.5 }}
                 >
-                  {card.description}
+                  {t(`coming-soon.cards.${card.key}.description`)}
                 </Text>
               </div>
             </Card>

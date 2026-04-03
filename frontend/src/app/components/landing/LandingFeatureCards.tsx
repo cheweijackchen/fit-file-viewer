@@ -4,54 +4,45 @@ import { Badge, Card, Container, Text, Title } from '@mantine/core'
 import { IconArrowRight, IconStack2 } from '@tabler/icons-react'
 import Image, { type StaticImageData } from 'next/image'
 import Link from 'next/link'
+import { useTranslations } from 'next-intl'
 import watchImage from '@/assets/photos/garmin-955.webp'
 import mountRainierImage from '@/assets/photos/mount-rainer-wilderness.webp'
 import mountainPeaksImage from '@/assets/photos/mountain-and-lake.webp'
 import classes from './LandingFeatureCards.module.scss'
 
-interface FeatureCard {
-  image: StaticImageData | null;
-  placeholderClass?: string;
-  badgeText: string;
-  badgeColor: string;
-  title: string;
-  description: string;
-  linkText: string;
-  href: string;
+interface CardConfig {
+  key: string
+  image: StaticImageData | null
+  placeholderClass?: string
+  badgeColor: string
+  href: string
 }
 
-const cards: FeatureCard[] = [
+const cardConfigs: CardConfig[] = [
   {
+    key: 'peaks-tracker',
     image: mountainPeaksImage,
     placeholderClass: classes.placeholderImage,
-    badgeText: 'Popular',
     badgeColor: 'yellow',
-    title: 'Peaks Tracker',
-    description: 'Log and visualize every summit you\'ve visited. Check the peaks on an interactive map and share the result with your friends.',
-    linkText: 'Open Peaks Tracker',
     href: '/peaks',
   },
   {
+    key: 'fit-file-viewer',
     image: watchImage,
-    badgeText: 'Essential',
     badgeColor: 'orange',
-    title: 'FIT File Viewer',
-    description: 'Upload your sports watch FIT files and instantly see heart rate zones, elevation profiles, GPS tracks, and detailed activity summaries.',
-    linkText: 'Open FIT Viewer',
     href: '/fit-file-viewer',
   },
   {
+    key: 'trail-map',
     image: mountRainierImage,
-    badgeText: 'Map',
     badgeColor: 'cyan',
-    title: '3D Trail Map',
-    description: 'Visualize your hiking routes on an interactive 3D map with terrain, satellite imagery, contour lines, and animated track playback.',
-    linkText: 'Open Trail Map',
     href: '/trail-map',
   },
 ]
 
 export function LandingFeatureCards() {
+  const t = useTranslations('landing')
+
   return (
     <section className="py-20">
       <Container size="xl">
@@ -64,7 +55,7 @@ export function LandingFeatureCards() {
             leftSection={<IconStack2 size={14} />}
             styles={{ root: { textTransform: 'none' } }}
           >
-            CORE TOOLS
+            {t('feature-cards.badge')}
           </Badge>
 
           <Title
@@ -75,7 +66,7 @@ export function LandingFeatureCards() {
               letterSpacing: -0.5
             }}
           >
-            Everything You Need on the Trail
+            {t('feature-cards.title')}
           </Title>
 
           <Text
@@ -83,14 +74,14 @@ export function LandingFeatureCards() {
             size="lg"
             className="max-w-[600px]"
           >
-            Powerful browser-based tools designed for hikers, by hikers. No account needed.
+            {t('feature-cards.description')}
           </Text>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 sm:w-3/5 md:w-full mx-auto">
-          {cards.map(card => (
+          {cardConfigs.map(card => (
             <Card
-              key={card.title}
+              key={card.key}
               withBorder
               radius="lg"
               shadow="sm"
@@ -101,7 +92,7 @@ export function LandingFeatureCards() {
                 {card.image ? (
                   <Image
                     src={card.image}
-                    alt={card.title}
+                    alt={t(`feature-cards.cards.${card.key}.title`)}
                     className="object-cover"
                     style={{
                       height: 220,
@@ -124,7 +115,7 @@ export function LandingFeatureCards() {
                   className="self-start"
                   styles={{ root: { textTransform: 'none' } }}
                 >
-                  {card.badgeText}
+                  {t(`feature-cards.cards.${card.key}.badgeText`)}
                 </Badge>
 
                 <Title
@@ -135,7 +126,7 @@ export function LandingFeatureCards() {
                     letterSpacing: -0.3
                   }}
                 >
-                  {card.title}
+                  {t(`feature-cards.cards.${card.key}.title`)}
                 </Title>
 
                 <Text
@@ -143,7 +134,7 @@ export function LandingFeatureCards() {
                   size="sm"
                   style={{ lineHeight: 1.5 }}
                 >
-                  {card.description}
+                  {t(`feature-cards.cards.${card.key}.description`)}
                 </Text>
 
                 <Text
@@ -154,7 +145,7 @@ export function LandingFeatureCards() {
                   className="flex items-center gap-1.5 no-underline"
                   c="yellow.6"
                 >
-                  {card.linkText}
+                  {t(`feature-cards.cards.${card.key}.linkText`)}
                   <IconArrowRight size={16} />
                 </Text>
               </div>
