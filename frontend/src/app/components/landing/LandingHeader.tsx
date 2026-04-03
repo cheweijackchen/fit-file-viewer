@@ -211,8 +211,12 @@ export function LandingHeader() {
             </Group>
 
             <Group>
-              <LanguageSwitcher />
-              <ThemeSwitch />
+              <Box visibleFrom="md">
+                <LanguageSwitcher />
+              </Box>
+              <Box visibleFrom="md">
+                <ThemeSwitch />
+              </Box>
               <Button
                 component={Link}
                 href="/fit-file-viewer"
