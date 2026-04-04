@@ -23,7 +23,7 @@
   "eslint.workingDirectories": [
     { "directory": "frontend", "changeProcessCwd": true }
   ],
-  "tailwindCSS.lint.suggestCanonicalClasses": "ignore",
+  " CSS.lint.suggestCanonicalClasses": "ignore",
   "typescript.format.insertSpaceAfterOpeningAndBeforeClosingJsxExpressionBraces": false,
   "typescript.tsdk": "frontend/node_modules/typescript/lib",
   "scssFormatter.singleQuote": true,
