@@ -1,4 +1,4 @@
-# CLAUDE.md — FIT File Viewer
+# CLAUDE.md — TrailKit
 
 > 給 Claude Code 的專案說明文件。每次進入對話時自動載入。
 
@@ -6,11 +6,28 @@
 
 ## 專案概述
 
-**FIT File Viewer** 是一個完全在瀏覽器端解析 Garmin FIT 檔案的隱私優先運動數據視覺化工具。包含於地圖上顯示 FIT 和 GPX 軌跡的功能。
+**TrailKit** 是一個隱私優先的登山工具平台，所有資料處理皆在瀏覽器端完成，不上傳任何個人資料。
 
 - 前端目錄：`frontend/`
-- 目前框架：Next.js 16 (App Router) + React 19
+- 框架：Next.js 16 (App Router) + React 19
 - 主分支：`master`
+- 語系：`en-US`（預設）、`zh-TW`
+
+### 功能列表
+
+| 功能 | 路由 | 說明 |
+|------|------|------|
+| FIT File Viewer | `/fit-file-viewer` | 解析 Garmin FIT / GPX 檔案，顯示心率、海拔、GPS 軌跡 |
+| Peaks Tracker | `/peaks` | 台灣百岳追蹤器，含地圖、清單、進度統計 |
+| Trail Map | `/demo/demo-vector-map` | MapLibre GL 向量地圖，含地形、衛星、軌跡播放（目前為 demo） |
+
+### 功能文件
+
+詳細的功能架構與注意事項請參閱 `docs/features/`：
+
+- [FIT File Viewer](docs/features/fit-file-viewer.md)
+- [Peaks Tracker](docs/features/peaks-tracker.md)
+- [Trail Map](docs/features/trail-map.md)
 
 ---
 
@@ -21,15 +38,16 @@
 | 框架 | Next.js 16.1.1, React 19.2.3 |
 | 語言 | TypeScript 5 (strict mode) |
 | UI 元件 | Mantine 8.3.x (core, charts, dropzone, hooks 等) |
-| 圖表 | Recharts 3 (透過 @mantine/charts), Leaflet 1.9 + react-leaflet 5 |
+| 圖表 | Recharts 3 (透過 @mantine/charts) |
+| 地圖 | Leaflet 1.9 + react-leaflet 5, MapLibre GL |
 | 狀態管理 | Zustand 5.0.9 (搭配自製 createSelectors 工具) |
 | 樣式 | Tailwind CSS 4 + SCSS (sass-embedded) + Mantine 主題 |
 | 圖示 | @tabler/icons-react 3 |
-| 資料處理 | fit-file-parser 2.1, downsample 1.4, dayjs 1.11 |
+| 國際化 | next-intl (en-US, zh-TW) |
 | 建構工具 | Turbopack (Next.js 內建) |
 | Linter | ESLint 9 (flat config) + @stylistic/eslint-plugin |
 | 測試 | Vitest 4 + @testing-library/react |
-| 工具 | clsx, @dotenvx/dotenvx |
+| 工具 | clsx, dayjs 1.11, @dotenvx/dotenvx |
 
 ---
 
@@ -38,20 +56,29 @@
 ```
 fit-file-viewer/
 ├── frontend/                   # 前端應用程式根目錄
+│   ├── messages/               # i18n 翻譯檔 (en-US.json, zh-TW.json)
 │   ├── src/
 │   │   ├── app/                # Next.js App Router (pages / layouts)
 │   │   │   ├── components/     # App 層級 layout 元件 (AppHeader, AppFooter…)
+│   │   │   ├── [locale]/       # 語系首頁 (landing page)
+│   │   │   ├── fit-file-viewer/ # FIT File Viewer 頁面
+│   │   │   ├── peaks/          # Peaks Tracker 頁面
 │   │   │   ├── demo/           # 元件 demo 頁面
 │   │   │   ├── styles/         # App 層級樣式
 │   │   │   ├── layout.tsx      # Root layout
-│   │   │   └── page.tsx        # Home page
+│   │   │   └── page.tsx        # Root → 重導至 locale 首頁
 │   │   ├── components/         # 可複用 UI 元件 (跨頁面)
-│   │   ├── constants/          # 全域常數 (fitData, heartRate, map, units)
-│   │   ├── hooks/              # Custom React hooks (useScreen, useFitDataSummary…)
+│   │   │   ├── peaks/          # Peaks Tracker 元件
+│   │   │   ├── VectorMap/      # MapLibre GL 地圖元件
+│   │   │   ├── ContourMap/     # 等高線地圖元件
+│   │   │   └── Map/            # Leaflet 地圖元件
+│   │   ├── constants/          # 全域常數
+│   │   ├── hooks/              # Custom React hooks
 │   │   ├── lib/                # 工具函式 & 業務邏輯 (純函式，無副作用)
 │   │   ├── model/              # TypeScript 型別定義
 │   │   ├── store/              # Zustand store slices
-│   │   │   ├── app/            # 主 store (fitDataSlice, useFitDataStore)
+│   │   │   ├── app/            # FIT File Viewer store
+│   │   │   ├── peaks/          # Peaks Tracker store
 │   │   │   ├── demo/           # Demo store
 │   │   │   └── utils.ts        # createSelectors 工具
 │   │   └── styles/             # 全域樣式 (globals.css, theme.ts, _mantine.scss)
@@ -60,6 +87,9 @@ fit-file-viewer/
 │   ├── postcss.config.mjs
 │   ├── vitest.config.mts
 │   └── package.json
+├── docs/
+│   ├── features/               # 功能別說明文件
+│   └── plans/                  # 規劃文件
 ├── .devcontainer/
 ├── oconf                       # 多環境設定工具腳本
 └── CLAUDE.md                   # 本文件
@@ -184,26 +214,14 @@ const { setFitData } = useFitDataActions()
 ```
 
 ### Client-Only 元件
-Map 元件需要 SSR disabled，使用 Next.js dynamic import：
+瀏覽器限定元件（Leaflet、MapLibre GL）需要 SSR disabled，使用 Next.js dynamic import：
 ```typescript
 const Map = dynamic(() => import('@/components/Map'), { ssr: false })
-```
-
-### 型別修正模式
-第三方套件 (`fit-file-parser`) 的型別錯誤使用 `Omit` + 重新定義修正：
-```typescript
-// model/fitParser.ts
-export type ParsedRecord = Omit<OriginalRecord, 'timestamp'> & { timestamp: Date }
 ```
 
 ---
 
 ## 注意事項
-
-### FIT 檔案解析
-- 所有解析在 **客戶端** 完成，絕對不要改成 server-side 處理
-- `fit-file-parser` v2.1.0 的 `timestamp` 型別不正確，已在 `model/fitParser.ts` 修正
-- 大型 FIT 檔需用 `downsample` 函式庫降採樣再傳給圖表
 
 ### 樣式系統
 
@@ -236,7 +254,7 @@ export type ParsedRecord = Omit<OriginalRecord, 'timestamp'> & { timestamp: Date
 
 ### 'use client' 指令
 - 含有互動/狀態/瀏覽器 API 的元件必須加 `'use client'`
-- Map 相關元件因為 Leaflet 強制 client-only
+- 地圖元件（Leaflet、MapLibre GL）強制 client-only
 
 ---
 
