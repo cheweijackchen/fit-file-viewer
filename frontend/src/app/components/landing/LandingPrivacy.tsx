@@ -6,15 +6,27 @@ import clsx from 'clsx'
 import { useTranslations } from 'next-intl'
 
 interface StatConfig {
-  key: string
-  valueClass: string
+  key: string;
+  valueClass: string;
 }
 
 const statConfigs: StatConfig[] = [
-  { key: 'processing', valueClass: 'text-(--mantine-color-yellow-4)' },
-  { key: 'uploaded', valueClass: 'text-(--mantine-color-orange-4)' },
-  { key: 'account', valueClass: 'text-(--mantine-color-cyan-2)' },
-  { key: 'openSource', valueClass: 'text-(--mantine-color-green-1)' },
+  {
+    key: 'processing',
+    valueClass: 'text-(--mantine-color-yellow-4)' 
+  },
+  {
+    key: 'uploaded',
+    valueClass: 'text-(--mantine-color-orange-4)' 
+  },
+  {
+    key: 'account',
+    valueClass: 'text-(--mantine-color-cyan-2)' 
+  },
+  {
+    key: 'openSource',
+    valueClass: 'text-(--mantine-color-green-1)' 
+  },
 ]
 
 export function LandingPrivacy() {

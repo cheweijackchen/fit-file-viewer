@@ -66,7 +66,10 @@ const eslintConfig = defineConfig([
       'object-curly-spacing': 'off',
       '@stylistic/object-curly-spacing': ['warn', 'always'],
 
-      '@stylistic/object-curly-newline': ['warn', { 'consistent': true }],
+      '@stylistic/object-curly-newline': ['warn', {
+        'consistent': true,
+        'multiline': true 
+      }],
       'object-property-newline': ['warn', { 'allowAllPropertiesOnSameLine': false }],
 
       '@stylistic/member-delimiter-style': ['warn', {

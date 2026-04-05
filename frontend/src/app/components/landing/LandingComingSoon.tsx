@@ -6,10 +6,10 @@ import { useTranslations } from 'next-intl'
 import type { ComponentType, CSSProperties } from 'react'
 
 interface CardConfig {
-  key: string
-  icon: ComponentType<{ size: number; style?: CSSProperties }>
-  iconColor: string
-  iconBgClass: string
+  key: string;
+  icon: ComponentType<{ size: number; style?: CSSProperties; }>;
+  iconColor: string;
+  iconBgClass: string;
 }
 
 const cardConfigs: CardConfig[] = [

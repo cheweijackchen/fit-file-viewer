@@ -11,11 +11,11 @@ import mountainPeaksImage from '@/assets/photos/mountain-and-lake.webp'
 import classes from './LandingFeatureCards.module.scss'
 
 interface CardConfig {
-  key: string
-  image: StaticImageData | null
-  placeholderClass?: string
-  badgeColor: string
-  href: string
+  key: string;
+  image: StaticImageData | null;
+  placeholderClass?: string;
+  badgeColor: string;
+  href: string;
 }
 
 const cardConfigs: CardConfig[] = [

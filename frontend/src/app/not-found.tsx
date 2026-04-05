@@ -1,10 +1,10 @@
 import { Button, Container, Flex } from '@mantine/core'
 import { cookies } from 'next/headers'
+import { DEFAULT_LOCALE, LOCALES, type Locale } from '@/i18n/routing'
 import { NotFoundBackground } from './components/NotFoundBackground'
 import classes from './styles/NotFound.module.css'
-import { DEFAULT_LOCALE, LOCALES, type Locale } from '@/i18n/routing'
 
-const t: Record<Locale, { title: string; description: string; back: string }> = {
+const t: Record<Locale, { title: string; description: string; back: string; }> = {
   'en-US': {
     title: 'Nothing to see here',
     description: 'Page you are trying to open does not exist. You may have mistyped the address, or the page has been moved to another URL. If you think this is an error contact support.',
