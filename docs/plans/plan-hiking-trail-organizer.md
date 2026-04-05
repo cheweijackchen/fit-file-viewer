@@ -72,14 +72,14 @@ export interface Trail {
 }
 
 // 執行期查詢結構（由 Trail.edges 建構）
-export type AdjacencyList = Map<string, Map<string, TrailEdge>>
+export type TrailAdjacencyList = Map<string, Map<string, TrailEdge>>
 ```
 
 ### Utility Functions（`frontend/src/lib/trailGraph.ts`）
 
 | 函式 | 說明 |
 |------|------|
-| `buildAdjacencyList(trail)` | 從 `Trail.edges` 建構查詢 Map |
+| `buildTrailAdjacencyList(trail)` | 從 `Trail.edges` 建構查詢 Map |
 | `getEdge(adj, from, to)` | 取得兩點間邊資料 |
 | `getNeighbors(adj, nodeId)` | 取得某節點的所有可達鄰居 id |
 | `isValidPath(adj, nodeIds)` | 驗證連續節點對是否皆連通 |
@@ -116,7 +116,7 @@ mergedEdges = [...trailA.edges, ...trailB.edges]
 
 Option B 則需要對共用節點做 deep merge `adjacentNodes`，同一條邊若兩份資料時間不同，衝突會被靜默覆蓋，難以察覺。
 
-`buildAdjacencyList()` 是 O(E) 的一次性建構步驟，執行成本可忽略。
+`buildTrailAdjacencyList()` 是 O(E) 的一次性建構步驟，執行成本可忽略。
 
 ---
 
@@ -276,7 +276,7 @@ interface PathResult {
 }
 
 function findShortestPath(
-  adj: AdjacencyList,
+  adj: TrailAdjacencyList,
   fromId: string,
   toId: string
 ): PathResult | null

@@ -25,3 +25,6 @@ export interface Trail {
   nodes: TrailNode[];
   edges: TrailEdge[];
 }
+
+// Runtime query structure, built from Trail.edges by buildTrailAdjacencyList()
+export type TrailAdjacencyList = Map<string, Map<string, TrailEdge>>
