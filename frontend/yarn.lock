@@ -2344,6 +2344,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/cytoscape@npm:^3.31.0":
+  version: 3.31.0
+  resolution: "@types/cytoscape@npm:3.31.0"
+  dependencies:
+    cytoscape: "npm:*"
+  checksum: 10c0/ffe838624d78cd0261e6a8691a54a883c325d9eb53fb053e7af1019bf23fd398c38a03e7de3b7104918ebb2086828bad6fbe31eefc97d743cd4dcacb81b12216
+  languageName: node
+  linkType: hard
+
 "@types/d3-array@npm:^3.0.3":
   version: 3.2.2
   resolution: "@types/d3-array@npm:3.2.2"
@@ -2477,6 +2486,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/react-cytoscapejs@npm:^1.2.6":
+  version: 1.2.6
+  resolution: "@types/react-cytoscapejs@npm:1.2.6"
+  dependencies:
+    "@types/react": "npm:*"
+    cytoscape: "npm:^3.31"
+  checksum: 10c0/54a6c3febcf465fc7ef082a6f8e196d280db30fa83766e65b579b80bfb9f2e6b51527251f6c6dc6ed08d5974e5726c610c0c6dfa58d11a0f719375e4e6f883c0
+  languageName: node
+  linkType: hard
+
 "@types/react-dom@npm:^19":
   version: 19.2.3
   resolution: "@types/react-dom@npm:19.2.3"
@@ -2486,7 +2505,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:^19":
+"@types/react@npm:*, @types/react@npm:^19":
   version: 19.2.14
   resolution: "@types/react@npm:19.2.14"
   dependencies:
@@ -3459,6 +3478,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"cytoscape-dagre@npm:^2.5.0":
+  version: 2.5.0
+  resolution: "cytoscape-dagre@npm:2.5.0"
+  dependencies:
+    dagre: "npm:^0.8.5"
+  peerDependencies:
+    cytoscape: ^3.2.22
+  checksum: 10c0/f280c6edf6e85aff6dc564b3f35675a3b2b03a44e7177edebb8808c97bddf407c7599334950aca8d1a7cf8fda0fecffb341a12aac08d9977ffec932f5af1f0d9
+  languageName: node
+  linkType: hard
+
+"cytoscape@npm:*, cytoscape@npm:^3.31, cytoscape@npm:^3.33.1":
+  version: 3.33.1
+  resolution: "cytoscape@npm:3.33.1"
+  checksum: 10c0/dffcf5f74df4d91517c4faf394df880d8283ce76edef19edba0c762941cf4f18daf7c4c955ec50c794f476ace39ad4394f8c98483222bd2682e1fd206e976411
+  languageName: node
+  linkType: hard
+
 "d3-array@npm:2 - 3, d3-array@npm:2.10.0 - 3, d3-array@npm:^3.1.6":
   version: 3.2.4
   resolution: "d3-array@npm:3.2.4"
@@ -3549,6 +3586,16 @@ __metadata:
   version: 3.0.1
   resolution: "d3-timer@npm:3.0.1"
   checksum: 10c0/d4c63cb4bb5461d7038aac561b097cd1c5673969b27cbdd0e87fa48d9300a538b9e6f39b4a7f0e3592ef4f963d858c8a9f0e92754db73116770856f2fc04561a
+  languageName: node
+  linkType: hard
+
+"dagre@npm:^0.8.5":
+  version: 0.8.5
+  resolution: "dagre@npm:0.8.5"
+  dependencies:
+    graphlib: "npm:^2.1.8"
+    lodash: "npm:^4.17.15"
+  checksum: 10c0/1c021b66961aa9a700bb6ec51747bcc214720a661ad6cb1878eab7316ecb550a759664a6754081a315b37d0355e3c19ff162813b36f20cbeb2e37f7440364d62
   languageName: node
   linkType: hard
 
@@ -4522,14 +4569,18 @@ __metadata:
     "@tailwindcss/postcss": "npm:^4"
     "@testing-library/dom": "npm:^10.4.1"
     "@testing-library/react": "npm:^16.3.1"
+    "@types/cytoscape": "npm:^3.31.0"
     "@types/jsdom": "npm:^27"
     "@types/leaflet": "npm:^1"
     "@types/node": "npm:^25.0.3"
     "@types/react": "npm:^19"
+    "@types/react-cytoscapejs": "npm:^1.2.6"
     "@types/react-dom": "npm:^19"
     "@vitejs/plugin-react": "npm:^5.1.2"
     "@we-gold/gpxjs": "npm:^1.1.0"
     clsx: "npm:^2.1.1"
+    cytoscape: "npm:^3.33.1"
+    cytoscape-dagre: "npm:^2.5.0"
     dayjs: "npm:^1.11.19"
     downsample: "npm:^1.4.0"
     eslint: "npm:^9"
@@ -4547,6 +4598,7 @@ __metadata:
     postcss-preset-mantine: "npm:^1.18.0"
     postcss-simple-vars: "npm:^7.0.1"
     react: "npm:19.2.3"
+    react-cytoscapejs: "npm:^2.0.0"
     react-dom: "npm:19.2.3"
     react-leaflet: "npm:5.0.0-rc.2"
     recharts: "npm:^3.6.0"
@@ -4814,6 +4866,15 @@ __metadata:
   version: 4.2.11
   resolution: "graceful-fs@npm:4.2.11"
   checksum: 10c0/386d011a553e02bc594ac2ca0bd6d9e4c22d7fa8cfbfc448a6d148c59ea881b092db9dbe3547ae4b88e55f1b01f7c4a2ecc53b310c042793e63aa44cf6c257f2
+  languageName: node
+  linkType: hard
+
+"graphlib@npm:^2.1.8":
+  version: 2.1.8
+  resolution: "graphlib@npm:2.1.8"
+  dependencies:
+    lodash: "npm:^4.17.15"
+  checksum: 10c0/41c525e4d91a6d8b4e8da1883bf4e85689a547e908557ccc53f64db9141bdfb351b9162a79f13cae81c5b3a410027f59e4fc1edc1ea442234ec08e629859b188
   languageName: node
   linkType: hard
 
@@ -5672,6 +5733,13 @@ __metadata:
   version: 4.6.2
   resolution: "lodash.merge@npm:4.6.2"
   checksum: 10c0/402fa16a1edd7538de5b5903a90228aa48eb5533986ba7fa26606a49db2572bf414ff73a2c9f5d5fd36b31c46a5d5c7e1527749c07cbcf965ccff5fbdf32c506
+  languageName: node
+  linkType: hard
+
+"lodash@npm:^4.17.15":
+  version: 4.18.1
+  resolution: "lodash@npm:4.18.1"
+  checksum: 10c0/757228fc68805c59789e82185135cf85f05d0b2d3d54631d680ca79ec21944ec8314d4533639a14b8bcfbd97a517e78960933041a5af17ecb693ec6eecb99a27
   languageName: node
   linkType: hard
 
@@ -6585,6 +6653,18 @@ __metadata:
   version: 3.0.0
   resolution: "quickselect@npm:3.0.0"
   checksum: 10c0/3a0d33b0ec06841d953accdfd735aa3d8b7922cddd12970544a2c4b0278871280d8f5ba496803600693c1e7b7b2fb57c31d2b14d99132f478888006a1be6e6b7
+  languageName: node
+  linkType: hard
+
+"react-cytoscapejs@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "react-cytoscapejs@npm:2.0.0"
+  dependencies:
+    prop-types: "npm:^15.8.1"
+  peerDependencies:
+    cytoscape: ^3.2.19
+    react: ">=15.0.0"
+  checksum: 10c0/4a7679fc5e78428433620a48c81795416804d7317845445ca572091c6826b8519a4a10dae38d78555c1aefd1f6e6f317fad73d3f6acde272c5abeeaf09742834
   languageName: node
   linkType: hard
 
