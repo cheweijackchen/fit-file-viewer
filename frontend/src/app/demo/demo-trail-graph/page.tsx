@@ -1,7 +1,7 @@
 'use client'
 
 import { Loader, SegmentedControl, Text, Title } from '@mantine/core'
-import type { ElementDefinition, Stylesheet } from 'cytoscape'
+import type { ElementDefinition, StylesheetStyle } from 'cytoscape'
 import dynamic from 'next/dynamic'
 import { useRef, useState } from 'react'
 import { southSecondSection } from '@/constants/hiking-trails/southSecondSection'
@@ -45,7 +45,7 @@ const elements: ElementDefinition[] = [
   })),
 ]
 
-const stylesheet: Stylesheet[] = [
+const stylesheet: StylesheetStyle[] = [
   {
     selector: 'node',
     style: {
