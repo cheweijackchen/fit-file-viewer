@@ -1,4 +1,4 @@
-import type { TrailNodeType } from '@/constants/hiking-trails/hiking-trail'
+import type { TrailNodeType } from '@/constants/hiking-trails/hikingTrail'
 
 export interface TrailNode {
   id: string;
