@@ -1,18 +1,21 @@
 'use client'
 
-import { Loader, Text, Title } from '@mantine/core'
+import { Loader, SegmentedControl, Text, Title } from '@mantine/core'
 import type { ElementDefinition, Stylesheet } from 'cytoscape'
 import dynamic from 'next/dynamic'
+import { useRef, useState } from 'react'
 import { southSecondSection } from '@/constants/hiking-trails/southSecondSection'
 
 const CytoscapeComponent = dynamic(
   async () => {
-    const [{ default: CytoscapeComp }, { default: cytoscape }, { default: dagre }] = await Promise.all([
+    const [{ default: CytoscapeComp }, { default: cytoscape }, { default: dagre }, { default: fcose }] = await Promise.all([
       import('react-cytoscapejs'),
       import('cytoscape'),
       import('cytoscape-dagre'),
+      import('cytoscape-fcose'),
     ])
     cytoscape.use(dagre)
+    cytoscape.use(fcose)
     return CytoscapeComp
   },
   {
@@ -29,7 +32,7 @@ const elements: ElementDefinition[] = [
   ...southSecondSection.nodes.map((node) => ({
     data: {
       id: node.id,
-      label: node.name 
+      label: node.name,
     },
   })),
   ...southSecondSection.edges.map((edge) => ({
@@ -76,18 +79,82 @@ const stylesheet: Stylesheet[] = [
   },
 ]
 
-const layout = {
-  name: 'dagre',
-  rankDir: 'TB',
-  nodeSep: 40,
-  rankSep: 60,
+const layoutConfigs: Record<string, object> = {
+  dagre: {
+    name: 'dagre',
+    rankDir: 'TB',
+    nodeSep: 60,
+    rankSep: 80 
+  },
+  breadthfirst: {
+    name: 'breadthfirst',
+    directed: true,
+    spacingFactor: 1.75,
+    avoidOverlap: true 
+  },
+  cose: {
+    name: 'cose',
+    animate: false,
+    nodeOverlap: 20,
+    componentSpacing: 100,
+    nodeRepulsion: () => 400000 
+  },
+  fcose: {
+    name: 'fcose',
+    animate: false,
+    quality: 'proof',
+    nodeSeparation: 100,
+    nodeRepulsion: 8000,
+    idealEdgeLength: 80 
+  },
+  circle: {
+    name: 'circle',
+    avoidOverlap: true,
+    padding: 40 
+  },
 }
 
+const layoutOptions = [
+  {
+    label: 'Dagre',
+    value: 'dagre' 
+  },
+  {
+    label: 'Breadth-first',
+    value: 'breadthfirst' 
+  },
+  {
+    label: 'CoSE',
+    value: 'cose' 
+  },
+  {
+    label: 'fCoSE',
+    value: 'fcose' 
+  },
+  {
+    label: 'Circle',
+    value: 'circle' 
+  },
+]
+
 export default function DemoTrailGraph() {
+  const [selectedLayout, setSelectedLayout] = useState('dagre')
+  const cyRef = useRef<cytoscape.Core | null>(null)
+
+  function handleLayoutChange(value: string) {
+    setSelectedLayout(value)
+    cyRef.current?.layout(layoutConfigs[value] as cytoscape.LayoutOptions).run()
+  }
+
   return (
     <div className="flex flex-col gap-4 p-4">
       <Title order={2}>Trail Graph — 南二段</Title>
-      <Text c="dimmed">Adjacency list visualisation of South Second Section trail.</Text>
+      <Text c="dimmed">Adjacency list visualization of South Second Section trail.</Text>
+      <SegmentedControl
+        value={selectedLayout}
+        data={layoutOptions}
+        onChange={handleLayoutChange}
+      />
       <div
         className="w-full rounded border border-gray-200"
         style={{ height: 800 }}
@@ -95,7 +162,10 @@ export default function DemoTrailGraph() {
         <CytoscapeComponent
           elements={elements}
           stylesheet={stylesheet}
-          layout={layout}
+          layout={layoutConfigs[selectedLayout] as cytoscape.LayoutOptions}
+          cy={(cy) => {
+            cyRef.current = cy 
+          }}
           style={{
             width: '100%',
             height: '100%' 
