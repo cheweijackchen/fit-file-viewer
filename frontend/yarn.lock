@@ -2344,6 +2344,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/cytoscape-fcose@npm:^2":
+  version: 2.2.5
+  resolution: "@types/cytoscape-fcose@npm:2.2.5"
+  dependencies:
+    cytoscape: "npm:^3.31"
+  checksum: 10c0/9a3be9844786a3b25bd9be935a5a25c3218aa01a460c85c1dfe497cbbac70fe680196d2b2298cd4f6bda8af32cfa2b575d178b67283a6bca26092188a5fe8047
+  languageName: node
+  linkType: hard
+
 "@types/cytoscape@npm:^3.31.0":
   version: 3.31.0
   resolution: "@types/cytoscape@npm:3.31.0"
@@ -3420,6 +3429,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"cose-base@npm:^2.2.0":
+  version: 2.2.0
+  resolution: "cose-base@npm:2.2.0"
+  dependencies:
+    layout-base: "npm:^2.0.0"
+  checksum: 10c0/14b9f8100ac322a00777ffb1daeb3321af368bbc9cabe3103943361273baee2003202ffe38e4ab770960b600214224e9c196195a78d589521540aa694df7cdec
+  languageName: node
+  linkType: hard
+
 "cross-spawn@npm:^7.0.3, cross-spawn@npm:^7.0.6":
   version: 7.0.6
   resolution: "cross-spawn@npm:7.0.6"
@@ -3486,6 +3504,17 @@ __metadata:
   peerDependencies:
     cytoscape: ^3.2.22
   checksum: 10c0/f280c6edf6e85aff6dc564b3f35675a3b2b03a44e7177edebb8808c97bddf407c7599334950aca8d1a7cf8fda0fecffb341a12aac08d9977ffec932f5af1f0d9
+  languageName: node
+  linkType: hard
+
+"cytoscape-fcose@npm:^2.2.0":
+  version: 2.2.0
+  resolution: "cytoscape-fcose@npm:2.2.0"
+  dependencies:
+    cose-base: "npm:^2.2.0"
+  peerDependencies:
+    cytoscape: ^3.2.0
+  checksum: 10c0/ce472c9f85b9057e75c5685396f8e1f2468895e71b184913e05ad56dcf3092618fe59a1054f29cb0995051ba8ebe566ad0dd49a58d62845145624bd60cd44917
   languageName: node
   linkType: hard
 
@@ -4570,6 +4599,7 @@ __metadata:
     "@testing-library/dom": "npm:^10.4.1"
     "@testing-library/react": "npm:^16.3.1"
     "@types/cytoscape": "npm:^3.31.0"
+    "@types/cytoscape-fcose": "npm:^2"
     "@types/jsdom": "npm:^27"
     "@types/leaflet": "npm:^1"
     "@types/node": "npm:^25.0.3"
@@ -4581,6 +4611,7 @@ __metadata:
     clsx: "npm:^2.1.1"
     cytoscape: "npm:^3.33.1"
     cytoscape-dagre: "npm:^2.5.0"
+    cytoscape-fcose: "npm:^2.2.0"
     dayjs: "npm:^1.11.19"
     downsample: "npm:^1.4.0"
     eslint: "npm:^9"
@@ -5580,6 +5611,13 @@ __metadata:
   dependencies:
     language-subtag-registry: "npm:^0.3.20"
   checksum: 10c0/9ab911213c4bd8bd583c850201c17794e52cb0660d1ab6e32558aadc8324abebf6844e46f92b80a5d600d0fbba7eface2c207bfaf270a1c7fd539e4c3a880bff
+  languageName: node
+  linkType: hard
+
+"layout-base@npm:^2.0.0":
+  version: 2.0.1
+  resolution: "layout-base@npm:2.0.1"
+  checksum: 10c0/a44df9ef3cbff9916a10f616635e22b5787c89fa62b2fec6f99e8e6ee512c7cebd22668ce32dab5a83c934ba0a309c51a678aa0b40d70853de6c357893c0a88b
   languageName: node
   linkType: hard
 
