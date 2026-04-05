@@ -217,7 +217,7 @@ export function LandingHeader() {
               <Box visibleFrom="md">
                 <ThemeSwitch />
               </Box>
-              <Button
+              {/* <Button
                 component={Link}
                 href="/fit-file-viewer"
                 color="yellow"
@@ -226,7 +226,7 @@ export function LandingHeader() {
                 visibleFrom="md"
               >
                 {t('header.getStarted')}
-              </Button>
+              </Button> */}
               <Burger
                 hiddenFrom="md"
                 aria-label="Toggle navigation"

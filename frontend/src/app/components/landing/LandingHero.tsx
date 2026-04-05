@@ -72,7 +72,7 @@ export function LandingHero() {
           </Button>
           <Button
             component={Link}
-            href="/demo"
+            href="/"
             variant="default"
             size="lg"
             radius="xl"
