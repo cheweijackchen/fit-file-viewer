@@ -130,6 +130,9 @@ cd .devcontainer && docker compose exec nodejs bash -c "cd /application/frontend
 cd .devcontainer && docker compose exec nodejs bash -c "cd /application/frontend && yarn test:unit"
 # E2E 測試（使用 CLAUDE_CODE_DEV_PORT）
 cd .devcontainer && docker compose exec nodejs bash -c "cd /application/frontend && PLAYWRIGHT_PORT=\$CLAUDE_CODE_DEV_PORT yarn test:e2e"
+# 安裝套件（必須在 container 內執行，不可用 ./oconf yarn add 在 host 執行）
+cd .devcontainer && docker compose exec nodejs bash -c "cd /application/frontend && yarn add <package>"
+cd .devcontainer && docker compose exec nodejs bash -c "cd /application/frontend && yarn add -D <package>"
 ```
 
 ---
