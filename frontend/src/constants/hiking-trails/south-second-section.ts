@@ -4,6 +4,7 @@ export const southSecondSection: Trail = {
   id: 'south-second-section',
   name: '南二段',
   nameEn: 'South Second Section',
+  i18nKey: 'south-second-section.south-second-section',
   nodes: [
     {
       id: 'south-second-section_dongpu-spring',

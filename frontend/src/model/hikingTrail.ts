@@ -20,6 +20,7 @@ export interface Trail {
   id: string;
   name: string;
   nameEn?: string;
+  i18nKey: string;
   description?: string;
   nodes: TrailNode[];
   edges: TrailEdge[];

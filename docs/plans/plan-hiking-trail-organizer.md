@@ -46,24 +46,26 @@ frontend/src/
 ```typescript
 export interface TrailNode {
   id: string
-  name: string           // 中文名稱
+  name: string
   nameEn?: string
   i18nKey: string
-  elevation?: number     // 公尺
+  nodeType: TrailNodeType
+  elevation?: number     // meter
 }
 
 export interface TrailEdge {
   from: string           // node id
   to: string             // node id
-  minutes: number        // 步行時間（分鐘）
-  distance?: number      // 公里
-  note?: string          // 備註，例如「陡坡」
+  minutes: number        // walking time in minutes
+  distance?: number      // kilometer
+  note?: string
 }
 
 export interface Trail {
   id: string
   name: string
   nameEn?: string
+  i18nKey: string
   description?: string
   nodes: TrailNode[]
   edges: TrailEdge[]
