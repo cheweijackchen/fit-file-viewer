@@ -1,9 +1,9 @@
 'use client'
 
-import dynamic from 'next/dynamic'
 import { Loader, Text, Title } from '@mantine/core'
-import { southSecondSection } from '@/constants/hiking-trails/southSecondSection'
 import type { ElementDefinition, Stylesheet } from 'cytoscape'
+import dynamic from 'next/dynamic'
+import { southSecondSection } from '@/constants/hiking-trails/southSecondSection'
 
 const CytoscapeComponent = dynamic(
   async () => {
@@ -27,7 +27,10 @@ const CytoscapeComponent = dynamic(
 
 const elements: ElementDefinition[] = [
   ...southSecondSection.nodes.map((node) => ({
-    data: { id: node.id, label: node.name },
+    data: {
+      id: node.id,
+      label: node.name 
+    },
   })),
   ...southSecondSection.edges.map((edge) => ({
     data: {
@@ -85,12 +88,18 @@ export default function DemoTrailGraph() {
     <div className="flex flex-col gap-4 p-4">
       <Title order={2}>Trail Graph — 南二段</Title>
       <Text c="dimmed">Adjacency list visualisation of South Second Section trail.</Text>
-      <div className="w-full rounded border border-gray-200" style={{ height: 800 }}>
+      <div
+        className="w-full rounded border border-gray-200"
+        style={{ height: 800 }}
+      >
         <CytoscapeComponent
           elements={elements}
           stylesheet={stylesheet}
           layout={layout}
-          style={{ width: '100%', height: '100%' }}
+          style={{
+            width: '100%',
+            height: '100%' 
+          }}
         />
       </div>
     </div>
