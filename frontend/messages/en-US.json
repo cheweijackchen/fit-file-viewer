@@ -75,6 +75,39 @@
         }
       }
     },
+    "footer": {
+      "tagline": "Privacy-first hiking tools that run entirely in your browser. No servers, no tracking, no compromise.",
+      "copyright": "© 2026 TrailKit. Open source under MIT License. Made with ❤️ for the hiking community.",
+      "nav": {
+        "tools": {
+          "title": "Tools",
+          "links": {
+            "peaksTracker": "Peaks Tracker",
+            "fitFileViewer": "FIT File Viewer",
+            "interactiveDemo": "Interactive Demo",
+            "gpxConverter": "GPX Converter"
+          }
+        },
+        "resources": {
+          "title": "Resources",
+          "links": {
+            "documentation": "Documentation",
+            "blog": "Blog",
+            "changelog": "Changelog",
+            "github": "GitHub"
+          }
+        },
+        "community": {
+          "title": "Community",
+          "links": {
+            "discord": "Discord",
+            "contribute": "Contribute",
+            "featureRequests": "Feature Requests",
+            "privacyPolicy": "Privacy Policy"
+          }
+        }
+      }
+    },
     "coming-soon": {
       "badge": "COMING SOON",
       "title": "More Tools on the Way",

@@ -237,6 +237,7 @@ const Map = dynamic(() => import('@/components/Map'), { ssr: false })
 2. **Tailwind CSS**：能覆蓋樣式時優先使用；若 specificity 低於 Mantine 預設樣式而無效，則跳過
 3. **SCSS modules**：Tailwind 和 component props 都無法解決時，使用 SCSS modules，並透過元件的 `classNames` prop 注入
 4. **避免** Mantine 的 `style` / `styles` prop；若不得不用且超過 3–4 個屬性，應抽成獨立的 `.module.scss` 樣式檔
+5. **禁止硬編碼色碼於 JSX**（包含 hex、`rgb()`、`hsl()` 等）→ 一律改用 Tailwind class 或 Mantine CSS 變數（例：`className="text-(--mantine-color-dark-2) bg-white/7"`）
 
 **主題變數：**
 - 色彩與間距優先使用 Mantine CSS 變數 (`var(--mantine-color-xxx)`)

@@ -75,6 +75,39 @@
         }
       }
     },
+    "footer": {
+      "tagline": "完全在瀏覽器中運行的隱私優先登山工具。無伺服器、無追蹤、不妥協。",
+      "copyright": "© 2026 TrailKit。以 MIT 授權開放原始碼。以 ❤️ 為登山社群打造。",
+      "nav": {
+        "tools": {
+          "title": "工具",
+          "links": {
+            "peaksTracker": "百岳登頂紀錄",
+            "fitFileViewer": "FIT 檔案檢視器",
+            "interactiveDemo": "互動示範",
+            "gpxConverter": "GPX 轉換器"
+          }
+        },
+        "resources": {
+          "title": "資源",
+          "links": {
+            "documentation": "文件",
+            "blog": "部落格",
+            "changelog": "更新日誌",
+            "github": "GitHub"
+          }
+        },
+        "community": {
+          "title": "社群",
+          "links": {
+            "discord": "Discord",
+            "contribute": "參與貢獻",
+            "featureRequests": "功能建議",
+            "privacyPolicy": "隱私政策"
+          }
+        }
+      }
+    },
     "coming-soon": {
       "badge": "即將推出",
       "title": "更多工具陸續上線",

@@ -1,5 +1,6 @@
 import { LandingComingSoon } from '../components/landing/LandingComingSoon'
 import { LandingFeatureCards } from '../components/landing/LandingFeatureCards'
+import { LandingFooter } from '../components/landing/LandingFooter'
 import { LandingHeader } from '../components/landing/LandingHeader'
 import { LandingHero } from '../components/landing/LandingHero'
 import { LandingPrivacy } from '../components/landing/LandingPrivacy'
@@ -12,6 +13,7 @@ export default function LandingPage() {
       <LandingFeatureCards />
       <LandingComingSoon />
       <LandingPrivacy />
+      <LandingFooter />
     </>
   )
 }
