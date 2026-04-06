@@ -7,31 +7,31 @@ export const southSecondSection: Trail = {
   i18nKey: 'south-second-section.south-second-section',
   nodes: [
     {
-      id: 'south-second-section_dongpu-spring',
+      id: 'global_dongpu-spring',
       name: '東埔溫泉',
       i18nKey: 'south-second-section.dongpu-spring',
       nodeType: 'other' 
     },
     {
-      id: 'south-second-section_yunlong-fall',
+      id: 'global_yunlong-fall',
       name: '雲龍瀑布',
       i18nKey: 'south-second-section.yunlong-fall',
       nodeType: 'water-source' 
     },
     {
-      id: 'south-second-section_lele-hut',
+      id: 'global_lele-hut',
       name: '樂樂山屋',
       i18nKey: 'south-second-section.lele-hut',
       nodeType: 'hut' 
     },
     {
-      id: 'south-second-section_guangao-station',
+      id: 'global_guangao-station',
       name: '觀高登山服務站',
       i18nKey: 'south-second-section.guangao-station',
       nodeType: 'hut' 
     },
     {
-      id: 'south-second-section_guangao-ping',
+      id: 'global_guangao-ping',
       name: '觀高坪',
       i18nKey: 'south-second-section.guangao-ping',
       nodeType: 'fork' 
@@ -49,9 +49,9 @@ export const southSecondSection: Trail = {
       nodeType: 'fork' 
     },
     { 
-      id: 'south-second-section_batongguan-mountain',
+      id: 'mountain_batongguan-mountain',
       name: '八通關山',
-      i18nKey: 'south-second-section.batongguan-mountain',
+      i18nKey: 'mountain.batongguan-mountain',
       nodeType: 'peak' 
     },
     {
@@ -115,15 +115,15 @@ export const southSecondSection: Trail = {
       nodeType: 'fork' 
     },
     {
-      id: 'south-second-section_xiuguluan-mountain',
+      id: 'mountain_xiuguluan-mountain',
       name: '秀姑巒山',
-      i18nKey: 'south-second-section.xiuguluan-mountain',
+      i18nKey: 'mountain.xiuguluan-mountain',
       nodeType: 'peak' 
     },
     {
-      id: 'south-second-section_dashuiku-mountain',
+      id: 'mountain_dashuiku-mountain',
       name: '大水窟山',
-      i18nKey: 'south-second-section.dashuiku-mountain',
+      i18nKey: 'mountain.dashuiku-mountain',
       nodeType: 'peak' 
     },
     {
@@ -133,9 +133,9 @@ export const southSecondSection: Trail = {
       nodeType: 'hut' 
     },
     {
-      id: 'south-second-section_south-dashuiku-mountain',
+      id: 'mountain_south-dashuiku-mountain',
       name: '南大水窟山',
-      i18nKey: 'south-second-section.south-dashuiku-mountain',
+      i18nKey: 'mountain.south-dashuiku-mountain',
       nodeType: 'peak' 
     },
     {
@@ -163,9 +163,9 @@ export const southSecondSection: Trail = {
       nodeType: 'fork' 
     },
     {
-      id: 'south-second-section_dafunjian-mountain',
+      id: 'mountain_dafunjian-mountain',
       name: '達芬尖山',
-      i18nKey: 'south-second-section.dafunjian-mountain',
+      i18nKey: 'mountain.dafunjian-mountain',
       nodeType: 'peak' 
     },
     {
@@ -175,9 +175,9 @@ export const southSecondSection: Trail = {
       nodeType: 'hut' 
     },
     {
-      id: 'south-second-section_tafen-mountain',
+      id: 'mountain_tafen-mountain',
       name: '塔芬山',
-      i18nKey: 'south-second-section.tafen-mountain',
+      i18nKey: 'mountain.tafen-mountain',
       nodeType: 'peak' 
     },
     {
@@ -199,15 +199,15 @@ export const southSecondSection: Trail = {
       nodeType: 'hut' 
     },
     {
-      id: 'south-second-section_lulu-east-peak-mountain',
+      id: 'mountain_lulu-east-peak',
       name: '轆轆山東峰',
-      i18nKey: 'south-second-section.lulu-east-peak-mountain',
+      i18nKey: 'mountain.lulu-east-peak',
       nodeType: 'peak' 
     },
     {
-      id: 'south-second-section_lulu-mountain',
+      id: 'mountain_lulu-mountain',
       name: '轆轆山',
-      i18nKey: 'south-second-section.lulu-mountain',
+      i18nKey: 'mountain.lulu-mountain',
       nodeType: 'peak' 
     },
     {
@@ -223,9 +223,9 @@ export const southSecondSection: Trail = {
       nodeType: 'water-source' 
     },
     {
-      id: 'south-second-section_yun-mountain',
+      id: 'mountain_yun-peak',
       name: '雲峰',
-      i18nKey: 'south-second-section.yun-mountain',
+      i18nKey: 'mountain.yun-peak',
       nodeType: 'peak' 
     },
     {
@@ -253,9 +253,9 @@ export const southSecondSection: Trail = {
       nodeType: 'fork' 
     },
     {
-      id: 'south-second-section_sancha-mountain',
+      id: 'mountain_sancha-mountain',
       name: '三叉山',
-      i18nKey: 'south-second-section.sancha-mountain',
+      i18nKey: 'mountain.sancha-mountain',
       nodeType: 'peak' 
     },
     {
@@ -283,9 +283,9 @@ export const southSecondSection: Trail = {
       nodeType: 'hut' 
     },
     {
-      id: 'south-second-section_xiangyang-mountain',
+      id: 'mountain_xiangyang-mountain',
       name: '向陽山',
-      i18nKey: 'south-second-section.xiangyang-mountain',
+      i18nKey: 'mountain.xiangyang-mountain',
       nodeType: 'peak' 
     },
     {
@@ -310,56 +310,56 @@ export const southSecondSection: Trail = {
   edges: [
     // 東埔 <-> 雲龍瀑布
     {
-      from: 'south-second-section_dongpu-spring',
-      to: 'south-second-section_yunlong-fall',
+      from: 'global_dongpu-spring',
+      to: 'global_yunlong-fall',
       minutes: 165
     },
     {
-      from: 'south-second-section_yunlong-fall',
-      to: 'south-second-section_dongpu-spring',
+      from: 'global_yunlong-fall',
+      to: 'global_dongpu-spring',
       minutes: 110
     },
     // 雲龍瀑布 <-> 樂山屋
     {
-      from: 'south-second-section_yunlong-fall',
-      to: 'south-second-section_lele-hut',
+      from: 'global_yunlong-fall',
+      to: 'global_lele-hut',
       minutes: 65
     },
     {
-      from: 'south-second-section_lele-hut',
-      to: 'south-second-section_yunlong-fall',
+      from: 'global_lele-hut',
+      to: 'global_yunlong-fall',
       minutes: 55
     },
     // 樂樂山屋 <-> 觀高工作站 & 觀高坪
     {
-      from: 'south-second-section_lele-hut',
-      to: 'south-second-section_guangao-station',
+      from: 'global_lele-hut',
+      to: 'global_guangao-station',
       minutes: 10
     },
     {
-      from: 'south-second-section_guangao-station',
-      to: 'south-second-section_lele-hut',
+      from: 'global_guangao-station',
+      to: 'global_lele-hut',
       minutes: 10
     },
     {
-      from: 'south-second-section_lele-hut',
-      to: 'south-second-section_guangao-ping',
+      from: 'global_lele-hut',
+      to: 'global_guangao-ping',
       minutes: 270
     },
     {
-      from: 'south-second-section_guangao-ping',
-      to: 'south-second-section_lele-hut',
+      from: 'global_guangao-ping',
+      to: 'global_lele-hut',
       minutes: 135
     },
     // 觀高坪 <-> 八通關草原
     {
-      from: 'south-second-section_guangao-ping',
+      from: 'global_guangao-ping',
       to: 'south-second-section_batongguan-meadow',
       minutes: 60
     },
     {
       from: 'south-second-section_batongguan-meadow',
-      to: 'south-second-section_guangao-ping',
+      to: 'global_guangao-ping',
       minutes: 45
     },
     // 八通關草原 <-> 登山口
@@ -376,11 +376,11 @@ export const southSecondSection: Trail = {
     // 登山口 <-> 八通關山
     {
       from: 'south-second-section_batongguan-trailhead',
-      to: 'south-second-section_batongguan-mountain',
+      to: 'mountain_batongguan-mountain',
       minutes: 80
     },
     {
-      from: 'south-second-section_batongguan-mountain',
+      from: 'mountain_batongguan-mountain',
       to: 'south-second-section_batongguan-trailhead',
       minutes: 50
     },
@@ -492,54 +492,54 @@ export const southSecondSection: Trail = {
     },
     {
       from: 'south-second-section_xiuguluan-trailhead',
-      to: 'south-second-section_xiuguluan-mountain',
+      to: 'mountain_xiuguluan-mountain',
       minutes: 45
     },
     {
-      from: 'south-second-section_xiuguluan-mountain',
+      from: 'mountain_xiuguluan-mountain',
       to: 'south-second-section_xiuguluan-trailhead',
       minutes: 25
     },
     // 秀姑坪 <-> 大水窟山 <-> 大水窟山屋 <-> 南大水窟山
     {
       from: 'south-second-section_xiuguping',
-      to: 'south-second-section_dashuiku-mountain',
+      to: 'mountain_dashuiku-mountain',
       minutes: 90
     },
     {
-      from: 'south-second-section_dashuiku-mountain',
+      from: 'mountain_dashuiku-mountain',
       to: 'south-second-section_xiuguping',
       minutes: 140
     },
     {
-      from: 'south-second-section_dashuiku-mountain',
+      from: 'mountain_dashuiku-mountain',
       to: 'south-second-section_dashuiku-hut',
       minutes: 120
     },
     {
       from: 'south-second-section_dashuiku-hut',
-      to: 'south-second-section_dashuiku-mountain',
+      to: 'mountain_dashuiku-mountain',
       minutes: 70
     },
     {
       from: 'south-second-section_dashuiku-hut',
-      to: 'south-second-section_south-dashuiku-mountain',
+      to: 'mountain_south-dashuiku-mountain',
       minutes: 60
     },
     {
-      from: 'south-second-section_south-dashuiku-mountain',
+      from: 'mountain_south-dashuiku-mountain',
       to: 'south-second-section_dashuiku-hut',
       minutes: 95
     },
     // 南大水窟山 <-> 老濃溪底營地 <-> 四岔路口
     {
-      from: 'south-second-section_south-dashuiku-mountain',
+      from: 'mountain_south-dashuiku-mountain',
       to: 'south-second-section_laonong-river-bottom-camp',
       minutes: 70
     },
     {
       from: 'south-second-section_laonong-river-bottom-camp',
-      to: 'south-second-section_south-dashuiku-mountain',
+      to: 'mountain_south-dashuiku-mountain',
       minutes: 110
     },
     {
@@ -586,11 +586,11 @@ export const southSecondSection: Trail = {
     // 尖山登山口 <-> 達芬尖山
     {
       from: 'south-second-section_jianshan-trailhead',
-      to: 'south-second-section_dafunjian-mountain',
+      to: 'mountain_dafunjian-mountain',
       minutes: 10
     },
     {
-      from: 'south-second-section_dafunjian-mountain',
+      from: 'mountain_dafunjian-mountain',
       to: 'south-second-section_jianshan-trailhead',
       minutes: 20
     },
@@ -607,22 +607,22 @@ export const southSecondSection: Trail = {
     },
     {
       from: 'south-second-section_tafengu-hut',
-      to: 'south-second-section_tafen-mountain',
+      to: 'mountain_tafen-mountain',
       minutes: 80
     },
     {
-      from: 'south-second-section_tafen-mountain',
+      from: 'mountain_tafen-mountain',
       to: 'south-second-section_tafengu-hut',
       minutes: 160
     },
     {
-      from: 'south-second-section_tafen-mountain',
+      from: 'mountain_tafen-mountain',
       to: 'south-second-section_tafen-pond',
       minutes: 35
     },
     {
       from: 'south-second-section_tafen-pond',
-      to: 'south-second-section_tafen-mountain',
+      to: 'mountain_tafen-mountain',
       minutes: 20
     },
     {
@@ -648,22 +648,22 @@ export const southSecondSection: Trail = {
     // 轆轆山屋 <-> 轆轆山東峰 <-> 轆轆山
     {
       from: 'south-second-section_lulu-hut',
-      to: 'south-second-section_lulu-east-peak-mountain',
+      to: 'mountain_lulu-east-peak',
       minutes: 20
     },
     {
-      from: 'south-second-section_lulu-east-peak-mountain',
+      from: 'mountain_lulu-east-peak',
       to: 'south-second-section_lulu-hut',
       minutes: 5
     },
     {
-      from: 'south-second-section_lulu-east-peak-mountain',
-      to: 'south-second-section_lulu-mountain',
+      from: 'mountain_lulu-east-peak',
+      to: 'mountain_lulu-mountain',
       minutes: 15
     },
     {
-      from: 'south-second-section_lulu-mountain',
-      to: 'south-second-section_lulu-east-peak-mountain',
+      from: 'mountain_lulu-mountain',
+      to: 'mountain_lulu-east-peak',
       minutes: 3
     },
     // 轆轆山屋 <-> 雲峰東峰營地 <-> 水源 / 雲峰
@@ -689,11 +689,11 @@ export const southSecondSection: Trail = {
     },
     {
       from: 'south-second-section_yun-mountain-fork-camp',
-      to: 'south-second-section_yun-mountain',
+      to: 'mountain_yun-peak',
       minutes: 75
     },
     {
-      from: 'south-second-section_yun-mountain',
+      from: 'mountain_yun-peak',
       to: 'south-second-section_yun-mountain-fork-camp',
       minutes: 110
     },
@@ -741,11 +741,11 @@ export const southSecondSection: Trail = {
     },
     {
       from: 'south-second-section_sancha-mountain-trailhead',
-      to: 'south-second-section_sancha-mountain',
+      to: 'mountain_sancha-mountain',
       minutes: 10
     },
     {
-      from: 'south-second-section_sancha-mountain',
+      from: 'mountain_sancha-mountain',
       to: 'south-second-section_sancha-mountain-trailhead',
       minutes: 20
     },
@@ -792,34 +792,34 @@ export const southSecondSection: Trail = {
     },
     // 三叉山 <-> 避難山屋 (捷徑)
     {
-      from: 'south-second-section_sancha-mountain',
+      from: 'mountain_sancha-mountain',
       to: 'south-second-section_jiaming-refuge-hut',
       minutes: 35
     },
     {
       from: 'south-second-section_jiaming-refuge-hut',
-      to: 'south-second-section_sancha-mountain',
+      to: 'mountain_sancha-mountain',
       minutes: 25
     },
     // 避難山屋 <-> 向陽山 <-> 三岔路口 <-> 向陽山屋 <-> 向陽工作站
     {
       from: 'south-second-section_jiaming-refuge-hut',
-      to: 'south-second-section_xiangyang-mountain',
+      to: 'mountain_xiangyang-mountain',
       minutes: 60
     },
     {
-      from: 'south-second-section_xiangyang-mountain',
+      from: 'mountain_xiangyang-mountain',
       to: 'south-second-section_jiaming-refuge-hut',
       minutes: 45
     },
     {
-      from: 'south-second-section_xiangyang-mountain',
+      from: 'mountain_xiangyang-mountain',
       to: 'south-second-section_xiangyang-fork',
       minutes: 25
     },
     {
       from: 'south-second-section_xiangyang-fork',
-      to: 'south-second-section_xiangyang-mountain',
+      to: 'mountain_xiangyang-mountain',
       minutes: 35
     },
     {
