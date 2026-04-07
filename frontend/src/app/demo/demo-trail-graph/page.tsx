@@ -3,7 +3,7 @@
 import { Loader, SegmentedControl, Select, Text, Title } from '@mantine/core'
 import type { ElementDefinition, StylesheetStyle } from 'cytoscape'
 import dynamic from 'next/dynamic'
-import { useRef, useState } from 'react'
+import { useMemo, useRef, useState } from 'react'
 import { HIKING_TRAIL_MAP, HIKING_TRAILS } from '@/constants/hikingTrails'
 
 const CytoscapeComponent = dynamic(
@@ -41,8 +41,6 @@ const stylesheet: StylesheetStyle[] = [
       label: 'data(label)',
       'text-valign': 'center',
       'text-halign': 'center',
-      width: 'label',
-      height: 'label',
       padding: '8px',
       'font-size': '12px',
       'background-color': '#e7f5ff',
@@ -131,19 +129,21 @@ export default function DemoTrailGraph() {
   const cyRef = useRef<cytoscape.Core | null>(null)
 
   const selectedTrail = HIKING_TRAIL_MAP[selectedTrailId]
-  const firstEdge = selectedTrail.edges[0]
-  const activeLayoutConfigs: Record<string, object> = {
-    ...layoutConfigs,
-    fcose: {
-      ...layoutConfigs.fcose,
-      relativePlacementConstraints: firstEdge !== undefined
-        ? [{
-          left: firstEdge.from,
-          right: firstEdge.to,
-        }]
-        : [],
-    },
-  }
+  const activeLayoutConfigs: Record<string, object> = useMemo(() => {
+    const firstEdge = selectedTrail.edges[0]
+    return {
+      ...layoutConfigs,
+      fcose: {
+        ...layoutConfigs.fcose,
+        relativePlacementConstraints: firstEdge !== undefined
+          ? [{
+            left: firstEdge.from,
+            right: firstEdge.to,
+          }]
+          : [],
+      },
+    }
+  }, [selectedTrail])
 
   const elements: ElementDefinition[] = [
     ...selectedTrail.nodes.map((node) => ({
@@ -162,9 +162,15 @@ export default function DemoTrailGraph() {
     })),
   ]
 
+  function applyLayout(cy: cytoscape.Core, layoutName: string) {
+    cy.layout(activeLayoutConfigs[layoutName] as cytoscape.LayoutOptions).run()
+  }
+
   function handleLayoutChange(value: string) {
     setSelectedLayout(value)
-    cyRef.current?.layout(activeLayoutConfigs[value] as cytoscape.LayoutOptions).run()
+    if (cyRef.current) {
+      applyLayout(cyRef.current, value)
+    }
   }
 
   function handleTrailChange(value: string | null) {
@@ -200,6 +206,7 @@ export default function DemoTrailGraph() {
           layout={activeLayoutConfigs[selectedLayout] as cytoscape.LayoutOptions}
           cy={(cy) => {
             cyRef.current = cy
+            applyLayout(cy, selectedLayout)
           }}
           style={{
             width: '100%',
