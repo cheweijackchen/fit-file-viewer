@@ -83,14 +83,14 @@ const layoutConfigs: Record<string, object> = {
     animate: false,
     nodeOverlap: 20,
     componentSpacing: 100,
-    nodeRepulsion: () => 400000 
+    nodeRepulsion: () => 2000 
   },
   fcose: {
     name: 'fcose',
     animate: false,
     quality: 'proof',
     nodeSeparation: 100,
-    nodeRepulsion: 8000,
+    nodeRepulsion: 2000,
     idealEdgeLength: 80 
   },
   circle: {
@@ -163,6 +163,8 @@ export default function DemoTrailGraph() {
   ]
 
   function applyLayout(cy: cytoscape.Core, layoutName: string) {
+    const config = activeLayoutConfigs[layoutName]
+    console.log('applying layout:', JSON.stringify(config, null, 2))
     cy.layout(activeLayoutConfigs[layoutName] as cytoscape.LayoutOptions).run()
   }
 
