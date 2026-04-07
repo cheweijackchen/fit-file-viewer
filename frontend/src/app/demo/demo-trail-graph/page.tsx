@@ -1,10 +1,10 @@
 'use client'
 
-import { Loader, SegmentedControl, Text, Title } from '@mantine/core'
+import { Loader, SegmentedControl, Select, Text, Title } from '@mantine/core'
 import type { ElementDefinition, StylesheetStyle } from 'cytoscape'
 import dynamic from 'next/dynamic'
 import { useRef, useState } from 'react'
-import { southSecondSection } from '@/constants/hiking-trails/southSecondSection'
+import { HIKING_TRAIL_MAP, HIKING_TRAILS } from '@/constants/hikingTrails'
 
 const CytoscapeComponent = dynamic(
   async () => {
@@ -28,22 +28,10 @@ const CytoscapeComponent = dynamic(
   }
 )
 
-const elements: ElementDefinition[] = [
-  ...southSecondSection.nodes.map((node) => ({
-    data: {
-      id: node.id,
-      label: node.name,
-    },
-  })),
-  ...southSecondSection.edges.map((edge) => ({
-    data: {
-      id: `${edge.from}__${edge.to}`,
-      source: edge.from,
-      target: edge.to,
-      label: `${edge.minutes}min`,
-    },
-  })),
-]
+const trailSelectData = HIKING_TRAILS.map(trail => ({
+  value: trail.id,
+  label: trail.nameEn ?? trail.name,
+}))
 
 const stylesheet: StylesheetStyle[] = [
   {
@@ -139,17 +127,63 @@ const layoutOptions = [
 
 export default function DemoTrailGraph() {
   const [selectedLayout, setSelectedLayout] = useState('dagre')
+  const [selectedTrailId, setSelectedTrailId] = useState(HIKING_TRAILS[0].id)
   const cyRef = useRef<cytoscape.Core | null>(null)
+
+  const selectedTrail = HIKING_TRAIL_MAP[selectedTrailId]
+  const firstEdge = selectedTrail.edges[0]
+  const activeLayoutConfigs: Record<string, object> = {
+    ...layoutConfigs,
+    fcose: {
+      ...layoutConfigs.fcose,
+      relativePlacementConstraints: firstEdge !== undefined
+        ? [{
+          left: firstEdge.from,
+          right: firstEdge.to,
+        }]
+        : [],
+    },
+  }
+
+  const elements: ElementDefinition[] = [
+    ...selectedTrail.nodes.map((node) => ({
+      data: {
+        id: node.id,
+        label: node.name,
+      },
+    })),
+    ...selectedTrail.edges.map((edge) => ({
+      data: {
+        id: `${edge.from}__${edge.to}`,
+        source: edge.from,
+        target: edge.to,
+        label: `${edge.minutes}min`,
+      },
+    })),
+  ]
 
   function handleLayoutChange(value: string) {
     setSelectedLayout(value)
-    cyRef.current?.layout(layoutConfigs[value] as cytoscape.LayoutOptions).run()
+    cyRef.current?.layout(activeLayoutConfigs[value] as cytoscape.LayoutOptions).run()
+  }
+
+  function handleTrailChange(value: string | null) {
+    if (value === null) {
+      return
+    }
+    setSelectedTrailId(value)
   }
 
   return (
     <div className="flex flex-col gap-4 p-4">
-      <Title order={2}>Trail Graph — 南二段</Title>
-      <Text c="dimmed">Adjacency list visualization of South Second Section trail.</Text>
+      <Title order={2}>Trail Graph — {selectedTrail.name}</Title>
+      <Text c="dimmed">Adjacency list visualization of {selectedTrail.nameEn} trail.</Text>
+      <Select
+        data={trailSelectData}
+        value={selectedTrailId}
+        w={240}
+        onChange={handleTrailChange}
+      />
       <SegmentedControl
         value={selectedLayout}
         data={layoutOptions}
@@ -160,15 +194,16 @@ export default function DemoTrailGraph() {
         style={{ height: 800 }}
       >
         <CytoscapeComponent
+          key={selectedTrailId}
           elements={elements}
           stylesheet={stylesheet}
-          layout={layoutConfigs[selectedLayout] as cytoscape.LayoutOptions}
+          layout={activeLayoutConfigs[selectedLayout] as cytoscape.LayoutOptions}
           cy={(cy) => {
-            cyRef.current = cy 
+            cyRef.current = cy
           }}
           style={{
             width: '100%',
-            height: '100%' 
+            height: '100%'
           }}
         />
       </div>

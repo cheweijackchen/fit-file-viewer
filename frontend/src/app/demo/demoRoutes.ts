@@ -49,7 +49,7 @@ export const demoNavLinks = [
     title: 'Trails',
     children: [
       {
-        title: 'Trail Graph (南二段)',
+        title: 'Trail Graph',
         link: '/demo/demo-trail-graph',
       }
     ]
