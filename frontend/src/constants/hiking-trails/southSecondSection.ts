@@ -235,9 +235,9 @@ export const southSecondSection: Trail = {
       nodeType: 'camp' 
     },
     {
-      id: 'south-second-section_nanshuangtou-mountain',
+      id: 'mountain_nanshuangtou-mountain',
       name: '南雙頭山',
-      i18nKey: 'south-second-section.nanshuangtou-mountain',
+      i18nKey: 'mountain.nanshuangtou-mountain',
       nodeType: 'peak' 
     },
     {
@@ -710,22 +710,22 @@ export const southSecondSection: Trail = {
     },
     {
       from: 'south-second-section_northwest-saddle-camp',
-      to: 'south-second-section_nanshuangtou-mountain',
+      to: 'mountain_nanshuangtou-mountain',
       minutes: 25
     },
     {
-      from: 'south-second-section_nanshuangtou-mountain',
+      from: 'mountain_nanshuangtou-mountain',
       to: 'south-second-section_northwest-saddle-camp',
       minutes: 50
     },
     {
-      from: 'south-second-section_nanshuangtou-mountain',
+      from: 'mountain_nanshuangtou-mountain',
       to: 'south-second-section_lakuynxi-hut',
       minutes: 180
     },
     {
       from: 'south-second-section_lakuynxi-hut',
-      to: 'south-second-section_nanshuangtou-mountain',
+      to: 'mountain_nanshuangtou-mountain',
       minutes: 90
     },
     // 拉庫音溪山屋 <-> 三叉山登山口 <-> 三叉山 / 新康岔 / 嘉明湖岔

@@ -1,10 +1,12 @@
+import { northFirstSection } from '@/constants/hiking-trails/northFirstSection'
 import { southSecondSection } from '@/constants/hiking-trails/southSecondSection'
+import { yushanGroup } from '@/constants/hiking-trails/yushanGroup'
 import type { Trail } from '@/model/hikingTrail'
-import { northFirstSection } from './hiking-trails/northFirstSection'
 
 export const HIKING_TRAILS: Trail[] = [
   southSecondSection,
-  northFirstSection
+  northFirstSection,
+  yushanGroup
 ]
 
 export const HIKING_TRAIL_MAP: Record<string, Trail> = Object.fromEntries(
