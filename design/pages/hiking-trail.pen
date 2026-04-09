@@ -623,15 +623,15 @@
                 },
                 {
                   "type": "frame",
-                  "id": "eFn9X",
-                  "name": "undoRow",
+                  "id": "qYY5q",
+                  "name": "dUndoRow",
                   "width": "fill_container",
                   "gap": 6,
                   "alignItems": "center",
                   "children": [
                     {
                       "type": "icon_font",
-                      "id": "wWDBx",
+                      "id": "qDU3t",
                       "width": 13,
                       "height": 13,
                       "iconFontName": "undo-2",
@@ -640,12 +640,44 @@
                     },
                     {
                       "type": "text",
-                      "id": "xMlDc",
+                      "id": "YPMxQ",
                       "fill": "#7A9A80",
                       "content": "Undo last step",
                       "fontFamily": "Inter",
                       "fontSize": 12,
                       "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "g60mB",
+                  "name": "dFinishBtn",
+                  "width": "fill_container",
+                  "height": 46,
+                  "fill": "#2D5E3A",
+                  "cornerRadius": 12,
+                  "gap": 8,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "lVRpu",
+                      "width": 16,
+                      "height": 16,
+                      "iconFontName": "check",
+                      "iconFontFamily": "lucide",
+                      "fill": "#FFFFFF"
+                    },
+                    {
+                      "type": "text",
+                      "id": "q8TGs",
+                      "fill": "#FFFFFF",
+                      "content": "完成路線",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "700"
                     }
                   ]
                 }
@@ -4854,8 +4886,8 @@
             },
             {
               "type": "frame",
-              "id": "279Wo",
-              "name": "mUndoRow",
+              "id": "oE0F0",
+              "name": "mUndoNew",
               "width": "fill_container",
               "gap": 6,
               "justifyContent": "center",
@@ -4863,7 +4895,7 @@
               "children": [
                 {
                   "type": "icon_font",
-                  "id": "rE0wE",
+                  "id": "LHMHS",
                   "width": 13,
                   "height": 13,
                   "iconFontName": "undo-2",
@@ -4872,12 +4904,44 @@
                 },
                 {
                   "type": "text",
-                  "id": "i4eep",
+                  "id": "1cm2Z",
                   "fill": "#7A9A80",
                   "content": "Undo last step",
                   "fontFamily": "Inter",
                   "fontSize": 12,
                   "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "rDaGh",
+              "name": "mFinishBtn",
+              "width": "fill_container",
+              "height": 50,
+              "fill": "#2D5E3A",
+              "cornerRadius": 14,
+              "gap": 8,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "H4lwV",
+                  "width": 16,
+                  "height": 16,
+                  "iconFontName": "check",
+                  "iconFontFamily": "lucide",
+                  "fill": "#FFFFFF"
+                },
+                {
+                  "type": "text",
+                  "id": "l7SFk",
+                  "fill": "#FFFFFF",
+                  "content": "完成路線",
+                  "fontFamily": "Inter",
+                  "fontSize": 15,
+                  "fontWeight": "700"
                 }
               ]
             }
