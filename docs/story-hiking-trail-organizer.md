@@ -204,7 +204,7 @@ When Trail Network is collapsed: network bar is 44px; Day Builder takes full rem
 ## Planned Enhancements
 
 **E-01 — Real-time Day Route summary** *(designed)*
-A compact strip inside the Day Builder, placed between the Starting Point dropdown and the Current Node card. Displays the day's accumulated node path (arrow-separated chips) and running total time. Already-visited nodes use a light green chip; the current node uses a dark filled chip for emphasis. Raw time and weighted time (E-02) are stacked on the right.
+A compact strip inside the Day Builder, placed between the Starting Point dropdown and the Current Node card. Displays the day's accumulated node path (arrow-separated chips) and running total time. Already-visited nodes use a light green chip; the current node uses a dark filled chip for emphasis. Raw time and weighted time (E-02) are stacked on the right. The raw time number is color-coded by duration to signal effort level: Easy (< 5h) in dark green, Normal (5–7h) in dark yellow, Long (7–9h) in orange, Exhausting (> 9h) in red.
 
 **E-02 — Adjustable pace weight** *(designed)*
 A PACE stepper control in the left sidebar, placed between the route chips and the DAYS section. Uses +/- buttons to adjust the coefficient in increments (default 0.9×). As a trip-level setting it applies globally to all days. In the E-01 strip the right-side time column stacks raw time (bold) and weighted time (muted, `× 0.9 = Xh XXm`) vertically. The same dual-time format applies to the Trip Summary panel.
