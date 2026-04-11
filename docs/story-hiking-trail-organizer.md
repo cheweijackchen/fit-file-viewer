@@ -40,6 +40,58 @@ The **Trail Planner** is a browser-based, privacy-first tool that helps hikers p
 
 ---
 
+## Features
+
+### Core
+
+- **Landing**
+  - 空白首頁：說明工具用途 + Start New Trip CTA
+  - 有行程首頁：行程列表（名稱、路線、天數、上次編輯）+ 選取行程預覽
+
+- **Trail Selection**
+  - 多路線搜尋選擇，可同時勾選多條路線
+  - 即時合併 Trail Network 預覽（選取時同步更新）
+  - 可在規劃中途新增移除路線，如果已經有使用到某路線地圖的節點，則不可刪除該路線。
+
+- **Trail Network**
+  - 透過自定義圖表或 cytoscape 呈現完整地圖。
+  - 節點可能依類型顯示不同色碼或圖示（peak / hut / camp / fork / water-source / other）
+  - 以列排版顯示連接節點，側峰另列於下方
+  - 高亮目前 Day Route 的節點與路徑
+  - 可收合為 44px 細條，收合後 Day Builder 填滿剩餘高度
+
+- **Day Builder**
+  - Starting Point 下拉選單（所有節點可選，會自動抓取前一天的終點作為該天的起點。）
+  - Continue 選項：僅顯示相鄰且未走過的節點（主要樣式）
+  - Go Back 選項：上一個節點（永遠顯示，淡化樣式，允許回頭）
+  - 節點選項顯示：名稱、節點類型 badge、預估行走時間
+  - Undo：僅移除最後一步
+  - Complete Route：確認該天路線，啟用下一天
+
+- **Multi-Day Management**
+  - 側欄 Day 列表，顯示完成狀態
+  - 已完成的 Day 項目顯示該天總時間作為提示
+
+- **Pace Control** *(designed)*
+  - 側欄步速係數調整（+/- 步進，預設 0.9×）
+  - 套用至全部 Day，為 per-trip 設定
+
+- **Real-time Route Summary** *(designed)*
+  - Day Builder 內的節點路徑條（Starting Point 與 Current Node 之間）
+  - 已走節點：淺綠 chip；當前節點：深色填滿 chip
+  - 右側顯示原始時間（粗體）+ 加權時間（淡化）
+  - 原始時間依時長色碼標示：Easy < 5h 深綠、Normal 5–7h 暗黃、Long 7–9h 橙、Exhausting > 9h 紅
+
+### Planned
+
+- **Richer Route Preview** — Trail Selection 頁加入路線總時間與加權時間估算
+- **Cross-day Linking** — 自動連結前一天終點為下一天起點；修改時提示是否連動後續天
+- **Click-to-add from Trail Network** — 點擊 Trail Network 上的節點直接設為起點或加入路線
+- **Auto-path Generation** — 選定目標節點後自動計算最短路徑，填入中間節點
+- **Mid-route Editing** — 從已完成 Day Route 的中間節點進行修改，不影響前段路線
+
+---
+
 ## User Stories
 
 ### Landing & Trip Management
