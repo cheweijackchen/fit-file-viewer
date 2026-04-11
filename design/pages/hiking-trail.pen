@@ -13446,6 +13446,121 @@
       "children": [
         {
           "type": "frame",
+          "id": "Z1r5B",
+          "name": "legend",
+          "fill": "#E8E5DC",
+          "cornerRadius": 8,
+          "gap": 16,
+          "padding": [
+            8,
+            12
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "V7aAD",
+              "name": "dot1",
+              "gap": 6,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "ellipse",
+                  "id": "92sX7",
+                  "fill": "#2D5E3A",
+                  "width": 8,
+                  "height": 8
+                },
+                {
+                  "type": "text",
+                  "id": "YYmZm",
+                  "fill": "#4A6B52",
+                  "content": "Easy  < 5h",
+                  "fontFamily": "Inter",
+                  "fontSize": 11,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "3OPfZ",
+              "name": "dot2",
+              "gap": 6,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "ellipse",
+                  "id": "qfZRS",
+                  "fill": "#8A7A20",
+                  "width": 8,
+                  "height": 8
+                },
+                {
+                  "type": "text",
+                  "id": "PHYfD",
+                  "fill": "#4A6B52",
+                  "content": "Normal  5–7h",
+                  "fontFamily": "Inter",
+                  "fontSize": 11,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "zRvoQ",
+              "name": "dot3",
+              "gap": 6,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "ellipse",
+                  "id": "fBIy1",
+                  "fill": "#C06000",
+                  "width": 8,
+                  "height": 8
+                },
+                {
+                  "type": "text",
+                  "id": "7Sjoc",
+                  "fill": "#4A6B52",
+                  "content": "Long  7–9h",
+                  "fontFamily": "Inter",
+                  "fontSize": 11,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "KkoGE",
+              "name": "dot4",
+              "gap": 6,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "ellipse",
+                  "id": "rGoW1",
+                  "fill": "#B03030",
+                  "width": 8,
+                  "height": 8
+                },
+                {
+                  "type": "text",
+                  "id": "dV6Pj",
+                  "fill": "#4A6B52",
+                  "content": "Exhausting  > 9h",
+                  "fontFamily": "Inter",
+                  "fontSize": 11,
+                  "fontWeight": "normal"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
           "id": "tSB6m",
           "name": "strip-easy",
           "width": "fill_container",
@@ -13474,7 +13589,7 @@
                   "type": "text",
                   "id": "ZZvve",
                   "fill": "#7A9A80",
-                  "content": "TODAY'S ROUTE  · Easy  < 5h",
+                  "content": "TODAY'S ROUTE",
                   "fontFamily": "Inter",
                   "fontSize": 9,
                   "fontWeight": "700",
@@ -13647,7 +13762,7 @@
                   "type": "text",
                   "id": "hM104",
                   "fill": "#7A9A80",
-                  "content": "TODAY'S ROUTE  · Normal  5–7h",
+                  "content": "TODAY'S ROUTE",
                   "fontFamily": "Inter",
                   "fontSize": 9,
                   "fontWeight": "700",
@@ -13851,7 +13966,7 @@
                   "type": "text",
                   "id": "XmxoA",
                   "fill": "#7A9A80",
-                  "content": "TODAY'S ROUTE  · Long  7–9h",
+                  "content": "TODAY'S ROUTE",
                   "fontFamily": "Inter",
                   "fontSize": 9,
                   "fontWeight": "700",
@@ -14086,7 +14201,7 @@
                   "type": "text",
                   "id": "chv2C",
                   "fill": "#7A9A80",
-                  "content": "TODAY'S ROUTE  · Exhausting  > 9h",
+                  "content": "TODAY'S ROUTE",
                   "fontFamily": "Inter",
                   "fontSize": 9,
                   "fontWeight": "700",
