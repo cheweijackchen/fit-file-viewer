@@ -46,7 +46,7 @@ The **Trail Planner** is a browser-based, privacy-first tool that helps hikers p
 
 - **Landing**
   - 空白首頁：說明工具用途 + Start New Trip CTA
-  - 有行程首頁：行程列表（名稱、路線、天數、上次編輯）+ 選取行程預覽
+  - 有行程首頁：行程列表（名稱、路線、天數、上次編輯）+ 選取行程預覽（總時間、權重、總權重時間、各天的路線和時間和權重時間）
 
 - **Trail Selection**
   - 多路線搜尋選擇，可同時勾選多條路線
