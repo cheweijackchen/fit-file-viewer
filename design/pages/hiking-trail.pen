@@ -11599,8 +11599,7 @@
                         "thickness": 1,
                         "fill": "#D4E4C8"
                       },
-                      "layout": "vertical",
-                      "gap": 6,
+                      "gap": 12,
                       "padding": [
                         10,
                         12
@@ -11608,11 +11607,11 @@
                       "children": [
                         {
                           "type": "frame",
-                          "id": "VjS6h",
-                          "name": "routeHdr",
+                          "id": "wJDns",
+                          "name": "leftMain",
                           "width": "fill_container",
-                          "justifyContent": "space_between",
-                          "alignItems": "center",
+                          "layout": "vertical",
+                          "gap": 6,
                           "children": [
                             {
                               "type": "text",
@@ -11623,131 +11622,160 @@
                               "fontSize": 9,
                               "fontWeight": "700",
                               "letterSpacing": 1
+                            },
+                            {
+                              "type": "frame",
+                              "id": "bxfc8",
+                              "name": "pathRow",
+                              "width": "fill_container",
+                              "gap": 4,
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "ZY4QQ",
+                                  "name": "chip1",
+                                  "fill": "#D4E4C8",
+                                  "cornerRadius": 4,
+                                  "padding": [
+                                    3,
+                                    8
+                                  ],
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "6wDYq",
+                                      "fill": "#1B3A28",
+                                      "content": "八通關山登山口",
+                                      "fontFamily": "Inter",
+                                      "fontSize": 11,
+                                      "fontWeight": "normal"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "JQ9Yi",
+                                  "fill": "#9DB39F",
+                                  "content": "→",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 11,
+                                  "fontWeight": "normal"
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "6Pmxu",
+                                  "name": "chip2",
+                                  "fill": "#D4E4C8",
+                                  "cornerRadius": 4,
+                                  "padding": [
+                                    3,
+                                    8
+                                  ],
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "yMh7r",
+                                      "fill": "#1B3A28",
+                                      "content": "八通關草原",
+                                      "fontFamily": "Inter",
+                                      "fontSize": 11,
+                                      "fontWeight": "normal"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "ujZa7",
+                                  "fill": "#9DB39F",
+                                  "content": "→",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 11,
+                                  "fontWeight": "normal"
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "nrdqx",
+                                  "name": "chip3",
+                                  "fill": "#D4E4C8",
+                                  "cornerRadius": 4,
+                                  "padding": [
+                                    3,
+                                    8
+                                  ],
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "tIlHj",
+                                      "fill": "#1B3A28",
+                                      "content": "石楠伊布山屋",
+                                      "fontFamily": "Inter",
+                                      "fontSize": 11,
+                                      "fontWeight": "normal"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "ocmy0",
+                                  "fill": "#9DB39F",
+                                  "content": "→",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 11,
+                                  "fontWeight": "normal"
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "kErVd",
+                                  "name": "chip4",
+                                  "fill": "#1B3A28",
+                                  "cornerRadius": 4,
+                                  "padding": [
+                                    3,
+                                    8
+                                  ],
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "fG4sr",
+                                      "fill": "#FFFFFF",
+                                      "content": "八通關山登山口",
+                                      "fontFamily": "Inter",
+                                      "fontSize": 11,
+                                      "fontWeight": "600"
+                                    }
+                                  ]
+                                }
+                              ]
                             }
                           ]
                         },
                         {
                           "type": "frame",
-                          "id": "bxfc8",
-                          "name": "pathRow",
-                          "width": "fill_container",
-                          "gap": 4,
-                          "alignItems": "center",
+                          "id": "rWFQK",
+                          "name": "rightMain",
+                          "width": 90,
+                          "layout": "vertical",
+                          "gap": 1,
+                          "alignItems": "end",
                           "children": [
                             {
-                              "type": "frame",
-                              "id": "ZY4QQ",
-                              "name": "chip1",
-                              "fill": "#D4E4C8",
-                              "cornerRadius": 4,
-                              "padding": [
-                                3,
-                                8
-                              ],
-                              "children": [
-                                {
-                                  "type": "text",
-                                  "id": "6wDYq",
-                                  "fill": "#1B3A28",
-                                  "content": "八通關山登山口",
-                                  "fontFamily": "Inter",
-                                  "fontSize": 11,
-                                  "fontWeight": "normal"
-                                }
-                              ]
+                              "type": "text",
+                              "id": "Ik2SX",
+                              "fill": "#2D5E3A",
+                              "content": "3h 20m",
+                              "fontFamily": "Inter",
+                              "fontSize": 22,
+                              "fontWeight": "800"
                             },
                             {
                               "type": "text",
-                              "id": "JQ9Yi",
-                              "fill": "#9DB39F",
-                              "content": "→",
+                              "id": "p3tMh",
+                              "fill": "#7A9A80",
+                              "content": "× 0.9 = 3h 00m",
                               "fontFamily": "Inter",
                               "fontSize": 11,
                               "fontWeight": "normal"
-                            },
-                            {
-                              "type": "frame",
-                              "id": "6Pmxu",
-                              "name": "chip2",
-                              "fill": "#D4E4C8",
-                              "cornerRadius": 4,
-                              "padding": [
-                                3,
-                                8
-                              ],
-                              "children": [
-                                {
-                                  "type": "text",
-                                  "id": "yMh7r",
-                                  "fill": "#1B3A28",
-                                  "content": "八通關草原",
-                                  "fontFamily": "Inter",
-                                  "fontSize": 11,
-                                  "fontWeight": "normal"
-                                }
-                              ]
-                            },
-                            {
-                              "type": "text",
-                              "id": "ujZa7",
-                              "fill": "#9DB39F",
-                              "content": "→",
-                              "fontFamily": "Inter",
-                              "fontSize": 11,
-                              "fontWeight": "normal"
-                            },
-                            {
-                              "type": "frame",
-                              "id": "nrdqx",
-                              "name": "chip3",
-                              "fill": "#D4E4C8",
-                              "cornerRadius": 4,
-                              "padding": [
-                                3,
-                                8
-                              ],
-                              "children": [
-                                {
-                                  "type": "text",
-                                  "id": "tIlHj",
-                                  "fill": "#1B3A28",
-                                  "content": "石楠伊布山屋",
-                                  "fontFamily": "Inter",
-                                  "fontSize": 11,
-                                  "fontWeight": "normal"
-                                }
-                              ]
-                            },
-                            {
-                              "type": "text",
-                              "id": "ocmy0",
-                              "fill": "#9DB39F",
-                              "content": "→",
-                              "fontFamily": "Inter",
-                              "fontSize": 11,
-                              "fontWeight": "normal"
-                            },
-                            {
-                              "type": "frame",
-                              "id": "kErVd",
-                              "name": "chip4",
-                              "fill": "#1B3A28",
-                              "cornerRadius": 4,
-                              "padding": [
-                                3,
-                                8
-                              ],
-                              "children": [
-                                {
-                                  "type": "text",
-                                  "id": "fG4sr",
-                                  "fill": "#FFFFFF",
-                                  "content": "八通關山登山口",
-                                  "fontFamily": "Inter",
-                                  "fontSize": 11,
-                                  "fontWeight": "600"
-                                }
-                              ]
                             }
                           ]
                         }
