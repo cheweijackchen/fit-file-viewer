@@ -176,12 +176,14 @@ The **Trail Planner** is a browser-based, privacy-first tool that helps hikers p
 │  Trip name   │  └───────────────────────────────────┘  │
 │  Route chips │                                          │
 │  + Add Route │  ┌──── Day Builder ───────────────────┐  │
-│              │  │  Starting Point dropdown            │  │
-│  Day 1  ✓   │  │  Current Node card                  │  │
-│  Day 2  ✓   │  │  往回走 (muted) / 繼續走 (primary)  │  │
-│  Day 3  ⬤   │  │  Undo · 完成路線                    │  │
-│  Day 4      │  │  (internal scroll)                  ↕  │
-│  + Add Day  │  └────────────────────────────────────┘  │
+│  ─────────── │  │  Starting Point dropdown            │  │
+│  PACE × 0.9  │  │  TODAY'S ROUTE strip (E-01)         │  │
+│  ─────────── │  │  Current Node card                  │  │
+│  Day 1  ✓   │  │  往回走 (muted) / 繼續走 (primary)  │  │
+│  Day 2  ✓   │  │  Undo · 完成路線                    │  │
+│  Day 3  ⬤   │  │  (internal scroll)                  ↕  │
+│  Day 4      │  └────────────────────────────────────┘  │
+│  + Add Day  │                                           │
 └─────────────┴──────────────────────────────────────────┘
 ```
 
@@ -201,11 +203,11 @@ When Trail Network is collapsed: network bar is 44px; Day Builder takes full rem
 
 ## Planned Enhancements
 
-**E-01 — Real-time Day Route summary**
-Add a persistent summary block inside the Day Builder that shows the current Day Route as a node path (arrow-separated) and running total time in real time. Lets users track their in-day progress while continuing to make selections.
+**E-01 — Real-time Day Route summary** *(designed)*
+A compact strip inside the Day Builder, placed between the Starting Point dropdown and the Current Node card. Displays the day's accumulated node path (arrow-separated chips) and running total time. Already-visited nodes use a light green chip; the current node uses a dark filled chip for emphasis. Raw time and weighted time (E-02) are stacked on the right.
 
-**E-02 — Adjustable pace weight**
-Add a numeric input field or slider for users to set a personal pace coefficient (e.g. 0.9×). Display a weighted time estimate alongside the raw total time in both the Day Builder summary and the Trip Summary panel.
+**E-02 — Adjustable pace weight** *(designed)*
+A PACE stepper control in the left sidebar, placed between the route chips and the DAYS section. Uses +/- buttons to adjust the coefficient in increments (default 0.9×). As a trip-level setting it applies globally to all days. In the E-01 strip the right-side time column stacks raw time (bold) and weighted time (muted, `× 0.9 = Xh XXm`) vertically. The same dual-time format applies to the Trip Summary panel.
 
 **E-03 — Richer route preview**
 The Trail Selection page currently shows only a node list in the preview panel. Expand this to include: the full route path, total time, and weighted time estimate, giving users enough information to confirm their selection before starting to plan.
@@ -233,5 +235,5 @@ Allow users to modify a Day Route at any intermediate node rather than only appe
 | Session restore — how saved trips are stored and identified | Not defined |
 | Route difficulty / elevation data per node | Not defined |
 | Time estimates: direction-aware (uphill vs downhill) | Partially supported — directed edges have separate `minutes` values |
-| Pace weight: per-user global setting vs per-trip override | Not defined |
+| Pace weight: per-user global setting vs per-trip override | Decided: per-trip setting in sidebar |
 | Auto-path algorithm: shortest path vs fewest nodes vs user-preferred | Not defined |
