@@ -108,6 +108,12 @@
         }
       }
     },
+    "cta": {
+      "title": "準備好探索山林了嗎？",
+      "description": "規劃你的下一次登山冒險——整理路線、追蹤進度、與夥伴分享每一條山徑。",
+      "ctaPrimary": "開始探險",
+      "ctaSecondary": "查看示範"
+    },
     "coming-soon": {
       "badge": "即將推出",
       "title": "更多工具陸續上線",

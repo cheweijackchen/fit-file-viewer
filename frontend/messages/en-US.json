@@ -108,6 +108,12 @@
         }
       }
     },
+    "cta": {
+      "title": "Ready to Explore Your Trip?",
+      "description": "Plan your next hiking adventure — organize your routes, track your progress, and share every trail with your crew.",
+      "ctaPrimary": "Start an Adventure",
+      "ctaSecondary": "View Example Trails"
+    },
     "coming-soon": {
       "badge": "COMING SOON",
       "title": "More Tools on the Way",
