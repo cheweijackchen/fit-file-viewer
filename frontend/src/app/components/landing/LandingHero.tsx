@@ -70,7 +70,7 @@ export function LandingHero() {
           >
             {t('hero.ctaPrimary')}
           </Button>
-          <Button
+          {/* <Button
             component={Link}
             href="/"
             variant="default"
@@ -85,7 +85,7 @@ export function LandingHero() {
             }}
           >
             {t('hero.ctaSecondary')}
-          </Button>
+          </Button> */}
         </div>
       </Container>
     </section>
