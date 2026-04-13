@@ -15,6 +15,12 @@
       "community": "社群",
       "getStarted": "立即開始",
       "navigation": "導覽",
+      "language": "語言",
+      "appearance": "外觀",
+      "theme": {
+        "light": "淺色",
+        "dark": "深色"
+      },
       "toolsDropdown": {
         "title": "工具",
         "fitFileViewer": {

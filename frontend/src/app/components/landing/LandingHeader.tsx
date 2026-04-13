@@ -5,13 +5,10 @@ import {
   Burger,
   Button,
   Center,
-  Collapse,
   Container,
   Divider,
-  Drawer,
   Group,
   HoverCard,
-  ScrollArea,
   SimpleGrid,
   Text,
   ThemeIcon,
@@ -19,17 +16,16 @@ import {
 } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 import { IconChevronDown, IconFileAnalytics, IconMountain } from '@tabler/icons-react'
-import clsx from 'clsx'
 import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 import { LanguageSwitcher } from '@/components/LanguageSwitcher'
 import { ThemeSwitch } from '@/components/ThemeSwitch'
 import classes from './LandingHeader.module.scss'
+import { LandingNavDrawer } from './LandingNavDrawer'
 
 export function LandingHeader() {
   const t = useTranslations('landing')
   const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] = useDisclosure(false)
-  const [toolsOpened, { toggle: toggleTools }] = useDisclosure(false)
 
   const toolsData = [
     {
@@ -238,91 +234,11 @@ export function LandingHeader() {
         </Container>
       </header>
 
-      <Drawer
+      <LandingNavDrawer
         opened={drawerOpened}
-        size="100%"
-        padding="md"
-        title={t('header.navigation')}
-        hiddenFrom="md"
-        zIndex={1000000}
+        toolLinks={toolLinks}
         onClose={closeDrawer}
-      >
-        <ScrollArea
-          h="calc(100vh - 80px)"
-          mx="-md"
-        >
-          <Divider mb="sm" />
-
-          <UnstyledButton
-            className={clsx(classes.link, 'max-md:w-full')}
-            onClick={toggleTools}
-          >
-            <Center inline>
-              <Box
-                component="span"
-                mr={5}
-              >
-                {t('header.tools')}
-              </Box>
-              <IconChevronDown
-                size={16}
-                color="var(--mantine-color-yellow-5)"
-              />
-            </Center>
-          </UnstyledButton>
-          <Collapse in={toolsOpened}>{toolLinks}</Collapse>
-
-          <Button
-            component="a"
-            href="#"
-            variant="subtle"
-            c="bright"
-            className={classes.link}
-            onClick={e => e.preventDefault()}
-          >
-            {t('header.about')}
-          </Button>
-          <Button
-            component="a"
-            href="#"
-            variant="subtle"
-            c="bright"
-            className={classes.link}
-            onClick={e => e.preventDefault()}
-          >
-            {t('header.blog')}
-          </Button>
-          <Button
-            component="a"
-            href="#"
-            variant="subtle"
-            c="bright"
-            className={classes.link}
-            onClick={e => e.preventDefault()}
-          >
-            {t('header.community')}
-          </Button>
-
-          <Divider my="sm" />
-
-          <Group
-            grow
-            justify="center"
-            pb="xl"
-            px="md"
-          >
-            <Button
-              component={Link}
-              href="/fit-file-viewer"
-              color="yellow"
-              radius="xl"
-              onClick={closeDrawer}
-            >
-              {t('header.getStarted')}
-            </Button>
-          </Group>
-        </ScrollArea>
-      </Drawer>
+      />
     </>
   )
 }

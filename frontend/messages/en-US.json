@@ -15,6 +15,12 @@
       "community": "Community",
       "getStarted": "Get Started",
       "navigation": "Navigation",
+      "language": "Language",
+      "appearance": "Appearance",
+      "theme": {
+        "light": "Light",
+        "dark": "Dark"
+      },
       "toolsDropdown": {
         "title": "Tools",
         "fitFileViewer": {

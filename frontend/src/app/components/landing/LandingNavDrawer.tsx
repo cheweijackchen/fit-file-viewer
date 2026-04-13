@@ -1,0 +1,202 @@
+'use client'
+
+import {
+  Box,
+  Button,
+  Center,
+  Collapse,
+  Divider,
+  Drawer,
+  Group,
+  ScrollArea,
+  SegmentedControl,
+  Stack,
+  Text,
+  UnstyledButton,
+} from '@mantine/core'
+import { useDisclosure } from '@mantine/hooks'
+import { useComputedColorScheme, useMantineColorScheme } from '@mantine/core'
+import { IconChevronDown, IconMoon, IconSun } from '@tabler/icons-react'
+import clsx from 'clsx'
+import Link from 'next/link'
+import { useTranslations } from 'next-intl'
+import { useLocale } from 'next-intl'
+import { useRouter } from 'next/navigation'
+import type { Locale } from '@/i18n/routing'
+import classes from './LandingHeader.module.scss'
+
+interface Props {
+  opened: boolean
+  onClose: () => void
+  toolLinks: React.ReactNode
+}
+
+export function LandingNavDrawer({ opened, onClose, toolLinks }: Props) {
+  const t = useTranslations('landing')
+  const [toolsOpened, { toggle: toggleTools }] = useDisclosure(false)
+
+  const locale = useLocale() as Locale
+  const router = useRouter()
+  const { setColorScheme } = useMantineColorScheme()
+  const computedColorScheme = useComputedColorScheme('light', { getInitialValueInEffect: true })
+
+  function switchLocale(target: Locale) {
+    localStorage.setItem('locale', target)
+    document.cookie = `NEXT_LOCALE=${target}; path=/; max-age=${60 * 60 * 24 * 7}`
+    router.push(`/${target}`)
+  }
+
+  return (
+    <Drawer
+      opened={opened}
+      size="100%"
+      padding="md"
+      title={t('header.navigation')}
+      hiddenFrom="md"
+      zIndex={1000000}
+      onClose={onClose}
+    >
+      <ScrollArea
+        h="calc(100vh - 80px)"
+        mx="-md"
+      >
+        <Divider mb="sm" />
+
+        <UnstyledButton
+          className={clsx(classes.link, 'max-md:w-full')}
+          onClick={toggleTools}
+        >
+          <Center inline>
+            <Box
+              component="span"
+              mr={5}
+            >
+              {t('header.tools')}
+            </Box>
+            <IconChevronDown
+              size={16}
+              color="var(--mantine-color-yellow-5)"
+            />
+          </Center>
+        </UnstyledButton>
+        <Collapse in={toolsOpened}>{toolLinks}</Collapse>
+
+        <Button
+          component="a"
+          href="#"
+          variant="subtle"
+          c="bright"
+          className={classes.link}
+          onClick={e => e.preventDefault()}
+        >
+          {t('header.about')}
+        </Button>
+        <Button
+          component="a"
+          href="#"
+          variant="subtle"
+          c="bright"
+          className={classes.link}
+          onClick={e => e.preventDefault()}
+        >
+          {t('header.blog')}
+        </Button>
+        <Button
+          component="a"
+          href="#"
+          variant="subtle"
+          c="bright"
+          className={classes.link}
+          onClick={e => e.preventDefault()}
+        >
+          {t('header.community')}
+        </Button>
+
+        <Divider my="sm" />
+
+        <Stack
+          gap="sm"
+          px="md"
+          pb="sm"
+        >
+          <Stack gap={6}>
+            <Text
+              size="xs"
+              c="dimmed"
+              tt="uppercase"
+              fw={600}
+              lts={0.5}
+            >
+              {t('header.language')}
+            </Text>
+            <SegmentedControl
+              fullWidth
+              value={locale}
+              onChange={v => switchLocale(v as Locale)}
+              data={[
+                { label: 'English', value: 'en-US' },
+                { label: '中文', value: 'zh-TW' },
+              ]}
+            />
+          </Stack>
+
+          <Stack gap={6}>
+            <Text
+              size="xs"
+              c="dimmed"
+              tt="uppercase"
+              fw={600}
+              lts={0.5}
+            >
+              {t('header.appearance')}
+            </Text>
+            <SegmentedControl
+              fullWidth
+              value={computedColorScheme}
+              onChange={v => setColorScheme(v as 'light' | 'dark')}
+              data={[
+                {
+                  label: (
+                    <Center gap={6}>
+                      <IconSun size={14} />
+                      {t('header.theme.light')}
+                    </Center>
+                  ),
+                  value: 'light',
+                },
+                {
+                  label: (
+                    <Center gap={6}>
+                      <IconMoon size={14} />
+                      {t('header.theme.dark')}
+                    </Center>
+                  ),
+                  value: 'dark',
+                },
+              ]}
+            />
+          </Stack>
+        </Stack>
+
+        <Divider mb="sm" />
+
+        <Group
+          grow
+          justify="center"
+          pb="xl"
+          px="md"
+        >
+          <Button
+            component={Link}
+            href="/fit-file-viewer"
+            color="yellow"
+            radius="xl"
+            onClick={onClose}
+          >
+            {t('header.getStarted')}
+          </Button>
+        </Group>
+      </ScrollArea>
+    </Drawer>
+  )
+}
