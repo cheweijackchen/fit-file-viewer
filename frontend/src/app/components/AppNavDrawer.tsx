@@ -89,126 +89,132 @@ export function AppNavDrawer({ opened, onClose, toolLinks }: Props) {
             h="calc(100vh - 80px)"
             mx="-md"
           >
-            <UnstyledButton
-              className={clsx(classes.link, 'max-md:w-full')}
-              onClick={toggleTools}
-            >
-              <Center inline>
-                <Box
-                  component="span"
-                  mr={5}
-                >
-                  {t('header.tools')}
-                </Box>
-                <IconChevronDown
-                  size={16}
-                  color="var(--mantine-color-yellow-5)"
-                />
-              </Center>
-            </UnstyledButton>
-            <Collapse in={toolsOpened}>{toolLinks}</Collapse>
-
-            <Button
-              component="a"
-              href="#"
-              variant="subtle"
-              c="bright"
-              className={classes.link}
-              onClick={e => e.preventDefault()}
-            >
-              {t('header.about')}
-            </Button>
-            <Button
-              component="a"
-              href="#"
-              variant="subtle"
-              c="bright"
-              className={classes.link}
-              onClick={e => e.preventDefault()}
-            >
-              {t('header.blog')}
-            </Button>
-            <Button
-              component="a"
-              href="#"
-              variant="subtle"
-              c="bright"
-              className={classes.link}
-              onClick={e => e.preventDefault()}
-            >
-              {t('header.community')}
-            </Button>
-
-            <Divider my="sm" />
-
             <Stack
-              gap="sm"
-              px="md"
-              pb="sm"
+              mih="calc(100vh - 80px)"
+              gap={0}
             >
-              <Stack gap={6}>
-                <Text
-                  size="xs"
-                  c="dimmed"
-                  tt="uppercase"
-                  fw={600}
-                  lts={0.5}
-                >
-                  {t('header.language')}
-                </Text>
-                <SegmentedControl
-                  fullWidth
-                  value={locale}
-                  data={[
-                    {
-                      label: 'English',
-                      value: 'en-US' 
-                    },
-                    {
-                      label: '中文',
-                      value: 'zh-TW' 
-                    },
-                  ]}
-                  onChange={v => switchLocale(v as Locale)}
-                />
-              </Stack>
+              <UnstyledButton
+                className={clsx(classes.link, 'max-md:w-full')}
+                onClick={toggleTools}
+              >
+                <Center inline>
+                  <Box
+                    component="span"
+                    mr={5}
+                  >
+                    {t('header.tools')}
+                  </Box>
+                  <IconChevronDown
+                    size={16}
+                    color="var(--mantine-color-yellow-5)"
+                  />
+                </Center>
+              </UnstyledButton>
+              <Collapse in={toolsOpened}>{toolLinks}</Collapse>
 
-              <Stack gap={6}>
-                <Text
-                  size="xs"
-                  c="dimmed"
-                  tt="uppercase"
-                  fw={600}
-                  lts={0.5}
+              <Button
+                component="a"
+                href="#"
+                variant="subtle"
+                c="bright"
+                className={classes.link}
+                onClick={e => e.preventDefault()}
+              >
+                {t('header.about')}
+              </Button>
+              <Button
+                component="a"
+                href="#"
+                variant="subtle"
+                c="bright"
+                className={classes.link}
+                onClick={e => e.preventDefault()}
+              >
+                {t('header.blog')}
+              </Button>
+              <Button
+                component="a"
+                href="#"
+                variant="subtle"
+                c="bright"
+                className={classes.link}
+                onClick={e => e.preventDefault()}
+              >
+                {t('header.community')}
+              </Button>
+
+              <div className="mt-auto">
+                <Divider my="sm" />
+
+                <Stack
+                  gap="sm"
+                  px="md"
                 >
-                  {t('header.appearance')}
-                </Text>
-                <SegmentedControl
-                  fullWidth
-                  value={computedColorScheme}
-                  data={[
-                    {
-                      label: (
-                        <Center>
-                          <IconSun size={14} />
-                          {t('header.theme.light')}
-                        </Center>
-                      ),
-                      value: 'light',
-                    },
-                    {
-                      label: (
-                        <Center>
-                          <IconMoon size={14} />
-                          {t('header.theme.dark')}
-                        </Center>
-                      ),
-                      value: 'dark',
-                    },
-                  ]}
-                  onChange={v => setColorScheme(v as 'light' | 'dark')}
-                />
-              </Stack>
+                  <Stack gap={6}>
+                    <Text
+                      size="xs"
+                      c="dimmed"
+                      tt="uppercase"
+                      fw={600}
+                      lts={0.5}
+                    >
+                      {t('header.language')}
+                    </Text>
+                    <SegmentedControl
+                      fullWidth
+                      value={locale}
+                      data={[
+                        {
+                          label: 'English',
+                          value: 'en-US' 
+                        },
+                        {
+                          label: '中文',
+                          value: 'zh-TW' 
+                        },
+                      ]}
+                      onChange={v => switchLocale(v as Locale)}
+                    />
+                  </Stack>
+
+                  <Stack gap={6}>
+                    <Text
+                      size="xs"
+                      c="dimmed"
+                      tt="uppercase"
+                      fw={600}
+                      lts={0.5}
+                    >
+                      {t('header.appearance')}
+                    </Text>
+                    <SegmentedControl
+                      fullWidth
+                      value={computedColorScheme}
+                      data={[
+                        {
+                          label: (
+                            <Center>
+                              <IconSun size={14} />
+                              {t('header.theme.light')}
+                            </Center>
+                          ),
+                          value: 'light',
+                        },
+                        {
+                          label: (
+                            <Center>
+                              <IconMoon size={14} />
+                              {t('header.theme.dark')}
+                            </Center>
+                          ),
+                          value: 'dark',
+                        },
+                      ]}
+                      onChange={v => setColorScheme(v as 'light' | 'dark')}
+                    />
+                  </Stack>
+                </Stack>
+              </div>
             </Stack>
 
             {/* <Divider mb="sm" />
