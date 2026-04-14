@@ -18,7 +18,7 @@ import { useDisclosure } from '@mantine/hooks'
 import { IconChevronDown, IconFileAnalytics, IconMountain } from '@tabler/icons-react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useTranslations } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import { LanguageSwitcher } from '@/components/LanguageSwitcher'
 import { ThemeSwitch } from '@/components/ThemeSwitch'
 import { useAppHeaderCta } from './AppHeaderCtaContext'
@@ -27,6 +27,7 @@ import { LandingNavDrawer } from './landing/LandingNavDrawer'
 
 export function AppHeader() {
   const t = useTranslations('landing')
+  const locale = useLocale()
   const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] = useDisclosure(false)
   const cta = useAppHeaderCta()
 
@@ -35,7 +36,7 @@ export function AppHeader() {
       icon: IconFileAnalytics,
       title: t('header.toolsDropdown.fitFileViewer.title'),
       description: t('header.toolsDropdown.fitFileViewer.description'),
-      href: '/fit-file-viewer',
+      href: `/${locale}/fit-file-viewer`,
     },
     {
       icon: IconMountain,
