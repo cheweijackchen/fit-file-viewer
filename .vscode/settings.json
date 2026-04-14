@@ -72,5 +72,6 @@
     "Xueshan",
     "Yushan",
     "Zhongheng"
-  ]
+  ],
+  "js/ts.tsdk.path": "frontend/node_modules/typescript/lib"
 }
