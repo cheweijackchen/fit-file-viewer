@@ -3,11 +3,11 @@
 import { Badge, Card, Container, Text, Title } from '@mantine/core'
 import { IconArrowRight, IconStack2 } from '@tabler/icons-react'
 import Image, { type StaticImageData } from 'next/image'
-import Link from 'next/link'
-import { useLocale, useTranslations } from 'next-intl'
+import { useTranslations } from 'next-intl'
 import watchImage from '@/assets/photos/garmin-955.webp'
 import mountRainierImage from '@/assets/photos/mount-rainer-wilderness.webp'
 import mountainPeaksImage from '@/assets/photos/mountain-and-lake.webp'
+import { Link } from '@/i18n/navigation'
 import classes from './LandingFeatureCards.module.scss'
 
 interface CardConfig {
@@ -18,31 +18,30 @@ interface CardConfig {
   href: string;
 }
 
+const cardConfigs: CardConfig[] = [
+  {
+    key: 'peaks-tracker',
+    image: mountainPeaksImage,
+    placeholderClass: classes.placeholderImage,
+    badgeColor: 'yellow',
+    href: '/peaks',
+  },
+  {
+    key: 'fit-file-viewer',
+    image: watchImage,
+    badgeColor: 'orange',
+    href: '/fit-file-viewer',
+  },
+  {
+    key: 'trail-map',
+    image: mountRainierImage,
+    badgeColor: 'cyan',
+    href: '/trail-map',
+  },
+]
+
 export function LandingFeatureCards() {
   const t = useTranslations('landing')
-  const locale = useLocale()
-
-  const cardConfigs: CardConfig[] = [
-    {
-      key: 'peaks-tracker',
-      image: mountainPeaksImage,
-      placeholderClass: classes.placeholderImage,
-      badgeColor: 'yellow',
-      href: '/peaks',
-    },
-    {
-      key: 'fit-file-viewer',
-      image: watchImage,
-      badgeColor: 'orange',
-      href: `/${locale}/fit-file-viewer`,
-    },
-    {
-      key: 'trail-map',
-      image: mountRainierImage,
-      badgeColor: 'cyan',
-      href: '/trail-map',
-    },
-  ]
 
   return (
     <section className="py-20">

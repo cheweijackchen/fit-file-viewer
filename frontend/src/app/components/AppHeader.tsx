@@ -17,17 +17,16 @@ import {
 import { useDisclosure } from '@mantine/hooks'
 import { IconChevronDown, IconFileAnalytics, IconMountain } from '@tabler/icons-react'
 import Image from 'next/image'
-import Link from 'next/link'
-import { useLocale, useTranslations } from 'next-intl'
+import { useTranslations } from 'next-intl'
 import { LanguageSwitcher } from '@/components/LanguageSwitcher'
 import { ThemeSwitch } from '@/components/ThemeSwitch'
+import { Link } from '@/i18n/navigation'
 import { useAppHeaderCta } from './AppHeaderCtaContext'
 import classes from './landing/LandingHeader.module.scss'
 import { LandingNavDrawer } from './landing/LandingNavDrawer'
 
 export function AppHeader() {
   const t = useTranslations('landing')
-  const locale = useLocale()
   const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] = useDisclosure(false)
   const cta = useAppHeaderCta()
 
@@ -36,7 +35,7 @@ export function AppHeader() {
       icon: IconFileAnalytics,
       title: t('header.toolsDropdown.fitFileViewer.title'),
       description: t('header.toolsDropdown.fitFileViewer.description'),
-      href: `/${locale}/fit-file-viewer`,
+      href: '/fit-file-viewer',
     },
     {
       icon: IconMountain,

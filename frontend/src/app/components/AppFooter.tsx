@@ -2,79 +2,78 @@
 
 import { Container, Text } from '@mantine/core'
 import Image from 'next/image'
-import Link from 'next/link'
-import { useLocale, useTranslations } from 'next-intl'
+import { useTranslations } from 'next-intl'
+import { Link } from '@/i18n/navigation'
 
 interface NavColumn {
   key: string;
   links: { key: string; href: string; }[];
 }
 
+const navColumns: NavColumn[] = [
+  {
+    key: 'tools',
+    links: [
+      {
+        key: 'peaksTracker',
+        href: '/peaks'
+      },
+      {
+        key: 'fitFileViewer',
+        href: '/fit-file-viewer'
+      },
+      {
+        key: 'gpxConverter',
+        href: '#'
+      },
+    ],
+  },
+  {
+    key: 'resources',
+    links: [
+      {
+        key: 'documentation',
+        href: '#'
+      },
+      {
+        key: 'blog',
+        href: '#'
+      },
+      {
+        key: 'changelog',
+        href: '#'
+      },
+      {
+        key: 'github',
+        href: 'https://github.com'
+      },
+    ],
+  },
+  {
+    key: 'community',
+    links: [
+      {
+        key: 'discord',
+        href: '#'
+      },
+      {
+        key: 'contribute',
+        href: '#'
+      },
+      {
+        key: 'featureRequests',
+        href: '#'
+      },
+      {
+        key: 'privacyPolicy',
+        href: '#'
+      },
+    ],
+  },
+]
+
 export function AppFooter() {
   const t = useTranslations('landing')
-  const locale = useLocale()
-
-  const navColumns: NavColumn[] = [
-    {
-      key: 'tools',
-      links: [
-        {
-          key: 'peaksTracker',
-          href: '/peaks'
-        },
-        {
-          key: 'fitFileViewer',
-          href: `/${locale}/fit-file-viewer`
-        },
-        {
-          key: 'gpxConverter',
-          href: '#'
-        },
-      ],
-    },
-    {
-      key: 'resources',
-      links: [
-        {
-          key: 'documentation',
-          href: '#'
-        },
-        {
-          key: 'blog',
-          href: '#'
-        },
-        {
-          key: 'changelog',
-          href: '#'
-        },
-        {
-          key: 'github',
-          href: 'https://github.com'
-        },
-      ],
-    },
-    {
-      key: 'community',
-      links: [
-        {
-          key: 'discord',
-          href: '#'
-        },
-        {
-          key: 'contribute',
-          href: '#'
-        },
-        {
-          key: 'featureRequests',
-          href: '#'
-        },
-        {
-          key: 'privacyPolicy',
-          href: '#'
-        },
-      ],
-    },
-  ]
 
   return (
     <footer className="bg-(--mantine-color-dark-9)">
