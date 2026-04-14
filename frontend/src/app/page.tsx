@@ -9,7 +9,9 @@ function detectLocale(acceptLanguage: string): Locale {
       locale.toLowerCase() === lang.toLowerCase() ||
       locale.split('-')[0].toLowerCase() === lang.toLowerCase()
     )
-    if (match) return match
+    if (match) {
+      return match
+    }
   }
   return DEFAULT_LOCALE
 }
