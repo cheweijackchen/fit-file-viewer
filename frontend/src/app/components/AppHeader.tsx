@@ -21,9 +21,9 @@ import { useTranslations } from 'next-intl'
 import { LanguageSwitcher } from '@/components/LanguageSwitcher'
 import { ThemeSwitch } from '@/components/ThemeSwitch'
 import { Link } from '@/i18n/navigation'
+import classes from './AppHeader.module.scss'
 import { useAppHeaderCta } from './AppHeaderCtaContext'
-import classes from './landing/LandingHeader.module.scss'
-import { LandingNavDrawer } from './landing/LandingNavDrawer'
+import { AppNavDrawer } from './AppNavDrawer'
 
 export function AppHeader() {
   const t = useTranslations('landing')
@@ -230,7 +230,7 @@ export function AppHeader() {
         </Container>
       </header>
 
-      <LandingNavDrawer
+      <AppNavDrawer
         opened={drawerOpened}
         toolLinks={toolLinks}
         onClose={closeDrawer}

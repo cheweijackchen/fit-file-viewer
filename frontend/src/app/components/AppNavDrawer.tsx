@@ -23,7 +23,7 @@ import { useRouter } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 import { useLocale } from 'next-intl'
 import type { Locale } from '@/i18n/routing'
-import classes from './LandingHeader.module.scss'
+import classes from './AppHeader.module.scss'
 
 interface Props {
   opened: boolean;
@@ -31,7 +31,7 @@ interface Props {
   toolLinks: React.ReactNode;
 }
 
-export function LandingNavDrawer({ opened, onClose, toolLinks }: Props) {
+export function AppNavDrawer({ opened, onClose, toolLinks }: Props) {
   const t = useTranslations('landing')
   const [toolsOpened, { toggle: toggleTools }] = useDisclosure(false)
 
