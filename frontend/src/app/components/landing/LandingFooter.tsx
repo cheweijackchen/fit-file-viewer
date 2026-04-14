@@ -1,7 +1,7 @@
 'use client'
 
 import { Container, Text } from '@mantine/core'
-import { IconMountain } from '@tabler/icons-react'
+import Image from 'next/image'
 import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 
@@ -87,9 +87,12 @@ export function LandingFooter() {
               href="/"
               className="flex items-center gap-2.5 no-underline w-fit"
             >
-              <IconMountain
-                size={24}
-                color="var(--mantine-color-yellow-5)"
+              <Image
+                src="/logo.webp"
+                alt="TrailKit"
+                width={80}
+                height={24}
+                className="h-6 w-auto invert"
               />
               <Text
                 fw={700}

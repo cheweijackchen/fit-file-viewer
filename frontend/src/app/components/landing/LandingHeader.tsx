@@ -16,6 +16,7 @@ import {
 } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 import { IconChevronDown, IconFileAnalytics, IconMountain } from '@tabler/icons-react'
+import Image from 'next/image'
 import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 import { LanguageSwitcher } from '@/components/LanguageSwitcher'
@@ -102,10 +103,12 @@ export function LandingHeader() {
               href="/"
               className="flex items-center gap-2.5 no-underline"
             >
-              <IconMountain
-                size={28}
-                stroke={1.5}
-                color="var(--mantine-color-yellow-5)"
+              <Image
+                src="/logo.webp"
+                alt="TrailKit"
+                width={100}
+                height={32}
+                className="h-8 w-auto dark:invert"
               />
               <Text
                 fw={700}
