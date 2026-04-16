@@ -1,5 +1,5 @@
 {
-  "version": "2.10",
+  "version": "2.11",
   "children": [
     {
       "type": "frame",
@@ -4296,7 +4296,7 @@
       "type": "frame",
       "id": "F5MCn",
       "x": 0,
-      "y": 960,
+      "y": 1066,
       "name": "Mobile — Trail Builder",
       "width": 390,
       "height": 844,
@@ -5088,7 +5088,7 @@
       "type": "frame",
       "id": "HC6Ok",
       "x": 470,
-      "y": 960,
+      "y": 1066,
       "name": "Mobile — Trail Builder (Yellow)",
       "width": 390,
       "height": 844,
@@ -7161,7 +7161,7 @@
       "type": "frame",
       "id": "UcRtO",
       "x": 945,
-      "y": 960,
+      "y": 1066,
       "name": "Mobile — Trail Builder Ver2 (Inline Summary)",
       "width": 390,
       "height": 950,
@@ -8965,2128 +8965,6 @@
                               ]
                             }
                           ]
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "type": "frame",
-      "id": "c9QcV",
-      "x": 0,
-      "y": 1986,
-      "name": "Trail Builder Ver3 (Graph + Day Summary)",
-      "width": 1440,
-      "height": 1800,
-      "fill": "#F5F3EE",
-      "layout": "vertical",
-      "children": [
-        {
-          "type": "frame",
-          "id": "a0S17",
-          "name": "header",
-          "width": "fill_container",
-          "height": 56,
-          "fill": "#1B3A28",
-          "padding": [
-            0,
-            24
-          ],
-          "justifyContent": "space_between",
-          "alignItems": "center",
-          "children": [
-            {
-              "type": "frame",
-              "id": "PT5je",
-              "name": "headerLeft",
-              "gap": 10,
-              "alignItems": "center",
-              "children": [
-                {
-                  "type": "icon_font",
-                  "id": "FK9tz",
-                  "width": 20,
-                  "height": 20,
-                  "iconFontName": "mountain",
-                  "iconFontFamily": "lucide",
-                  "fill": "#FFFFFF"
-                },
-                {
-                  "type": "text",
-                  "id": "A0F7s",
-                  "fill": "#FFFFFF",
-                  "content": "Trail Builder",
-                  "fontFamily": "Inter",
-                  "fontSize": 18,
-                  "fontWeight": "700"
-                }
-              ]
-            },
-            {
-              "type": "frame",
-              "id": "1IYsv",
-              "name": "trailBadge",
-              "fill": "#2D5E3A",
-              "cornerRadius": 9999,
-              "padding": [
-                6,
-                14
-              ],
-              "alignItems": "center",
-              "children": [
-                {
-                  "type": "text",
-                  "id": "mHB8T",
-                  "fill": "#FFFFFF",
-                  "content": "南二段 · South Second Section",
-                  "fontFamily": "Inter",
-                  "fontSize": 12,
-                  "fontWeight": "normal"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "frame",
-          "id": "zFkHi",
-          "name": "body",
-          "width": "fill_container",
-          "height": 748,
-          "gap": 12,
-          "padding": 16,
-          "children": [
-            {
-              "type": "frame",
-              "id": "VgACr",
-              "name": "sidebar",
-              "width": 220,
-              "height": "fill_container",
-              "fill": "#C8DBBC",
-              "cornerRadius": 16,
-              "layout": "vertical",
-              "gap": 10,
-              "padding": 16,
-              "children": [
-                {
-                  "type": "frame",
-                  "id": "2wIr3",
-                  "name": "sidebarHeader",
-                  "width": "fill_container",
-                  "justifyContent": "space_between",
-                  "alignItems": "center",
-                  "children": [
-                    {
-                      "type": "text",
-                      "id": "5qmLI",
-                      "fill": "#1B3A28",
-                      "content": "Days",
-                      "fontFamily": "Inter",
-                      "fontSize": 14,
-                      "fontWeight": "700"
-                    },
-                    {
-                      "type": "frame",
-                      "id": "3te0P",
-                      "name": "addBtn",
-                      "fill": "#2D5E3A",
-                      "cornerRadius": 8,
-                      "gap": 4,
-                      "padding": [
-                        5,
-                        10
-                      ],
-                      "alignItems": "center",
-                      "children": [
-                        {
-                          "type": "icon_font",
-                          "id": "GZLfW",
-                          "width": 12,
-                          "height": 12,
-                          "iconFontName": "plus",
-                          "iconFontFamily": "lucide",
-                          "fill": "#FFFFFF"
-                        },
-                        {
-                          "type": "text",
-                          "id": "fy5Ad",
-                          "fill": "#FFFFFF",
-                          "content": "Add Day",
-                          "fontFamily": "Inter",
-                          "fontSize": 11,
-                          "fontWeight": "normal"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "Prx1p",
-                  "name": "day1",
-                  "width": "fill_container",
-                  "height": 52,
-                  "fill": "#1B3A28",
-                  "cornerRadius": 12,
-                  "gap": 10,
-                  "padding": [
-                    0,
-                    12
-                  ],
-                  "alignItems": "center",
-                  "children": [
-                    {
-                      "type": "frame",
-                      "id": "k8rMu",
-                      "name": "day1Info",
-                      "width": "fill_container",
-                      "layout": "vertical",
-                      "gap": 3,
-                      "children": [
-                        {
-                          "type": "text",
-                          "id": "28FaZ",
-                          "fill": "#FFFFFF",
-                          "content": "Day 1",
-                          "fontFamily": "Inter",
-                          "fontSize": 13,
-                          "fontWeight": "700"
-                        },
-                        {
-                          "type": "text",
-                          "id": "nDE4Q",
-                          "fill": "#7A9A80",
-                          "content": "6 nodes selected",
-                          "fontFamily": "Inter",
-                          "fontSize": 11,
-                          "fontWeight": "normal"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "icon_font",
-                      "id": "OAJyc",
-                      "width": 14,
-                      "height": 14,
-                      "iconFontName": "chevron-right",
-                      "iconFontFamily": "lucide",
-                      "fill": "#7A9A80"
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "VhhqL",
-                  "name": "day2",
-                  "width": "fill_container",
-                  "height": 52,
-                  "fill": "#B8CEAA",
-                  "cornerRadius": 12,
-                  "gap": 10,
-                  "padding": [
-                    0,
-                    12
-                  ],
-                  "alignItems": "center",
-                  "children": [
-                    {
-                      "type": "frame",
-                      "id": "FDhly",
-                      "name": "day2Info",
-                      "width": "fill_container",
-                      "layout": "vertical",
-                      "gap": 3,
-                      "children": [
-                        {
-                          "type": "text",
-                          "id": "6SKGA",
-                          "fill": "#1B3A28",
-                          "content": "Day 2",
-                          "fontFamily": "Inter",
-                          "fontSize": 13,
-                          "fontWeight": "600"
-                        },
-                        {
-                          "type": "text",
-                          "id": "yshRq",
-                          "fill": "#7A9A80",
-                          "content": "Empty",
-                          "fontFamily": "Inter",
-                          "fontSize": 11,
-                          "fontWeight": "normal"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "icon_font",
-                      "id": "xxPlv",
-                      "width": 14,
-                      "height": 14,
-                      "iconFontName": "chevron-right",
-                      "iconFontFamily": "lucide",
-                      "fill": "#7A9A80"
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "UHIAy",
-                  "name": "day3",
-                  "width": "fill_container",
-                  "height": 52,
-                  "fill": "#B8CEAA",
-                  "cornerRadius": 12,
-                  "gap": 10,
-                  "padding": [
-                    0,
-                    12
-                  ],
-                  "alignItems": "center",
-                  "children": [
-                    {
-                      "type": "frame",
-                      "id": "qRwR4",
-                      "name": "day3Info",
-                      "width": "fill_container",
-                      "layout": "vertical",
-                      "gap": 3,
-                      "children": [
-                        {
-                          "type": "text",
-                          "id": "erVbe",
-                          "fill": "#1B3A28",
-                          "content": "Day 3",
-                          "fontFamily": "Inter",
-                          "fontSize": 13,
-                          "fontWeight": "600"
-                        },
-                        {
-                          "type": "text",
-                          "id": "TXiia",
-                          "fill": "#7A9A80",
-                          "content": "Empty",
-                          "fontFamily": "Inter",
-                          "fontSize": 11,
-                          "fontWeight": "normal"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "icon_font",
-                      "id": "MkYQL",
-                      "width": 14,
-                      "height": 14,
-                      "iconFontName": "chevron-right",
-                      "iconFontFamily": "lucide",
-                      "fill": "#7A9A80"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "frame",
-              "id": "9YuYW",
-              "name": "center",
-              "width": "fill_container",
-              "height": "fill_container",
-              "fill": "#FFFFFF",
-              "cornerRadius": 16,
-              "layout": "vertical",
-              "gap": 14,
-              "padding": 20,
-              "children": [
-                {
-                  "type": "frame",
-                  "id": "7hpBg",
-                  "name": "centerTitle",
-                  "width": "fill_container",
-                  "gap": 8,
-                  "alignItems": "center",
-                  "children": [
-                    {
-                      "type": "icon_font",
-                      "id": "PaYLL",
-                      "width": 18,
-                      "height": 18,
-                      "iconFontName": "route",
-                      "iconFontFamily": "lucide",
-                      "fill": "#2D5E3A"
-                    },
-                    {
-                      "type": "text",
-                      "id": "LzEQ6",
-                      "fill": "#1B3A28",
-                      "content": "Build Trail — Day 1",
-                      "fontFamily": "Inter",
-                      "fontSize": 16,
-                      "fontWeight": "700"
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "nLVR5",
-                  "name": "startRow",
-                  "width": "fill_container",
-                  "gap": 12,
-                  "alignItems": "center",
-                  "children": [
-                    {
-                      "type": "text",
-                      "id": "su8ko",
-                      "fill": "#4A6B52",
-                      "content": "Starting Point",
-                      "fontFamily": "Inter",
-                      "fontSize": 13,
-                      "fontWeight": "600"
-                    },
-                    {
-                      "type": "frame",
-                      "id": "Y8avb",
-                      "name": "dropdown",
-                      "width": "fill_container",
-                      "height": 40,
-                      "fill": "#F5F3EE",
-                      "cornerRadius": 10,
-                      "stroke": {
-                        "align": "inside",
-                        "thickness": 1,
-                        "fill": "#C8DBBC"
-                      },
-                      "padding": [
-                        0,
-                        14
-                      ],
-                      "justifyContent": "space_between",
-                      "alignItems": "center",
-                      "children": [
-                        {
-                          "type": "text",
-                          "id": "Sn9LC",
-                          "fill": "#1B3A28",
-                          "content": "東埔溫泉",
-                          "fontFamily": "Inter",
-                          "fontSize": 13,
-                          "fontWeight": "normal"
-                        },
-                        {
-                          "type": "icon_font",
-                          "id": "VWOHV",
-                          "width": 16,
-                          "height": 16,
-                          "iconFontName": "chevron-down",
-                          "iconFontFamily": "lucide",
-                          "fill": "#7A9A80"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "9GVSM",
-                  "name": "nodeCard",
-                  "width": "fill_container",
-                  "fill": "#1B3A28",
-                  "cornerRadius": 14,
-                  "layout": "vertical",
-                  "gap": 8,
-                  "padding": 18,
-                  "children": [
-                    {
-                      "type": "text",
-                      "id": "OO9IJ",
-                      "fill": "#7A9A80",
-                      "content": "CURRENT NODE",
-                      "fontFamily": "Inter",
-                      "fontSize": 10,
-                      "fontWeight": "700",
-                      "letterSpacing": 1
-                    },
-                    {
-                      "type": "frame",
-                      "id": "3iCnQ",
-                      "name": "nodeMainRow",
-                      "width": "fill_container",
-                      "gap": 10,
-                      "justifyContent": "space_between",
-                      "alignItems": "center",
-                      "children": [
-                        {
-                          "type": "text",
-                          "id": "lgWbW",
-                          "fill": "#FFFFFF",
-                          "content": "八通關山登山口",
-                          "fontFamily": "Inter",
-                          "fontSize": 22,
-                          "fontWeight": "700"
-                        },
-                        {
-                          "type": "frame",
-                          "id": "0W10c",
-                          "name": "forkBadge",
-                          "fill": "#2D5E3A",
-                          "cornerRadius": 9999,
-                          "padding": [
-                            6,
-                            12
-                          ],
-                          "alignItems": "center",
-                          "children": [
-                            {
-                              "type": "text",
-                              "id": "6MPC6",
-                              "fill": "#FFFFFF",
-                              "content": "fork",
-                              "fontFamily": "Inter",
-                              "fontSize": 12,
-                              "fontWeight": "normal"
-                            }
-                          ]
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "HBXZ8",
-                  "name": "nextLabelRow",
-                  "width": "fill_container",
-                  "gap": 6,
-                  "alignItems": "center",
-                  "children": [
-                    {
-                      "type": "icon_font",
-                      "id": "D7GQ4",
-                      "width": 14,
-                      "height": 14,
-                      "iconFontName": "arrow-right",
-                      "iconFontFamily": "lucide",
-                      "fill": "#2D5E3A"
-                    },
-                    {
-                      "type": "text",
-                      "id": "5NE0N",
-                      "fill": "#4A6B52",
-                      "content": "Select next node:",
-                      "fontFamily": "Inter",
-                      "fontSize": 13,
-                      "fontWeight": "600"
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "wa53P",
-                  "name": "neighborsRow",
-                  "width": "fill_container",
-                  "gap": 10,
-                  "children": [
-                    {
-                      "type": "frame",
-                      "id": "VRcbo",
-                      "name": "n1",
-                      "width": "fill_container",
-                      "fill": "#F5F3EE",
-                      "cornerRadius": 12,
-                      "stroke": {
-                        "align": "inside",
-                        "thickness": 1.5,
-                        "fill": "#C8DBBC"
-                      },
-                      "layout": "vertical",
-                      "gap": 6,
-                      "padding": 14,
-                      "children": [
-                        {
-                          "type": "text",
-                          "id": "1uxeE",
-                          "fill": "#1B3A28",
-                          "content": "八通關山",
-                          "fontFamily": "Inter",
-                          "fontSize": 14,
-                          "fontWeight": "700"
-                        },
-                        {
-                          "type": "text",
-                          "id": "eFxgX",
-                          "fill": "#2D5E3A",
-                          "content": "peak · 80 min",
-                          "fontFamily": "Inter",
-                          "fontSize": 11,
-                          "fontWeight": "normal"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "frame",
-                      "id": "YVHsk",
-                      "name": "n2",
-                      "width": "fill_container",
-                      "fill": "#F5F3EE",
-                      "cornerRadius": 12,
-                      "stroke": {
-                        "align": "inside",
-                        "thickness": 1.5,
-                        "fill": "#C8DBBC"
-                      },
-                      "layout": "vertical",
-                      "gap": 6,
-                      "padding": 14,
-                      "children": [
-                        {
-                          "type": "text",
-                          "id": "lhihh",
-                          "fill": "#1B3A28",
-                          "content": "巴奈伊克山屋",
-                          "fontFamily": "Inter",
-                          "fontSize": 14,
-                          "fontWeight": "700"
-                        },
-                        {
-                          "type": "text",
-                          "id": "LHRR2",
-                          "fill": "#4A6B52",
-                          "content": "hut · 30 min",
-                          "fontFamily": "Inter",
-                          "fontSize": 11,
-                          "fontWeight": "normal"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "frame",
-                      "id": "lbBfs",
-                      "name": "n3",
-                      "opacity": 0.6,
-                      "width": "fill_container",
-                      "fill": "#E8E5DC",
-                      "cornerRadius": 12,
-                      "layout": "vertical",
-                      "gap": 6,
-                      "padding": 14,
-                      "children": [
-                        {
-                          "type": "text",
-                          "id": "pLhqs",
-                          "fill": "#4A6B52",
-                          "content": "八通關草原",
-                          "fontFamily": "Inter",
-                          "fontSize": 14,
-                          "fontWeight": "700"
-                        },
-                        {
-                          "type": "text",
-                          "id": "VgaWP",
-                          "fill": "#7A9A80",
-                          "content": "visited · 45 min",
-                          "fontFamily": "Inter",
-                          "fontSize": 11,
-                          "fontWeight": "normal"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "xXVrB",
-                  "name": "dUndoRow",
-                  "width": "fill_container",
-                  "gap": 6,
-                  "alignItems": "center",
-                  "children": [
-                    {
-                      "type": "icon_font",
-                      "id": "7Io99",
-                      "width": 13,
-                      "height": 13,
-                      "iconFontName": "undo-2",
-                      "iconFontFamily": "lucide",
-                      "fill": "#7A9A80"
-                    },
-                    {
-                      "type": "text",
-                      "id": "vKUvd",
-                      "fill": "#7A9A80",
-                      "content": "Undo last step",
-                      "fontFamily": "Inter",
-                      "fontSize": 12,
-                      "fontWeight": "normal"
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "sBnqR",
-                  "name": "dFinishBtn",
-                  "width": "fill_container",
-                  "height": 46,
-                  "fill": "#2D5E3A",
-                  "cornerRadius": 12,
-                  "gap": 8,
-                  "justifyContent": "center",
-                  "alignItems": "center",
-                  "children": [
-                    {
-                      "type": "icon_font",
-                      "id": "ZBJZj",
-                      "width": 16,
-                      "height": 16,
-                      "iconFontName": "check",
-                      "iconFontFamily": "lucide",
-                      "fill": "#FFFFFF"
-                    },
-                    {
-                      "type": "text",
-                      "id": "aNwKS",
-                      "fill": "#FFFFFF",
-                      "content": "完成路線",
-                      "fontFamily": "Inter",
-                      "fontSize": 14,
-                      "fontWeight": "700"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "frame",
-              "id": "lPIAr",
-              "name": "right",
-              "width": 260,
-              "height": "fill_container",
-              "fill": "#C8DBBC",
-              "cornerRadius": 16,
-              "layout": "vertical",
-              "gap": 8,
-              "padding": 16,
-              "children": [
-                {
-                  "type": "frame",
-                  "id": "tbv4R",
-                  "name": "rightHeader",
-                  "width": "fill_container",
-                  "gap": 8,
-                  "alignItems": "center",
-                  "children": [
-                    {
-                      "type": "icon_font",
-                      "id": "AN6Z2",
-                      "width": 16,
-                      "height": 16,
-                      "iconFontName": "list-ordered",
-                      "iconFontFamily": "lucide",
-                      "fill": "#2D5E3A"
-                    },
-                    {
-                      "type": "text",
-                      "id": "s0wem",
-                      "fill": "#1B3A28",
-                      "content": "Trail Summary",
-                      "fontFamily": "Inter",
-                      "fontSize": 14,
-                      "fontWeight": "700"
-                    }
-                  ]
-                },
-                {
-                  "type": "text",
-                  "id": "JAlDI",
-                  "fill": "#4A6B52",
-                  "content": "6 nodes · 630 min total",
-                  "fontFamily": "Inter",
-                  "fontSize": 12,
-                  "fontWeight": "normal"
-                },
-                {
-                  "type": "rectangle",
-                  "id": "YdHPm",
-                  "fill": "#A8C098",
-                  "width": "fill_container",
-                  "height": 1
-                },
-                {
-                  "type": "frame",
-                  "id": "yRID0",
-                  "name": "r1",
-                  "width": "fill_container",
-                  "gap": 8,
-                  "padding": [
-                    4,
-                    0
-                  ],
-                  "alignItems": "center",
-                  "children": [
-                    {
-                      "type": "text",
-                      "id": "GX6j8",
-                      "fill": "#7A9A80",
-                      "textGrowth": "fixed-width",
-                      "width": 18,
-                      "content": "1",
-                      "textAlign": "center",
-                      "fontFamily": "Geist Mono",
-                      "fontSize": 12,
-                      "fontWeight": "700"
-                    },
-                    {
-                      "type": "frame",
-                      "id": "PNycA",
-                      "name": "r1info",
-                      "width": "fill_container",
-                      "layout": "vertical",
-                      "gap": 1,
-                      "children": [
-                        {
-                          "type": "text",
-                          "id": "Pqc5B",
-                          "fill": "#1B3A28",
-                          "content": "東埔溫泉",
-                          "fontFamily": "Inter",
-                          "fontSize": 12,
-                          "fontWeight": "600"
-                        },
-                        {
-                          "type": "text",
-                          "id": "sP1EJ",
-                          "fill": "#7A9A80",
-                          "content": "start · other",
-                          "fontFamily": "Inter",
-                          "fontSize": 10,
-                          "fontWeight": "normal"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "BBpmr",
-                  "name": "r2",
-                  "width": "fill_container",
-                  "gap": 8,
-                  "padding": [
-                    4,
-                    0
-                  ],
-                  "alignItems": "center",
-                  "children": [
-                    {
-                      "type": "text",
-                      "id": "M38NC",
-                      "fill": "#7A9A80",
-                      "textGrowth": "fixed-width",
-                      "width": 18,
-                      "content": "2",
-                      "textAlign": "center",
-                      "fontFamily": "Geist Mono",
-                      "fontSize": 12,
-                      "fontWeight": "700"
-                    },
-                    {
-                      "type": "frame",
-                      "id": "Ksnx6",
-                      "name": "r2info",
-                      "width": "fill_container",
-                      "layout": "vertical",
-                      "gap": 1,
-                      "children": [
-                        {
-                          "type": "text",
-                          "id": "MK7dq",
-                          "fill": "#1B3A28",
-                          "content": "雲龍瀑布",
-                          "fontFamily": "Inter",
-                          "fontSize": 12,
-                          "fontWeight": "600"
-                        },
-                        {
-                          "type": "text",
-                          "id": "JkYpt",
-                          "fill": "#7A9A80",
-                          "content": "165 min · water-source",
-                          "fontFamily": "Inter",
-                          "fontSize": 10,
-                          "fontWeight": "normal"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "QolLl",
-                  "name": "r3",
-                  "width": "fill_container",
-                  "gap": 8,
-                  "padding": [
-                    4,
-                    0
-                  ],
-                  "alignItems": "center",
-                  "children": [
-                    {
-                      "type": "text",
-                      "id": "GWiXw",
-                      "fill": "#7A9A80",
-                      "textGrowth": "fixed-width",
-                      "width": 18,
-                      "content": "3",
-                      "textAlign": "center",
-                      "fontFamily": "Geist Mono",
-                      "fontSize": 12,
-                      "fontWeight": "700"
-                    },
-                    {
-                      "type": "frame",
-                      "id": "d6r80",
-                      "name": "r3info",
-                      "width": "fill_container",
-                      "layout": "vertical",
-                      "gap": 1,
-                      "children": [
-                        {
-                          "type": "text",
-                          "id": "2tnms",
-                          "fill": "#1B3A28",
-                          "content": "樂樂山屋",
-                          "fontFamily": "Inter",
-                          "fontSize": 12,
-                          "fontWeight": "600"
-                        },
-                        {
-                          "type": "text",
-                          "id": "CjtYD",
-                          "fill": "#7A9A80",
-                          "content": "65 min · hut",
-                          "fontFamily": "Inter",
-                          "fontSize": 10,
-                          "fontWeight": "normal"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "f8cIU",
-                  "name": "r4",
-                  "width": "fill_container",
-                  "gap": 8,
-                  "padding": [
-                    4,
-                    0
-                  ],
-                  "alignItems": "center",
-                  "children": [
-                    {
-                      "type": "text",
-                      "id": "MEqiC",
-                      "fill": "#7A9A80",
-                      "textGrowth": "fixed-width",
-                      "width": 18,
-                      "content": "4",
-                      "textAlign": "center",
-                      "fontFamily": "Geist Mono",
-                      "fontSize": 12,
-                      "fontWeight": "700"
-                    },
-                    {
-                      "type": "frame",
-                      "id": "rTgZj",
-                      "name": "r4info",
-                      "width": "fill_container",
-                      "layout": "vertical",
-                      "gap": 1,
-                      "children": [
-                        {
-                          "type": "text",
-                          "id": "46z84",
-                          "fill": "#1B3A28",
-                          "content": "觀高坪",
-                          "fontFamily": "Inter",
-                          "fontSize": 12,
-                          "fontWeight": "600"
-                        },
-                        {
-                          "type": "text",
-                          "id": "9Q9vu",
-                          "fill": "#7A9A80",
-                          "content": "270 min · fork",
-                          "fontFamily": "Inter",
-                          "fontSize": 10,
-                          "fontWeight": "normal"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "jRZGz",
-                  "name": "r5",
-                  "width": "fill_container",
-                  "gap": 8,
-                  "padding": [
-                    4,
-                    0
-                  ],
-                  "alignItems": "center",
-                  "children": [
-                    {
-                      "type": "text",
-                      "id": "PysnK",
-                      "fill": "#7A9A80",
-                      "textGrowth": "fixed-width",
-                      "width": 18,
-                      "content": "5",
-                      "textAlign": "center",
-                      "fontFamily": "Geist Mono",
-                      "fontSize": 12,
-                      "fontWeight": "700"
-                    },
-                    {
-                      "type": "frame",
-                      "id": "D99gm",
-                      "name": "r5info",
-                      "width": "fill_container",
-                      "layout": "vertical",
-                      "gap": 1,
-                      "children": [
-                        {
-                          "type": "text",
-                          "id": "taPyT",
-                          "fill": "#1B3A28",
-                          "content": "八通關草原",
-                          "fontFamily": "Inter",
-                          "fontSize": 12,
-                          "fontWeight": "600"
-                        },
-                        {
-                          "type": "text",
-                          "id": "iq6Pw",
-                          "fill": "#7A9A80",
-                          "content": "60 min · camp",
-                          "fontFamily": "Inter",
-                          "fontSize": 10,
-                          "fontWeight": "normal"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "ceITD",
-                  "name": "r6",
-                  "width": "fill_container",
-                  "fill": "#1B3A281A",
-                  "cornerRadius": 10,
-                  "gap": 8,
-                  "padding": [
-                    6,
-                    8
-                  ],
-                  "alignItems": "center",
-                  "children": [
-                    {
-                      "type": "text",
-                      "id": "sj0ea",
-                      "fill": "#2D5E3A",
-                      "textGrowth": "fixed-width",
-                      "width": 18,
-                      "content": "6",
-                      "textAlign": "center",
-                      "fontFamily": "Geist Mono",
-                      "fontSize": 12,
-                      "fontWeight": "700"
-                    },
-                    {
-                      "type": "frame",
-                      "id": "b6VI1",
-                      "name": "r6info",
-                      "width": "fill_container",
-                      "layout": "vertical",
-                      "gap": 1,
-                      "children": [
-                        {
-                          "type": "text",
-                          "id": "EqJUx",
-                          "fill": "#1B3A28",
-                          "content": "八通關山登山口",
-                          "fontFamily": "Inter",
-                          "fontSize": 12,
-                          "fontWeight": "700"
-                        },
-                        {
-                          "type": "text",
-                          "id": "NjLRM",
-                          "fill": "#2D5E3A",
-                          "content": "70 min · current",
-                          "fontFamily": "Inter",
-                          "fontSize": 10,
-                          "fontWeight": "normal"
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "frame",
-          "id": "MGZlH",
-          "name": "wrap",
-          "width": "fill_container",
-          "layout": "vertical",
-          "gap": 12,
-          "padding": [
-            0,
-            16,
-            16,
-            16
-          ],
-          "children": [
-            {
-              "type": "frame",
-              "id": "4Ywpl",
-              "name": "graphPanel",
-              "width": "fill_container",
-              "fill": "#FFFFFF",
-              "cornerRadius": 16,
-              "layout": "vertical",
-              "gap": 14,
-              "padding": 20,
-              "children": [
-                {
-                  "type": "frame",
-                  "id": "yIA8S",
-                  "name": "gHdr",
-                  "width": "fill_container",
-                  "justifyContent": "space_between",
-                  "alignItems": "center",
-                  "children": [
-                    {
-                      "type": "text",
-                      "id": "GywWN",
-                      "fill": "#1B3A28",
-                      "content": "Trail Graph — 南二段 South Second Section",
-                      "fontFamily": "Inter",
-                      "fontSize": 15,
-                      "fontWeight": "700"
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "Bt96F",
-                  "name": "legRow",
-                  "width": "fill_container",
-                  "gap": 10,
-                  "alignItems": "center",
-                  "children": [
-                    {
-                      "type": "frame",
-                      "id": "NErbZ",
-                      "name": "legA",
-                      "fill": "#D4E4C8",
-                      "cornerRadius": 4,
-                      "padding": [
-                        3,
-                        8
-                      ],
-                      "children": [
-                        {
-                          "type": "text",
-                          "id": "CKXoo",
-                          "fill": "#2D5E3A",
-                          "content": "other",
-                          "fontFamily": "Inter",
-                          "fontSize": 10,
-                          "fontWeight": "600"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "frame",
-                      "id": "pxK6r",
-                      "name": "legB",
-                      "fill": "#2D5E3A",
-                      "cornerRadius": 4,
-                      "padding": [
-                        3,
-                        8
-                      ],
-                      "children": [
-                        {
-                          "type": "text",
-                          "id": "wWvCX",
-                          "fill": "#FFFFFF",
-                          "content": "hut",
-                          "fontFamily": "Inter",
-                          "fontSize": 10,
-                          "fontWeight": "600"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "frame",
-                      "id": "MMfqF",
-                      "name": "legC",
-                      "fill": "#9B9B9B",
-                      "cornerRadius": 4,
-                      "padding": [
-                        3,
-                        8
-                      ],
-                      "children": [
-                        {
-                          "type": "text",
-                          "id": "84Nzx",
-                          "fill": "#FFFFFF",
-                          "content": "fork",
-                          "fontFamily": "Inter",
-                          "fontSize": 10,
-                          "fontWeight": "600"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "frame",
-                      "id": "R0UlV",
-                      "name": "legD",
-                      "fill": "#5BA08A",
-                      "cornerRadius": 4,
-                      "padding": [
-                        3,
-                        8
-                      ],
-                      "children": [
-                        {
-                          "type": "text",
-                          "id": "aM8Tq",
-                          "fill": "#FFFFFF",
-                          "content": "water",
-                          "fontFamily": "Inter",
-                          "fontSize": 10,
-                          "fontWeight": "600"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "frame",
-                      "id": "fYgQG",
-                      "name": "legE",
-                      "fill": "#E6B020",
-                      "cornerRadius": 4,
-                      "padding": [
-                        3,
-                        8
-                      ],
-                      "children": [
-                        {
-                          "type": "text",
-                          "id": "bWSs3",
-                          "fill": "#1A1A00",
-                          "content": "peak",
-                          "fontFamily": "Inter",
-                          "fontSize": 10,
-                          "fontWeight": "600"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "1XTYw",
-                  "name": "gR1",
-                  "width": "fill_container",
-                  "gap": 4,
-                  "alignItems": "center",
-                  "children": [
-                    {
-                      "type": "frame",
-                      "id": "rsGZf",
-                      "name": "n1a",
-                      "fill": "#D4E4C8",
-                      "cornerRadius": 6,
-                      "padding": [
-                        4,
-                        8
-                      ],
-                      "children": [
-                        {
-                          "type": "text",
-                          "id": "oBSmV",
-                          "fill": "#2D5E3A",
-                          "content": "東埔溫泉",
-                          "fontFamily": "Inter",
-                          "fontSize": 11,
-                          "fontWeight": "600"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "text",
-                      "id": "FS7jl",
-                      "fill": "#AAAAAA",
-                      "content": "→",
-                      "fontFamily": "Inter",
-                      "fontSize": 11,
-                      "fontWeight": "normal"
-                    },
-                    {
-                      "type": "frame",
-                      "id": "nuith",
-                      "name": "n1b",
-                      "fill": "#2D5E3A",
-                      "cornerRadius": 6,
-                      "padding": [
-                        4,
-                        8
-                      ],
-                      "children": [
-                        {
-                          "type": "text",
-                          "id": "sVsg4",
-                          "fill": "#FFFFFF",
-                          "content": "樂樂山屋",
-                          "fontFamily": "Inter",
-                          "fontSize": 11,
-                          "fontWeight": "600"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "text",
-                      "id": "ypiuO",
-                      "fill": "#AAAAAA",
-                      "content": "→",
-                      "fontFamily": "Inter",
-                      "fontSize": 11,
-                      "fontWeight": "normal"
-                    },
-                    {
-                      "type": "frame",
-                      "id": "KNbpp",
-                      "name": "n1c",
-                      "fill": "#9B9B9B",
-                      "cornerRadius": 6,
-                      "padding": [
-                        4,
-                        8
-                      ],
-                      "children": [
-                        {
-                          "type": "text",
-                          "id": "17aJJ",
-                          "fill": "#FFFFFF",
-                          "content": "觀高坪",
-                          "fontFamily": "Inter",
-                          "fontSize": 11,
-                          "fontWeight": "600"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "text",
-                      "id": "5Frpc",
-                      "fill": "#AAAAAA",
-                      "content": "→",
-                      "fontFamily": "Inter",
-                      "fontSize": 11,
-                      "fontWeight": "normal"
-                    },
-                    {
-                      "type": "frame",
-                      "id": "zokQQ",
-                      "name": "n1d",
-                      "fill": "#9B9B9B",
-                      "cornerRadius": 6,
-                      "padding": [
-                        4,
-                        8
-                      ],
-                      "children": [
-                        {
-                          "type": "text",
-                          "id": "reMtP",
-                          "fill": "#FFFFFF",
-                          "content": "八通關山登山口",
-                          "fontFamily": "Inter",
-                          "fontSize": 11,
-                          "fontWeight": "600"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "Ntrz2",
-                  "name": "gR2",
-                  "width": "fill_container",
-                  "gap": 4,
-                  "alignItems": "center",
-                  "children": [
-                    {
-                      "type": "frame",
-                      "id": "G7Rg9",
-                      "name": "n2a",
-                      "fill": "#9B9B9B",
-                      "cornerRadius": 6,
-                      "padding": [
-                        4,
-                        8
-                      ],
-                      "children": [
-                        {
-                          "type": "text",
-                          "id": "YISvH",
-                          "fill": "#FFFFFF",
-                          "content": "中央金礦岔路口",
-                          "fontFamily": "Inter",
-                          "fontSize": 11,
-                          "fontWeight": "600"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "text",
-                      "id": "CCg65",
-                      "fill": "#AAAAAA",
-                      "content": "→",
-                      "fontFamily": "Inter",
-                      "fontSize": 11,
-                      "fontWeight": "normal"
-                    },
-                    {
-                      "type": "frame",
-                      "id": "7WKiC",
-                      "name": "n2b",
-                      "fill": "#2D5E3A",
-                      "cornerRadius": 6,
-                      "padding": [
-                        4,
-                        8
-                      ],
-                      "children": [
-                        {
-                          "type": "text",
-                          "id": "JyruO",
-                          "fill": "#FFFFFF",
-                          "content": "白洋金礦山屋",
-                          "fontFamily": "Inter",
-                          "fontSize": 11,
-                          "fontWeight": "600"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "text",
-                      "id": "Zl4w9",
-                      "fill": "#AAAAAA",
-                      "content": "→",
-                      "fontFamily": "Inter",
-                      "fontSize": 11,
-                      "fontWeight": "normal"
-                    },
-                    {
-                      "type": "frame",
-                      "id": "Q2Il4",
-                      "name": "n2c",
-                      "fill": "#9B9B9B",
-                      "cornerRadius": 6,
-                      "padding": [
-                        4,
-                        8
-                      ],
-                      "children": [
-                        {
-                          "type": "text",
-                          "id": "EYn37",
-                          "fill": "#FFFFFF",
-                          "content": "秀姑坪",
-                          "fontFamily": "Inter",
-                          "fontSize": 11,
-                          "fontWeight": "600"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "text",
-                      "id": "VVvGy",
-                      "fill": "#AAAAAA",
-                      "content": "→",
-                      "fontFamily": "Inter",
-                      "fontSize": 11,
-                      "fontWeight": "normal"
-                    },
-                    {
-                      "type": "frame",
-                      "id": "tYLeU",
-                      "name": "n2d",
-                      "fill": "#2D5E3A",
-                      "cornerRadius": 6,
-                      "padding": [
-                        4,
-                        8
-                      ],
-                      "children": [
-                        {
-                          "type": "text",
-                          "id": "PFTEL",
-                          "fill": "#FFFFFF",
-                          "content": "大水窟山屋",
-                          "fontFamily": "Inter",
-                          "fontSize": 11,
-                          "fontWeight": "600"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "Io0VR",
-                  "name": "gR3",
-                  "width": "fill_container",
-                  "gap": 4,
-                  "alignItems": "center",
-                  "children": [
-                    {
-                      "type": "frame",
-                      "id": "GJTnJ",
-                      "name": "n3a",
-                      "fill": "#9B9B9B",
-                      "cornerRadius": 6,
-                      "padding": [
-                        4,
-                        8
-                      ],
-                      "children": [
-                        {
-                          "type": "text",
-                          "id": "nVkt2",
-                          "fill": "#FFFFFF",
-                          "content": "四岔路口",
-                          "fontFamily": "Inter",
-                          "fontSize": 11,
-                          "fontWeight": "600"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "text",
-                      "id": "z7C76",
-                      "fill": "#AAAAAA",
-                      "content": "→",
-                      "fontFamily": "Inter",
-                      "fontSize": 11,
-                      "fontWeight": "normal"
-                    },
-                    {
-                      "type": "frame",
-                      "id": "Cy23L",
-                      "name": "n3b",
-                      "fill": "#9B9B9B",
-                      "cornerRadius": 6,
-                      "padding": [
-                        4,
-                        8
-                      ],
-                      "children": [
-                        {
-                          "type": "text",
-                          "id": "oQE3f",
-                          "fill": "#FFFFFF",
-                          "content": "尖山登山口",
-                          "fontFamily": "Inter",
-                          "fontSize": 11,
-                          "fontWeight": "600"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "text",
-                      "id": "G4nhz",
-                      "fill": "#AAAAAA",
-                      "content": "→",
-                      "fontFamily": "Inter",
-                      "fontSize": 11,
-                      "fontWeight": "normal"
-                    },
-                    {
-                      "type": "frame",
-                      "id": "FIEtG",
-                      "name": "n3c",
-                      "fill": "#2D5E3A",
-                      "cornerRadius": 6,
-                      "padding": [
-                        4,
-                        8
-                      ],
-                      "children": [
-                        {
-                          "type": "text",
-                          "id": "FMzcy",
-                          "fill": "#FFFFFF",
-                          "content": "塔芬谷山屋",
-                          "fontFamily": "Inter",
-                          "fontSize": 11,
-                          "fontWeight": "600"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "text",
-                      "id": "Tjytn",
-                      "fill": "#AAAAAA",
-                      "content": "→",
-                      "fontFamily": "Inter",
-                      "fontSize": 11,
-                      "fontWeight": "normal"
-                    },
-                    {
-                      "type": "frame",
-                      "id": "exo5P",
-                      "name": "n3d",
-                      "fill": "#2D5E3A",
-                      "cornerRadius": 6,
-                      "padding": [
-                        4,
-                        8
-                      ],
-                      "children": [
-                        {
-                          "type": "text",
-                          "id": "m4jOk",
-                          "fill": "#FFFFFF",
-                          "content": "轆轆山屋",
-                          "fontFamily": "Inter",
-                          "fontSize": 11,
-                          "fontWeight": "600"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "ekeo4",
-                  "name": "gR4",
-                  "width": "fill_container",
-                  "gap": 4,
-                  "alignItems": "center",
-                  "children": [
-                    {
-                      "type": "frame",
-                      "id": "2xhB2",
-                      "name": "n4a",
-                      "fill": "#2D5E3A",
-                      "cornerRadius": 6,
-                      "padding": [
-                        4,
-                        8
-                      ],
-                      "children": [
-                        {
-                          "type": "text",
-                          "id": "ioCIb",
-                          "fill": "#FFFFFF",
-                          "content": "拉庫音溪山屋",
-                          "fontFamily": "Inter",
-                          "fontSize": 11,
-                          "fontWeight": "600"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "text",
-                      "id": "KXcxy",
-                      "fill": "#AAAAAA",
-                      "content": "→",
-                      "fontFamily": "Inter",
-                      "fontSize": 11,
-                      "fontWeight": "normal"
-                    },
-                    {
-                      "type": "frame",
-                      "id": "jafK0",
-                      "name": "n4b",
-                      "fill": "#9B9B9B",
-                      "cornerRadius": 6,
-                      "padding": [
-                        4,
-                        8
-                      ],
-                      "children": [
-                        {
-                          "type": "text",
-                          "id": "k7DwU",
-                          "fill": "#FFFFFF",
-                          "content": "三叉山登山口",
-                          "fontFamily": "Inter",
-                          "fontSize": 11,
-                          "fontWeight": "600"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "text",
-                      "id": "ILXeD",
-                      "fill": "#AAAAAA",
-                      "content": "→",
-                      "fontFamily": "Inter",
-                      "fontSize": 11,
-                      "fontWeight": "normal"
-                    },
-                    {
-                      "type": "frame",
-                      "id": "aYSdv",
-                      "name": "n4c",
-                      "fill": "#2D5E3A",
-                      "cornerRadius": 6,
-                      "padding": [
-                        4,
-                        8
-                      ],
-                      "children": [
-                        {
-                          "type": "text",
-                          "id": "nJZVN",
-                          "fill": "#FFFFFF",
-                          "content": "嘉明湖避難山屋",
-                          "fontFamily": "Inter",
-                          "fontSize": 11,
-                          "fontWeight": "600"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "text",
-                      "id": "2OjFP",
-                      "fill": "#AAAAAA",
-                      "content": "→",
-                      "fontFamily": "Inter",
-                      "fontSize": 11,
-                      "fontWeight": "normal"
-                    },
-                    {
-                      "type": "frame",
-                      "id": "BO4TB",
-                      "name": "n4d",
-                      "fill": "#2D5E3A",
-                      "cornerRadius": 6,
-                      "padding": [
-                        4,
-                        8
-                      ],
-                      "children": [
-                        {
-                          "type": "text",
-                          "id": "eOMSL",
-                          "fill": "#FFFFFF",
-                          "content": "向陽工作站",
-                          "fontFamily": "Inter",
-                          "fontSize": 11,
-                          "fontWeight": "600"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "type": "rectangle",
-                  "id": "q3Uxx",
-                  "name": "peaksSep",
-                  "fill": "#D4E4C8",
-                  "width": "fill_container",
-                  "height": 1
-                },
-                {
-                  "type": "text",
-                  "id": "Dbo5G",
-                  "fill": "#7A9A80",
-                  "content": "▲  Side Peaks",
-                  "fontFamily": "Inter",
-                  "fontSize": 11,
-                  "fontWeight": "700",
-                  "letterSpacing": 0.5
-                },
-                {
-                  "type": "frame",
-                  "id": "zg9N8",
-                  "name": "peaksRow",
-                  "width": "fill_container",
-                  "gap": 6,
-                  "alignItems": "center",
-                  "children": [
-                    {
-                      "type": "frame",
-                      "id": "jv73C",
-                      "name": "pk1",
-                      "fill": "#E6B020",
-                      "cornerRadius": 6,
-                      "padding": [
-                        4,
-                        8
-                      ],
-                      "children": [
-                        {
-                          "type": "text",
-                          "id": "dfSNS",
-                          "fill": "#1A1A00",
-                          "content": "八通關山",
-                          "fontFamily": "Inter",
-                          "fontSize": 11,
-                          "fontWeight": "600"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "frame",
-                      "id": "00Go0",
-                      "name": "pk2",
-                      "fill": "#E6B020",
-                      "cornerRadius": 6,
-                      "padding": [
-                        4,
-                        8
-                      ],
-                      "children": [
-                        {
-                          "type": "text",
-                          "id": "5Ndtw",
-                          "fill": "#1A1A00",
-                          "content": "秀姑巒山",
-                          "fontFamily": "Inter",
-                          "fontSize": 11,
-                          "fontWeight": "600"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "frame",
-                      "id": "F5xKQ",
-                      "name": "pk3",
-                      "fill": "#E6B020",
-                      "cornerRadius": 6,
-                      "padding": [
-                        4,
-                        8
-                      ],
-                      "children": [
-                        {
-                          "type": "text",
-                          "id": "yH1Ox",
-                          "fill": "#1A1A00",
-                          "content": "達芬尖山",
-                          "fontFamily": "Inter",
-                          "fontSize": 11,
-                          "fontWeight": "600"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "frame",
-                      "id": "o3bC1",
-                      "name": "pk4",
-                      "fill": "#E6B020",
-                      "cornerRadius": 6,
-                      "padding": [
-                        4,
-                        8
-                      ],
-                      "children": [
-                        {
-                          "type": "text",
-                          "id": "RU82O",
-                          "fill": "#1A1A00",
-                          "content": "三叉山",
-                          "fontFamily": "Inter",
-                          "fontSize": 11,
-                          "fontWeight": "600"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "frame",
-                      "id": "PqV2o",
-                      "name": "pk5",
-                      "fill": "#E6B020",
-                      "cornerRadius": 6,
-                      "padding": [
-                        4,
-                        8
-                      ],
-                      "children": [
-                        {
-                          "type": "text",
-                          "id": "GMfnQ",
-                          "fill": "#1A1A00",
-                          "content": "向陽山",
-                          "fontFamily": "Inter",
-                          "fontSize": 11,
-                          "fontWeight": "600"
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "frame",
-              "id": "9OumY",
-              "name": "dayPanel",
-              "width": "fill_container",
-              "fill": "#C8DBBC",
-              "cornerRadius": 16,
-              "layout": "vertical",
-              "gap": 12,
-              "padding": 20,
-              "children": [
-                {
-                  "type": "frame",
-                  "id": "kT0ks",
-                  "name": "sumHdr",
-                  "width": "fill_container",
-                  "justifyContent": "space_between",
-                  "alignItems": "center",
-                  "children": [
-                    {
-                      "type": "text",
-                      "id": "rTiUO",
-                      "fill": "#1B3A28",
-                      "content": "Trip Summary",
-                      "fontFamily": "Inter",
-                      "fontSize": 15,
-                      "fontWeight": "700"
-                    },
-                    {
-                      "type": "text",
-                      "id": "cshMG",
-                      "fill": "#4A6B52",
-                      "content": "3 days · ~1970 min total",
-                      "fontFamily": "Inter",
-                      "fontSize": 12,
-                      "fontWeight": "normal"
-                    }
-                  ]
-                },
-                {
-                  "type": "rectangle",
-                  "id": "osHhH",
-                  "fill": "#A8C098",
-                  "width": "fill_container",
-                  "height": 1
-                },
-                {
-                  "type": "frame",
-                  "id": "CnDfV",
-                  "name": "d1",
-                  "width": "fill_container",
-                  "fill": "#FFFFFF",
-                  "cornerRadius": 10,
-                  "padding": [
-                    10,
-                    14
-                  ],
-                  "children": [
-                    {
-                      "type": "text",
-                      "id": "J749N",
-                      "fill": "#1B3A28",
-                      "textGrowth": "fixed-width",
-                      "width": 70,
-                      "content": "Day 1",
-                      "fontFamily": "Inter",
-                      "fontSize": 13,
-                      "fontWeight": "700"
-                    },
-                    {
-                      "type": "text",
-                      "id": "KFADY",
-                      "fill": "#2D5E3A",
-                      "textGrowth": "fixed-width",
-                      "width": "fill_container",
-                      "content": "東埔溫泉 → 雲龍瀑布 → 樂樂山屋 → 觀高坪 → 八通關草原 → 八通關山登山口",
-                      "lineHeight": 1.6,
-                      "fontFamily": "Inter",
-                      "fontSize": 12,
-                      "fontWeight": "normal"
-                    },
-                    {
-                      "type": "frame",
-                      "id": "im8tA",
-                      "name": "tc1",
-                      "width": 150,
-                      "layout": "vertical",
-                      "gap": 2,
-                      "alignItems": "end",
-                      "children": [
-                        {
-                          "type": "text",
-                          "id": "WQJAe",
-                          "fill": "#1B3A28",
-                          "content": "Total: 660 min",
-                          "fontFamily": "Inter",
-                          "fontSize": 12,
-                          "fontWeight": "600"
-                        },
-                        {
-                          "type": "text",
-                          "id": "swBKg",
-                          "fill": "#4A6B52",
-                          "content": "Weighted: ~594 min",
-                          "fontFamily": "Inter",
-                          "fontSize": 11,
-                          "fontWeight": "normal"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "XzNfA",
-                  "name": "d2",
-                  "width": "fill_container",
-                  "fill": "#DDEBD5",
-                  "cornerRadius": 10,
-                  "padding": [
-                    10,
-                    14
-                  ],
-                  "children": [
-                    {
-                      "type": "text",
-                      "id": "ySis1",
-                      "fill": "#1B3A28",
-                      "textGrowth": "fixed-width",
-                      "width": 70,
-                      "content": "Day 2",
-                      "fontFamily": "Inter",
-                      "fontSize": 13,
-                      "fontWeight": "700"
-                    },
-                    {
-                      "type": "text",
-                      "id": "cB5kU",
-                      "fill": "#2D5E3A",
-                      "textGrowth": "fixed-width",
-                      "width": "fill_container",
-                      "content": "八通關山登山口 → 巴奈伊克山屋 → 白洋金礦山屋 → 秀姑坪 → 大水窟山 → 大水窟山屋",
-                      "lineHeight": 1.6,
-                      "fontFamily": "Inter",
-                      "fontSize": 12,
-                      "fontWeight": "normal"
-                    },
-                    {
-                      "type": "frame",
-                      "id": "9xK7U",
-                      "name": "tc2",
-                      "width": 150,
-                      "layout": "vertical",
-                      "gap": 2,
-                      "alignItems": "end",
-                      "children": [
-                        {
-                          "type": "text",
-                          "id": "Lsr8U",
-                          "fill": "#1B3A28",
-                          "content": "Total: 590 min",
-                          "fontFamily": "Inter",
-                          "fontSize": 12,
-                          "fontWeight": "600"
-                        },
-                        {
-                          "type": "text",
-                          "id": "IWv24",
-                          "fill": "#4A6B52",
-                          "content": "Weighted: ~531 min",
-                          "fontFamily": "Inter",
-                          "fontSize": 11,
-                          "fontWeight": "normal"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "uamx1",
-                  "name": "d3",
-                  "width": "fill_container",
-                  "fill": "#FFFFFF",
-                  "cornerRadius": 10,
-                  "padding": [
-                    10,
-                    14
-                  ],
-                  "children": [
-                    {
-                      "type": "text",
-                      "id": "mXogz",
-                      "fill": "#1B3A28",
-                      "textGrowth": "fixed-width",
-                      "width": 70,
-                      "content": "Day 3",
-                      "fontFamily": "Inter",
-                      "fontSize": 13,
-                      "fontWeight": "700"
-                    },
-                    {
-                      "type": "text",
-                      "id": "HLepV",
-                      "fill": "#2D5E3A",
-                      "textGrowth": "fixed-width",
-                      "width": "fill_container",
-                      "content": "大水窟山屋 → 四岔路口 → 尖山登山口 → 塔芬谷山屋 → 轆轆山屋 → 拉庫音溪山屋 → 三叉山登山口",
-                      "lineHeight": 1.6,
-                      "fontFamily": "Inter",
-                      "fontSize": 12,
-                      "fontWeight": "normal"
-                    },
-                    {
-                      "type": "frame",
-                      "id": "C3hmh",
-                      "name": "tc3",
-                      "width": 150,
-                      "layout": "vertical",
-                      "gap": 2,
-                      "alignItems": "end",
-                      "children": [
-                        {
-                          "type": "text",
-                          "id": "M51Gk",
-                          "fill": "#1B3A28",
-                          "content": "Total: 720 min",
-                          "fontFamily": "Inter",
-                          "fontSize": 12,
-                          "fontWeight": "600"
-                        },
-                        {
-                          "type": "text",
-                          "id": "JNszJ",
-                          "fill": "#4A6B52",
-                          "content": "Weighted: ~648 min",
-                          "fontFamily": "Inter",
-                          "fontSize": 11,
-                          "fontWeight": "normal"
                         }
                       ]
                     }
@@ -19678,6 +17556,3225 @@
                       "fontWeight": "normal"
                     }
                   ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "slHkP",
+      "x": 2774,
+      "y": 1066,
+      "name": "Mobile — BUILD tab v3",
+      "width": 390,
+      "height": 844,
+      "fill": "#F5F3EE",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "LEuiZ",
+          "name": "mStatusBar",
+          "width": "fill_container",
+          "height": 62,
+          "fill": "#1B3A28",
+          "padding": [
+            16,
+            20,
+            0,
+            20
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "83mtW",
+              "fill": "#FFFFFF",
+              "content": "9:41",
+              "fontFamily": "Inter",
+              "fontSize": 15,
+              "fontWeight": "600"
+            },
+            {
+              "type": "frame",
+              "id": "mSZyy",
+              "name": "mStatusRight",
+              "gap": 6,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "xsik4",
+                  "width": 16,
+                  "height": 16,
+                  "iconFontName": "signal",
+                  "iconFontFamily": "lucide",
+                  "fill": "#FFFFFF"
+                },
+                {
+                  "type": "icon_font",
+                  "id": "7s2Dc",
+                  "width": 16,
+                  "height": 16,
+                  "iconFontName": "wifi",
+                  "iconFontFamily": "lucide",
+                  "fill": "#FFFFFF"
+                },
+                {
+                  "type": "icon_font",
+                  "id": "zWoPy",
+                  "width": 16,
+                  "height": 16,
+                  "iconFontName": "battery-full",
+                  "iconFontFamily": "lucide",
+                  "fill": "#FFFFFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "S6lTC",
+          "name": "mHeader",
+          "width": "fill_container",
+          "height": 52,
+          "fill": "#1B3A28",
+          "padding": [
+            0,
+            16
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "aXaGc",
+              "name": "mHeaderLeft",
+              "gap": 8,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "vm0Xa",
+                  "name": "backIcon",
+                  "width": 20,
+                  "height": 20,
+                  "iconFontName": "chevron-left",
+                  "iconFontFamily": "lucide",
+                  "fill": "#FFFFFF"
+                },
+                {
+                  "type": "icon_font",
+                  "id": "I7vZe",
+                  "width": 18,
+                  "height": 18,
+                  "iconFontName": "mountain",
+                  "iconFontFamily": "lucide",
+                  "fill": "#FFFFFF"
+                },
+                {
+                  "type": "text",
+                  "id": "P9AIr",
+                  "fill": "#FFFFFF",
+                  "content": "Trail Builder",
+                  "fontFamily": "Inter",
+                  "fontSize": 16,
+                  "fontWeight": "700"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "DxieT",
+              "name": "mHeaderRight",
+              "gap": 8,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "4rCvU",
+                  "name": "mRouteBtn",
+                  "fill": "#2D5E3A",
+                  "cornerRadius": 9999,
+                  "gap": 6,
+                  "padding": [
+                    7,
+                    10
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "dkTEq",
+                      "width": 14,
+                      "height": 14,
+                      "iconFontName": "layers",
+                      "iconFontFamily": "lucide",
+                      "fill": "#FFFFFF"
+                    },
+                    {
+                      "type": "text",
+                      "id": "VkezT",
+                      "fill": "#FFFFFF",
+                      "content": "路線",
+                      "fontFamily": "Inter",
+                      "fontSize": 11,
+                      "fontWeight": "600"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "8wbHy",
+                  "name": "mMapBtn",
+                  "fill": "#2D5E3A",
+                  "cornerRadius": 9999,
+                  "padding": [
+                    7,
+                    10
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "Njb1y",
+                      "width": 16,
+                      "height": 16,
+                      "iconFontName": "map",
+                      "iconFontFamily": "lucide",
+                      "fill": "#FFFFFF"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "0gvRP",
+                  "name": "mSummaryBtn",
+                  "fill": "#2D5E3A",
+                  "cornerRadius": 9999,
+                  "gap": 6,
+                  "padding": [
+                    7,
+                    10
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "xCRZo",
+                      "width": 14,
+                      "height": 14,
+                      "iconFontName": "list",
+                      "iconFontFamily": "lucide",
+                      "fill": "#FFFFFF"
+                    },
+                    {
+                      "type": "text",
+                      "id": "pB0dn",
+                      "fill": "#FFFFFF",
+                      "content": "摘要",
+                      "fontFamily": "Inter",
+                      "fontSize": 11,
+                      "fontWeight": "600"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "ddotb",
+          "name": "mContent",
+          "clip": true,
+          "width": "fill_container",
+          "height": "fill_container",
+          "fill": "#F5F3EE",
+          "layout": "vertical",
+          "gap": 12,
+          "padding": 16,
+          "children": [
+            {
+              "type": "frame",
+              "id": "lxvxy",
+              "name": "mDayRow",
+              "width": "fill_container",
+              "gap": 8,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "fK8Rh",
+                  "name": "mDay1",
+                  "fill": "#1B3A28",
+                  "cornerRadius": 9999,
+                  "padding": [
+                    8,
+                    14
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "DvePp",
+                      "fill": "#FFFFFF",
+                      "content": "Day 1",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "700"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "4iiMf",
+                  "name": "mDay2",
+                  "fill": "#C8DBBC",
+                  "cornerRadius": 9999,
+                  "padding": [
+                    8,
+                    14
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "b9FOR",
+                      "fill": "#1B3A28",
+                      "content": "Day 2",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "600"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "Vvxid",
+                  "name": "mDay3",
+                  "fill": "#C8DBBC",
+                  "cornerRadius": 9999,
+                  "padding": [
+                    8,
+                    14
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "kvU2c",
+                      "fill": "#1B3A28",
+                      "content": "Day 3",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "600"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "VuZPL",
+                  "name": "mAddBtn",
+                  "fill": "#B8CEAA",
+                  "cornerRadius": 9999,
+                  "gap": 4,
+                  "padding": [
+                    8,
+                    12
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "1cLtB",
+                      "width": 12,
+                      "height": 12,
+                      "iconFontName": "plus",
+                      "iconFontFamily": "lucide",
+                      "fill": "#4A6B52"
+                    },
+                    {
+                      "type": "text",
+                      "id": "PKWnz",
+                      "fill": "#4A6B52",
+                      "content": "Add",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "600"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "0FTZA",
+              "name": "mPaceRow",
+              "width": "fill_container",
+              "justifyContent": "space_between",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "8hQQy",
+                  "fill": "#7A9A80",
+                  "content": "PACE",
+                  "fontFamily": "Inter",
+                  "fontSize": 10,
+                  "fontWeight": "700",
+                  "letterSpacing": 1
+                },
+                {
+                  "type": "frame",
+                  "id": "O8AKu",
+                  "name": "mPaceCtrl",
+                  "gap": 8,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "KNHjh",
+                      "name": "mMinusBtn",
+                      "width": 28,
+                      "height": 28,
+                      "fill": "#C8DBBC",
+                      "cornerRadius": 9999,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon_font",
+                          "id": "DDcJN",
+                          "width": 12,
+                          "height": 12,
+                          "iconFontName": "minus",
+                          "iconFontFamily": "lucide",
+                          "fill": "#1B3A28"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "o66gy",
+                      "fill": "#1B3A28",
+                      "content": "× 0.9",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "7eaH5",
+                      "name": "mPlusBtn",
+                      "width": 28,
+                      "height": 28,
+                      "fill": "#C8DBBC",
+                      "cornerRadius": 9999,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon_font",
+                          "id": "3Ij0e",
+                          "width": 12,
+                          "height": 12,
+                          "iconFontName": "plus",
+                          "iconFontFamily": "lucide",
+                          "fill": "#1B3A28"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "nScdp",
+              "name": "mStartRow",
+              "width": "fill_container",
+              "gap": 10,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "TJ89d",
+                  "fill": "#4A6B52",
+                  "content": "Starting Point",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "frame",
+                  "id": "BUPU6",
+                  "name": "mDropdown",
+                  "width": "fill_container",
+                  "height": 40,
+                  "fill": "#FFFFFF",
+                  "cornerRadius": 10,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "#C8DBBC"
+                  },
+                  "padding": [
+                    0,
+                    14
+                  ],
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "wlmed",
+                      "fill": "#1B3A28",
+                      "content": "東埔溫泉",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "icon_font",
+                      "id": "osdOO",
+                      "width": 16,
+                      "height": 16,
+                      "iconFontName": "chevron-down",
+                      "iconFontFamily": "lucide",
+                      "fill": "#7A9A80"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "DqcMl",
+              "name": "mRouteStrip",
+              "width": "fill_container",
+              "fill": "#F5F3EE",
+              "cornerRadius": 10,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "#C8DBBC"
+              },
+              "gap": 12,
+              "padding": [
+                10,
+                12
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "OxbZE",
+                  "name": "stripLeft",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 6,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "6FwzR",
+                      "fill": "#7A9A80",
+                      "content": "TODAY'S ROUTE",
+                      "fontFamily": "Inter",
+                      "fontSize": 9,
+                      "fontWeight": "700",
+                      "letterSpacing": 1
+                    },
+                    {
+                      "type": "frame",
+                      "id": "S7U07",
+                      "name": "chipRow",
+                      "gap": 4,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "MBSBE",
+                          "name": "chip1",
+                          "fill": "#D4E4C8",
+                          "cornerRadius": 4,
+                          "padding": [
+                            3,
+                            8
+                          ],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "mb99m",
+                              "fill": "#1B3A28",
+                              "content": "東埔溫泉",
+                              "fontFamily": "Inter",
+                              "fontSize": 11,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "8FrvE",
+                          "fill": "#9DB39F",
+                          "content": "→",
+                          "fontFamily": "Inter",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "ApLRN",
+                          "name": "chip2",
+                          "fill": "#D4E4C8",
+                          "cornerRadius": 4,
+                          "padding": [
+                            3,
+                            8
+                          ],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "V0X8i",
+                              "fill": "#1B3A28",
+                              "content": "雲龍瀑布",
+                              "fontFamily": "Inter",
+                              "fontSize": 11,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "DXqRf",
+                          "fill": "#9DB39F",
+                          "content": "→",
+                          "fontFamily": "Inter",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "GIvYf",
+                          "name": "chip3",
+                          "fill": "#1B3A28",
+                          "cornerRadius": 4,
+                          "padding": [
+                            3,
+                            8
+                          ],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "5gKBw",
+                              "fill": "#FFFFFF",
+                              "content": "八通關山登山口",
+                              "fontFamily": "Inter",
+                              "fontSize": 11,
+                              "fontWeight": "600"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "07z3U",
+                  "name": "stripRight",
+                  "width": 80,
+                  "layout": "vertical",
+                  "gap": 2,
+                  "alignItems": "end",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "xZVCs",
+                      "fill": "#2D5E3A",
+                      "content": "3h 20m",
+                      "fontFamily": "Inter",
+                      "fontSize": 20,
+                      "fontWeight": "800"
+                    },
+                    {
+                      "type": "text",
+                      "id": "LKZlt",
+                      "fill": "#7A9A80",
+                      "content": "× 0.9 = 3h 00m",
+                      "fontFamily": "Inter",
+                      "fontSize": 10,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "lrWPw",
+              "name": "mCurCard",
+              "width": "fill_container",
+              "fill": "#1B3A28",
+              "cornerRadius": 14,
+              "layout": "vertical",
+              "gap": 6,
+              "padding": 16,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "CuimR",
+                  "fill": "#7A9A80",
+                  "content": "CURRENT NODE",
+                  "fontFamily": "Inter",
+                  "fontSize": 10,
+                  "fontWeight": "700",
+                  "letterSpacing": 1
+                },
+                {
+                  "type": "frame",
+                  "id": "OLagp",
+                  "name": "curMainRow",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "xkmpn",
+                      "fill": "#FFFFFF",
+                      "content": "八通關山登山口",
+                      "fontFamily": "Inter",
+                      "fontSize": 20,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "4vSKI",
+                      "name": "forkBadge",
+                      "fill": "#2D5E3A",
+                      "cornerRadius": 9999,
+                      "padding": [
+                        5,
+                        12
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "BNorV",
+                          "fill": "#FFFFFF",
+                          "content": "fork",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "bRg09",
+              "name": "mBackLabel",
+              "gap": 4,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "zx1oi",
+                  "width": 13,
+                  "height": 13,
+                  "iconFontName": "arrow-left",
+                  "iconFontFamily": "lucide",
+                  "fill": "#7A9A80"
+                },
+                {
+                  "type": "text",
+                  "id": "QNVtH",
+                  "fill": "#7A9A80",
+                  "content": "往回走",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontWeight": "600"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "qdYEb",
+              "name": "mBackCard",
+              "opacity": 0.8,
+              "width": "fill_container",
+              "fill": "#E8E5DC",
+              "cornerRadius": 12,
+              "gap": 10,
+              "padding": 14,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "up0Zh",
+                  "name": "mBackInfo",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 2,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "bQ6Te",
+                      "fill": "#1B3A28",
+                      "content": "樂樂山屋",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "WZ8zp",
+                      "fill": "#7A9A80",
+                      "content": "hut · 45 min",
+                      "fontFamily": "Inter",
+                      "fontSize": 11,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "icon_font",
+                  "id": "APlJk",
+                  "width": 16,
+                  "height": 16,
+                  "iconFontName": "chevron-right",
+                  "iconFontFamily": "lucide",
+                  "fill": "#7A9A80"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "GNaw1",
+              "name": "mFwdLabel",
+              "gap": 4,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "YFgRg",
+                  "fill": "#2D5E3A",
+                  "content": "繼續走",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "icon_font",
+                  "id": "AAQBQ",
+                  "width": 13,
+                  "height": 13,
+                  "iconFontName": "arrow-right",
+                  "iconFontFamily": "lucide",
+                  "fill": "#2D5E3A"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "ganIJ",
+              "name": "mFwd1",
+              "width": "fill_container",
+              "fill": "#FFFFFF",
+              "cornerRadius": 12,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1.5,
+                "fill": "#C8DBBC"
+              },
+              "gap": 10,
+              "padding": 14,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "nezcw",
+                  "name": "mFwd1Info",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 2,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "dfOOP",
+                      "fill": "#1B3A28",
+                      "content": "八通關山",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "5xF25",
+                      "fill": "#2D5E3A",
+                      "content": "peak · 80 min",
+                      "fontFamily": "Inter",
+                      "fontSize": 11,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "icon_font",
+                  "id": "TjTUg",
+                  "width": 16,
+                  "height": 16,
+                  "iconFontName": "chevron-right",
+                  "iconFontFamily": "lucide",
+                  "fill": "#4A6B52"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "fMBcp",
+              "name": "mFwd2",
+              "width": "fill_container",
+              "fill": "#FFFFFF",
+              "cornerRadius": 12,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1.5,
+                "fill": "#C8DBBC"
+              },
+              "gap": 10,
+              "padding": 14,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "OObJ8",
+                  "name": "mFwd2Info",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 2,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "OmW8z",
+                      "fill": "#1B3A28",
+                      "content": "巴奈伊克山屋",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "t7IBM",
+                      "fill": "#4A6B52",
+                      "content": "hut · 30 min",
+                      "fontFamily": "Inter",
+                      "fontSize": 11,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "icon_font",
+                  "id": "vb82W",
+                  "width": 16,
+                  "height": 16,
+                  "iconFontName": "chevron-right",
+                  "iconFontFamily": "lucide",
+                  "fill": "#4A6B52"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "eN0sK",
+              "name": "mUndoRow",
+              "width": "fill_container",
+              "gap": 6,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "ubgua",
+                  "width": 13,
+                  "height": 13,
+                  "iconFontName": "undo-2",
+                  "iconFontFamily": "lucide",
+                  "fill": "#7A9A80"
+                },
+                {
+                  "type": "text",
+                  "id": "5IVEK",
+                  "fill": "#7A9A80",
+                  "content": "Undo last step",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "3IEPX",
+              "name": "mFinishBtn",
+              "width": "fill_container",
+              "height": 50,
+              "fill": "#2D5E3A",
+              "cornerRadius": 14,
+              "gap": 8,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "JpmE3",
+                  "width": 16,
+                  "height": 16,
+                  "iconFontName": "check",
+                  "iconFontFamily": "lucide",
+                  "fill": "#FFFFFF"
+                },
+                {
+                  "type": "text",
+                  "id": "wFv9c",
+                  "fill": "#FFFFFF",
+                  "content": "完成路線",
+                  "fontFamily": "Inter",
+                  "fontSize": 15,
+                  "fontWeight": "700"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "9pgCt",
+      "x": 3204,
+      "y": 1066,
+      "name": "Mobile — Summary Sheet",
+      "width": 390,
+      "height": 844,
+      "fill": "#F5F3EE",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "mN3Tm",
+          "name": "mStatusBar",
+          "width": "fill_container",
+          "height": 62,
+          "fill": "#1B3A28",
+          "padding": [
+            16,
+            20,
+            0,
+            20
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "mX0pE",
+              "fill": "#FFFFFF",
+              "content": "9:41",
+              "fontFamily": "Inter",
+              "fontSize": 15,
+              "fontWeight": "600"
+            },
+            {
+              "type": "frame",
+              "id": "0FU53",
+              "name": "mStatusRight",
+              "gap": 6,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "m8Jgo",
+                  "width": 16,
+                  "height": 16,
+                  "iconFontName": "signal",
+                  "iconFontFamily": "lucide",
+                  "fill": "#FFFFFF"
+                },
+                {
+                  "type": "icon_font",
+                  "id": "8CqOT",
+                  "width": 16,
+                  "height": 16,
+                  "iconFontName": "wifi",
+                  "iconFontFamily": "lucide",
+                  "fill": "#FFFFFF"
+                },
+                {
+                  "type": "icon_font",
+                  "id": "r7qGL",
+                  "width": 16,
+                  "height": 16,
+                  "iconFontName": "battery-full",
+                  "iconFontFamily": "lucide",
+                  "fill": "#FFFFFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "W6uG8",
+          "name": "mHeader",
+          "width": "fill_container",
+          "height": 52,
+          "fill": "#1B3A28",
+          "padding": [
+            0,
+            16
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "dgNJx",
+              "name": "mHeaderLeft",
+              "gap": 8,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "Yf1Ow",
+                  "width": 18,
+                  "height": 18,
+                  "iconFontName": "list",
+                  "iconFontFamily": "lucide",
+                  "fill": "#FFFFFF"
+                },
+                {
+                  "type": "text",
+                  "id": "qWJRh",
+                  "fill": "#FFFFFF",
+                  "content": "Trip Summary",
+                  "fontFamily": "Inter",
+                  "fontSize": 16,
+                  "fontWeight": "700"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "JwYVj",
+              "name": "mCloseBtn",
+              "width": 32,
+              "height": 32,
+              "fill": "#2D5E3A",
+              "cornerRadius": 9999,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "qhD8e",
+                  "width": 16,
+                  "height": 16,
+                  "iconFontName": "x",
+                  "iconFontFamily": "lucide",
+                  "fill": "#FFFFFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "vNZKX",
+          "name": "mContent",
+          "width": "fill_container",
+          "height": "fill_container",
+          "fill": "#F5F3EE",
+          "layout": "vertical",
+          "gap": 12,
+          "padding": 16,
+          "children": [
+            {
+              "type": "frame",
+              "id": "LrR2X",
+              "name": "mSummaryHdr",
+              "width": "fill_container",
+              "justifyContent": "space_between",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "f2myh",
+                  "fill": "#4A6B52",
+                  "content": "TRIP SUMMARY",
+                  "fontFamily": "Inter",
+                  "fontSize": 11,
+                  "fontWeight": "700",
+                  "letterSpacing": 1
+                },
+                {
+                  "type": "text",
+                  "id": "PMGGN",
+                  "fill": "#7A9A80",
+                  "content": "3 days",
+                  "fontFamily": "Inter",
+                  "fontSize": 11,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "aqted",
+              "name": "mSummaryTable",
+              "width": "fill_container",
+              "fill": "#FFFFFF",
+              "cornerRadius": 14,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "#E8E4DC"
+              },
+              "layout": "vertical",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "gSj8P",
+                  "name": "tblHdr",
+                  "width": "fill_container",
+                  "fill": "#F5F3EE",
+                  "cornerRadius": [
+                    14,
+                    14,
+                    0,
+                    0
+                  ],
+                  "padding": [
+                    10,
+                    14
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "TkhWe",
+                      "fill": "#7A9A80",
+                      "textGrowth": "fixed-width",
+                      "width": 36,
+                      "content": "Day",
+                      "fontFamily": "Inter",
+                      "fontSize": 10,
+                      "fontWeight": "700",
+                      "letterSpacing": 0.5
+                    },
+                    {
+                      "type": "text",
+                      "id": "UmR4B",
+                      "fill": "#7A9A80",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Route",
+                      "fontFamily": "Inter",
+                      "fontSize": 10,
+                      "fontWeight": "700",
+                      "letterSpacing": 0.5
+                    },
+                    {
+                      "type": "text",
+                      "id": "0I1H4",
+                      "fill": "#7A9A80",
+                      "textGrowth": "fixed-width",
+                      "width": 52,
+                      "content": "Time",
+                      "textAlign": "right",
+                      "fontFamily": "Inter",
+                      "fontSize": 10,
+                      "fontWeight": "700",
+                      "letterSpacing": 0.5
+                    },
+                    {
+                      "type": "text",
+                      "id": "YguAC",
+                      "fill": "#7A9A80",
+                      "textGrowth": "fixed-width",
+                      "width": 52,
+                      "content": "×0.9",
+                      "textAlign": "right",
+                      "fontFamily": "Inter",
+                      "fontSize": 10,
+                      "fontWeight": "700",
+                      "letterSpacing": 0.5
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "3shGw",
+                  "name": "div0",
+                  "width": "fill_container",
+                  "height": 1,
+                  "fill": "#E8E4DC"
+                },
+                {
+                  "type": "frame",
+                  "id": "xtKZE",
+                  "name": "r1",
+                  "width": "fill_container",
+                  "stroke": {
+                    "align": "outside",
+                    "thickness": {
+                      "bottom": 1
+                    },
+                    "fill": "#F0EDE5"
+                  },
+                  "padding": [
+                    12,
+                    14
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "ZFUwj",
+                      "fill": "#1B3A28",
+                      "textGrowth": "fixed-width",
+                      "width": 36,
+                      "content": "1",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "VyTTs",
+                      "fill": "#4A6B52",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "東埔→雲龍→觀高→八通關",
+                      "fontFamily": "Inter",
+                      "fontSize": 11,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "hFqYv",
+                      "fill": "#1B3A28",
+                      "textGrowth": "fixed-width",
+                      "width": 52,
+                      "content": "6h 20m",
+                      "textAlign": "right",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "LfPKL",
+                      "fill": "#7A9A80",
+                      "textGrowth": "fixed-width",
+                      "width": 52,
+                      "content": "5h 41m",
+                      "textAlign": "right",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "HXL70",
+                  "name": "r2",
+                  "width": "fill_container",
+                  "stroke": {
+                    "align": "outside",
+                    "thickness": {
+                      "bottom": 1
+                    },
+                    "fill": "#F0EDE5"
+                  },
+                  "padding": [
+                    12,
+                    14
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "CtWoT",
+                      "fill": "#1B3A28",
+                      "textGrowth": "fixed-width",
+                      "width": 36,
+                      "content": "2",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "EdQk5",
+                      "fill": "#4A6B52",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "八通關→牛望山→秀姑巒",
+                      "fontFamily": "Inter",
+                      "fontSize": 11,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "v7LDw",
+                      "fill": "#E6700A",
+                      "textGrowth": "fixed-width",
+                      "width": 52,
+                      "content": "7h 10m",
+                      "textAlign": "right",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "fJsXF",
+                      "fill": "#7A9A80",
+                      "textGrowth": "fixed-width",
+                      "width": 52,
+                      "content": "6h 27m",
+                      "textAlign": "right",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "Dk4Ae",
+                  "name": "r3",
+                  "width": "fill_container",
+                  "padding": [
+                    12,
+                    14
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "dANtA",
+                      "fill": "#1B3A28",
+                      "textGrowth": "fixed-width",
+                      "width": 36,
+                      "content": "3",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "qI7m2",
+                      "fill": "#7A9A80",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "秀姑巒→馬博→馬洗",
+                      "fontFamily": "Inter",
+                      "fontSize": 11,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "AWrf2",
+                      "fill": "#9DB39F",
+                      "textGrowth": "fixed-width",
+                      "width": 52,
+                      "content": "—",
+                      "textAlign": "right",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "TRyCr",
+                      "fill": "#9DB39F",
+                      "textGrowth": "fixed-width",
+                      "width": 52,
+                      "content": "—",
+                      "textAlign": "right",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "DAx7T",
+                  "name": "divTotal",
+                  "width": "fill_container",
+                  "height": 1,
+                  "fill": "#C8DBBC"
+                },
+                {
+                  "type": "frame",
+                  "id": "YQG0Q",
+                  "name": "rTotal",
+                  "width": "fill_container",
+                  "fill": "#F5F3EE",
+                  "cornerRadius": [
+                    0,
+                    0,
+                    14,
+                    14
+                  ],
+                  "padding": [
+                    12,
+                    14
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "FIrLx",
+                      "fill": "#1B3A28",
+                      "textGrowth": "fixed-width",
+                      "width": 36,
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "yaOFM",
+                      "fill": "#4A6B52",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "TOTAL",
+                      "fontFamily": "Inter",
+                      "fontSize": 11,
+                      "fontWeight": "700",
+                      "letterSpacing": 0.5
+                    },
+                    {
+                      "type": "text",
+                      "id": "V3H1Y",
+                      "fill": "#1B3A28",
+                      "textGrowth": "fixed-width",
+                      "width": 52,
+                      "content": "13h 30m",
+                      "textAlign": "right",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "zVf9K",
+                      "fill": "#4A6B52",
+                      "textGrowth": "fixed-width",
+                      "width": 52,
+                      "content": "12h 08m",
+                      "textAlign": "right",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "700"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "bLQFV",
+      "x": 1480,
+      "y": 1066,
+      "name": "Mobile — Has Trips",
+      "width": 390,
+      "height": 844,
+      "fill": "#F5F3EE",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "PUbhK",
+          "name": "mStatusBar",
+          "width": "fill_container",
+          "height": 62,
+          "fill": "#1B3A28",
+          "padding": [
+            16,
+            20,
+            0,
+            20
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "E2fJg",
+              "fill": "#FFFFFF",
+              "content": "9:41",
+              "fontFamily": "Inter",
+              "fontSize": 15,
+              "fontWeight": "600"
+            },
+            {
+              "type": "frame",
+              "id": "oFqnt",
+              "name": "sr4",
+              "gap": 6,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "CSETw",
+                  "width": 16,
+                  "height": 16,
+                  "iconFontName": "signal",
+                  "iconFontFamily": "lucide",
+                  "fill": "#FFFFFF"
+                },
+                {
+                  "type": "icon_font",
+                  "id": "E22CF",
+                  "width": 16,
+                  "height": 16,
+                  "iconFontName": "wifi",
+                  "iconFontFamily": "lucide",
+                  "fill": "#FFFFFF"
+                },
+                {
+                  "type": "icon_font",
+                  "id": "ghaH8",
+                  "width": 16,
+                  "height": 16,
+                  "iconFontName": "battery-full",
+                  "iconFontFamily": "lucide",
+                  "fill": "#FFFFFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "0v8DQ",
+          "name": "mHeader",
+          "width": "fill_container",
+          "height": 52,
+          "fill": "#1B3A28",
+          "padding": [
+            0,
+            16
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "vyKhQ",
+              "name": "mHeaderLeft",
+              "gap": 8,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "b5biW",
+                  "width": 18,
+                  "height": 18,
+                  "iconFontName": "mountain",
+                  "iconFontFamily": "lucide",
+                  "fill": "#FFFFFF"
+                },
+                {
+                  "type": "text",
+                  "id": "1or8S",
+                  "fill": "#FFFFFF",
+                  "content": "Trail Builder",
+                  "fontFamily": "Inter",
+                  "fontSize": 16,
+                  "fontWeight": "700"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "aCWHu",
+              "name": "mNewTripBtn",
+              "fill": "#2D5E3A",
+              "cornerRadius": 9999,
+              "gap": 6,
+              "padding": [
+                7,
+                12
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "PlZ0X",
+                  "width": 14,
+                  "height": 14,
+                  "iconFontName": "plus",
+                  "iconFontFamily": "lucide",
+                  "fill": "#FFFFFF"
+                },
+                {
+                  "type": "text",
+                  "id": "86WMp",
+                  "fill": "#FFFFFF",
+                  "content": "New Trip",
+                  "fontFamily": "Inter",
+                  "fontSize": 11,
+                  "fontWeight": "600"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "eMv3b",
+          "name": "mContent",
+          "width": "fill_container",
+          "height": "fill_container",
+          "fill": "#F5F3EE",
+          "layout": "vertical",
+          "gap": 10,
+          "padding": 16,
+          "children": [
+            {
+              "type": "text",
+              "id": "kDRtl",
+              "fill": "#7A9A80",
+              "content": "YOUR TRIPS",
+              "fontFamily": "Inter",
+              "fontSize": 10,
+              "fontWeight": "700",
+              "letterSpacing": 1
+            },
+            {
+              "type": "frame",
+              "id": "eCW9O",
+              "name": "tr1",
+              "width": "fill_container",
+              "fill": "#FFFFFF",
+              "cornerRadius": 14,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "#E8E4DC"
+              },
+              "layout": "vertical",
+              "gap": 10,
+              "padding": 16,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "H2uMp",
+                  "name": "tr1top",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "sSLMQ",
+                      "fill": "#1B3A28",
+                      "content": "南二段規劃",
+                      "fontFamily": "Inter",
+                      "fontSize": 15,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "IPYnD",
+                      "name": "moreBtn",
+                      "width": 32,
+                      "height": 32,
+                      "fill": "#F5F3EE",
+                      "cornerRadius": 9999,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon_font",
+                          "id": "l0zzm",
+                          "width": 16,
+                          "height": 16,
+                          "iconFontName": "ellipsis-vertical",
+                          "iconFontFamily": "lucide",
+                          "fill": "#7A9A80"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "m0iw5",
+                  "name": "tr1meta",
+                  "gap": 12,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "UOmCG",
+                      "fill": "#7A9A80",
+                      "content": "南二段",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "h2s9k",
+                      "fill": "#C8DBBC",
+                      "content": "·",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "cnU50",
+                      "fill": "#7A9A80",
+                      "content": "3 天",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "GkMEq",
+                      "fill": "#C8DBBC",
+                      "content": "·",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "B0yRV",
+                      "fill": "#9DB39F",
+                      "content": "2 天前編輯",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "Zb5UE",
+              "name": "tr2",
+              "width": "fill_container",
+              "fill": "#FFFFFF",
+              "cornerRadius": 14,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "#E8E4DC"
+              },
+              "layout": "vertical",
+              "gap": 10,
+              "padding": 16,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "k10P7",
+                  "name": "tr2top",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "2CnYv",
+                      "fill": "#1B3A28",
+                      "content": "北二段縱走",
+                      "fontFamily": "Inter",
+                      "fontSize": 15,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "eSpnI",
+                      "name": "moreBtn",
+                      "width": 32,
+                      "height": 32,
+                      "fill": "#F5F3EE",
+                      "cornerRadius": 9999,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon_font",
+                          "id": "XIG8S",
+                          "width": 16,
+                          "height": 16,
+                          "iconFontName": "ellipsis-vertical",
+                          "iconFontFamily": "lucide",
+                          "fill": "#7A9A80"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "5ZNLD",
+                  "name": "tr2meta",
+                  "gap": 12,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "RtEiK",
+                      "fill": "#7A9A80",
+                      "content": "北二段",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "fRSVP",
+                      "fill": "#C8DBBC",
+                      "content": "·",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "HnQ3p",
+                      "fill": "#7A9A80",
+                      "content": "4 天",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "uq9cw",
+                      "fill": "#C8DBBC",
+                      "content": "·",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "G2WvY",
+                      "fill": "#9DB39F",
+                      "content": "1 週前編輯",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "TQtQE",
+              "name": "tr3",
+              "width": "fill_container",
+              "fill": "#FFFFFF",
+              "cornerRadius": 14,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "#E8E4DC"
+              },
+              "layout": "vertical",
+              "gap": 10,
+              "padding": 16,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "F6hb8",
+                  "name": "tr3top",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "3z1Vs",
+                      "fill": "#1B3A28",
+                      "content": "奇萊連峰",
+                      "fontFamily": "Inter",
+                      "fontSize": 15,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "3x4YB",
+                      "name": "moreBtn",
+                      "width": 32,
+                      "height": 32,
+                      "fill": "#F5F3EE",
+                      "cornerRadius": 9999,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon_font",
+                          "id": "NruV4",
+                          "width": 16,
+                          "height": 16,
+                          "iconFontName": "ellipsis-vertical",
+                          "iconFontFamily": "lucide",
+                          "fill": "#7A9A80"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "2csVw",
+                  "name": "tr3meta",
+                  "gap": 12,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "H3TPn",
+                      "fill": "#7A9A80",
+                      "content": "奇萊主北",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "SVx7p",
+                      "fill": "#C8DBBC",
+                      "content": "·",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "vbj6M",
+                      "fill": "#7A9A80",
+                      "content": "2 天",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "5fPYy",
+                      "fill": "#C8DBBC",
+                      "content": "·",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "Z7H1v",
+                      "fill": "#9DB39F",
+                      "content": "3 週前編輯",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "yuIjb",
+      "x": 2345,
+      "y": 1066,
+      "name": "Mobile — Trip Preview Sheet",
+      "width": 390,
+      "height": 844,
+      "fill": "#F5F3EE",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "Cjy97",
+          "name": "mStatusBar",
+          "width": "fill_container",
+          "height": 62,
+          "fill": "#1B3A28",
+          "padding": [
+            16,
+            20,
+            0,
+            20
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "d9J6c",
+              "fill": "#FFFFFF",
+              "content": "9:41",
+              "fontFamily": "Inter",
+              "fontSize": 15,
+              "fontWeight": "600"
+            },
+            {
+              "type": "frame",
+              "id": "Op2dv",
+              "name": "sr5",
+              "gap": 6,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "6YMLT",
+                  "width": 16,
+                  "height": 16,
+                  "iconFontName": "signal",
+                  "iconFontFamily": "lucide",
+                  "fill": "#FFFFFF"
+                },
+                {
+                  "type": "icon_font",
+                  "id": "QNmMq",
+                  "width": 16,
+                  "height": 16,
+                  "iconFontName": "wifi",
+                  "iconFontFamily": "lucide",
+                  "fill": "#FFFFFF"
+                },
+                {
+                  "type": "icon_font",
+                  "id": "8RFKZ",
+                  "width": 16,
+                  "height": 16,
+                  "iconFontName": "battery-full",
+                  "iconFontFamily": "lucide",
+                  "fill": "#FFFFFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "3kJqG",
+          "name": "mHeader",
+          "width": "fill_container",
+          "height": 52,
+          "fill": "#1B3A28",
+          "padding": [
+            0,
+            16
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "eCP8j",
+              "name": "mHeaderLeft",
+              "layout": "vertical",
+              "gap": 2,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "pXxzH",
+                  "fill": "#FFFFFF",
+                  "content": "南二段規劃",
+                  "fontFamily": "Inter",
+                  "fontSize": 16,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "VAQAF",
+                  "fill": "#7A9A80",
+                  "content": "3 days · 南二段",
+                  "fontFamily": "Inter",
+                  "fontSize": 11,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "sGRf1",
+              "name": "mCloseBtn",
+              "width": 32,
+              "height": 32,
+              "fill": "#2D5E3A",
+              "cornerRadius": 9999,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "sfhdz",
+                  "width": 16,
+                  "height": 16,
+                  "iconFontName": "x",
+                  "iconFontFamily": "lucide",
+                  "fill": "#FFFFFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "bEXEa",
+          "name": "mContent",
+          "width": "fill_container",
+          "height": "fill_container",
+          "fill": "#F5F3EE",
+          "layout": "vertical",
+          "gap": 12,
+          "padding": 16,
+          "children": [
+            {
+              "type": "frame",
+              "id": "oR5xL",
+              "name": "rowWrapper",
+              "width": "fill_container",
+              "justifyContent": "end",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "bfOI4",
+                  "name": "moreBtn",
+                  "width": 32,
+                  "height": 32,
+                  "fill": "#F5F3EE",
+                  "cornerRadius": 9999,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "QySgp",
+                      "width": 16,
+                      "height": 16,
+                      "iconFontName": "ellipsis-vertical",
+                      "iconFontFamily": "lucide",
+                      "fill": "#7A9A80"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "z2Jbt",
+              "name": "statsRow",
+              "width": "fill_container",
+              "gap": 10,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "othsu",
+                  "name": "statCard1",
+                  "width": "fill_container",
+                  "fill": "#FFFFFF",
+                  "cornerRadius": 12,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "#E8E4DC"
+                  },
+                  "layout": "vertical",
+                  "gap": 4,
+                  "padding": 14,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "MLxil",
+                      "fill": "#7A9A80",
+                      "content": "總時間",
+                      "fontFamily": "Inter",
+                      "fontSize": 10,
+                      "fontWeight": "700",
+                      "letterSpacing": 0.5
+                    },
+                    {
+                      "type": "text",
+                      "id": "pWhQf",
+                      "fill": "#1B3A28",
+                      "content": "13h 30m",
+                      "fontFamily": "Inter",
+                      "fontSize": 20,
+                      "fontWeight": "800"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "UGSHq",
+                  "name": "statCard2",
+                  "width": "fill_container",
+                  "fill": "#FFFFFF",
+                  "cornerRadius": 12,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "#E8E4DC"
+                  },
+                  "layout": "vertical",
+                  "gap": 4,
+                  "padding": 14,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "S1V2z",
+                      "fill": "#7A9A80",
+                      "content": "加權時間 ×0.9",
+                      "fontFamily": "Inter",
+                      "fontSize": 10,
+                      "fontWeight": "700",
+                      "letterSpacing": 0.5
+                    },
+                    {
+                      "type": "text",
+                      "id": "KeYJl",
+                      "fill": "#4A6B52",
+                      "content": "12h 08m",
+                      "fontFamily": "Inter",
+                      "fontSize": 20,
+                      "fontWeight": "800"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "bbcX1",
+              "fill": "#7A9A80",
+              "content": "行程預覽",
+              "fontFamily": "Inter",
+              "fontSize": 10,
+              "fontWeight": "700",
+              "letterSpacing": 1
+            },
+            {
+              "type": "frame",
+              "id": "ITN37",
+              "name": "previewTable",
+              "width": "fill_container",
+              "fill": "#FFFFFF",
+              "cornerRadius": 14,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "#E8E4DC"
+              },
+              "layout": "vertical",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "L2UAp",
+                  "name": "tblHdr",
+                  "width": "fill_container",
+                  "fill": "#F5F3EE",
+                  "cornerRadius": [
+                    14,
+                    14,
+                    0,
+                    0
+                  ],
+                  "padding": [
+                    10,
+                    14
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "tpQju",
+                      "fill": "#7A9A80",
+                      "textGrowth": "fixed-width",
+                      "width": 36,
+                      "content": "Day",
+                      "fontFamily": "Inter",
+                      "fontSize": 10,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "jw6yQ",
+                      "fill": "#7A9A80",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Route",
+                      "fontFamily": "Inter",
+                      "fontSize": 10,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "EDRdA",
+                      "fill": "#7A9A80",
+                      "textGrowth": "fixed-width",
+                      "width": 52,
+                      "content": "Time",
+                      "textAlign": "right",
+                      "fontFamily": "Inter",
+                      "fontSize": 10,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "b9Bnv",
+                      "fill": "#7A9A80",
+                      "textGrowth": "fixed-width",
+                      "width": 52,
+                      "content": "×0.9",
+                      "textAlign": "right",
+                      "fontFamily": "Inter",
+                      "fontSize": 10,
+                      "fontWeight": "700"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "DZUDA",
+                  "width": "fill_container",
+                  "height": 1,
+                  "fill": "#E8E4DC"
+                },
+                {
+                  "type": "frame",
+                  "id": "sYrod",
+                  "name": "pr1",
+                  "width": "fill_container",
+                  "stroke": {
+                    "align": "outside",
+                    "thickness": {
+                      "bottom": 1
+                    },
+                    "fill": "#F0EDE5"
+                  },
+                  "padding": [
+                    12,
+                    14
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "pdRnX",
+                      "fill": "#1B3A28",
+                      "textGrowth": "fixed-width",
+                      "width": 36,
+                      "content": "1",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "YumSb",
+                      "fill": "#4A6B52",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "東埔→雲龍→觀高→八通關",
+                      "fontFamily": "Inter",
+                      "fontSize": 11,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "uG15n",
+                      "fill": "#1B3A28",
+                      "textGrowth": "fixed-width",
+                      "width": 52,
+                      "content": "6h 20m",
+                      "textAlign": "right",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "8qO7D",
+                      "fill": "#7A9A80",
+                      "textGrowth": "fixed-width",
+                      "width": 52,
+                      "content": "5h 41m",
+                      "textAlign": "right",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "51lHC",
+                  "name": "pr2",
+                  "width": "fill_container",
+                  "stroke": {
+                    "align": "outside",
+                    "thickness": {
+                      "bottom": 1
+                    },
+                    "fill": "#F0EDE5"
+                  },
+                  "padding": [
+                    12,
+                    14
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "tTCKd",
+                      "fill": "#1B3A28",
+                      "textGrowth": "fixed-width",
+                      "width": 36,
+                      "content": "2",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "Rdzpk",
+                      "fill": "#4A6B52",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "八通關→牛望山→秀姑巒",
+                      "fontFamily": "Inter",
+                      "fontSize": 11,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "mamzB",
+                      "fill": "#E6700A",
+                      "textGrowth": "fixed-width",
+                      "width": 52,
+                      "content": "7h 10m",
+                      "textAlign": "right",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "hKm9Y",
+                      "fill": "#7A9A80",
+                      "textGrowth": "fixed-width",
+                      "width": 52,
+                      "content": "6h 27m",
+                      "textAlign": "right",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "vBNfZ",
+                  "name": "pr3",
+                  "width": "fill_container",
+                  "padding": [
+                    12,
+                    14
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "QpVfo",
+                      "fill": "#1B3A28",
+                      "textGrowth": "fixed-width",
+                      "width": 36,
+                      "content": "3",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "1gq2N",
+                      "fill": "#4A6B52",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "秀姑巒→馬博→馬洗",
+                      "fontFamily": "Inter",
+                      "fontSize": 11,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "MMafa",
+                      "fill": "#2D5E3A",
+                      "textGrowth": "fixed-width",
+                      "width": 52,
+                      "content": "5h 00m",
+                      "textAlign": "right",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "Q08Ia",
+                      "fill": "#7A9A80",
+                      "textGrowth": "fixed-width",
+                      "width": 52,
+                      "content": "4h 30m",
+                      "textAlign": "right",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "98los",
+      "x": 1910,
+      "y": 1066,
+      "name": "Mobile — Has Trips (Menu Open)",
+      "width": 390,
+      "height": 844,
+      "fill": "#F5F3EE",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "7rwqg",
+          "name": "mStatusBar",
+          "width": "fill_container",
+          "height": 62,
+          "fill": "#1B3A28",
+          "padding": [
+            16,
+            20,
+            0,
+            20
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "ignbt",
+              "fill": "#FFFFFF",
+              "content": "9:41",
+              "fontFamily": "Inter",
+              "fontSize": 15,
+              "fontWeight": "600"
+            },
+            {
+              "type": "frame",
+              "id": "jzQBa",
+              "name": "sr4",
+              "gap": 6,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "FmBok",
+                  "width": 16,
+                  "height": 16,
+                  "iconFontName": "signal",
+                  "iconFontFamily": "lucide",
+                  "fill": "#FFFFFF"
+                },
+                {
+                  "type": "icon_font",
+                  "id": "ClJYE",
+                  "width": 16,
+                  "height": 16,
+                  "iconFontName": "wifi",
+                  "iconFontFamily": "lucide",
+                  "fill": "#FFFFFF"
+                },
+                {
+                  "type": "icon_font",
+                  "id": "EnzxS",
+                  "width": 16,
+                  "height": 16,
+                  "iconFontName": "battery-full",
+                  "iconFontFamily": "lucide",
+                  "fill": "#FFFFFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "JH3si",
+          "name": "mHeader",
+          "width": "fill_container",
+          "height": 52,
+          "fill": "#1B3A28",
+          "padding": [
+            0,
+            16
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "vZjCJ",
+              "name": "mHeaderLeft",
+              "gap": 8,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "bf0Ng",
+                  "width": 18,
+                  "height": 18,
+                  "iconFontName": "mountain",
+                  "iconFontFamily": "lucide",
+                  "fill": "#FFFFFF"
+                },
+                {
+                  "type": "text",
+                  "id": "4xLzm",
+                  "fill": "#FFFFFF",
+                  "content": "Trail Builder",
+                  "fontFamily": "Inter",
+                  "fontSize": 16,
+                  "fontWeight": "700"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "Yw450",
+              "name": "mNewTripBtn",
+              "fill": "#2D5E3A",
+              "cornerRadius": 9999,
+              "gap": 6,
+              "padding": [
+                7,
+                12
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "gMmk0",
+                  "width": 14,
+                  "height": 14,
+                  "iconFontName": "plus",
+                  "iconFontFamily": "lucide",
+                  "fill": "#FFFFFF"
+                },
+                {
+                  "type": "text",
+                  "id": "rJSi2",
+                  "fill": "#FFFFFF",
+                  "content": "New Trip",
+                  "fontFamily": "Inter",
+                  "fontSize": 11,
+                  "fontWeight": "600"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "00Ebh",
+          "name": "mContent",
+          "width": "fill_container",
+          "height": "fill_container",
+          "fill": "#F5F3EE",
+          "layout": "vertical",
+          "gap": 10,
+          "padding": 16,
+          "children": [
+            {
+              "type": "text",
+              "id": "RMdA7",
+              "fill": "#7A9A80",
+              "content": "YOUR TRIPS",
+              "fontFamily": "Inter",
+              "fontSize": 10,
+              "fontWeight": "700",
+              "letterSpacing": 1
+            },
+            {
+              "type": "frame",
+              "id": "TaIPe",
+              "name": "tr1",
+              "width": "fill_container",
+              "fill": "#FFFFFF",
+              "cornerRadius": 14,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "#E8E4DC"
+              },
+              "layout": "vertical",
+              "gap": 10,
+              "padding": 16,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "zli8s",
+                  "name": "tr1top",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "Ph2sj",
+                      "fill": "#1B3A28",
+                      "content": "南二段規劃",
+                      "fontFamily": "Inter",
+                      "fontSize": 15,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "fQNJl",
+                      "name": "moreBtn",
+                      "width": 32,
+                      "height": 32,
+                      "fill": "#F5F3EE",
+                      "cornerRadius": 9999,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon_font",
+                          "id": "Y694H",
+                          "width": 16,
+                          "height": 16,
+                          "iconFontName": "ellipsis-vertical",
+                          "iconFontFamily": "lucide",
+                          "fill": "#7A9A80"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "xoObY",
+                  "name": "tr1meta",
+                  "gap": 12,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "V920T",
+                      "fill": "#7A9A80",
+                      "content": "南二段",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "vt2Ou",
+                      "fill": "#C8DBBC",
+                      "content": "·",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "DhxrN",
+                      "fill": "#7A9A80",
+                      "content": "3 天",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "nWItU",
+                      "fill": "#C8DBBC",
+                      "content": "·",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "VZl3G",
+                      "fill": "#9DB39F",
+                      "content": "2 天前編輯",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "79IMl",
+              "name": "tr2",
+              "width": "fill_container",
+              "fill": "#FFFFFF",
+              "cornerRadius": 14,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "#E8E4DC"
+              },
+              "layout": "vertical",
+              "gap": 10,
+              "padding": 16,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "R0krb",
+                  "name": "tr2top",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "JeLQJ",
+                      "fill": "#1B3A28",
+                      "content": "北二段縱走",
+                      "fontFamily": "Inter",
+                      "fontSize": 15,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "AxWvp",
+                      "name": "moreBtn",
+                      "width": 32,
+                      "height": 32,
+                      "fill": "#F5F3EE",
+                      "cornerRadius": 9999,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon_font",
+                          "id": "bY3mv",
+                          "width": 16,
+                          "height": 16,
+                          "iconFontName": "ellipsis-vertical",
+                          "iconFontFamily": "lucide",
+                          "fill": "#7A9A80"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "rgFnK",
+                  "name": "tr2meta",
+                  "gap": 12,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "gcOq2",
+                      "fill": "#7A9A80",
+                      "content": "北二段",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "mNTJQ",
+                      "fill": "#C8DBBC",
+                      "content": "·",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "TfWfw",
+                      "fill": "#7A9A80",
+                      "content": "4 天",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "Kw8jS",
+                      "fill": "#C8DBBC",
+                      "content": "·",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "uXcub",
+                      "fill": "#9DB39F",
+                      "content": "1 週前編輯",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "xjRlH",
+              "name": "tr3",
+              "width": "fill_container",
+              "fill": "#FFFFFF",
+              "cornerRadius": 14,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "#E8E4DC"
+              },
+              "layout": "vertical",
+              "gap": 10,
+              "padding": 16,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "5D3cI",
+                  "name": "tr3top",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "aCYLP",
+                      "fill": "#1B3A28",
+                      "content": "奇萊連峰",
+                      "fontFamily": "Inter",
+                      "fontSize": 15,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "RebH3",
+                      "name": "moreBtn",
+                      "width": 32,
+                      "height": 32,
+                      "fill": "#F5F3EE",
+                      "cornerRadius": 9999,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon_font",
+                          "id": "XT1zK",
+                          "width": 16,
+                          "height": 16,
+                          "iconFontName": "ellipsis-vertical",
+                          "iconFontFamily": "lucide",
+                          "fill": "#7A9A80"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "x2KXj",
+                  "name": "tr3meta",
+                  "gap": 12,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "vIdE9",
+                      "fill": "#7A9A80",
+                      "content": "奇萊主北",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "suBBn",
+                      "fill": "#C8DBBC",
+                      "content": "·",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "ZiOaY",
+                      "fill": "#7A9A80",
+                      "content": "2 天",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "hJyo2",
+                      "fill": "#C8DBBC",
+                      "content": "·",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "Y7wUs",
+                      "fill": "#9DB39F",
+                      "content": "3 週前編輯",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "mBoqB",
+          "layoutPosition": "absolute",
+          "x": 218,
+          "y": 196,
+          "name": "contextMenu",
+          "width": 148,
+          "fill": "#FFFFFF",
+          "cornerRadius": 12,
+          "effect": {
+            "type": "shadow",
+            "shadowType": "outer",
+            "color": "#00000025",
+            "offset": {
+              "x": 0,
+              "y": 4
+            },
+            "blur": 16
+          },
+          "layout": "vertical",
+          "children": [
+            {
+              "type": "frame",
+              "id": "ClBb9",
+              "name": "editRow",
+              "width": "fill_container",
+              "gap": 10,
+              "padding": [
+                12,
+                16
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "WxXQf",
+                  "width": 15,
+                  "height": 15,
+                  "iconFontName": "pencil",
+                  "iconFontFamily": "lucide",
+                  "fill": "#1B3A28"
+                },
+                {
+                  "type": "text",
+                  "id": "WTtHD",
+                  "fill": "#1B3A28",
+                  "content": "編輯",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "600"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "ekMUk",
+              "name": "divider",
+              "width": "fill_container",
+              "height": 1,
+              "fill": "#F0EDE5"
+            },
+            {
+              "type": "frame",
+              "id": "ufJuL",
+              "name": "deleteRow",
+              "width": "fill_container",
+              "gap": 10,
+              "padding": [
+                12,
+                16
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "mBr6d",
+                  "width": 15,
+                  "height": 15,
+                  "iconFontName": "trash-2",
+                  "iconFontFamily": "lucide",
+                  "fill": "#DC2626"
+                },
+                {
+                  "type": "text",
+                  "id": "HpQxl",
+                  "fill": "#DC2626",
+                  "content": "刪除",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "600"
                 }
               ]
             }
