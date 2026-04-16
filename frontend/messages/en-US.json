@@ -1,0 +1,152 @@
+{
+  "landing": {
+    "hero": {
+      "badge": "Free & Privacy-First Hiking Tools",
+      "title": "Your Complete Hiking Toolkit",
+      "description": "Analyze your trails, track your peaks, and visualize every adventure — all in your browser, no data leaves your device.",
+      "ctaPrimary": "Explore Tools",
+      "ctaSecondary": "View Demo"
+    },
+    "header": {
+      "brand": "TrailKit",
+      "tools": "Tools",
+      "about": "About",
+      "blog": "Blog",
+      "community": "Community",
+      "getStarted": "Get Started",
+      "navigation": "Navigation",
+      "language": "Language",
+      "appearance": "Appearance",
+      "theme": {
+        "light": "Light",
+        "dark": "Dark"
+      },
+      "toolsDropdown": {
+        "title": "Tools",
+        "fitFileViewer": {
+          "title": "FIT File Viewer",
+          "description": "Analyze your Garmin FIT files in the browser"
+        },
+        "peaksTracker": {
+          "title": "Peaks Tracker",
+          "description": "Track and visualize your peak bagging progress"
+        }
+      }
+    },
+    "feature-cards": {
+      "badge": "CORE TOOLS",
+      "title": "Everything You Need on the Trail",
+      "description": "Powerful browser-based tools designed for hikers, by hikers. No account needed.",
+      "cards": {
+        "peaks-tracker": {
+          "badgeText": "Popular",
+          "title": "Peaks Tracker",
+          "description": "Log and visualize every summit you've visited. Check the peaks on an interactive map and share the result with your friends.",
+          "linkText": "Open Peaks Tracker"
+        },
+        "fit-file-viewer": {
+          "badgeText": "Essential",
+          "title": "FIT File Viewer",
+          "description": "Upload your sports watch FIT files and instantly see heart rate zones, elevation profiles, GPS tracks, and detailed activity summaries.",
+          "linkText": "Open FIT Viewer"
+        },
+        "trail-map": {
+          "badgeText": "Map",
+          "title": "3D Trail Map",
+          "description": "Visualize your hiking routes on an interactive 3D map with terrain, satellite imagery, contour lines, and animated track playback.",
+          "linkText": "Open Trail Map"
+        }
+      }
+    },
+    "privacy": {
+      "badge": "WHY TRAILKIT",
+      "title": "Built for Hikers Who Care About Privacy",
+      "description": "Your GPS data, heart rate, and trail logs never leave your browser. Period.",
+      "stats": {
+        "processing": {
+          "value": "100%",
+          "label": "Client-Side Processing"
+        },
+        "uploaded": {
+          "value": "0 Bytes",
+          "label": "Uploaded to Servers"
+        },
+        "account": {
+          "value": "No Account",
+          "label": "Required to Get Started"
+        },
+        "openSource": {
+          "value": "Open Source",
+          "label": "Free Forever"
+        }
+      }
+    },
+    "footer": {
+      "tagline": "Privacy-first hiking tools that run entirely in your browser. No servers, no tracking, no compromise.",
+      "copyright": "© 2026 TrailKit. Open source under MIT License. Made with ❤️ for the hiking community.",
+      "nav": {
+        "tools": {
+          "title": "Tools",
+          "links": {
+            "peaksTracker": "Peaks Tracker",
+            "fitFileViewer": "FIT File Viewer",
+            "interactiveDemo": "Interactive Demo",
+            "gpxConverter": "GPX Converter"
+          }
+        },
+        "resources": {
+          "title": "Resources",
+          "links": {
+            "documentation": "Documentation",
+            "blog": "Blog",
+            "changelog": "Changelog",
+            "github": "GitHub"
+          }
+        },
+        "community": {
+          "title": "Community",
+          "links": {
+            "discord": "Discord",
+            "contribute": "Contribute",
+            "featureRequests": "Feature Requests",
+            "privacyPolicy": "Privacy Policy"
+          }
+        }
+      }
+    },
+    "cta": {
+      "title": "Ready to Explore Your Trip?",
+      "description": "Plan your next hiking adventure — organize your routes, track your progress, and share every trail with your crew.",
+      "ctaPrimary": "Start an Adventure",
+      "ctaSecondary": "View Example Trails"
+    },
+    "coming-soon": {
+      "badge": "COMING SOON",
+      "title": "More Tools on the Way",
+      "description": "We're building more privacy-first tools to make every hike better.",
+      "cards": {
+        "trail-planner": {
+          "title": "Trail Planner",
+          "description": "Plan routes, estimate time, and share trails with friends before you go."
+        },
+        "elevation-analyzer": {
+          "title": "Elevation Analyzer",
+          "description": "Detailed elevation gain/loss charts with gradient analysis for trail difficulty."
+        },
+        "weather-overlay": {
+          "title": "Weather Overlay",
+          "description": "See historical weather conditions overlaid on your hike timeline and GPS track."
+        },
+        "gpx-converter": {
+          "title": "GPX Converter",
+          "description": "Convert between FIT, GPX, and KML formats. Merge or split track files effortlessly."
+        }
+      }
+    }
+  },
+  "not-found": {
+    "title": "Nothing to see here",
+    "description": "Page you are trying to open does not exist. You may have mistyped the address, or the page has been moved to another URL. If you think this is an error contact support.",
+    "back": "Take me back to home page"
+  }
+}

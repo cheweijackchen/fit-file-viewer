@@ -14,6 +14,7 @@ import '@/styles/globals.css'
 import '@/styles/app/theme.scss'
 import type { Metadata } from 'next'
 import { Inter, Noto_Sans_TC, JetBrains_Mono } from 'next/font/google'
+import { LocaleRestorer } from '@/components/LocaleRestorer'
 import { RootProvider } from './components/RootProvider'
 
 const inter = Inter({
@@ -54,6 +55,7 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${notoSansTC.variable} ${jetBrainsMono.variable} antialiased`}
       >
+        <LocaleRestorer />
         <RootProvider>
           {children}
         </RootProvider>

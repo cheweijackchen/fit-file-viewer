@@ -1,5 +1,7 @@
 import stylistic from '@stylistic/eslint-plugin'
-import { defineConfig, globalIgnores } from 'eslint/config'
+import {
+  defineConfig, globalIgnores 
+} from 'eslint/config'
 import nextVitals from 'eslint-config-next/core-web-vitals'
 import nextTs from 'eslint-config-next/typescript'
 
@@ -20,6 +22,9 @@ const eslintConfig = defineConfig([
       '@stylistic': stylistic,
     },
     rules: {
+      'indent': 'off',
+      '@stylistic/indent': ['warn', 2], 
+      
       'arrow-parens': 'off',
       'one-var': 'off',
       'no-void': 'off',
@@ -61,7 +66,10 @@ const eslintConfig = defineConfig([
       'object-curly-spacing': 'off',
       '@stylistic/object-curly-spacing': ['warn', 'always'],
 
-      '@stylistic/object-curly-newline': ['warn', { 'consistent': true }],
+      '@stylistic/object-curly-newline': ['warn', {
+        'consistent': true,
+        'multiline': true 
+      }],
       'object-property-newline': ['warn', { 'allowAllPropertiesOnSameLine': false }],
 
       '@stylistic/member-delimiter-style': ['warn', {
