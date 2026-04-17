@@ -1,4 +1,4 @@
-# Story: Hiking Trail Organizer
+# Story: Hiking Trail Planner
 
 > Feature planning document for the Trail Planner tool within TrailKit.
 > Based on design discussion and Pencil prototype (April 2026).
@@ -47,8 +47,9 @@ The **Trail Planner** is a browser-based, privacy-first tool that helps hikers p
 - **Landing**
   - 空白首頁：說明工具用途 + Start New Trip CTA
   - 有行程首頁：行程列表（名稱、路線、天數、上次編輯）+ 選取行程預覽（總時間、權重、總權重時間、各天的路線和時間和權重時間）
+  - **Detail page（Landing — Detail）**：點選行程卡片後進入，含行程標題區（麵包屑導覽 + 三點選單）、完整行程表（各天 Day 卡片含住宿類型與水源資訊 badge）、行程統計摘要、路網預覽佔位
 
-- **Trail Selection**
+- **Trail Selection** (deprecated)
   - 多路線搜尋選擇，可同時勾選多條路線
   - 即時合併 Trail Network 預覽（選取時同步更新）
   - 可在規劃中途新增移除路線，如果已經有使用到某路線地圖的節點，則不可刪除該路線。
@@ -103,6 +104,8 @@ The **Trail Planner** is a browser-based, privacy-first tool that helps hikers p
 **US-03** — As a user, I want to start a new trip from the landing page so that I can begin planning a fresh itinerary.
 
 **US-04** — As a returning user, I want to click "Edit" on a saved trip so that I can continue where I left off.
+
+**US-04a** — As a user, I want to click on a saved trip to open its detail page so that I can review the full itinerary, stats, and trail network before editing.
 
 ---
 
@@ -162,9 +165,9 @@ The **Trail Planner** is a browser-based, privacy-first tool that helps hikers p
 
 | Screen | Trigger | Description |
 |---|---|---|
-| Landing — Empty | First visit | Hero, tagline, "Start New Trip" CTA, 3 feature highlights |
-| Landing — Has Trips | Returning user | Trip list (name, routes, days, last edited) + selected trip preview |
-| Trail Selection | "Start New Trip" | Searchable route multi-select + live combined Trail Network preview |
+| Landing | First visit / returning user | Empty state: hero, tagline, "Start New Trip" CTA; Has trips state: trip list |
+| Landing — Detail | Click a trip card | Full itinerary (Day cards with info badges), trip stats, trail network preview |
+| Trail Selection *(deprecated)* | — | Searchable route multi-select + live combined Trail Network preview |
 | Main — Network Expanded | "Start Planning" | Left sidebar + Trail Network panel (top) + Day Builder (bottom) |
 | Main — Network Collapsed | User collapses network | Network shrinks to 44px bar; Day Builder fills remaining height |
 
@@ -205,6 +208,18 @@ The **Trail Planner** is a browser-based, privacy-first tool that helps hikers p
 - Undo removes only the last step
 - "Complete Route" finalizes the day and enables starting the next day
 - Days are not time-bound; a trip can span any number of days
+
+---
+
+### Itinerary Info Badges
+
+Each Day card in the detail page itinerary displays one or more circular icon badges to indicate accommodation type and water availability for that night:
+
+- **tent** — camping overnight
+- **house** — staying at a mountain hut
+- **droplet** — water source available nearby
+
+Multiple badges can appear side by side. The system is designed to be extensible; additional badge types may be introduced in future iterations.
 
 ---
 

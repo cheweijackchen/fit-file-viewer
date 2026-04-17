@@ -15,8 +15,8 @@ Trail Planner 讓使用者規劃多日登山行程。首頁（Landing）讓用�
 
 | Frame 名稱               | 描述                                         |
 |--------------------------|----------------------------------------------|
-| Landing — Empty          | 空白首頁：tagline、Start New Trip CTA、三個功能亮點 |
-| Landing — Has Trips      | 已有行程首頁：左側行程列表 + 右側行程預覽        |
+| Landing                  | 首頁：空白狀態（tagline + Start New Trip CTA）或有行程狀態（行程列表 + 行程預覽） |
+| Landing — Detail         | 行程詳情頁：麵包屑導覽、行程標題、行程表（Day 卡片含圓形資訊 badge）、行程統計、路網 |
 | Trail Selection          | 路線多選 + 即時合併 Trail Graph 預覽            |
 | Main — Graph Expanded    | 主規劃畫面，Trail Graph 展開（預設）            |
 | Main — Graph Collapsed   | 主規劃畫面，Trail Graph 收合為細條             |
@@ -82,6 +82,53 @@ Trail Planner 讓使用者規劃多日登山行程。首頁（Landing）讓用�
 | 行程預覽表 / trip preview table / itinerary table  | `tbl`            | 含 header + 各 Day 行（r1-r8）    |
 | 表格標題列 / table header                          | `hdr` (in tbl)   | # / 路線 / 行走時間 / 加權時間    |
 | 各 Day 列 / day row                                | `r1`–`r8` (in tbl) | 每天：Day N + 路線 + 兩欄時間   |
+
+---
+
+### Landing — Detail
+
+點擊行程卡片後進入的詳情頁，含完整行程資訊與路網預覽。
+
+**頂部導覽** (`navD`)
+
+| 你會說...                      | Node Name         | 說明                              |
+|-------------------------------|-------------------|-----------------------------------|
+| 導覽列整體 / top nav           | `navD` (twm34)    | 64px 頂部列，僅顯示 TrailKit logo  |
+| Logo 區 / logo area            | `navLeft` (hbLLf) | 山岳 icon + "TrailKit" 文字        |
+
+**標題區** (`tripHdr`)
+
+| 你會說...                                         | Node Name        | 說明                              |
+|--------------------------------------------------|------------------|-----------------------------------|
+| 標題區整體 / title section / trip header          | `tripHdr` (qDTXb) | padding [24,80,28,80]，含四層內容 |
+| 麵包屑列 + 三點選單 / breadcrumb row              | `topRow` (5dcLf) | space_between，位於標題區頂部      |
+| 麵包屑 / breadcrumbs                              | `bc` (MOLyi)     | "My Trips / 行程名稱"              |
+| 三點選單按鈕 / more button / three-dot menu       | `mb` (NDAmR)     | 32×32 圓形按鈕                    |
+| 路線 badge 列 / badge row                         | `badgeRow` (FqEvF) | 路線 chip（例：南二段）           |
+| 行程大標題 / trip title                           | (oVTg4)          | 36px 大字行程名稱                  |
+| 統計列 / stats row                                | `statsRow` (889ru) | 天數、總時間、加權時間            |
+
+**內容區** (`contentArea`)
+
+| 你會說...                                      | Node Name              | 說明                             |
+|-----------------------------------------------|------------------------|----------------------------------|
+| 內容區整體 / content area                      | `contentArea` (ffrev)  | 左右兩欄，padding [32,80,16,80]  |
+| 左欄 — 行程表 / itinerary / left column        | `leftCol` (aKauS)      | 8 個 Day 卡片垂直排列             |
+| 各 Day 卡片 / day card                         | `d1`–`d8`              | cornerRadius 12，白底卡片         |
+| Day 標題列 / day header row                    | `d*h`                  | 左：Day N；右：badge 群 + 時間    |
+| 圓形資訊 badge 群 / info badge group           | `d*eb`                 | 透明容器，可並排多個 badge，gap 4 |
+| 露營 badge / tent badge                        | (child of `d*eb`)      | 26×26 圓，tent icon，綠底         |
+| 山屋 badge / house badge                       | (child of `d*eb`)      | 26×26 圓，house icon，米底        |
+| 水源 badge / water badge / droplet badge       | (child of `d*eb`)      | 26×26 圓，droplet icon，藍底      |
+| 路線節點文字 / route text                       | (text in day card)     | "A → B → C" 節點路線             |
+| 右欄 — 行程統計 / trip stats / right column    | `rightCol` (y6khX)     |                                  |
+| 統計摘要區 / stats section                     | `statsSection` (MJ2Ig) | 行程統計卡片群                    |
+
+**路網區** (`tnSec`)
+
+| 你會說...                           | Node Name      | 說明                         |
+|------------------------------------|----------------|------------------------------|
+| 路網區整體 / trail network section  | `tnSec` (QnXAs) | "Trail Network 圖表即將推出" 佔位區塊 |
 
 ---
 

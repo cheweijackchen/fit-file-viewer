@@ -1,4 +1,4 @@
-# HikingTrailOrganizer — Implementation Plan
+# HikingTrailPlanner — Implementation Plan
 
 > 類似上河地圖的登山行程時間估算工具。使用有向加權圖記錄各路段所需時間，讓登山客能規劃多天行程並計算總花費時間。
 
@@ -30,7 +30,7 @@ frontend/src/
 │       └── components/
 │           ├── NodeList.tsx
 │           └── GraphCanvas.tsx           # SVG 視覺化
-└── app/hiking-trail-organizer/
+└── app/hiking-trail-planner/
     ├── layout.tsx
     └── page.tsx
 ```
@@ -125,7 +125,7 @@ Option B 則需要對共用節點做 deep merge `adjacentNodes`，同一條邊�
 **目標：** 只讀的視覺化元件，讓使用者在規劃時能查閱路線結構。
 
 ### 路由
-`/hiking-trail-organizer` 主頁面的左側 panel（或獨立頁面 `/hiking-trail-organizer/trails/[trailId]`）
+`/hiking-trail-planner` 主頁面的左側 panel（或獨立頁面 `/hiking-trail-planner/trails/[trailId]`）
 
 ### 展示模式
 
@@ -154,7 +154,7 @@ Option B 則需要對共用節點做 deep merge `adjacentNodes`，同一條邊�
 **目標：** 互動式頁面，讓使用者建立多天登山計畫。
 
 ### 路由
-`/hiking-trail-organizer` — 主要規劃頁面
+`/hiking-trail-planner` — 主要規劃頁面
 
 ### Zustand Store（`frontend/src/store/hikingTrail/`）
 
@@ -202,7 +202,7 @@ interface HikingTrailState {
 }
 ```
 
-- 持久化至 localStorage，key：`'hiking-trail-organizer'`
+- 持久化至 localStorage，key：`'hiking-trail-planner'`
 
 ### 頁面 UI 佈局
 
@@ -297,12 +297,12 @@ function findShortestPath(
 ## 跨面向事項
 
 ### i18n
-- 新增 namespace `hiking-trail-organizer` 至 `messages/en-US.json` 和 `messages/zh-TW.json`
+- 新增 namespace `hiking-trail-planner` 至 `messages/en-US.json` 和 `messages/zh-TW.json`
 - 路線資料以雙語儲存（`name` / `nameEn`）
 
 ### 路由
 ```
-app/hiking-trail-organizer/
+app/hiking-trail-planner/
 ├── layout.tsx      # AppLayout wrapper
 └── page.tsx        # 頁面邏輯直接寫在此（專案慣例）
 ```
