@@ -108,6 +108,16 @@ Trail Planner 讓使用者規劃多日登山行程。首頁（Landing）讓用�
 | 行程大標題 / trip title                           | (oVTg4)          | 36px 大字行程名稱                  |
 | 統計列 / stats row                                | `statsRow` (889ru) | 天數、總時間、加權時間            |
 
+**頁籤導覽列** (`tabNav`)
+
+| 你會說...                                              | Node Name               | 說明                                         |
+|-------------------------------------------------------|-------------------------|----------------------------------------------|
+| 頁籤列整體 / tab navigation bar / section tabs        | `tabNav` (GWeEJ)        | h48，置中，底線 1px #E0DCD5，fill #F5F3EE    |
+| 頁籤群組 / tab group                                  | `tabGroup` (168B3)      | horizontal，gap 0，含所有 tab item           |
+| Itinerary 頁籤（active）/ itinerary tab               | `tabItinerary` (RMp8s)  | padding [0,24]，底線指示器 2px #1B3A28       |
+| Trail Network 頁籤（inactive）/ trail network tab     | `tabTrailNetwork` (twPiz) | padding [0,24]，無底線指示器                |
+| Trip Stats 頁籤（inactive）/ trip stats tab           | `tabTripStats` (c92B9)   | padding [0,24]，無底線指示器                |
+
 **內容區** (`contentArea`)
 
 | 你會說...                                      | Node Name              | 說明                             |

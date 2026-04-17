@@ -22255,6 +22255,104 @@
         },
         {
           "type": "frame",
+          "id": "GWeEJ",
+          "name": "tabNav",
+          "width": "fill_container",
+          "height": 48,
+          "fill": "#F5F3EE",
+          "stroke": {
+            "align": "outside",
+            "thickness": {
+              "bottom": 1
+            },
+            "fill": "#E0DCD5"
+          },
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "168B3",
+              "name": "tabGroup",
+              "height": 48,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "RMp8s",
+                  "name": "tabItinerary",
+                  "height": 48,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": {
+                      "bottom": 2
+                    },
+                    "fill": "#1B3A28"
+                  },
+                  "padding": [
+                    0,
+                    24
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "fuoV3",
+                      "fill": "#1B3A28",
+                      "content": "Itinerary",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "600"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "c92B9",
+                  "name": "tabTripStats",
+                  "height": 48,
+                  "padding": [
+                    0,
+                    24
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "e9S8V",
+                      "fill": "#B0AA9F",
+                      "content": "Trip Stats",
+                      "fontFamily": "Inter",
+                      "fontSize": 14
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "twPiz",
+                  "name": "tabTrailNetwork",
+                  "height": 48,
+                  "padding": [
+                    0,
+                    24
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "C5lCA",
+                      "fill": "#B0AA9F",
+                      "content": "Trail Network",
+                      "fontFamily": "Inter",
+                      "fontSize": 14
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
           "id": "ffrev",
           "name": "contentArea",
           "width": "fill_container",
