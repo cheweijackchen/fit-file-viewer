@@ -15865,13 +15865,19 @@
                               "fill": "#9DB39F"
                             },
                             {
-                              "type": "text",
-                              "id": "cvl1k",
+                              "type": "path",
+                              "id": "ahshK",
+                              "name": "arrowHead",
+                              "geometry": "M0 0l6 4-6 4z",
+                              "viewBox": [
+                                0,
+                                0,
+                                6,
+                                8
+                              ],
                               "fill": "#9DB39F",
-                              "content": "›",
-                              "fontFamily": "Inter",
-                              "fontSize": 10,
-                              "fontWeight": "normal"
+                              "width": 6,
+                              "height": 8
                             }
                           ]
                         }
@@ -15932,13 +15938,19 @@
                               "fill": "#9DB39F"
                             },
                             {
-                              "type": "text",
-                              "id": "54s9T",
+                              "type": "path",
+                              "id": "hCUAu",
+                              "name": "arrowHead2",
+                              "geometry": "M0 0l6 4-6 4z",
+                              "viewBox": [
+                                0,
+                                0,
+                                6,
+                                8
+                              ],
                               "fill": "#9DB39F",
-                              "content": "›",
-                              "fontFamily": "Inter",
-                              "fontSize": 10,
-                              "fontWeight": "normal"
+                              "width": 6,
+                              "height": 8
                             }
                           ]
                         }
@@ -15999,13 +16011,19 @@
                               "fill": "#9DB39F"
                             },
                             {
-                              "type": "text",
-                              "id": "GZUq3",
+                              "type": "path",
+                              "id": "mb328",
+                              "name": "arrowHead3",
+                              "geometry": "M0 0l6 4-6 4z",
+                              "viewBox": [
+                                0,
+                                0,
+                                6,
+                                8
+                              ],
                               "fill": "#9DB39F",
-                              "content": "›",
-                              "fontFamily": "Inter",
-                              "fontSize": 10,
-                              "fontWeight": "normal"
+                              "width": 6,
+                              "height": 8
                             }
                           ]
                         }
@@ -21235,7 +21253,7 @@
       "type": "frame",
       "id": "l56aC",
       "x": 2,
-      "y": -469,
+      "y": -468,
       "name": "Landing — Has Trips (Scroll)",
       "width": 1440,
       "fill": "#F5F3EE",
@@ -21673,9 +21691,6 @@
                     },
                     "sNasD": {
                       "content": "4 天"
-                    },
-                    "8BcC5": {
-                      "content": "1 週前編輯"
                     }
                   }
                 },
@@ -21693,9 +21708,6 @@
                     },
                     "sNasD": {
                       "content": "2 天"
-                    },
-                    "8BcC5": {
-                      "content": "3 週前編輯"
                     }
                   }
                 }
@@ -21973,9 +21985,6 @@
                 },
                 "sNasD": {
                   "content": "4 天"
-                },
-                "8BcC5": {
-                  "content": "1 週前編輯"
                 }
               }
             },
@@ -21993,9 +22002,6 @@
                 },
                 "sNasD": {
                   "content": "2 天"
-                },
-                "8BcC5": {
-                  "content": "3 週前編輯"
                 }
               }
             }
@@ -22007,7 +22013,7 @@
       "type": "frame",
       "id": "ixNnw",
       "x": 1502,
-      "y": -469,
+      "y": -468,
       "name": "Landing — Detail",
       "width": 1440,
       "fill": "#F5F3EE",
@@ -23421,6 +23427,39 @@
               ]
             }
           ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "qSTuu",
+      "x": 5425,
+      "y": -272,
+      "name": "lr1",
+      "width": "fill_container(60)",
+      "alignItems": "center",
+      "children": [
+        {
+          "type": "frame",
+          "id": "rxuRK",
+          "width": "fill_container",
+          "height": 1,
+          "fill": "#9DB39F"
+        },
+        {
+          "type": "path",
+          "id": "UHO4A",
+          "name": "arrowHead",
+          "geometry": "M0 0l6 4-6 4z",
+          "viewBox": [
+            0,
+            0,
+            6,
+            8
+          ],
+          "fill": "#9DB39F",
+          "width": 6,
+          "height": 8
         }
       ]
     }
