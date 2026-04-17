@@ -270,3 +270,52 @@ const Map = dynamic(() => import('@/components/Map'), { ssr: false })
 ```
 
 使用範例：`import { useFitDataStore } from '@/store/app/useFitDataStore'`
+
+---
+
+## Design Context
+
+### Users
+Trail enthusiasts of all levels — from casual weekend hikers to regular peak baggers, with a focus on Taiwan's hiking community (百岳 / 100 Peaks). Users review their hike data after returning from the trail, wanting to relive the experience and track their progress. Job to be done: make sense of hike data (heart rate, elevation, GPS tracks) in a way that feels personal and connected to the outdoors — not clinical or corporate.
+
+### Brand Personality
+**Three words: Warm. Adventurous. Trustworthy.**
+
+TrailKit feels like a knowledgeable trail companion — welcoming enough for first-timers, capable enough for serious peak-baggers. References: Strava (data clarity and athlete focus) + AllTrails (earthy warmth, trail community feel).
+
+Anti-pattern: cold, clinical dashboards that feel like medical software or enterprise SaaS. No sterile whites, no heavy blues, no density-for-density's-sake.
+
+### Aesthetic Direction
+- **Tone**: Earthy and organic in personality; precise and clear where data is displayed
+- **Color system**: Yellow (sunlight, energy, Mantine primary) as the brand accent; warm neutrals (Mantine gray/dark) as the foundation
+- **Photography / imagery**: Mountain landscapes on landing/marketing surfaces; inside the app, maps provide the visual "nature" element
+- **Dark/light modes**: Both fully supported
+- **Typography**: Inter (UI text) + Noto Sans TC (zh-TW) + JetBrains Mono (data values)
+- **Icons**: Tabler Icons
+- **References**: AllTrails (warmth, landing), Strava (data density in-app)
+
+### Design Principles
+
+1. **Outdoorsy soul, data clarity** — TrailKit is a data tool. Charts and stats dominate most screens. The "outdoorsy" personality lives in color palette, tone, and iconography — not in photography competing with data. Prioritize readability.
+2. **Clarity under complexity** — Progressive disclosure: show the essential story first, let users dig into details on demand.
+3. **Bilingual by default** — en-US and zh-TW are equally important. Never break layouts for longer Chinese text.
+4. **Earthy precision** — Warm aesthetics on the surface; precise, reliable data underneath.
+
+### Design System Constraints (Mantine 8.3.x)
+
+**Colors** — Use Mantine tokens only, no raw hex:
+- Primary accent: `--mantine-color-yellow-5`
+- Surfaces: `--mantine-color-gray-*` (light) / `--mantine-color-dark-*` (dark)
+- Semantic text: `--text-emphasis`, `--text-secondary`, `--text-subtitle`, `--text-muted`
+
+**Spacing** — 4px base: `3xs`=4, `2xs`=8, `xs`=10, `sm`=12, `md`=16, `lg`=20, `xl`=24, `2xl`=28, `3xl`=32
+
+**Font sizes** — `xs`=12, `sm`=14, `md`=16, `lg`=18, `xl`=20, `2xl`=24, `3xl`=30, `4xl`=36, `5xl`=48
+
+**Border radius** — `xs`=2, `sm`=4, `md`=8 (default), `lg`=16, `xl`=32
+
+**Available components** — prefer Mantine over custom: Card, Paper, Button (filled/outline/subtle/transparent), ActionIcon, TextInput, Select, MultiSelect, Checkbox, Switch, Slider, Tabs, Modal, Drawer, Tooltip, Popover, Menu, Badge, Table, Accordion, Alert, Loader, Skeleton, Dropzone, AreaChart, BarChart, DonutChart, LineChart
+
+**Component defaults**: Card padding=`xl` + border; Paper radius=`md` + border; Button primary=`filled` color=`yellow`
+
+> Full design system reference: [.impeccable.md](../.impeccable.md)
