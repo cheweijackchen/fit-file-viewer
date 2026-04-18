@@ -16835,6 +16835,46 @@
                           "fontFamily": "Inter",
                           "fontSize": 11,
                           "fontWeight": "600"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "Btx6S",
+                          "layoutPosition": "absolute",
+                          "x": 40,
+                          "y": -8,
+                          "name": "removeBtn",
+                          "width": 18,
+                          "height": 18,
+                          "fill": "#F5F3EE",
+                          "cornerRadius": 9999,
+                          "stroke": {
+                            "align": "inside",
+                            "thickness": 1,
+                            "fill": "#DDD6CA"
+                          },
+                          "effect": {
+                            "type": "shadow",
+                            "shadowType": "outer",
+                            "color": "#00000014",
+                            "offset": {
+                              "x": 0,
+                              "y": 1
+                            },
+                            "blur": 2
+                          },
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon_font",
+                              "id": "ZPVnq",
+                              "width": 10,
+                              "height": 10,
+                              "iconFontName": "x",
+                              "iconFontFamily": "lucide",
+                              "fill": "#6B5D4F"
+                            }
+                          ]
                         }
                       ]
                     }
@@ -17188,61 +17228,216 @@
         },
         {
           "type": "frame",
-          "id": "cWQZ7",
-          "name": "undoRow",
+          "id": "ySXDo",
+          "name": "footer",
           "width": "fill_container",
-          "gap": 6,
+          "gap": 10,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "cWQZ7",
+              "name": "undoBtn",
+              "width": 140,
+              "height": 44,
+              "fill": "#F5F3EE",
+              "cornerRadius": 10,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "#DDD6CA"
+              },
+              "gap": 6,
+              "padding": [
+                0,
+                14
+              ],
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "hFV3V",
+                  "width": 14,
+                  "height": 14,
+                  "iconFontName": "undo-2",
+                  "iconFontFamily": "lucide",
+                  "fill": "#6B5D4F"
+                },
+                {
+                  "type": "text",
+                  "id": "rmsio",
+                  "fill": "#6B5D4F",
+                  "content": "復原上一步",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "600"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "fswXP",
+              "name": "finishBtn",
+              "width": "fill_container",
+              "height": 44,
+              "fill": "#e6b020",
+              "cornerRadius": 10,
+              "gap": 8,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "aiQlQ",
+                  "width": 15,
+                  "height": 15,
+                  "iconFontName": "check",
+                  "iconFontFamily": "lucide",
+                  "fill": "#FFFFFF"
+                },
+                {
+                  "type": "text",
+                  "id": "4xucJ",
+                  "fill": "#FFFFFF",
+                  "content": "完成路線",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "700"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "VUyAe",
+      "x": 8302,
+      "y": 788,
+      "name": "contextMenu",
+      "width": 156,
+      "fill": "#FFFFFF",
+      "cornerRadius": 12,
+      "effect": {
+        "type": "shadow",
+        "shadowType": "outer",
+        "color": "#00000025",
+        "offset": {
+          "x": 0,
+          "y": 4
+        },
+        "blur": 16
+      },
+      "layout": "vertical",
+      "gap": 2,
+      "padding": [
+        6,
+        0
+      ],
+      "children": [
+        {
+          "type": "frame",
+          "id": "wSrhz",
+          "name": "mEdit",
+          "width": "fill_container",
+          "gap": 10,
+          "padding": [
+            10,
+            14
+          ],
           "alignItems": "center",
           "children": [
             {
               "type": "icon_font",
-              "id": "hFV3V",
-              "width": 13,
-              "height": 13,
-              "iconFontName": "undo-2",
+              "id": "G6E7f",
+              "width": 14,
+              "height": 14,
+              "iconFontName": "pencil-line",
               "iconFontFamily": "lucide",
-              "fill": "#9A8E7E"
+              "fill": "#2C2418"
             },
             {
               "type": "text",
-              "id": "rmsio",
-              "fill": "#9A8E7E",
-              "content": "Undo last step",
+              "id": "IcCEE",
+              "fill": "#2C2418",
+              "content": "編輯",
               "fontFamily": "Inter",
-              "fontSize": 12,
+              "fontSize": 13,
+              "fontWeight": "600"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "kHvQh",
+          "name": "sep",
+          "width": "fill_container",
+          "height": 1,
+          "fill": "#EAE4DA"
+        },
+        {
+          "type": "frame",
+          "id": "O2s38",
+          "name": "mDel",
+          "width": "fill_container",
+          "gap": 10,
+          "padding": [
+            10,
+            14
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "icon_font",
+              "id": "GW75N",
+              "width": 14,
+              "height": 14,
+              "iconFontName": "trash-2",
+              "iconFontFamily": "lucide",
+              "fill": "#C44536"
+            },
+            {
+              "type": "text",
+              "id": "nVs0b",
+              "fill": "#C44536",
+              "content": "清除路線",
+              "fontFamily": "Inter",
+              "fontSize": 13,
               "fontWeight": "normal"
             }
           ]
         },
         {
           "type": "frame",
-          "id": "fswXP",
-          "name": "finishBtn",
+          "id": "78Uei",
+          "name": "mDel",
           "width": "fill_container",
-          "height": 44,
-          "fill": "#e6b020",
-          "cornerRadius": 10,
-          "gap": 8,
-          "justifyContent": "center",
+          "gap": 10,
+          "padding": [
+            10,
+            14
+          ],
           "alignItems": "center",
           "children": [
             {
               "type": "icon_font",
-              "id": "aiQlQ",
-              "width": 15,
-              "height": 15,
-              "iconFontName": "check",
+              "id": "WQBlp",
+              "width": 14,
+              "height": 14,
+              "iconFontName": "trash-2",
               "iconFontFamily": "lucide",
-              "fill": "#FFFFFF"
+              "fill": "#C44536"
             },
             {
               "type": "text",
-              "id": "4xucJ",
-              "fill": "#FFFFFF",
-              "content": "完成路線",
+              "id": "Dz9Br",
+              "fill": "#C44536",
+              "content": "刪除",
               "fontFamily": "Inter",
-              "fontSize": 14,
-              "fontWeight": "700"
+              "fontSize": 13,
+              "fontWeight": "normal"
             }
           ]
         }
