@@ -8493,7 +8493,7 @@
                     {
                       "type": "text",
                       "id": "sw6T3",
-                      "fill": "#9A8E7E",
+                      "fill": "#6b5d4f",
                       "textGrowth": "fixed-width",
                       "width": "fill_container",
                       "content": "大水窟  →  向陽山  →  三叉山",
@@ -8591,7 +8591,7 @@
                     {
                       "type": "text",
                       "id": "46iHn",
-                      "fill": "#9A8E7E",
+                      "fill": "#6b5d4f",
                       "textGrowth": "fixed-width",
                       "width": "fill_container",
                       "content": "三叉山  →  卑南主山  →  達仁山",
@@ -8689,7 +8689,7 @@
                     {
                       "type": "text",
                       "id": "lb7Gh",
-                      "fill": "#9A8E7E",
+                      "fill": "#6b5d4f",
                       "textGrowth": "fixed-width",
                       "width": "fill_container",
                       "content": "達仁山  →  出雲山  →  大武山  →  霧頭山",
@@ -8809,7 +8809,7 @@
                     {
                       "type": "text",
                       "id": "Xoudo",
-                      "fill": "#9A8E7E",
+                      "fill": "#6b5d4f",
                       "textGrowth": "fixed-width",
                       "width": "fill_container",
                       "content": "霧頭山  →  小鬼湖  →  南大武山",
@@ -8907,7 +8907,7 @@
                     {
                       "type": "text",
                       "id": "zAxYz",
-                      "fill": "#9A8E7E",
+                      "fill": "#6b5d4f",
                       "textGrowth": "fixed-width",
                       "width": "fill_container",
                       "content": "南大武山  →  關山  →  庫哈諾辛山",
@@ -9005,7 +9005,7 @@
                     {
                       "type": "text",
                       "id": "ugcja",
-                      "fill": "#9A8E7E",
+                      "fill": "#6b5d4f",
                       "textGrowth": "fixed-width",
                       "width": "fill_container",
                       "content": "庫哈諾辛山  →  海諾南山  →  安東軍山",
@@ -9125,7 +9125,7 @@
                     {
                       "type": "text",
                       "id": "f5kKf",
-                      "fill": "#9A8E7E",
+                      "fill": "#6b5d4f",
                       "textGrowth": "fixed-width",
                       "width": "fill_container",
                       "content": "安東軍山  →  新康山  →  塔關山",
@@ -9245,7 +9245,7 @@
                     {
                       "type": "text",
                       "id": "Mllk3",
-                      "fill": "#9A8E7E",
+                      "fill": "#6b5d4f",
                       "textGrowth": "fixed-width",
                       "width": "fill_container",
                       "content": "塔關山  →  小關山  →  向陽山屋",
@@ -11740,7 +11740,7 @@
                     {
                       "type": "text",
                       "id": "0K6FE",
-                      "fill": "#9A8E7E",
+                      "fill": "#6b5d4f",
                       "textGrowth": "fixed-width",
                       "width": "fill_container",
                       "content": "大水窟  →  向陽山  →  三叉山",
@@ -11838,7 +11838,7 @@
                     {
                       "type": "text",
                       "id": "fZVsZ",
-                      "fill": "#9A8E7E",
+                      "fill": "#6b5d4f",
                       "textGrowth": "fixed-width",
                       "width": "fill_container",
                       "content": "三叉山  →  卑南主山  →  達仁山",
@@ -11936,7 +11936,7 @@
                     {
                       "type": "text",
                       "id": "G6uLo",
-                      "fill": "#9A8E7E",
+                      "fill": "#6b5d4f",
                       "textGrowth": "fixed-width",
                       "width": "fill_container",
                       "content": "達仁山  →  出雲山  →  大武山  →  霧頭山",
@@ -12056,7 +12056,7 @@
                     {
                       "type": "text",
                       "id": "3ZIHT",
-                      "fill": "#9A8E7E",
+                      "fill": "#6b5d4f",
                       "textGrowth": "fixed-width",
                       "width": "fill_container",
                       "content": "霧頭山  →  小鬼湖  →  南大武山",
@@ -12154,7 +12154,7 @@
                     {
                       "type": "text",
                       "id": "ycF8v",
-                      "fill": "#9A8E7E",
+                      "fill": "#6b5d4f",
                       "textGrowth": "fixed-width",
                       "width": "fill_container",
                       "content": "南大武山  →  關山  →  庫哈諾辛山",
@@ -12252,7 +12252,7 @@
                     {
                       "type": "text",
                       "id": "fXhNq",
-                      "fill": "#9A8E7E",
+                      "fill": "#6b5d4f",
                       "textGrowth": "fixed-width",
                       "width": "fill_container",
                       "content": "庫哈諾辛山  →  海諾南山  →  安東軍山",
@@ -12372,7 +12372,7 @@
                     {
                       "type": "text",
                       "id": "M6hLZ",
-                      "fill": "#9A8E7E",
+                      "fill": "#6b5d4f",
                       "textGrowth": "fixed-width",
                       "width": "fill_container",
                       "content": "安東軍山  →  新康山  →  塔關山",
@@ -12492,7 +12492,7 @@
                     {
                       "type": "text",
                       "id": "dAHVp",
-                      "fill": "#9A8E7E",
+                      "fill": "#6b5d4f",
                       "textGrowth": "fixed-width",
                       "width": "fill_container",
                       "content": "塔關山  →  小關山  →  向陽山屋",
@@ -13573,7 +13573,7 @@
                         {
                           "type": "text",
                           "id": "hfoPM",
-                          "fill": "#9A8E7E",
+                          "fill": "#6b5d4f",
                           "textGrowth": "fixed-width",
                           "width": "fill_container",
                           "content": "大水窟  →  向陽山  →  三叉山",
@@ -17433,6 +17433,534 @@
             {
               "type": "text",
               "id": "Dz9Br",
+              "fill": "#C44536",
+              "content": "刪除",
+              "fontFamily": "Inter",
+              "fontSize": 13,
+              "fontWeight": "normal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "vzoRa",
+      "x": 4382,
+      "y": 1269,
+      "name": "DayCard ver1",
+      "width": "fill_container(810)",
+      "fill": "#FFFFFF",
+      "cornerRadius": 12,
+      "stroke": {
+        "align": "inside",
+        "thickness": 1,
+        "fill": "#E8E4DC"
+      },
+      "layout": "vertical",
+      "gap": 10,
+      "padding": 16,
+      "children": [
+        {
+          "type": "frame",
+          "id": "Hl8sx",
+          "name": "d1h",
+          "width": "fill_container",
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "Ekbt6",
+              "fill": "#2C2418",
+              "content": "Day 1",
+              "fontFamily": "Inter",
+              "fontSize": 14,
+              "fontWeight": "700"
+            },
+            {
+              "type": "frame",
+              "id": "bNxhR",
+              "name": "d1r",
+              "gap": 8,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "q2mcS",
+                  "name": "d1eb",
+                  "fill": "#FFFFFF00",
+                  "gap": 4,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "iw5hx",
+                      "name": "d1tent",
+                      "width": 26,
+                      "height": 26,
+                      "fill": "#EAE4DA",
+                      "cornerRadius": 9999,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon_font",
+                          "id": "3wl0o",
+                          "width": 14,
+                          "height": 14,
+                          "iconFontName": "tent",
+                          "iconFontFamily": "lucide",
+                          "fill": "#6B5D4F"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "W4g6t",
+                      "name": "d1drop",
+                      "width": 26,
+                      "height": 26,
+                      "fill": "#C8E1F5",
+                      "cornerRadius": 9999,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon_font",
+                          "id": "BwRHa",
+                          "width": 14,
+                          "height": 14,
+                          "iconFontName": "droplet",
+                          "iconFontFamily": "lucide",
+                          "fill": "#1E5C8A"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "gOvsH",
+                  "fill": "#2C2418",
+                  "content": "6h 30m",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "iKWGc",
+          "fill": "#6b5d4f",
+          "textGrowth": "fixed-width",
+          "width": "fill_container",
+          "content": "大水窟  →  向陽山  →  三叉山",
+          "fontFamily": "Inter",
+          "fontSize": 12,
+          "fontWeight": "normal"
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "H8YTu",
+      "x": 4382,
+      "y": 1443,
+      "name": "DayCard view mode",
+      "width": "fill_container(810)",
+      "fill": "#FFFFFF",
+      "cornerRadius": 12,
+      "stroke": {
+        "align": "inside",
+        "thickness": 1,
+        "fill": "#E8E4DC"
+      },
+      "gap": 16,
+      "padding": 16,
+      "children": [
+        {
+          "type": "frame",
+          "id": "J7dMy",
+          "name": "leftWrap",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 8,
+          "children": [
+            {
+              "type": "frame",
+              "id": "Wu1o9",
+              "name": "d1hLeft",
+              "gap": 10,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "3Zchv",
+                  "fill": "#2C2418",
+                  "content": "Day 1",
+                  "fontFamily": "Inter",
+                  "fontSize": 16,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "frame",
+                  "id": "g6Djd",
+                  "name": "badges",
+                  "gap": 4,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "BM8BM",
+                      "width": 14,
+                      "height": 14,
+                      "iconFontName": "house",
+                      "iconFontFamily": "lucide",
+                      "fill": "#6B5D4F"
+                    },
+                    {
+                      "type": "icon_font",
+                      "id": "m1x3v",
+                      "width": 14,
+                      "height": 14,
+                      "iconFontName": "droplet",
+                      "iconFontFamily": "lucide",
+                      "fill": "#5BA08A"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "axN2L",
+              "fill": "#6b5d4f",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "大水窟  →  向陽山  →  三叉山",
+              "fontFamily": "Inter",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "p3qWW",
+          "name": "d1hRight",
+          "gap": 12,
+          "children": [
+            {
+              "type": "frame",
+              "id": "aHXAx",
+              "name": "timeStack",
+              "layout": "vertical",
+              "gap": 1,
+              "alignItems": "end",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "AQOnk",
+                  "fill": "#B8860B",
+                  "content": "6h 30m",
+                  "fontFamily": "Inter",
+                  "fontSize": 20,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "1pBl6",
+                  "fill": "#B5A894",
+                  "content": "×0.9 · 5h 51m",
+                  "fontFamily": "Inter",
+                  "fontSize": 11,
+                  "fontWeight": "normal"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "s7AHa",
+      "x": 4382,
+      "y": 1589,
+      "name": "DayCard edit mode",
+      "width": "fill_container(810)",
+      "fill": "#FFFFFF",
+      "cornerRadius": 12,
+      "stroke": {
+        "align": "inside",
+        "thickness": 1,
+        "fill": "#E8E4DC"
+      },
+      "gap": 16,
+      "padding": 16,
+      "children": [
+        {
+          "type": "frame",
+          "id": "uArCf",
+          "name": "leftWrap",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 8,
+          "children": [
+            {
+              "type": "frame",
+              "id": "gaGwW",
+              "name": "d1hLeft",
+              "gap": 10,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "OhYf7",
+                  "fill": "#2C2418",
+                  "content": "Day 1",
+                  "fontFamily": "Inter",
+                  "fontSize": 16,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "frame",
+                  "id": "nIz1d",
+                  "name": "badges",
+                  "gap": 4,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "PCsFZ",
+                      "width": 14,
+                      "height": 14,
+                      "iconFontName": "house",
+                      "iconFontFamily": "lucide",
+                      "fill": "#6B5D4F"
+                    },
+                    {
+                      "type": "icon_font",
+                      "id": "3qTlV",
+                      "width": 14,
+                      "height": 14,
+                      "iconFontName": "droplet",
+                      "iconFontFamily": "lucide",
+                      "fill": "#5BA08A"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "8Lu4Q",
+              "fill": "#6b5d4f",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "大水窟  →  向陽山  →  三叉山",
+              "fontFamily": "Inter",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "2BFpW",
+          "name": "d1hRight",
+          "gap": 12,
+          "children": [
+            {
+              "type": "frame",
+              "id": "jfZYa",
+              "name": "timeStack",
+              "layout": "vertical",
+              "gap": 1,
+              "alignItems": "end",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "oFID5",
+                  "fill": "#B8860B",
+                  "content": "6h 30m",
+                  "fontFamily": "Inter",
+                  "fontSize": 20,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "A4GNt",
+                  "fill": "#B5A894",
+                  "content": "×0.9 · 5h 51m",
+                  "fontFamily": "Inter",
+                  "fontSize": 11,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "UCqgb",
+              "name": "dots",
+              "width": 24,
+              "height": 24,
+              "cornerRadius": 9999,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "XXYb2",
+                  "width": 16,
+                  "height": 16,
+                  "iconFontName": "ellipsis",
+                  "iconFontFamily": "lucide",
+                  "fill": "#9A8E7E"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "izzq1",
+      "x": 5227,
+      "y": 1589,
+      "name": "contextMenu",
+      "width": 156,
+      "fill": "#FFFFFF",
+      "cornerRadius": 12,
+      "effect": {
+        "type": "shadow",
+        "shadowType": "outer",
+        "color": "#00000025",
+        "offset": {
+          "x": 0,
+          "y": 4
+        },
+        "blur": 16
+      },
+      "layout": "vertical",
+      "gap": 2,
+      "padding": [
+        6,
+        0
+      ],
+      "children": [
+        {
+          "type": "frame",
+          "id": "klWma",
+          "name": "mEdit",
+          "width": "fill_container",
+          "gap": 10,
+          "padding": [
+            10,
+            14
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "icon_font",
+              "id": "RZhyG",
+              "width": 14,
+              "height": 14,
+              "iconFontName": "pencil-line",
+              "iconFontFamily": "lucide",
+              "fill": "#2C2418"
+            },
+            {
+              "type": "text",
+              "id": "POmt3",
+              "fill": "#2C2418",
+              "content": "編輯",
+              "fontFamily": "Inter",
+              "fontSize": 13,
+              "fontWeight": "600"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "4y3xV",
+          "name": "sep",
+          "width": "fill_container",
+          "height": 1,
+          "fill": "#EAE4DA"
+        },
+        {
+          "type": "frame",
+          "id": "1US7u",
+          "name": "mDel",
+          "width": "fill_container",
+          "gap": 10,
+          "padding": [
+            10,
+            14
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "path",
+              "id": "9E5Sm",
+              "name": "Vector",
+              "geometry": "M15.93217 6.96027c-0.25288-1.92926-1.20022-3.70022-2.66468-4.98138-1.46446-1.28116-3.34563-1.98467-5.29139-1.97885-1.94575 0.00582-3.82269 0.72057-5.27946 2.01046-1.45677 1.28989-2.3935 3.06649-2.63484 4.99722-0.24134 1.93074 0.22925 3.88325 1.32368 5.49204 1.09443 1.60879 2.73768 2.76357 4.62213 3.24816 1.88445 0.48459 3.88092 0.26578 5.61568-0.61547 1.73476-0.88125 3.08888-2.36454 3.80888-4.17218m0.5 5l0-5-5 0",
+              "width": 9.293764114379883,
+              "height": 9.33333969116211,
+              "stroke": {
+                "align": "center",
+                "thickness": 1.1666666269302368,
+                "join": "round",
+                "cap": "round",
+                "fill": "#2c2418"
+              }
+            },
+            {
+              "type": "text",
+              "id": "r5lyx",
+              "fill": "#2c2418",
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "#2c2418"
+              },
+              "content": "清除路線",
+              "fontFamily": "Inter",
+              "fontSize": 13,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "X46vC",
+          "name": "mDel",
+          "width": "fill_container",
+          "gap": 10,
+          "padding": [
+            10,
+            14
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "icon_font",
+              "id": "oXBfi",
+              "width": 14,
+              "height": 14,
+              "iconFontName": "trash-2",
+              "iconFontFamily": "lucide",
+              "fill": "#C44536"
+            },
+            {
+              "type": "text",
+              "id": "uEkRI",
               "fill": "#C44536",
               "content": "刪除",
               "fontFamily": "Inter",
