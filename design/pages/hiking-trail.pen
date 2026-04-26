@@ -8393,9 +8393,6 @@
                     "9AKsS": {
                       "content": "01"
                     },
-                    "6e7bK": {
-                      "enabled": true
-                    },
                     "BuqrO": {
                       "content": "大水窟"
                     },
@@ -8423,9 +8420,6 @@
                   "descendants": {
                     "9AKsS": {
                       "content": "02"
-                    },
-                    "6e7bK": {
-                      "enabled": false
                     },
                     "BuqrO": {
                       "content": "三叉山"
@@ -8455,9 +8449,6 @@
                     "9AKsS": {
                       "content": "03"
                     },
-                    "6e7bK": {
-                      "enabled": false
-                    },
                     "BuqrO": {
                       "content": "達仁山"
                     },
@@ -8485,9 +8476,6 @@
                   "descendants": {
                     "9AKsS": {
                       "content": "04"
-                    },
-                    "6e7bK": {
-                      "enabled": true
                     },
                     "BuqrO": {
                       "content": "霧頭山"
@@ -8517,9 +8505,6 @@
                     "9AKsS": {
                       "content": "05"
                     },
-                    "6e7bK": {
-                      "enabled": false
-                    },
                     "BuqrO": {
                       "content": "南大武山"
                     },
@@ -8547,9 +8532,6 @@
                   "descendants": {
                     "9AKsS": {
                       "content": "06"
-                    },
-                    "6e7bK": {
-                      "enabled": false
                     },
                     "BuqrO": {
                       "content": "庫哈諾辛山"
@@ -8579,9 +8561,6 @@
                     "9AKsS": {
                       "content": "07"
                     },
-                    "6e7bK": {
-                      "enabled": true
-                    },
                     "BuqrO": {
                       "content": "安東軍山"
                     },
@@ -8609,9 +8588,6 @@
                   "descendants": {
                     "9AKsS": {
                       "content": "08"
-                    },
-                    "6e7bK": {
-                      "enabled": true
                     },
                     "BuqrO": {
                       "content": "塔關山"
@@ -18508,29 +18484,21 @@
               "children": [
                 {
                   "type": "frame",
-                  "id": "BxSFf",
-                  "name": "housePill",
-                  "fill": "#F5F0E4",
-                  "cornerRadius": 999,
-                  "stroke": {
-                    "align": "inside",
-                    "thickness": 1,
-                    "fill": "#E8E0CF"
-                  },
-                  "padding": [
-                    4,
-                    8
-                  ],
+                  "id": "1Luk9",
+                  "name": "d1tent",
+                  "width": 26,
+                  "height": 26,
+                  "fill": "#EAE4DA",
+                  "cornerRadius": 9999,
                   "justifyContent": "center",
                   "alignItems": "center",
                   "children": [
                     {
                       "type": "icon_font",
-                      "id": "iIeeO",
-                      "name": "v3houseIcon",
+                      "id": "6yUHW",
                       "width": 14,
                       "height": 14,
-                      "iconFontName": "house",
+                      "iconFontName": "tent",
                       "iconFontFamily": "lucide",
                       "fill": "#6B5D4F"
                     }
@@ -18538,31 +18506,23 @@
                 },
                 {
                   "type": "frame",
-                  "id": "6e7bK",
-                  "name": "waterPill",
-                  "fill": "#F5F0E4",
-                  "cornerRadius": 999,
-                  "stroke": {
-                    "align": "inside",
-                    "thickness": 1,
-                    "fill": "#E8E0CF"
-                  },
-                  "padding": [
-                    4,
-                    8
-                  ],
+                  "id": "CnKAo",
+                  "name": "d1drop",
+                  "width": 26,
+                  "height": 26,
+                  "fill": "#C8E1F5",
+                  "cornerRadius": 9999,
                   "justifyContent": "center",
                   "alignItems": "center",
                   "children": [
                     {
                       "type": "icon_font",
-                      "id": "4a09g",
-                      "name": "v3waterIcon",
+                      "id": "70rWy",
                       "width": 14,
                       "height": 14,
                       "iconFontName": "droplet",
                       "iconFontFamily": "lucide",
-                      "fill": "#5BA08A"
+                      "fill": "#1E5C8A"
                     }
                   ]
                 }
@@ -18846,29 +18806,21 @@
               "children": [
                 {
                   "type": "frame",
-                  "id": "LLHov",
-                  "name": "housePill",
-                  "fill": "#F5F0E4",
-                  "cornerRadius": 999,
-                  "stroke": {
-                    "align": "inside",
-                    "thickness": 1,
-                    "fill": "#E8E0CF"
-                  },
-                  "padding": [
-                    4,
-                    8
-                  ],
+                  "id": "AgW9g",
+                  "name": "d1tent",
+                  "width": 26,
+                  "height": 26,
+                  "fill": "#EAE4DA",
+                  "cornerRadius": 9999,
                   "justifyContent": "center",
                   "alignItems": "center",
                   "children": [
                     {
                       "type": "icon_font",
-                      "id": "vhULb",
-                      "name": "v3houseIcon",
+                      "id": "gqG7x",
                       "width": 14,
                       "height": 14,
-                      "iconFontName": "house",
+                      "iconFontName": "tent",
                       "iconFontFamily": "lucide",
                       "fill": "#6B5D4F"
                     }
@@ -18876,31 +18828,23 @@
                 },
                 {
                   "type": "frame",
-                  "id": "1A4c2",
-                  "name": "waterPill",
-                  "fill": "#F5F0E4",
-                  "cornerRadius": 999,
-                  "stroke": {
-                    "align": "inside",
-                    "thickness": 1,
-                    "fill": "#E8E0CF"
-                  },
-                  "padding": [
-                    4,
-                    8
-                  ],
+                  "id": "CEJM5",
+                  "name": "d1drop",
+                  "width": 26,
+                  "height": 26,
+                  "fill": "#C8E1F5",
+                  "cornerRadius": 9999,
                   "justifyContent": "center",
                   "alignItems": "center",
                   "children": [
                     {
                       "type": "icon_font",
-                      "id": "yeMUA",
-                      "name": "v3waterIcon",
+                      "id": "liYfV",
                       "width": 14,
                       "height": 14,
                       "iconFontName": "droplet",
                       "iconFontFamily": "lucide",
-                      "fill": "#5BA08A"
+                      "fill": "#1E5C8A"
                     }
                   ]
                 }
