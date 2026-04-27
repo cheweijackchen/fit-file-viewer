@@ -2,7 +2,8 @@ import type { CSSVariablesResolver } from '@mantine/core'
 
 export const mantineCssVariableResolver: CSSVariablesResolver = () => ({
   variables: {
-    //  variables that do not depend on color scheme
+    '--color-sepia-9': '#3d3228',
+    '--day-plan-summary-border': '#E8D4A8',
   },
   light: {
     '--text-emphasis': '#1A1A1A',
