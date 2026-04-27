@@ -61,8 +61,14 @@ const DEMO_DAYS: DayPlan[] = [
   },
 ]
 
+const SECTION_LABEL_STYLE = {
+  letterSpacing: '0.1em',
+  color: 'var(--mantine-color-stone-5)',
+}
+
 export default function DemoDayPlanCard() {
   const [paceMultiplier, setPaceMultiplier] = useState(1.0)
+  const [planStops, setPlanStops] = useState<string[]>([])
 
   return (
     <div className="flex flex-col gap-8 p-6 max-w-4xl">
@@ -118,10 +124,7 @@ export default function DemoDayPlanCard() {
           size="xs"
           fw={700}
           tt="uppercase"
-          style={{
-            letterSpacing: '0.1em',
-            color: 'var(--mantine-color-stone-5)' 
-          }}
+          style={SECTION_LABEL_STYLE}
         >
           View Mode — 四個腳程等級示例
         </Text>
@@ -139,16 +142,13 @@ export default function DemoDayPlanCard() {
         </Stack>
       </section>
 
-      {/* Edit mode */}
+      {/* Edit mode — dots menu only (no active planning) */}
       <section className="flex flex-col gap-3">
         <Text
           size="xs"
           fw={700}
           tt="uppercase"
-          style={{
-            letterSpacing: '0.1em',
-            color: 'var(--mantine-color-stone-5)' 
-          }}
+          style={SECTION_LABEL_STYLE}
         >
           Edit Mode — 含操作選單
         </Text>
@@ -176,6 +176,48 @@ export default function DemoDayPlanCard() {
             />
           ))}
         </Stack>
+      </section>
+
+      {/* Planning Mode — DayPlanForm active */}
+      <section className="flex flex-col gap-3">
+        <Text
+          size="xs"
+          fw={700}
+          tt="uppercase"
+          style={SECTION_LABEL_STYLE}
+        >
+          Planning Mode — 行程規劃表單
+        </Text>
+        <Text
+          size="xs"
+          c="dimmed"
+        >
+          選擇起點開始規劃，點擊節點繼續走，Undo 還原上一步。
+        </Text>
+        <DayPlanCard
+          dayPlan={DEMO_DAYS[0]!}
+          dayIndex={1}
+          trail={southSecondSection}
+          paceMultiplier={paceMultiplier}
+          mode="edit"
+          editStopIds={planStops}
+          onStartingNodeChange={(id) => setPlanStops([id])}
+          onNodeSelect={(id) => setPlanStops((prev) => [...prev, id])}
+          onUndo={() => setPlanStops((prev) => (prev.length > 1 ? prev.slice(0, -1) : prev))}
+          onCompleteRoute={() => {
+            notifications.show({
+              message: '路線已完成！',
+              color: 'green' 
+            })
+            setPlanStops([])
+          }}
+          onEdit={() => {}}
+          onClearRoute={() => setPlanStops([])}
+          onDelete={() => notifications.show({
+            message: '刪除 Day 1',
+            color: 'red' 
+          })}
+        />
       </section>
     </div>
   )
