@@ -10,6 +10,7 @@ import { buildTrailAdjacencyList, calculatePathTime } from '@/lib/trailGraph'
 import type { DayPlan, Trail } from '@/model/hikingTrail'
 import { DayPlanForm } from './components/DayPlanForm'
 import { NodeTypeBadge } from './components/NodeTypeBadge'
+import { RouteIndicator } from './components/RouteIndicator'
 
 interface Props {
   dayPlan: DayPlan;
@@ -161,56 +162,19 @@ export function DayPlanCard({
         )}
 
         {/* Route chip row */}
-        <div
-          className="flex items-center flex-wrap"
-          style={{ gap: 4 }}
-        >
-          {activeStopIds.length === 0 ? (
-            <Text
-              size="xs"
-              style={{ color: 'var(--mantine-color-stone-4)' }}
-            >
-              —
-            </Text>
-          ) : (
-            activeStopIds.map((id, i) => (
-              <div
-                key={id}
-                className="flex items-center"
-                style={{ gap: 4 }}
-              >
-                <div
-                  className="flex items-center rounded"
-                  style={{
-                    padding: '3px 8px',
-                    background: 'var(--mantine-color-stone-1)',
-                  }}
-                >
-                  <Text
-                    component="span"
-                    style={{
-                      fontSize: 12,
-                      color: 'var(--mantine-color-stone-7)',
-                    }}
-                  >
-                    {nodeMap[id]?.name ?? id}
-                  </Text>
-                </div>
-                {i < activeStopIds.length - 1 && (
-                  <Text
-                    component="span"
-                    style={{
-                      fontSize: 12,
-                      color: 'var(--mantine-color-stone-4)',
-                    }}
-                  >
-                    →
-                  </Text>
-                )}
-              </div>
-            ))
-          )}
-        </div>
+        {activeStopIds.length === 0 ? (
+          <Text
+            size="xs"
+            style={{ color: 'var(--mantine-color-stone-4)' }}
+          >
+            —
+          </Text>
+        ) : (
+          <RouteIndicator
+            stopIds={activeStopIds}
+            nodeMap={nodeMap}
+          />
+        )}
       </div>
 
       {/* Time col */}

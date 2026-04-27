@@ -143,6 +143,8 @@ export function DayPlanForm({
               highlightLast
               stopIds={stopIds}
               nodeMap={nodeMap}
+              chipBackground="var(--mantine-color-stone-2)"
+              fontWeight={600}
             />
           </div>
 
