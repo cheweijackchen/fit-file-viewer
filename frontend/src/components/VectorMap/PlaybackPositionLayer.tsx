@@ -11,14 +11,20 @@ interface Props {
 
 function makePoint(position: [number, number] | null): GeoJSON.FeatureCollection {
   if (position === null) {
-    return { type: 'FeatureCollection', features: [] }
+    return {
+      type: 'FeatureCollection',
+      features: [] 
+    }
   }
   return {
     type: 'FeatureCollection',
     features: [
       {
         type: 'Feature',
-        geometry: { type: 'Point', coordinates: position },
+        geometry: {
+          type: 'Point',
+          coordinates: position 
+        },
         properties: {},
       },
     ],

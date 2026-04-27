@@ -33,15 +33,15 @@ function WaypointPopupContent({ waypoint }: PopupContentProps) {
     ['經度', waypoint.lon.toFixed(6)],
     ...(waypoint.time
       ? [[
-          '時間',
-          waypoint.time.toLocaleString('zh-TW', {
-            year: 'numeric',
-            month: '2-digit',
-            day: '2-digit',
-            hour: '2-digit',
-            minute: '2-digit',
-          }),
-        ] as [string, string]]
+        '時間',
+        waypoint.time.toLocaleString('zh-TW', {
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit',
+          hour: '2-digit',
+          minute: '2-digit',
+        }),
+      ] as [string, string]]
       : []),
   ]
 
@@ -249,7 +249,10 @@ export function WaypointsLayer({ map, isMapReady, waypoints, show, showLabels }:
           </MantineProvider>,
         )
       })
-      popupRef.current = new maplibregl.Popup({ closeButton: true, maxWidth: '280px' })
+      popupRef.current = new maplibregl.Popup({
+        closeButton: true,
+        maxWidth: '280px' 
+      })
         .setLngLat([waypoint.lon, waypoint.lat])
         .setDOMContent(container)
         .addTo(map!)
@@ -259,8 +262,14 @@ export function WaypointsLayer({ map, isMapReady, waypoints, show, showLabels }:
       const { lng, lat } = e.lngLat
       const nearest = waypoints.reduce((best, wp) => {
         const dist = ((wp.lat - lat) ** 2) + ((wp.lon - lng) ** 2)
-        return dist < best.dist ? { wp, dist } : best
-      }, { wp: waypoints[0]!, dist: Infinity }).wp
+        return dist < best.dist ? {
+          wp,
+          dist 
+        } : best
+      }, {
+        wp: waypoints[0]!,
+        dist: Infinity 
+      }).wp
       showWaypointPopup(nearest)
     }
 

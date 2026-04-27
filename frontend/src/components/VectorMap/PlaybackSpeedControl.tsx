@@ -4,10 +4,22 @@ import { Button, Popover, SegmentedControl, Slider, Stack, Text } from '@mantine
 import { useState } from 'react'
 
 const SPEED_OPTIONS = [
-  { value: '1', label: '1×' },
-  { value: '2', label: '2×' },
-  { value: '4', label: '4×' },
-  { value: '8', label: '8×' },
+  {
+    value: '1',
+    label: '1×' 
+  },
+  {
+    value: '2',
+    label: '2×' 
+  },
+  {
+    value: '4',
+    label: '4×' 
+  },
+  {
+    value: '8',
+    label: '8×' 
+  },
 ]
 
 const PRESET_VALUES = new Set([1, 2, 4, 8])

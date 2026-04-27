@@ -32,7 +32,11 @@ const StartIcon: FC<{ color: string; }> = ({ color }) => (
       width="10"
       height="10"
       viewBox="0 0 10 10"
-      style={{ position: 'relative', zIndex: 1, marginLeft: '2px' }}
+      style={{
+        position: 'relative',
+        zIndex: 1,
+        marginLeft: '2px' 
+      }}
     >
       <path
         d="M2 1 L2 9 L8 5 Z"

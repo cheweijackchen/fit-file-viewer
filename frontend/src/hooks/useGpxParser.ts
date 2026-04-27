@@ -20,7 +20,10 @@ export function useGpxParser(): UseGpxParserReturn {
 
   const parseFile = useCallback((file: File) => {
     if (!file.name.toLowerCase().endsWith('.gpx')) {
-      setState({ status: 'error', message: '請上傳 .gpx 格式的檔案' })
+      setState({
+        status: 'error',
+        message: '請上傳 .gpx 格式的檔案' 
+      })
       return
     }
 
@@ -31,7 +34,10 @@ export function useGpxParser(): UseGpxParserReturn {
     reader.onload = (event) => {
       const text = event.target?.result
       if (typeof text !== 'string') {
-        setState({ status: 'error', message: '無法讀取檔案內容' })
+        setState({
+          status: 'error',
+          message: '無法讀取檔案內容' 
+        })
         return
       }
 
@@ -103,7 +109,12 @@ export function useGpxParser(): UseGpxParserReturn {
 
         setState({
           status: 'success',
-          track: { name, points, waypoints: separateWaypoints, stats },
+          track: {
+            name,
+            points,
+            waypoints: separateWaypoints,
+            stats 
+          },
         })
       } catch (err) {
         setState({
@@ -114,7 +125,10 @@ export function useGpxParser(): UseGpxParserReturn {
     }
 
     reader.onerror = () => {
-      setState({ status: 'error', message: '檔案讀取失敗' })
+      setState({
+        status: 'error',
+        message: '檔案讀取失敗' 
+      })
     }
 
     reader.readAsText(file)
@@ -124,5 +138,9 @@ export function useGpxParser(): UseGpxParserReturn {
     setState({ status: 'idle' })
   }, [])
 
-  return { state, parseFile, reset }
+  return {
+    state,
+    parseFile,
+    reset 
+  }
 }

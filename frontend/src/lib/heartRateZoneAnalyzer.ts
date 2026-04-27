@@ -233,11 +233,26 @@ class HeartRateZoneAnalyzer {
     const validRecords = total - invalidCount
 
     const data: ZoneStatistics['data'] = {
-      zone1: { count: 0, percentage: 0 },
-      zone2: { count: 0, percentage: 0 },
-      zone3: { count: 0, percentage: 0 },
-      zone4: { count: 0, percentage: 0 },
-      zone5: { count: 0, percentage: 0 }
+      zone1: {
+        count: 0,
+        percentage: 0 
+      },
+      zone2: {
+        count: 0,
+        percentage: 0 
+      },
+      zone3: {
+        count: 0,
+        percentage: 0 
+      },
+      zone4: {
+        count: 0,
+        percentage: 0 
+      },
+      zone5: {
+        count: 0,
+        percentage: 0 
+      }
     }
 
     const zones: Array<NonNullable<HeartRateZone> | null> = ['zone1', 'zone2', 'zone3', 'zone4', 'zone5', null]
@@ -249,9 +264,15 @@ class HeartRateZoneAnalyzer {
         const percentage = validRecords > 0 ? Math.round((count / validRecords) * 10000) / 100 : 0
 
         if (zone === null) {
-          data.null = { count, percentage }
+          data.null = {
+            count,
+            percentage 
+          }
         } else {
-          data[zone] = { count, percentage }
+          data[zone] = {
+            count,
+            percentage 
+          }
         }
       }
     })
@@ -270,11 +291,26 @@ class HeartRateZoneAnalyzer {
       validRecords: 0,
       invalidRecords: 0,
       data: {
-        zone1: { count: 0, percentage: 0 },
-        zone2: { count: 0, percentage: 0 },
-        zone3: { count: 0, percentage: 0 },
-        zone4: { count: 0, percentage: 0 },
-        zone5: { count: 0, percentage: 0 }
+        zone1: {
+          count: 0,
+          percentage: 0 
+        },
+        zone2: {
+          count: 0,
+          percentage: 0 
+        },
+        zone3: {
+          count: 0,
+          percentage: 0 
+        },
+        zone4: {
+          count: 0,
+          percentage: 0 
+        },
+        zone5: {
+          count: 0,
+          percentage: 0 
+        }
       }
     }
   }

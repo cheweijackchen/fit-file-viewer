@@ -12,15 +12,24 @@ const createDemoSlice: StateCreator<DemoSlice> = (set) => {
     isNavbarCollapse: false,
     openNavbar: () =>
       set((state) => {
-        return { ...state, isNavbarCollapse: false }
+        return {
+          ...state,
+          isNavbarCollapse: false 
+        }
       }),
     closeNavbar: () =>
       set((state) => {
-        return { ...state, isNavbarCollapse: true }
+        return {
+          ...state,
+          isNavbarCollapse: true 
+        }
       }),
     toggleNavbar: () =>
       set((state) => {
-        return { ...state, isNavbarCollapse: !state.isNavbarCollapse }
+        return {
+          ...state,
+          isNavbarCollapse: !state.isNavbarCollapse 
+        }
       }),
   }
 }

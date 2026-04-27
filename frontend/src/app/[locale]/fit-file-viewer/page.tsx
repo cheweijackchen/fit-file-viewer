@@ -48,7 +48,10 @@ export default function FitFileViewerPage() {
               <div className="lg:col-span-5 2xl:col-span-6">
                 <MapNoSSR
                   className="z-0 h-125 lg:h-full"
-                  tracks={{ id: 'the-only-track', ...fitData } as TrackData}
+                  tracks={{
+                    id: 'the-only-track',
+                    ...fitData 
+                  } as TrackData}
                   trackColors={[theme.colors.yellow[5]]}
                   borderedTrack={true}
                 />

@@ -89,7 +89,10 @@ export function AltitudeTrendCard({ records }: Props) {
           fillOpacity={fillOpacity}
           gridAxis="xy"
           gridProps={{ yAxisId: 'left' }} // horizontal grid lines missing without this will be fixed at Recharts 9.0
-          series={[{ name: 'altitude', color: 'yellow.4' }]}
+          series={[{
+            name: 'altitude',
+            color: 'yellow.4' 
+          }]}
           areaProps={{
             connectNulls: false
           }}

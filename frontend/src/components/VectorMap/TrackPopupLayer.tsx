@@ -156,7 +156,10 @@ export function TrackPopupLayer({ map, points, isMapReady, showTrackPoints }: Pr
         )
       })
 
-      popupRef.current = new maplibregl.Popup({ closeButton: true, maxWidth: '280px' })
+      popupRef.current = new maplibregl.Popup({
+        closeButton: true,
+        maxWidth: '280px' 
+      })
         .setLngLat([nearest.lon, nearest.lat])
         .setDOMContent(container)
         .addTo(map)

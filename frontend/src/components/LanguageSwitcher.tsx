@@ -3,8 +3,8 @@
 import { Button, Menu } from '@mantine/core'
 import { IconWorld } from '@tabler/icons-react'
 import { useLocale } from 'next-intl'
-import { LOCALES, type Locale } from '@/i18n/routing'
 import { usePathname, useRouter } from '@/i18n/navigation'
+import { LOCALES, type Locale } from '@/i18n/routing'
 
 const LOCALE_LABELS: Record<Locale, string> = {
   'en-US': 'English',

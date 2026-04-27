@@ -51,7 +51,10 @@ export function TrackLayer({
 
     if (points.length === 0) {
       if (addedRef.current) {
-        const emptyCollection = { type: 'FeatureCollection' as const, features: [] }
+        const emptyCollection = {
+          type: 'FeatureCollection' as const,
+          features: [] 
+        }
         const lineSrc = map.getSource(SOURCE_LINE) as GeoJSONSource | undefined
         const pointsSrc = map.getSource(SOURCE_POINTS) as GeoJSONSource | undefined
         lineSrc?.setData(emptyCollection)
@@ -65,8 +68,14 @@ export function TrackLayer({
 
     if (!addedRef.current) {
       // --- Sources ---
-      map.addSource(SOURCE_LINE, { type: 'geojson', data: lineFeature })
-      map.addSource(SOURCE_POINTS, { type: 'geojson', data: pointCollection })
+      map.addSource(SOURCE_LINE, {
+        type: 'geojson',
+        data: lineFeature 
+      })
+      map.addSource(SOURCE_POINTS, {
+        type: 'geojson',
+        data: pointCollection 
+      })
 
       // Find the first symbol (label) layer in the base map style.
       // Inserting before it places the track above terrain/roads but below
@@ -84,7 +93,10 @@ export function TrackLayer({
           id: LAYER_LINE,
           type: 'line',
           source: SOURCE_LINE,
-          layout: { 'line-cap': 'round', 'line-join': 'round' },
+          layout: {
+            'line-cap': 'round',
+            'line-join': 'round' 
+          },
           paint: {
             'line-color': lineColor,
             'line-width': 5,

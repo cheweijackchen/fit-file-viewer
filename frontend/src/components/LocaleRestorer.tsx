@@ -1,7 +1,7 @@
 'use client'
 
-import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
+import { useEffect } from 'react'
 import { LOCALES, type Locale } from '@/i18n/routing'
 
 const LOCALE_STORAGE_KEY = 'locale'
@@ -11,7 +11,9 @@ export function LocaleRestorer() {
 
   useEffect(() => {
     const saved = localStorage.getItem(LOCALE_STORAGE_KEY)
-    if (!saved || !(LOCALES as readonly string[]).includes(saved)) return
+    if (!saved || !(LOCALES as readonly string[]).includes(saved)) {
+      return
+    }
 
     const locale = saved as Locale
     const cookieLocale = document.cookie

@@ -88,7 +88,10 @@ function normalizeAndFilterTracks(
       )
       validRecords += validRecordsList.length
 
-      return { ...track, records: validRecordsList }
+      return {
+        ...track,
+        records: validRecordsList 
+      }
     })
     .filter((track) => track.records.length > 0)
 
@@ -162,7 +165,11 @@ export default function FitTrackMap({
         record.position_lat,
         record.position_long,
       ])
-      return { ...track, color, positions }
+      return {
+        ...track,
+        color,
+        positions 
+      }
     })
   }, [tracksArray, trackColors])
 
@@ -201,7 +208,10 @@ export default function FitTrackMap({
         minZoom={MIN_ZOOM}
         maxZoom={MAX_ZOOM}
         zoomControl={false}
-        style={{ height: '100%', width: '100%' }}
+        style={{
+          height: '100%',
+          width: '100%' 
+        }}
         className="rounded-lg shadow-lg"
       >
         <TileLayer
