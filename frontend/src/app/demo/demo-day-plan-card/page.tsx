@@ -69,6 +69,8 @@ const SECTION_LABEL_STYLE = {
 export default function DemoDayPlanCard() {
   const [paceMultiplier, setPaceMultiplier] = useState(1.0)
   const [planStops, setPlanStops] = useState<string[]>([])
+  const [editDayIndex, setEditDayIndex] = useState<number | null>(null)
+  const [editStops, setEditStops] = useState<string[]>([])
 
   return (
     <div className="flex flex-col gap-8 p-6 max-w-4xl">
@@ -156,22 +158,39 @@ export default function DemoDayPlanCard() {
           {DEMO_DAYS.slice(0, 2).map((day, i) => (
             <DayPlanCard
               key={`edit-${day.id}`}
+              showOptions
               dayPlan={day}
               dayIndex={i + 1}
               trail={southSecondSection}
               paceMultiplier={paceMultiplier}
-              mode="edit"
-              onEdit={() => notifications.show({
-                message: `編輯 Day ${i + 1}`,
-                color: 'blue' 
-              })}
-              onClearRoute={() => notifications.show({
-                message: `清除 Day ${i + 1} 路線`,
-                color: 'orange' 
-              })}
+              mode={editDayIndex === i ? 'edit' : 'view'}
+              editStopIds={editDayIndex === i ? editStops : undefined}
+              onEdit={() => {
+                setEditDayIndex(i)
+                setEditStops([])
+              }}
+              onStartingNodeChange={(id) => setEditStops([id])}
+              onNodeSelect={(id) => setEditStops((prev) => [...prev, id])}
+              onUndo={() => setEditStops((prev) => (prev.length > 1 ? prev.slice(0, -1) : prev))}
+              onCompleteRoute={() => {
+                notifications.show({
+                  message: `Day ${i + 1} 路線已完成！`,
+                  color: 'green'
+                })
+                setEditDayIndex(null)
+                setEditStops([])
+              }}
+              onClearRoute={() => {
+                notifications.show({
+                  message: `清除 Day ${i + 1} 路線`,
+                  color: 'orange'
+                })
+                setEditDayIndex(null)
+                setEditStops([])
+              }}
               onDelete={() => notifications.show({
                 message: `刪除 Day ${i + 1}`,
-                color: 'red' 
+                color: 'red'
               })}
             />
           ))}
@@ -195,6 +214,7 @@ export default function DemoDayPlanCard() {
           選擇起點開始規劃，點擊節點繼續走，Undo 還原上一步。
         </Text>
         <DayPlanCard
+          showOptions
           dayPlan={DEMO_DAYS[0]!}
           dayIndex={1}
           trail={southSecondSection}
@@ -207,15 +227,14 @@ export default function DemoDayPlanCard() {
           onCompleteRoute={() => {
             notifications.show({
               message: '路線已完成！',
-              color: 'green' 
+              color: 'green'
             })
             setPlanStops([])
           }}
-          onEdit={() => {}}
           onClearRoute={() => setPlanStops([])}
           onDelete={() => notifications.show({
             message: '刪除 Day 1',
-            color: 'red' 
+            color: 'red'
           })}
         />
       </section>

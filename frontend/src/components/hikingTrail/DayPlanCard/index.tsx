@@ -17,6 +17,7 @@ interface Props {
   trail: Trail;
   paceMultiplier: number;
   mode: 'view' | 'edit';
+  showOptions?: boolean;
   onEdit?: () => void;
   onClearRoute?: () => void;
   onDelete?: () => void;
@@ -36,6 +37,7 @@ export function DayPlanCard({
   trail,
   paceMultiplier,
   mode,
+  showOptions,
   onEdit,
   onClearRoute,
   onDelete,
@@ -275,8 +277,8 @@ export function DayPlanCard({
         </div>
       </div>
 
-      {/* Dots menu — edit mode only, top-aligned */}
-      {mode === 'edit' && (
+      {/* Dots menu — shown when showOptions, top-aligned */}
+      {showOptions && (
         <div className="self-start">
           <Menu
             withinPortal
