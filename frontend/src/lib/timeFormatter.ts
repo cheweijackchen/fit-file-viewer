@@ -1,3 +1,15 @@
+export function formatTrailMinutes(minutes: number): string {
+  const h = Math.floor(minutes / 60)
+  const m = Math.round(minutes % 60)
+  if (h === 0) {
+    return `${m}m` 
+  }
+  if (m === 0) {
+    return `${h}h` 
+  }
+  return `${h}h ${m}m`
+}
+
 export function formatElapsedTime(milliseconds: number, showSeconds = true) {
   const totalSeconds = Math.floor(milliseconds / 1000)
   const hours = Math.floor(totalSeconds / 3600)
