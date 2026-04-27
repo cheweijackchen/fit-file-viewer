@@ -49,7 +49,7 @@ The **Trail Planner** is a browser-based, privacy-first tool that helps hikers p
   - 有行程首頁：行程列表（名稱、路線、天數、上次編輯）+ 選取行程預覽（總時間、權重、總權重時間、各天的路線和時間和權重時間）
   - **Detail page（Landing — Detail）**：點選行程卡片後進入，含行程標題區（麵包屑導覽 + 三點選單）、完整行程表（各天 Day 卡片含住宿類型與水源資訊 badge）、行程統計摘要、路網預覽佔位
 
-- **Trail Selection** (deprecated)
+- **Trail Selection**
   - 多路線搜尋選擇，可同時勾選多條路線
   - 即時合併 Trail Network 預覽（選取時同步更新）
   - 可在規劃中途新增移除路線，如果已經有使用到某路線地圖的節點，則不可刪除該路線。

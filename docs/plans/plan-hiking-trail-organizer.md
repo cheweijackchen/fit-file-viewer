@@ -32,7 +32,9 @@ frontend/src/
 │           └── GraphCanvas.tsx           # SVG 視覺化
 └── app/hiking-trail-planner/
     ├── layout.tsx
-    └── page.tsx
+    ├── page.tsx
+    └── [uid]/
+        └── page.tsx
 ```
 
 ---
@@ -73,6 +75,9 @@ export interface Trail {
 
 // 執行期查詢結構（由 Trail.edges 建構）
 export type TrailAdjacencyList = Map<string, Map<string, TrailEdge>>
+
+// Day card 資訊 badge（住宿類型 + 水源），可多選，設計為可擴充
+export type InfoBadgeType = 'tent' | 'house' | 'droplet'
 ```
 
 ### Utility Functions（`frontend/src/lib/trailGraph.ts`）
@@ -125,9 +130,10 @@ Option B 則需要對共用節點做 deep merge `adjacentNodes`，同一條邊�
 **目標：** 只讀的視覺化元件，讓使用者在規劃時能查閱路線結構。
 
 ### 路由
-`/hiking-trail-planner` 主頁面的左側 panel（或獨立頁面 `/hiking-trail-planner/trails/[trailId]`）
+`/hiking-trail-planner/trails` — 路線清單頁面
 
 ### 展示模式
+具有左側欄作為選單，右側欄作為檢視路線畫面，切割為左右的排版（類似 /peaks 頁面）。
 
 | 模式 | 說明 |
 |------|------|
@@ -154,84 +160,64 @@ Option B 則需要對共用節點做 deep merge `adjacentNodes`，同一條邊�
 **目標：** 互動式頁面，讓使用者建立多天登山計畫。
 
 ### 路由
-`/hiking-trail-planner` — 主要規劃頁面
+`/hiking-trail-planner` — 主要的清單頁面
+`/hiking-trail-planner/[planId]` — 詳細頁面（包括檢視和編輯功能）
 
 ### Zustand Store（`frontend/src/store/hikingTrail/`）
 
 ```typescript
 // hikingTrailSlice.ts
 
-// 休息時間 per node：每個停留節點記錄在該節點的休息時間
 // 路段邊隱含於 stops[i] → stops[i+1] 之間
 interface RouteStop {
   nodeId: string
-  restMinutes: number  // 抵達此節點後的休息時間（分鐘）
 }
 
 interface DayPlan {
   id: string              // uuid
-  paceMultiplier: number  // 預設 1.0；0.9 = 快 10%
+  badges: InfoBadgeType[] // 住宿類型與水源資訊 badge（可多選，可擴充）
   stops: RouteStop[]      // 有序停留節點；邊為 stops[i] → stops[i+1]
 }
 
 interface HikingPlan {
   id: string
   name: string
-  trailId: string
+  trailIds: string[]      // 支援多路線合併為單一 Trail Network
+  paceMultiplier: number  // per-trip 設定，預設 1.0
   days: DayPlan[]
   createdAt: number
   updatedAt: number
 }
 
 interface HikingTrailState {
-  selectedTrailId: string | undefined
+  selectedTrailIds: string[]
   plans: HikingPlan[]
   activePlanId: string | undefined
   actions: {
-    setSelectedTrail: (trailId: string) => void
-    createPlan: (name: string, trailId: string) => void
+    setSelectedTrails: (trailIds: string[]) => void
+    createPlan: (name: string, trailIds: string[]) => void
     setActivePlan: (planId: string) => void
     addDay: (planId: string) => void
     removeDay: (planId: string, dayId: string) => void
     appendStop: (planId: string, dayId: string, nodeId: string) => void
     insertStop: (planId: string, dayId: string, index: number, nodeId: string) => void
     removeStop: (planId: string, dayId: string, index: number) => void
-    setRestTime: (planId: string, dayId: string, stopIndex: number, minutes: number) => void
-    setPaceMultiplier: (planId: string, dayId: string, multiplier: number) => void
+    setDayBadges: (planId: string, dayId: string, badges: InfoBadgeType[]) => void
+    setPaceMultiplier: (planId: string, multiplier: number) => void
   }
 }
 ```
 
-- 持久化至 localStorage，key：`'hiking-trail-planner'`
+- ~~持久化至 localStorage，key：`'hiking-trail-planner'`~~ 考慮使用 indexedDB
 
 ### 頁面 UI 佈局
-
-```
-┌─────────────────┬──────────────────────────────┐
-│  Trail Selector │  Route Builder                │
-│  ─────────────  │  ──────────────────────────   │
-│  TrailGraphView │  [Day 1] [Day 2] [+ Add Day]  │
-│  (SVG + List)   │                               │
-│                 │  Pace: ──●── 1.0x             │
-│                 │                               │
-│                 │  登山口                        │
-│                 │  ↓ 40 min + 10 min rest       │
-│                 │  排雲山莊                       │
-│                 │  ↓ 35 min                     │
-│                 │  玉山主峰                       │
-│                 │                               │
-│                 │  Day total: 1h 25min           │
-│                 │  Trip total: 2d 4h 10min       │
-└─────────────────┴──────────────────────────────┘
-```
-
-**行動裝置：** 全螢幕 TrailGraphView + Bottom Sheet 路線規劃（參考 Peaks Tracker 模式）
+TODO: 
 
 ### 路線建立互動
 
 | 操作 | 實作方式 |
 |------|---------|
-| **圖形選擇** | 點擊 TrailGraphView 節點 → 追加至當前天路線末端（只 highlight 有效的下一個節點） |
+| **圖形選擇** | (這個階段先不實作，單純顯示。)點擊 TrailGraphView 節點 → 追加至當前天路線末端（只 highlight 有效的下一個節點） |
 | **行動裝置備選** | Dropdown / 搜尋選節點 |
 | **中間插入** | 每個 segment 有「在此插入」按鈕；或拖曳排序 |
 | **移除 segment** | 刪除按鈕；自動重算時間 |
@@ -239,8 +225,8 @@ interface HikingTrailState {
 
 ### 結果呈現
 
-- 每天展開式 timeline：`節點 → [步行 X 分] → 節點 → [休息 Y 分] → ...`
-- 每天小計（步行時間 + 休息時間）
+- 每天展開式 timeline：`節點 → [步行 X 分] → 節點 → ...`
+- 每天小計（步行時間）、加權時間（× paceMultiplier）
 - 全程總計
 
 ---
@@ -250,7 +236,7 @@ interface HikingTrailState {
 **目標：** 儲存、命名、列表、刪除計畫；支援 JSON 匯出/匯入。
 
 ### 儲存
-- Zustand persist 到 localStorage（Phase 3 store 已涵蓋）
+- Zustand persist 到 ~~localStorage~~ indexedDB（Phase 3 store 已涵蓋）
 - 每個計畫有 UUID + 名稱 + 建立/更新時間戳
 
 ### UI
@@ -303,8 +289,10 @@ function findShortestPath(
 ### 路由
 ```
 app/hiking-trail-planner/
-├── layout.tsx      # AppLayout wrapper
-└── page.tsx        # 頁面邏輯直接寫在此（專案慣例）
+├── layout.tsx          # AppLayout wrapper
+├── page.tsx            # Landing：空白首頁 / 行程清單
+└── [uid]/
+    └── page.tsx        # Detail：行程詳細頁（麵包屑 + Day cards + stats + network preview）
 ```
 
 ### 測試策略
@@ -334,4 +322,4 @@ app/hiking-trail-planner/
 | 初始收錄哪條路線？ | **南二段** |
 | `TrailNode.elevation` 是否為必填？ | **非必填** |
 | 圖形選擇方式？ | **點擊追加**；拖曳排序為進階功能 |
-| 休息時間顆粒度？ | **per node**（每個停留節點各自記錄休息時間，方便後續做圖表呈現） |
+| 休息時間顆粒度？ | **未來功能**（per node，移至 Phase 4；v1 不實作） |
