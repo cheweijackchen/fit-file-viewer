@@ -7227,6 +7227,7 @@
       "y": -468,
       "name": "Landing",
       "width": 1440,
+      "height": 1380,
       "fill": "#F5F3EE",
       "layout": "vertical",
       "children": [
@@ -7997,6 +7998,471 @@
                           "fontFamily": "Inter",
                           "fontSize": 12,
                           "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "cymla",
+          "name": "plansSection",
+          "width": 1440,
+          "fill": "#241D0E",
+          "layout": "vertical",
+          "gap": 48,
+          "padding": [
+            72,
+            80
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "LjqIV",
+              "name": "hdr",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 8,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "VHlxu",
+                  "fill": "#E6B020",
+                  "content": "TRAIL PLANS",
+                  "fontFamily": "Inter",
+                  "fontSize": 11,
+                  "fontWeight": "700",
+                  "letterSpacing": 2
+                },
+                {
+                  "type": "text",
+                  "id": "lBEB9",
+                  "fill": "#F2E8D0",
+                  "content": "Start from a Plan",
+                  "fontFamily": "Inter",
+                  "fontSize": 34,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "hv5HJ",
+                  "fill": "#9C8E78",
+                  "content": "Choose a curated route — then make it yours.",
+                  "fontFamily": "Inter",
+                  "fontSize": 15,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "Isp0X",
+              "name": "cardsRow",
+              "width": "fill_container",
+              "gap": 20,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "iZmaa",
+                  "name": "card-jade",
+                  "clip": true,
+                  "width": "fill_container",
+                  "fill": "#EDE6D3",
+                  "cornerRadius": 14,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "#D8CEBC"
+                  },
+                  "layout": "vertical",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "hmFAt",
+                      "name": "c1content",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 14,
+                      "padding": 22,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "o1ZKf",
+                          "name": "c1top",
+                          "width": "fill_container",
+                          "justifyContent": "space_between",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "mV9Z9",
+                              "fill": "#2C2418",
+                              "content": "Jade Mountain",
+                              "fontFamily": "Inter",
+                              "fontSize": 18,
+                              "fontWeight": "700"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "ijCKT",
+                              "name": "days1",
+                              "fill": "#DDD3BE",
+                              "cornerRadius": 99,
+                              "padding": [
+                                4,
+                                12
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "g7B9B",
+                                  "fill": "#7A6B55",
+                                  "content": "3 days",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 11,
+                                  "fontWeight": "600"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "yV0hA",
+                          "x": 22,
+                          "y": 22,
+                          "enabled": false,
+                          "fill": "#2C2418",
+                          "content": "Jade Mountain",
+                          "fontFamily": "Inter",
+                          "fontSize": 22,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "wzjhk",
+                          "fill": "#8A7A65",
+                          "content": "Central Mountain Range  ·  Nantou",
+                          "fontFamily": "Inter",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "AZYb1",
+                          "fill": "#6B5D4F",
+                          "content": "18 km  ·  +2,800 m  ·  3 days",
+                          "fontFamily": "Inter",
+                          "fontSize": 13,
+                          "fontWeight": "500"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "DoWT8",
+                          "name": "c1cta",
+                          "width": "fill_container",
+                          "fill": "#E6B020",
+                          "cornerRadius": 8,
+                          "gap": 6,
+                          "padding": [
+                            12,
+                            0
+                          ],
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon_font",
+                              "id": "DI5z9",
+                              "width": 14,
+                              "height": 14,
+                              "iconFontName": "footprints",
+                              "iconFontFamily": "lucide",
+                              "fill": "#2C2418"
+                            },
+                            {
+                              "type": "text",
+                              "id": "srSmN",
+                              "fill": "#2C2418",
+                              "content": "Use This Plan",
+                              "fontFamily": "Inter",
+                              "fontSize": 14,
+                              "fontWeight": "600"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "Sb5fF",
+                  "name": "card-hehuan",
+                  "clip": true,
+                  "width": "fill_container",
+                  "fill": "#EDE6D3",
+                  "cornerRadius": 14,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "#D8CEBC"
+                  },
+                  "layout": "vertical",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "hkU0Q",
+                      "name": "c2b_content",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 14,
+                      "padding": 22,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "c10j7",
+                          "name": "c2b_top",
+                          "width": "fill_container",
+                          "justifyContent": "space_between",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "SQ16C",
+                              "fill": "#2C2418",
+                              "content": "Hehuanshan Traverse",
+                              "fontFamily": "Inter",
+                              "fontSize": 18,
+                              "fontWeight": "700"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "XQOsJ",
+                              "name": "days2",
+                              "fill": "#DDD3BE",
+                              "cornerRadius": 99,
+                              "padding": [
+                                4,
+                                12
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "SSb1W",
+                                  "fill": "#7A6B55",
+                                  "content": "2 days",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 11,
+                                  "fontWeight": "600"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "8BgNe",
+                          "x": 22,
+                          "y": 22,
+                          "enabled": false,
+                          "fill": "#2C2418",
+                          "content": "Hehuanshan Traverse",
+                          "fontFamily": "Inter",
+                          "fontSize": 22,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "N9Njz",
+                          "fill": "#8A7A65",
+                          "content": "Central Range  ·  Nantou / Hualien",
+                          "fontFamily": "Inter",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "kME1k",
+                          "fill": "#6B5D4F",
+                          "content": "22 km  ·  +1,600 m  ·  2 days",
+                          "fontFamily": "Inter",
+                          "fontSize": 13,
+                          "fontWeight": "500"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "XQtCR",
+                          "name": "c2b_cta",
+                          "width": "fill_container",
+                          "fill": "#E6B020",
+                          "cornerRadius": 8,
+                          "gap": 6,
+                          "padding": [
+                            12,
+                            0
+                          ],
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon_font",
+                              "id": "vAfru",
+                              "width": 14,
+                              "height": 14,
+                              "iconFontName": "footprints",
+                              "iconFontFamily": "lucide",
+                              "fill": "#2C2418"
+                            },
+                            {
+                              "type": "text",
+                              "id": "zjQkV",
+                              "fill": "#2C2418",
+                              "content": "Use This Plan",
+                              "fontFamily": "Inter",
+                              "fontSize": 14,
+                              "fontWeight": "600"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "6ArkN",
+                  "name": "card-snow",
+                  "clip": true,
+                  "width": "fill_container",
+                  "fill": "#EDE6D3",
+                  "cornerRadius": 14,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "#D8CEBC"
+                  },
+                  "layout": "vertical",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "NqOkU",
+                      "name": "c3content",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 14,
+                      "padding": 22,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "7PT2f",
+                          "name": "c3top",
+                          "width": "fill_container",
+                          "justifyContent": "space_between",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "nGI2v",
+                              "fill": "#2C2418",
+                              "content": "Snow Mountain",
+                              "fontFamily": "Inter",
+                              "fontSize": 18,
+                              "fontWeight": "700"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "C2FCl",
+                              "name": "days3",
+                              "fill": "#DDD3BE",
+                              "cornerRadius": 99,
+                              "padding": [
+                                4,
+                                12
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "gyPQv",
+                                  "fill": "#7A6B55",
+                                  "content": "4 days",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 11,
+                                  "fontWeight": "600"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "nZNfy",
+                          "x": 22,
+                          "y": 22,
+                          "enabled": false,
+                          "fill": "#2C2418",
+                          "content": "Snow Mountain",
+                          "fontFamily": "Inter",
+                          "fontSize": 22,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "5Vok7",
+                          "fill": "#8A7A65",
+                          "content": "Shei-Pa National Park  ·  Taichung",
+                          "fontFamily": "Inter",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "YPubD",
+                          "fill": "#6B5D4F",
+                          "content": "28 km  ·  +3,400 m  ·  4 days",
+                          "fontFamily": "Inter",
+                          "fontSize": 13,
+                          "fontWeight": "500"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "SGlk0",
+                          "name": "c3cta",
+                          "width": "fill_container",
+                          "fill": "#E6B020",
+                          "cornerRadius": 8,
+                          "gap": 6,
+                          "padding": [
+                            12,
+                            0
+                          ],
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon_font",
+                              "id": "eoZkf",
+                              "width": 14,
+                              "height": 14,
+                              "iconFontName": "footprints",
+                              "iconFontFamily": "lucide",
+                              "fill": "#2C2418"
+                            },
+                            {
+                              "type": "text",
+                              "id": "VHRVg",
+                              "fill": "#2C2418",
+                              "content": "Use This Plan",
+                              "fontFamily": "Inter",
+                              "fontSize": 14,
+                              "fontWeight": "600"
+                            }
+                          ]
                         }
                       ]
                     }
