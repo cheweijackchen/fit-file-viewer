@@ -1,6 +1,7 @@
 'use client'
 
 import { Select, Text } from '@mantine/core'
+import { IconAlertTriangle, IconArrowBackUp, IconCheck } from '@tabler/icons-react'
 import { formatTrailMinutes } from '@/lib/timeFormatter'
 import type { Trail, TrailAdjacencyList, TrailNode } from '@/model/hikingTrail'
 import { NodeSelectionPanel } from './NodeSelectionPanel'
@@ -58,31 +59,12 @@ export function DayPlanForm({
             gap: 8,
           }}
         >
-          <svg
-            width={14}
-            height={14}
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="var(--mantine-color-yellow-7)"
-            strokeWidth={2}
-            strokeLinecap="round"
-            strokeLinejoin="round"
+          <IconAlertTriangle
+            size={14}
+            stroke={2}
+            color="var(--mantine-color-yellow-7)"
             className="shrink-0"
-          >
-            <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z" />
-            <line
-              x1="12"
-              y1="9"
-              x2="12"
-              y2="13"
-            />
-            <line
-              x1="12"
-              y1="17"
-              x2="12.01"
-              y2="17"
-            />
-          </svg>
+          />
           <Text
             component="span"
             style={{
@@ -256,19 +238,11 @@ export function DayPlanForm({
           }}
           onClick={onUndo}
         >
-          <svg
-            width={14}
-            height={14}
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="var(--mantine-color-stone-7)"
-            strokeWidth={2}
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <path d="M3 7v6h6" />
-            <path d="M21 17a9 9 0 0 0-9-9 9 9 0 0 0-6 2.3L3 13" />
-          </svg>
+          <IconArrowBackUp
+            size={14}
+            stroke={2}
+            color="var(--mantine-color-stone-7)"
+          />
           <span style={{
             fontSize: 13,
             fontWeight: 600,
@@ -293,18 +267,11 @@ export function DayPlanForm({
           }}
           onClick={onCompleteRoute}
         >
-          <svg
-            width={15}
-            height={15}
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke={hasStops ? '#ffffff' : 'var(--mantine-color-stone-5)'}
-            strokeWidth={2.5}
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <polyline points="20 6 9 17 4 12" />
-          </svg>
+          <IconCheck
+            size={15}
+            stroke={2.5}
+            color={hasStops ? '#ffffff' : 'var(--mantine-color-stone-5)'}
+          />
           <span style={{
             fontSize: 14,
             fontWeight: 700,
