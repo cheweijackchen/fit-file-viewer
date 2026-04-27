@@ -7656,108 +7656,136 @@
                     "fill": "#E8E4DC"
                   },
                   "layout": "vertical",
-                  "gap": 10,
-                  "padding": 16,
                   "children": [
                     {
-                      "type": "frame",
-                      "id": "RDzkX",
-                      "name": "tcTop",
+                      "type": "rectangle",
+                      "cornerRadius": [
+                        14,
+                        14,
+                        0,
+                        0
+                      ],
+                      "id": "Wczvg",
+                      "name": "tcCover",
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "../../frontend/src/assets/mono-alphine-simplified-v2.webp",
+                        "mode": "fill"
+                      },
                       "width": "fill_container",
-                      "justifyContent": "space_between",
-                      "alignItems": "center",
-                      "children": [
-                        {
-                          "type": "text",
-                          "id": "W7dUd",
-                          "name": "tcName",
-                          "fill": "#2C2418",
-                          "content": "南二段規劃",
-                          "fontFamily": "Inter",
-                          "fontSize": 15,
-                          "fontWeight": "700"
-                        },
-                        {
-                          "type": "frame",
-                          "id": "RVLsP",
-                          "name": "tcMoreBtn",
-                          "width": 32,
-                          "height": 32,
-                          "fill": "#F5F3EE",
-                          "cornerRadius": 9999,
-                          "justifyContent": "center",
-                          "alignItems": "center",
-                          "children": [
-                            {
-                              "type": "icon_font",
-                              "id": "sjsSq",
-                              "name": "tcMoreIcon",
-                              "width": 16,
-                              "height": 16,
-                              "iconFontName": "ellipsis-vertical",
-                              "iconFontFamily": "lucide",
-                              "fill": "#6b5d4f"
-                            }
-                          ]
-                        }
-                      ]
+                      "height": 140
                     },
                     {
                       "type": "frame",
-                      "id": "6hKa5",
-                      "name": "tcMeta",
-                      "gap": 12,
-                      "alignItems": "center",
+                      "id": "QdAGe",
+                      "name": "tcBody",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 10,
+                      "padding": 16,
                       "children": [
                         {
-                          "type": "text",
-                          "id": "sSSik",
-                          "name": "tcSeg",
-                          "fill": "#9A8E7E",
-                          "content": "南二段",
-                          "fontFamily": "Inter",
-                          "fontSize": 12,
-                          "fontWeight": "normal"
+                          "type": "frame",
+                          "id": "RDzkX",
+                          "name": "tcTop",
+                          "width": "fill_container",
+                          "justifyContent": "space_between",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "W7dUd",
+                              "name": "tcName",
+                              "fill": "#2C2418",
+                              "content": "南二段規劃",
+                              "fontFamily": "Inter",
+                              "fontSize": 15,
+                              "fontWeight": "700"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "RVLsP",
+                              "name": "tcMoreBtn",
+                              "width": 32,
+                              "height": 32,
+                              "fill": "#F5F3EE",
+                              "cornerRadius": 9999,
+                              "justifyContent": "center",
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "icon_font",
+                                  "id": "sjsSq",
+                                  "name": "tcMoreIcon",
+                                  "width": 16,
+                                  "height": 16,
+                                  "iconFontName": "ellipsis-vertical",
+                                  "iconFontFamily": "lucide",
+                                  "fill": "#6b5d4f"
+                                }
+                              ]
+                            }
+                          ]
                         },
                         {
-                          "type": "text",
-                          "id": "7iTOK",
-                          "name": "tcSep1",
-                          "fill": "#DDD6CA",
-                          "content": "·",
-                          "fontFamily": "Inter",
-                          "fontSize": 12,
-                          "fontWeight": "normal"
-                        },
-                        {
-                          "type": "text",
-                          "id": "tQx0q",
-                          "name": "tcDays",
-                          "fill": "#9A8E7E",
-                          "content": "3 天",
-                          "fontFamily": "Inter",
-                          "fontSize": 12,
-                          "fontWeight": "normal"
-                        },
-                        {
-                          "type": "text",
-                          "id": "dk6hA",
-                          "name": "tcSep2",
-                          "fill": "#DDD6CA",
-                          "content": "·",
-                          "fontFamily": "Inter",
-                          "fontSize": 12,
-                          "fontWeight": "normal"
-                        },
-                        {
-                          "type": "text",
-                          "id": "vqoUy",
-                          "name": "tcEdited",
-                          "fill": "#B5A894",
-                          "content": "2 天前編輯",
-                          "fontFamily": "Inter",
-                          "fontSize": 12,
-                          "fontWeight": "normal"
+                          "type": "frame",
+                          "id": "6hKa5",
+                          "name": "tcMeta",
+                          "gap": 12,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "sSSik",
+                              "name": "tcSeg",
+                              "fill": "#9A8E7E",
+                              "content": "南二段",
+                              "fontFamily": "Inter",
+                              "fontSize": 12,
+                              "fontWeight": "normal"
+                            },
+                            {
+                              "type": "text",
+                              "id": "7iTOK",
+                              "name": "tcSep1",
+                              "fill": "#DDD6CA",
+                              "content": "·",
+                              "fontFamily": "Inter",
+                              "fontSize": 12,
+                              "fontWeight": "normal"
+                            },
+                            {
+                              "type": "text",
+                              "id": "tQx0q",
+                              "name": "tcDays",
+                              "fill": "#9A8E7E",
+                              "content": "3 天",
+                              "fontFamily": "Inter",
+                              "fontSize": 12,
+                              "fontWeight": "normal"
+                            },
+                            {
+                              "type": "text",
+                              "id": "dk6hA",
+                              "name": "tcSep2",
+                              "fill": "#DDD6CA",
+                              "content": "·",
+                              "fontFamily": "Inter",
+                              "fontSize": 12,
+                              "fontWeight": "normal"
+                            },
+                            {
+                              "type": "text",
+                              "id": "vqoUy",
+                              "name": "tcEdited",
+                              "fill": "#B5A894",
+                              "content": "2 天前編輯",
+                              "fontFamily": "Inter",
+                              "fontSize": 12,
+                              "fontWeight": "normal"
+                            }
+                          ]
                         }
                       ]
                     }
@@ -7776,108 +7804,136 @@
                     "fill": "#E8E4DC"
                   },
                   "layout": "vertical",
-                  "gap": 10,
-                  "padding": 16,
                   "children": [
                     {
-                      "type": "frame",
-                      "id": "j7k0M",
-                      "name": "tcTop",
+                      "type": "rectangle",
+                      "cornerRadius": [
+                        14,
+                        14,
+                        0,
+                        0
+                      ],
+                      "id": "rYOSc",
+                      "name": "tcCover",
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "../../frontend/src/assets/mono-alphine-simplified-v2.webp",
+                        "mode": "fill"
+                      },
                       "width": "fill_container",
-                      "justifyContent": "space_between",
-                      "alignItems": "center",
-                      "children": [
-                        {
-                          "type": "text",
-                          "id": "V2smr",
-                          "name": "tcName",
-                          "fill": "#2C2418",
-                          "content": "北二段縱走",
-                          "fontFamily": "Inter",
-                          "fontSize": 15,
-                          "fontWeight": "700"
-                        },
-                        {
-                          "type": "frame",
-                          "id": "4KevZ",
-                          "name": "tcMoreBtn",
-                          "width": 32,
-                          "height": 32,
-                          "fill": "#F5F3EE",
-                          "cornerRadius": 9999,
-                          "justifyContent": "center",
-                          "alignItems": "center",
-                          "children": [
-                            {
-                              "type": "icon_font",
-                              "id": "kCO2e",
-                              "name": "tcMoreIcon",
-                              "width": 16,
-                              "height": 16,
-                              "iconFontName": "ellipsis-vertical",
-                              "iconFontFamily": "lucide",
-                              "fill": "#6b5d4f"
-                            }
-                          ]
-                        }
-                      ]
+                      "height": 140
                     },
                     {
                       "type": "frame",
-                      "id": "eWYqr",
-                      "name": "tcMeta",
-                      "gap": 12,
-                      "alignItems": "center",
+                      "id": "KbQzg",
+                      "name": "tcBody",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 10,
+                      "padding": 16,
                       "children": [
                         {
-                          "type": "text",
-                          "id": "3LaZ6",
-                          "name": "tcSeg",
-                          "fill": "#9A8E7E",
-                          "content": "北二段",
-                          "fontFamily": "Inter",
-                          "fontSize": 12,
-                          "fontWeight": "normal"
+                          "type": "frame",
+                          "id": "j7k0M",
+                          "name": "tcTop",
+                          "width": "fill_container",
+                          "justifyContent": "space_between",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "V2smr",
+                              "name": "tcName",
+                              "fill": "#2C2418",
+                              "content": "北二段縱走",
+                              "fontFamily": "Inter",
+                              "fontSize": 15,
+                              "fontWeight": "700"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "4KevZ",
+                              "name": "tcMoreBtn",
+                              "width": 32,
+                              "height": 32,
+                              "fill": "#F5F3EE",
+                              "cornerRadius": 9999,
+                              "justifyContent": "center",
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "icon_font",
+                                  "id": "kCO2e",
+                                  "name": "tcMoreIcon",
+                                  "width": 16,
+                                  "height": 16,
+                                  "iconFontName": "ellipsis-vertical",
+                                  "iconFontFamily": "lucide",
+                                  "fill": "#6b5d4f"
+                                }
+                              ]
+                            }
+                          ]
                         },
                         {
-                          "type": "text",
-                          "id": "38q8R",
-                          "name": "tcSep1",
-                          "fill": "#DDD6CA",
-                          "content": "·",
-                          "fontFamily": "Inter",
-                          "fontSize": 12,
-                          "fontWeight": "normal"
-                        },
-                        {
-                          "type": "text",
-                          "id": "kWkQV",
-                          "name": "tcDays",
-                          "fill": "#9A8E7E",
-                          "content": "4 天",
-                          "fontFamily": "Inter",
-                          "fontSize": 12,
-                          "fontWeight": "normal"
-                        },
-                        {
-                          "type": "text",
-                          "id": "zXZsE",
-                          "name": "tcSep2",
-                          "fill": "#DDD6CA",
-                          "content": "·",
-                          "fontFamily": "Inter",
-                          "fontSize": 12,
-                          "fontWeight": "normal"
-                        },
-                        {
-                          "type": "text",
-                          "id": "EMZ8z",
-                          "name": "tcEdited",
-                          "fill": "#B5A894",
-                          "content": "2 天前編輯",
-                          "fontFamily": "Inter",
-                          "fontSize": 12,
-                          "fontWeight": "normal"
+                          "type": "frame",
+                          "id": "eWYqr",
+                          "name": "tcMeta",
+                          "gap": 12,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "3LaZ6",
+                              "name": "tcSeg",
+                              "fill": "#9A8E7E",
+                              "content": "北二段",
+                              "fontFamily": "Inter",
+                              "fontSize": 12,
+                              "fontWeight": "normal"
+                            },
+                            {
+                              "type": "text",
+                              "id": "38q8R",
+                              "name": "tcSep1",
+                              "fill": "#DDD6CA",
+                              "content": "·",
+                              "fontFamily": "Inter",
+                              "fontSize": 12,
+                              "fontWeight": "normal"
+                            },
+                            {
+                              "type": "text",
+                              "id": "kWkQV",
+                              "name": "tcDays",
+                              "fill": "#9A8E7E",
+                              "content": "4 天",
+                              "fontFamily": "Inter",
+                              "fontSize": 12,
+                              "fontWeight": "normal"
+                            },
+                            {
+                              "type": "text",
+                              "id": "zXZsE",
+                              "name": "tcSep2",
+                              "fill": "#DDD6CA",
+                              "content": "·",
+                              "fontFamily": "Inter",
+                              "fontSize": 12,
+                              "fontWeight": "normal"
+                            },
+                            {
+                              "type": "text",
+                              "id": "EMZ8z",
+                              "name": "tcEdited",
+                              "fill": "#B5A894",
+                              "content": "2 天前編輯",
+                              "fontFamily": "Inter",
+                              "fontSize": 12,
+                              "fontWeight": "normal"
+                            }
+                          ]
                         }
                       ]
                     }
@@ -7896,108 +7952,136 @@
                     "fill": "#E8E4DC"
                   },
                   "layout": "vertical",
-                  "gap": 10,
-                  "padding": 16,
                   "children": [
                     {
-                      "type": "frame",
-                      "id": "FuXR7",
-                      "name": "tcTop",
+                      "type": "rectangle",
+                      "cornerRadius": [
+                        14,
+                        14,
+                        0,
+                        0
+                      ],
+                      "id": "uwRqL",
+                      "name": "tcCover",
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "../../frontend/src/assets/mono-alphine-simplified-v2.webp",
+                        "mode": "fill"
+                      },
                       "width": "fill_container",
-                      "justifyContent": "space_between",
-                      "alignItems": "center",
-                      "children": [
-                        {
-                          "type": "text",
-                          "id": "dpV83",
-                          "name": "tcName",
-                          "fill": "#2C2418",
-                          "content": "奇萊連峰",
-                          "fontFamily": "Inter",
-                          "fontSize": 15,
-                          "fontWeight": "700"
-                        },
-                        {
-                          "type": "frame",
-                          "id": "Jtoo9",
-                          "name": "tcMoreBtn",
-                          "width": 32,
-                          "height": 32,
-                          "fill": "#F5F3EE",
-                          "cornerRadius": 9999,
-                          "justifyContent": "center",
-                          "alignItems": "center",
-                          "children": [
-                            {
-                              "type": "icon_font",
-                              "id": "vbOuD",
-                              "name": "tcMoreIcon",
-                              "width": 16,
-                              "height": 16,
-                              "iconFontName": "ellipsis-vertical",
-                              "iconFontFamily": "lucide",
-                              "fill": "#6b5d4f"
-                            }
-                          ]
-                        }
-                      ]
+                      "height": 140
                     },
                     {
                       "type": "frame",
-                      "id": "gxYJh",
-                      "name": "tcMeta",
-                      "gap": 12,
-                      "alignItems": "center",
+                      "id": "9Vs5S",
+                      "name": "tcBody",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 10,
+                      "padding": 16,
                       "children": [
                         {
-                          "type": "text",
-                          "id": "rBO3I",
-                          "name": "tcSeg",
-                          "fill": "#9A8E7E",
-                          "content": "奇萊主北",
-                          "fontFamily": "Inter",
-                          "fontSize": 12,
-                          "fontWeight": "normal"
+                          "type": "frame",
+                          "id": "FuXR7",
+                          "name": "tcTop",
+                          "width": "fill_container",
+                          "justifyContent": "space_between",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "dpV83",
+                              "name": "tcName",
+                              "fill": "#2C2418",
+                              "content": "奇萊連峰",
+                              "fontFamily": "Inter",
+                              "fontSize": 15,
+                              "fontWeight": "700"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "Jtoo9",
+                              "name": "tcMoreBtn",
+                              "width": 32,
+                              "height": 32,
+                              "fill": "#F5F3EE",
+                              "cornerRadius": 9999,
+                              "justifyContent": "center",
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "icon_font",
+                                  "id": "vbOuD",
+                                  "name": "tcMoreIcon",
+                                  "width": 16,
+                                  "height": 16,
+                                  "iconFontName": "ellipsis-vertical",
+                                  "iconFontFamily": "lucide",
+                                  "fill": "#6b5d4f"
+                                }
+                              ]
+                            }
+                          ]
                         },
                         {
-                          "type": "text",
-                          "id": "F2Zug",
-                          "name": "tcSep1",
-                          "fill": "#DDD6CA",
-                          "content": "·",
-                          "fontFamily": "Inter",
-                          "fontSize": 12,
-                          "fontWeight": "normal"
-                        },
-                        {
-                          "type": "text",
-                          "id": "Q07jC",
-                          "name": "tcDays",
-                          "fill": "#9A8E7E",
-                          "content": "2 天",
-                          "fontFamily": "Inter",
-                          "fontSize": 12,
-                          "fontWeight": "normal"
-                        },
-                        {
-                          "type": "text",
-                          "id": "7HnHu",
-                          "name": "tcSep2",
-                          "fill": "#DDD6CA",
-                          "content": "·",
-                          "fontFamily": "Inter",
-                          "fontSize": 12,
-                          "fontWeight": "normal"
-                        },
-                        {
-                          "type": "text",
-                          "id": "Zyvur",
-                          "name": "tcEdited",
-                          "fill": "#B5A894",
-                          "content": "2 天前編輯",
-                          "fontFamily": "Inter",
-                          "fontSize": 12,
-                          "fontWeight": "normal"
+                          "type": "frame",
+                          "id": "gxYJh",
+                          "name": "tcMeta",
+                          "gap": 12,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "rBO3I",
+                              "name": "tcSeg",
+                              "fill": "#9A8E7E",
+                              "content": "奇萊主北",
+                              "fontFamily": "Inter",
+                              "fontSize": 12,
+                              "fontWeight": "normal"
+                            },
+                            {
+                              "type": "text",
+                              "id": "F2Zug",
+                              "name": "tcSep1",
+                              "fill": "#DDD6CA",
+                              "content": "·",
+                              "fontFamily": "Inter",
+                              "fontSize": 12,
+                              "fontWeight": "normal"
+                            },
+                            {
+                              "type": "text",
+                              "id": "Q07jC",
+                              "name": "tcDays",
+                              "fill": "#9A8E7E",
+                              "content": "2 天",
+                              "fontFamily": "Inter",
+                              "fontSize": 12,
+                              "fontWeight": "normal"
+                            },
+                            {
+                              "type": "text",
+                              "id": "7HnHu",
+                              "name": "tcSep2",
+                              "fill": "#DDD6CA",
+                              "content": "·",
+                              "fontFamily": "Inter",
+                              "fontSize": 12,
+                              "fontWeight": "normal"
+                            },
+                            {
+                              "type": "text",
+                              "id": "Zyvur",
+                              "name": "tcEdited",
+                              "fill": "#B5A894",
+                              "content": "2 天前編輯",
+                              "fontFamily": "Inter",
+                              "fontSize": 12,
+                              "fontWeight": "normal"
+                            }
+                          ]
                         }
                       ]
                     }
