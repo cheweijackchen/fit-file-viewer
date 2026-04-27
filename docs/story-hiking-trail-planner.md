@@ -233,29 +233,6 @@ Multiple badges can appear side by side. The system is designed to be extensible
 
 ### Layout (Desktop)
 
-```
-┌──────────────┬─────────────────────────────────────────┐
-│  Left sidebar│  Main area                               │
-│  240px       │                                          │
-│  (collapsible│  ┌──── Trail Network ────────────────┐  │
-│   via toggle)│  │  node rows, legend, day highlight  │  │
-│              │  │                    [Collapse ▲]    │  │
-│  Trip name   │  └───────────────────────────────────┘  │
-│  Route chips │                                          │
-│  + Add Route │  ┌──── Day Builder ───────────────────┐  │
-│  ─────────── │  │  Starting Point dropdown            │  │
-│  PACE × 0.9  │  │  TODAY'S ROUTE strip (E-01)         │  │
-│  ─────────── │  │  Current Node card                  │  │
-│  Day 1  ✓   │  │  往回走 (muted) / 繼續走 (primary)  │  │
-│  Day 2  ✓   │  │  Undo · 完成路線                    │  │
-│  Day 3  ⬤   │  │  (internal scroll)                  ↕  │
-│  Day 4      │  └────────────────────────────────────┘  │
-│  + Add Day  │                                           │
-└─────────────┴──────────────────────────────────────────┘
-```
-
-When sidebar is collapsed: main area expands to full width.
-When Trail Network is collapsed: network bar is 44px; Day Builder takes full remaining height.
 
 ---
 
