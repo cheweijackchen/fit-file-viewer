@@ -51,6 +51,10 @@ export const demoNavLinks = [
       {
         title: 'Trail Graph',
         link: '/demo/demo-trail-graph',
+      },
+      {
+        title: 'DayPlanCard',
+        link: '/demo/demo-day-plan-card',
       }
     ]
   },
