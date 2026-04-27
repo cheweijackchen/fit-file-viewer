@@ -144,6 +144,34 @@
       }
     }
   },
+  "hiking-trail-planner": {
+    "hero": {
+      "title": "Plan Your Mountain Journey",
+      "description": "Map your multi-day alpine routes, visualize trail connections, and plan each day step by step.",
+      "cta": "Start New Trip"
+    },
+    "features": {
+      "visualTrailGraph": {
+        "title": "Visual Trail Graph",
+        "description": "See every node and connection before you plan"
+      },
+      "multiDayPlanning": {
+        "title": "Multi-Day Planning",
+        "description": "Organize your itinerary day by day with time estimates"
+      },
+      "connectedRoutes": {
+        "title": "Connected Routes",
+        "description": "Combine multiple trails into one seamless journey"
+      }
+    },
+    "yourTrips": {
+      "heading": "Your Trips",
+      "newTrip": "New Trip"
+    },
+    "tripCard": {
+      "days": "{count} days"
+    }
+  },
   "not-found": {
     "title": "Nothing to see here",
     "description": "Page you are trying to open does not exist. You may have mistyped the address, or the page has been moved to another URL. If you think this is an error contact support.",

@@ -8,6 +8,7 @@ import {
   IconPlus,
   IconRoute,
 } from '@tabler/icons-react'
+import { useTranslations } from 'next-intl'
 import { TripCard } from '@/components/hikingTrail/TripCard'
 import type { HikingPlan } from '@/model/hikingTrail'
 
@@ -79,29 +80,31 @@ const MOCK_PLANS: HikingPlan[] = [
 
 interface FeatureItem {
   icon: React.ReactNode;
-  title: string;
-  description: string;
+  titleKey: string;
+  descriptionKey: string;
 }
 
 const FEATURES: FeatureItem[] = [
   {
     icon: <IconGitFork size={20} />,
-    title: 'Visual Trail Graph',
-    description: 'See every node and connection before you plan',
+    titleKey: 'features.visualTrailGraph.title',
+    descriptionKey: 'features.visualTrailGraph.description',
   },
   {
     icon: <IconCalendar size={20} />,
-    title: 'Multi-Day Planning',
-    description: 'Organize your itinerary day by day with time estimates',
+    titleKey: 'features.multiDayPlanning.title',
+    descriptionKey: 'features.multiDayPlanning.description',
   },
   {
     icon: <IconRoute size={20} />,
-    title: 'Connected Routes',
-    description: 'Combine multiple trails into one seamless journey',
+    titleKey: 'features.connectedRoutes.title',
+    descriptionKey: 'features.connectedRoutes.description',
   },
 ]
 
 export default function HikingTrailPlannerPage() {
+  const t = useTranslations('hiking-trail-planner')
+
   return (
     <div className="flex flex-col w-full">
       {/* Hero */}
@@ -122,7 +125,7 @@ export default function HikingTrailPlannerPage() {
             maxWidth: 700 
           }}
         >
-          Plan Your Mountain Journey
+          {t('hero.title')}
         </Text>
 
         <Text
@@ -134,8 +137,7 @@ export default function HikingTrailPlannerPage() {
             maxWidth: 560,
           }}
         >
-          Map your multi-day alpine routes, visualize trail connections,
-          and plan each day step by step.
+          {t('hero.description')}
         </Text>
 
         <Button
@@ -144,7 +146,7 @@ export default function HikingTrailPlannerPage() {
           radius={10}
           fw={600}
         >
-          Start New Trip
+          {t('hero.cta')}
         </Button>
 
         <Group
@@ -154,7 +156,7 @@ export default function HikingTrailPlannerPage() {
         >
           {FEATURES.map((f) => (
             <Stack
-              key={f.title}
+              key={f.titleKey}
               gap={8}
               align="center"
               style={{ width: 180 }}
@@ -178,20 +180,20 @@ export default function HikingTrailPlannerPage() {
                 ta="center"
                 style={{
                   fontSize: 13,
-                  color: 'var(--mantine-color-stone-9)' 
+                  color: 'var(--mantine-color-stone-9)'
                 }}
               >
-                {f.title}
+                {t(f.titleKey)}
               </Text>
               <Text
                 ta="center"
                 style={{
                   fontSize: 12,
                   color: 'var(--mantine-color-stone-6)',
-                  lineHeight: 1.5 
+                  lineHeight: 1.5
                 }}
               >
-                {f.description}
+                {t(f.descriptionKey)}
               </Text>
             </Stack>
           ))}
@@ -215,10 +217,10 @@ export default function HikingTrailPlannerPage() {
             fw={700}
             style={{
               fontSize: 20,
-              color: 'var(--mantine-color-stone-9)' 
+              color: 'var(--mantine-color-stone-9)'
             }}
           >
-            Your Trips
+            {t('yourTrips.heading')}
           </Text>
           <Button
             color="yellow"
@@ -227,7 +229,7 @@ export default function HikingTrailPlannerPage() {
             leftSection={<IconPlus size={14} />}
             fw={600}
           >
-            New Trip
+            {t('yourTrips.newTrip')}
           </Button>
         </Group>
 

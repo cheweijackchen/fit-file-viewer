@@ -144,6 +144,34 @@
       }
     }
   },
+  "hiking-trail-planner": {
+    "hero": {
+      "title": "規劃你的山岳旅程",
+      "description": "規劃多日高山路線、視覺化步道連結，逐日安排每個步程。",
+      "cta": "開始新旅程"
+    },
+    "features": {
+      "visualTrailGraph": {
+        "title": "視覺化步道圖",
+        "description": "規劃前一覽所有節點與連結"
+      },
+      "multiDayPlanning": {
+        "title": "多日行程規劃",
+        "description": "以天為單位安排行程，附時間估算"
+      },
+      "connectedRoutes": {
+        "title": "串聯路線",
+        "description": "將多條步道串成一段完整旅程"
+      }
+    },
+    "yourTrips": {
+      "heading": "你的旅程",
+      "newTrip": "新旅程"
+    },
+    "tripCard": {
+      "days": "{count} 天"
+    }
+  },
   "not-found": {
     "title": "這裡沒有東西",
     "description": "你嘗試開啟的頁面不存在。可能是網址輸入錯誤，或頁面已移至其他位置。如果你認為這是錯誤，請聯絡客服。",
