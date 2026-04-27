@@ -1,12 +1,13 @@
 'use client'
 
 import { useMediaQuery } from '@mantine/hooks'
+import { IconArrowRight, IconArrowsHorizontal, IconCornerUpLeft, IconCornerUpRight } from '@tabler/icons-react'
+import type React from 'react'
 import { TRAIL_NODE_TYPE_BADGE_STYLE } from '@/constants/hiking-trails/dayPlanCard'
 import { TrailNodeType } from '@/constants/hiking-trails/hikingTrail'
 import { formatTrailMinutes } from '@/lib/timeFormatter'
 import { getEdge, getNeighbors } from '@/lib/trailGraph'
 import type { TrailAdjacencyList, TrailNode } from '@/model/hikingTrail'
-import { LucideIconPath } from './NodeTypeBadge'
 
 interface Props {
   adj: TrailAdjacencyList;
@@ -88,24 +89,20 @@ function CurrentNodeCard({ node }: { node: TrailNode | undefined; }) {
         flex: 1,
       }}
     >
-      {/* Deco icon — node-type SVG, large, faded */}
+      {/* Deco icon — node-type icon, large, faded */}
       <div
         className="absolute"
         style={{
           right: 12,
           top: 8,
-          opacity: 1 
+          opacity: 1
         }}
       >
-        <svg
-          width={88}
-          height={88}
-          viewBox="0 0 24 24"
-          fill="rgba(255,255,255,0.12)"
-          stroke="none"
-        >
-          <LucideIconPath name={badgeStyle.iconName} />
-        </svg>
+        <badgeStyle.icon
+          size={88}
+          color="rgba(255,255,255,0.12)"
+          stroke={2}
+        />
       </div>
 
       <span
@@ -239,25 +236,11 @@ function DesktopLayout({
         className="flex items-center justify-center shrink-0"
         style={{ paddingTop: 18 }}
       >
-        <svg
-          width={16}
-          height={16}
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="var(--mantine-color-stone-5)"
-          strokeWidth={2}
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <polyline points="18 8 22 12 18 16" />
-          <polyline points="6 8 2 12 6 16" />
-          <line
-            x1="2"
-            y1="12"
-            x2="22"
-            y2="12"
-          />
-        </svg>
+        <IconArrowsHorizontal
+          size={16}
+          color="var(--mantine-color-stone-5)"
+          stroke={2}
+        />
       </div>
 
       {/* Current node */}
@@ -276,24 +259,11 @@ function DesktopLayout({
         className="flex items-center justify-center shrink-0"
         style={{ paddingTop: 18 }}
       >
-        <svg
-          width={16}
-          height={16}
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="var(--mantine-color-stone-7)"
-          strokeWidth={2}
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <line
-            x1="5"
-            y1="12"
-            x2="19"
-            y2="12"
-          />
-          <polyline points="12 5 19 12 12 19" />
-        </svg>
+        <IconArrowRight
+          size={16}
+          color="var(--mantine-color-stone-7)"
+          stroke={2}
+        />
       </div>
 
       {/* Forward col */}
@@ -371,7 +341,7 @@ function MobileLayout({
         >
           <SectionLabel
             muted
-            icon="corner-up-left"
+            icon={IconCornerUpLeft}
             label="往回走"
           />
           {previousNode && previousNodeId ? (
@@ -399,7 +369,7 @@ function MobileLayout({
           }}
         >
           <SectionLabel
-            icon="corner-up-right"
+            icon={IconCornerUpRight}
             label="繼續走"
           />
           {forwardIds.length > 0 ? (
@@ -425,7 +395,7 @@ function MobileLayout({
   )
 }
 
-function SectionLabel({ icon, label, muted }: { icon: string; label: string; muted?: boolean; }) {
+function SectionLabel({ icon: Icon, label, muted }: { icon: React.ComponentType<{ size?: number; color?: string; stroke?: number; }>; label: string; muted?: boolean; }) {
   const color = muted ? 'var(--mantine-color-stone-4)' : 'var(--mantine-color-stone-7)'
 
   return (
@@ -433,28 +403,11 @@ function SectionLabel({ icon, label, muted }: { icon: string; label: string; mut
       className="flex items-center"
       style={{ gap: 4 }}
     >
-      <svg
-        width={12}
-        height={12}
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke={color}
-        strokeWidth={2}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        {icon === 'corner-up-left' ? (
-          <>
-            <polyline points="9 14 4 9 9 4" />
-            <path d="M20 20v-7a4 4 0 0 0-4-4H4" />
-          </>
-        ) : (
-          <>
-            <polyline points="15 14 20 9 15 4" />
-            <path d="M4 20v-7a4 4 0 0 1 4-4h12" />
-          </>
-        )}
-      </svg>
+      <Icon
+        size={12}
+        color={color}
+        stroke={2}
+      />
       <span
         style={{
           fontSize: 11,
