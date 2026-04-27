@@ -15663,7 +15663,7 @@
       "type": "frame",
       "id": "SB5TS",
       "x": 7450,
-      "y": 77,
+      "y": 76,
       "name": "DayCard on mobile (edit mode)",
       "width": "fill_container(810)",
       "fill": "#FFFFFF",
@@ -16316,61 +16316,84 @@
         },
         {
           "type": "frame",
-          "id": "KgVmb",
-          "name": "undoRow",
+          "id": "BX21J",
+          "name": "footer",
           "width": "fill_container",
-          "gap": 6,
+          "gap": 10,
           "alignItems": "center",
           "children": [
             {
-              "type": "icon_font",
-              "id": "Rns9J",
-              "width": 13,
-              "height": 13,
-              "iconFontName": "undo-2",
-              "iconFontFamily": "lucide",
-              "fill": "#9A8E7E"
+              "type": "frame",
+              "id": "lXuQU",
+              "name": "undoBtn",
+              "width": 140,
+              "height": 44,
+              "fill": "#F5F3EE",
+              "cornerRadius": 10,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "#DDD6CA"
+              },
+              "gap": 6,
+              "padding": [
+                0,
+                14
+              ],
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "nLmDl",
+                  "width": 14,
+                  "height": 14,
+                  "iconFontName": "undo-2",
+                  "iconFontFamily": "lucide",
+                  "fill": "#6B5D4F"
+                },
+                {
+                  "type": "text",
+                  "id": "2L8EI",
+                  "fill": "#6B5D4F",
+                  "content": "復原上一步",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "600"
+                }
+              ]
             },
             {
-              "type": "text",
-              "id": "66XMI",
-              "fill": "#9A8E7E",
-              "content": "Undo last step",
-              "fontFamily": "Inter",
-              "fontSize": 12,
-              "fontWeight": "normal"
-            }
-          ]
-        },
-        {
-          "type": "frame",
-          "id": "uxr5y",
-          "name": "finishBtn",
-          "width": "fill_container",
-          "height": 44,
-          "fill": "#e6b020",
-          "cornerRadius": 10,
-          "gap": 8,
-          "justifyContent": "center",
-          "alignItems": "center",
-          "children": [
-            {
-              "type": "icon_font",
-              "id": "Gmx5Q",
-              "width": 15,
-              "height": 15,
-              "iconFontName": "check",
-              "iconFontFamily": "lucide",
-              "fill": "#FFFFFF"
-            },
-            {
-              "type": "text",
-              "id": "JebuS",
-              "fill": "#FFFFFF",
-              "content": "完成路線",
-              "fontFamily": "Inter",
-              "fontSize": 14,
-              "fontWeight": "700"
+              "type": "frame",
+              "id": "rD2db",
+              "name": "finishBtn",
+              "width": "fill_container",
+              "height": 44,
+              "fill": "#e6b020",
+              "cornerRadius": 10,
+              "gap": 8,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "JuXJo",
+                  "width": 15,
+                  "height": 15,
+                  "iconFontName": "check",
+                  "iconFontFamily": "lucide",
+                  "fill": "#FFFFFF"
+                },
+                {
+                  "type": "text",
+                  "id": "dSUr4",
+                  "fill": "#FFFFFF",
+                  "content": "完成路線",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "700"
+                }
+              ]
             }
           ]
         }
