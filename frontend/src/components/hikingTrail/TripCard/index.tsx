@@ -5,7 +5,7 @@ import { IconDotsVertical } from '@tabler/icons-react'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import Image from 'next/image'
-import mountainImage from '@/assets/mono-alphine-simplified-v2.webp'
+import mountainImage from '@/assets/mono-alpine-simplified-v2.webp'
 import { HIKING_TRAIL_MAP } from '@/constants/hikingTrails'
 import type { HikingPlan } from '@/model/hikingTrail'
 
