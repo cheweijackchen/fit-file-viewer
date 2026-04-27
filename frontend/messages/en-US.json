@@ -30,6 +30,10 @@
         "peaksTracker": {
           "title": "Peaks Tracker",
           "description": "Track and visualize your peak bagging progress"
+        },
+        "hikingTrailPlanner": {
+          "title": "Hiking Trail Planner",
+          "description": "Plan multi-day routes, estimate pace, and visualize trail connections"
         }
       }
     },

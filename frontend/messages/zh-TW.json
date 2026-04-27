@@ -30,6 +30,10 @@
         "peaksTracker": {
           "title": "百岳登頂紀錄",
           "description": "追蹤並視覺化你的登頂紀錄"
+        },
+        "hikingTrailPlanner": {
+          "title": "登山路線規劃",
+          "description": "規劃多日路線、估算行程配速，並視覺化路線連結"
         }
       }
     },
