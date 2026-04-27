@@ -23,6 +23,18 @@ const theme: MantineThemeOverride = createTheme({
     '2xl': '96em', // 1536px
   },
   colors: {
+    'stone': [
+      '#FAF9F7',
+      '#F5F3EE',
+      '#EAE7DF',
+      '#D5D2CA',
+      '#C0BDB5',
+      '#B0AA9F',
+      '#9A9389',
+      '#736D65',
+      '#4A4540',
+      '#2B2724',
+    ],
     'burgundy': [
       '#ffefef',
       '#f2dfdf',

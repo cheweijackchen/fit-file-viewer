@@ -28,3 +28,25 @@ export interface Trail {
 
 // Runtime query structure, built from Trail.edges by buildTrailAdjacencyList()
 export type TrailAdjacencyList = Map<string, Map<string, TrailEdge>>
+
+export type InfoBadgeType = 'tent' | 'house' | 'droplet'
+
+export interface RouteStop {
+  nodeId: string;
+}
+
+export interface DayPlan {
+  id: string;
+  badges: InfoBadgeType[];
+  stops: RouteStop[];
+}
+
+export interface HikingPlan {
+  id: string;
+  name: string;
+  trailIds: string[];
+  paceMultiplier: number;
+  days: DayPlan[];
+  createdAt: number;
+  updatedAt: number;
+}
