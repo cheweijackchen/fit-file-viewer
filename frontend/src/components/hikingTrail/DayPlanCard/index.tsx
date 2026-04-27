@@ -3,11 +3,13 @@
 import { ActionIcon, Menu, Text } from '@mantine/core'
 import { IconDotsVertical, IconEraser, IconPencil, IconTrash } from '@tabler/icons-react'
 import { useMemo } from 'react'
-import { PACE_TIERS, TRAIL_NODE_TYPE_BADGE_STYLE } from '@/constants/hiking-trails/dayPlanCard'
+import { PACE_TIERS } from '@/constants/hiking-trails/dayPlanCard'
 import { TrailNodeType } from '@/constants/hiking-trails/hikingTrail'
 import { formatTrailMinutes } from '@/lib/timeFormatter'
 import { buildTrailAdjacencyList, calculatePathTime } from '@/lib/trailGraph'
 import type { DayPlan, Trail } from '@/model/hikingTrail'
+import { DayPlanForm } from './components/DayPlanForm'
+import { NodeTypeBadge } from './components/NodeTypeBadge'
 
 interface Props {
   dayPlan: DayPlan;
@@ -18,6 +20,12 @@ interface Props {
   onEdit?: () => void;
   onClearRoute?: () => void;
   onDelete?: () => void;
+  // Edit mode — in-progress planning state
+  editStopIds?: string[];
+  onStartingNodeChange?: (nodeId: string) => void;
+  onNodeSelect?: (nodeId: string) => void;
+  onUndo?: () => void;
+  onCompleteRoute?: () => void;
 }
 
 const ACCOMMODATION_TYPES = new Set<TrailNodeType>([TrailNodeType.Hut, TrailNodeType.Camp])
@@ -31,6 +39,11 @@ export function DayPlanCard({
   onEdit,
   onClearRoute,
   onDelete,
+  editStopIds,
+  onStartingNodeChange,
+  onNodeSelect,
+  onUndo,
+  onCompleteRoute,
 }: Props) {
   const adj = useMemo(() => buildTrailAdjacencyList(trail), [trail])
 
@@ -39,11 +52,18 @@ export function DayPlanCard({
     [trail],
   )
 
-  const stopIds = dayPlan.stops.map((s) => s.nodeId)
+  // In edit mode, use editStopIds for time display if provided; fallback to dayPlan.stops
+  const activeStopIds = useMemo(
+    () =>
+      mode === 'edit' && editStopIds !== undefined
+        ? editStopIds
+        : dayPlan.stops.map((s) => s.nodeId),
+    [mode, editStopIds, dayPlan.stops],
+  )
 
   let rawMinutes = 0
   try {
-    rawMinutes = calculatePathTime(adj, stopIds)
+    rawMinutes = calculatePathTime(adj, activeStopIds)
   } catch {
     // invalid path — show 0
   }
@@ -51,34 +71,26 @@ export function DayPlanCard({
   const weightedMinutes = Math.round(rawMinutes * paceMultiplier)
   const paceTier = PACE_TIERS.find((t) => weightedMinutes / 60 < t.maxHours) ?? PACE_TIERS[PACE_TIERS.length - 1]!
 
-  const lastStop = stopIds.length > 0 ? nodeMap[stopIds[stopIds.length - 1]!] : undefined
+  const lastStop = activeStopIds.length > 0 ? nodeMap[activeStopIds[activeStopIds.length - 1]!] : undefined
   const lastNodeType = lastStop?.nodeType
   const accommodationBadge =
     lastNodeType && ACCOMMODATION_TYPES.has(lastNodeType) ? lastNodeType : null
 
-  const hasWaterSource = stopIds.some(
+  const hasWaterSource = activeStopIds.some(
     (id) => nodeMap[id]?.nodeType === TrailNodeType.WaterSource,
   )
 
   const dayLabel = String(dayIndex).padStart(2, '0')
 
-  return (
-    <div
-      className="flex items-center rounded-xl"
-      style={{
-        padding: '16px 20px',
-        gap: 20,
-        background: '#ffffff',
-        border: '1px solid var(--mantine-color-stone-2)',
-        boxShadow: '0 1px 6px -3px rgba(44,36,24,0.06)',
-      }}
-    >
+  // The original horizontal card row content (shared between view and edit)
+  const cardRow = (
+    <>
       {/* Stub col — day number */}
       <div
         className="flex flex-col shrink-0"
         style={{
           width: 44,
-          gap: -2 
+          gap: -2,
         }}
       >
         <Text
@@ -151,7 +163,7 @@ export function DayPlanCard({
           className="flex items-center flex-wrap"
           style={{ gap: 4 }}
         >
-          {stopIds.length === 0 ? (
+          {activeStopIds.length === 0 ? (
             <Text
               size="xs"
               style={{ color: 'var(--mantine-color-stone-4)' }}
@@ -159,7 +171,7 @@ export function DayPlanCard({
               —
             </Text>
           ) : (
-            stopIds.map((id, i) => (
+            activeStopIds.map((id, i) => (
               <div
                 key={id}
                 className="flex items-center"
@@ -182,7 +194,7 @@ export function DayPlanCard({
                     {nodeMap[id]?.name ?? id}
                   </Text>
                 </div>
-                {i < stopIds.length - 1 && (
+                {i < activeStopIds.length - 1 && (
                   <Text
                     component="span"
                     style={{
@@ -309,99 +321,66 @@ export function DayPlanCard({
           </Menu>
         </div>
       )}
-    </div>
+    </>
   )
-}
 
-interface NodeTypeBadgeProps {
-  nodeType: TrailNodeType;
-}
+  const cardBase = {
+    padding: '16px 20px',
+    background: '#ffffff',
+    border: '1px solid var(--mantine-color-stone-2)',
+    boxShadow: '0 1px 6px -3px rgba(44,36,24,0.06)',
+  }
 
-function NodeTypeBadge({ nodeType }: NodeTypeBadgeProps) {
-  const style = TRAIL_NODE_TYPE_BADGE_STYLE[nodeType]
+  if (mode === 'edit') {
+    return (
+      <div
+        className="flex flex-col rounded-xl"
+        style={cardBase}
+      >
+        {/* Original header row — unchanged */}
+        <div
+          className="flex items-center"
+          style={{ gap: 20 }}
+        >
+          {cardRow}
+        </div>
+
+        {/* Horizontal divider */}
+        <div
+          style={{
+            height: 1,
+            background: 'var(--mantine-color-stone-2)',
+            margin: '12px 0',
+          }}
+        />
+
+        {/* DayPlanForm */}
+        <DayPlanForm
+          trail={trail}
+          adj={adj}
+          nodeMap={nodeMap}
+          paceMultiplier={paceMultiplier}
+          stopIds={editStopIds ?? []}
+          rawMinutes={rawMinutes}
+          weightedMinutes={weightedMinutes}
+          onStartingNodeChange={onStartingNodeChange ?? (() => {})}
+          onNodeSelect={onNodeSelect ?? (() => {})}
+          onUndo={onUndo ?? (() => {})}
+          onCompleteRoute={onCompleteRoute ?? (() => {})}
+        />
+      </div>
+    )
+  }
 
   return (
     <div
-      className="flex items-center justify-center shrink-0"
+      className="flex items-center rounded-xl"
       style={{
-        width: 26,
-        height: 26,
-        borderRadius: 9999,
-        background: style.bg,
+        ...cardBase,
+        gap: 20,
       }}
     >
-      <svg
-        width={14}
-        height={14}
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke={style.iconColor}
-        strokeWidth={2}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <LucideIconPath name={style.iconName} />
-      </svg>
+      {cardRow}
     </div>
   )
-}
-
-function LucideIconPath({ name }: { name: string; }) {
-  switch (name) {
-    case 'home':
-      return (
-        <>
-          <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-          <polyline points="9 22 9 12 15 12 15 22" />
-        </>
-      )
-    case 'tent':
-      return (
-        <>
-          <path d="M19 20 10 4" />
-          <path d="m5 20 9-16" />
-          <path d="M3 20h18" />
-          <path d="m12 15-3 5" />
-          <path d="m12 15 3 5" />
-        </>
-      )
-    case 'droplet':
-      return <path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z" />
-    case 'mountain':
-      return (
-        <>
-          <path d="m8 3 4 8 5-5 5 15H2L8 3z" />
-          <path d="M4.14 15.08c2.62-1.57 5.24-1.43 7.86.42 2.74 1.94 5.49 2 8.23.19" />
-        </>
-      )
-    case 'git-branch-2':
-      return (
-        <>
-          <circle
-            cx="18"
-            cy="18"
-            r="3"
-          />
-          <circle
-            cx="6"
-            cy="6"
-            r="3"
-          />
-          <path d="M6 21V9a9 9 0 0 0 9 9" />
-        </>
-      )
-    case 'map-pin':
-      return (
-        <>
-          <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
-          <circle
-            cx="12"
-            cy="10"
-            r="3"
-          />
-        </>
-      )
-    default:
-      return null
-  }
 }
