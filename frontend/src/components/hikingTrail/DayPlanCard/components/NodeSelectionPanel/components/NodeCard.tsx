@@ -19,12 +19,13 @@ export function NodeCard({ node, timeLabel, variant, onClick }: NodeCardProps) {
       className={clsx(
         'flex flex-col text-left w-full rounded-[12px] p-3.5 gap-1',
         isBack
-          ? 'bg-(--mantine-color-stone-2) border-none opacity-80 cursor-default'
-          : 'bg-(--mantine-color-stone-1) border-[1.5px] border-(--mantine-color-stone-7) cursor-pointer',
+          ? 'bg-(--mantine-color-stone-2) border-none opacity-80'
+          : 'bg-(--mantine-color-stone-1) border-[1.5px] border-(--mantine-color-stone-7)',
+        onClick ? 'cursor-pointer' : 'cursor-default',
       )}
       onClick={onClick}
     >
-      <span className={clsx('text-[13px] font-bold', isBack ? 'text-(--mantine-color-stone-7)' : 'text-(--mantine-color-stone-9)')}>
+      <span className="text-[13px] font-bold text-(--mantine-color-stone-9)">
         {node?.name ?? '—'}
       </span>
       <span className="text-[11px] text-(--mantine-color-stone-6)">

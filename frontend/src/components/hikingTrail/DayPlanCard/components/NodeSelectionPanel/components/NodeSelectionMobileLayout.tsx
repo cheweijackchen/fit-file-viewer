@@ -1,7 +1,7 @@
 import { IconCornerUpLeft, IconCornerUpRight } from '@tabler/icons-react'
 import { CurrentNodeCard } from './CurrentNodeCard'
-import type { LayoutProps } from './NodeSelectionDesktopLayout'
 import { NodeCard } from './NodeCard'
+import type { LayoutProps } from './NodeSelectionDesktopLayout'
 import { SectionLabel } from './SectionLabel'
 
 export function NodeSelectionMobileLayout({
@@ -34,6 +34,7 @@ export function NodeSelectionMobileLayout({
               node={previousNode}
               timeLabel={edgeTimeLabel(previousNodeId, currentId)}
               variant="back"
+              onClick={() => onNodeSelect(previousNodeId)}
             />
           ) : (
             <span className="text-xs text-(--mantine-color-stone-4)">—</span>

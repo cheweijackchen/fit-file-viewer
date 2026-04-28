@@ -34,6 +34,7 @@ export function NodeSelectionDesktopLayout({
             node={previousNode}
             timeLabel={edgeTimeLabel(previousNodeId, currentId)}
             variant="back"
+            onClick={() => onNodeSelect(previousNodeId)}
           />
         ) : (
           <div className="flex-1" />

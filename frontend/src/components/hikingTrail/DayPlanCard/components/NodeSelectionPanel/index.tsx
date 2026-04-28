@@ -19,7 +19,7 @@ export function NodeSelectionPanel({ adj, nodeMap, stopIds, onNodeSelect }: Prop
 
   const currentNodeId = stopIds[stopIds.length - 1]!
   const previousNodeId = stopIds.length >= 2 ? stopIds[stopIds.length - 2] : undefined
-  const forwardIds = getNeighbors(adj, currentNodeId).filter((id) => !stopIds.includes(id))
+  const forwardIds = getNeighbors(adj, currentNodeId).filter((id) => id !== previousNodeId)
 
   const currentNode = nodeMap[currentNodeId]
   const previousNode = previousNodeId ? nodeMap[previousNodeId] : undefined
