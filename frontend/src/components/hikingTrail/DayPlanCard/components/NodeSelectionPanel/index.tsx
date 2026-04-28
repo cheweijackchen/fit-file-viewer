@@ -4,8 +4,8 @@ import { useMediaQuery } from '@mantine/hooks'
 import { formatTrailMinutes } from '@/lib/timeFormatter'
 import { getEdge, getNeighbors } from '@/lib/trailGraph'
 import type { TrailAdjacencyList, TrailNode } from '@/model/hikingTrail'
-import { DesktopLayout } from './components/DesktopLayout'
-import { MobileLayout } from './components/MobileLayout'
+import { NodeSelectionDesktopLayout } from './components/NodeSelectionDesktopLayout'
+import { NodeSelectionMobileLayout } from './components/NodeSelectionMobileLayout'
 
 interface Props {
   adj: TrailAdjacencyList;
@@ -33,7 +33,7 @@ export function NodeSelectionPanel({ adj, nodeMap, stopIds, onNodeSelect }: Prop
 
   if (isMobile) {
     return (
-      <MobileLayout
+      <NodeSelectionMobileLayout
         adj={adj}
         nodeMap={nodeMap}
         currentNode={currentNode}
@@ -47,7 +47,7 @@ export function NodeSelectionPanel({ adj, nodeMap, stopIds, onNodeSelect }: Prop
   }
 
   return (
-    <DesktopLayout
+    <NodeSelectionDesktopLayout
       adj={adj}
       nodeMap={nodeMap}
       currentNode={currentNode}

@@ -14,7 +14,7 @@ export interface LayoutProps {
   onNodeSelect: (nodeId: string) => void;
 }
 
-export function DesktopLayout({
+export function NodeSelectionDesktopLayout({
   nodeMap,
   currentNode,
   previousNode,

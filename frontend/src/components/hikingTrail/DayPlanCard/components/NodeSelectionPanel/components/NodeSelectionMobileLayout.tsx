@@ -1,10 +1,10 @@
 import { IconCornerUpLeft, IconCornerUpRight } from '@tabler/icons-react'
 import { CurrentNodeCard } from './CurrentNodeCard'
-import type { LayoutProps } from './DesktopLayout'
+import type { LayoutProps } from './NodeSelectionDesktopLayout'
 import { NodeCard } from './NodeCard'
 import { SectionLabel } from './SectionLabel'
 
-export function MobileLayout({
+export function NodeSelectionMobileLayout({
   nodeMap,
   currentNode,
   previousNode,
