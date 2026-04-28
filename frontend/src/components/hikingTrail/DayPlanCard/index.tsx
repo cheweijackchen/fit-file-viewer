@@ -104,11 +104,185 @@ export function DayPlanCard({
 
   const dayLabel = String(dayIndex).padStart(2, '0')
 
-  // The original horizontal card row content (shared between view and edit)
+  const menuDropdown = (
+    <Menu.Dropdown>
+      {mode === 'edit' ? (
+        <>
+          <Menu.Item
+            leftSection={<IconPencilOff size={14} />}
+            onClick={onCancelEdit}
+          >
+            取消編輯
+          </Menu.Item>
+          <Menu.Item
+            leftSection={<IconEraser size={14} />}
+            onClick={onClearRoute}
+          >
+            清除路線
+          </Menu.Item>
+        </>
+      ) : (
+        <Menu.Item
+          leftSection={<IconPencil size={14} />}
+          onClick={onEdit}
+        >
+          編輯
+        </Menu.Item>
+      )}
+      <Menu.Divider />
+      <Menu.Item
+        color="red"
+        leftSection={<IconTrash size={14} />}
+        onClick={onDelete}
+      >
+        刪除
+      </Menu.Item>
+    </Menu.Dropdown>
+  )
+
+  const badges = (accommodationBadge !== null || hasWaterSource) ? (
+    <div className="flex items-center gap-1.5">
+      {accommodationBadge !== null && (
+        <NodeTypeBadge nodeType={accommodationBadge} />
+      )}
+      {hasWaterSource && (
+        <NodeTypeBadge nodeType={TrailNodeType.WaterSource} />
+      )}
+    </div>
+  ) : null
+
+  const route = committedStopIds.length === 0 ? (
+    <Text
+      size="xs"
+      c="stone.4"
+    >
+      —
+    </Text>
+  ) : (
+    <RouteIndicator
+      stopIds={committedStopIds}
+      nodeMap={nodeMap}
+    />
+  )
+
   const cardRow = (
     <>
-      {/* Stub col — day number */}
-      <div className="flex flex-col shrink-0 w-11">
+      {/* ─── MOBILE LAYOUT (hidden at md+) ─── */}
+      <div className="@md/day-plan:hidden flex flex-col gap-3">
+        {/* Header: [day stub + badges] ←→ [time + menu] */}
+        <div className="flex items-center justify-between gap-3">
+          {/* Left: day stub + badges */}
+          <div className="flex items-center gap-3">
+            <div className="flex flex-col shrink-0 w-9">
+              <Text
+                component="span"
+                size="2xs"
+                c="yellow.7"
+                fw={700}
+                lh={1}
+                className="tracking-[0.12em]"
+              >
+                DAY
+              </Text>
+              <Text
+                component="span"
+                size="2xl"
+                c="stone.9"
+                fw={800}
+                lh={1}
+                className="tracking-[-0.04em]"
+              >
+                {dayLabel}
+              </Text>
+            </div>
+            {badges}
+          </div>
+
+          {/* Right: time + menu */}
+          <div className={`flex items-center gap-2 ${mode === 'edit' ? 'opacity-40' : ''}`}>
+            <div className="flex flex-col items-end shrink-0 gap-1">
+              <div className="flex flex-col items-end gap-px">
+                <Text
+                  component="span"
+                  size="2xs"
+                  c="stone.5"
+                  fw={700}
+                  lh={1}
+                  className="tracking-[0.12em]"
+                >
+                  SPEC
+                </Text>
+                <Text
+                  component="span"
+                  size="xs"
+                  c="stone.5"
+                  fw={500}
+                  lh={1}
+                >
+                  {formatTrailMinutes(rawMinutes)}
+                </Text>
+              </div>
+              <div className="flex flex-col items-end">
+                <Text
+                  component="span"
+                  size="2xs"
+                  c={paceTier.color}
+                  fw={700}
+                  lh={1}
+                  className="tracking-[0.12em]"
+                >
+                  YOU
+                </Text>
+                <Text
+                  component="span"
+                  size="2xl"
+                  c={paceTier.color}
+                  fw={800}
+                  lh={1}
+                  className="tracking-[-0.02em]"
+                >
+                  {formatTrailMinutes(weightedMinutes)}
+                </Text>
+              </div>
+            </div>
+            {showOptions && (
+              <div className="self-start">
+                <Menu
+                  withinPortal
+                  position="bottom-end"
+                >
+                  <Menu.Target>
+                    <ActionIcon
+                      size={32}
+                      radius="xl"
+                      color="stone.1"
+                      c="stone.6"
+                      className="shrink-0"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <IconDotsVertical size={16} />
+                    </ActionIcon>
+                  </Menu.Target>
+                  {menuDropdown}
+                </Menu>
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* Horizontal divider */}
+        <div className="h-px bg-(--mantine-color-stone-2)" />
+
+        {/* Route */}
+        <div className={mode === 'edit' ? 'opacity-40' : ''}>
+          {route}
+        </div>
+      </div>
+
+      {/* ─── DESKTOP LAYOUT (hidden below md) ─── */}
+
+      {/* Stub col */}
+      <div className="hidden @md/day-plan:flex flex-col shrink-0 w-11">
         <Text
           component="span"
           size="2xs"
@@ -134,42 +308,17 @@ export function DayPlanCard({
       <Divider
         orientation="vertical"
         color="stone.3"
-        className="shrink-0 self-stretch"
+        className="hidden @md/day-plan:block shrink-0 self-stretch"
       />
 
       {/* Content col — badges + route */}
-      <div className={`flex flex-col flex-1 min-w-0 gap-[10px] ${mode === 'edit' ? 'opacity-40' : ''}`}>
-        {/* Icon badge row */}
-        {(accommodationBadge !== null || hasWaterSource) && (
-          <div className="flex items-center gap-1.5">
-            {accommodationBadge !== null && (
-              <NodeTypeBadge nodeType={accommodationBadge} />
-            )}
-            {hasWaterSource && (
-              <NodeTypeBadge nodeType={TrailNodeType.WaterSource} />
-            )}
-          </div>
-        )}
-
-        {/* Route chip row */}
-        {committedStopIds.length === 0 ? (
-          <Text
-            size="xs"
-            c="stone.4"
-          >
-            —
-          </Text>
-        ) : (
-          <RouteIndicator
-            stopIds={committedStopIds}
-            nodeMap={nodeMap}
-          />
-        )}
+      <div className={`hidden @md/day-plan:flex flex-col flex-1 min-w-0 gap-[10px] ${mode === 'edit' ? 'opacity-40' : ''}`}>
+        {badges}
+        {route}
       </div>
 
       {/* Time col */}
-      <div className={`flex flex-col items-end shrink-0 gap-1.5 ${mode === 'edit' ? 'opacity-40' : ''}`}>
-        {/* SPEC time */}
+      <div className={`hidden @md/day-plan:flex flex-col items-end shrink-0 gap-1.5 ${mode === 'edit' ? 'opacity-40' : ''}`}>
         <div className="flex flex-col items-end gap-px">
           <Text
             component="span"
@@ -191,8 +340,6 @@ export function DayPlanCard({
             {formatTrailMinutes(rawMinutes)}
           </Text>
         </div>
-
-        {/* YOU time */}
         <div className="flex flex-col items-end">
           <Text
             component="span"
@@ -217,9 +364,9 @@ export function DayPlanCard({
         </div>
       </div>
 
-      {/* Dots menu — shown when showOptions, top-aligned */}
+      {/* Dots menu */}
       {showOptions && (
-        <div className="self-start">
+        <div className="hidden @md/day-plan:block self-start">
           <Menu
             withinPortal
             position="bottom-end"
@@ -236,39 +383,7 @@ export function DayPlanCard({
                 <IconDotsVertical size={16} />
               </ActionIcon>
             </Menu.Target>
-            <Menu.Dropdown>
-              {mode === 'edit' ? (
-                <>
-                  <Menu.Item
-                    leftSection={<IconPencilOff size={14} />}
-                    onClick={onCancelEdit}
-                  >
-                    取消編輯
-                  </Menu.Item>
-                  <Menu.Item
-                    leftSection={<IconEraser size={14} />}
-                    onClick={onClearRoute}
-                  >
-                    清除路線
-                  </Menu.Item>
-                </>
-              ) : (
-                <Menu.Item
-                  leftSection={<IconPencil size={14} />}
-                  onClick={onEdit}
-                >
-                  編輯
-                </Menu.Item>
-              )}
-              <Menu.Divider />
-              <Menu.Item
-                color="red"
-                leftSection={<IconTrash size={14} />}
-                onClick={onDelete}
-              >
-                刪除
-              </Menu.Item>
-            </Menu.Dropdown>
+            {menuDropdown}
           </Menu>
         </div>
       )}
@@ -278,8 +393,8 @@ export function DayPlanCard({
   if (mode === 'edit') {
     return (
       <div className={`${cardCls} flex flex-col`}>
-        {/* Original header row — unchanged */}
-        <div className="flex items-center gap-5">
+        {/* Original header row — responsive */}
+        <div className="flex flex-col gap-3 @md/day-plan:flex-row @md/day-plan:items-center @md/day-plan:gap-5">
           {cardRow}
         </div>
 
@@ -305,8 +420,10 @@ export function DayPlanCard({
   }
 
   return (
-    <div className={`${cardCls} flex items-center gap-5`}>
-      {cardRow}
+    <div className={`${cardCls}`}>
+      <div className="flex flex-col gap-3 @md/day-plan:flex-row @md/day-plan:items-center @md/day-plan:gap-5">
+        {cardRow}
+      </div>
     </div>
   )
 }
