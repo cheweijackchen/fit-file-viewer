@@ -1,6 +1,6 @@
 'use client'
 
-import { Select, Text } from '@mantine/core'
+import { Alert, Select, Text } from '@mantine/core'
 import { IconAlertTriangle, IconArrowBackUp, IconCheck } from '@tabler/icons-react'
 import { formatTrailMinutes } from '@/lib/timeFormatter'
 import type { Trail, TrailAdjacencyList, TrailNode } from '@/model/hikingTrail'
@@ -49,22 +49,19 @@ export function DayPlanForm({
     <div className="flex flex-col gap-3">
       {/* Warning banner */}
       {showWarning && (
-        <div className="flex items-center gap-2 rounded-lg border border-(--mantine-color-orange-4) bg-(--mantine-color-orange-0) px-[14px] py-[10px]">
-          <IconAlertTriangle
+        <Alert
+          variant="light"
+          color="yellow"
+          icon={<IconAlertTriangle
             size={14}
             stroke={2}
-            color="var(--mantine-color-yellow-7)"
-            className="shrink-0"
-          />
-          <Text
-            c="orange.9"
-            size="xs"
-            component="span"
-            className="font-medium"
-          >
-            目前累積時間已超過 8 小時，考慮是否在此結束本日。
-          </Text>
-        </div>
+          />}
+          py="xs"
+          px="sm"
+          fz="xs"
+        >
+          目前累積時間已超過 8 小時，考慮是否在此結束本日。
+        </Alert>
       )}
 
       {/* Starting Point */}
