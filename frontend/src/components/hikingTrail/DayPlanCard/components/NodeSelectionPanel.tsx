@@ -2,6 +2,7 @@
 
 import { useMediaQuery } from '@mantine/hooks'
 import { IconArrowRight, IconArrowsHorizontal, IconCornerUpLeft, IconCornerUpRight } from '@tabler/icons-react'
+import clsx from 'clsx'
 import type React from 'react'
 import { TRAIL_NODE_TYPE_BADGE_STYLE } from '@/constants/hiking-trails/dayPlanCard'
 import { TrailNodeType } from '@/constants/hiking-trails/hikingTrail'
@@ -78,26 +79,9 @@ function CurrentNodeCard({ node }: { node: TrailNode | undefined; }) {
   const badgeStyle = TRAIL_NODE_TYPE_BADGE_STYLE[nodeType]
 
   return (
-    <div
-      className="flex flex-col relative overflow-hidden"
-      style={{
-        background: 'var(--color-sepia-9)',
-        borderRadius: 14,
-        padding: 16,
-        gap: 6,
-        minWidth: 0,
-        flex: 1,
-      }}
-    >
+    <div className="flex flex-col relative overflow-hidden bg-(--color-sepia-9) rounded-[14px] p-4 gap-1.5 min-w-0 flex-1">
       {/* Deco icon — node-type icon, large, faded */}
-      <div
-        className="absolute"
-        style={{
-          right: 12,
-          top: 8,
-          opacity: 1
-        }}
-      >
+      <div className="absolute right-3 top-2">
         <badgeStyle.icon
           size={88}
           color="rgba(255,255,255,0.12)"
@@ -105,41 +89,14 @@ function CurrentNodeCard({ node }: { node: TrailNode | undefined; }) {
         />
       </div>
 
-      <span
-        style={{
-          fontSize: 10,
-          fontWeight: 700,
-          letterSpacing: '0.08em',
-          color: 'var(--mantine-color-stone-5)',
-        }}
-      >
+      <span className="text-[10px] font-bold tracking-[0.08em] text-(--mantine-color-stone-5)">
         CURRENT NODE
       </span>
-      <span
-        style={{
-          fontSize: 16,
-          fontWeight: 700,
-          color: '#ffffff',
-          lineHeight: 1.2,
-        }}
-      >
+      <span className="text-base font-bold text-white leading-[1.2]">
         {node?.name ?? '—'}
       </span>
-      <div
-        style={{
-          display: 'inline-flex',
-          alignSelf: 'flex-start',
-          background: 'var(--mantine-color-stone-7)',
-          borderRadius: 9999,
-          padding: '4px 10px',
-        }}
-      >
-        <span style={{
-          fontSize: 11,
-          fontWeight: 600,
-          color: '#ffffff' 
-        }}
-        >
+      <div className="inline-flex self-start bg-(--mantine-color-stone-7) rounded-full py-1 px-2.5">
+        <span className="text-[11px] font-semibold text-white">
           {nodeType}
         </span>
       </div>
@@ -161,32 +118,18 @@ function NodeCard({ node, timeLabel, variant, onClick }: NodeCardProps) {
     <button
       type="button"
       disabled={isBack && !onClick}
-      className="flex flex-col text-left w-full"
-      style={{
-        background: isBack ? 'var(--mantine-color-stone-2)' : 'var(--mantine-color-stone-1)',
-        border: isBack ? 'none' : '1.5px solid var(--mantine-color-stone-7)',
-        opacity: isBack ? 0.8 : 1,
-        borderRadius: 12,
-        padding: 14,
-        gap: 4,
-        cursor: isBack ? 'default' : 'pointer',
-      }}
+      className={clsx(
+        'flex flex-col text-left w-full rounded-[12px] p-3.5 gap-1',
+        isBack
+          ? 'bg-(--mantine-color-stone-2) border-none opacity-80 cursor-default'
+          : 'bg-(--mantine-color-stone-1) border-[1.5px] border-(--mantine-color-stone-7) cursor-pointer',
+      )}
       onClick={onClick}
     >
-      <span
-        style={{
-          fontSize: 13,
-          fontWeight: 700,
-          color: isBack ? 'var(--mantine-color-stone-7)' : 'var(--mantine-color-stone-9)',
-        }}
-      >
+      <span className={clsx('text-[13px] font-bold', isBack ? 'text-(--mantine-color-stone-7)' : 'text-(--mantine-color-stone-9)')}>
         {node?.name ?? '—'}
       </span>
-      <span style={{
-        fontSize: 11,
-        color: 'var(--mantine-color-stone-6)' 
-      }}
-      >
+      <span className="text-[11px] text-(--mantine-color-stone-6)">
         {node?.nodeType ?? TrailNodeType.Other} · {timeLabel}
       </span>
     </button>
@@ -205,21 +148,9 @@ function DesktopLayout({
   const currentId = currentNode?.id ?? ''
 
   return (
-    <div
-      className="flex items-start"
-      style={{
-        gap: 8,
-        width: '100%' 
-      }}
-    >
+    <div className="flex items-start gap-2 w-full">
       {/* Back col */}
-      <div
-        className="flex"
-        style={{
-          flex: 1,
-          minWidth: 0 
-        }}
-      >
+      <div className="flex flex-1 min-w-0">
         {previousNode && previousNodeId ? (
           <NodeCard
             node={previousNode}
@@ -227,15 +158,12 @@ function DesktopLayout({
             variant="back"
           />
         ) : (
-          <div style={{ flex: 1 }} />
+          <div className="flex-1" />
         )}
       </div>
 
       {/* move-horizontal icon */}
-      <div
-        className="flex items-center justify-center shrink-0"
-        style={{ paddingTop: 18 }}
-      >
+      <div className="flex items-center justify-center shrink-0 pt-4.5">
         <IconArrowsHorizontal
           size={16}
           color="var(--mantine-color-stone-5)"
@@ -244,21 +172,12 @@ function DesktopLayout({
       </div>
 
       {/* Current node */}
-      <div
-        className="flex"
-        style={{
-          flex: 1,
-          minWidth: 0 
-        }}
-      >
+      <div className="flex flex-1 min-w-0">
         <CurrentNodeCard node={currentNode} />
       </div>
 
       {/* arrow-right icon */}
-      <div
-        className="flex items-center justify-center shrink-0"
-        style={{ paddingTop: 18 }}
-      >
+      <div className="flex items-center justify-center shrink-0 pt-4.5">
         <IconArrowRight
           size={16}
           color="var(--mantine-color-stone-7)"
@@ -267,14 +186,7 @@ function DesktopLayout({
       </div>
 
       {/* Forward col */}
-      <div
-        className="flex flex-col"
-        style={{
-          flex: 1,
-          gap: 8,
-          minWidth: 0 
-        }}
-      >
+      <div className="flex flex-col flex-1 gap-2 min-w-0">
         {forwardIds.length > 0 ? (
           forwardIds.map((id) => (
             <NodeCard
@@ -286,12 +198,7 @@ function DesktopLayout({
             />
           ))
         ) : (
-          <span style={{
-            fontSize: 12,
-            color: 'var(--mantine-color-stone-4)',
-            paddingTop: 14 
-          }}
-          >
+          <span className="text-xs text-(--mantine-color-stone-4) pt-3.5">
             無可繼續的節點
           </span>
         )}
@@ -312,33 +219,14 @@ function MobileLayout({
   const currentId = currentNode?.id ?? ''
 
   return (
-    <div
-      className="flex flex-col"
-      style={{
-        gap: 10,
-        width: '100%' 
-      }}
-    >
+    <div className="flex flex-col gap-2.5 w-full">
       {/* Current node — full width */}
       <CurrentNodeCard node={currentNode} />
 
       {/* Two-col: back | forward */}
-      <div
-        className="flex"
-        style={{
-          gap: 10,
-          alignItems: 'flex-start' 
-        }}
-      >
+      <div className="flex gap-2.5 items-start">
         {/* Back col */}
-        <div
-          className="flex flex-col"
-          style={{
-            flex: 1,
-            gap: 8,
-            minWidth: 0 
-          }}
-        >
+        <div className="flex flex-col flex-1 gap-2 min-w-0">
           <SectionLabel
             muted
             icon={IconCornerUpLeft}
@@ -351,23 +239,12 @@ function MobileLayout({
               variant="back"
             />
           ) : (
-            <span style={{
-              fontSize: 12,
-              color: 'var(--mantine-color-stone-4)' 
-            }}
-            >—</span>
+            <span className="text-xs text-(--mantine-color-stone-4)">—</span>
           )}
         </div>
 
         {/* Forward col */}
-        <div
-          className="flex flex-col"
-          style={{
-            flex: 1,
-            gap: 8,
-            minWidth: 0 
-          }}
-        >
+        <div className="flex flex-col flex-1 gap-2 min-w-0">
           <SectionLabel
             icon={IconCornerUpRight}
             label="繼續走"
@@ -383,11 +260,7 @@ function MobileLayout({
               />
             ))
           ) : (
-            <span style={{
-              fontSize: 12,
-              color: 'var(--mantine-color-stone-4)' 
-            }}
-            >無可繼續的節點</span>
+            <span className="text-xs text-(--mantine-color-stone-4)">無可繼續的節點</span>
           )}
         </div>
       </div>
@@ -399,23 +272,13 @@ function SectionLabel({ icon: Icon, label, muted }: { icon: React.ComponentType<
   const color = muted ? 'var(--mantine-color-stone-4)' : 'var(--mantine-color-stone-7)'
 
   return (
-    <div
-      className="flex items-center"
-      style={{ gap: 4 }}
-    >
+    <div className="flex items-center gap-1">
       <Icon
         size={12}
         color={color}
         stroke={2}
       />
-      <span
-        style={{
-          fontSize: 11,
-          fontWeight: 600,
-          letterSpacing: '0.05em',
-          color,
-        }}
-      >
+      <span className={clsx('text-[11px] font-semibold tracking-[0.05em]', muted ? 'text-(--mantine-color-stone-4)' : 'text-(--mantine-color-stone-7)')}>
         {label}
       </span>
     </div>
