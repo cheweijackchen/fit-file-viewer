@@ -32,6 +32,8 @@ interface Props {
 
 const ACCOMMODATION_TYPES = new Set<TrailNodeType>([TrailNodeType.Hut, TrailNodeType.Camp])
 
+const cardCls = 'px-5 py-4 bg-white border border-(--mantine-color-stone-2) shadow-[0_1px_6px_-3px_rgba(44,36,24,0.06)] rounded-xl'
+
 export function DayPlanCard({
   dayPlan,
   dayIndex,
@@ -89,34 +91,24 @@ export function DayPlanCard({
   const cardRow = (
     <>
       {/* Stub col — day number */}
-      <div
-        className="flex flex-col shrink-0"
-        style={{
-          width: 44,
-          gap: -2,
-        }}
-      >
+      <div className="flex flex-col shrink-0 w-11">
         <Text
           component="span"
-          style={{
-            fontSize: 9,
-            fontWeight: 700,
-            letterSpacing: '0.12em',
-            color: 'var(--mantine-color-yellow-7)',
-            lineHeight: 1,
-          }}
+          size="2xs"
+          c="yellow.7"
+          fw={700}
+          lh={1}
+          className="tracking-[0.12em]"
         >
           DAY
         </Text>
         <Text
           component="span"
-          style={{
-            fontSize: 30,
-            fontWeight: 800,
-            letterSpacing: '-0.04em',
-            color: 'var(--mantine-color-stone-9)',
-            lineHeight: 1,
-          }}
+          size="3xl"
+          c="stone.9"
+          fw={800}
+          lh={1}
+          className="tracking-[-0.04em]"
         >
           {dayLabel}
         </Text>
@@ -129,16 +121,10 @@ export function DayPlanCard({
       />
 
       {/* Content col — badges + route */}
-      <div
-        className="flex flex-col flex-1 min-w-0"
-        style={{ gap: 10 }}
-      >
+      <div className="flex flex-col flex-1 min-w-0 gap-[10px]">
         {/* Icon badge row */}
         {(accommodationBadge !== null || hasWaterSource) && (
-          <div
-            className="flex items-center"
-            style={{ gap: 6 }}
-          >
+          <div className="flex items-center gap-1.5">
             {accommodationBadge !== null && (
               <NodeTypeBadge nodeType={accommodationBadge} />
             )}
@@ -152,7 +138,7 @@ export function DayPlanCard({
         {activeStopIds.length === 0 ? (
           <Text
             size="xs"
-            style={{ color: 'var(--mantine-color-stone-4)' }}
+            c="stone.4"
           >
             —
           </Text>
@@ -165,35 +151,25 @@ export function DayPlanCard({
       </div>
 
       {/* Time col */}
-      <div
-        className="flex flex-col items-end shrink-0"
-        style={{ gap: 6 }}
-      >
+      <div className="flex flex-col items-end shrink-0 gap-1.5">
         {/* SPEC time */}
-        <div
-          className="flex flex-col items-end"
-          style={{ gap: 1 }}
-        >
+        <div className="flex flex-col items-end gap-px">
           <Text
             component="span"
-            style={{
-              fontSize: 9,
-              fontWeight: 700,
-              letterSpacing: '0.12em',
-              color: 'var(--mantine-color-stone-5)',
-              lineHeight: 1,
-            }}
+            size="2xs"
+            c="stone.5"
+            fw={700}
+            lh={1}
+            className="tracking-[0.12em]"
           >
             SPEC
           </Text>
           <Text
             component="span"
-            style={{
-              fontSize: 15,
-              fontWeight: 500,
-              color: 'var(--mantine-color-stone-5)',
-              lineHeight: 1,
-            }}
+            size="sm"
+            c="stone.5"
+            fw={500}
+            lh={1}
           >
             {formatTrailMinutes(rawMinutes)}
           </Text>
@@ -203,25 +179,21 @@ export function DayPlanCard({
         <div className="flex flex-col items-end">
           <Text
             component="span"
-            style={{
-              fontSize: 9,
-              fontWeight: 700,
-              letterSpacing: '0.12em',
-              color: paceTier.color,
-              lineHeight: 1,
-            }}
+            size="2xs"
+            c={paceTier.color}
+            fw={700}
+            lh={1}
+            className="tracking-[0.12em]"
           >
             YOU
           </Text>
           <Text
             component="span"
-            style={{
-              fontSize: 28,
-              fontWeight: 800,
-              letterSpacing: '-0.02em',
-              color: paceTier.color,
-              lineHeight: 1,
-            }}
+            size="3xl"
+            c={paceTier.color}
+            fw={800}
+            lh={1}
+            className="tracking-[-0.02em]"
           >
             {formatTrailMinutes(weightedMinutes)}
           </Text>
@@ -239,11 +211,9 @@ export function DayPlanCard({
               <ActionIcon
                 size={32}
                 radius="xl"
-                style={{
-                  background: 'var(--mantine-color-stone-1)',
-                  color: 'var(--mantine-color-stone-6)',
-                  flexShrink: 0,
-                }}
+                color="stone.1"
+                c="stone.6"
+                className="shrink-0"
                 onClick={(e) => e.stopPropagation()}
               >
                 <IconDotsVertical size={16} />
@@ -277,35 +247,16 @@ export function DayPlanCard({
     </>
   )
 
-  const cardBase = {
-    padding: '16px 20px',
-    background: '#ffffff',
-    border: '1px solid var(--mantine-color-stone-2)',
-    boxShadow: '0 1px 6px -3px rgba(44,36,24,0.06)',
-  }
-
   if (mode === 'edit') {
     return (
-      <div
-        className="flex flex-col rounded-xl"
-        style={cardBase}
-      >
+      <div className={`${cardCls} flex flex-col`}>
         {/* Original header row — unchanged */}
-        <div
-          className="flex items-center"
-          style={{ gap: 20 }}
-        >
+        <div className="flex items-center gap-5">
           {cardRow}
         </div>
 
         {/* Horizontal divider */}
-        <div
-          style={{
-            height: 1,
-            background: 'var(--mantine-color-stone-2)',
-            margin: '12px 0',
-          }}
-        />
+        <div className="h-px bg-(--mantine-color-stone-2) my-3" />
 
         {/* DayPlanForm */}
         <DayPlanForm
@@ -326,13 +277,7 @@ export function DayPlanCard({
   }
 
   return (
-    <div
-      className="flex items-center rounded-xl"
-      style={{
-        ...cardBase,
-        gap: 20,
-      }}
-    >
+    <div className={`${cardCls} flex items-center gap-5`}>
       {cardRow}
     </div>
   )

@@ -18,22 +18,22 @@ export interface PaceTier {
 export const PACE_TIERS: readonly PaceTier[] = [
   {
     maxHours: 5,
-    color: 'var(--mantine-color-green-7)',
+    color: 'green.7',
     label: 'Easy'
   },
   {
     maxHours: 7,
-    color: 'var(--mantine-color-yellow-7)',
+    color: 'yellow.7',
     label: 'Normal'
   },
   {
     maxHours: 9,
-    color: 'var(--mantine-color-orange-6)',
+    color: 'orange.6',
     label: 'Long'
   },
   {
     maxHours: Infinity,
-    color: 'var(--mantine-color-red-6)',
+    color: 'red.6',
     label: 'Exhausting'
   },
 ]
