@@ -4,6 +4,7 @@ import { Select, Text } from '@mantine/core'
 import { IconAlertTriangle, IconArrowBackUp, IconCheck } from '@tabler/icons-react'
 import { formatTrailMinutes } from '@/lib/timeFormatter'
 import type { Trail, TrailAdjacencyList, TrailNode } from '@/model/hikingTrail'
+import classes from './DayPlanForm.module.scss'
 import { NodeSelectionPanel } from './NodeSelectionPanel'
 import { RouteIndicator } from './RouteIndicator'
 
@@ -39,27 +40,15 @@ export function DayPlanForm({
 
   const selectData = trail.nodes.map((n) => ({
     value: n.id,
-    label: n.name 
+    label: n.name
   }))
   const startingNodeId = stopIds[0] ?? null
 
   return (
-    <div
-      className="flex flex-col"
-      style={{ gap: 12 }}
-    >
+    <div className="flex flex-col gap-3">
       {/* Warning banner */}
       {showWarning && (
-        <div
-          className="flex items-center"
-          style={{
-            background: 'var(--mantine-color-orange-0)',
-            border: '1px solid var(--mantine-color-orange-4)',
-            borderRadius: 8,
-            padding: '10px 14px',
-            gap: 8,
-          }}
-        >
+        <div className="flex items-center gap-2 rounded-lg border border-(--mantine-color-orange-4) bg-(--mantine-color-orange-0) px-[14px] py-[10px]">
           <IconAlertTriangle
             size={14}
             stroke={2}
@@ -67,12 +56,10 @@ export function DayPlanForm({
             className="shrink-0"
           />
           <Text
+            c="orange.9"
+            size="xs"
             component="span"
-            style={{
-              fontSize: 12,
-              fontWeight: 500,
-              color: 'var(--mantine-color-orange-9)',
-            }}
+            className="font-medium"
           >
             目前累積時間已超過 8 小時，考慮是否在此結束本日。
           </Text>
@@ -80,17 +67,12 @@ export function DayPlanForm({
       )}
 
       {/* Starting Point */}
-      <div
-        className="flex flex-col"
-        style={{ gap: 6 }}
-      >
+      <div className="flex flex-col gap-1.5">
         <Text
+          c="stone.6"
+          size="xs"
           component="span"
-          style={{
-            fontSize: 12,
-            fontWeight: 600,
-            color: 'var(--mantine-color-stone-6)',
-          }}
+          className="font-semibold"
         >
           Starting Point
         </Text>
@@ -99,44 +81,17 @@ export function DayPlanForm({
           data={selectData}
           value={startingNodeId}
           placeholder="選擇起點"
-          styles={{
-            input: {
-              background: 'var(--mantine-color-stone-1)',
-              border: '1px solid var(--mantine-color-stone-3)',
-              borderRadius: 8,
-              height: 36,
-              fontSize: 13,
-            },
-          }}
+          classNames={{ input: classes.selectInput }}
           onChange={(val) => val && onStartingNodeChange(val)}
         />
       </div>
 
       {/* Route Summary */}
       {hasStops && (
-        <div
-          className="flex items-center"
-          style={{
-            background: 'var(--mantine-color-stone-1)',
-            border: '1px solid var(--day-plan-summary-border)',
-            borderRadius: 10,
-            padding: '10px 12px',
-            gap: 12,
-          }}
-        >
+        <div className="flex items-center gap-3 rounded-[10px] border border-(--day-plan-summary-border) bg-(--mantine-color-stone-1) px-3 py-[10px]">
           {/* Left: label + chips */}
-          <div
-            className="flex flex-col flex-1 min-w-0"
-            style={{ gap: 6 }}
-          >
-            <span
-              style={{
-                fontSize: 9,
-                fontWeight: 700,
-                letterSpacing: '0.08em',
-                color: 'var(--mantine-color-yellow-8)',
-              }}
-            >
+          <div className="flex flex-col flex-1 min-w-0 gap-1.5">
+            <span className="text-[9px] font-bold tracking-[0.08em] text-(--mantine-color-yellow-8)">
               TODAY&apos;S ROUTE
             </span>
             <RouteIndicator
@@ -149,26 +104,11 @@ export function DayPlanForm({
           </div>
 
           {/* Right: time */}
-          <div
-            className="flex flex-col items-end shrink-0"
-            style={{ gap: 1 }}
-          >
-            <span
-              style={{
-                fontSize: 20,
-                fontWeight: 800,
-                color: 'var(--mantine-color-yellow-7)',
-                lineHeight: 1,
-              }}
-            >
+          <div className="flex flex-col items-end shrink-0 gap-px">
+            <span className="text-xl font-extrabold text-(--mantine-color-yellow-7) leading-none">
               {formatTrailMinutes(rawMinutes)}
             </span>
-            <span
-              style={{
-                fontSize: 11,
-                color: 'var(--mantine-color-yellow-8)',
-              }}
-            >
+            <span className="text-[11px] text-(--mantine-color-yellow-8)">
               × 0.9 = {formatTrailMinutes(weightedMinutes)}
             </span>
           </div>
@@ -186,24 +126,11 @@ export function DayPlanForm({
       )}
 
       {/* Footer */}
-      <div
-        className="flex items-center"
-        style={{ gap: 10 }}
-      >
+      <div className="flex items-center gap-2.5">
         <button
           type="button"
           disabled={!canUndo}
-          className="flex items-center justify-center shrink-0"
-          style={{
-            width: 140,
-            height: 44,
-            borderRadius: 10,
-            background: 'var(--mantine-color-stone-1)',
-            border: '1px solid var(--mantine-color-stone-3)',
-            gap: 6,
-            cursor: canUndo ? 'pointer' : 'not-allowed',
-            opacity: canUndo ? 1 : 0.4,
-          }}
+          className={`flex items-center justify-center shrink-0 w-[140px] h-11 rounded-[10px] bg-(--mantine-color-stone-1) border border-(--mantine-color-stone-3) gap-1.5 ${canUndo ? 'cursor-pointer opacity-100' : 'cursor-not-allowed opacity-40'}`}
           onClick={onUndo}
         >
           <IconArrowBackUp
@@ -211,12 +138,7 @@ export function DayPlanForm({
             stroke={2}
             color="var(--mantine-color-stone-7)"
           />
-          <span style={{
-            fontSize: 13,
-            fontWeight: 600,
-            color: 'var(--mantine-color-stone-7)' 
-          }}
-          >
+          <span className="text-[13px] font-semibold text-(--mantine-color-stone-7)">
             復原上一步
           </span>
         </button>
@@ -224,28 +146,15 @@ export function DayPlanForm({
         <button
           type="button"
           disabled={!hasStops}
-          className="flex items-center justify-center flex-1"
-          style={{
-            height: 44,
-            borderRadius: 10,
-            background: hasStops ? 'var(--mantine-color-yellow-5)' : 'var(--mantine-color-stone-2)',
-            border: 'none',
-            gap: 8,
-            cursor: hasStops ? 'pointer' : 'not-allowed',
-          }}
+          className={`flex items-center justify-center flex-1 h-11 rounded-[10px] border-none gap-2 ${hasStops ? 'bg-(--mantine-color-yellow-5) cursor-pointer' : 'bg-(--mantine-color-stone-2) cursor-not-allowed'}`}
           onClick={onCompleteRoute}
         >
           <IconCheck
             size={15}
             stroke={2.5}
-            color={hasStops ? '#ffffff' : 'var(--mantine-color-stone-5)'}
+            color={hasStops ? 'white' : 'var(--mantine-color-stone-5)'}
           />
-          <span style={{
-            fontSize: 14,
-            fontWeight: 700,
-            color: hasStops ? '#ffffff' : 'var(--mantine-color-stone-5)' 
-          }}
-          >
+          <span className={`text-sm font-bold ${hasStops ? 'text-white' : 'text-(--mantine-color-stone-5)'}`}>
             完成路線
           </span>
         </button>
