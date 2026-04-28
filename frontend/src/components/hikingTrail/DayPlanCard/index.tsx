@@ -1,7 +1,7 @@
 'use client'
 
 import { ActionIcon, Divider, Menu, Text } from '@mantine/core'
-import { IconDotsVertical, IconEraser, IconPencil, IconTrash } from '@tabler/icons-react'
+import { IconDotsVertical, IconEraser, IconPencil, IconPencilOff, IconTrash } from '@tabler/icons-react'
 import { useMemo } from 'react'
 import { PACE_TIERS } from '@/constants/hiking-trails/dayPlanCard'
 import { TrailNodeType } from '@/constants/hiking-trails/hikingTrail'
@@ -20,6 +20,7 @@ interface Props {
   mode: 'view' | 'edit';
   showOptions?: boolean;
   onEdit?: () => void;
+  onCancelEdit?: () => void;
   onClearRoute?: () => void;
   onDelete?: () => void;
   // Edit mode — in-progress planning state
@@ -42,6 +43,7 @@ export function DayPlanCard({
   mode,
   showOptions,
   onEdit,
+  onCancelEdit,
   onClearRoute,
   onDelete,
   editStopIds,
@@ -235,18 +237,29 @@ export function DayPlanCard({
               </ActionIcon>
             </Menu.Target>
             <Menu.Dropdown>
-              <Menu.Item
-                leftSection={<IconPencil size={14} />}
-                onClick={onEdit}
-              >
-                編輯
-              </Menu.Item>
-              <Menu.Item
-                leftSection={<IconEraser size={14} />}
-                onClick={onClearRoute}
-              >
-                清除路線
-              </Menu.Item>
+              {mode === 'edit' ? (
+                <>
+                  <Menu.Item
+                    leftSection={<IconPencilOff size={14} />}
+                    onClick={onCancelEdit}
+                  >
+                    取消編輯
+                  </Menu.Item>
+                  <Menu.Item
+                    leftSection={<IconEraser size={14} />}
+                    onClick={onClearRoute}
+                  >
+                    清除路線
+                  </Menu.Item>
+                </>
+              ) : (
+                <Menu.Item
+                  leftSection={<IconPencil size={14} />}
+                  onClick={onEdit}
+                >
+                  編輯
+                </Menu.Item>
+              )}
               <Menu.Divider />
               <Menu.Item
                 color="red"

@@ -169,6 +169,10 @@ export default function DemoDayPlanCard() {
                 setEditDayIndex(i)
                 setEditStops(day.stops.map((s) => s.nodeId))
               }}
+              onCancelEdit={() => {
+                setEditDayIndex(null)
+                setEditStops([])
+              }}
               onStartingNodeChange={(id) => setEditStops([id])}
               onNodeSelect={(id) => setEditStops((prev) => [...prev, id])}
               onUndo={() => setEditStops((prev) => (prev.length > 1 ? prev.slice(0, -1) : prev))}
