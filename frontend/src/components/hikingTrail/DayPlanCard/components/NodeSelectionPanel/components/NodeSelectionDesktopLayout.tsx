@@ -41,7 +41,7 @@ export function NodeSelectionDesktopLayout({
       </div>
 
       {/* move-horizontal icon */}
-      <div className="flex items-center justify-center shrink-0 pt-4.5">
+      <div className={`flex items-center justify-center shrink-0 pt-4.5 ${!previousNode ? 'invisible' : ''}`}>
         <IconArrowsHorizontal
           size={16}
           color="var(--mantine-color-stone-5)"
