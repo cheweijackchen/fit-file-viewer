@@ -195,56 +195,58 @@ export function DayPlanCard({
                 {dayLabel}
               </Text>
             </div>
-            {badges}
+            {mode !== 'edit' && badges}
           </div>
 
           {/* Right: time + menu */}
-          <div className={`flex items-center gap-2 ${mode === 'edit' ? 'opacity-40' : ''}`}>
-            <div className="flex flex-col items-end shrink-0 gap-1">
-              <div className="flex flex-col items-end gap-px">
-                <Text
-                  component="span"
-                  size="2xs"
-                  c="stone.5"
-                  fw={700}
-                  lh={1}
-                  className="tracking-[0.12em]"
-                >
-                  SPEC
-                </Text>
-                <Text
-                  component="span"
-                  size="xs"
-                  c="stone.5"
-                  fw={500}
-                  lh={1}
-                >
-                  {formatTrailMinutes(rawMinutes)}
-                </Text>
+          <div className="flex items-center gap-2">
+            {mode !== 'edit' && (
+              <div className="flex flex-col items-end shrink-0 gap-1">
+                <div className="flex flex-col items-end gap-px">
+                  <Text
+                    component="span"
+                    size="2xs"
+                    c="stone.5"
+                    fw={700}
+                    lh={1}
+                    className="tracking-[0.12em]"
+                  >
+                    SPEC
+                  </Text>
+                  <Text
+                    component="span"
+                    size="xs"
+                    c="stone.5"
+                    fw={500}
+                    lh={1}
+                  >
+                    {formatTrailMinutes(rawMinutes)}
+                  </Text>
+                </div>
+                <div className="flex flex-col items-end">
+                  <Text
+                    component="span"
+                    size="2xs"
+                    c={paceTier.color}
+                    fw={700}
+                    lh={1}
+                    className="tracking-[0.12em]"
+                  >
+                    YOU
+                  </Text>
+                  <Text
+                    component="span"
+                    size="2xl"
+                    c={paceTier.color}
+                    fw={800}
+                    lh={1}
+                    className="tracking-[-0.02em]"
+                  >
+                    {formatTrailMinutes(weightedMinutes)}
+                  </Text>
+                </div>
               </div>
-              <div className="flex flex-col items-end">
-                <Text
-                  component="span"
-                  size="2xs"
-                  c={paceTier.color}
-                  fw={700}
-                  lh={1}
-                  className="tracking-[0.12em]"
-                >
-                  YOU
-                </Text>
-                <Text
-                  component="span"
-                  size="2xl"
-                  c={paceTier.color}
-                  fw={800}
-                  lh={1}
-                  className="tracking-[-0.02em]"
-                >
-                  {formatTrailMinutes(weightedMinutes)}
-                </Text>
-              </div>
-            </div>
+            )}
             {showOptions && (
               <div className="self-start">
                 <Menu
@@ -271,12 +273,12 @@ export function DayPlanCard({
         </div>
 
         {/* Horizontal divider */}
-        <div className="h-px bg-(--mantine-color-stone-2)" />
+        {mode !== 'edit' && <div className="h-px bg-(--mantine-color-stone-2)" />}
 
         {/* Route */}
-        <div className={mode === 'edit' ? 'opacity-40' : ''}>
-          {route}
-        </div>
+        {mode !== 'edit' && (
+          <div>{route}</div>
+        )}
       </div>
 
       {/* ─── DESKTOP LAYOUT (hidden below md) ─── */}
