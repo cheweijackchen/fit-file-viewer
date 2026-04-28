@@ -1,6 +1,6 @@
 'use client'
 
-import { ActionIcon, Menu, Text } from '@mantine/core'
+import { ActionIcon, Divider, Menu, Text } from '@mantine/core'
 import { IconDotsVertical, IconEraser, IconPencil, IconTrash } from '@tabler/icons-react'
 import { useMemo } from 'react'
 import { PACE_TIERS } from '@/constants/hiking-trails/dayPlanCard'
@@ -122,24 +122,11 @@ export function DayPlanCard({
         </Text>
       </div>
 
-      {/* Dotted vertical divider */}
-      <svg
-        width={1}
-        height={56}
-        className="shrink-0"
-        style={{ overflow: 'visible' }}
-      >
-        <line
-          x1={0.5}
-          y1={0}
-          x2={0.5}
-          y2={56}
-          stroke="var(--mantine-color-stone-3)"
-          strokeWidth={1.2}
-          strokeDasharray="3 4"
-          strokeLinecap="round"
-        />
-      </svg>
+      <Divider
+        orientation="vertical"
+        color="stone.3"
+        className="shrink-0 self-stretch"
+      />
 
       {/* Content col — badges + route */}
       <div
