@@ -314,7 +314,7 @@ Anti-pattern: cold, clinical dashboards that feel like medical software or enter
 
 **Border radius** — `xs`=2, `sm`=4, `md`=8 (default), `lg`=16, `xl`=32
 
-**Available components** — prefer Mantine over custom: Card, Paper, Button (filled/outline/subtle/transparent), ActionIcon, TextInput, Select, MultiSelect, Checkbox, Switch, Slider, Tabs, Modal, Drawer, Tooltip, Popover, Menu, Badge, Table, Accordion, Alert, Loader, Skeleton, Dropzone, AreaChart, BarChart, DonutChart, LineChart
+**Available components** — 實作任何 UI 元素前，先查 [docs/mantine-components.md](docs/mantine-components.md) 確認是否有現成元件可用，優先使用 Mantine，不自製。例外：排版（flex、grid、spacing、RWD breakpoint）一律用 Tailwind，不用 Mantine 的 `Flex`、`Stack`、`Group`；文字樣式亦可用 Tailwind。
 
 **Component defaults**: Card padding=`xl` + border; Paper radius=`md` + border; Button primary=`filled` color=`yellow`
 
