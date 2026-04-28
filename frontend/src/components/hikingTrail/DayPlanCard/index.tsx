@@ -57,31 +57,46 @@ export function DayPlanCard({
     [trail],
   )
 
-  // In edit mode, use editStopIds for time display if provided; fallback to dayPlan.stops
-  const activeStopIds = useMemo(
-    () =>
-      mode === 'edit' && editStopIds !== undefined
-        ? editStopIds
-        : dayPlan.stops.map((s) => s.nodeId),
-    [mode, editStopIds, dayPlan.stops],
+  // Header always shows committed (saved) state
+  const committedStopIds = useMemo(
+    () => dayPlan.stops.map((s) => s.nodeId),
+    [dayPlan.stops],
+  )
+
+  // Form shows in-progress editing state
+  const formStopIds = useMemo(
+    () => editStopIds ?? committedStopIds,
+    [editStopIds, committedStopIds],
   )
 
   let rawMinutes = 0
   try {
-    rawMinutes = calculatePathTime(adj, activeStopIds)
+    rawMinutes = calculatePathTime(adj, committedStopIds)
   } catch {
     // invalid path — show 0
   }
 
   const weightedMinutes = Math.round(rawMinutes * paceMultiplier)
+
+  let formRawMinutes = rawMinutes
+  let formWeightedMinutes = weightedMinutes
+  if (mode === 'edit') {
+    try {
+      formRawMinutes = calculatePathTime(adj, formStopIds)
+    } catch {
+      // invalid path — show 0
+    }
+    formWeightedMinutes = Math.round(formRawMinutes * paceMultiplier)
+  }
+
   const paceTier = PACE_TIERS.find((t) => weightedMinutes / 60 < t.maxHours) ?? PACE_TIERS[PACE_TIERS.length - 1]!
 
-  const lastStop = activeStopIds.length > 0 ? nodeMap[activeStopIds[activeStopIds.length - 1]!] : undefined
+  const lastStop = committedStopIds.length > 0 ? nodeMap[committedStopIds[committedStopIds.length - 1]!] : undefined
   const lastNodeType = lastStop?.nodeType
   const accommodationBadge =
     lastNodeType && ACCOMMODATION_TYPES.has(lastNodeType) ? lastNodeType : null
 
-  const hasWaterSource = activeStopIds.some(
+  const hasWaterSource = committedStopIds.some(
     (id) => nodeMap[id]?.nodeType === TrailNodeType.WaterSource,
   )
 
@@ -121,7 +136,7 @@ export function DayPlanCard({
       />
 
       {/* Content col — badges + route */}
-      <div className="flex flex-col flex-1 min-w-0 gap-[10px]">
+      <div className={`flex flex-col flex-1 min-w-0 gap-[10px] ${mode === 'edit' ? 'opacity-40' : ''}`}>
         {/* Icon badge row */}
         {(accommodationBadge !== null || hasWaterSource) && (
           <div className="flex items-center gap-1.5">
@@ -135,7 +150,7 @@ export function DayPlanCard({
         )}
 
         {/* Route chip row */}
-        {activeStopIds.length === 0 ? (
+        {committedStopIds.length === 0 ? (
           <Text
             size="xs"
             c="stone.4"
@@ -144,14 +159,14 @@ export function DayPlanCard({
           </Text>
         ) : (
           <RouteIndicator
-            stopIds={activeStopIds}
+            stopIds={committedStopIds}
             nodeMap={nodeMap}
           />
         )}
       </div>
 
       {/* Time col */}
-      <div className="flex flex-col items-end shrink-0 gap-1.5">
+      <div className={`flex flex-col items-end shrink-0 gap-1.5 ${mode === 'edit' ? 'opacity-40' : ''}`}>
         {/* SPEC time */}
         <div className="flex flex-col items-end gap-px">
           <Text
@@ -264,9 +279,9 @@ export function DayPlanCard({
           adj={adj}
           nodeMap={nodeMap}
           paceMultiplier={paceMultiplier}
-          stopIds={editStopIds ?? []}
-          rawMinutes={rawMinutes}
-          weightedMinutes={weightedMinutes}
+          stopIds={formStopIds}
+          rawMinutes={formRawMinutes}
+          weightedMinutes={formWeightedMinutes}
           onStartingNodeChange={onStartingNodeChange ?? (() => {})}
           onNodeSelect={onNodeSelect ?? (() => {})}
           onUndo={onUndo ?? (() => {})}

@@ -26,6 +26,7 @@ export function DayPlanForm({
   trail,
   adj,
   nodeMap,
+  paceMultiplier,
   stopIds,
   weightedMinutes,
   rawMinutes,
@@ -109,7 +110,7 @@ export function DayPlanForm({
               {formatTrailMinutes(rawMinutes)}
             </span>
             <span className="text-[11px] text-(--mantine-color-yellow-8)">
-              × 0.9 = {formatTrailMinutes(weightedMinutes)}
+              × {paceMultiplier.toFixed(1)} = {formatTrailMinutes(weightedMinutes)}
             </span>
           </div>
         </div>
