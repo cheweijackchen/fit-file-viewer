@@ -10,73 +10,8 @@ import {
 } from '@tabler/icons-react'
 import { useTranslations } from 'next-intl'
 import { TripCard } from '@/components/hikingTrail/TripCard'
-import type { HikingPlan } from '@/model/hikingTrail'
-
-const MOCK_PLANS: HikingPlan[] = [
-  {
-    id: '1',
-    name: '南二段規劃',
-    trailIds: ['south-second-section'],
-    paceMultiplier: 1.0,
-    days: [{
-      id: 'd1',
-      badges: [],
-      stops: [] 
-    }, {
-      id: 'd2',
-      badges: [],
-      stops: [] 
-    }, {
-      id: 'd3',
-      badges: [],
-      stops: [] 
-    }],
-    createdAt: Date.now() - (7 * 24 * 60 * 60 * 1000),
-    updatedAt: Date.now() - (2 * 24 * 60 * 60 * 1000),
-  },
-  {
-    id: '2',
-    name: '北一段縱走',
-    trailIds: ['north-first-section'],
-    paceMultiplier: 1.1,
-    days: [{
-      id: 'd1',
-      badges: [],
-      stops: []
-    }, {
-      id: 'd2',
-      badges: [],
-      stops: []
-    }, {
-      id: 'd3',
-      badges: [],
-      stops: []
-    }, {
-      id: 'd4',
-      badges: [],
-      stops: []
-    }],
-    createdAt: Date.now() - (14 * 24 * 60 * 60 * 1000),
-    updatedAt: Date.now() - (5 * 24 * 60 * 60 * 1000),
-  },
-  {
-    id: '3',
-    name: '玉山群峰探索',
-    trailIds: ['yushan-group'],
-    paceMultiplier: 0.9,
-    days: [{
-      id: 'd1',
-      badges: [],
-      stops: []
-    }, {
-      id: 'd2',
-      badges: [],
-      stops: []
-    }],
-    createdAt: Date.now() - (3 * 24 * 60 * 60 * 1000),
-    updatedAt: Date.now() - (60 * 60 * 1000),
-  },
-]
+import { useRouter } from '@/i18n/navigation'
+import { useHikingTrailActions, useHikingTrailStore } from '@/store/hikingTrail/useHikingTrailStore'
 
 interface FeatureItem {
   icon: React.ReactNode;
@@ -104,6 +39,14 @@ const FEATURES: FeatureItem[] = [
 
 export default function HikingTrailPlannerPage() {
   const t = useTranslations('hiking-trail-planner')
+  const router = useRouter()
+  const plans = useHikingTrailStore.use.plans()
+  const { createPlan } = useHikingTrailActions()
+
+  function handleNewTrip() {
+    const id = createPlan('新行程', [])
+    router.push(`/hiking-trail-planner/${id}?edit=true`)
+  }
 
   return (
     <div className="flex flex-col w-full">
@@ -228,28 +171,51 @@ export default function HikingTrailPlannerPage() {
             radius={8}
             leftSection={<IconPlus size={14} />}
             fw={600}
+            onClick={handleNewTrip}
           >
             {t('yourTrips.newTrip')}
           </Button>
         </Group>
 
-        <Group
-          gap={20}
-          align="stretch"
-          style={{ width: '100%' }}
-        >
-          {MOCK_PLANS.map((plan) => (
-            <Box
-              key={plan.id}
-              style={{
-                flex: 1,
-                minWidth: 0 
-              }}
+        {plans.length === 0 ? (
+          <div
+            className="flex items-center justify-center w-full rounded-xl"
+            style={{
+              padding: '48px 24px',
+              background: 'var(--mantine-color-stone-1)',
+              border: '1.5px dashed var(--mantine-color-stone-3)',
+            }}
+          >
+            <Text
+              size="sm"
+              c="stone.4"
+              ta="center"
             >
-              <TripCard plan={plan} />
-            </Box>
-          ))}
-        </Group>
+              {t('yourTrips.empty')}
+            </Text>
+          </div>
+        ) : (
+          <Group
+            gap={20}
+            align="stretch"
+            style={{ width: '100%' }}
+          >
+            {plans.map((plan) => (
+              <Box
+                key={plan.id}
+                style={{
+                  flex: 1,
+                  minWidth: 0,
+                }}
+              >
+                <TripCard
+                  plan={plan}
+                  onClick={() => router.push(`/hiking-trail-planner/${plan.id}`)}
+                />
+              </Box>
+            ))}
+          </Group>
+        )}
       </section>
     </div>
   )
