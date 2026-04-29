@@ -25,6 +25,7 @@ interface Props {
   onDelete?: () => void;
   // Edit mode — in-progress planning state
   editStopIds?: string[];
+  prevDayLastStopId?: string;
   onStartingNodeChange?: (nodeId: string) => void;
   onNodeSelect?: (nodeId: string) => void;
   onUndo?: () => void;
@@ -47,6 +48,7 @@ export function DayPlanCard({
   onClearRoute,
   onDelete,
   editStopIds,
+  prevDayLastStopId,
   onStartingNodeChange,
   onNodeSelect,
   onUndo,
@@ -418,6 +420,7 @@ export function DayPlanCard({
           stopIds={formStopIds}
           rawMinutes={formRawMinutes}
           weightedMinutes={formWeightedMinutes}
+          prevDayLastStopId={prevDayLastStopId}
           onStartingNodeChange={onStartingNodeChange ?? (() => {})}
           onNodeSelect={onNodeSelect ?? (() => {})}
           onUndo={onUndo ?? (() => {})}

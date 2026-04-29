@@ -433,6 +433,7 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
           <div className="flex flex-col gap-2.5">
             {displayDays.map((day, idx) => {
               const isDayEditing = editingDayId === day.id
+              const prevDayLastStopId = idx > 0 ? displayDays[idx - 1]?.stops.at(-1)?.nodeId : undefined
               return (
                 <div
                   key={day.id}
@@ -446,14 +447,21 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
                     paceMultiplier={isEditing ? editPaceMultiplier : plan.paceMultiplier}
                     mode={isDayEditing ? 'edit' : 'view'}
                     editStopIds={isDayEditing ? editStopIds : undefined}
+                    prevDayLastStopId={prevDayLastStopId}
                     onEdit={() => {
                       const sourceDays = isEditing ? editDays : plan.days
                       const dayData = sourceDays.find((d) => d.id === day.id)
+                      const prevLastStopId = idx > 0 ? sourceDays[idx - 1]?.stops.at(-1)?.nodeId : undefined
                       if (!isEditing) {
                         enterEditMode()
                       }
                       setEditingDayId(day.id)
-                      setEditStopIds(dayData?.stops.map((s) => s.nodeId) ?? [])
+                      const initialStops = dayData?.stops.map((s) => s.nodeId) ?? []
+                      if (initialStops.length === 0 && prevLastStopId) {
+                        setEditStopIds([prevLastStopId])
+                      } else {
+                        setEditStopIds(initialStops)
+                      }
                     }}
                     onCancelEdit={() => {
                       setEditingDayId(null)

@@ -1,6 +1,6 @@
 'use client'
 
-import { Alert, Select, Text } from '@mantine/core'
+import { Alert, Button, Select, Text } from '@mantine/core'
 import { IconAlertTriangle, IconArrowBackUp, IconCheck } from '@tabler/icons-react'
 import { formatTrailMinutes } from '@/lib/timeFormatter'
 import type { Trail, TrailAdjacencyList, TrailNode } from '@/model/hikingTrail'
@@ -16,6 +16,7 @@ interface Props {
   stopIds: string[];
   weightedMinutes: number;
   rawMinutes: number;
+  prevDayLastStopId?: string;
   onStartingNodeChange: (nodeId: string) => void;
   onNodeSelect: (nodeId: string) => void;
   onUndo: () => void;
@@ -30,6 +31,7 @@ export function DayPlanForm({
   stopIds,
   weightedMinutes,
   rawMinutes,
+  prevDayLastStopId,
   onStartingNodeChange,
   onNodeSelect,
   onUndo,
@@ -44,6 +46,12 @@ export function DayPlanForm({
     label: n.name
   }))
   const startingNodeId = stopIds[0] ?? null
+
+  const prevDayLastNode = prevDayLastStopId ? nodeMap[prevDayLastStopId] : undefined
+  const isDiscontinuous =
+    prevDayLastStopId !== undefined &&
+    startingNodeId !== null &&
+    startingNodeId !== prevDayLastStopId
 
   return (
     <div className="flex flex-col gap-3">
@@ -82,6 +90,33 @@ export function DayPlanForm({
           classNames={{ input: classes.selectInput }}
           onChange={(val) => val && onStartingNodeChange(val)}
         />
+        {isDiscontinuous && prevDayLastNode && (
+          <Alert
+            variant="light"
+            color="orange"
+            icon={
+              <IconAlertTriangle
+                size={14}
+                stroke={2}
+              />
+            }
+            py="xs"
+            px="sm"
+            fz="xs"
+          >
+            <div className="flex items-center justify-between gap-2">
+              <span>起點與前一天終點「{prevDayLastNode.name}」不連續</span>
+              <Button
+                size="compact-xs"
+                variant="filled"
+                color="orange"
+                onClick={() => onStartingNodeChange(prevDayLastStopId!)}
+              >
+                改用前一天終點
+              </Button>
+            </div>
+          </Alert>
+        )}
       </div>
 
       {/* Route Summary */}
