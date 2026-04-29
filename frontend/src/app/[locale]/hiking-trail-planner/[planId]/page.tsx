@@ -1,6 +1,6 @@
 'use client'
 
-import { ActionIcon, Button, Container, Menu, Modal, Text } from '@mantine/core'
+import { ActionIcon, Container, Menu, Text } from '@mantine/core'
 import { useScrollIntoView } from '@mantine/hooks'
 import { IconDots, IconGitFork, IconPencil, IconPlus, IconTrash, IconX } from '@tabler/icons-react'
 import { use, useMemo, useState } from 'react'
@@ -578,40 +578,18 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
       <ConfirmModal {...leaveModalProps} />
 
       {/* ─── Delete Confirmation Modal ─── */}
-      <Modal
-        centered
+      <ConfirmModal
         opened={deleteConfirmOpen}
         title="刪除行程"
-        size="sm"
-        onClose={() => setDeleteConfirmOpen(false)}
-      >
-        <div className="flex flex-col gap-6">
-          <Text
-            size="sm"
-            c="stone.6"
-          >
-            確定要刪除「{plan.name}」嗎？此操作無法復原。
-          </Text>
-          <div className="flex gap-2 justify-end">
-            <Button
-              variant="subtle"
-              color="gray"
-              onClick={() => setDeleteConfirmOpen(false)}
-            >
-              取消
-            </Button>
-            <Button
-              color="red"
-              onClick={() => {
-                deletePlan(planId)
-                router.push('/hiking-trail-planner')
-              }}
-            >
-              刪除
-            </Button>
-          </div>
-        </div>
-      </Modal>
+        description={`確定要刪除「${plan.name}」嗎？此操作無法復原。`}
+        confirmLabel="刪除"
+        confirmColor="red"
+        onOk={() => {
+          deletePlan(planId)
+          router.push('/hiking-trail-planner')
+        }}
+        onCancel={() => setDeleteConfirmOpen(false)}
+      />
     </div>
   )
 }
