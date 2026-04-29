@@ -14,6 +14,7 @@ import { buildTrailAdjacencyList, calculatePathTime } from '@/lib/trailGraph'
 import type { DayPlan, Trail, TrailEdge, TrailNode } from '@/model/hikingTrail'
 import { useHikingTrailActions, useHikingTrailStore } from '@/store/hikingTrail/useHikingTrailStore'
 import { EditToolbar } from './components/EditToolbar'
+import { PlanNotFound } from './components/PlanNotFound'
 
 interface Props {
   params: Promise<{ planId: string; }>;
@@ -110,25 +111,7 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
   const totalWeightedMinutes = Math.round(totalRawMinutes * (plan?.paceMultiplier ?? 1))
 
   if (!plan) {
-    return (
-      <div className="flex flex-col items-center justify-center gap-4 py-32">
-        <Text
-          c="stone.5"
-          size="lg"
-        >
-          計畫不存在
-        </Text>
-        <Link href="/hiking-trail-planner">
-          <Text
-            size="sm"
-            c="stone.4"
-            td="underline"
-          >
-            返回行程列表
-          </Text>
-        </Link>
-      </div>
-    )
+    return <PlanNotFound />
   }
 
   function enterEditMode() {
