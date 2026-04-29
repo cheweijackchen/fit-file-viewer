@@ -2,6 +2,7 @@
 
 import { Alert, Button, Select, Text } from '@mantine/core'
 import { IconAlertTriangle, IconArrowBackUp, IconCheck } from '@tabler/icons-react'
+import { useEffect } from 'react'
 import { formatTrailMinutes } from '@/lib/timeFormatter'
 import type { Trail, TrailAdjacencyList, TrailNode } from '@/model/hikingTrail'
 import classes from './DayPlanForm.module.scss'
@@ -46,6 +47,13 @@ export function DayPlanForm({
     label: n.name
   }))
   const startingNodeId = stopIds[0] ?? null
+
+  useEffect(() => {
+    if (stopIds.length === 0 && prevDayLastStopId) {
+      onStartingNodeChange(prevDayLastStopId)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const prevDayLastNode = prevDayLastStopId ? nodeMap[prevDayLastStopId] : undefined
   const isDiscontinuous =

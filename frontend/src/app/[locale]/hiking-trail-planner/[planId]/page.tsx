@@ -451,17 +451,11 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
                     onEdit={() => {
                       const sourceDays = isEditing ? editDays : plan.days
                       const dayData = sourceDays.find((d) => d.id === day.id)
-                      const prevLastStopId = idx > 0 ? sourceDays[idx - 1]?.stops.at(-1)?.nodeId : undefined
                       if (!isEditing) {
                         enterEditMode()
                       }
                       setEditingDayId(day.id)
-                      const initialStops = dayData?.stops.map((s) => s.nodeId) ?? []
-                      if (initialStops.length === 0 && prevLastStopId) {
-                        setEditStopIds([prevLastStopId])
-                      } else {
-                        setEditStopIds(initialStops)
-                      }
+                      setEditStopIds(dayData?.stops.map((s) => s.nodeId) ?? [])
                     }}
                     onCancelEdit={() => {
                       setEditingDayId(null)
