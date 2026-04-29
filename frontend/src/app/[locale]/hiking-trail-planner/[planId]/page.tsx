@@ -1,6 +1,6 @@
 'use client'
 
-import { ActionIcon, Button, Menu, Modal, Text } from '@mantine/core'
+import { ActionIcon, Button, Container, Menu, Modal, Text } from '@mantine/core'
 import { useScrollIntoView } from '@mantine/hooks'
 import { IconDots, IconGitFork, IconPencil, IconPlus, IconTrash, IconX } from '@tabler/icons-react'
 import { use, useMemo, useState } from 'react'
@@ -187,11 +187,12 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
       )}
 
       {/* ─── Trip Header ─── */}
-      <div
-        className="flex flex-col gap-3 w-full px-20 pt-6 pb-7"
+      <Container
+        size="xl"
+        className="w-full flex flex-col gap-3 pt-6 pb-7"
       >
         {/* Top row: breadcrumbs + dots menu */}
-        <div className="flex items-center justify-between">
+        <div className="w-full flex items-center justify-between">
           <div className="flex items-center gap-1.5">
             <Link href="/hiking-trail-planner">
               <Text
@@ -366,7 +367,7 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
             ×{plan.paceMultiplier} · {formatTrailMinutes(totalWeightedMinutes)}
           </Text>
         </div>
-      </div>
+      </Container>
 
       {/* ─── Tab Nav ─── */}
       <div
@@ -414,8 +415,9 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
       </div>
 
       {/* ─── Content Area ─── */}
-      <div
-        className="flex gap-10 w-full px-20 pt-8 pb-4"
+      <Container
+        size="xl"
+        className="w-full flex gap-10 pt-8 pb-4"
       >
         {/* Left column — Itinerary */}
         <div className="flex flex-col flex-1 min-w-0 gap-2.5">
@@ -528,43 +530,48 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
           ref={tripStatsRef}
           className="shrink-0 w-[430px]"
         />
-      </div>
+      </Container>
 
       {/* ─── Trail Network Section ─── */}
       <div
-        className="flex flex-col gap-3 w-full px-20 pt-6 pb-16 border-t border-(--mantine-color-stone-2)"
+        className="border-t border-(--mantine-color-stone-2)"
       >
-        <div ref={trailNetworkRef}>
-          <Text
-            size="xs"
-            fw={700}
-            c="stone.5"
-            className="tracking-[0.08em]"
-          >
-            TRAIL NETWORK
-          </Text>
-        </div>
-        <div
-          className="flex flex-col items-center justify-center gap-2.5 w-full rounded-2xl h-80 bg-(--mantine-color-stone-1) border border-(--mantine-color-stone-2)"
+        <Container
+          size="xl"
+          className="w-full flex flex-col gap-3 pt-6 pb-16"
         >
-          <IconGitFork
-            size={40}
-            color="var(--mantine-color-stone-4)"
-          />
-          <Text
-            size="md"
-            fw={600}
-            c="stone.4"
+          <div ref={trailNetworkRef}>
+            <Text
+              size="xs"
+              fw={700}
+              c="stone.5"
+              className="tracking-[0.08em]"
+            >
+              TRAIL NETWORK
+            </Text>
+          </div>
+          <div
+            className="flex flex-col items-center justify-center gap-2.5 w-full rounded-2xl h-80 bg-(--mantine-color-stone-1) border border-(--mantine-color-stone-2)"
           >
-            Trail Network
-          </Text>
-          <Text
-            size="sm"
-            c="stone.3"
-          >
-            視覺化圖表即將推出
-          </Text>
-        </div>
+            <IconGitFork
+              size={40}
+              color="var(--mantine-color-stone-4)"
+            />
+            <Text
+              size="md"
+              fw={600}
+              c="stone.4"
+            >
+              Trail Network
+            </Text>
+            <Text
+              size="sm"
+              c="stone.3"
+            >
+              視覺化圖表即將推出
+            </Text>
+          </div>
+        </Container>
       </div>
 
       {/* ─── Leave Confirmation Modal ─── */}
