@@ -1,4 +1,3 @@
-import type React from 'react'
 import {
   IconDroplet,
   IconGitBranch,
@@ -7,6 +6,7 @@ import {
   IconMountain,
   IconTent,
 } from '@tabler/icons-react'
+import type React from 'react'
 import { TrailNodeType } from '@/constants/hiking-trails/hikingTrail'
 
 export interface PaceTier {
@@ -41,7 +41,7 @@ export const PACE_TIERS: readonly PaceTier[] = [
 export interface NodeTypeBadgeStyle {
   bg: string;
   iconColor: string;
-  icon: React.ComponentType<{ size?: number; color?: string; stroke?: number }>;
+  icon: React.ComponentType<{ size?: number; color?: string; stroke?: number; }>;
 }
 
 export const TRAIL_NODE_TYPE_BADGE_STYLE: Record<TrailNodeType, NodeTypeBadgeStyle> = {

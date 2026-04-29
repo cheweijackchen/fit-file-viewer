@@ -163,23 +163,15 @@ export default function HikingTrailPlannerPage() {
             </Text>
           </div>
         ) : (
-          <Group
-            gap={20}
-            align="stretch"
-            className="w-full"
-          >
+          <div className="grid grid-cols-3 gap-5 w-full">
             {plans.map((plan) => (
-              <Box
+              <TripCard
                 key={plan.id}
-                className="flex-1 min-w-0"
-              >
-                <TripCard
-                  plan={plan}
-                  onClick={() => router.push(`/hiking-trail-planner/${plan.id}`)}
-                />
-              </Box>
+                plan={plan}
+                onClick={() => router.push(`/hiking-trail-planner/${plan.id}`)}
+              />
             ))}
-          </Group>
+          </div>
         )}
       </section>
     </div>
