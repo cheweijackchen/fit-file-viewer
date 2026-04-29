@@ -4,8 +4,10 @@ import { ActionIcon, Button, Menu, Modal, Text } from '@mantine/core'
 import { useScrollIntoView } from '@mantine/hooks'
 import { IconDots, IconGitFork, IconPencil, IconPlus, IconTrash, IconX } from '@tabler/icons-react'
 import { use, useMemo, useState } from 'react'
+import { ConfirmModal } from '@/components/ConfirmModal'
 import { DayPlanCard } from '@/components/hikingTrail/DayPlanCard'
 import { HIKING_TRAIL_MAP, HIKING_TRAILS } from '@/constants/hikingTrails'
+import { useLeaveConfirm } from '@/hooks/useLeaveConfirm'
 import { Link, useRouter } from '@/i18n/navigation'
 import { formatTrailMinutes } from '@/lib/timeFormatter'
 import { buildTrailAdjacencyList, calculatePathTime } from '@/lib/trailGraph'
@@ -46,6 +48,12 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
   const [editingDayId, setEditingDayId] = useState<string | null>(null)
   const [editStopIds, setEditStopIds] = useState<string[]>([])
   const [deleteConfirmOpen, setDeleteConfirmOpen] = useState(false)
+
+  const { modalProps: leaveModalProps } = useLeaveConfirm({
+    shouldBlock: isEditing,
+    title: '尚有未儲存的變更',
+    description: '離開後，所有編輯中的內容將會遺失。確定要離開嗎？',
+  })
   const [activeTab, setActiveTab] = useState<'itinerary' | 'trip-stats' | 'trail-network'>('itinerary')
 
   const { scrollIntoView: scrollToItinerary, targetRef: itineraryRef } = useScrollIntoView<HTMLDivElement>({ offset: 108 })
@@ -553,6 +561,9 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
           </Text>
         </div>
       </div>
+
+      {/* ─── Leave Confirmation Modal ─── */}
+      <ConfirmModal {...leaveModalProps} />
 
       {/* ─── Delete Confirmation Modal ─── */}
       <Modal
