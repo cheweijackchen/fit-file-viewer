@@ -425,7 +425,7 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
                   className="@container/day-plan"
                 >
                   <DayPlanCard
-                    showOptions
+                    showOptions={isEditing}
                     dayPlan={day}
                     dayIndex={idx + 1}
                     trail={trail}
