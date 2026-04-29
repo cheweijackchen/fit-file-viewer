@@ -55,6 +55,10 @@ export const demoNavLinks = [
       {
         title: 'DayPlanCard',
         link: '/demo/demo-day-plan-card',
+      },
+      {
+        title: 'RouteIndicator',
+        link: '/demo/demo-route-indicator',
       }
     ]
   },
