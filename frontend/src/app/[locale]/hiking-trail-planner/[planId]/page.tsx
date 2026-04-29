@@ -125,9 +125,9 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
 
   function enterEditMode() {
     setIsEditing(true)
-    setEditName(plan.name)
-    setEditTrailIds([...plan.trailIds])
-    setEditDays(plan.days.map((d) => ({
+    setEditName(plan?.name ?? '')
+    setEditTrailIds([...(plan?.trailIds ?? [])])
+    setEditDays((plan?.days ?? []).map((d) => ({
       ...d,
       stops: [...d.stops] 
     })))
@@ -140,6 +140,9 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
   }
 
   function finishEditing() {
+    if (!plan) {
+      return
+    }
     updatePlan(planId, {
       ...plan,
       name: editName,
