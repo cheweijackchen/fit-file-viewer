@@ -338,22 +338,8 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
                   width: `${Math.max(editName.length, 8)}ch`,
                 }}
                 onChange={(e) => setEditName(e.target.value)}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter') {
-                    finishEditing()
-                  }
-                  if (e.key === 'Escape') {
-                    cancelEditing()
-                  }
-                }}
               />
             </div>
-            <Text
-              size="xs"
-              c="stone.4"
-            >
-              Enter 儲存 · Esc 取消
-            </Text>
           </div>
         ) : (
           <Text
