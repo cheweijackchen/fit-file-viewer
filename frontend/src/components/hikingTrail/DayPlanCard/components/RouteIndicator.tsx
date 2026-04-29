@@ -1,5 +1,6 @@
 import type { CSSProperties } from 'react'
-import type { TrailNode } from '@/model/hikingTrail'
+import { formatTrailMinutes } from '@/lib/timeFormatter'
+import type { TrailAdjacencyList, TrailNode } from '@/model/hikingTrail'
 
 interface Props {
   stopIds: string[];
@@ -7,6 +8,8 @@ interface Props {
   highlightLast?: boolean;
   chipBackground?: string;
   fontWeight?: CSSProperties['fontWeight'];
+  showDuration?: boolean;
+  adj?: TrailAdjacencyList;
 }
 
 export function RouteIndicator({
@@ -15,6 +18,8 @@ export function RouteIndicator({
   highlightLast = false,
   chipBackground = 'var(--mantine-color-stone-1)',
   fontWeight,
+  showDuration = false,
+  adj,
 }: Props) {
   return (
     <div
@@ -24,6 +29,7 @@ export function RouteIndicator({
       {stopIds.map((id, i) => {
         const isHighlighted = highlightLast && i === stopIds.length - 1
         const bg = isHighlighted ? 'var(--color-sepia-9)' : chipBackground
+        const minutes = showDuration ? adj?.get(id)?.get(stopIds[i + 1])?.minutes : undefined
         return (
           <div
             key={id}
@@ -49,11 +55,56 @@ export function RouteIndicator({
               </span>
             </div>
             {i < stopIds.length - 1 && (
-              <span style={{
-                fontSize: 12,
-                color: 'var(--mantine-color-stone-4)',
-              }}
-              >→</span>
+              showDuration
+                ? (
+                  <div style={{
+                    width: 60,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    gap: 1 
+                  }}
+                  >
+                    <span style={{
+                      fontSize: 9,
+                      color: 'var(--mantine-color-stone-4)',
+                      fontWeight: 'normal' 
+                    }}
+                    >
+                      {minutes != null ? formatTrailMinutes(minutes) : ''}
+                    </span>
+                    <div style={{
+                      width: '100%',
+                      display: 'flex',
+                      alignItems: 'center' 
+                    }}
+                    >
+                      <div style={{
+                        flex: 1,
+                        height: 1,
+                        backgroundColor: 'var(--mantine-color-stone-4)' 
+                      }}
+                      />
+                      <svg
+                        width={6}
+                        height={8}
+                        viewBox="0 0 6 8"
+                      >
+                        <path
+                          d="M0 0l6 4-6 4z"
+                          fill="var(--mantine-color-stone-4)"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                )
+                : (
+                  <span style={{
+                    fontSize: 12,
+                    color: 'var(--mantine-color-stone-4)',
+                  }}
+                  >→</span>
+                )
             )}
           </div>
         )
