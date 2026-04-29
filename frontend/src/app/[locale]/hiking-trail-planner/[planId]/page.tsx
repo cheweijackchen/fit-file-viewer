@@ -166,8 +166,7 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
 
   return (
     <div
-      className="flex flex-col w-full min-h-full"
-      style={{ background: 'var(--mantine-color-stone-1)' }}
+      className="flex flex-col w-full min-h-full bg-(--mantine-color-stone-1)"
     >
       {isEditing && (
         <EditToolbar
@@ -178,10 +177,7 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
 
       {/* ─── Trip Header ─── */}
       <div
-        className="flex flex-col gap-3 w-full"
-        style={{
-          padding: '24px 80px 28px',
-        }}
+        className="flex flex-col gap-3 w-full px-20 pt-6 pb-7"
       >
         {/* Top row: breadcrumbs + dots menu */}
         <div className="flex items-center justify-between">
@@ -253,11 +249,7 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
               return (
                 <div
                   key={id}
-                  className="flex items-center gap-1.5 rounded-full px-3 py-1 cursor-pointer"
-                  style={{
-                    background: 'var(--mantine-color-stone-1)',
-                    border: '1px solid var(--mantine-color-stone-3)',
-                  }}
+                  className="flex items-center gap-1.5 rounded-full px-3 py-1 cursor-pointer bg-(--mantine-color-stone-1) border border-(--mantine-color-stone-3)"
                   onClick={() => setEditTrailIds((prev) => prev.filter((tid) => tid !== id))}
                 >
                   <Text
@@ -277,8 +269,7 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
             {availableTrailsToAdd.map((t) => (
               <div
                 key={t.id}
-                className="flex items-center gap-1.5 rounded-full px-2.5 py-1 cursor-pointer"
-                style={{ border: '1px dashed var(--mantine-color-stone-4)' }}
+                className="flex items-center gap-1.5 rounded-full px-2.5 py-1 cursor-pointer border border-dashed border-(--mantine-color-stone-4)"
                 onClick={() => setEditTrailIds((prev) => [...prev, t.id])}
               >
                 <IconPlus
@@ -300,8 +291,7 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
             {trailNames.map((name) => (
               <div
                 key={name}
-                className="rounded-full px-3 py-1"
-                style={{ background: 'var(--mantine-color-stone-2)' }}
+                className="rounded-full px-3 py-1 bg-(--mantine-color-stone-2)"
               >
                 <Text
                   size="xs"
@@ -319,23 +309,13 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
         {isEditing ? (
           <div className="flex flex-col gap-1">
             <div
-              className="rounded-lg inline-block"
-              style={{
-                border: '2px solid #FCC419',
-                background: 'white',
-                padding: '6px 12px',
-              }}
+              className="rounded-lg inline-block border-2 border-(--mantine-color-yellow-5) bg-white py-1.5 px-3"
             >
               <input
                 type="text"
                 value={editName}
-                className="bg-transparent outline-none font-bold"
-                style={{
-                  fontSize: 36,
-                  color: 'var(--mantine-color-stone-9)',
-                  minWidth: 200,
-                  width: `${Math.max(editName.length, 8)}ch`,
-                }}
+                className="bg-transparent outline-none font-bold text-4xl text-(--mantine-color-stone-9) min-w-[200px]"
+                style={{ width: `${Math.max(editName.length, 8)}ch` }}
                 onChange={(e) => setEditName(e.target.value)}
               />
             </div>
@@ -344,7 +324,7 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
           <Text
             fw={700}
             c="stone.9"
-            style={{ fontSize: 36 }}
+            size="4xl"
           >
             {plan.name}
           </Text>
@@ -379,15 +359,7 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
 
       {/* ─── Tab Nav ─── */}
       <div
-        className="flex items-center justify-center w-full shrink-0"
-        style={{
-          height: 48,
-          background: 'var(--mantine-color-stone-1)',
-          borderBottom: '1px solid var(--mantine-color-stone-2)',
-          position: 'sticky',
-          top: 60,
-          zIndex: 10,
-        }}
+        className="flex items-center justify-center w-full shrink-0 h-12 bg-(--mantine-color-stone-1) border-b border-(--mantine-color-stone-2) sticky top-[60px] z-10"
       >
         <div className="flex h-full">
           {(
@@ -412,13 +384,7 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
             <button
               key={tab.id}
               type="button"
-              className="flex items-center px-6 h-full cursor-pointer bg-transparent border-none"
-              style={{
-                borderBottom:
-                  activeTab === tab.id
-                    ? '2px solid var(--mantine-color-stone-9)'
-                    : '2px solid transparent',
-              }}
+              className={`flex items-center px-6 h-full cursor-pointer bg-transparent border-0 border-b-2 ${activeTab === tab.id ? 'border-(--mantine-color-stone-9)' : 'border-transparent'}`}
               onClick={() => {
                 setActiveTab(tab.id)
                 tab.scroll()
@@ -438,8 +404,7 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
 
       {/* ─── Content Area ─── */}
       <div
-        className="flex gap-10 w-full"
-        style={{ padding: '32px 80px 16px' }}
+        className="flex gap-10 w-full px-20 pt-8 pb-4"
       >
         {/* Left column — Itinerary */}
         <div className="flex flex-col flex-1 min-w-0 gap-2.5">
@@ -448,7 +413,7 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
               size="xs"
               fw={700}
               c="stone.5"
-              style={{ letterSpacing: '0.08em' }}
+              className="tracking-[0.08em]"
             >
               ITINERARY
             </Text>
@@ -518,12 +483,7 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
           {isEditing && (
             <button
               type="button"
-              className="flex items-center justify-center gap-1.5 w-full rounded-xl cursor-pointer"
-              style={{
-                padding: '20px 16px',
-                background: 'var(--mantine-color-stone-1)',
-                border: '1.5px dashed var(--mantine-color-stone-4)',
-              }}
+              className="flex items-center justify-center gap-1.5 w-full rounded-xl cursor-pointer py-5 px-4 bg-(--mantine-color-stone-1) border-[1.5px] border-dashed border-(--mantine-color-stone-4)"
               onClick={() =>
                 setEditDays((prev) => [
                   ...prev,
@@ -553,36 +513,26 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
         {/* Right column — empty for now */}
         <div
           ref={tripStatsRef}
-          className="shrink-0"
-          style={{ width: 430 }}
+          className="shrink-0 w-[430px]"
         />
       </div>
 
       {/* ─── Trail Network Section ─── */}
       <div
-        className="flex flex-col gap-3 w-full"
-        style={{
-          padding: '24px 80px 64px',
-          borderTop: '1px solid var(--mantine-color-stone-2)',
-        }}
+        className="flex flex-col gap-3 w-full px-20 pt-6 pb-16 border-t border-(--mantine-color-stone-2)"
       >
         <div ref={trailNetworkRef}>
           <Text
             size="xs"
             fw={700}
             c="stone.5"
-            style={{ letterSpacing: '0.08em' }}
+            className="tracking-[0.08em]"
           >
             TRAIL NETWORK
           </Text>
         </div>
         <div
-          className="flex flex-col items-center justify-center gap-2.5 w-full rounded-2xl"
-          style={{
-            height: 320,
-            background: 'var(--mantine-color-stone-1)',
-            border: '1px solid var(--mantine-color-stone-2)',
-          }}
+          className="flex flex-col items-center justify-center gap-2.5 w-full rounded-2xl h-80 bg-(--mantine-color-stone-1) border border-(--mantine-color-stone-2)"
         >
           <IconGitFork
             size={40}

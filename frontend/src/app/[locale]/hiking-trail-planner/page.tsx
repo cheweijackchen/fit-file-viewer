@@ -1,6 +1,6 @@
 'use client'
 
-import { Box, Button, Group, Stack, Text } from '@mantine/core'
+import { Box, Button, Group, Stack, Text, Title } from '@mantine/core'
 import {
   IconCalendar,
   IconGitFork,
@@ -52,33 +52,22 @@ export default function HikingTrailPlannerPage() {
     <div className="flex flex-col w-full">
       {/* Hero */}
       <section
-        className="flex flex-col items-center w-full"
-        style={{
-          background: 'var(--mantine-color-stone-1)',
-          padding: '80px 40px',
-          gap: 24,
-        }}
+        className="flex flex-col items-center w-full bg-(--mantine-color-stone-1) py-20 px-10 gap-6"
       >
-        <Text
-          fw={700}
+        <Title
+          order={1}
           ta="center"
-          style={{
-            fontSize: 40,
-            color: 'var(--mantine-color-stone-9)',
-            maxWidth: 700 
-          }}
+          c="stone.9"
+          className="text-[40px] max-w-[700px]"
         >
           {t('hero.title')}
-        </Text>
+        </Title>
 
         <Text
           ta="center"
-          style={{
-            fontSize: 16,
-            color: 'var(--mantine-color-stone-7)',
-            lineHeight: 1.6,
-            maxWidth: 560,
-          }}
+          size="md"
+          c="stone.7"
+          className="leading-[1.6] max-w-[560px]"
         >
           {t('hero.description')}
         </Text>
@@ -102,39 +91,30 @@ export default function HikingTrailPlannerPage() {
               key={f.titleKey}
               gap={8}
               align="center"
-              style={{ width: 180 }}
+              className="w-[180px]"
             >
               <Box
-                style={{
-                  width: 44,
-                  height: 44,
-                  borderRadius: 10,
-                  background: 'var(--mantine-color-stone-2)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  color: 'var(--mantine-color-stone-7)',
-                }}
+                w={44}
+                h={44}
+                bg="stone.2"
+                c="stone.7"
+                className="flex items-center justify-center rounded-[10px]"
               >
                 {f.icon}
               </Box>
               <Text
                 fw={600}
                 ta="center"
-                style={{
-                  fontSize: 13,
-                  color: 'var(--mantine-color-stone-9)'
-                }}
+                c="stone.9"
+                className="text-[13px]"
               >
                 {t(f.titleKey)}
               </Text>
               <Text
                 ta="center"
-                style={{
-                  fontSize: 12,
-                  color: 'var(--mantine-color-stone-6)',
-                  lineHeight: 1.5
-                }}
+                size="xs"
+                c="stone.6"
+                className="leading-normal"
               >
                 {t(f.descriptionKey)}
               </Text>
@@ -145,12 +125,7 @@ export default function HikingTrailPlannerPage() {
 
       {/* Your Trips */}
       <section
-        className="flex flex-col w-full"
-        style={{
-          background: 'var(--mantine-color-stone-2)',
-          padding: '48px 80px',
-          gap: 24,
-        }}
+        className="flex flex-col w-full bg-(--mantine-color-stone-2) py-12 px-20 gap-6"
       >
         <Group
           justify="space-between"
@@ -158,10 +133,8 @@ export default function HikingTrailPlannerPage() {
         >
           <Text
             fw={700}
-            style={{
-              fontSize: 20,
-              color: 'var(--mantine-color-stone-9)'
-            }}
+            size="xl"
+            c="stone.9"
           >
             {t('yourTrips.heading')}
           </Text>
@@ -179,12 +152,7 @@ export default function HikingTrailPlannerPage() {
 
         {plans.length === 0 ? (
           <div
-            className="flex items-center justify-center w-full rounded-xl"
-            style={{
-              padding: '48px 24px',
-              background: 'var(--mantine-color-stone-1)',
-              border: '1.5px dashed var(--mantine-color-stone-3)',
-            }}
+            className="flex items-center justify-center w-full rounded-xl bg-(--mantine-color-stone-1) py-12 px-6 border-[1.5px] border-dashed border-(--mantine-color-stone-3)"
           >
             <Text
               size="sm"
@@ -198,15 +166,12 @@ export default function HikingTrailPlannerPage() {
           <Group
             gap={20}
             align="stretch"
-            style={{ width: '100%' }}
+            className="w-full"
           >
             {plans.map((plan) => (
               <Box
                 key={plan.id}
-                style={{
-                  flex: 1,
-                  minWidth: 0,
-                }}
+                className="flex-1 min-w-0"
               >
                 <TripCard
                   plan={plan}

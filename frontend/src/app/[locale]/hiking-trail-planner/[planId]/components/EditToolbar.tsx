@@ -11,23 +11,11 @@ interface Props {
 export function EditToolbar({ onCancel, onFinish }: Props) {
   return (
     <div
-      className="flex items-center justify-between px-20 shrink-0"
-      style={{
-        height: 52,
-        background: '#FFF8E1',
-        borderBottom: '1px solid #F6D96A',
-      }}
+      className="flex items-center justify-between px-20 shrink-0 h-[52px] bg-(--mantine-color-yellow-0) border-b border-(--mantine-color-yellow-3)"
     >
       {/* Left: status */}
       <div className="flex items-center gap-2.5">
-        <div
-          className="rounded-full shrink-0"
-          style={{
-            width: 8,
-            height: 8,
-            background: 'var(--mantine-color-yellow-5)' 
-          }}
-        />
+        <div className="rounded-full shrink-0 w-2 h-2 bg-(--mantine-color-yellow-5)" />
         <Text
           size="sm"
           fw={600}
@@ -63,15 +51,7 @@ export function EditToolbar({ onCancel, onFinish }: Props) {
         </ActionIcon>
         <button
           type="button"
-          className="flex items-center gap-1.5 px-4 rounded-lg cursor-pointer"
-          style={{
-            height: 34,
-            background: 'var(--mantine-color-yellow-4)',
-            border: 'none',
-            color: 'var(--mantine-color-stone-9)',
-            fontWeight: 600,
-            fontSize: 14,
-          }}
+          className="flex items-center gap-1.5 px-4 rounded-lg cursor-pointer border-none h-[34px] bg-(--mantine-color-yellow-4) text-(--mantine-color-stone-9) font-semibold text-sm"
           onClick={onFinish}
         >
           <IconCheck size={14} />
