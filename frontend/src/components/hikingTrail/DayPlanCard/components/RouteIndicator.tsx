@@ -58,44 +58,41 @@ export function RouteIndicator({
               showDuration
                 ? (
                   <div style={{
+                    position: 'relative',
                     width: 60,
                     display: 'flex',
-                    flexDirection: 'column',
                     alignItems: 'center',
-                    gap: 1 
                   }}
                   >
                     <span style={{
+                      position: 'absolute',
+                      top: -14,
+                      left: 0,
+                      right: 0,
+                      textAlign: 'center',
                       fontSize: 9,
                       color: 'var(--mantine-color-stone-4)',
-                      fontWeight: 'normal' 
+                      fontWeight: 'normal',
                     }}
                     >
                       {minutes != null ? formatTrailMinutes(minutes) : ''}
                     </span>
                     <div style={{
-                      width: '100%',
-                      display: 'flex',
-                      alignItems: 'center' 
+                      flex: 1,
+                      height: 1,
+                      backgroundColor: 'var(--mantine-color-stone-4)',
                     }}
+                    />
+                    <svg
+                      width={6}
+                      height={8}
+                      viewBox="0 0 6 8"
                     >
-                      <div style={{
-                        flex: 1,
-                        height: 1,
-                        backgroundColor: 'var(--mantine-color-stone-4)' 
-                      }}
+                      <path
+                        d="M0 0l6 4-6 4z"
+                        fill="var(--mantine-color-stone-4)"
                       />
-                      <svg
-                        width={6}
-                        height={8}
-                        viewBox="0 0 6 8"
-                      >
-                        <path
-                          d="M0 0l6 4-6 4z"
-                          fill="var(--mantine-color-stone-4)"
-                        />
-                      </svg>
-                    </div>
+                    </svg>
                   </div>
                 )
                 : (
