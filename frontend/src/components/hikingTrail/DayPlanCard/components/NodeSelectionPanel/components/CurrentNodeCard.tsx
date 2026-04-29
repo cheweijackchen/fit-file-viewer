@@ -11,7 +11,7 @@ export function CurrentNodeCard({ node }: Props) {
   const badgeStyle = TRAIL_NODE_TYPE_BADGE_STYLE[nodeType]
 
   return (
-    <div className="flex flex-col relative overflow-hidden bg-(--color-sepia-9) rounded-[14px] p-4 gap-1.5 min-w-0 flex-1">
+    <div className="flex flex-col relative overflow-hidden bg-(--color-sepia-9) rounded-xl p-4 gap-1.5 min-w-0 flex-1">
       {/* Deco icon — node-type icon, large, faded */}
       <div className="absolute right-3 top-2">
         <badgeStyle.icon

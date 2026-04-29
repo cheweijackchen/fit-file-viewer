@@ -17,10 +17,10 @@ export function NodeCard({ node, timeLabel, variant, onClick }: NodeCardProps) {
       type="button"
       disabled={isBack && !onClick}
       className={clsx(
-        'flex flex-col text-left w-full rounded-[12px] p-3.5 gap-1',
+        'flex flex-col text-left w-full rounded-xl p-3.5 gap-1 bg-(--mantine-color-stone-1) hover:bg-(--mantine-color-stone-2) border',
         isBack
-          ? 'bg-(--mantine-color-stone-2) border-none opacity-80'
-          : 'bg-(--mantine-color-stone-1) border-[1.5px] border-(--mantine-color-stone-7)',
+          ? 'border-(--mantine-color-stone-3) hover:border-(--mantine-color-stone-5)'
+          : 'border-(--mantine-color-stone-7) hover:border-(--mantine-color-stone-9)',
         onClick ? 'cursor-pointer' : 'cursor-default',
       )}
       onClick={onClick}

@@ -1,7 +1,11 @@
 .selectInput {
   background: var(--mantine-color-stone-1);
-  border: 1px solid var(--mantine-color-stone-3);
+  --input-bd: var(--mantine-color-stone-3);
   border-radius: 8px;
   height: 36px;
   font-size: 13px;
+
+  &:focus {
+    --input-bd: var(--mantine-color-stone-5);
+  }
 }
