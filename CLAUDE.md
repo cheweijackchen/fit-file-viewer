@@ -260,6 +260,24 @@ const Map = dynamic(() => import('@/components/Map'), { ssr: false })
 - 含有互動/狀態/瀏覽器 API 的元件必須加 `'use client'`
 - 地圖元件（Leaflet、MapLibre GL）強制 client-only
 
+### 頁面導航（Locale-aware）
+專案設定 `localePrefix: 'always'`，所有 URL 都帶有 locale 前綴（如 `/en-US/hiking-trail-planner`）。
+
+**使用 `@/i18n/navigation` 的 locale-aware 版本，不可使用 Next.js 原生版本：**
+```typescript
+// ✅ 正確
+import { Link, useRouter, usePathname } from '@/i18n/navigation'
+
+// ❌ 錯誤 — 不帶 locale，導致導航失效
+import Link from 'next/link'
+import { useRouter, usePathname } from 'next/navigation'
+```
+
+路徑本身不需要加 locale 前綴，navigation 會自動加上當前 locale：
+```typescript
+router.push('/hiking-trail-planner')  // 自動產生 /en-US/hiking-trail-planner
+```
+
 ---
 
 ## 型別路徑別名
