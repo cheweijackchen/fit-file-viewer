@@ -181,7 +181,6 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
         className="flex flex-col gap-3 w-full"
         style={{
           padding: '24px 80px 28px',
-          borderBottom: '1px solid var(--mantine-color-stone-2)' 
         }}
       >
         {/* Top row: breadcrumbs + dots menu */}
