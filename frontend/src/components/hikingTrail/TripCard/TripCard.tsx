@@ -74,7 +74,10 @@ export function TripCard({ plan, onClick, onView, onEdit, onDelete }: Props) {
                 c="bright"
                 color="stone"
                 leftSection={<IconEye size={14} />}
-                onClick={onView}
+                onClick={(e) => {
+                  e.stopPropagation()
+                  onView?.()
+                }}
               >
                 檢視
               </Menu.Item>
@@ -82,7 +85,10 @@ export function TripCard({ plan, onClick, onView, onEdit, onDelete }: Props) {
                 c="bright"
                 color="stone"
                 leftSection={<IconPencil size={14} />}
-                onClick={onEdit}
+                onClick={(e) => {
+                  e.stopPropagation()
+                  onEdit?.()
+                }}
               >
                 編輯
               </Menu.Item>
@@ -90,7 +96,10 @@ export function TripCard({ plan, onClick, onView, onEdit, onDelete }: Props) {
               <Menu.Item
                 color="red"
                 leftSection={<IconTrash size={14} />}
-                onClick={onDelete}
+                onClick={(e) => {
+                  e.stopPropagation()
+                  onDelete?.()
+                }}
               >
                 刪除
               </Menu.Item>

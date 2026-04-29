@@ -9,6 +9,8 @@ import {
   IconRoute,
 } from '@tabler/icons-react'
 import { useTranslations } from 'next-intl'
+import { useState } from 'react'
+import { ConfirmModal } from '@/components/ConfirmModal'
 import { TripCard } from '@/components/hikingTrail/TripCard'
 import { useRouter } from '@/i18n/navigation'
 import { useHikingTrailActions, useHikingTrailStore } from '@/store/hikingTrail/useHikingTrailStore'
@@ -42,6 +44,7 @@ export default function HikingTrailPlannerPage() {
   const router = useRouter()
   const plans = useHikingTrailStore.use.plans()
   const { createPlan, deletePlan } = useHikingTrailActions()
+  const [deletingPlanId, setDeletingPlanId] = useState<string | null>(null)
 
   function handleNewTrip() {
     const id = createPlan('新行程', [])
@@ -171,12 +174,26 @@ export default function HikingTrailPlannerPage() {
                 onClick={() => router.push(`/hiking-trail-planner/${plan.id}`)}
                 onView={() => router.push(`/hiking-trail-planner/${plan.id}`)}
                 onEdit={() => router.push(`/hiking-trail-planner/${plan.id}?edit=true`)}
-                onDelete={() => deletePlan(plan.id)}
+                onDelete={() => setDeletingPlanId(plan.id)}
               />
             ))}
           </div>
         )}
       </section>
+      <ConfirmModal
+        opened={deletingPlanId !== null}
+        title="刪除行程"
+        description={`確定要刪除「${plans.find((p) => p.id === deletingPlanId)?.name}」嗎？此操作無法復原。`}
+        confirmLabel="刪除"
+        confirmColor="red"
+        onOk={() => {
+          if (deletingPlanId) {
+            deletePlan(deletingPlanId)
+          }
+          setDeletingPlanId(null)
+        }}
+        onCancel={() => setDeletingPlanId(null)}
+      />
     </div>
   )
 }
