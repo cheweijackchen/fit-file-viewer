@@ -400,7 +400,7 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
       {/* ─── Content Area ─── */}
       <Container
         size="xl"
-        className="w-full flex gap-10 pt-8 pb-4"
+        className="w-full flex flex-col md:flex-row gap-4 lg:gap-6 pt-8 pb-4"
       >
         {/* Left column — Itinerary */}
         <div className="flex flex-col flex-1 min-w-0 gap-2.5">
@@ -511,7 +511,7 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
         {/* Right column — empty for now */}
         <div
           ref={tripStatsRef}
-          className="shrink-0 w-[430px]"
+          className="shrink-0 w-full md:w-1/3 xl:w-[400px]"
         />
       </Container>
 
