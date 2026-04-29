@@ -109,7 +109,7 @@ export function DayPlanCard({
       {mode === 'edit' ? (
         <>
           <Menu.Item
-            c="dark"
+            c="bright"
             color="stone"
             leftSection={<IconPencilOff size={14} />}
             onClick={onCancelEdit}
@@ -117,7 +117,7 @@ export function DayPlanCard({
             取消編輯
           </Menu.Item>
           <Menu.Item
-            c="dark"
+            c="bright"
             color="stone"
             leftSection={<IconEraser size={14} />}
             onClick={onClearRoute}
@@ -127,7 +127,7 @@ export function DayPlanCard({
         </>
       ) : (
         <Menu.Item
-          c="dark"
+          c="bright"
           color="stone"
           leftSection={<IconPencil size={14} />}
           onClick={onEdit}
