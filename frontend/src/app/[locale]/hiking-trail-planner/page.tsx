@@ -41,7 +41,7 @@ export default function HikingTrailPlannerPage() {
   const t = useTranslations('hiking-trail-planner')
   const router = useRouter()
   const plans = useHikingTrailStore.use.plans()
-  const { createPlan } = useHikingTrailActions()
+  const { createPlan, deletePlan } = useHikingTrailActions()
 
   function handleNewTrip() {
     const id = createPlan('新行程', [])
@@ -169,6 +169,9 @@ export default function HikingTrailPlannerPage() {
                 key={plan.id}
                 plan={plan}
                 onClick={() => router.push(`/hiking-trail-planner/${plan.id}`)}
+                onView={() => router.push(`/hiking-trail-planner/${plan.id}`)}
+                onEdit={() => router.push(`/hiking-trail-planner/${plan.id}?edit=true`)}
+                onDelete={() => deletePlan(plan.id)}
               />
             ))}
           </div>
