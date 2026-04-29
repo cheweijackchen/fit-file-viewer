@@ -22,10 +22,7 @@ export function RouteIndicator({
   adj,
 }: Props) {
   return (
-    <div
-      className="flex items-center flex-wrap"
-      style={{ gap: 4 }}
-    >
+    <div className="flex items-center flex-wrap gap-1">
       {stopIds.map((id, i) => {
         const isHighlighted = highlightLast && i === stopIds.length - 1
         const bg = isHighlighted ? 'var(--color-sepia-9)' : chipBackground
@@ -33,23 +30,15 @@ export function RouteIndicator({
         return (
           <div
             key={id}
-            className="flex items-center"
-            style={{ gap: 4 }}
+            className="flex items-center gap-1"
           >
             <div
-              className="flex items-center rounded"
-              style={{
-                padding: '3px 8px',
-                background: bg,
-              }}
+              className="flex items-center rounded py-[3px] px-2"
+              style={{ background: bg }}
             >
               <span
-                className={isHighlighted ? 'text-white' : ''}
-                style={{
-                  fontSize: 12,
-                  fontWeight,
-                  color: isHighlighted ? undefined : 'var(--mantine-color-stone-7)',
-                }}
+                className={isHighlighted ? 'text-xs text-white' : 'text-xs text-(--mantine-color-stone-7)'}
+                style={{ fontWeight }}
               >
                 {nodeMap[id]?.name ?? id}
               </span>
@@ -57,32 +46,11 @@ export function RouteIndicator({
             {i < stopIds.length - 1 && (
               showDuration
                 ? (
-                  <div style={{
-                    position: 'relative',
-                    width: 60,
-                    display: 'flex',
-                    alignItems: 'center',
-                  }}
-                  >
-                    <span style={{
-                      position: 'absolute',
-                      top: -14,
-                      left: 0,
-                      right: 0,
-                      textAlign: 'center',
-                      fontSize: 9,
-                      color: 'var(--mantine-color-stone-4)',
-                      fontWeight: 'normal',
-                    }}
-                    >
+                  <div className="relative w-[60px] flex items-center">
+                    <span className="absolute -top-[14px] left-0 right-0 text-center text-[9px] text-(--mantine-color-stone-4) font-normal">
                       {minutes != null ? formatTrailMinutes(minutes) : ''}
                     </span>
-                    <div style={{
-                      flex: 1,
-                      height: 1,
-                      backgroundColor: 'var(--mantine-color-stone-4)',
-                    }}
-                    />
+                    <div className="flex-1 h-px bg-(--mantine-color-stone-4)" />
                     <svg
                       width={6}
                       height={8}
@@ -96,11 +64,7 @@ export function RouteIndicator({
                   </div>
                 )
                 : (
-                  <span style={{
-                    fontSize: 12,
-                    color: 'var(--mantine-color-stone-4)',
-                  }}
-                  >→</span>
+                  <span className="text-xs text-(--mantine-color-stone-4)">→</span>
                 )
             )}
           </div>
