@@ -1,7 +1,7 @@
 'use client'
 
-import { ActionIcon, Group, Stack, Text } from '@mantine/core'
-import { IconDotsVertical } from '@tabler/icons-react'
+import { ActionIcon, Group, Menu, Stack, Text } from '@mantine/core'
+import { IconDotsVertical, IconEye, IconPencil, IconTrash } from '@tabler/icons-react'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import Image from 'next/image'
@@ -14,28 +14,21 @@ dayjs.extend(relativeTime)
 interface Props {
   plan: HikingPlan;
   onClick?: () => void;
+  onView?: () => void;
+  onEdit?: () => void;
+  onDelete?: () => void;
 }
 
-export function TripCard({ plan, onClick }: Props) {
+export function TripCard({ plan, onClick, onView, onEdit, onDelete }: Props) {
   const trailName = plan.trailIds[0] ? (HIKING_TRAIL_MAP[plan.trailIds[0]]?.name ?? plan.trailIds[0]) : '—'
   const lastEdited = dayjs(plan.updatedAt).fromNow()
 
   return (
     <div
-      className="flex flex-col rounded-[14px] overflow-hidden cursor-pointer"
-      style={{
-        background: '#FFFFFF',
-        border: '1px solid var(--mantine-color-stone-3)',
-        width: '100%',
-      }}
+      className="flex flex-col rounded-[14px] overflow-hidden cursor-pointer bg-white border border-(--mantine-color-stone-3) w-full"
       onClick={onClick}
     >
-      <div style={{
-        height: 140,
-        position: 'relative',
-        flexShrink: 0 
-      }}
-      >
+      <div className="relative shrink-0 h-[140px]">
         <Image
           fill
           src={mountainImage}
@@ -56,24 +49,53 @@ export function TripCard({ plan, onClick }: Props) {
           <Text
             fw={700}
             size="sm"
-            style={{
-              fontSize: 15,
-              color: 'var(--mantine-color-stone-9)' 
-            }}
+            c="stone.9"
           >
             {plan.name}
           </Text>
-          <ActionIcon
-            size={32}
-            radius="xl"
-            style={{
-              background: 'var(--mantine-color-stone-1)',
-              color: 'var(--mantine-color-stone-7)' 
-            }}
-            onClick={(e) => e.stopPropagation()}
+          <Menu
+            withinPortal
+            position="bottom-end"
           >
-            <IconDotsVertical size={16} />
-          </ActionIcon>
+            <Menu.Target>
+              <ActionIcon
+                size={32}
+                radius="xl"
+                color="stone.1"
+                c="stone.6"
+                className="shrink-0"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <IconDotsVertical size={16} />
+              </ActionIcon>
+            </Menu.Target>
+            <Menu.Dropdown>
+              <Menu.Item
+                c="bright"
+                color="stone"
+                leftSection={<IconEye size={14} />}
+                onClick={onView}
+              >
+                檢視
+              </Menu.Item>
+              <Menu.Item
+                c="bright"
+                color="stone"
+                leftSection={<IconPencil size={14} />}
+                onClick={onEdit}
+              >
+                編輯
+              </Menu.Item>
+              <Menu.Divider />
+              <Menu.Item
+                color="red"
+                leftSection={<IconTrash size={14} />}
+                onClick={onDelete}
+              >
+                刪除
+              </Menu.Item>
+            </Menu.Dropdown>
+          </Menu>
         </Group>
 
         <Group
@@ -82,27 +104,27 @@ export function TripCard({ plan, onClick }: Props) {
         >
           <Text
             size="xs"
-            style={{ color: 'var(--mantine-color-stone-6)' }}
+            c="stone.6"
           >
             {trailName}
           </Text>
           <Text
             size="xs"
-            style={{ color: 'var(--mantine-color-stone-3)' }}
+            c="stone.3"
           >·</Text>
           <Text
             size="xs"
-            style={{ color: 'var(--mantine-color-stone-6)' }}
+            c="stone.6"
           >
             {plan.days.length} 天
           </Text>
           <Text
             size="xs"
-            style={{ color: 'var(--mantine-color-stone-3)' }}
+            c="stone.3"
           >·</Text>
           <Text
             size="xs"
-            style={{ color: 'var(--mantine-color-stone-5)' }}
+            c="stone.5"
           >
             {lastEdited}
           </Text>
