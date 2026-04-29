@@ -137,14 +137,16 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
     setEditTrailIds([...(plan?.trailIds ?? [])])
     setEditDays((plan?.days ?? []).map((d) => ({
       ...d,
-      stops: [...d.stops] 
+      stops: [...d.stops]
     })))
+    router.replace(`/hiking-trail-planner/${planId}?edit=true`)
   }
 
   function cancelEditing() {
     setIsEditing(false)
     setEditingDayId(null)
     setEditStopIds([])
+    router.replace(`/hiking-trail-planner/${planId}`)
   }
 
   function finishEditing() {
@@ -162,6 +164,7 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
     setIsEditing(false)
     setEditingDayId(null)
     setEditStopIds([])
+    router.replace(`/hiking-trail-planner/${planId}`)
   }
 
   const trailNames = plan.trailIds
