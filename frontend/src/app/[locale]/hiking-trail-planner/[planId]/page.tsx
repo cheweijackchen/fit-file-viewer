@@ -16,6 +16,23 @@ import { useHikingTrailActions, useHikingTrailStore } from '@/store/hikingTrail/
 import { EditToolbar } from './components/EditToolbar'
 import { PlanNotFound } from './components/PlanNotFound'
 
+const SCROLL_OFFSET = 108
+
+const TABS = [
+  {
+    id: 'itinerary',
+    label: 'Itinerary',
+  },
+  {
+    id: 'trip-stats',
+    label: 'Trip Stats',
+  },
+  {
+    id: 'trail-network',
+    label: 'Trail Network',
+  },
+] as const
+
 interface Props {
   params: Promise<{ planId: string; }>;
   searchParams: Promise<{ edit?: string; }>;
@@ -57,9 +74,24 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
   })
   const [activeTab, setActiveTab] = useState<'itinerary' | 'trip-stats' | 'trail-network'>('itinerary')
 
-  const { scrollIntoView: scrollToItinerary, targetRef: itineraryRef } = useScrollIntoView<HTMLDivElement>({ offset: 108 })
-  const { scrollIntoView: scrollToTripStats, targetRef: tripStatsRef } = useScrollIntoView<HTMLDivElement>({ offset: 108 })
-  const { scrollIntoView: scrollToTrailNetwork, targetRef: trailNetworkRef } = useScrollIntoView<HTMLDivElement>({ offset: 108 })
+  const { scrollIntoView: scrollToItinerary, targetRef: itineraryRef } = useScrollIntoView<HTMLDivElement>({ offset: SCROLL_OFFSET })
+  const { scrollIntoView: scrollToTripStats, targetRef: tripStatsRef } = useScrollIntoView<HTMLDivElement>({ offset: SCROLL_OFFSET })
+  const { scrollIntoView: scrollToTrailNetwork, targetRef: trailNetworkRef } = useScrollIntoView<HTMLDivElement>({ offset: SCROLL_OFFSET })
+
+  const tabs = [
+    {
+      ...TABS[0],
+      scroll: scrollToItinerary,
+    },
+    {
+      ...TABS[1],
+      scroll: scrollToTripStats,
+    },
+    {
+      ...TABS[2],
+      scroll: scrollToTrailNetwork,
+    },
+  ]
 
   const trail = useMemo<Trail>(() => {
     const displayTrailIds = isEditing ? editTrailIds : (plan?.trailIds ?? [])
@@ -373,25 +405,7 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
         className="flex items-center justify-center w-full shrink-0 h-12 bg-(--mantine-color-stone-1) border-b border-(--mantine-color-stone-2) sticky top-[60px] z-10"
       >
         <div className="flex h-full">
-          {(
-            [
-              {
-                id: 'itinerary',
-                label: 'Itinerary',
-                scroll: scrollToItinerary,
-              },
-              {
-                id: 'trip-stats',
-                label: 'Trip Stats',
-                scroll: scrollToTripStats,
-              },
-              {
-                id: 'trail-network',
-                label: 'Trail Network',
-                scroll: scrollToTrailNetwork,
-              },
-            ] as const
-          ).map((tab) => {
+          {tabs.map((tab) => {
             function handleTabClick() {
               setActiveTab(tab.id)
               tab.scroll()
