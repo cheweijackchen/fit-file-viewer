@@ -5,7 +5,6 @@ import { useScrollIntoView } from '@mantine/hooks'
 import { IconDots, IconGitFork, IconPencil, IconPlus, IconTrash, IconX } from '@tabler/icons-react'
 import { use, useMemo, useState } from 'react'
 import { ConfirmModal } from '@/components/ConfirmModal'
-import { DayPlanCard } from '@/components/hikingTrail/DayPlanCard'
 import { HIKING_TRAIL_MAP, HIKING_TRAILS } from '@/constants/hikingTrails'
 import { useLeaveConfirm } from '@/hooks/useLeaveConfirm'
 import { Link, useRouter } from '@/i18n/navigation'
@@ -13,6 +12,7 @@ import { formatTrailMinutes } from '@/lib/timeFormatter'
 import { buildTrailAdjacencyList, calculatePathTime } from '@/lib/trailGraph'
 import type { DayPlan, Trail, TrailEdge, TrailNode } from '@/model/hikingTrail'
 import { useHikingTrailActions, useHikingTrailStore } from '@/store/hikingTrail/useHikingTrailStore'
+import { DayPlanCardWrapper } from './components/DayPlanCardWrapper'
 import { EditToolbar } from './components/EditToolbar'
 import { PlanNotFound } from './components/PlanNotFound'
 
@@ -450,70 +450,26 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
 
           <div className="flex flex-col gap-2.5">
             {displayDays.map((day, idx) => {
-              const isDayEditing = editingDayId === day.id
               const prevDayLastStopId = idx > 0 ? displayDays[idx - 1]?.stops.at(-1)?.nodeId : undefined
-
-              function handleEditDay() {
-                const sourceDays = isEditing ? editDays : plan!.days
-                const dayData = sourceDays.find((d) => d.id === day.id)
-                if (!isEditing) {
-                  enterEditMode()
-                }
-                setEditingDayId(day.id)
-                setEditStopIds(dayData?.stops.map((s) => s.nodeId) ?? [])
-              }
-
-              function handleCancelEditDay() {
-                setEditingDayId(null)
-                setEditStopIds([])
-              }
-
-              function handleCompleteRoute() {
-                const captured = editStopIds
-                const capturedDayId = editingDayId
-                setEditDays((prev) =>
-                  prev.map((d) =>
-                    d.id === capturedDayId
-                      ? {
-                        ...d,
-                        stops: captured.map((id) => ({ nodeId: id })),
-                      }
-                      : d,
-                  ),
-                )
-                setEditingDayId(null)
-                setEditStopIds([])
-              }
-
-              function handleDeleteDay() {
-                if (!isEditing) {
-                  enterEditMode()
-                }
-                setEditDays((prev) => prev.filter((d) => d.id !== day.id))
-              }
-
               return (
                 <div
                   key={day.id}
                   className="@container/day-plan"
                 >
-                  <DayPlanCard
-                    showOptions={isEditing}
-                    dayPlan={day}
+                  <DayPlanCardWrapper
+                    day={day}
                     dayIndex={idx + 1}
                     trail={trail}
-                    paceMultiplier={isEditing ? editPaceMultiplier : plan.paceMultiplier}
-                    mode={isDayEditing ? 'edit' : 'view'}
-                    editStopIds={isDayEditing ? editStopIds : undefined}
+                    isEditing={isEditing}
+                    editingDayId={editingDayId}
+                    editStopIds={editStopIds}
+                    editPaceMultiplier={editPaceMultiplier}
+                    planPaceMultiplier={plan.paceMultiplier}
                     prevDayLastStopId={prevDayLastStopId}
-                    onEdit={handleEditDay}
-                    onCancelEdit={handleCancelEditDay}
-                    onClearRoute={() => setEditStopIds([])}
-                    onStartingNodeChange={(nodeId: string) => setEditStopIds([nodeId])}
-                    onNodeSelect={(nodeId: string) => setEditStopIds((prev) => [...prev, nodeId])}
-                    onUndo={() => setEditStopIds((prev) => prev.slice(0, -1))}
-                    onCompleteRoute={handleCompleteRoute}
-                    onDelete={handleDeleteDay}
+                    onEnterEditMode={enterEditMode}
+                    onSetEditingDayId={setEditingDayId}
+                    onSetEditStopIds={setEditStopIds}
+                    onSetEditDays={setEditDays}
                   />
                 </div>
               )
