@@ -1,6 +1,6 @@
 'use client'
 
-import { ActionIcon, Container, Menu, Text } from '@mantine/core'
+import { ActionIcon, Button, Container, Menu, Text } from '@mantine/core'
 import { useScrollIntoView } from '@mantine/hooks'
 import { IconDots, IconGitFork, IconPencil, IconPlus, IconTrash, IconX } from '@tabler/icons-react'
 import { use, useMemo, useState } from 'react'
@@ -479,32 +479,26 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
           </div>
 
           {isEditing && (
-            <button
-              type="button"
-              className="flex items-center justify-center gap-1.5 w-full rounded-xl cursor-pointer py-5 px-4 bg-(--mantine-color-stone-1) border-[1.5px] border-dashed border-(--mantine-color-stone-4)"
+            <Button
+              fullWidth
+              variant="default"
+              leftSection={<IconPlus size={14} />}
+              c="stone.6"
+              fw={600}
+              className="rounded-xl border-dashed border-[1.5px] border-(--mantine-color-stone-4) bg-(--mantine-color-stone-1) h-auto py-5 px-4"
               onClick={() =>
                 setEditDays((prev) => [
                   ...prev,
                   {
                     id: crypto.randomUUID(),
                     badges: [],
-                    stops: [] 
+                    stops: [],
                   },
                 ])
               }
             >
-              <IconPlus
-                size={14}
-                color="var(--mantine-color-stone-6)"
-              />
-              <Text
-                size="sm"
-                fw={600}
-                c="stone.6"
-              >
-                Add Day
-              </Text>
-            </button>
+              Add Day
+            </Button>
           )}
         </div>
 
