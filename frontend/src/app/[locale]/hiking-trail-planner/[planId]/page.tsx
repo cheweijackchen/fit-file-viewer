@@ -150,6 +150,22 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
     router.replace(`/hiking-trail-planner/${planId}`)
   }
 
+  function handleAddDay() {
+    setEditDays((prev) => [
+      ...prev,
+      {
+        id: crypto.randomUUID(),
+        badges: [],
+        stops: [],
+      },
+    ])
+  }
+
+  function handleDeleteConfirm() {
+    deletePlan(planId)
+    router.push('/hiking-trail-planner')
+  }
+
   const trailNames = plan.trailIds
     .map((id) => HIKING_TRAIL_MAP[id]?.name)
     .filter((n): n is string => Boolean(n))
@@ -375,25 +391,28 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
                 scroll: scrollToTrailNetwork,
               },
             ] as const
-          ).map((tab) => (
-            <button
-              key={tab.id}
-              type="button"
-              className={`flex items-center px-6 h-full cursor-pointer bg-transparent border-0 border-b-2 ${activeTab === tab.id ? 'border-(--mantine-color-stone-9)' : 'border-transparent'}`}
-              onClick={() => {
-                setActiveTab(tab.id)
-                tab.scroll()
-              }}
-            >
-              <Text
-                size="sm"
-                fw={activeTab === tab.id ? 600 : 400}
-                c={activeTab === tab.id ? 'stone.9' : 'stone.4'}
+          ).map((tab) => {
+            function handleTabClick() {
+              setActiveTab(tab.id)
+              tab.scroll()
+            }
+            return (
+              <button
+                key={tab.id}
+                type="button"
+                className={`flex items-center px-6 h-full cursor-pointer bg-transparent border-0 border-b-2 ${activeTab === tab.id ? 'border-(--mantine-color-stone-9)' : 'border-transparent'}`}
+                onClick={handleTabClick}
               >
-                {tab.label}
-              </Text>
-            </button>
-          ))}
+                <Text
+                  size="sm"
+                  fw={activeTab === tab.id ? 600 : 400}
+                  c={activeTab === tab.id ? 'stone.9' : 'stone.4'}
+                >
+                  {tab.label}
+                </Text>
+              </button>
+            )
+          })}
         </div>
       </div>
 
@@ -419,6 +438,46 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
             {displayDays.map((day, idx) => {
               const isDayEditing = editingDayId === day.id
               const prevDayLastStopId = idx > 0 ? displayDays[idx - 1]?.stops.at(-1)?.nodeId : undefined
+
+              function handleEditDay() {
+                const sourceDays = isEditing ? editDays : plan!.days
+                const dayData = sourceDays.find((d) => d.id === day.id)
+                if (!isEditing) {
+                  enterEditMode()
+                }
+                setEditingDayId(day.id)
+                setEditStopIds(dayData?.stops.map((s) => s.nodeId) ?? [])
+              }
+
+              function handleCancelEditDay() {
+                setEditingDayId(null)
+                setEditStopIds([])
+              }
+
+              function handleCompleteRoute() {
+                const captured = editStopIds
+                const capturedDayId = editingDayId
+                setEditDays((prev) =>
+                  prev.map((d) =>
+                    d.id === capturedDayId
+                      ? {
+                        ...d,
+                        stops: captured.map((id) => ({ nodeId: id })),
+                      }
+                      : d,
+                  ),
+                )
+                setEditingDayId(null)
+                setEditStopIds([])
+              }
+
+              function handleDeleteDay() {
+                if (!isEditing) {
+                  enterEditMode()
+                }
+                setEditDays((prev) => prev.filter((d) => d.id !== day.id))
+              }
+
               return (
                 <div
                   key={day.id}
@@ -433,45 +492,14 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
                     mode={isDayEditing ? 'edit' : 'view'}
                     editStopIds={isDayEditing ? editStopIds : undefined}
                     prevDayLastStopId={prevDayLastStopId}
-                    onEdit={() => {
-                      const sourceDays = isEditing ? editDays : plan.days
-                      const dayData = sourceDays.find((d) => d.id === day.id)
-                      if (!isEditing) {
-                        enterEditMode()
-                      }
-                      setEditingDayId(day.id)
-                      setEditStopIds(dayData?.stops.map((s) => s.nodeId) ?? [])
-                    }}
-                    onCancelEdit={() => {
-                      setEditingDayId(null)
-                      setEditStopIds([])
-                    }}
+                    onEdit={handleEditDay}
+                    onCancelEdit={handleCancelEditDay}
                     onClearRoute={() => setEditStopIds([])}
-                    onStartingNodeChange={(nodeId) => setEditStopIds([nodeId])}
-                    onNodeSelect={(nodeId) => setEditStopIds((prev) => [...prev, nodeId])}
+                    onStartingNodeChange={(nodeId: string) => setEditStopIds([nodeId])}
+                    onNodeSelect={(nodeId: string) => setEditStopIds((prev) => [...prev, nodeId])}
                     onUndo={() => setEditStopIds((prev) => prev.slice(0, -1))}
-                    onCompleteRoute={() => {
-                      const captured = editStopIds
-                      const capturedDayId = editingDayId
-                      setEditDays((prev) =>
-                        prev.map((d) =>
-                          d.id === capturedDayId
-                            ? {
-                              ...d,
-                              stops: captured.map((id) => ({ nodeId: id })) 
-                            }
-                            : d,
-                        ),
-                      )
-                      setEditingDayId(null)
-                      setEditStopIds([])
-                    }}
-                    onDelete={() => {
-                      if (!isEditing) {
-                        enterEditMode()
-                      }
-                      setEditDays((prev) => prev.filter((d) => d.id !== day.id))
-                    }}
+                    onCompleteRoute={handleCompleteRoute}
+                    onDelete={handleDeleteDay}
                   />
                 </div>
               )
@@ -486,16 +514,7 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
               c="stone.6"
               fw={600}
               className="rounded-xl border-dashed border-[1.5px] border-(--mantine-color-stone-4) bg-(--mantine-color-stone-1) h-auto py-5 px-4"
-              onClick={() =>
-                setEditDays((prev) => [
-                  ...prev,
-                  {
-                    id: crypto.randomUUID(),
-                    badges: [],
-                    stops: [],
-                  },
-                ])
-              }
+              onClick={handleAddDay}
             >
               Add Day
             </Button>
@@ -561,10 +580,7 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
         description={`確定要刪除「${plan.name}」嗎？此操作無法復原。`}
         confirmLabel="刪除"
         confirmColor="red"
-        onOk={() => {
-          deletePlan(planId)
-          router.push('/hiking-trail-planner')
-        }}
+        onOk={handleDeleteConfirm}
         onCancel={() => setDeleteConfirmOpen(false)}
       />
     </div>
