@@ -3,6 +3,7 @@
 import { ActionIcon, Button, Container, Menu, Text } from '@mantine/core'
 import { useScrollIntoView } from '@mantine/hooks'
 import { IconDots, IconGitFork, IconPencil, IconPlus, IconTrash, IconX } from '@tabler/icons-react'
+import { useTranslations } from 'next-intl'
 import { use, useMemo, useState } from 'react'
 import { ConfirmModal } from '@/components/ConfirmModal'
 import { HIKING_TRAIL_MAP, HIKING_TRAILS } from '@/constants/hikingTrails'
@@ -43,6 +44,8 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
   const { edit } = use(searchParams)
   const router = useRouter()
 
+  const t = useTranslations('hiking-trail-planner')
+
   const plans = useHikingTrailStore.use.plans()
   const { updatePlan, deletePlan } = useHikingTrailActions()
   const plan = plans.find((p) => p.id === planId)
@@ -69,8 +72,8 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
 
   const { modalProps: leaveModalProps } = useLeaveConfirm({
     shouldBlock: isEditing,
-    title: '尚有未儲存的變更',
-    description: '離開後，所有編輯中的內容將會遺失。確定要離開嗎？',
+    title: t('planDetail.leaveConfirm.title'),
+    description: t('planDetail.leaveConfirm.description'),
   })
   const [activeTab, setActiveTab] = useState<'itinerary' | 'trip-stats' | 'trail-network'>('itinerary')
 
@@ -81,14 +84,17 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
   const tabs = [
     {
       ...TABS[0],
+      label: t('planDetail.tabs.itinerary'),
       scroll: scrollToItinerary,
     },
     {
       ...TABS[1],
+      label: t('planDetail.tabs.tripStats'),
       scroll: scrollToTripStats,
     },
     {
       ...TABS[2],
+      label: t('planDetail.tabs.trailNetwork'),
       scroll: scrollToTrailNetwork,
     },
   ]
@@ -231,7 +237,7 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
                 c="stone.4"
                 className="hover:underline cursor-pointer"
               >
-                My Trips
+                {t('planDetail.myTrips')}
               </Text>
             </Link>
             <Text
@@ -267,7 +273,7 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
                 leftSection={<IconPencil size={14} />}
                 onClick={enterEditMode}
               >
-                編輯
+                {t('planDetail.edit')}
               </Menu.Item>
               <Menu.Divider />
               <Menu.Item
@@ -275,7 +281,7 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
                 leftSection={<IconTrash size={14} />}
                 onClick={() => setDeleteConfirmOpen(true)}
               >
-                刪除
+                {t('planDetail.delete')}
               </Menu.Item>
             </Menu.Dropdown>
           </Menu>
@@ -380,7 +386,7 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
             fw={600}
             c="stone.6"
           >
-            {plan.days.length} 天
+            {t('planDetail.stats.days', { count: plan.days.length })}
           </Text>
           <Text c="stone.3">·</Text>
           <Text
@@ -388,7 +394,7 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
             fw={600}
             c="stone.6"
           >
-            {formatTrailMinutes(totalRawMinutes)} 總時間
+            {t('planDetail.stats.totalTime', { time: formatTrailMinutes(totalRawMinutes) })}
           </Text>
           <Text c="stone.3">·</Text>
           <Text
@@ -444,7 +450,7 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
               c="stone.5"
               className="tracking-[0.08em]"
             >
-              ITINERARY
+              {t('planDetail.sections.itinerary')}
             </Text>
           </div>
 
@@ -486,7 +492,7 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
               className="rounded-xl border-dashed border-[1.5px] border-(--mantine-color-stone-4) bg-(--mantine-color-stone-1) h-auto py-5 px-4"
               onClick={handleAddDay}
             >
-              Add Day
+              {t('planDetail.addDay')}
             </Button>
           )}
         </div>
@@ -513,7 +519,7 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
               c="stone.5"
               className="tracking-[0.08em]"
             >
-              TRAIL NETWORK
+              {t('planDetail.sections.trailNetwork')}
             </Text>
           </div>
           <div
@@ -528,13 +534,13 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
               fw={600}
               c="stone.4"
             >
-              Trail Network
+              {t('planDetail.trailNetworkPlaceholder.title')}
             </Text>
             <Text
               size="sm"
               c="stone.3"
             >
-              視覺化圖表即將推出
+              {t('planDetail.trailNetworkPlaceholder.comingSoon')}
             </Text>
           </div>
         </Container>
@@ -546,9 +552,9 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
       {/* ─── Delete Confirmation Modal ─── */}
       <ConfirmModal
         opened={deleteConfirmOpen}
-        title="刪除行程"
-        description={`確定要刪除「${plan.name}」嗎？此操作無法復原。`}
-        confirmLabel="刪除"
+        title={t('planDetail.deleteConfirm.title')}
+        description={t('planDetail.deleteConfirm.description', { name: plan.name })}
+        confirmLabel={t('planDetail.deleteConfirm.confirm')}
         confirmColor="red"
         onOk={handleDeleteConfirm}
         onCancel={() => setDeleteConfirmOpen(false)}

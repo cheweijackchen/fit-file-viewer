@@ -174,6 +174,38 @@
     },
     "tripCard": {
       "days": "{count} days"
+    },
+    "planDetail": {
+      "myTrips": "My Trips",
+      "edit": "Edit",
+      "delete": "Delete",
+      "addDay": "Add Day",
+      "tabs": {
+        "itinerary": "Itinerary",
+        "tripStats": "Trip Stats",
+        "trailNetwork": "Trail Network"
+      },
+      "leaveConfirm": {
+        "title": "Unsaved Changes",
+        "description": "All edits will be lost if you leave. Are you sure?"
+      },
+      "stats": {
+        "days": "{count} days",
+        "totalTime": "{time} total"
+      },
+      "sections": {
+        "itinerary": "ITINERARY",
+        "trailNetwork": "TRAIL NETWORK"
+      },
+      "trailNetworkPlaceholder": {
+        "title": "Trail Network",
+        "comingSoon": "Visual graph coming soon"
+      },
+      "deleteConfirm": {
+        "title": "Delete Trip",
+        "description": "Are you sure you want to delete \"{name}\"? This action cannot be undone.",
+        "confirm": "Delete"
+      }
     }
   },
   "not-found": {
