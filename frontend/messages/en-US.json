@@ -173,7 +173,7 @@
       "newTrip": "New Trip"
     },
     "tripCard": {
-      "days": "{count} days"
+      "days": "{count, plural, one {# day} other {# days}}"
     },
     "planDetail": {
       "myTrips": "My Trips",
@@ -190,7 +190,7 @@
         "description": "All edits will be lost if you leave. Are you sure?"
       },
       "stats": {
-        "days": "{count} days",
+        "days": "{count, plural, one {# day} other {# days}}",
         "totalTime": "{time} total"
       },
       "sections": {
