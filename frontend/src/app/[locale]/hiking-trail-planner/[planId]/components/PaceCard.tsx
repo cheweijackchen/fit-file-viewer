@@ -1,6 +1,6 @@
 'use client'
 
-import { Text } from '@mantine/core'
+import { ActionIcon, Text } from '@mantine/core'
 import { IconMinus, IconPlus } from '@tabler/icons-react'
 import { useTranslations } from 'next-intl'
 
@@ -11,7 +11,7 @@ interface Props {
   onDecrease?: () => void;
 }
 
-const MIN_MULTIPLIER = 0.5
+const MIN_MULTIPLIER = 0.3
 const MAX_MULTIPLIER = 2.0
 
 export function PaceCard({ paceMultiplier, readonly, onIncrease, onDecrease }: Props) {
@@ -54,37 +54,36 @@ export function PaceCard({ paceMultiplier, readonly, onIncrease, onDecrease }: P
               {t('planDetail.pace.multiplierLabel')}
             </Text>
             <div className="flex items-center justify-center gap-5">
-              <button
-                type="button"
+              <ActionIcon
+                size={32}
+                radius="xl"
+                variant="default"
+                c="stone.6"
                 disabled={paceMultiplier <= MIN_MULTIPLIER}
-                className="flex items-center justify-center w-8 h-8 rounded-full bg-white border border-(--mantine-color-stone-3) disabled:opacity-40 cursor-pointer disabled:cursor-not-allowed"
                 onClick={onDecrease}
               >
-                <IconMinus
-                  size={14}
-                  color="var(--mantine-color-stone-6)"
-                />
-              </button>
+                <IconMinus size={14} />
+              </ActionIcon>
               <span
                 className="font-bold text-(--mantine-color-stone-9)"
                 style={{
                   fontFamily: 'var(--mantine-font-family-monospace)',
-                  fontSize: '44px' 
+                  fontSize: '44px'
                 }}
               >
                 ×{paceMultiplier.toFixed(1)}
               </span>
-              <button
-                type="button"
+              <ActionIcon
+                size={40}
+                radius="xl"
+                variant="filled"
+                color="yellow.4"
+                c="stone.8"
                 disabled={paceMultiplier >= MAX_MULTIPLIER}
-                className="flex items-center justify-center w-10 h-10 rounded-full bg-(--mantine-color-yellow-4) disabled:opacity-40 cursor-pointer disabled:cursor-not-allowed"
                 onClick={onIncrease}
               >
-                <IconPlus
-                  size={16}
-                  color="var(--mantine-color-stone-8)"
-                />
-              </button>
+                <IconPlus size={16} />
+              </ActionIcon>
             </div>
           </div>
           <Text

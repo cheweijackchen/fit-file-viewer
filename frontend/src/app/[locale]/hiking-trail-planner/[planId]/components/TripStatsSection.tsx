@@ -5,9 +5,9 @@ import { useTranslations } from 'next-intl'
 import { formatTrailMinutes } from '@/lib/timeFormatter'
 
 interface Props {
-  totalRawMinutes: number
-  totalWeightedMinutes: number
-  paceMultiplier: number
+  totalRawMinutes: number;
+  totalWeightedMinutes: number;
+  paceMultiplier: number;
 }
 
 export function TripStatsSection({ totalRawMinutes, totalWeightedMinutes, paceMultiplier }: Props) {
@@ -49,7 +49,7 @@ export function TripStatsSection({ totalRawMinutes, totalWeightedMinutes, paceMu
           <Text
             size="xl"
             fw={700}
-            c="stone.6"
+            c="stone.9"
           >
             {formatTrailMinutes(totalWeightedMinutes)}
           </Text>

@@ -195,7 +195,7 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
   }
 
   function handleDecreasePace() {
-    setEditPaceMultiplier((prev) => Math.max(0.5, Math.round((prev - 0.1) * 10) / 10))
+    setEditPaceMultiplier((prev) => Math.max(0.3, Math.round((prev - 0.1) * 10) / 10))
   }
 
   function handleAddDay() {
