@@ -328,7 +328,7 @@ export function DayPlanCard({
       </div>
 
       {/* Time col */}
-      <div className={`hidden @md/day-plan:flex flex-col items-end shrink-0 gap-1.5 ${mode === 'edit' ? 'opacity-40' : ''}`}>
+      <div className={`hidden @md/day-plan:flex flex-col items-end self-start shrink-0 gap-1.5 ${mode === 'edit' ? 'opacity-40' : ''}`}>
         <div className="flex flex-col items-end gap-px">
           <Text
             component="span"

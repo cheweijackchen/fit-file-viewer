@@ -133,7 +133,7 @@ export function DayPlanForm({
 
       {/* Route Summary */}
       {hasStops && (
-        <div className="flex items-center gap-3 rounded-[10px] border border-(--mantine-color-stone-3) bg-(--mantine-color-stone-1) px-3 py-[10px]">
+        <div className="flex gap-3 rounded-[10px] border border-(--mantine-color-stone-3) bg-(--mantine-color-stone-1) px-3 py-[10px]">
           {/* Left: label + chips */}
           <div className="flex flex-col flex-1 min-w-0 gap-1.5">
             <span className="text-[9px] font-bold tracking-[0.08em] text-(--mantine-color-stone-8)">
@@ -149,12 +149,12 @@ export function DayPlanForm({
           </div>
 
           {/* Right: time */}
-          <div className="flex flex-col items-end shrink-0 gap-px">
+          <div className="flex flex-col items-end shrink-0">
             <span className="text-xl font-extrabold text-(--mantine-color-stone-8) leading-none">
-              {formatTrailMinutes(rawMinutes)}
+              {formatTrailMinutes(weightedMinutes)}
             </span>
             <span className="text-[11px] text-(--mantine-color-stone-8)">
-              × {paceMultiplier.toFixed(1)} = {formatTrailMinutes(weightedMinutes)}
+              {formatTrailMinutes(rawMinutes)} × {paceMultiplier.toFixed(1)}
             </span>
           </div>
         </div>
