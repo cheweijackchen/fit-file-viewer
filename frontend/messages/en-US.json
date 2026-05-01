@@ -215,6 +215,11 @@
         "title": "Delete Trip",
         "description": "Are you sure you want to delete \"{name}\"? This action cannot be undone.",
         "confirm": "Delete"
+      },
+      "editToolbar": {
+        "editing": "Editing",
+        "unsavedChanges": "Unsaved changes",
+        "finishEditing": "Finish Editing"
       }
     }
   },

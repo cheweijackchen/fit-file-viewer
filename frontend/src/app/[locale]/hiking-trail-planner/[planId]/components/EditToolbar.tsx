@@ -2,6 +2,7 @@
 
 import { ActionIcon, Text } from '@mantine/core'
 import { IconCheck, IconX } from '@tabler/icons-react'
+import { useTranslations } from 'next-intl'
 
 interface Props {
   onCancel: () => void;
@@ -9,6 +10,8 @@ interface Props {
 }
 
 export function EditToolbar({ onCancel, onFinish }: Props) {
+  const t = useTranslations('hiking-trail-planner')
+
   return (
     <div
       className="flex items-center justify-between px-20 shrink-0 h-[52px] bg-(--mantine-color-yellow-0) border-b border-(--mantine-color-yellow-3)"
@@ -21,7 +24,7 @@ export function EditToolbar({ onCancel, onFinish }: Props) {
           fw={600}
           c="stone.9"
         >
-          編輯中
+          {t('planDetail.editToolbar.editing')}
         </Text>
         <Text
           size="sm"
@@ -33,7 +36,7 @@ export function EditToolbar({ onCancel, onFinish }: Props) {
           size="sm"
           c="stone.6"
         >
-          變更尚未儲存
+          {t('planDetail.editToolbar.unsavedChanges')}
         </Text>
       </div>
 
@@ -55,7 +58,7 @@ export function EditToolbar({ onCancel, onFinish }: Props) {
           onClick={onFinish}
         >
           <IconCheck size={14} />
-          完成編輯
+          {t('planDetail.editToolbar.finishEditing')}
         </button>
       </div>
     </div>
