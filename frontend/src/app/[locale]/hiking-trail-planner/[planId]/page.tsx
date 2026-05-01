@@ -15,7 +15,9 @@ import type { DayPlan, Trail, TrailEdge, TrailNode } from '@/model/hikingTrail'
 import { useHikingTrailActions, useHikingTrailStore } from '@/store/hikingTrail/useHikingTrailStore'
 import { DayPlanCardWrapper } from './components/DayPlanCardWrapper'
 import { EditToolbar } from './components/EditToolbar'
+import { PaceCard } from './components/PaceCard'
 import { PlanNotFound } from './components/PlanNotFound'
+import { TripStatsSection } from './components/TripStatsSection'
 
 const SCROLL_OFFSET = 108
 
@@ -63,7 +65,7 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
       }))
       : [],
   )
-  const [editPaceMultiplier] = useState(() =>
+  const [editPaceMultiplier, setEditPaceMultiplier] = useState(() =>
     edit === 'true' ? (plan?.paceMultiplier ?? 1.0) : 1.0,
   )
   const [editingDayId, setEditingDayId] = useState<string | null>(null)
@@ -186,6 +188,14 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
     setEditingDayId(null)
     setEditStopIds([])
     router.replace(`/hiking-trail-planner/${planId}`)
+  }
+
+  function handleIncreasePace() {
+    setEditPaceMultiplier((prev) => Math.min(2.0, Math.round((prev + 0.1) * 10) / 10))
+  }
+
+  function handleDecreasePace() {
+    setEditPaceMultiplier((prev) => Math.max(0.5, Math.round((prev - 0.1) * 10) / 10))
   }
 
   function handleAddDay() {
@@ -497,11 +507,23 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
           )}
         </div>
 
-        {/* Right column — empty for now */}
+        {/* Right column — Trip Stats + Pace */}
         <div
           ref={tripStatsRef}
-          className="shrink-0 w-full md:w-1/3 xl:w-[400px]"
-        />
+          className="shrink-0 w-full md:w-1/3 xl:w-[400px] flex flex-col gap-5"
+        >
+          <TripStatsSection
+            totalRawMinutes={totalRawMinutes}
+            totalWeightedMinutes={totalWeightedMinutes}
+            paceMultiplier={isEditing ? editPaceMultiplier : plan.paceMultiplier}
+          />
+          <PaceCard
+            paceMultiplier={isEditing ? editPaceMultiplier : plan.paceMultiplier}
+            readonly={!isEditing}
+            onIncrease={handleIncreasePace}
+            onDecrease={handleDecreasePace}
+          />
+        </div>
       </Container>
 
       {/* ─── Trail Network Section ─── */}

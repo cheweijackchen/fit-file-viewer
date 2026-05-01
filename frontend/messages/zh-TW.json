@@ -195,7 +195,17 @@
       },
       "sections": {
         "itinerary": "ITINERARY",
-        "trailNetwork": "TRAIL NETWORK"
+        "trailNetwork": "TRAIL NETWORK",
+        "tripStats": "TRIP STATS",
+        "pace": "PACE"
+      },
+      "tripStats": {
+        "rawTime": "總時間",
+        "weightedTime": "加權時間 ×{multiplier}"
+      },
+      "pace": {
+        "multiplierLabel": "步速係數",
+        "updateNote": "套用至全部 Day，加權時間將同步更新。"
       },
       "trailNetworkPlaceholder": {
         "title": "步道網絡",

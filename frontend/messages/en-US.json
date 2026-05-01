@@ -195,7 +195,17 @@
       },
       "sections": {
         "itinerary": "ITINERARY",
-        "trailNetwork": "TRAIL NETWORK"
+        "trailNetwork": "TRAIL NETWORK",
+        "tripStats": "TRIP STATS",
+        "pace": "PACE"
+      },
+      "tripStats": {
+        "rawTime": "Total Time",
+        "weightedTime": "Adjusted ×{multiplier}"
+      },
+      "pace": {
+        "multiplierLabel": "Pace Factor",
+        "updateNote": "Applied to all days. Adjusted times will update automatically."
       },
       "trailNetworkPlaceholder": {
         "title": "Trail Network",
