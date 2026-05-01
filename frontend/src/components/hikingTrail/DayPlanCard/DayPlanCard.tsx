@@ -19,6 +19,7 @@ interface Props {
   paceMultiplier: number;
   mode: 'view' | 'edit';
   showOptions?: boolean;
+  editDisabled?: boolean;
   onEdit?: () => void;
   onCancelEdit?: () => void;
   onClearRoute?: () => void;
@@ -43,6 +44,7 @@ export function DayPlanCard({
   paceMultiplier,
   mode,
   showOptions,
+  editDisabled,
   onEdit,
   onCancelEdit,
   onClearRoute,
@@ -129,6 +131,7 @@ export function DayPlanCard({
         </>
       ) : (
         <Menu.Item
+          disabled={editDisabled}
           c="bright"
           color="stone"
           leftSection={<IconPencil size={14} />}

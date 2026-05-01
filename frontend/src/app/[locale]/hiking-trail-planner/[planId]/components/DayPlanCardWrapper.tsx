@@ -36,6 +36,7 @@ export function DayPlanCardWrapper({
   onSetEditDays,
 }: Props) {
   const isDayEditing = editingDayId === day.id
+  const isOtherDayEditing = editingDayId !== null && !isDayEditing
   const paceMultiplier = isEditing ? editPaceMultiplier : planPaceMultiplier
 
   function handleEditDay() {
@@ -78,6 +79,7 @@ export function DayPlanCardWrapper({
   return (
     <DayPlanCard
       showOptions={isEditing}
+      editDisabled={isOtherDayEditing}
       dayPlan={day}
       dayIndex={dayIndex}
       trail={trail}
