@@ -281,6 +281,8 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
             </Menu.Target>
             <Menu.Dropdown>
               <Menu.Item
+                c="bright"
+                color="stone"
                 leftSection={<IconPencil size={14} />}
                 onClick={enterEditMode}
               >

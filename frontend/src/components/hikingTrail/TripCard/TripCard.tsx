@@ -45,6 +45,7 @@ export function TripCard({ plan, onClick, onView, onEdit, onDelete }: Props) {
         <Group
           justify="space-between"
           align="center"
+          wrap="nowrap"
         >
           <Text
             fw={700}
