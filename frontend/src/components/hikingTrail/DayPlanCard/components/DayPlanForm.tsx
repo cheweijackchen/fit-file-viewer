@@ -75,8 +75,39 @@ export function DayPlanForm({
           py="xs"
           px="sm"
           fz="xs"
+          title="目前累積時間已超過 8 小時，考慮是否在此結束本日。"
         >
-          目前累積時間已超過 8 小時，考慮是否在此結束本日。
+        </Alert>
+      )}
+      {isDiscontinuous && prevDayLastNode && (
+        <Alert
+          variant="light"
+          color="orange"
+          icon={
+            <IconAlertTriangle
+              size={14}
+              stroke={2}
+            />
+          }
+          py="xs"
+          px="sm"
+          fz="xs"
+        >
+          <div className="flex items-center justify-between gap-2">
+            <Text
+              c="orange" 
+              size="sm"
+              fw="700"
+            >起點與前一天終點「{prevDayLastNode.name}」不連續</Text>
+            <Button
+              size="compact-xs"
+              variant="filled"
+              color="orange"
+              onClick={() => onStartingNodeChange(prevDayLastStopId!)}
+            >
+              改用前一天終點
+            </Button>
+          </div>
         </Alert>
       )}
 
@@ -98,33 +129,6 @@ export function DayPlanForm({
           classNames={{ input: classes.selectInput }}
           onChange={(val) => val && onStartingNodeChange(val)}
         />
-        {isDiscontinuous && prevDayLastNode && (
-          <Alert
-            variant="light"
-            color="orange"
-            icon={
-              <IconAlertTriangle
-                size={14}
-                stroke={2}
-              />
-            }
-            py="xs"
-            px="sm"
-            fz="xs"
-          >
-            <div className="flex items-center justify-between gap-2">
-              <span>起點與前一天終點「{prevDayLastNode.name}」不連續</span>
-              <Button
-                size="compact-xs"
-                variant="filled"
-                color="orange"
-                onClick={() => onStartingNodeChange(prevDayLastStopId!)}
-              >
-                改用前一天終點
-              </Button>
-            </div>
-          </Alert>
-        )}
       </div>
 
       {/* Route Summary */}
