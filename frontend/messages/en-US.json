@@ -205,7 +205,17 @@
       },
       "pace": {
         "multiplierLabel": "Pace Factor",
-        "updateNote": "Applied to all days. Adjusted times will update automatically."
+        "updateNote": "Applied to all days. Adjusted times will update automatically.",
+        "alert": {
+          "slow": {
+            "title": "Pace multiplier at 1.2 — 20% slower than reference time",
+            "body": "At this pace, daily hiking hours may become excessive, increasing the risk of hiking in the dark and physical strain. Consider reviewing your itinerary:\n1. Shorten daily distances or add extra camping nights.\n2. Verify water source and campsite locations to ensure arrival in daylight.\n3. If carrying a heavy pack, confirm your team has sufficient endurance for extended hours."
+          },
+          "fast": {
+            "title": "Pace multiplier below 0.7 — extreme speed mode",
+            "body": "Your itinerary is extremely tight with little buffer for unexpected situations. Please address the following in your plan:\n1. Set a clear turn-around time — descend immediately if behind schedule.\n2. Confirm all team members have equal fitness and load-carrying capacity.\n3. For technical sections (scrambles, scree slopes), avoid applying this multiplier — use 1.0 for safety."
+          }
+        }
       },
       "trailNetworkPlaceholder": {
         "title": "Trail Network",

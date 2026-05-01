@@ -40,7 +40,7 @@ export function PaceCard({ paceMultiplier, readonly, onIncrease, onDecrease }: P
             className="text-4xl font-bold text-(--mantine-color-stone-9)"
             style={{ fontFamily: 'var(--mantine-font-family-monospace)' }}
           >
-            ×{paceMultiplier.toFixed(1)}
+            ×{paceMultiplier.toFixed(2)}
           </span>
         </div>
       ) : (
@@ -71,7 +71,7 @@ export function PaceCard({ paceMultiplier, readonly, onIncrease, onDecrease }: P
                   fontSize: '44px'
                 }}
               >
-                ×{paceMultiplier.toFixed(1)}
+                ×{paceMultiplier.toFixed(2)}
               </span>
               <ActionIcon
                 size={40}

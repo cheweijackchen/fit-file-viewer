@@ -15,6 +15,7 @@ import type { DayPlan, Trail, TrailEdge, TrailNode } from '@/model/hikingTrail'
 import { useHikingTrailActions, useHikingTrailStore } from '@/store/hikingTrail/useHikingTrailStore'
 import { DayPlanCardWrapper } from './components/DayPlanCardWrapper'
 import { EditToolbar } from './components/EditToolbar'
+import { PaceAlert } from './components/PaceAlert'
 import { PaceCard } from './components/PaceCard'
 import { PlanNotFound } from './components/PlanNotFound'
 import { TripStatsSection } from './components/TripStatsSection'
@@ -191,11 +192,11 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
   }
 
   function handleIncreasePace() {
-    setEditPaceMultiplier((prev) => Math.min(2.0, Math.round((prev + 0.1) * 10) / 10))
+    setEditPaceMultiplier((prev) => Math.min(2.0, Math.round((prev + 0.05) * 20) / 20))
   }
 
   function handleDecreasePace() {
-    setEditPaceMultiplier((prev) => Math.max(0.3, Math.round((prev - 0.1) * 10) / 10))
+    setEditPaceMultiplier((prev) => Math.max(0.3, Math.round((prev - 0.05) * 20) / 20))
   }
 
   function handleAddDay() {
@@ -523,6 +524,7 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
             onIncrease={handleIncreasePace}
             onDecrease={handleDecreasePace}
           />
+          <PaceAlert paceMultiplier={isEditing ? editPaceMultiplier : plan.paceMultiplier} />
         </div>
       </Container>
 
