@@ -16,6 +16,7 @@ const MAX_MULTIPLIER = 2.0
 
 export function PaceCard({ paceMultiplier, readonly, onIncrease, onDecrease }: Props) {
   const t = useTranslations('hiking-trail-planner')
+  const displayValue = parseFloat(paceMultiplier.toFixed(2))
 
   return (
     <div className="flex flex-col gap-3">
@@ -40,7 +41,7 @@ export function PaceCard({ paceMultiplier, readonly, onIncrease, onDecrease }: P
             className="text-4xl font-bold text-(--mantine-color-stone-9)"
             style={{ fontFamily: 'var(--mantine-font-family-monospace)' }}
           >
-            ×{paceMultiplier.toFixed(2)}
+            ×{displayValue}
           </span>
         </div>
       ) : (
@@ -71,7 +72,7 @@ export function PaceCard({ paceMultiplier, readonly, onIncrease, onDecrease }: P
                   fontSize: '44px'
                 }}
               >
-                ×{paceMultiplier.toFixed(2)}
+                ×{displayValue}
               </span>
               <ActionIcon
                 size={40}
