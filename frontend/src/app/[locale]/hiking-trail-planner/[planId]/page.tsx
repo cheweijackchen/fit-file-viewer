@@ -449,7 +449,7 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
         className="w-full flex flex-col md:flex-row gap-6 pt-8 pb-4"
       >
         {/* Left column — Itinerary */}
-        <div className="flex flex-col flex-1 min-w-0 gap-2.5">
+        <div className="@container/day-plan flex flex-col flex-1 min-w-0 gap-2.5">
           <div ref={itineraryRef}>
             <Text
               size="xs"
@@ -467,7 +467,6 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
               return (
                 <div
                   key={day.id}
-                  className="@container/day-plan"
                 >
                   <DayPlanCardWrapper
                     day={day}
