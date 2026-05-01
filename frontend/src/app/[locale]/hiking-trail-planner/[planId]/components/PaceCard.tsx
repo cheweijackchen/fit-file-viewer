@@ -16,7 +16,9 @@ const MAX_MULTIPLIER = 2.0
 
 export function PaceCard({ paceMultiplier, readonly, onIncrease, onDecrease }: Props) {
   const t = useTranslations('hiking-trail-planner')
-  const displayValue = parseFloat(paceMultiplier.toFixed(2))
+  const displayValue = readonly
+    ? parseFloat(paceMultiplier.toFixed(2))
+    : paceMultiplier.toFixed(2)
 
   return (
     <div className="flex flex-col gap-3">
