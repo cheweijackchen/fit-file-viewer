@@ -1,6 +1,6 @@
 'use client'
 
-import { ActionIcon, Button, Container, Menu, Text } from '@mantine/core'
+import { ActionIcon, Button, Container, Menu, Text, TextInput } from '@mantine/core'
 import { useScrollIntoView } from '@mantine/hooks'
 import { IconDots, IconGitFork, IconPencil, IconPlus, IconTrash, IconX } from '@tabler/icons-react'
 import { useTranslations } from 'next-intl'
@@ -367,19 +367,13 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
 
         {/* Title */}
         {isEditing ? (
-          <div className="flex flex-col gap-1">
-            <div
-              className="rounded-lg inline-block border-2 border-(--mantine-color-yellow-5) bg-white py-1.5 px-3"
-            >
-              <input
-                type="text"
-                value={editName}
-                className="bg-transparent outline-none font-bold text-4xl text-(--mantine-color-stone-9) min-w-[200px]"
-                style={{ width: `${Math.max(editName.length, 8)}ch` }}
-                onChange={(e) => setEditName(e.target.value)}
-              />
-            </div>
-          </div>
+          <TextInput
+            value={editName}
+            classNames={{
+              input: 'bg-transparent! h-auto! w-auto! font-bold! text-4xl! border-2! text-(--mantine-color-stone-9)! border-(--mantine-color-stone-2)! rounded-lg py-2.5! px-3 focus:border-(--mantine-color-yellow-5)!',
+            }}
+            onChange={(e) => setEditName(e.target.value)}
+          />
         ) : (
           <Text
             fw={700}
