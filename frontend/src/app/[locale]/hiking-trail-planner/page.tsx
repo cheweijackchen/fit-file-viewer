@@ -194,9 +194,9 @@ export default function HikingTrailPlannerPage() {
       </section>
       <ConfirmModal
         opened={deletingPlanId !== null}
-        title="刪除行程"
-        description={`確定要刪除「${plans.find((p) => p.id === deletingPlanId)?.name}」嗎？此操作無法復原。`}
-        confirmLabel="刪除"
+        title={t('planDetail.deleteConfirm.title')}
+        description={t('planDetail.deleteConfirm.description', { name: plans.find((p) => p.id === deletingPlanId)?.name ?? '' })}
+        confirmLabel={t('planDetail.deleteConfirm.confirm')}
         confirmColor="red"
         onOk={() => {
           if (deletingPlanId) {
