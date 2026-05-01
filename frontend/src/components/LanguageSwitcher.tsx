@@ -3,6 +3,7 @@
 import { Button, Menu } from '@mantine/core'
 import { IconWorld } from '@tabler/icons-react'
 import { useLocale } from 'next-intl'
+import { useState, useEffect } from 'react'
 import { usePathname, useRouter } from '@/i18n/navigation'
 import { LOCALES, type Locale } from '@/i18n/routing'
 
@@ -17,10 +18,18 @@ export function LanguageSwitcher() {
   const locale = useLocale() as Locale
   const router = useRouter()
   const pathname = usePathname()
+  const [pendingLocale, setPendingLocale] = useState<Locale | null>(null)
+
+  useEffect(() => {
+    if (pendingLocale === null) {
+      return
+    }
+    localStorage.setItem(LOCALE_STORAGE_KEY, pendingLocale)
+    document.cookie = `NEXT_LOCALE=${pendingLocale}; path=/; max-age=${60 * 60 * 24 * 7}`
+  }, [pendingLocale])
 
   function switchLocale(target: Locale) {
-    localStorage.setItem(LOCALE_STORAGE_KEY, target)
-    document.cookie = `NEXT_LOCALE=${target}; path=/; max-age=${60 * 60 * 24 * 7}`
+    setPendingLocale(target)
     router.push(pathname, { locale: target })
   }
 
