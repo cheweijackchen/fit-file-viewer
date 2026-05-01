@@ -450,7 +450,7 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
       {/* ─── Content Area ─── */}
       <Container
         size="xl"
-        className="w-full flex flex-col md:flex-row gap-4 lg:gap-6 pt-8 pb-4"
+        className="w-full flex flex-col md:flex-row gap-6 pt-8 pb-4"
       >
         {/* Left column — Itinerary */}
         <div className="flex flex-col flex-1 min-w-0 gap-2.5">
@@ -511,20 +511,22 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
         {/* Right column — Trip Stats + Pace */}
         <div
           ref={tripStatsRef}
-          className="shrink-0 w-full md:w-1/3 xl:w-[400px] flex flex-col gap-5"
+          className="shrink-0 w-full md:w-1/3 xl:w-[400px] flex flex-col gap-6"
         >
           <TripStatsSection
             totalRawMinutes={totalRawMinutes}
             totalWeightedMinutes={totalWeightedMinutes}
             paceMultiplier={isEditing ? editPaceMultiplier : plan.paceMultiplier}
           />
-          <PaceCard
-            paceMultiplier={isEditing ? editPaceMultiplier : plan.paceMultiplier}
-            readonly={!isEditing}
-            onIncrease={handleIncreasePace}
-            onDecrease={handleDecreasePace}
-          />
-          <PaceAlert paceMultiplier={isEditing ? editPaceMultiplier : plan.paceMultiplier} />
+          <div className="flex flex-col gap-3">
+            <PaceCard
+              paceMultiplier={isEditing ? editPaceMultiplier : plan.paceMultiplier}
+              readonly={!isEditing}
+              onIncrease={handleIncreasePace}
+              onDecrease={handleDecreasePace}
+            />
+            <PaceAlert paceMultiplier={isEditing ? editPaceMultiplier : plan.paceMultiplier} />
+          </div>
         </div>
       </Container>
 
@@ -547,7 +549,7 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
             </Text>
           </div>
           <div
-            className="flex flex-col items-center justify-center gap-2.5 w-full rounded-2xl h-80 bg-(--mantine-color-stone-1) border border-(--mantine-color-stone-2)"
+            className="flex flex-col items-center justify-center gap-3 w-full rounded-2xl h-80 bg-(--mantine-color-stone-1) border border-(--mantine-color-stone-2)"
           >
             <IconGitFork
               size={40}
