@@ -5,6 +5,7 @@ import { useScrollIntoView } from '@mantine/hooks'
 import { IconDots, IconPencil, IconPlus, IconTrash } from '@tabler/icons-react'
 import { useTranslations } from 'next-intl'
 import { use, useMemo, useState } from 'react'
+import { ColoredPill } from '@/components/ColoredPill'
 import { ConfirmModal } from '@/components/ConfirmModal'
 import { TrailGraph } from '@/components/TrailGraph'
 import { HIKING_TRAIL_MAP, HIKING_TRAILS } from '@/constants/hikingTrails'
@@ -324,6 +325,7 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
             className="self-start"
             classNames={{
               input: 'bg-transparent!',
+              pill: 'bg-(--mantine-color-stone-2)! text-(--mantine-color-stone-7)! [&_.mantine-Pill-remove]:text-(--mantine-color-gray-4) [&_.mantine-Pill-remove:hover]:text-(--mantine-color-gray-7)',
             }}
             onChange={(newIds) => {
               const locked = editTrailIds.filter((id) => lockedTrailIds.has(id) && !newIds.includes(id))
@@ -333,18 +335,14 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
         ) : (
           <div className="flex flex-wrap items-center gap-2">
             {trailNames.map((name) => (
-              <div
+              <ColoredPill
                 key={name}
-                className="rounded-full px-3 py-1 bg-(--mantine-color-stone-2)"
+                color="stone"
+                c="stone.7"
+                size="lg"
               >
-                <Text
-                  size="xs"
-                  fw={600}
-                  c="stone.6"
-                >
-                  {name}
-                </Text>
-              </div>
+                {name}
+              </ColoredPill>
             ))}
           </div>
         )}
