@@ -371,8 +371,9 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
         {isEditing ? (
           <TextInput
             value={editName}
+            className="self-start"
             classNames={{
-              input: 'bg-transparent! h-auto! w-auto! font-bold! text-4xl! border-2! text-(--mantine-color-stone-9)! border-(--mantine-color-stone-2)! rounded-lg py-2.5! px-3 focus:border-(--mantine-color-yellow-5)!',
+              input: 'bg-transparent! h-auto! font-bold! text-4xl! border-2! text-(--mantine-color-stone-9)! border-(--mantine-color-stone-2)! rounded-lg py-2.5! px-3 focus:border-(--mantine-color-yellow-5)!',
             }}
             onChange={(e) => setEditName(e.target.value)}
           />
