@@ -230,6 +230,10 @@
         "editing": "Editing",
         "unsavedChanges": "Unsaved changes",
         "finishEditing": "Finish Editing"
+      },
+      "trailSelect": {
+        "placeholder": "Add trails",
+        "lockedHint": "Trails with assigned stops cannot be removed"
       }
     }
   },

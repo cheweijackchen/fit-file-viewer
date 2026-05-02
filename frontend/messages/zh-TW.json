@@ -230,6 +230,10 @@
         "editing": "編輯中",
         "unsavedChanges": "變更尚未儲存",
         "finishEditing": "完成編輯"
+      },
+      "trailSelect": {
+        "placeholder": "新增路線",
+        "lockedHint": "已安排行程的路線無法移除"
       }
     }
   },

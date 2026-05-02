@@ -1,8 +1,8 @@
 'use client'
 
-import { ActionIcon, Button, Container, Menu, Text, TextInput } from '@mantine/core'
+import { ActionIcon, Button, Container, Menu, MultiSelect, Text, TextInput } from '@mantine/core'
 import { useScrollIntoView } from '@mantine/hooks'
-import { IconDots, IconPencil, IconPlus, IconTrash, IconX } from '@tabler/icons-react'
+import { IconDots, IconPencil, IconPlus, IconTrash } from '@tabler/icons-react'
 import { useTranslations } from 'next-intl'
 import { use, useMemo, useState } from 'react'
 import { ConfirmModal } from '@/components/ConfirmModal'
@@ -152,6 +152,16 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
   )
   const totalWeightedMinutes = Math.round(totalRawMinutes * (plan?.paceMultiplier ?? 1))
 
+  const lockedTrailIds = useMemo(() => {
+    const usedNodeIds = new Set(editDays.flatMap((d) => d.stops.map((s) => s.nodeId)))
+    return new Set(
+      editTrailIds.filter((id) => {
+        const t = HIKING_TRAIL_MAP[id]
+        return t?.nodes.some((n) => usedNodeIds.has(n.id))
+      }),
+    )
+  }, [editTrailIds, editDays])
+
   if (!plan) {
     return <PlanNotFound />
   }
@@ -219,8 +229,6 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
   const trailNames = plan.trailIds
     .map((id) => HIKING_TRAIL_MAP[id]?.name)
     .filter((n): n is string => Boolean(n))
-
-  const availableTrailsToAdd = HIKING_TRAILS.filter((t) => !editTrailIds.includes(t.id))
 
   const displayDays = isEditing ? editDays : plan.days
 
@@ -303,52 +311,25 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
 
         {/* Route chips */}
         {isEditing ? (
-          <div className="flex flex-wrap items-center gap-2">
-            {editTrailIds.map((id) => {
-              const t = HIKING_TRAIL_MAP[id]
-              if (!t) {
-                return null
-              }
-              return (
-                <div
-                  key={id}
-                  className="flex items-center gap-1.5 rounded-full px-3 py-1 cursor-pointer bg-(--mantine-color-stone-1) border border-(--mantine-color-stone-3)"
-                  onClick={() => setEditTrailIds((prev) => prev.filter((tid) => tid !== id))}
-                >
-                  <Text
-                    size="xs"
-                    fw={600}
-                    c="stone.6"
-                  >
-                    {t.name}
-                  </Text>
-                  <IconX
-                    size={12}
-                    color="var(--mantine-color-stone-5)"
-                  />
-                </div>
-              )
-            })}
-            {availableTrailsToAdd.map((t) => (
-              <div
-                key={t.id}
-                className="flex items-center gap-1.5 rounded-full px-2.5 py-1 cursor-pointer border border-dashed border-(--mantine-color-stone-4)"
-                onClick={() => setEditTrailIds((prev) => [...prev, t.id])}
-              >
-                <IconPlus
-                  size={12}
-                  color="var(--mantine-color-stone-5)"
-                />
-                <Text
-                  size="xs"
-                  fw={600}
-                  c="stone.5"
-                >
-                  {t.name}
-                </Text>
-              </div>
-            ))}
-          </div>
+          <MultiSelect
+            data={HIKING_TRAILS.map((tr) => ({
+              value: tr.id,
+              label: tr.name 
+            }))}
+            value={editTrailIds}
+            placeholder={t('planDetail.trailSelect.placeholder')}
+            description={lockedTrailIds.size > 0 ? t('planDetail.trailSelect.lockedHint') : undefined}
+            clearable={false}
+            maxDropdownHeight={240}
+            className="self-start"
+            classNames={{
+              input: 'bg-transparent!',
+            }}
+            onChange={(newIds) => {
+              const locked = editTrailIds.filter((id) => lockedTrailIds.has(id) && !newIds.includes(id))
+              setEditTrailIds([...newIds, ...locked])
+            }}
+          />
         ) : (
           <div className="flex flex-wrap items-center gap-2">
             {trailNames.map((name) => (
