@@ -27,9 +27,9 @@ const CytoscapeComponent = dynamic(
 )
 
 interface Props {
-  trail: Trail
-  showGrid?: boolean
-  gridSize?: number
+  trail: Trail;
+  showGrid?: boolean;
+  gridSize?: number;
 }
 
 export function TrailGraph({ trail, showGrid = false, gridSize = 40 }: Props) {
@@ -77,13 +77,19 @@ export function TrailGraph({ trail, showGrid = false, gridSize = 40 }: Props) {
     nodeRepulsion: 2000,
     idealEdgeLength: 80,
     relativePlacementConstraints: trail.edges[0] !== undefined
-      ? [{ left: trail.edges[0].from, right: trail.edges[0].to }]
+      ? [{
+        left: trail.edges[0].from,
+        right: trail.edges[0].to 
+      }]
       : [],
   }), [trail])
 
   const elements = useMemo<ElementDefinition[]>(() => [
     ...trail.nodes.map((node) => ({
-      data: { id: node.id, label: node.name },
+      data: {
+        id: node.id,
+        label: node.name 
+      },
     })),
     ...trail.edges.map((edge) => ({
       data: {
@@ -137,7 +143,10 @@ export function TrailGraph({ trail, showGrid = false, gridSize = 40 }: Props) {
           cyRef.current = cy
           cy.layout(layoutConfig as cytoscape.LayoutOptions).run()
         }}
-        style={{ width: '100%', height: '100%' }}
+        style={{
+          width: '100%',
+          height: '100%' 
+        }}
       />
     </div>
   )
