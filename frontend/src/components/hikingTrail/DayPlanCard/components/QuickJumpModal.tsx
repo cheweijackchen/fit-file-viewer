@@ -37,6 +37,7 @@ export function QuickJumpModal({ opened, onClose, onConfirm, nodes, currentNodeI
 
   return (
     <Modal
+      centered
       opened={opened}
       title="Jump to..."
       onClose={handleClose}
