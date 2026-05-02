@@ -1,6 +1,6 @@
 'use client'
 
-import { Loader, SegmentedControl, Select, Text, Title } from '@mantine/core'
+import { Button, Group, Loader, SegmentedControl, Select, Text, Title } from '@mantine/core'
 import type { ElementDefinition, StylesheetStyle } from 'cytoscape'
 import dynamic from 'next/dynamic'
 import { useMemo, useRef, useState } from 'react'
@@ -127,6 +127,7 @@ export default function DemoTrailGraph() {
   const [selectedLayout, setSelectedLayout] = useState('dagre')
   const [selectedTrailId, setSelectedTrailId] = useState(HIKING_TRAILS[0].id)
   const cyRef = useRef<cytoscape.Core | null>(null)
+  const importInputRef = useRef<HTMLInputElement>(null)
 
   const selectedTrail = HIKING_TRAIL_MAP[selectedTrailId]
   const activeLayoutConfigs: Record<string, object> = useMemo(() => {
@@ -182,6 +183,59 @@ export default function DemoTrailGraph() {
     setSelectedTrailId(value)
   }
 
+  function handleExport() {
+    const cy = cyRef.current
+    if (!cy) {
+      return
+    }
+    const positions: Record<string, { x: number; y: number; }> = {}
+    cy.nodes().forEach(node => {
+      positions[node.id()] = node.position()
+    })
+    const blob = new Blob([JSON.stringify({
+      trailId: selectedTrailId,
+      positions 
+    }, null, 2)], { type: 'application/json' })
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url
+    a.download = `${selectedTrailId}-positions.json`
+    a.click()
+    URL.revokeObjectURL(url)
+  }
+
+  function handleImportClick() {
+    importInputRef.current?.click()
+  }
+
+  function handleImportFile(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0]
+    if (!file) {
+      return
+    }
+    const reader = new FileReader()
+    reader.onload = (ev) => {
+      try {
+        const json = JSON.parse(ev.target?.result as string) as { positions: Record<string, { x: number; y: number; }>; }
+        const cy = cyRef.current
+        if (!cy) {
+          return
+        }
+        cy.nodes().forEach(node => {
+          const pos = json.positions[node.id()]
+          if (pos) {
+            node.position(pos)
+          }
+        })
+        cy.fit()
+      } catch {
+        alert('Invalid JSON file')
+      }
+    }
+    reader.readAsText(file)
+    e.target.value = ''
+  }
+
   return (
     <div className="flex flex-col gap-4 p-4">
       <Title order={2}>Trail Graph — {selectedTrail.name}</Title>
@@ -197,6 +251,23 @@ export default function DemoTrailGraph() {
         data={layoutOptions}
         onChange={handleLayoutChange}
       />
+      <Group>
+        <Button
+          variant="default"
+          onClick={handleExport}
+        >Export Positions</Button>
+        <Button
+          variant="default"
+          onClick={handleImportClick}
+        >Import Positions</Button>
+        <input
+          ref={importInputRef}
+          type="file"
+          accept=".json"
+          className="hidden"
+          onChange={handleImportFile}
+        />
+      </Group>
       <div
         className="w-full rounded border border-gray-200"
         style={{ height: 800 }}
