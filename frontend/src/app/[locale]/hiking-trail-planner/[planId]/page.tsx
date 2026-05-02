@@ -1,8 +1,9 @@
 'use client'
 
-import { ActionIcon, Button, Container, Menu, MultiSelect, Text, TextInput } from '@mantine/core'
+import { ActionIcon, Button, Container, Menu, MultiSelect, Text, TextInput, UnstyledButton } from '@mantine/core'
 import { useScrollIntoView } from '@mantine/hooks'
 import { IconDots, IconPencil, IconPlus, IconTrash } from '@tabler/icons-react'
+import clsx from 'clsx'
 import { useTranslations } from 'next-intl'
 import { use, useMemo, useState } from 'react'
 import { ColoredPill } from '@/components/ColoredPill'
@@ -22,7 +23,7 @@ import { PaceCard } from './components/PaceCard'
 import { PlanNotFound } from './components/PlanNotFound'
 import { TripStatsSection } from './components/TripStatsSection'
 
-const SCROLL_OFFSET = 108
+const SCROLL_OFFSET = 90
 
 const TABS = [
   {
@@ -396,7 +397,7 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
 
       {/* ─── Tab Nav ─── */}
       <div
-        className="flex items-center justify-center w-full shrink-0 h-12 bg-(--mantine-color-stone-1) border-b border-(--mantine-color-stone-2) sticky top-[60px] z-10"
+        className="flex items-center justify-center w-full shrink-0 bg-(--mantine-color-stone-1) border-b border-(--mantine-color-stone-2) sticky top-[60px] z-10"
       >
         <div className="flex h-full">
           {tabs.map((tab) => {
@@ -405,20 +406,22 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
               tab.scroll()
             }
             return (
-              <button
+              <UnstyledButton
                 key={tab.id}
-                type="button"
-                className={`flex items-center px-6 h-full cursor-pointer bg-transparent border-0 border-b-2 ${activeTab === tab.id ? 'border-(--mantine-color-stone-9)' : 'border-transparent'}`}
+                pt="4"
+                px="md"
+                className={clsx('border-b-2! hover:bg-(--mantine-color-stone-2)!', 
+                  activeTab === tab.id ? 'border-(--mantine-color-stone-9)!' : 'border-transparent!')}
                 onClick={handleTabClick}
               >
                 <Text
                   size="sm"
                   fw={activeTab === tab.id ? 600 : 400}
-                  c={activeTab === tab.id ? 'stone.9' : 'stone.4'}
+                  c={activeTab === tab.id ? 'stone.9' : 'stone.7'}
                 >
                   {tab.label}
                 </Text>
-              </button>
+              </UnstyledButton>
             )
           })}
         </div>
