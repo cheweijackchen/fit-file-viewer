@@ -1,9 +1,10 @@
 'use client'
 
 import { Loader, useMantineTheme } from '@mantine/core'
+import { useDebouncedValue, useViewportSize } from '@mantine/hooks'
 import type { ElementDefinition, StylesheetStyle } from 'cytoscape'
 import dynamic from 'next/dynamic'
-import { useEffect, useMemo, useRef } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import type { Trail } from '@/model/hikingTrail'
 
 const CytoscapeComponent = dynamic(
@@ -36,6 +37,18 @@ export function TrailGraph({ trail, showGrid = false, gridSize = 40 }: Props) {
   const theme = useMantineTheme()
   const cyRef = useRef<cytoscape.Core | null>(null)
   const containerRef = useRef<HTMLDivElement>(null)
+  const { width } = useViewportSize()
+  const [debouncedWidth] = useDebouncedValue(width, 300)
+  const prevWidthRef = useRef(debouncedWidth)
+  const [shrinkKey, setShrinkKey] = useState(0)
+
+  useEffect(() => {
+    if (debouncedWidth < prevWidthRef.current) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setShrinkKey(k => k + 1)
+    }
+    prevWidthRef.current = debouncedWidth
+  }, [debouncedWidth])
 
   const stylesheet = useMemo<StylesheetStyle[]>(() => [
     {
@@ -135,7 +148,7 @@ export function TrailGraph({ trail, showGrid = false, gridSize = 40 }: Props) {
       style={{ height: 500 }}
     >
       <CytoscapeComponent
-        key={trail.id}
+        key={`${trail.id}-${shrinkKey}`}
         elements={elements}
         stylesheet={stylesheet}
         layout={layoutConfig as cytoscape.LayoutOptions}
