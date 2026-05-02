@@ -1,27 +1,28 @@
 'use client'
 
 import { Badge, CloseButton } from '@mantine/core'
-import type { MantineColor, MantineRadius, MantineSize } from '@mantine/core'
+import type { BadgeVariant, MantineColor, MantineRadius, MantineSize } from '@mantine/core'
 
 interface Props {
   c?: MantineColor;
   color?: MantineColor;
   radius?: MantineRadius;
   size?: MantineSize;
+  variant?: BadgeVariant;
   clearable?: boolean;
   onRemove?: () => void;
   children: React.ReactNode;
 }
 
 export function ColoredPill({
-  c, color, radius = 'xl', size = 'md', clearable = false, onRemove, children,
+  c, color, radius = 'xl', size = 'md', variant = 'filled', clearable = false, onRemove, children,
 }: Props) {
   return (
     <Badge
       color={color}
       c={c}
       radius={radius}
-      variant="light"
+      variant={variant}
       size={size}
       classNames={{ label: 'normal-case' }}
       rightSection={

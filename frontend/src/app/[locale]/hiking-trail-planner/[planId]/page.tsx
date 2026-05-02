@@ -337,7 +337,7 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
             {trailNames.map((name) => (
               <ColoredPill
                 key={name}
-                color="stone"
+                color="stone.2"
                 c="stone.7"
                 size="lg"
               >
