@@ -94,6 +94,7 @@ export function DayPlanCardWrapper({
       onNodeSelect={(nodeId: string) => onSetEditStopIds((prev) => [...prev, nodeId])}
       onUndo={() => onSetEditStopIds((prev) => prev.slice(0, -1))}
       onCompleteRoute={handleCompleteRoute}
+      onRouteExtended={(newStops) => onSetEditStopIds(newStops)}
       onDelete={handleDeleteDay}
     />
   )

@@ -31,6 +31,7 @@ interface Props {
   onNodeSelect?: (nodeId: string) => void;
   onUndo?: () => void;
   onCompleteRoute?: () => void;
+  onRouteExtended?: (newStops: string[]) => void;
 }
 
 const ACCOMMODATION_TYPES = new Set<TrailNodeType>([TrailNodeType.Hut, TrailNodeType.Camp])
@@ -55,6 +56,7 @@ export function DayPlanCard({
   onNodeSelect,
   onUndo,
   onCompleteRoute,
+  onRouteExtended,
 }: Props) {
   const adj = useMemo(() => buildTrailAdjacencyList(trail), [trail])
 
@@ -428,6 +430,7 @@ export function DayPlanCard({
           onNodeSelect={onNodeSelect ?? (() => {})}
           onUndo={onUndo ?? (() => {})}
           onCompleteRoute={onCompleteRoute ?? (() => {})}
+          onRouteExtended={onRouteExtended}
         />
       </div>
     )

@@ -2,6 +2,7 @@ import { IconArrowRight, IconArrowsHorizontal } from '@tabler/icons-react'
 import type { TrailAdjacencyList, TrailNode } from '@/model/hikingTrail'
 import { CurrentNodeCard } from './CurrentNodeCard'
 import { NodeCard } from './NodeCard'
+import { QuickJumpButton } from '../../QuickJumpButton'
 
 export interface LayoutProps {
   adj: TrailAdjacencyList;
@@ -12,6 +13,7 @@ export interface LayoutProps {
   forwardIds: string[];
   edgeTimeLabel: (from: string, to: string) => string;
   onNodeSelect: (nodeId: string) => void;
+  onQuickJump?: () => void;
 }
 
 export function NodeSelectionDesktopLayout({
@@ -22,6 +24,7 @@ export function NodeSelectionDesktopLayout({
   forwardIds,
   edgeTimeLabel,
   onNodeSelect,
+  onQuickJump,
 }: LayoutProps) {
   const currentId = currentNode?.id ?? ''
 
@@ -51,8 +54,9 @@ export function NodeSelectionDesktopLayout({
       </div>
 
       {/* Current node */}
-      <div className="flex flex-1 min-w-0">
+      <div className="flex flex-col gap-2 flex-1 min-w-0">
         <CurrentNodeCard node={currentNode} />
+        {onQuickJump && <QuickJumpButton onClick={onQuickJump} />}
       </div>
 
       {/* arrow-right icon */}

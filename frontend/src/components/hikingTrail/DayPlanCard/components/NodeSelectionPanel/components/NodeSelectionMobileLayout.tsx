@@ -3,6 +3,7 @@ import { CurrentNodeCard } from './CurrentNodeCard'
 import { NodeCard } from './NodeCard'
 import type { LayoutProps } from './NodeSelectionDesktopLayout'
 import { SectionLabel } from './SectionLabel'
+import { QuickJumpButton } from '../../QuickJumpButton'
 
 export function NodeSelectionMobileLayout({
   nodeMap,
@@ -12,6 +13,7 @@ export function NodeSelectionMobileLayout({
   forwardIds,
   edgeTimeLabel,
   onNodeSelect,
+  onQuickJump,
 }: LayoutProps) {
   const currentId = currentNode?.id ?? ''
 
@@ -19,6 +21,7 @@ export function NodeSelectionMobileLayout({
     <div className="flex flex-col gap-2.5 w-full">
       {/* Current node — full width */}
       <CurrentNodeCard node={currentNode} />
+      {onQuickJump && <QuickJumpButton onClick={onQuickJump} />}
 
       {/* Two-col: back | forward */}
       <div className="flex gap-2.5 items-start">

@@ -233,6 +233,7 @@ export default function DemoDayPlanCard() {
             onStartingNodeChange={(id) => setPlanStops([id])}
             onNodeSelect={(id) => setPlanStops((prev) => [...prev, id])}
             onUndo={() => setPlanStops((prev) => (prev.length > 1 ? prev.slice(0, -1) : prev))}
+            onRouteExtended={(newStops) => setPlanStops(newStops)}
             onCompleteRoute={() => {
               notifications.show({
                 message: '路線已完成！',

@@ -2,11 +2,13 @@
 
 import { Alert, Button, Select, Text } from '@mantine/core'
 import { IconAlertTriangle, IconArrowBackUp, IconCheck } from '@tabler/icons-react'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { formatTrailMinutes } from '@/lib/timeFormatter'
+import { applyQuickJump } from '@/lib/trailGraph'
 import type { Trail, TrailAdjacencyList, TrailNode } from '@/model/hikingTrail'
 import classes from './DayPlanForm.module.scss'
 import { NodeSelectionPanel } from './NodeSelectionPanel'
+import { QuickJumpModal } from './QuickJumpModal'
 import { RouteIndicator } from './RouteIndicator'
 
 interface Props {
@@ -22,6 +24,7 @@ interface Props {
   onNodeSelect: (nodeId: string) => void;
   onUndo: () => void;
   onCompleteRoute: () => void;
+  onRouteExtended?: (newStops: string[]) => void;
 }
 
 export function DayPlanForm({
@@ -37,7 +40,10 @@ export function DayPlanForm({
   onNodeSelect,
   onUndo,
   onCompleteRoute,
+  onRouteExtended,
 }: Props) {
+  const [jumpModalOpen, setJumpModalOpen] = useState(false)
+
   const showWarning = weightedMinutes / 60 >= 8
   const hasStops = stopIds.length > 0
   const canUndo = stopIds.length > 1
@@ -167,8 +173,23 @@ export function DayPlanForm({
           nodeMap={nodeMap}
           stopIds={stopIds}
           onNodeSelect={onNodeSelect}
+          onQuickJump={onRouteExtended ? () => setJumpModalOpen(true) : undefined}
         />
       )}
+
+      <QuickJumpModal
+        opened={jumpModalOpen}
+        nodes={trail.nodes}
+        currentNodeId={stopIds[stopIds.length - 1]}
+        onClose={() => setJumpModalOpen(false)}
+        onConfirm={(targetId) => {
+          const newRoute = applyQuickJump(stopIds, targetId, adj)
+          if (newRoute) {
+            onRouteExtended?.(newRoute)
+          }
+          setJumpModalOpen(false)
+        }}
+      />
 
       {/* Footer */}
       <div className="flex items-center gap-2.5">

@@ -12,9 +12,10 @@ interface Props {
   nodeMap: Record<string, TrailNode>;
   stopIds: string[];
   onNodeSelect: (nodeId: string) => void;
+  onQuickJump?: () => void;
 }
 
-export function NodeSelectionPanel({ adj, nodeMap, stopIds, onNodeSelect }: Props) {
+export function NodeSelectionPanel({ adj, nodeMap, stopIds, onNodeSelect, onQuickJump }: Props) {
   const isMobile = useMediaQuery('(max-width: 768px)')
 
   const currentNodeId = stopIds[stopIds.length - 1]!
@@ -42,6 +43,7 @@ export function NodeSelectionPanel({ adj, nodeMap, stopIds, onNodeSelect }: Prop
         forwardIds={forwardIds}
         edgeTimeLabel={edgeTimeLabel}
         onNodeSelect={onNodeSelect}
+        onQuickJump={onQuickJump}
       />
     )
   }
@@ -56,6 +58,7 @@ export function NodeSelectionPanel({ adj, nodeMap, stopIds, onNodeSelect }: Prop
       forwardIds={forwardIds}
       edgeTimeLabel={edgeTimeLabel}
       onNodeSelect={onNodeSelect}
+      onQuickJump={onQuickJump}
     />
   )
 }
