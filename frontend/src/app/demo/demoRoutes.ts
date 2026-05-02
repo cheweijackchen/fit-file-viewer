@@ -59,6 +59,10 @@ export const demoNavLinks = [
       {
         title: 'RouteIndicator',
         link: '/demo/demo-route-indicator',
+      },
+      {
+        title: 'QuickJump',
+        link: '/demo/demo-quick-jump',
       }
     ]
   },
