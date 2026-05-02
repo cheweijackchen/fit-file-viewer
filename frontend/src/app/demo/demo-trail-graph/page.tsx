@@ -1,9 +1,9 @@
 'use client'
 
-import { Button, Group, Loader, SegmentedControl, Select, Text, Title } from '@mantine/core'
+import { Button, Group, Loader, SegmentedControl, Select, Switch, Text, Title } from '@mantine/core'
 import type { ElementDefinition, StylesheetStyle } from 'cytoscape'
 import dynamic from 'next/dynamic'
-import { useMemo, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { HIKING_TRAIL_MAP, HIKING_TRAILS } from '@/constants/hikingTrails'
 
 const CytoscapeComponent = dynamic(
@@ -100,6 +100,8 @@ const layoutConfigs: Record<string, object> = {
   },
 }
 
+const GRID_SIZE = 40
+
 const layoutOptions = [
   {
     label: 'Dagre',
@@ -128,6 +130,9 @@ export default function DemoTrailGraph() {
   const [selectedTrailId, setSelectedTrailId] = useState(HIKING_TRAILS[0].id)
   const cyRef = useRef<cytoscape.Core | null>(null)
   const importInputRef = useRef<HTMLInputElement>(null)
+  const containerRef = useRef<HTMLDivElement>(null)
+  const [showGrid, setShowGrid] = useState(false)
+  const [snapToGrid, setSnapToGrid] = useState(false)
 
   const selectedTrail = HIKING_TRAIL_MAP[selectedTrailId]
   const activeLayoutConfigs: Record<string, object> = useMemo(() => {
@@ -182,6 +187,52 @@ export default function DemoTrailGraph() {
     }
     setSelectedTrailId(value)
   }
+
+  useEffect(() => {
+    const cy = cyRef.current
+    const container = containerRef.current
+    if (!cy || !container) {
+      return
+    }
+    if (!showGrid) {
+      container.style.backgroundImage = ''
+      return
+    }
+    function updateGrid() {
+      const pan = cy!.pan()
+      const zoom = cy!.zoom()
+      const size = GRID_SIZE * zoom
+      container!.style.backgroundSize = `${size}px ${size}px`
+      container!.style.backgroundPosition = `${pan.x}px ${pan.y}px`
+      container!.style.backgroundImage =
+        'linear-gradient(to right, #e9ecef 1px, transparent 1px), linear-gradient(to bottom, #e9ecef 1px, transparent 1px)'
+    }
+    updateGrid()
+    cy.on('zoom pan', updateGrid)
+    return () => {
+      cy.off('zoom pan', updateGrid)
+      container.style.backgroundImage = ''
+    }
+  }, [showGrid])
+
+  useEffect(() => {
+    const cy = cyRef.current
+    if (!cy || !snapToGrid) {
+      return
+    }
+    function snapNode(e: cytoscape.EventObject) {
+      const node = e.target as cytoscape.NodeSingular
+      const pos = node.position()
+      node.position({
+        x: Math.round(pos.x / GRID_SIZE) * GRID_SIZE,
+        y: Math.round(pos.y / GRID_SIZE) * GRID_SIZE,
+      })
+    }
+    cy.on('dragfree', 'node', snapNode)
+    return () => {
+      cy.off('dragfree', 'node', snapNode)
+    }
+  }, [snapToGrid])
 
   function handleExport() {
     const cy = cyRef.current
@@ -267,8 +318,19 @@ export default function DemoTrailGraph() {
           className="hidden"
           onChange={handleImportFile}
         />
+        <Switch
+          checked={showGrid}
+          label="Show Grid"
+          onChange={(e) => setShowGrid(e.currentTarget.checked)}
+        />
+        <Switch
+          checked={snapToGrid}
+          label="Snap to Grid"
+          onChange={(e) => setSnapToGrid(e.currentTarget.checked)}
+        />
       </Group>
       <div
+        ref={containerRef}
         className="w-full rounded border border-gray-200"
         style={{ height: 800 }}
       >
