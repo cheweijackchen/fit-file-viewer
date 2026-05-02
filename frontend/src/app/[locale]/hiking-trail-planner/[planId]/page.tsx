@@ -2,10 +2,11 @@
 
 import { ActionIcon, Button, Container, Menu, Text, TextInput } from '@mantine/core'
 import { useScrollIntoView } from '@mantine/hooks'
-import { IconDots, IconGitFork, IconPencil, IconPlus, IconTrash, IconX } from '@tabler/icons-react'
+import { IconDots, IconPencil, IconPlus, IconTrash, IconX } from '@tabler/icons-react'
 import { useTranslations } from 'next-intl'
 import { use, useMemo, useState } from 'react'
 import { ConfirmModal } from '@/components/ConfirmModal'
+import { TrailGraph } from '@/components/TrailGraph'
 import { HIKING_TRAIL_MAP, HIKING_TRAILS } from '@/constants/hikingTrails'
 import { useLeaveConfirm } from '@/hooks/useLeaveConfirm'
 import { Link, useRouter } from '@/i18n/navigation'
@@ -544,27 +545,11 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
               {t('planDetail.sections.trailNetwork')}
             </Text>
           </div>
-          <div
-            className="flex flex-col items-center justify-center gap-3 w-full rounded-2xl h-80 bg-(--mantine-color-stone-1) border border-(--mantine-color-stone-2)"
-          >
-            <IconGitFork
-              size={40}
-              color="var(--mantine-color-stone-4)"
-            />
-            <Text
-              size="md"
-              fw={600}
-              c="stone.4"
-            >
-              {t('planDetail.trailNetworkPlaceholder.title')}
-            </Text>
-            <Text
-              size="sm"
-              c="stone.3"
-            >
-              {t('planDetail.trailNetworkPlaceholder.comingSoon')}
-            </Text>
-          </div>
+          <TrailGraph
+            trail={trail}
+            showGrid={false}
+            gridSize={40}
+          />
         </Container>
       </div>
 
