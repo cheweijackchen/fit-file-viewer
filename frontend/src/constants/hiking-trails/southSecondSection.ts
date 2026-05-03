@@ -91,6 +91,12 @@ export const southSecondSection: Trail = {
       nodeType: 'fork' 
     },
     {
+      id: 'south-second-section_south-camp',
+      name: '南營地',
+      i18nKey: 'south-second-section.south-camp',
+      nodeType: 'camp' 
+    },
+    {
       id: 'south-second-section_central-gold-hut',
       name: '中央金礦山屋',
       i18nKey: 'south-second-section.central-gold-hut',
@@ -145,9 +151,9 @@ export const southSecondSection: Trail = {
       nodeType: 'camp' 
     },
     {
-      id: 'south-second-section_south-sancha-fork',
-      name: '南段三岔路口',
-      i18nKey: 'south-second-section.south-sancha-fork',
+      id: 'south-second-section_south-three-way-fork',
+      name: '三岔路口',
+      i18nKey: 'south-second-section.south-three-way-fork',
       nodeType: 'fork' 
     },
     {
@@ -290,8 +296,14 @@ export const southSecondSection: Trail = {
     },
     {
       id: 'south-second-section_xiangyang-fork',
-      name: '向陽三岔路口',
+      name: '三岔路口',
       i18nKey: 'south-second-section.xiangyang-fork',
+      nodeType: 'fork' 
+    },
+    {
+      id: 'south-second-section_xiangyang-east-fork',
+      name: '岔路口',
+      i18nKey: 'south-second-section.xiangyang-east-fork',
       nodeType: 'fork' 
     },
     {
@@ -332,13 +344,13 @@ export const southSecondSection: Trail = {
     },
     // 樂樂山屋 <-> 觀高工作站 & 觀高坪
     {
-      from: 'global_lele-hut',
+      from: 'global_guangao-ping',
       to: 'global_guangao-station',
       minutes: 10
     },
     {
       from: 'global_guangao-station',
-      to: 'global_lele-hut',
+      to: 'global_guangao-ping',
       minutes: 10
     },
     {
@@ -421,22 +433,22 @@ export const southSecondSection: Trail = {
     {
       from: 'south-second-section_central-gold-fork',
       to: 'south-second-section_laonong-river',
-      minutes: 20
-    },
-    {
-      from: 'south-second-section_laonong-river',
-      to: 'south-second-section_central-gold-fork',
       minutes: 15
     },
     {
       from: 'south-second-section_laonong-river',
+      to: 'south-second-section_central-gold-fork',
+      minutes: 20
+    },
+    {
+      from: 'south-second-section_laonong-river',
       to: 'south-second-section_ridge-trail',
-      minutes: 55
+      minutes: 105
     },
     {
       from: 'south-second-section_ridge-trail',
       to: 'south-second-section_laonong-river',
-      minutes: 105
+      minutes: 55
     },
     {
       from: 'south-second-section_ridge-trail',
@@ -522,6 +534,16 @@ export const southSecondSection: Trail = {
       minutes: 70
     },
     {
+      from: 'south-second-section_south-camp',
+      to: 'south-second-section_dashuiku-hut',
+      minutes: 70
+    },
+    {
+      from: 'south-second-section_dashuiku-hut',
+      to: 'south-second-section_south-camp',
+      minutes: 70
+    },
+    {
       from: 'south-second-section_dashuiku-hut',
       to: 'mountain_south-dashuiku-mountain',
       minutes: 60
@@ -534,13 +556,13 @@ export const southSecondSection: Trail = {
     // 南大水窟山 <-> 老濃溪底營地 <-> 四岔路口
     {
       from: 'mountain_south-dashuiku-mountain',
-      to: 'south-second-section_laonong-river-bottom-camp',
-      minutes: 70
+      to: 'south-second-section_south-three-way-fork',
+      minutes: 110
     },
     {
-      from: 'south-second-section_laonong-river-bottom-camp',
+      from: 'south-second-section_south-three-way-fork',
       to: 'mountain_south-dashuiku-mountain',
-      minutes: 110
+      minutes: 140
     },
     {
       from: 'south-second-section_laonong-river-bottom-camp',
@@ -552,130 +574,140 @@ export const southSecondSection: Trail = {
       to: 'south-second-section_laonong-river-bottom-camp',
       minutes: 55
     },
+    {
+      from: 'south-second-section_laonong-river-bottom-camp',
+      to: 'south-second-section_south-three-way-fork',
+      minutes: 130
+    },
+    {
+      from: 'south-second-section_south-three-way-fork',
+      to: 'south-second-section_laonong-river-bottom-camp',
+      minutes: 95
+    },
     // 四岔路口 <-> 南段三岔路口 <-> 黑水塘 <-> 尖山登山口
     {
       from: 'south-second-section_four-way-fork',
-      to: 'south-second-section_south-sancha-fork',
-      minutes: 50
+      to: 'south-second-section_south-camp',
+      minutes: 55
     },
     {
-      from: 'south-second-section_south-sancha-fork',
+      from: 'south-second-section_south-camp',
       to: 'south-second-section_four-way-fork',
-      minutes: 90
+      minutes: 55
     },
     {
-      from: 'south-second-section_south-sancha-fork',
+      from: 'south-second-section_south-three-way-fork',
       to: 'south-second-section_black-water-pond',
-      minutes: 7
-    },
-    {
-      from: 'south-second-section_black-water-pond',
-      to: 'south-second-section_south-sancha-fork',
       minutes: 5
     },
     {
       from: 'south-second-section_black-water-pond',
+      to: 'south-second-section_south-three-way-fork',
+      minutes: 7
+    },
+    {
+      from: 'south-second-section_black-water-pond',
       to: 'south-second-section_jianshan-trailhead',
-      minutes: 95
+      minutes: 120
     },
     {
       from: 'south-second-section_jianshan-trailhead',
       to: 'south-second-section_black-water-pond',
-      minutes: 120
+      minutes: 95
     },
     // 尖山登山口 <-> 達芬尖山
     {
       from: 'south-second-section_jianshan-trailhead',
       to: 'mountain_dafunjian-mountain',
-      minutes: 10
+      minutes: 20
     },
     {
       from: 'mountain_dafunjian-mountain',
       to: 'south-second-section_jianshan-trailhead',
-      minutes: 20
+      minutes: 10
     },
     // 尖山登山口 <-> 塔芬谷山屋 <-> 塔芬山 <-> 塔芬池 <-> 轆轆山登山口 <-> 轆轆山屋
     {
       from: 'south-second-section_jianshan-trailhead',
       to: 'south-second-section_tafengu-hut',
-      minutes: 150
-    },
-    {
-      from: 'south-second-section_tafengu-hut',
-      to: 'south-second-section_jianshan-trailhead',
       minutes: 90
     },
     {
       from: 'south-second-section_tafengu-hut',
-      to: 'mountain_tafen-mountain',
-      minutes: 80
+      to: 'south-second-section_jianshan-trailhead',
+      minutes: 150
     },
     {
-      from: 'mountain_tafen-mountain',
-      to: 'south-second-section_tafengu-hut',
+      from: 'south-second-section_tafengu-hut',
+      to: 'mountain_tafen-mountain',
       minutes: 160
     },
     {
       from: 'mountain_tafen-mountain',
+      to: 'south-second-section_tafengu-hut',
+      minutes: 80
+    },
+    {
+      from: 'mountain_tafen-mountain',
       to: 'south-second-section_tafen-pond',
-      minutes: 35
+      minutes: 20
     },
     {
       from: 'south-second-section_tafen-pond',
       to: 'mountain_tafen-mountain',
-      minutes: 20
+      minutes: 35
     },
     {
       from: 'south-second-section_tafen-pond',
       to: 'south-second-section_lulu-trailhead',
-      minutes: 185
-    },
-    {
-      from: 'south-second-section_lulu-trailhead',
-      to: 'south-second-section_tafen-pond',
       minutes: 235
     },
     {
       from: 'south-second-section_lulu-trailhead',
+      to: 'south-second-section_tafen-pond',
+      minutes: 185
+    },
+    {
+      from: 'south-second-section_lulu-trailhead',
       to: 'south-second-section_lulu-hut',
-      minutes: 70
+      minutes: 45
     },
     {
       from: 'south-second-section_lulu-hut',
       to: 'south-second-section_lulu-trailhead',
-      minutes: 45
+      minutes: 70
     },
-    // 轆轆山屋 <-> 轆轆山東峰 <-> 轆轆山
+    // 轆轆山登山口 <-> 轆轆山東峰 <-> 轆轆山
     {
-      from: 'south-second-section_lulu-hut',
+      from: 'south-second-section_lulu-trailhead',
       to: 'mountain_lulu-east-peak',
-      minutes: 20
-    },
-    {
-      from: 'mountain_lulu-east-peak',
-      to: 'south-second-section_lulu-hut',
       minutes: 5
     },
     {
       from: 'mountain_lulu-east-peak',
+      to: 'south-second-section_lulu-trailhead',
+      minutes: 3
+    },
+    {
+      from: 'mountain_lulu-east-peak',
       to: 'mountain_lulu-mountain',
-      minutes: 15
+      minutes: 20
     },
     {
       from: 'mountain_lulu-mountain',
       to: 'mountain_lulu-east-peak',
-      minutes: 3
+      minutes: 15
     },
     // 轆轆山屋 <-> 雲峰東峰營地 <-> 水源 / 雲峰
     {
       from: 'south-second-section_lulu-hut',
       to: 'south-second-section_yun-mountain-fork-camp',
-      minutes: 170
+      minutes: 220
     },
     {
       from: 'south-second-section_yun-mountain-fork-camp',
       to: 'south-second-section_lulu-hut',
-      minutes: 220
+      minutes: 170
     },
     {
       from: 'south-second-section_yun-mountain-fork-camp',
@@ -690,72 +722,102 @@ export const southSecondSection: Trail = {
     {
       from: 'south-second-section_yun-mountain-fork-camp',
       to: 'mountain_yun-peak',
-      minutes: 75
+      minutes: 110
     },
     {
       from: 'mountain_yun-peak',
       to: 'south-second-section_yun-mountain-fork-camp',
-      minutes: 110
+      minutes: 75
     },
     // 雲峰東峰營地 <-> 西北鞍營地 <-> 南雙頭山 <-> 拉庫音溪山屋
     {
       from: 'south-second-section_yun-mountain-fork-camp',
       to: 'south-second-section_northwest-saddle-camp',
-      minutes: 130
-    },
-    {
-      from: 'south-second-section_northwest-saddle-camp',
-      to: 'south-second-section_yun-mountain-fork-camp',
       minutes: 120
     },
     {
       from: 'south-second-section_northwest-saddle-camp',
-      to: 'mountain_nanshuangtou-mountain',
-      minutes: 25
+      to: 'south-second-section_yun-mountain-fork-camp',
+      minutes: 130
     },
     {
-      from: 'mountain_nanshuangtou-mountain',
-      to: 'south-second-section_northwest-saddle-camp',
+      from: 'south-second-section_northwest-saddle-camp',
+      to: 'mountain_nanshuangtou-mountain',
       minutes: 50
     },
     {
       from: 'mountain_nanshuangtou-mountain',
+      to: 'south-second-section_northwest-saddle-camp',
+      minutes: 25
+    },
+    {
+      from: 'mountain_nanshuangtou-mountain',
       to: 'south-second-section_lakuynxi-hut',
-      minutes: 180
+      minutes: 90
     },
     {
       from: 'south-second-section_lakuynxi-hut',
       to: 'mountain_nanshuangtou-mountain',
-      minutes: 90
+      minutes: 180
     },
     // 拉庫音溪山屋 <-> 三叉山登山口 <-> 三叉山 / 新康岔 / 嘉明湖岔
     {
       from: 'south-second-section_lakuynxi-hut',
-      to: 'south-second-section_sancha-mountain-trailhead',
+      to: 'south-second-section_xinkang-fork',
       minutes: 220
     },
     {
-      from: 'south-second-section_sancha-mountain-trailhead',
+      from: 'south-second-section_xinkang-fork',
       to: 'south-second-section_lakuynxi-hut',
+      minutes: 100
+    },
+    {
+      from: 'south-second-section_jiaming-lake-fork',
+      to: 'south-second-section_xinkang-fork',
+      minutes: 220
+    },
+    {
+      from: 'south-second-section_xinkang-fork',
+      to: 'south-second-section_jiaming-lake-fork',
       minutes: 100
     },
     {
       from: 'south-second-section_sancha-mountain-trailhead',
       to: 'mountain_sancha-mountain',
-      minutes: 10
+      minutes: 15
     },
     {
       from: 'mountain_sancha-mountain',
       to: 'south-second-section_sancha-mountain-trailhead',
-      minutes: 20
-    },
-    {
-      from: 'south-second-section_sancha-mountain-trailhead',
-      to: 'south-second-section_xinkang-fork',
       minutes: 10
     },
     {
-      from: 'south-second-section_xinkang-fork',
+      from: 'south-second-section_sancha-mountain-trailhead',
+      to: 'south-second-section_xiangyang-east-fork',
+      minutes: 90
+    },
+    {
+      from: 'south-second-section_xiangyang-east-fork',
+      to: 'south-second-section_sancha-mountain-trailhead',
+      minutes: 120
+    },
+    {
+      from: 'mountain_xiangyang-mountain',
+      to: 'south-second-section_xiangyang-east-fork',
+      minutes: 45
+    },
+    {
+      from: 'south-second-section_xiangyang-east-fork',
+      to: 'mountain_xiangyang-mountain',
+      minutes: 60
+    },
+    {
+      from: 'south-second-section_sancha-mountain-trailhead',
+      to: 'south-second-section_jiaming-lake-fork',
+      minutes: 10
+    },
+    {
+      from: 'south-second-section_jiaming-lake-fork',
       to: 'south-second-section_sancha-mountain-trailhead',
       minutes: 30
     },
@@ -773,42 +835,41 @@ export const southSecondSection: Trail = {
     {
       from: 'south-second-section_jiaming-lake-fork',
       to: 'south-second-section_jiaming-lake',
-      minutes: 20
+      minutes: 15
     },
     {
       from: 'south-second-section_jiaming-lake',
       to: 'south-second-section_jiaming-lake-fork',
+      minutes: 20
+    },
+    {
+      from: 'south-second-section_xiangyang-east-fork',
+      to: 'south-second-section_jiaming-refuge-hut',
       minutes: 15
     },
     {
-      from: 'south-second-section_jiaming-lake-fork',
-      to: 'south-second-section_jiaming-refuge-hut',
-      minutes: 55
-    },
-    {
       from: 'south-second-section_jiaming-refuge-hut',
-      to: 'south-second-section_jiaming-lake-fork',
-      minutes: 45
+      to: 'south-second-section_xiangyang-east-fork',
+      minutes: 15
     },
-    // 三叉山 <-> 避難山屋 (捷徑)
     {
       from: 'mountain_sancha-mountain',
-      to: 'south-second-section_jiaming-refuge-hut',
-      minutes: 35
+      to: 'south-second-section_jiaming-lake-fork',
+      minutes: 10
     },
     {
-      from: 'south-second-section_jiaming-refuge-hut',
+      from: 'south-second-section_jiaming-lake-fork',
       to: 'mountain_sancha-mountain',
-      minutes: 25
+      minutes: 20
     },
     // 避難山屋 <-> 向陽山 <-> 三岔路口 <-> 向陽山屋 <-> 向陽工作站
     {
       from: 'south-second-section_jiaming-refuge-hut',
-      to: 'mountain_xiangyang-mountain',
-      minutes: 60
+      to: 'south-second-section_xiangyang-fork',
+      minutes: 55
     },
     {
-      from: 'mountain_xiangyang-mountain',
+      from: 'south-second-section_xiangyang-fork',
       to: 'south-second-section_jiaming-refuge-hut',
       minutes: 45
     },
