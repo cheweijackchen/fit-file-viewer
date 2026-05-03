@@ -32,9 +32,10 @@ interface Props {
   trail: Trail;
   showGrid?: boolean;
   gridSize?: number;
+  editable?: boolean;
 }
 
-export function TrailGraph({ trail, showGrid = false, gridSize = 40 }: Props) {
+export function TrailGraph({ trail, showGrid = false, gridSize = 40, editable = false }: Props) {
   const theme = useMantineTheme()
   const cyRef = useRef<cytoscape.Core | null>(null)
   const containerRef = useRef<HTMLDivElement>(null)
@@ -133,6 +134,10 @@ export function TrailGraph({ trail, showGrid = false, gridSize = 40 }: Props) {
   ], [trail])
 
   useEffect(() => {
+    cyRef.current?.autoungrabify(!editable)
+  }, [editable])
+
+  useEffect(() => {
     const cy = cyRef.current
     const container = containerRef.current
     if (!cy || !container) {
@@ -172,6 +177,7 @@ export function TrailGraph({ trail, showGrid = false, gridSize = 40 }: Props) {
         layout={layoutConfig as cytoscape.LayoutOptions}
         cy={(cy) => {
           cyRef.current = cy
+          cy.autoungrabify(!editable)
           cy.layout(layoutConfig as cytoscape.LayoutOptions).run()
         }}
         style={{
