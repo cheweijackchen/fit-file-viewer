@@ -1,66 +1,68 @@
 'use client'
 import { Card, Stack, Text } from '@mantine/core'
 import { IconStopwatch, IconTrendingUp, IconTrendingDown, IconHeartbeat, IconRun, IconRulerMeasure, IconFlame, IconBolt } from '@tabler/icons-react'
+import { useTranslations } from 'next-intl'
 import { useFitDataSummary } from '@/hooks/useFitDataSummary'
 import useScreen from '@/hooks/useScreen'
 export function SummarySection() {
   const { summary } = useFitDataSummary()
   const { onMobile } = useScreen()
+  const t = useTranslations('fit-file-viewer')
 
   const cardList = [
     {
       name: 'total-distance',
       icon: IconRulerMeasure,
-      label: 'Total Distance',
+      label: t('summary.totalDistance'),
       value: summary.totalDistance?.value ?? '-',
       unit: summary.totalDistance?.unit
     },
     {
       name: 'total-time',
       icon: IconStopwatch,
-      label: 'Total Time',
+      label: t('summary.totalTime'),
       value: summary.totalTimerTime?.value ?? '-',
       unit: summary.totalTimerTime?.unit
     },
     {
       name: 'average-heart-rate',
       icon: IconHeartbeat,
-      label: 'Avg. Heart Rate',
+      label: t('summary.avgHeartRate'),
       value: summary.averageHeartRate?.value ?? '-',
       unit: summary.averageHeartRate?.unit
     },
     {
       name: 'average-pace',
       icon: IconRun,
-      label: 'Avg. Pace',
+      label: t('summary.avgPace'),
       value: summary.averagePace?.value ?? '-',
       unit: '/km'
     },
     {
       name: 'total-ascend',
       icon: IconTrendingUp,
-      label: 'Total Ascent',
+      label: t('summary.totalAscent'),
       value: summary.totalAscent?.value ?? '-',
       unit: summary.totalAscent?.unit
     },
     {
       name: 'total-descent',
       icon: IconTrendingDown,
-      label: 'Total Descent',
+      label: t('summary.totalDescent'),
       value: summary.totalDescent?.value ?? '-',
       unit: summary.totalDescent?.unit
     },
     {
       name: 'calories',
       icon: IconFlame,
-      label: 'Calories',
+      label: t('summary.calories'),
       value: summary.calories ?? '-',
       unit: 'kcal'
     },
     {
       name: 'power',
       icon: IconBolt,
-      label: 'Avg. Power',
+      label: t('summary.avgPower'),
       value: summary.power ?? '-',
       unit: 'W'
     },

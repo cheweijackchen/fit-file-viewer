@@ -241,6 +241,63 @@
       }
     }
   },
+  "fit-file-viewer": {
+    "banner": {
+      "title": "Fit File Viewer",
+      "heading": "Analyze and Visualize",
+      "headingLine2": "Your Activity Data",
+      "description": "A reliable tool for analyzing and visualizing your activity data. View detailed metrics, track performance, and explore your workouts with precision and clarity."
+    },
+    "header": {
+      "uploadNewFile": "Upload New File"
+    },
+    "summary": {
+      "totalDistance": "Total Distance",
+      "totalTime": "Total Time",
+      "avgHeartRate": "Avg. Heart Rate",
+      "avgPace": "Avg. Pace",
+      "totalAscent": "Total Ascent",
+      "totalDescent": "Total Descent",
+      "calories": "Calories",
+      "avgPower": "Avg. Power"
+    },
+    "upload": {
+      "parsingError": "Parsing Error",
+      "instruction": "Upload your .fit file",
+      "hint": "Drag file here or click to select files, each file should not exceed 5mb."
+    },
+    "altitude": {
+      "title": "Altitude"
+    },
+    "heartRate": {
+      "title": "Heart Rate Zones",
+      "zone1": "Zone 1",
+      "zone2": "Zone 2",
+      "zone3": "Zone 3",
+      "zone4": "Zone 4",
+      "zone5": "Zone 5"
+    },
+    "records": {
+      "title": "Records",
+      "timestamp": "Timestamp",
+      "positionLat": "Position Lat.",
+      "positionLong": "Position Long.",
+      "heartRate": "Heart Rate",
+      "distance": "Distance",
+      "activityType": "Activity Type",
+      "altitude": "Altitude",
+      "enhancedAltitude": "Enhanced Altitude",
+      "enhancedSpeed": "Enhanced Speed",
+      "cadence": "Cadence",
+      "fractionalCadence": "Fractional Cadence",
+      "power": "Power",
+      "showRawData": "Show raw data",
+      "goToPage": "Go to page"
+    },
+    "emptyState": {
+      "noDataFound": "No data found"
+    }
+  },
   "not-found": {
     "title": "Nothing to see here",
     "description": "Page you are trying to open does not exist. You may have mistyped the address, or the page has been moved to another URL. If you think this is an error contact support.",

@@ -241,6 +241,63 @@
       }
     }
   },
+  "fit-file-viewer": {
+    "banner": {
+      "title": "Fit 檔案檢視器",
+      "heading": "分析並視覺化",
+      "headingLine2": "您的活動資料",
+      "description": "一款可靠的分析與視覺化工具，完整呈現您的活動資料。查看詳細指標、追蹤表現，並以精確清晰的方式探索您的訓練紀錄。"
+    },
+    "header": {
+      "uploadNewFile": "上傳新檔案"
+    },
+    "summary": {
+      "totalDistance": "總距離",
+      "totalTime": "總時間",
+      "avgHeartRate": "平均心率",
+      "avgPace": "平均配速",
+      "totalAscent": "總爬升",
+      "totalDescent": "總下降",
+      "calories": "卡路里",
+      "avgPower": "平均功率"
+    },
+    "upload": {
+      "parsingError": "解析錯誤",
+      "instruction": "上傳您的 .fit 檔案",
+      "hint": "拖曳檔案至此或點擊選取，每個檔案不得超過 5MB。"
+    },
+    "altitude": {
+      "title": "海拔"
+    },
+    "heartRate": {
+      "title": "心率區間",
+      "zone1": "區間 1",
+      "zone2": "區間 2",
+      "zone3": "區間 3",
+      "zone4": "區間 4",
+      "zone5": "區間 5"
+    },
+    "records": {
+      "title": "記錄",
+      "timestamp": "時間戳記",
+      "positionLat": "緯度",
+      "positionLong": "經度",
+      "heartRate": "心率",
+      "distance": "距離",
+      "activityType": "活動類型",
+      "altitude": "海拔",
+      "enhancedAltitude": "增強海拔",
+      "enhancedSpeed": "增強速度",
+      "cadence": "步頻",
+      "fractionalCadence": "小數步頻",
+      "power": "功率",
+      "showRawData": "顯示原始資料",
+      "goToPage": "前往頁面"
+    },
+    "emptyState": {
+      "noDataFound": "找不到資料"
+    }
+  },
   "not-found": {
     "title": "這裡沒有東西",
     "description": "你嘗試開啟的頁面不存在。可能是網址輸入錯誤，或頁面已移至其他位置。如果你認為這是錯誤，請聯絡客服。",
