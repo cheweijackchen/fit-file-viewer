@@ -4,8 +4,6 @@ import clsx from 'clsx'
 import maplibregl from 'maplibre-gl'
 import type { Map } from 'maplibre-gl'
 import { useRef, useEffect, useState } from 'react'
-import { TrackLayer } from '@/components/VectorMap/TrackLayer'
-import { TrackPopupLayer } from '@/components/VectorMap/TrackPopupLayer'
 import { type BaseMapMode, LAYER_WAYPOINTS_HALO, VECTOR_STYLE_URL } from '@/constants/vectorMap'
 import { useTrackFitBounds } from '@/hooks/useTrackFitBounds'
 import { useTrackPlayback } from '@/hooks/useTrackPlayback'
@@ -17,22 +15,24 @@ import {
 } from '@/lib/baseMap'
 import type { ParsedTrack } from '@/model/gpx'
 
-import { MapControlPanel } from './MapControlPanel'
-import { MapOptionsPanel } from './MapOptionsPanel'
-import styles from './MapView.module.scss'
-import { PlaybackBar } from './PlaybackBar'
-import { PlaybackButton } from './PlaybackButton'
-import { PlaybackPositionLayer } from './PlaybackPositionLayer'
-import { TerrainToggle } from './TerrainToggle'
-import { useMapControlTooltip } from './useMapControlTooltip'
-import { WaypointsLayer } from './WaypointsLayer'
+import { MapControlPanel } from './components/MapControlPanel'
+import { MapOptionsPanel } from './components/MapOptionsPanel'
+import { PlaybackBar } from './components/PlaybackBar'
+import { PlaybackButton } from './components/PlaybackButton'
+import { PlaybackPositionLayer } from './components/PlaybackPositionLayer'
+import { TerrainToggle } from './components/TerrainToggle'
+import { TrackLayer } from './components/TrackLayer'
+import { TrackPopupLayer } from './components/TrackPopupLayer'
+import { WaypointsLayer } from './components/WaypointsLayer'
+import { useMapControlTooltip } from './hooks/useMapControlTooltip'
+import styles from './VectorMap.module.scss'
 
 interface Props {
   track: ParsedTrack | null;
   highlightedIndex: number | null;
 }
 
-export function MapView({ track, highlightedIndex }: Props) {
+export function VectorMap({ track, highlightedIndex }: Props) {
   const containerRef = useRef<HTMLDivElement>(null)
   const wrapperRef = useRef<HTMLDivElement>(null)
   const [map, setMap] = useState<Map | null>(null)
