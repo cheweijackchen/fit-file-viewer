@@ -37,10 +37,12 @@ const stylesheet: StylesheetStyle[] = [
   {
     selector: 'node',
     style: {
-      shape: 'rectangle',
+      shape: 'round-rectangle',
       label: 'data(label)',
       'text-valign': 'center',
       'text-halign': 'center',
+      width: '80px',
+      height: '20px',
       padding: '8px',
       'font-size': '12px',
       'background-color': '#e7f5ff',

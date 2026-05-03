@@ -54,10 +54,12 @@ export function TrailGraph({ trail, showGrid = false, gridSize = 40 }: Props) {
     {
       selector: 'node',
       style: {
-        shape: 'rectangle',
+        shape: 'round-rectangle',
         label: 'data(label)',
         'text-valign': 'center',
         'text-halign': 'center',
+        width: '80px',
+        height: '20px',
         padding: '8px',
         'font-size': '12px',
         'background-color': theme.colors.yellow[1],
