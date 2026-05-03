@@ -34,6 +34,10 @@
         "hikingTrailPlanner": {
           "title": "登山路線規劃",
           "description": "規劃多日路線、估算行程配速，並視覺化路線連結"
+        },
+        "trailMap": {
+          "title": "登山地圖",
+          "description": "在互動式地圖上檢視並探索你的 GPX 軌跡"
         }
       }
     },

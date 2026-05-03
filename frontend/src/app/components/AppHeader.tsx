@@ -15,7 +15,7 @@ import {
   UnstyledButton,
 } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
-import { IconChevronDown, IconFileAnalytics, IconMountain, IconRoute } from '@tabler/icons-react'
+import { IconChevronDown, IconFileAnalytics, IconMap, IconMountain, IconRoute } from '@tabler/icons-react'
 import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 import { LanguageSwitcher } from '@/components/LanguageSwitcher'
@@ -48,6 +48,12 @@ export function AppHeader() {
       title: t('header.toolsDropdown.hikingTrailPlanner.title'),
       description: t('header.toolsDropdown.hikingTrailPlanner.description'),
       href: '/hiking-trail-planner',
+    },
+    {
+      icon: IconMap,
+      title: t('header.toolsDropdown.trailMap.title'),
+      description: t('header.toolsDropdown.trailMap.description'),
+      href: '/map',
     },
   ]
 
