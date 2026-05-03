@@ -116,7 +116,7 @@ function computeBounds(tracks: TrackData[]): LatLngBounds {
   return bounds
 }
 
-export default function FitTrackMap({
+export function FitTrackMap({
   className,
   tracks,
   defaultZoom = DEFAULT_ZOOM,

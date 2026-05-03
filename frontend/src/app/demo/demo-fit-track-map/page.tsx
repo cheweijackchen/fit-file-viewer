@@ -2,9 +2,9 @@
 
 import { Card, Stack, Title } from '@mantine/core'
 import dynamic from 'next/dynamic'
-import type { TrackData } from '@/components/Map/FitTrackMap'
+import type { TrackData } from '@/components/FitTrackMap'
 
-const FitTrackMap = dynamic(() => import('@/components/Map/FitTrackMap'), { ssr: false })
+const FitTrackMap = dynamic(() => import('@/components/FitTrackMap').then((mod) => mod.FitTrackMap), { ssr: false })
 
 const mockTrack: TrackData = {
   id: 'demo-track',

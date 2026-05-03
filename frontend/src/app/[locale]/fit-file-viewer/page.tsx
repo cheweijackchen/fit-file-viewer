@@ -11,7 +11,7 @@ import { useFitDataStore } from '@/store/app/useFitDataStore'
 import { Banner } from './components/Banner'
 import { SummarySection } from './components/SummarySection'
 
-const MapNoSSR = dynamic(() => import('@/components/Map/FitTrackMap'), {
+const MapNoSSR = dynamic(() => import('@/components/FitTrackMap').then((mod) => mod.FitTrackMap), {
   ssr: false,
   loading: () => (
     <Card
