@@ -1,10 +1,11 @@
 'use client'
 
 import { ActionIcon, Group, Menu, Stack, Text } from '@mantine/core'
+import { Image as MantineImage } from '@mantine/core'
 import { IconDotsVertical, IconEye, IconPencil, IconTrash } from '@tabler/icons-react'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
-import Image from 'next/image'
+import NextImage from 'next/image'
 import mountainImage from '@/assets/mono-alpine-simplified-v2.webp'
 import { HIKING_TRAIL_MAP } from '@/constants/hikingTrails'
 import type { HikingPlan } from '@/model/hikingTrail'
@@ -29,13 +30,27 @@ export function TripCard({ plan, onClick, onView, onEdit, onDelete }: Props) {
       onClick={onClick}
     >
       <div className="relative shrink-0 h-[140px]">
-        <Image
-          fill
-          src={mountainImage}
-          alt={plan.name}
-          style={{ objectFit: 'cover' }}
-          sizes="(max-width: 768px) 100vw, 400px"
-        />
+        {plan.coverPhoto
+          ? (
+        // MantineImage handles base64 data: URLs; Next/Image cannot optimize them
+            <MantineImage
+              src={plan.coverPhoto}
+              alt={plan.name}
+              h={140}
+              w="100%"
+              fit="cover"
+            />
+          )
+          : (
+        // NextImage for the static asset — enables optimization, lazy loading, WebP
+            <NextImage
+              fill
+              src={mountainImage}
+              alt={plan.name}
+              style={{ objectFit: 'cover' }}
+              sizes="(max-width: 768px) 100vw, 400px"
+            />
+          )}
       </div>
 
       <Stack
