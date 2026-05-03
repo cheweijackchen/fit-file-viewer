@@ -16,6 +16,7 @@ import { formatTrailMinutes } from '@/lib/timeFormatter'
 import { buildTrailAdjacencyList, calculatePathTime } from '@/lib/trailGraph'
 import type { DayPlan, Trail, TrailEdge, TrailNode } from '@/model/hikingTrail'
 import { useHikingTrailActions, useHikingTrailStore } from '@/store/hikingTrail/useHikingTrailStore'
+import { CoverPhotoCard } from './components/CoverPhotoCard'
 import { DayPlanCardWrapper } from './components/DayPlanCardWrapper'
 import { EditToolbar } from './components/EditToolbar'
 import { PaceAlert } from './components/PaceAlert'
@@ -53,7 +54,7 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
   const t = useTranslations('hiking-trail-planner')
 
   const plans = useHikingTrailStore.use.plans()
-  const { updatePlan, deletePlan } = useHikingTrailActions()
+  const { updatePlan, deletePlan, setCoverPhoto } = useHikingTrailActions()
   const plan = plans.find((p) => p.id === planId)
 
   const [isEditing, setIsEditing] = useState(() => edit === 'true')
@@ -506,6 +507,12 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
             />
             <PaceAlert paceMultiplier={isEditing ? editPaceMultiplier : plan.paceMultiplier} />
           </div>
+          <CoverPhotoCard
+            coverPhoto={plan.coverPhoto}
+            isEditing={isEditing}
+            onUpload={(photo) => setCoverPhoto(planId, photo)}
+            onRemove={() => setCoverPhoto(planId, undefined)}
+          />
         </div>
       </Container>
 

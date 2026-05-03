@@ -201,7 +201,14 @@
         "itinerary": "ITINERARY",
         "trailNetwork": "TRAIL NETWORK",
         "tripStats": "TRIP STATS",
-        "pace": "PACE"
+        "pace": "PACE",
+        "coverPhoto": "COVER PHOTO"
+      },
+      "coverPhoto": {
+        "placeholder": "Add a cover photo",
+        "alt": "Trip cover photo",
+        "change": "Change photo",
+        "remove": "Remove"
       },
       "tripStats": {
         "rawTime": "Total Time",

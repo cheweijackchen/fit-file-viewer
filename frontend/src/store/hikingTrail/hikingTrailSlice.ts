@@ -7,6 +7,7 @@ export interface HikingTrailSlice {
     createPlan: (name: string, trailIds: string[]) => string;
     updatePlan: (planId: string, plan: HikingPlan) => void;
     deletePlan: (planId: string) => void;
+    setCoverPhoto: (planId: string, photo: string | undefined) => void;
   };
 }
 
@@ -35,6 +36,15 @@ const createHikingTrailSlice: StateCreator<HikingTrailSlice> = (set) => ({
     deletePlan: (planId) =>
       set((state) => ({
         plans: state.plans.filter((p) => p.id !== planId),
+      })),
+    setCoverPhoto: (planId, photo) =>
+      set((state) => ({
+        plans: state.plans.map((p) =>
+          p.id === planId ? {
+            ...p,
+            coverPhoto: photo 
+          } : p,
+        ),
       })),
   },
 })

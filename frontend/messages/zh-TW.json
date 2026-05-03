@@ -201,7 +201,14 @@
         "itinerary": "ITINERARY",
         "trailNetwork": "TRAIL NETWORK",
         "tripStats": "TRIP STATS",
-        "pace": "PACE"
+        "pace": "PACE",
+        "coverPhoto": "封面照片"
+      },
+      "coverPhoto": {
+        "placeholder": "新增封面照片",
+        "alt": "行程封面照片",
+        "change": "更換照片",
+        "remove": "移除"
       },
       "tripStats": {
         "rawTime": "總時間",

@@ -47,6 +47,7 @@ export interface HikingPlan {
   trailIds: string[];
   paceMultiplier: number;
   days: DayPlan[];
+  coverPhoto?: string;
   createdAt: number;
   updatedAt: number;
 }
