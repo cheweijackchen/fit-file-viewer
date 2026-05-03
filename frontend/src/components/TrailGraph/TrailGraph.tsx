@@ -5,6 +5,7 @@ import { useDebouncedValue, useViewportSize } from '@mantine/hooks'
 import type { ElementDefinition, StylesheetStyle } from 'cytoscape'
 import dynamic from 'next/dynamic'
 import { useEffect, useMemo, useRef, useState } from 'react'
+import { getTrailPositions } from '@/constants/hiking-trails/positions'
 import type { Trail } from '@/model/hikingTrail'
 
 const CytoscapeComponent = dynamic(
@@ -84,20 +85,35 @@ export function TrailGraph({ trail, showGrid = false, gridSize = 40 }: Props) {
     },
   ], [theme])
 
-  const layoutConfig = useMemo(() => ({
-    name: 'fcose',
-    animate: false,
-    quality: 'proof',
-    nodeSeparation: 100,
-    nodeRepulsion: 2000,
-    idealEdgeLength: 80,
-    relativePlacementConstraints: trail.edges[0] !== undefined
-      ? [{
-        left: trail.edges[0].from,
-        right: trail.edges[0].to 
-      }]
-      : [],
-  }), [trail])
+  const positions = useMemo(() => getTrailPositions(trail.id), [trail.id])
+
+  const layoutConfig = useMemo(() => {
+    if (positions !== undefined) {
+      return {
+        name: 'preset' as const,
+        positions: (node: cytoscape.NodeSingular) => positions[node.id()] ?? {
+          x: 0,
+          y: 0,
+        },
+        fit: true,
+        padding: 40,
+      }
+    }
+    return {
+      name: 'fcose',
+      animate: false,
+      quality: 'proof',
+      nodeSeparation: 100,
+      nodeRepulsion: 2000,
+      idealEdgeLength: 80,
+      relativePlacementConstraints: trail.edges[0] !== undefined
+        ? [{
+          left: trail.edges[0].from,
+          right: trail.edges[0].to,
+        }]
+        : [],
+    }
+  }, [trail, positions])
 
   const elements = useMemo<ElementDefinition[]>(() => [
     ...trail.nodes.map((node) => ({
