@@ -14,6 +14,7 @@ interface Props {
   editPaceMultiplier: number;
   planPaceMultiplier: number;
   prevDayLastStopId?: string;
+  showDuration?: boolean;
   onEnterEditMode: () => void;
   onSetEditingDayId: Dispatch<SetStateAction<string | null>>;
   onSetEditStopIds: Dispatch<SetStateAction<string[]>>;
@@ -30,6 +31,7 @@ export function DayPlanCardWrapper({
   editPaceMultiplier,
   planPaceMultiplier,
   prevDayLastStopId,
+  showDuration,
   onEnterEditMode,
   onSetEditingDayId,
   onSetEditStopIds,
@@ -80,6 +82,7 @@ export function DayPlanCardWrapper({
     <DayPlanCard
       showOptions={isEditing}
       editDisabled={isOtherDayEditing}
+      showDuration={showDuration}
       dayPlan={day}
       dayIndex={dayIndex}
       trail={trail}

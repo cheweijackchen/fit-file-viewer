@@ -183,6 +183,8 @@
       "myTrips": "My Trips",
       "edit": "Edit",
       "delete": "Delete",
+      "settings": "Settings",
+      "showDuration": "Show time between locations",
       "addDay": "Add Day",
       "tabs": {
         "itinerary": "Itinerary",

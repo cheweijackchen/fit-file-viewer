@@ -19,6 +19,7 @@ interface Props {
   paceMultiplier: number;
   mode: 'view' | 'edit';
   showOptions?: boolean;
+  showDuration?: boolean;
   editDisabled?: boolean;
   onEdit?: () => void;
   onCancelEdit?: () => void;
@@ -45,6 +46,7 @@ export function DayPlanCard({
   paceMultiplier,
   mode,
   showOptions,
+  showDuration,
   editDisabled,
   onEdit,
   onCancelEdit,
@@ -175,6 +177,8 @@ export function DayPlanCard({
     <RouteIndicator
       stopIds={committedStopIds}
       nodeMap={nodeMap}
+      showDuration={showDuration}
+      adj={adj}
     />
   )
 

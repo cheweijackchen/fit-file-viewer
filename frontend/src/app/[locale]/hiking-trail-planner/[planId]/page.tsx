@@ -1,8 +1,8 @@
 'use client'
 
-import { ActionIcon, Button, Container, Menu, MultiSelect, Text, TextInput, UnstyledButton } from '@mantine/core'
+import { Button, Container, MultiSelect, Text, TextInput, UnstyledButton } from '@mantine/core'
 import { useScrollIntoView } from '@mantine/hooks'
-import { IconDots, IconPencil, IconPlus, IconTrash } from '@tabler/icons-react'
+import { IconPlus } from '@tabler/icons-react'
 import clsx from 'clsx'
 import { useTranslations } from 'next-intl'
 import { use, useMemo, useState } from 'react'
@@ -21,6 +21,7 @@ import { DayPlanCardWrapper } from './components/DayPlanCardWrapper'
 import { EditToolbar } from './components/EditToolbar'
 import { PaceAlert } from './components/PaceAlert'
 import { PaceCard } from './components/PaceCard'
+import { PlanDetailMenu } from './components/PlanDetailMenu'
 import { PlanNotFound } from './components/PlanNotFound'
 import { TripStatsSection } from './components/TripStatsSection'
 
@@ -76,6 +77,7 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
   const [editingDayId, setEditingDayId] = useState<string | null>(null)
   const [editStopIds, setEditStopIds] = useState<string[]>([])
   const [deleteConfirmOpen, setDeleteConfirmOpen] = useState(false)
+  const [showDuration, setShowDuration] = useState(false)
 
   const { modalProps: leaveModalProps } = useLeaveConfirm({
     shouldBlock: isEditing,
@@ -277,39 +279,12 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
               {plan.name}
             </Text>
           </div>
-          <Menu
-            withinPortal
-            position="bottom-end"
-          >
-            <Menu.Target>
-              <ActionIcon
-                size={32}
-                radius="xl"
-                color="stone.1"
-                c="stone.6"
-              >
-                <IconDots size={16} />
-              </ActionIcon>
-            </Menu.Target>
-            <Menu.Dropdown>
-              <Menu.Item
-                c="bright"
-                color="stone"
-                leftSection={<IconPencil size={14} />}
-                onClick={enterEditMode}
-              >
-                {t('planDetail.edit')}
-              </Menu.Item>
-              <Menu.Divider />
-              <Menu.Item
-                color="red"
-                leftSection={<IconTrash size={14} />}
-                onClick={() => setDeleteConfirmOpen(true)}
-              >
-                {t('planDetail.delete')}
-              </Menu.Item>
-            </Menu.Dropdown>
-          </Menu>
+          <PlanDetailMenu
+            showDuration={showDuration}
+            onEnterEditMode={enterEditMode}
+            onDeleteConfirmOpen={() => setDeleteConfirmOpen(true)}
+            onShowDurationChange={setShowDuration}
+          />
         </div>
 
         {/* Route chips */}
@@ -463,6 +438,7 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
                     editPaceMultiplier={editPaceMultiplier}
                     planPaceMultiplier={plan.paceMultiplier}
                     prevDayLastStopId={prevDayLastStopId}
+                    showDuration={showDuration && !isEditing}
                     onEnterEditMode={enterEditMode}
                     onSetEditingDayId={setEditingDayId}
                     onSetEditStopIds={setEditStopIds}
