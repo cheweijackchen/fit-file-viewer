@@ -159,7 +159,7 @@ export const northFirstSection: Trail = {
     },
     {
       id: 'north-first-section_chungyangjian-hut',
-      name: '中央尖山屋',
+      name: '中央尖溪山屋',
       i18nKey: 'north-first-section.chungyangjian-hut',
       nodeType: 'hut' 
     },
