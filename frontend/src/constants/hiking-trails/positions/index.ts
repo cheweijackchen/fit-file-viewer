@@ -1,10 +1,12 @@
 import type { NodePositions } from '@/model/trailPositions'
 import { northFirstSectionPositions } from './north-first-section-positions'
 import { southSecondSectionPositions } from './south-second-section-positions'
+import { yushanGroupPositions } from './yushan-group-positions'
 
 const TRAIL_POSITIONS_MAP: Record<string, NodePositions> = {
   'south-second-section': southSecondSectionPositions,
   'north-first-section': northFirstSectionPositions,
+  'yushan-group': yushanGroupPositions,
 }
 
 export function getTrailPositions(trailId: string): NodePositions | undefined {
