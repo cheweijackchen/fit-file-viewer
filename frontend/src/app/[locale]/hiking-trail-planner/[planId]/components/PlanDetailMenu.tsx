@@ -60,11 +60,19 @@ export function PlanDetailMenu({
             </Menu.Item>
           </Menu.Target>
           <Menu.Dropdown>
-            <Menu.Item closeMenuOnClick={false}>
+            <Menu.Item 
+              c="bright"
+              color="stone"
+              closeMenuOnClick={false}
+            >
+              {/* onMouseDown: Mantine's click-outside handler fires on mousedown, before onClick.
+                  Both portals are DOM siblings, so the outer menu treats clicks here as outside. */}
               <Switch
                 label={t('planDetail.showDuration')}
                 checked={showDuration}
                 onChange={(e) => onShowDurationChange(e.currentTarget.checked)}
+                onClick={(e) => e.stopPropagation()}
+                onMouseDown={(e) => e.stopPropagation()}
               />
             </Menu.Item>
           </Menu.Dropdown>
