@@ -19,7 +19,8 @@
 |------|------|------|
 | FIT File Viewer | `/fit-file-viewer` | 解析 Garmin FIT / GPX 檔案，顯示心率、海拔、GPS 軌跡 |
 | Peaks Tracker | `/peaks` | 台灣百岳追蹤器，含地圖、清單、進度統計 |
-| Trail Map | `/demo/demo-vector-map` | MapLibre GL 向量地圖，含地形、衛星、軌跡播放（目前為 demo） |
+| Trail Map | `/map` | MapLibre GL 向量地圖，含地形、衛星、GPX 上傳 |
+| Hiking Trail Planner | `/hiking-trail-planner` | 多天登山行程規劃工具，含路網圖、步速估算、IndexedDB 本地儲存 |
 
 ### 功能文件
 
@@ -28,6 +29,7 @@
 - [FIT File Viewer](docs/features/fit-file-viewer.md)
 - [Peaks Tracker](docs/features/peaks-tracker.md)
 - [Trail Map](docs/features/trail-map.md)
+- [Hiking Trail Planner](docs/features/hiking-trail-planner.md)
 
 ---
 
