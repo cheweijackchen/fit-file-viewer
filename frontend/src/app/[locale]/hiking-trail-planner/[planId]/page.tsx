@@ -476,11 +476,11 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
           {isEditing && (
             <Button
               fullWidth
-              variant="default"
+              variant="outline"
               leftSection={<IconPlus size={14} />}
-              c="stone.6"
+              c="stone.7"
+              color="stone.5"
               fw={600}
-              className="rounded-xl border-dashed border-[1.5px] border-(--mantine-color-stone-4) bg-(--mantine-color-stone-1) h-auto py-5 px-4"
               onClick={handleAddDay}
             >
               {t('planDetail.addDay')}
