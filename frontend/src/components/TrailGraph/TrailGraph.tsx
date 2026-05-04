@@ -180,7 +180,7 @@ export function TrailGraph({ trail, showGrid = false, gridSize = 40, editable = 
       container!.style.backgroundSize = `${size}px ${size}px`
       container!.style.backgroundPosition = `${pan.x}px ${pan.y}px`
       container!.style.backgroundImage =
-        'linear-gradient(to right, #e9ecef 1px, transparent 1px), linear-gradient(to bottom, #e9ecef 1px, transparent 1px)'
+        'linear-gradient(to right, #EAE7DF 1px, transparent 1px), linear-gradient(to bottom, #EAE7DF 1px, transparent 1px)'
     }
     updateGrid()
     cyInstance.on('zoom pan', updateGrid)
