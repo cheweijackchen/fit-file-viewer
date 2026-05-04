@@ -2,7 +2,11 @@ import { Box, Stack, Text } from '@mantine/core'
 import { IconMoodSad } from '@tabler/icons-react'
 import classes from './EmptyState.module.scss'
 
-export function EmptyState() {
+interface Props {
+  message?: string;
+}
+
+export function EmptyState({ message = 'No data found' }: Props) {
   return (
     <Stack
       p="md"
@@ -19,7 +23,7 @@ export function EmptyState() {
           strokeWidth={1.5}
         />
       </Box>
-      <Text>No data found</Text>
+      <Text>{message}</Text>
     </Stack>
   )
 }

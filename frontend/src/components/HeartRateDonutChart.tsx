@@ -4,13 +4,31 @@ import { HeartRateZoneAnalyzer } from '@/lib/heartRateZoneAnalyzer'
 import type { ParsedRecord } from '@/model/fitParser'
 import { EmptyState } from './EmptyState'
 
+interface ZoneLabels {
+  zone1: string;
+  zone2: string;
+  zone3: string;
+  zone4: string;
+  zone5: string;
+}
+
+const DEFAULT_ZONE_LABELS: ZoneLabels = {
+  zone1: 'Zone 1',
+  zone2: 'Zone 2',
+  zone3: 'Zone 3',
+  zone4: 'Zone 4',
+  zone5: 'Zone 5',
+}
+
 interface Props {
   restingHeartRate: number;
   maxHeartRate: number;
   records: ParsedRecord[];
+  zoneLabels?: ZoneLabels;
+  emptyMessage?: string;
 }
 
-export function HeartRateDonutChart({ restingHeartRate, maxHeartRate, records }: Props) {
+export function HeartRateDonutChart({ restingHeartRate, maxHeartRate, records, zoneLabels = DEFAULT_ZONE_LABELS, emptyMessage }: Props) {
 
   const analyzer = new HeartRateZoneAnalyzer(restingHeartRate, maxHeartRate)
 
@@ -21,27 +39,27 @@ export function HeartRateDonutChart({ restingHeartRate, maxHeartRate, records }:
   const donutChartData = heartRateStatistics
     ? [
       {
-        name: 'Zone 1',
+        name: zoneLabels.zone1,
         value: heartRateStatistics.data.zone1.percentage,
         color: 'cyan.5'
       },
       {
-        name: 'Zone 2',
+        name: zoneLabels.zone2,
         value: heartRateStatistics.data.zone2.percentage,
         color: 'teal.5'
       },
       {
-        name: 'Zone 3',
+        name: zoneLabels.zone3,
         value: heartRateStatistics.data.zone3.percentage,
         color: 'yellow.4'
       },
       {
-        name: 'Zone 4',
+        name: zoneLabels.zone4,
         value: heartRateStatistics.data.zone4.percentage,
         color: 'orange.5'
       },
       {
-        name: 'Zone 5',
+        name: zoneLabels.zone5,
         value: heartRateStatistics.data.zone5.percentage,
         color: 'red.6'
       },
@@ -89,5 +107,5 @@ export function HeartRateDonutChart({ restingHeartRate, maxHeartRate, records }:
         </Box>
       </Flex>
     )
-    : <EmptyState />
+    : <EmptyState message={emptyMessage} />
 }

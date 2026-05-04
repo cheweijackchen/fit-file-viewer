@@ -1,22 +1,25 @@
 import { Title, Text } from '@mantine/core'
+import { useTranslations } from 'next-intl'
 
 interface Props {
   className: string;
 }
 
 export function Banner({ className }: Props) {
+  const t = useTranslations('fit-file-viewer')
+
   return (
     <div className={className}>
       <Text
         tt="uppercase"
         fw="bold"
         mb="sm"
-      >Fit File Viewer</Text>
+      >{t('banner.title')}</Text>
       <Title className="">
         <span
           style={{ color: 'var(--mantine-color-anchor)' }}
-        >Analyze and Visualize</span>
-        <br /> Your Activity Data
+        >{t('banner.heading')}</span>
+        <br /> {t('banner.headingLine2')}
       </Title>
 
       <Text
@@ -24,9 +27,7 @@ export function Banner({ className }: Props) {
         mt="md"
         className="max-w-150"
       >
-        A reliable tool for analyzing and visualizing your activity data.
-        View detailed metrics, track performance, and explore your workouts
-        with precision and clarity.
+        {t('banner.description')}
       </Text>
     </div>
   )

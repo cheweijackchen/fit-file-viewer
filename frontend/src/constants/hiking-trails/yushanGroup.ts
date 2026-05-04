@@ -90,6 +90,12 @@ export const yushanGroup: Trail = {
       nodeType: 'fork' 
     },
     {
+      id: 'yushan-group_main-north-fork',
+      name: '主北岔路',
+      i18nKey: 'yushan-group.main-north-fork',
+      nodeType: 'fork' 
+    },
+    {
       id: 'mountain_yushan-main-peak',
       name: '玉山主峰',
       i18nKey: 'mountain.yushan-main-peak',
@@ -245,42 +251,42 @@ export const yushanGroup: Trail = {
     {
       from: 'yushan-group_tataka-parking',
       to: 'yushan-group_checkpost',
-      minutes: 10 
+      minutes: 10
     },
     {
       from: 'yushan-group_checkpost',
       to: 'yushan-group_tataka-parking',
-      minutes: 10 
+      minutes: 10
     },
     {
       from: 'yushan-group_checkpost',
-      to: 'yushan-group_tataka-saddle',
-      minutes: 20 
+      to: 'yushan-group_great-hemlock',
+      minutes: 25
     },
     {
-      from: 'yushan-group_tataka-saddle',
+      from: 'yushan-group_great-hemlock',
       to: 'yushan-group_checkpost',
-      minutes: 25 
+      minutes: 20
     },
     {
       from: 'yushan-group_tataka-saddle',
       to: 'yushan-group_great-hemlock',
-      minutes: 25 
+      minutes: 35
     },
     {
       from: 'yushan-group_great-hemlock',
       to: 'yushan-group_tataka-saddle',
-      minutes: 35 
+      minutes: 25 
     },
     {
       from: 'yushan-group_great-hemlock',
       to: 'yushan-group_lulin-hut',
-      minutes: 35 
+      minutes: 35
     },
     {
       from: 'yushan-group_lulin-hut',
       to: 'yushan-group_great-hemlock',
-      minutes: 35 
+      minutes: 35
     },
     
     // 主線路段
@@ -297,12 +303,12 @@ export const yushanGroup: Trail = {
     {
       from: 'yushan-group_monroe-pavilion',
       to: 'yushan-group_front-peak-trailhead',
-      minutes: 30 
+      minutes: 35
     },
     {
       from: 'yushan-group_front-peak-trailhead',
       to: 'yushan-group_monroe-pavilion',
-      minutes: 35 
+      minutes: 30
     },
     {
       from: 'yushan-group_front-peak-trailhead',
@@ -327,185 +333,195 @@ export const yushanGroup: Trail = {
     {
       from: 'yushan-group_west-peak-rest-pavilion',
       to: 'yushan-group_great-precipice',
-      minutes: 50 
-    },
-    {
-      from: 'yushan-group_great-precipice',
-      to: 'yushan-group_west-peak-rest-pavilion',
       minutes: 40 
     },
     {
       from: 'yushan-group_great-precipice',
+      to: 'yushan-group_west-peak-rest-pavilion',
+      minutes: 30 
+    },
+    {
+      from: 'yushan-group_great-precipice',
       to: 'yushan-group_paiyun-lodge',
-      minutes: 45 
+      minutes: 50
     },
     {
       from: 'yushan-group_paiyun-lodge',
       to: 'yushan-group_great-precipice',
-      minutes: 30 
+      minutes: 40
     },
     
     // 排雲至西、主峰
     {
       from: 'yushan-group_paiyun-lodge',
       to: 'mountain_yushan-west-peak',
-      minutes: 70 
+      minutes: 90 
     },
     {
       from: 'mountain_yushan-west-peak',
       to: 'yushan-group_paiyun-lodge',
-      minutes: 90 
+      minutes: 70 
     },
     {
       from: 'yushan-group_paiyun-lodge',
       to: 'yushan-group_main-south-fork',
-      minutes: 50 
+      minutes: 45
     },
     {
       from: 'yushan-group_main-south-fork',
       to: 'yushan-group_paiyun-lodge',
-      minutes: 60 
+      minutes: 30
+    },
+    {
+      from: 'yushan-group_main-north-fork',
+      to: 'yushan-group_main-south-fork',
+      minutes: 50
     },
     {
       from: 'yushan-group_main-south-fork',
+      to: 'yushan-group_main-north-fork',
+      minutes: 90 
+    },
+    {
+      from: 'yushan-group_main-north-fork',
       to: 'mountain_yushan-main-peak',
-      minutes: 45 
+      minutes: 25 
     },
     {
       from: 'mountain_yushan-main-peak',
-      to: 'yushan-group_main-south-fork',
-      minutes: 70 
+      to: 'yushan-group_main-north-fork',
+      minutes: 15 
     },
     {
       from: 'mountain_yushan-main-peak',
       to: 'mountain_yushan-east-peak',
-      minutes: 80 
+      minutes: 80
     },
     {
       from: 'mountain_yushan-east-peak',
       to: 'mountain_yushan-main-peak',
-      minutes: 90 
+      minutes: 90
     },
     
     // 北峰區域
     {
-      from: 'yushan-group_main-south-fork',
+      from: 'yushan-group_main-north-fork',
       to: 'yushan-group_north-peak-saddle',
-      minutes: 15 
+      minutes: 10
     },
     {
       from: 'yushan-group_north-peak-saddle',
-      to: 'yushan-group_main-south-fork',
-      minutes: 25 
+      to: 'yushan-group_main-north-fork',
+      minutes: 20
     },
     {
       from: 'yushan-group_north-peak-saddle',
       to: 'mountain_yushan-north-peak',
-      minutes: 45 
+      minutes: 70
     },
     {
       from: 'mountain_yushan-north-peak',
       to: 'yushan-group_north-peak-saddle',
-      minutes: 70 
+      minutes: 45
     },
     {
       from: 'mountain_yushan-north-peak',
       to: 'mountain_yushan-north-north-peak',
-      minutes: 25 
+      minutes: 25
     },
     {
       from: 'mountain_yushan-north-north-peak',
       to: 'mountain_yushan-north-peak',
-      minutes: 25 
+      minutes: 25
     },
     {
       from: 'yushan-group_north-peak-saddle',
       to: 'yushan-group_laonong-river-camp',
-      minutes: 10 
+      minutes: 80
     },
     {
       from: 'yushan-group_laonong-river-camp',
       to: 'yushan-group_north-peak-saddle',
-      minutes: 20 
+      minutes: 120
     },
     
     // 南峰區域
     {
       from: 'yushan-group_main-south-fork',
       to: 'yushan-group_yuanfeng-hut',
-      minutes: 50 
+      minutes: 70
     },
     {
       from: 'yushan-group_yuanfeng-hut',
       to: 'yushan-group_main-south-fork',
-      minutes: 60 
+      minutes: 60
     },
     {
       from: 'yushan-group_yuanfeng-hut',
       to: 'mountain_sancha-peak',
-      minutes: 30 
+      minutes: 45
     },
     {
       from: 'mountain_sancha-peak',
       to: 'yushan-group_yuanfeng-hut',
-      minutes: 45 
+      minutes: 30
     },
     {
       from: 'mountain_sancha-peak',
       to: 'mountain_yushan-south-peak',
-      minutes: 25 
+      minutes: 25
     },
     {
       from: 'mountain_yushan-south-peak',
       to: 'mountain_sancha-peak',
-      minutes: 25 
+      minutes: 25
     },
     {
       from: 'mountain_yushan-south-peak',
       to: 'mountain_dongxiaonan-mountain',
-      minutes: 70 
+      minutes: 50
     },
     {
       from: 'mountain_dongxiaonan-mountain',
       to: 'mountain_yushan-south-peak',
-      minutes: 50 
+      minutes: 70
     },
     {
       from: 'mountain_yushan-south-peak',
       to: 'mountain_lu-mountain',
-      minutes: 120 
+      minutes: 120
     },
     {
       from: 'mountain_lu-mountain',
       to: 'mountain_yushan-south-peak',
-      minutes: 240 
+      minutes: 240
     },
     {
       from: 'mountain_sancha-peak',
       to: 'mountain_yushan-xiaonan-mountain',
-      minutes: 200 
+      minutes: 150
     },
     {
       from: 'mountain_yushan-xiaonan-mountain',
       to: 'mountain_sancha-peak',
-      minutes: 150 
+      minutes: 200
     },
     {
       from: 'mountain_yushan-xiaonan-mountain',
       to: 'mountain_south-yushan-mountain',
-      minutes: 150 
+      minutes: 100
     },
     {
       from: 'mountain_south-yushan-mountain',
       to: 'mountain_yushan-xiaonan-mountain',
-      minutes: 100 
+      minutes: 150 
     },
     
     // 八通關古道路段
     {
       from: 'yushan-group_laonong-river-camp',
       to: 'yushan-group_batongguan',
-      minutes: 120 
+      minutes: 130
     },
     {
       from: 'yushan-group_batongguan',
@@ -515,102 +531,102 @@ export const yushanGroup: Trail = {
     {
       from: 'yushan-group_batongguan',
       to: 'global_guangao-ping',
-      minutes: 60 
+      minutes: 45
     },
     {
       from: 'global_guangao-ping',
       to: 'yushan-group_batongguan',
-      minutes: 45 
+      minutes: 60
     },
     {
       from: 'global_guangao-ping',
       to: 'global_guangao-station',
-      minutes: 10 
+      minutes: 10
     },
     {
       from: 'global_guangao-station',
       to: 'global_guangao-ping',
-      minutes: 10 
+      minutes: 10
     },
     {
       from: 'global_guangao-ping',
       to: 'yushan-group_duiguan',
-      minutes: 140 
+      minutes: 90
     },
     {
       from: 'yushan-group_duiguan',
       to: 'global_guangao-ping',
-      minutes: 90 
+      minutes: 140
     },
     {
       from: 'yushan-group_duiguan',
       to: 'yushan-group_yinv-fall',
-      minutes: 100 
+      minutes: 75
     },
     {
       from: 'yushan-group_yinv-fall',
       to: 'yushan-group_duiguan',
-      minutes: 75 
+      minutes: 100
     },
     {
       from: 'yushan-group_yinv-fall',
       to: 'global_lele-hut',
-      minutes: 30 
+      minutes: 30
     },
     {
       from: 'global_lele-hut',
       to: 'yushan-group_yinv-fall',
-      minutes: 30 
+      minutes: 30
     },
     {
       from: 'global_lele-hut',
       to: 'global_yunlong-fall',
-      minutes: 65 
+      minutes: 55
     },
     {
       from: 'global_yunlong-fall',
       to: 'global_lele-hut',
-      minutes: 55 
+      minutes: 65
     },
     {
       from: 'global_yunlong-fall',
       to: 'yushan-group_father-son-cliff',
-      minutes: 100 
-    },
-    {
-      from: 'yushan-group_father-son-cliff',
-      to: 'global_yunlong-fall',
       minutes: 70 
     },
     {
       from: 'yushan-group_father-son-cliff',
+      to: 'global_yunlong-fall',
+      minutes: 100
+    },
+    {
+      from: 'yushan-group_father-son-cliff',
       to: 'yushan-group_dongpu-trailhead',
-      minutes: 55 
+      minutes: 30
     },
     {
       from: 'yushan-group_dongpu-trailhead',
       to: 'yushan-group_father-son-cliff',
-      minutes: 30 
+      minutes: 55
     },
     {
       from: 'yushan-group_dongpu-trailhead',
       to: 'yushan-group_dongpu-tribe',
-      minutes: 20 
+      minutes: 20
     },
     {
       from: 'yushan-group_dongpu-tribe',
       to: 'yushan-group_dongpu-trailhead',
-      minutes: 20 
+      minutes: 20
     },
     {
       from: 'yushan-group_dongpu-trailhead',
       to: 'global_dongpu-spring',
-      minutes: 10 
+      minutes: 10
     },
     {
       from: 'global_dongpu-spring',
       to: 'yushan-group_dongpu-trailhead',
-      minutes: 10 
+      minutes: 10
     }
   ]
 }

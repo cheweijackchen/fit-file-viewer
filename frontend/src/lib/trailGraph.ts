@@ -66,3 +66,86 @@ export function calculatePathTime(adj: TrailAdjacencyList, nodeIds: string[]): n
 
   return total
 }
+
+/**
+ * Dijkstra's shortest path on the directed adjacency list.
+ * Returns the full path [fromId, …, toId] by minimum total minutes,
+ * or null if no path exists. Returns [fromId] when fromId === toId.
+ */
+export function findShortestPath(
+  adj: TrailAdjacencyList,
+  fromId: string,
+  toId: string,
+): string[] | null {
+  if (fromId === toId) {
+    return [fromId]
+  }
+
+  const dist = new Map<string, number>()
+  const prev = new Map<string, string>()
+  // [cost, nodeId] — we sort to simulate a min-priority queue
+  const queue: Array<[number, string]> = [[0, fromId]]
+  dist.set(fromId, 0)
+
+  while (queue.length > 0) {
+    queue.sort((a, b) => a[0] - b[0])
+    const [cost, current] = queue.shift()!
+
+    if (current === toId) {
+      break
+    }
+    if (cost > (dist.get(current) ?? Infinity)) {
+      continue
+    }
+
+    const neighbors = adj.get(current)
+    if (!neighbors) {
+      continue
+    }
+
+    for (const [neighbor, edge] of neighbors) {
+      const newCost = cost + edge.minutes
+      if (newCost < (dist.get(neighbor) ?? Infinity)) {
+        dist.set(neighbor, newCost)
+        prev.set(neighbor, current)
+        queue.push([newCost, neighbor])
+      }
+    }
+  }
+
+  if (!dist.has(toId)) {
+    return null
+  }
+
+  const path: string[] = []
+  let cursor: string | undefined = toId
+  while (cursor !== undefined) {
+    path.unshift(cursor)
+    cursor = prev.get(cursor)
+  }
+
+  return path[0] === fromId ? path : null
+}
+
+/**
+ * Appends the shortest path from the last stop in currentStops to targetId.
+ * Returns the merged stops array, or null if no path exists or currentStops is empty.
+ */
+export function applyQuickJump(
+  currentStops: string[],
+  targetId: string,
+  adj: TrailAdjacencyList,
+): string[] | null {
+  if (currentStops.length === 0) {
+    return null
+  }
+  const currentNodeId = currentStops[currentStops.length - 1]!
+  if (currentNodeId === targetId) {
+    return currentStops
+  }
+  const path = findShortestPath(adj, currentNodeId, targetId)
+  if (path === null) {
+    return null
+  }
+  return [...currentStops, ...path.slice(1)]
+}

@@ -13,9 +13,18 @@ export interface BaseMapOption {
 }
 
 export const BASE_MAP_OPTIONS: BaseMapOption[] = [
-  { id: BaseMapMode.Standard, label: '標準' },
-  { id: BaseMapMode.Satellite, label: '衛星' },
-  { id: BaseMapMode.Hybrid, label: '混合' },
+  {
+    id: BaseMapMode.Standard,
+    label: '標準' 
+  },
+  {
+    id: BaseMapMode.Satellite,
+    label: '衛星' 
+  },
+  {
+    id: BaseMapMode.Hybrid,
+    label: '混合' 
+  },
 ]
 
 export const DEFAULT_BASE_MAP: BaseMapMode = BaseMapMode.Standard
@@ -68,15 +77,51 @@ interface LayerRule {
 }
 
 const HYBRID_LAYER_RULES: LayerRule[] = [
-  { match: 'background', type: MATCH_TYPE.EXACT, visible: false },
-  { match: 'landcover', type: MATCH_TYPE.PREFIX, visible: false },
-  { match: 'landuse', type: MATCH_TYPE.PREFIX, visible: false },
-  { match: 'park', type: MATCH_TYPE.PREFIX, visible: false },
-  { match: 'aeroway', type: MATCH_TYPE.PREFIX, visible: false },
-  { match: 'building', type: MATCH_TYPE.PREFIX, visible: false },
-  { match: 'hillshade', type: MATCH_TYPE.PREFIX, visible: false },
-  { match: 'waterway', type: MATCH_TYPE.PREFIX, visible: true },
-  { match: 'water', type: MATCH_TYPE.EXACT, visible: false },
+  {
+    match: 'background',
+    type: MATCH_TYPE.EXACT,
+    visible: false 
+  },
+  {
+    match: 'landcover',
+    type: MATCH_TYPE.PREFIX,
+    visible: false 
+  },
+  {
+    match: 'landuse',
+    type: MATCH_TYPE.PREFIX,
+    visible: false 
+  },
+  {
+    match: 'park',
+    type: MATCH_TYPE.PREFIX,
+    visible: false 
+  },
+  {
+    match: 'aeroway',
+    type: MATCH_TYPE.PREFIX,
+    visible: false 
+  },
+  {
+    match: 'building',
+    type: MATCH_TYPE.PREFIX,
+    visible: false 
+  },
+  {
+    match: 'hillshade',
+    type: MATCH_TYPE.PREFIX,
+    visible: false 
+  },
+  {
+    match: 'waterway',
+    type: MATCH_TYPE.PREFIX,
+    visible: true 
+  },
+  {
+    match: 'water',
+    type: MATCH_TYPE.EXACT,
+    visible: false 
+  },
 ]
 
 // Returns null when no rule matches — caller should leave the layer untouched.
@@ -109,7 +154,11 @@ function ensureSatelliteLayer(map: Map): void {
   if (!map.getLayer(LAYER_SATELLITE)) {
     const firstLayerId = map.getStyle().layers[0]?.id
     map.addLayer(
-      { id: LAYER_SATELLITE, type: 'raster', source: SOURCE_SATELLITE },
+      {
+        id: LAYER_SATELLITE,
+        type: 'raster',
+        source: SOURCE_SATELLITE 
+      },
       firstLayerId,
     )
   }
@@ -208,7 +257,10 @@ function applyTerrainInternal(map: Map, { terrain, hillshade }: TerrainOptions):
   if (terrain) {
     ensureTerrainSource(map)
     if (!currentTerrain) {
-      map.setTerrain({ source: SOURCE_TERRAIN, exaggeration: 1.5 })
+      map.setTerrain({
+        source: SOURCE_TERRAIN,
+        exaggeration: 1.5 
+      })
     }
   } else {
     if (currentTerrain) {

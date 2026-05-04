@@ -30,6 +30,14 @@
         "peaksTracker": {
           "title": "百岳登頂紀錄",
           "description": "追蹤並視覺化你的登頂紀錄"
+        },
+        "hikingTrailPlanner": {
+          "title": "登山路線規劃",
+          "description": "規劃多日路線、估算行程配速，並視覺化路線連結"
+        },
+        "trailMap": {
+          "title": "登山地圖",
+          "description": "在互動式地圖上檢視並探索你的 GPX 軌跡"
         }
       }
     },
@@ -142,6 +150,172 @@
           "description": "在 FIT、GPX、KML 格式之間轉換，輕鬆合併或分割軌跡檔案。"
         }
       }
+    }
+  },
+  "hiking-trail-planner": {
+    "hero": {
+      "title": "規劃你的山岳旅程",
+      "description": "規劃多日高山路線、視覺化步道連結，逐日安排每個步程。",
+      "cta": "開始新旅程"
+    },
+    "features": {
+      "visualTrailGraph": {
+        "title": "視覺化步道圖",
+        "description": "規劃前一覽所有節點與連結"
+      },
+      "multiDayPlanning": {
+        "title": "多日行程規劃",
+        "description": "以天為單位安排行程，附時間估算"
+      },
+      "connectedRoutes": {
+        "title": "串聯路線",
+        "description": "將多條步道串成一段完整旅程"
+      }
+    },
+    "yourTrips": {
+      "heading": "你的旅程",
+      "newTrip": "新旅程"
+    },
+    "tripCard": {
+      "days": "{count} 天"
+    },
+    "planDetail": {
+      "myTrips": "我的旅程",
+      "edit": "編輯",
+      "delete": "刪除",
+      "settings": "設定",
+      "showDuration": "顯示地點之間時間",
+      "addDay": "新增一天",
+      "tabs": {
+        "itinerary": "行程",
+        "tripStats": "行程統計",
+        "trailNetwork": "步道網絡"
+      },
+      "leaveConfirm": {
+        "title": "尚有未儲存的變更",
+        "description": "離開後，所有編輯中的內容將會遺失。確定要離開嗎？"
+      },
+      "stats": {
+        "days": "{count} 天",
+        "totalTime": "{time} 總時間"
+      },
+      "sections": {
+        "itinerary": "ITINERARY",
+        "trailNetwork": "TRAIL NETWORK",
+        "tripStats": "TRIP STATS",
+        "pace": "PACE",
+        "coverPhoto": "封面照片"
+      },
+      "coverPhoto": {
+        "placeholder": "新增封面照片",
+        "alt": "行程封面照片",
+        "change": "更換照片",
+        "remove": "移除"
+      },
+      "tripStats": {
+        "rawTime": "總時間",
+        "weightedTime": "加權時間 ×{multiplier}"
+      },
+      "pace": {
+        "multiplierLabel": "步速係數",
+        "updateNote": "套用至全部 Day，加權時間將同步更新。",
+        "alert": {
+          "slow": {
+            "title": "預計行進係數已達 1.2（較上河時間慢 20%）",
+            "body": "依此估算，每日行進時間可能過長，將增加摸黑風險與體能負荷。建議重新檢視行程節點：\n1. 考慮縮短每日行走里程或增加紮營天數。\n2. 檢核水源與營地位置，確保在光照充足的情況下抵達目的地。\n3. 若為重裝，請確認是否有足夠體力支撐長時間負重。"
+          },
+          "fast": {
+            "title": "預計行進係數低於 0.7（極速模式）",
+            "body": "您的行程安排極為緊湊，缺乏突發狀況的緩衝時間。請在計畫書中補強以下點：\n1. 設定明確的『撤退時間點（Turn-around Time）』，一旦進度落後即刻下撤。\n2. 確認所有團員皆具備同等強健的體能與負載能力。\n3. 針對技術路段（如攀爬、碎石坡）建議不套用此係數，應回歸 1.0 估算以策安全。"
+          }
+        }
+      },
+      "trailNetworkPlaceholder": {
+        "title": "步道網絡",
+        "comingSoon": "視覺化圖表即將推出"
+      },
+      "deleteConfirm": {
+        "title": "刪除行程",
+        "description": "確定要刪除「{name}」嗎？此操作無法復原。",
+        "confirm": "刪除"
+      },
+      "editToolbar": {
+        "editing": "編輯中",
+        "unsavedChanges": "變更尚未儲存",
+        "finishEditing": "完成編輯"
+      },
+      "trailSelect": {
+        "placeholder": "新增路線",
+        "lockedHint": "已安排行程的路線無法移除"
+      },
+      "dayPlanCard": {
+        "currentNode": "目前位置",
+        "spec": "SPEC",
+        "you": "YOU",
+        "menu": {
+          "edit": "編輯",
+          "cancelEdit": "取消編輯",
+          "clearRoute": "清除路線",
+          "delete": "刪除"
+        }
+      }
+    }
+  },
+  "fit-file-viewer": {
+    "banner": {
+      "title": "Fit 檔案檢視器",
+      "heading": "分析並視覺化",
+      "headingLine2": "您的活動資料",
+      "description": "一款可靠的分析與視覺化工具，完整呈現您的活動資料。查看詳細指標、追蹤表現，並以精確清晰的方式探索您的訓練紀錄。"
+    },
+    "header": {
+      "uploadNewFile": "上傳新檔案"
+    },
+    "summary": {
+      "totalDistance": "總距離",
+      "totalTime": "總時間",
+      "avgHeartRate": "平均心率",
+      "avgPace": "平均配速",
+      "totalAscent": "總爬升",
+      "totalDescent": "總下降",
+      "calories": "卡路里",
+      "avgPower": "平均功率"
+    },
+    "upload": {
+      "parsingError": "解析錯誤",
+      "instruction": "上傳您的 .fit 檔案",
+      "hint": "拖曳檔案至此或點擊選取，每個檔案不得超過 5MB。"
+    },
+    "altitude": {
+      "title": "海拔"
+    },
+    "heartRate": {
+      "title": "心率區間",
+      "zone1": "區間 1",
+      "zone2": "區間 2",
+      "zone3": "區間 3",
+      "zone4": "區間 4",
+      "zone5": "區間 5"
+    },
+    "records": {
+      "title": "記錄",
+      "timestamp": "時間戳記",
+      "positionLat": "緯度",
+      "positionLong": "經度",
+      "heartRate": "心率",
+      "distance": "距離",
+      "activityType": "活動類型",
+      "altitude": "海拔",
+      "enhancedAltitude": "增強海拔",
+      "enhancedSpeed": "增強速度",
+      "cadence": "步頻",
+      "fractionalCadence": "小數步頻",
+      "power": "功率",
+      "showRawData": "顯示原始資料",
+      "goToPage": "前往頁面"
+    },
+    "emptyState": {
+      "noDataFound": "找不到資料"
     }
   },
   "not-found": {

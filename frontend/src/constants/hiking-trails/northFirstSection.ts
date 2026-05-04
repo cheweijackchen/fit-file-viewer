@@ -159,7 +159,7 @@ export const northFirstSection: Trail = {
     },
     {
       id: 'north-first-section_chungyangjian-hut',
-      name: '中央尖山屋',
+      name: '中央尖溪山屋',
       i18nKey: 'north-first-section.chungyangjian-hut',
       nodeType: 'hut' 
     },
@@ -212,6 +212,12 @@ export const northFirstSection: Trail = {
       name: '大濁水南溪岔路',
       i18nKey: 'north-first-section.da-zhuo-shui-south-river-fork',
       nodeType: 'fork' 
+    },
+    {
+      id: 'north-first-section_taosai-hut-ruins',
+      name: '陶塞山屋遺址',
+      i18nKey: 'north-first-section.taosai-hut-ruins',
+      nodeType: 'hut' 
     },
     {
       id: 'north-first-section_stone-cave-hunting-hut-pond',
@@ -281,12 +287,12 @@ export const northFirstSection: Trail = {
     {
       from: 'north-first-section_mu-gan-saddle',
       to: 'north-first-section_nanhu-river-hut',
-      minutes: 70 
+      minutes: 60 
     },
     {
       from: 'north-first-section_nanhu-river-hut',
       to: 'north-first-section_mu-gan-saddle',
-      minutes: 60 
+      minutes: 70 
     },
     // 新雲稜 <-> 審馬陣登山口 (150/100)
     {
@@ -376,27 +382,27 @@ export const northFirstSection: Trail = {
       to: 'mountain_nanhu-north-mountain-north-peak',
       minutes: 45 
     },
-    // 北峰 <-> 南湖主峰 (15/20)
+    // 主峰南峰岔路 <-> 南湖主峰 (15/20)
     {
-      from: 'mountain_nanhu-north-mountain-north-peak',
+      from: 'north-first-section_main-south-peak-fork',
       to: 'mountain_nanhu-main-peak',
-      minutes: 15 
+      minutes: 20
     },
     {
       from: 'mountain_nanhu-main-peak',
-      to: 'mountain_nanhu-north-mountain-north-peak',
-      minutes: 20 
+      to: 'north-first-section_main-south-peak-fork',
+      minutes: 15 
     },
-    // 圈谷山莊 <-> 主峰鞍部 (30/20)
+    // 圈谷山莊 <-> 主峰鞍部 (40/30)
     {
       from: 'north-first-section_nanhu-cirque-hut',
       to: 'north-first-section_main-peak-saddle',
-      minutes: 30 
+      minutes: 40 
     },
     {
       from: 'north-first-section_main-peak-saddle',
       to: 'north-first-section_nanhu-cirque-hut',
-      minutes: 20 
+      minutes: 30 
     },
     // 圈谷山莊 <-> 上圈谷 (15/10)
     {
@@ -409,148 +415,158 @@ export const northFirstSection: Trail = {
       to: 'north-first-section_nanhu-cirque-hut',
       minutes: 10 
     },
-    // 主峰鞍部 <-> 東峰鞍部 (40/20)
+    // 主峰鞍部 <-> 東峰鞍部 (20/20)
     {
       from: 'north-first-section_main-peak-saddle',
       to: 'north-first-section_east-peak-saddle',
-      minutes: 40 
+      minutes: 20
     },
     {
       from: 'north-first-section_east-peak-saddle',
       to: 'north-first-section_main-peak-saddle',
-      minutes: 20 
+      minutes: 20
     },
-    // 主峰鞍部 <-> 主峰、南峰岔路 (10/15)
+    // 主峰鞍部 <-> 主峰、南峰岔路 (15/10)
     {
       from: 'north-first-section_main-peak-saddle',
       to: 'north-first-section_main-south-peak-fork',
-      minutes: 10 
+      minutes: 15
     },
     {
       from: 'north-first-section_main-south-peak-fork',
       to: 'north-first-section_main-peak-saddle',
-      minutes: 15 
+      minutes: 10 
     },
-    // 主南岔路 <-> 南湖池山屋 (45/25)
+    // 主南岔路 <-> 南湖池山屋 (25/45)
     {
       from: 'north-first-section_main-south-peak-fork',
       to: 'north-first-section_nanhu-pond-hut',
-      minutes: 45 
+      minutes: 25
     },
     {
       from: 'north-first-section_nanhu-pond-hut',
       to: 'north-first-section_main-south-peak-fork',
-      minutes: 25 
+      minutes: 45
     },
-    // 南湖池山屋 <-> 南大山南峰岔路 (100/90)
+    // 南湖池山屋 <-> 南大山南峰岔路 (90/100)
     {
       from: 'north-first-section_nanhu-pond-hut',
       to: 'north-first-section_nanhu-south-peak-fork',
-      minutes: 100 
+      minutes: 90
     },
     {
       from: 'north-first-section_nanhu-south-peak-fork',
       to: 'north-first-section_nanhu-pond-hut',
-      minutes: 90 
+      minutes: 100
     },
-    // 南南峰岔路 <-> 南湖大山南峰 (10/15)
+    // 南峰岔路 <-> 南湖大山南峰 (10/15)
     {
       from: 'north-first-section_nanhu-south-peak-fork',
       to: 'mountain_nanhu-south-peak',
-      minutes: 10 
+      minutes: 15
     },
     {
       from: 'mountain_nanhu-south-peak',
       to: 'north-first-section_nanhu-south-peak-fork',
-      minutes: 15 
+      minutes: 10
     },
     // 南湖大山南峰 <-> 巴巴山 (60/55)
     {
       from: 'mountain_nanhu-south-peak',
       to: 'mountain_baba-mountain',
-      minutes: 60 
+      minutes: 55
     },
     {
       from: 'mountain_baba-mountain',
       to: 'mountain_nanhu-south-peak',
-      minutes: 55 
+      minutes: 60
     },
     // 南南峰岔路 <-> 中央尖山屋 (300/180)
     {
       from: 'north-first-section_nanhu-south-peak-fork',
       to: 'north-first-section_chungyangjian-hut',
-      minutes: 300 
+      minutes: 180
     },
     {
       from: 'north-first-section_chungyangjian-hut',
       to: 'north-first-section_nanhu-south-peak-fork',
-      minutes: 180 
+      minutes: 300
     },
     // 中央尖山屋 <-> 第一香菇寮 (145/120)
     {
       from: 'north-first-section_chungyangjian-hut',
       to: 'north-first-section_first-mushroom-hut-site',
-      minutes: 145 
+      minutes: 120
     },
     {
       from: 'north-first-section_first-mushroom-hut-site',
       to: 'north-first-section_chungyangjian-hut',
-      minutes: 120 
+      minutes: 130
     },
-    // 第一香菇寮 <-> 木杆鞍部 (220/130)
+    // 第一香菇寮 <-> 南湖溪山屋 (145/220)
     {
       from: 'north-first-section_first-mushroom-hut-site',
-      to: 'north-first-section_mu-gan-saddle',
-      minutes: 220 
+      to: 'north-first-section_nanhu-river-hut',
+      minutes: 145
     },
     {
-      from: 'north-first-section_mu-gan-saddle',
+      from: 'north-first-section_nanhu-river-hut',
       to: 'north-first-section_first-mushroom-hut-site',
-      minutes: 130 
+      minutes: 220
     },
-    // 中央尖山屋 <-> 中央尖鞍部 (170/240)
+    // 中央尖溪山屋 <-> 中央尖鞍部 (240/170)
     {
       from: 'north-first-section_chungyangjian-hut',
       to: 'north-first-section_chungyangjian-saddle',
-      minutes: 170 
+      minutes: 240
     },
     {
       from: 'north-first-section_chungyangjian-saddle',
       to: 'north-first-section_chungyangjian-hut',
-      minutes: 240 
+      minutes: 170
     },
-    // 中央尖鞍部 <-> 中央尖山 (35/50)
+    // 中央尖鞍部 <-> 中央尖山 (50/35)
     {
       from: 'north-first-section_chungyangjian-saddle',
       to: 'mountain_chungyangjian-mountain',
-      minutes: 35 
+      minutes: 50
     },
     {
       from: 'mountain_chungyangjian-mountain',
       to: 'north-first-section_chungyangjian-saddle',
-      minutes: 50 
+      minutes: 35
     },
     // 中央尖鞍部 <-> 中央尖山東峰 (40/30)
     {
       from: 'north-first-section_chungyangjian-saddle',
       to: 'mountain_chungyangjian-east-peak',
-      minutes: 40 
+      minutes: 40
     },
     {
       from: 'mountain_chungyangjian-east-peak',
       to: 'north-first-section_chungyangjian-saddle',
-      minutes: 30 
+      minutes: 30
     },
     
     // --- 東段路線 ---
     {
       from: 'north-first-section_upper-cirque',
       to: 'north-first-section_east-peak-saddle',
-      minutes: 30 
+      minutes: 40 
     },
     {
       from: 'north-first-section_east-peak-saddle',
       to: 'north-first-section_upper-cirque',
+      minutes: 30 
+    },
+    {
+      from: 'mountain_nanhu-east-peak',
+      to: 'north-first-section_east-peak-saddle',
+      minutes: 30 
+    },
+    {
+      from: 'north-first-section_east-peak-saddle',
+      to: 'mountain_nanhu-east-peak',
       minutes: 40 
     },
     {
@@ -566,52 +582,62 @@ export const northFirstSection: Trail = {
     {
       from: 'mountain_nanhu-east-peak',
       to: 'mountain_taosai-peak',
-      minutes: 100 
+      minutes: 85
     },
     {
       from: 'mountain_taosai-peak',
       to: 'mountain_nanhu-east-peak',
-      minutes: 85 
+      minutes: 100 
     },
     {
       from: 'mountain_taosai-peak',
       to: 'mountain_nanhu-southeast-peak',
-      minutes: 70 
+      minutes: 75
     },
     {
       from: 'mountain_nanhu-southeast-peak',
       to: 'mountain_taosai-peak',
-      minutes: 75 
+      minutes: 70
     },
     {
       from: 'mountain_nanhu-southeast-peak',
       to: 'north-first-section_signpost-2-2k-fork',
-      minutes: 75 
+      minutes: 45
     },
     {
       from: 'north-first-section_signpost-2-2k-fork',
       to: 'mountain_nanhu-southeast-peak',
-      minutes: 45 
+      minutes: 75
     },
     {
       from: 'north-first-section_signpost-2-2k-fork',
-      to: 'north-first-section_da-zhuo-shui-south-river-fork',
-      minutes: 55 
+      to: 'north-first-section_stone-cave-hunting-hut-pond',
+      minutes: 45
     },
     {
-      from: 'north-first-section_da-zhuo-shui-south-river-fork',
+      from: 'north-first-section_stone-cave-hunting-hut-pond',
       to: 'north-first-section_signpost-2-2k-fork',
-      minutes: 45 
+      minutes: 55
     },
     {
       from: 'north-first-section_da-zhuo-shui-south-river-fork',
+      to: 'north-first-section_taosai-hut-ruins',
+      minutes: 45
+    },
+    {
+      from: 'north-first-section_taosai-hut-ruins',
+      to: 'north-first-section_da-zhuo-shui-south-river-fork',
+      minutes: 40
+    },
+    {
+      from: 'north-first-section_taosai-hut-ruins',
       to: 'north-first-section_east-peak-saddle',
-      minutes: 40 
+      minutes: 50
     },
     {
       from: 'north-first-section_east-peak-saddle',
-      to: 'north-first-section_da-zhuo-shui-south-river-fork',
-      minutes: 45 
+      to: 'north-first-section_taosai-hut-ruins',
+      minutes: 30
     },
     {
       from: 'north-first-section_da-zhuo-shui-south-river-fork',
@@ -626,22 +652,22 @@ export const northFirstSection: Trail = {
     {
       from: 'north-first-section_signpost-2-2k-fork',
       to: 'north-first-section_signpost-1-0k',
-      minutes: 25 
+      minutes: 30
     },
     {
       from: 'north-first-section_signpost-1-0k',
       to: 'north-first-section_signpost-2-2k-fork',
-      minutes: 30 
+      minutes: 25
     },
     {
       from: 'north-first-section_signpost-1-0k',
       to: 'mountain_mabishan-mountain',
-      minutes: 20 
+      minutes: 30
     },
     {
       from: 'mountain_mabishan-mountain',
       to: 'north-first-section_signpost-1-0k',
-      minutes: 30 
+      minutes: 20
     }
   ]
 }

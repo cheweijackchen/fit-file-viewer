@@ -1,6 +1,7 @@
 import { Accordion, Group, NumberInput, Title, Text, Switch, Flex, NumberFormatter } from '@mantine/core'
 import dayjs from 'dayjs'
 import { DataTable, type DataTableColumn } from 'mantine-datatable'
+import { useTranslations } from 'next-intl'
 import { useEffect, useState } from 'react'
 import { convertFitDataLength, convertFitDataSpeed } from '@/lib/converter'
 import { type ParsedRecord } from '@/model/fitParser'
@@ -17,6 +18,7 @@ export function RecordsCard({ records }: Props) {
   const [pageSize, setPageSize] = useState(PAGE_SIZES[0])
   const [displayedRecords, setDisplayedRecords] = useState(records.slice(0, pageSize))
   const [isRawData, setIsRawData] = useState(false)
+  const t = useTranslations('fit-file-viewer')
 
   useEffect(() => {
     const from = (page - 1) * pageSize
@@ -35,7 +37,7 @@ export function RecordsCard({ records }: Props) {
       accessor: 'timestamp',
       title: (
         <ColumnTitleWithUnit
-          title="Timestamp"
+          title={t('records.timestamp')}
           hiddenUnit={isRawData}
           align="left"
         />
@@ -49,7 +51,7 @@ export function RecordsCard({ records }: Props) {
       accessor: 'position_lat',
       title: (
         <ColumnTitleWithUnit
-          title="Position Lat."
+          title={t('records.positionLat')}
           unit="°"
           hiddenUnit={isRawData}
         />
@@ -63,7 +65,7 @@ export function RecordsCard({ records }: Props) {
       accessor: 'position_long',
       title: (
         <ColumnTitleWithUnit
-          title="Position Long."
+          title={t('records.positionLong')}
           unit="°"
           hiddenUnit={isRawData}
         />
@@ -78,7 +80,7 @@ export function RecordsCard({ records }: Props) {
       textAlign: 'center',
       title: (
         <ColumnTitleWithUnit
-          title="Heart Rate"
+          title={t('records.heartRate')}
           unit="bpm"
           hiddenUnit={isRawData}
         />)
@@ -87,7 +89,7 @@ export function RecordsCard({ records }: Props) {
       accessor: 'distance',
       title: (
         <ColumnTitleWithUnit
-          title="Distance"
+          title={t('records.distance')}
           unit="m"
           hiddenUnit={isRawData}
         />
@@ -118,7 +120,7 @@ export function RecordsCard({ records }: Props) {
       accessor: 'activity_type',
       title: (
         <ColumnTitleWithUnit
-          title="Activity Type"
+          title={t('records.activityType')}
           hiddenUnit={isRawData}
         />
       ),
@@ -129,7 +131,7 @@ export function RecordsCard({ records }: Props) {
       accessor: 'altitude',
       title: (
         <ColumnTitleWithUnit
-          title="Altitude"
+          title={t('records.altitude')}
           unit="m"
           hiddenUnit={isRawData}
         />
@@ -160,7 +162,7 @@ export function RecordsCard({ records }: Props) {
       accessor: 'enhanced_altitude',
       title: (
         <ColumnTitleWithUnit
-          title="Enhanced Altitude"
+          title={t('records.enhancedAltitude')}
           unit="m"
           hiddenUnit={isRawData}
         />
@@ -191,7 +193,7 @@ export function RecordsCard({ records }: Props) {
       accessor: 'enhanced_speed',
       title: (
         <ColumnTitleWithUnit
-          title="Enhanced Speed"
+          title={t('records.enhancedSpeed')}
           unit="min/km"
           hiddenUnit={isRawData}
         />
@@ -208,7 +210,7 @@ export function RecordsCard({ records }: Props) {
       accessor: 'cadence',
       title: (
         <ColumnTitleWithUnit
-          title="Cadence"
+          title={t('records.cadence')}
           unit="rpm"
           hiddenUnit={isRawData}
         />
@@ -219,7 +221,7 @@ export function RecordsCard({ records }: Props) {
       accessor: 'fractional_cadence',
       title: (
         <ColumnTitleWithUnit
-          title="Fractional Cadence"
+          title={t('records.fractionalCadence')}
           unit="rpm"
           hiddenUnit={isRawData}
         />
@@ -230,7 +232,7 @@ export function RecordsCard({ records }: Props) {
       accessor: 'power',
       title: (
         <ColumnTitleWithUnit
-          title="Power"
+          title={t('records.power')}
           unit="w"
           hiddenUnit={isRawData}
         />
@@ -242,7 +244,7 @@ export function RecordsCard({ records }: Props) {
   const rawDataSwitch = (
     <Switch
       mb="md"
-      label="Show raw data"
+      label={t('records.showRawData')}
       classNames={{
         body: 'flex-row-reverse'
       }}
@@ -274,7 +276,7 @@ export function RecordsCard({ records }: Props) {
           <Title
             size="h5"
             order={3}
-          >Records</Title>
+          >{t('records.title')}</Title>
         </Accordion.Control>
         <Accordion.Panel
           styles={{
@@ -305,7 +307,7 @@ export function RecordsCard({ records }: Props) {
                 <Controls.Text />
                 <Controls.PageSizeSelector />
                 <Group gap="xs">
-                  <Text size={state.paginationSize}>Go to page</Text>
+                  <Text size={state.paginationSize}>{t('records.goToPage')}</Text>
                   <NumberInput
                     hideControls
                     // custom input height to match pagination button height

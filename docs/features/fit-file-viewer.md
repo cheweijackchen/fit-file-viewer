@@ -19,7 +19,7 @@
 ### Components
 - `components/FitFileUploader.tsx` — FIT 檔案拖放上傳
 - `components/GpxFileUploader.tsx` — GPX 檔案上傳
-- `components/Map/FitTrackMap.tsx` — Leaflet 軌跡地圖（含距離標記）
+- `components/FitTrackMap/FitTrackMap.tsx` — Leaflet 軌跡地圖（含距離標記）
 - `components/HeartRateZoneCard.tsx` — 心率區間甜甜圈圖
 - `components/HeartRateTrendGraph/` — 心率時間序列折線圖
 - `components/AltitudeTrendCard/` — 海拔曲線圖

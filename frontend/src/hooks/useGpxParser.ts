@@ -3,11 +3,18 @@ import { useState, useCallback } from 'react'
 import { computeTrackStats } from '@/lib/elevationUtils'
 import type { ParsedTrack, TrackPoint, Waypoint } from '@/model/gpx'
 
+export const GPX_PARSE_STATUS = {
+  IDLE: 'idle',
+  PARSING: 'parsing',
+  SUCCESS: 'success',
+  ERROR: 'error',
+} as const
+
 type ParseState =
-  | { status: 'idle'; }
-  | { status: 'parsing'; }
-  | { status: 'success'; track: ParsedTrack; }
-  | { status: 'error'; message: string; }
+  | { status: typeof GPX_PARSE_STATUS.IDLE; }
+  | { status: typeof GPX_PARSE_STATUS.PARSING; }
+  | { status: typeof GPX_PARSE_STATUS.SUCCESS; track: ParsedTrack; }
+  | { status: typeof GPX_PARSE_STATUS.ERROR; message: string; }
 
 interface UseGpxParserReturn {
   state: ParseState;
@@ -16,22 +23,28 @@ interface UseGpxParserReturn {
 }
 
 export function useGpxParser(): UseGpxParserReturn {
-  const [state, setState] = useState<ParseState>({ status: 'idle' })
+  const [state, setState] = useState<ParseState>({ status: GPX_PARSE_STATUS.IDLE })
 
   const parseFile = useCallback((file: File) => {
     if (!file.name.toLowerCase().endsWith('.gpx')) {
-      setState({ status: 'error', message: '請上傳 .gpx 格式的檔案' })
+      setState({
+        status: GPX_PARSE_STATUS.ERROR,
+        message: '請上傳 .gpx 格式的檔案',
+      })
       return
     }
 
-    setState({ status: 'parsing' })
+    setState({ status: GPX_PARSE_STATUS.PARSING })
 
     const reader = new FileReader()
 
     reader.onload = (event) => {
       const text = event.target?.result
       if (typeof text !== 'string') {
-        setState({ status: 'error', message: '無法讀取檔案內容' })
+        setState({
+          status: GPX_PARSE_STATUS.ERROR,
+          message: '無法讀取檔案內容',
+        })
         return
       }
 
@@ -40,7 +53,7 @@ export function useGpxParser(): UseGpxParserReturn {
 
         if (error || !gpx) {
           setState({
-            status: 'error',
+            status: GPX_PARSE_STATUS.ERROR,
             message: error?.message ?? 'GPX 解析失敗',
           })
           return
@@ -91,7 +104,7 @@ export function useGpxParser(): UseGpxParserReturn {
 
         if (points.length === 0) {
           setState({
-            status: 'error',
+            status: GPX_PARSE_STATUS.ERROR,
             message: 'GPX 檔案中沒有軌跡點資料',
           })
           return
@@ -102,27 +115,39 @@ export function useGpxParser(): UseGpxParserReturn {
           gpx.tracks[0]?.name ?? file.name.replace(/\.gpx$/i, '')
 
         setState({
-          status: 'success',
-          track: { name, points, waypoints: separateWaypoints, stats },
+          status: GPX_PARSE_STATUS.SUCCESS,
+          track: {
+            name,
+            points,
+            waypoints: separateWaypoints,
+            stats,
+          },
         })
       } catch (err) {
         setState({
-          status: 'error',
+          status: GPX_PARSE_STATUS.ERROR,
           message: err instanceof Error ? err.message : 'GPX 解析失敗',
         })
       }
     }
 
     reader.onerror = () => {
-      setState({ status: 'error', message: '檔案讀取失敗' })
+      setState({
+        status: GPX_PARSE_STATUS.ERROR,
+        message: '檔案讀取失敗',
+      })
     }
 
     reader.readAsText(file)
   }, [])
 
   const reset = useCallback(() => {
-    setState({ status: 'idle' })
+    setState({ status: GPX_PARSE_STATUS.IDLE })
   }, [])
 
-  return { state, parseFile, reset }
+  return {
+    state,
+    parseFile,
+    reset,
+  }
 }

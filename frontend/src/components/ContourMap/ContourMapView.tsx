@@ -10,8 +10,8 @@ import { ensureContourLayers } from '@/lib/baseMap'
 import { CaptureMapButton } from './CaptureMapButton'
 import { MountainPeakToggle } from './MountainPeakToggle'
 import { MapDebugOverlay } from '../peaks/MapDebugOverlay'
-import { MapControlPanel } from '../VectorMap/MapControlPanel'
-import styles from '../VectorMap/MapView.module.scss'
+import { MapControlPanel } from '../VectorMap/components/MapControlPanel'
+import styles from '../VectorMap/VectorMap.module.scss'
 
 const CONTOUR_LINE_COLOR = '#000000'
 const CONTOUR_LINE_WIDTH = 3

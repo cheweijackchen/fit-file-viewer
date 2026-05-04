@@ -50,7 +50,7 @@ export function LandingCTA() {
         <div className="flex gap-4 max-sm:flex-col max-sm:w-full">
           <Button
             component={Link}
-            href="/hiking-trail-organizer"
+            href="/hiking-trail-planner"
             variant="white"
             size="lg"
             radius="xl"
@@ -61,7 +61,7 @@ export function LandingCTA() {
 
           <Button
             component={Link}
-            href="/hiking-trail-organizer#example-trails"
+            href="/hiking-trail-planner#example-trails"
             variant="outline"
             size="lg"
             radius="xl"

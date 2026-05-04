@@ -30,6 +30,14 @@
         "peaksTracker": {
           "title": "Peaks Tracker",
           "description": "Track and visualize your peak bagging progress"
+        },
+        "hikingTrailPlanner": {
+          "title": "Hiking Trail Planner",
+          "description": "Plan multi-day routes, estimate pace, and visualize trail connections"
+        },
+        "trailMap": {
+          "title": "Trail Map",
+          "description": "View and explore your GPX tracks on an interactive map"
         }
       }
     },
@@ -142,6 +150,172 @@
           "description": "Convert between FIT, GPX, and KML formats. Merge or split track files effortlessly."
         }
       }
+    }
+  },
+  "hiking-trail-planner": {
+    "hero": {
+      "title": "Plan Your Mountain Journey",
+      "description": "Map your multi-day alpine routes, visualize trail connections, and plan each day step by step.",
+      "cta": "Start New Trip"
+    },
+    "features": {
+      "visualTrailGraph": {
+        "title": "Visual Trail Graph",
+        "description": "See every node and connection before you plan"
+      },
+      "multiDayPlanning": {
+        "title": "Multi-Day Planning",
+        "description": "Organize your itinerary day by day with time estimates"
+      },
+      "connectedRoutes": {
+        "title": "Connected Routes",
+        "description": "Combine multiple trails into one seamless journey"
+      }
+    },
+    "yourTrips": {
+      "heading": "Your Trips",
+      "newTrip": "New Trip"
+    },
+    "tripCard": {
+      "days": "{count, plural, one {# day} other {# days}}"
+    },
+    "planDetail": {
+      "myTrips": "My Trips",
+      "edit": "Edit",
+      "delete": "Delete",
+      "settings": "Settings",
+      "showDuration": "Show time between locations",
+      "addDay": "Add Day",
+      "tabs": {
+        "itinerary": "Itinerary",
+        "tripStats": "Trip Stats",
+        "trailNetwork": "Trail Network"
+      },
+      "leaveConfirm": {
+        "title": "Unsaved Changes",
+        "description": "All edits will be lost if you leave. Are you sure?"
+      },
+      "stats": {
+        "days": "{count, plural, one {# day} other {# days}}",
+        "totalTime": "{time} total"
+      },
+      "sections": {
+        "itinerary": "ITINERARY",
+        "trailNetwork": "TRAIL NETWORK",
+        "tripStats": "TRIP STATS",
+        "pace": "PACE",
+        "coverPhoto": "COVER PHOTO"
+      },
+      "coverPhoto": {
+        "placeholder": "Add a cover photo",
+        "alt": "Trip cover photo",
+        "change": "Change photo",
+        "remove": "Remove"
+      },
+      "tripStats": {
+        "rawTime": "Total Time",
+        "weightedTime": "Adjusted ×{multiplier}"
+      },
+      "pace": {
+        "multiplierLabel": "Pace Factor",
+        "updateNote": "Applied to all days. Adjusted times will update automatically.",
+        "alert": {
+          "slow": {
+            "title": "Pace multiplier at 1.2 — 20% slower than reference time",
+            "body": "At this pace, daily hiking hours may become excessive, increasing the risk of hiking in the dark and physical strain. Consider reviewing your itinerary:\n1. Shorten daily distances or add extra camping nights.\n2. Verify water source and campsite locations to ensure arrival in daylight.\n3. If carrying a heavy pack, confirm your team has sufficient endurance for extended hours."
+          },
+          "fast": {
+            "title": "Pace multiplier below 0.7 — extreme speed mode",
+            "body": "Your itinerary is extremely tight with little buffer for unexpected situations. Please address the following in your plan:\n1. Set a clear turn-around time — descend immediately if behind schedule.\n2. Confirm all team members have equal fitness and load-carrying capacity.\n3. For technical sections (scrambles, scree slopes), avoid applying this multiplier — use 1.0 for safety."
+          }
+        }
+      },
+      "trailNetworkPlaceholder": {
+        "title": "Trail Network",
+        "comingSoon": "Visual graph coming soon"
+      },
+      "deleteConfirm": {
+        "title": "Delete Trip",
+        "description": "Are you sure you want to delete \"{name}\"? This action cannot be undone.",
+        "confirm": "Delete"
+      },
+      "editToolbar": {
+        "editing": "Editing",
+        "unsavedChanges": "Unsaved changes",
+        "finishEditing": "Finish Editing"
+      },
+      "trailSelect": {
+        "placeholder": "Add trails",
+        "lockedHint": "Trails with assigned stops cannot be removed"
+      },
+      "dayPlanCard": {
+        "currentNode": "Current Node",
+        "spec": "SPEC",
+        "you": "YOU",
+        "menu": {
+          "edit": "Edit",
+          "cancelEdit": "Cancel Edit",
+          "clearRoute": "Clear Route",
+          "delete": "Delete"
+        }
+      }
+    }
+  },
+  "fit-file-viewer": {
+    "banner": {
+      "title": "Fit File Viewer",
+      "heading": "Analyze and Visualize",
+      "headingLine2": "Your Activity Data",
+      "description": "A reliable tool for analyzing and visualizing your activity data. View detailed metrics, track performance, and explore your workouts with precision and clarity."
+    },
+    "header": {
+      "uploadNewFile": "Upload New File"
+    },
+    "summary": {
+      "totalDistance": "Total Distance",
+      "totalTime": "Total Time",
+      "avgHeartRate": "Avg. Heart Rate",
+      "avgPace": "Avg. Pace",
+      "totalAscent": "Total Ascent",
+      "totalDescent": "Total Descent",
+      "calories": "Calories",
+      "avgPower": "Avg. Power"
+    },
+    "upload": {
+      "parsingError": "Parsing Error",
+      "instruction": "Upload your .fit file",
+      "hint": "Drag file here or click to select files, each file should not exceed 5mb."
+    },
+    "altitude": {
+      "title": "Altitude"
+    },
+    "heartRate": {
+      "title": "Heart Rate Zones",
+      "zone1": "Zone 1",
+      "zone2": "Zone 2",
+      "zone3": "Zone 3",
+      "zone4": "Zone 4",
+      "zone5": "Zone 5"
+    },
+    "records": {
+      "title": "Records",
+      "timestamp": "Timestamp",
+      "positionLat": "Position Lat.",
+      "positionLong": "Position Long.",
+      "heartRate": "Heart Rate",
+      "distance": "Distance",
+      "activityType": "Activity Type",
+      "altitude": "Altitude",
+      "enhancedAltitude": "Enhanced Altitude",
+      "enhancedSpeed": "Enhanced Speed",
+      "cadence": "Cadence",
+      "fractionalCadence": "Fractional Cadence",
+      "power": "Power",
+      "showRawData": "Show raw data",
+      "goToPage": "Go to page"
+    },
+    "emptyState": {
+      "noDataFound": "No data found"
     }
   },
   "not-found": {

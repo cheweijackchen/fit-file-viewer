@@ -51,6 +51,18 @@ export const demoNavLinks = [
       {
         title: 'Trail Graph',
         link: '/demo/demo-trail-graph',
+      },
+      {
+        title: 'DayPlanCard',
+        link: '/demo/demo-day-plan-card',
+      },
+      {
+        title: 'RouteIndicator',
+        link: '/demo/demo-route-indicator',
+      },
+      {
+        title: 'QuickJump',
+        link: '/demo/demo-quick-jump',
       }
     ]
   },

@@ -120,18 +120,30 @@ function normalizePoints(points: TrackPoint[]): PlaybackPoint[] {
       if (p.time === null) {
         continue
       }
-      result.push({ lon: p.lon, lat: p.lat, elapsed: (p.time.getTime() - origin) / 1000 })
+      result.push({
+        lon: p.lon,
+        lat: p.lat,
+        elapsed: (p.time.getTime() - origin) / 1000 
+      })
     }
     return result.length >= 2 ? result : []
   }
 
   // Fallback: distribute by cumulative distance at assumed speed
-  const result: PlaybackPoint[] = [{ lon: points[0].lon, lat: points[0].lat, elapsed: 0 }]
+  const result: PlaybackPoint[] = [{
+    lon: points[0].lon,
+    lat: points[0].lat,
+    elapsed: 0 
+  }]
   let elapsed = 0
   for (let i = 1; i < points.length; i++) {
     const distKm = calculateDistance(points[i - 1].lat, points[i - 1].lon, points[i].lat, points[i].lon)
     elapsed += ((distKm * 1000) / FALLBACK_SPEED_MPS)
-    result.push({ lon: points[i].lon, lat: points[i].lat, elapsed })
+    result.push({
+      lon: points[i].lon,
+      lat: points[i].lat,
+      elapsed 
+    })
   }
   return result
 }
@@ -165,7 +177,10 @@ function calcVirtualTime(realElapsed: number, seekOffset: number, baseSpeed: num
 
 function calcPlaybackBearings(points: PlaybackPoint[]): PlaybackBearings {
   if (points.length < 2) {
-    return { start: 0, end: 0 }
+    return {
+      start: 0,
+      end: 0 
+    }
   }
   const first = points[0]
   const last = points[points.length - 1]
@@ -189,7 +204,10 @@ function calcPlaybackBearings(points: PlaybackPoint[]): PlaybackBearings {
   }
 
   const startBearing = calcBearing([first.lon, first.lat], [apexPoint.lon, apexPoint.lat])
-  return { start: startBearing, end: (startBearing + 180) % 360 }
+  return {
+    start: startBearing,
+    end: (startBearing + 180) % 360 
+  }
 }
 
 export function useTrackPlayback({ map, points, enabled, terrain, durationMode = 'linear' }: UseTrackPlaybackOptions): UseTrackPlaybackResult {
@@ -415,11 +433,27 @@ export function useTrackPlayback({ map, points, enabled, terrain, durationMode =
         for (const p of points) {
           bounds.extend([p.lon, p.lat])
         }
-        map.fitBounds(bounds, { padding: 80, pitch: 50, duration: 1200 })
+        map.fitBounds(bounds, {
+          padding: 80,
+          pitch: 50,
+          duration: 1200 
+        })
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [enabled, map, points])
 
-  return { isPlaying, progress, currentTime, totalDuration, speed, currentPosition, play, pause, toggle, seek, setSpeed }
+  return {
+    isPlaying,
+    progress,
+    currentTime,
+    totalDuration,
+    speed,
+    currentPosition,
+    play,
+    pause,
+    toggle,
+    seek,
+    setSpeed 
+  }
 }

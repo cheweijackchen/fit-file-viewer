@@ -40,7 +40,12 @@ describe('FitDataFormatter', () => {
     it('should accept custom output options', () => {
       const formatter = new FitDataFormatter(
         {},
-        { lengthUnit: 'm', speedUnit: 'm/s', temperatureUnit: 'celsius', language: 'zh-TW' }
+        {
+          lengthUnit: 'm',
+          speedUnit: 'm/s',
+          temperatureUnit: 'celsius',
+          language: 'zh-TW' 
+        }
       )
 
       const result = formatter.format(FitDataField.distance, 1000)
@@ -719,7 +724,10 @@ describe('FitDataFormatter', () => {
     let formatter: FitDataFormatter
 
     beforeEach(() => {
-      formatter = new FitDataFormatter({ lengthUnit: 'm', speedUnit: 'm/s' })
+      formatter = new FitDataFormatter({
+        lengthUnit: 'm',
+        speedUnit: 'm/s' 
+      })
     })
 
     it('should format multiple fields correctly', () => {
@@ -851,7 +859,10 @@ describe('FitDataFormatter', () => {
     })
 
     it('should merge with existing options when updating partially', () => {
-      formatter.setDefaultOutputOptions({ lengthUnit: 'mi', language: 'en-US' })
+      formatter.setDefaultOutputOptions({
+        lengthUnit: 'mi',
+        language: 'en-US' 
+      })
 
       formatter.setDefaultOutputOptions({ speedUnit: 'mph' })
       const distanceResult = formatter.format(FitDataField.distance, 1609.34)
@@ -930,8 +941,14 @@ describe('FitDataFormatter', () => {
 
     beforeEach(() => {
       formatter = new FitDataFormatter(
-        { lengthUnit: 'm', speedUnit: 'm/s' },
-        { lengthUnit: 'km', speedUnit: 'km/h' }
+        {
+          lengthUnit: 'm',
+          speedUnit: 'm/s' 
+        },
+        {
+          lengthUnit: 'km',
+          speedUnit: 'km/h' 
+        }
       )
     })
 
@@ -958,7 +975,11 @@ describe('FitDataFormatter', () => {
     it('should allow partial override without affecting other options', () => {
       const formatter2 = new FitDataFormatter(
         {},
-        { lengthUnit: 'km', speedUnit: 'km/h', language: 'zh-TW' }
+        {
+          lengthUnit: 'km',
+          speedUnit: 'km/h',
+          language: 'zh-TW' 
+        }
       )
 
       const result = formatter2.format(FitDataField.distance, 5000, { lengthUnit: 'mi' })
@@ -1061,7 +1082,11 @@ describe('FitDataFormatter', () => {
   describe('Integration Tests', () => {
     it('should handle complete activity data workflow', () => {
       const formatter = new FitDataFormatter(
-        { lengthUnit: 'km', speedUnit: 'km/h', temperatureUnit: 'celsius' },
+        {
+          lengthUnit: 'km',
+          speedUnit: 'km/h',
+          temperatureUnit: 'celsius' 
+        },
         'metric'
       )
 
@@ -1090,8 +1115,14 @@ describe('FitDataFormatter', () => {
     it('should handle parser input conversion and output formatting', () => {
       // Parser units are m, m/s；output units are km, km/h
       const formatter = new FitDataFormatter(
-        { lengthUnit: 'm', speedUnit: 'm/s' },
-        { lengthUnit: 'km', speedUnit: 'km/h' }
+        {
+          lengthUnit: 'm',
+          speedUnit: 'm/s' 
+        },
+        {
+          lengthUnit: 'km',
+          speedUnit: 'km/h' 
+        }
       )
 
       const distanceResult = formatter.format(FitDataField.distance, 10500) // 10500 m

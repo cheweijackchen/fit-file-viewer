@@ -67,23 +67,74 @@ class FitDataFormatter {
   private defaultOutputOptions: Required<OutputUnitOptions>
 
   private readonly labels: Record<FitDataField, { zh: string; en: string; }> = {
-    distance: { zh: '距離', en: 'Distance' },
-    speed: { zh: '速度', en: 'Speed' },
-    pace: { zh: '配速', en: 'Pace' },
-    heartRate: { zh: '心率', en: 'Heart Rate' },
-    cadence: { zh: '步頻', en: 'Cadence' },
-    power: { zh: '功率', en: 'Power' },
-    elevation: { zh: '海拔', en: 'Elevation' },
-    temperature: { zh: '溫度', en: 'Temperature' },
-    calories: { zh: '卡路里', en: 'Calories' },
-    duration: { zh: '時間', en: 'Duration' },
-    timestamp: { zh: '時間戳記', en: 'Timestamp' },
-    latitude: { zh: '緯度', en: 'Latitude' },
-    longitude: { zh: '經度', en: 'Longitude' },
-    grade: { zh: '坡度', en: 'Grade' },
-    verticalSpeed: { zh: '垂直速度', en: 'Vertical Speed' },
-    strideLength: { zh: '步幅', en: 'Stride Length' },
-    steps: { zh: '步數', en: 'Steps' },
+    distance: {
+      zh: '距離',
+      en: 'Distance' 
+    },
+    speed: {
+      zh: '速度',
+      en: 'Speed' 
+    },
+    pace: {
+      zh: '配速',
+      en: 'Pace' 
+    },
+    heartRate: {
+      zh: '心率',
+      en: 'Heart Rate' 
+    },
+    cadence: {
+      zh: '步頻',
+      en: 'Cadence' 
+    },
+    power: {
+      zh: '功率',
+      en: 'Power' 
+    },
+    elevation: {
+      zh: '海拔',
+      en: 'Elevation' 
+    },
+    temperature: {
+      zh: '溫度',
+      en: 'Temperature' 
+    },
+    calories: {
+      zh: '卡路里',
+      en: 'Calories' 
+    },
+    duration: {
+      zh: '時間',
+      en: 'Duration' 
+    },
+    timestamp: {
+      zh: '時間戳記',
+      en: 'Timestamp' 
+    },
+    latitude: {
+      zh: '緯度',
+      en: 'Latitude' 
+    },
+    longitude: {
+      zh: '經度',
+      en: 'Longitude' 
+    },
+    grade: {
+      zh: '坡度',
+      en: 'Grade' 
+    },
+    verticalSpeed: {
+      zh: '垂直速度',
+      en: 'Vertical Speed' 
+    },
+    strideLength: {
+      zh: '步幅',
+      en: 'Stride Length' 
+    },
+    steps: {
+      zh: '步數',
+      en: 'Steps' 
+    },
   }
 
   constructor(
@@ -218,7 +269,10 @@ class FitDataFormatter {
   ): { value: string; unit: string; } {
     if (valueInMPS === 0) {
       const unit = targetUnit === 'mph' ? 'min/mi' : 'min/km'
-      return { value: '--:--', unit }
+      return {
+        value: '--:--',
+        unit 
+      }
     }
 
     let paceInMinutes: number

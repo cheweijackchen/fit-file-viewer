@@ -17,11 +17,17 @@ const createFitDataSlice: StateCreator<FitDataSlice> = (set) => {
     actions: {
       setFileName: (name: string) =>
         set((state) => {
-          return { ...state, fileName: name }
+          return {
+            ...state,
+            fileName: name 
+          }
         }),
       setFitData: (data: ParsedFit) =>
         set((state) => {
-          return { ...state, fitData: data }
+          return {
+            ...state,
+            fitData: data 
+          }
         }),
     }
   }
