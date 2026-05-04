@@ -245,6 +245,9 @@
       "trailSelect": {
         "placeholder": "新增路線",
         "lockedHint": "已安排行程的路線無法移除"
+      },
+      "dayPlanCard": {
+        "currentNode": "目前位置"
       }
     }
   },

@@ -1,3 +1,7 @@
+'use client'
+
+import { useTranslations } from 'next-intl'
+
 import { TRAIL_NODE_TYPE_BADGE_STYLE } from '@/constants/hiking-trails/dayPlanCard'
 import { TrailNodeType } from '@/constants/hiking-trails/hikingTrail'
 import type { TrailNode } from '@/model/hikingTrail'
@@ -7,6 +11,7 @@ interface Props {
 }
 
 export function CurrentNodeCard({ node }: Props) {
+  const t = useTranslations('hiking-trail-planner')
   const nodeType = node?.nodeType ?? TrailNodeType.Other
   const badgeStyle = TRAIL_NODE_TYPE_BADGE_STYLE[nodeType]
 
@@ -21,8 +26,8 @@ export function CurrentNodeCard({ node }: Props) {
         />
       </div>
 
-      <span className="text-[10px] font-bold tracking-[0.08em] text-(--mantine-color-stone-5)">
-        CURRENT NODE
+      <span className="uppercase text-[10px] font-bold tracking-[0.08em] text-(--mantine-color-stone-5)">
+        {t('planDetail.dayPlanCard.currentNode')}
       </span>
       <span className="text-base font-bold text-white leading-[1.2]">
         {node?.name ?? '—'}

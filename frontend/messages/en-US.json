@@ -245,6 +245,9 @@
       "trailSelect": {
         "placeholder": "Add trails",
         "lockedHint": "Trails with assigned stops cannot be removed"
+      },
+      "dayPlanCard": {
+        "currentNode": "Current Node"
       }
     }
   },
