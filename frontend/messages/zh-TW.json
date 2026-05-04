@@ -249,7 +249,15 @@
         "lockedHint": "已安排行程的路線無法移除"
       },
       "dayPlanCard": {
-        "currentNode": "目前位置"
+        "currentNode": "目前位置",
+        "spec": "SPEC",
+        "you": "YOU",
+        "menu": {
+          "edit": "編輯",
+          "cancelEdit": "取消編輯",
+          "clearRoute": "清除路線",
+          "delete": "刪除"
+        }
       }
     }
   },

@@ -249,7 +249,15 @@
         "lockedHint": "Trails with assigned stops cannot be removed"
       },
       "dayPlanCard": {
-        "currentNode": "Current Node"
+        "currentNode": "Current Node",
+        "spec": "SPEC",
+        "you": "YOU",
+        "menu": {
+          "edit": "Edit",
+          "cancelEdit": "Cancel Edit",
+          "clearRoute": "Clear Route",
+          "delete": "Delete"
+        }
       }
     }
   },

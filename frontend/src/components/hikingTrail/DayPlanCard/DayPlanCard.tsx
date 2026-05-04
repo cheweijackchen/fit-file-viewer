@@ -2,6 +2,7 @@
 
 import { ActionIcon, Divider, Menu, Text } from '@mantine/core'
 import { IconDotsVertical, IconEraser, IconPencil, IconPencilOff, IconTrash } from '@tabler/icons-react'
+import { useTranslations } from 'next-intl'
 import { useMemo } from 'react'
 import { PACE_TIERS } from '@/constants/hiking-trails/dayPlanCard'
 import { TrailNodeType } from '@/constants/hiking-trails/hikingTrail'
@@ -60,6 +61,8 @@ export function DayPlanCard({
   onCompleteRoute,
   onRouteExtended,
 }: Props) {
+  const t = useTranslations('hiking-trail-planner')
+
   const adj = useMemo(() => buildTrailAdjacencyList(trail), [trail])
 
   const nodeMap = useMemo(
@@ -122,7 +125,7 @@ export function DayPlanCard({
             leftSection={<IconPencilOff size={14} />}
             onClick={onCancelEdit}
           >
-            取消編輯
+            {t('planDetail.dayPlanCard.menu.cancelEdit')}
           </Menu.Item>
           <Menu.Item
             c="bright"
@@ -130,7 +133,7 @@ export function DayPlanCard({
             leftSection={<IconEraser size={14} />}
             onClick={onClearRoute}
           >
-            清除路線
+            {t('planDetail.dayPlanCard.menu.clearRoute')}
           </Menu.Item>
         </>
       ) : (
@@ -141,7 +144,7 @@ export function DayPlanCard({
           leftSection={<IconPencil size={14} />}
           onClick={onEdit}
         >
-          編輯
+          {t('planDetail.dayPlanCard.menu.edit')}
         </Menu.Item>
       )}
       <Menu.Divider />
@@ -150,7 +153,7 @@ export function DayPlanCard({
         leftSection={<IconTrash size={14} />}
         onClick={onDelete}
       >
-        刪除
+        {t('planDetail.dayPlanCard.menu.delete')}
       </Menu.Item>
     </Menu.Dropdown>
   )
@@ -228,7 +231,7 @@ export function DayPlanCard({
                     lh={1}
                     className="tracking-[0.12em]"
                   >
-                    SPEC
+                    {t('planDetail.dayPlanCard.spec')}
                   </Text>
                   <Text
                     component="span"
@@ -249,7 +252,7 @@ export function DayPlanCard({
                     lh={1}
                     className="tracking-[0.12em]"
                   >
-                    YOU
+                    {t('planDetail.dayPlanCard.you')}
                   </Text>
                   <Text
                     component="span"
@@ -347,7 +350,7 @@ export function DayPlanCard({
             lh={1}
             className="tracking-[0.12em]"
           >
-            SPEC
+            {t('planDetail.dayPlanCard.spec')}
           </Text>
           <Text
             component="span"
@@ -368,7 +371,7 @@ export function DayPlanCard({
             lh={1}
             className="tracking-[0.12em]"
           >
-            YOU
+            {t('planDetail.dayPlanCard.you')}
           </Text>
           <Text
             component="span"
