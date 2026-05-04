@@ -4,7 +4,7 @@ import { Loader, useMantineTheme } from '@mantine/core'
 import { useDebouncedValue, useViewportSize } from '@mantine/hooks'
 import type { ElementDefinition, StylesheetStyle } from 'cytoscape'
 import dynamic from 'next/dynamic'
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { getTrailPositions } from '@/constants/hiking-trails/positions'
 import type { Trail } from '@/model/hikingTrail'
 
@@ -43,10 +43,13 @@ export function TrailGraph({ trail, showGrid = false, gridSize = 40, editable = 
   const [debouncedWidth] = useDebouncedValue(width, 300)
   const prevWidthRef = useRef(debouncedWidth)
   const [shrinkKey, setShrinkKey] = useState(0)
+  // Track the cy instance in state so effects can declare it as a dependency.
+  // cyRef is kept in sync for imperative access; cyInstance drives re-registration
+  // of event listeners whenever CytoscapeComponent remounts (trail change or shrinkKey bump).
+  const [cyInstance, setCyInstance] = useState<cytoscape.Core | null>(null)
 
   useEffect(() => {
     if (debouncedWidth < prevWidthRef.current) {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
       setShrinkKey(k => k + 1)
     }
     prevWidthRef.current = debouncedWidth
@@ -133,14 +136,37 @@ export function TrailGraph({ trail, showGrid = false, gridSize = 40, editable = 
     })),
   ], [trail])
 
+  // Stable callback passed to CytoscapeComponent. useCallback prevents react-cytoscapejs
+  // from seeing a new function reference every render, which would cause it to call this
+  // repeatedly and re-run the layout on top of the user's current view.
+  const handleCy = useCallback((cy: cytoscape.Core) => {
+    cyRef.current = cy
+    setCyInstance(cy)
+  }, [])
+
+  // Apply initial setup whenever the cy instance is created or replaced.
+  // CytoscapeComponent remounts (new instance) on trail change and viewport shrink (shrinkKey),
+  // so this effect re-runs for each new instance — not just on first mount.
   useEffect(() => {
-    cyRef.current?.autoungrabify(!editable)
-  }, [editable])
+    if (!cyInstance) {
+      return
+    }
+    cyInstance.autoungrabify(!editable)
+    cyInstance.layout(layoutConfig as cytoscape.LayoutOptions).run()
+  // layoutConfig and editable intentionally omitted: this runs only on new instance.
+  // Changes to editable are handled by the effect below; layout re-runs are not desired
+  // on every prop change (would overwrite the user's current viewport).
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [cyInstance])
+
+  // Re-apply editable state when the prop changes after initial mount.
+  useEffect(() => {
+    cyInstance?.autoungrabify(!editable)
+  }, [editable, cyInstance])
 
   useEffect(() => {
-    const cy = cyRef.current
     const container = containerRef.current
-    if (!cy || !container) {
+    if (!cyInstance || !container) {
       return
     }
     if (!showGrid) {
@@ -148,8 +174,8 @@ export function TrailGraph({ trail, showGrid = false, gridSize = 40, editable = 
       return
     }
     function updateGrid() {
-      const pan = cy!.pan()
-      const zoom = cy!.zoom()
+      const pan = cyInstance!.pan()
+      const zoom = cyInstance!.zoom()
       const size = gridSize * zoom
       container!.style.backgroundSize = `${size}px ${size}px`
       container!.style.backgroundPosition = `${pan.x}px ${pan.y}px`
@@ -157,12 +183,14 @@ export function TrailGraph({ trail, showGrid = false, gridSize = 40, editable = 
         'linear-gradient(to right, #e9ecef 1px, transparent 1px), linear-gradient(to bottom, #e9ecef 1px, transparent 1px)'
     }
     updateGrid()
-    cy.on('zoom pan', updateGrid)
+    cyInstance.on('zoom pan', updateGrid)
     return () => {
-      cy.off('zoom pan', updateGrid)
+      cyInstance.off('zoom pan', updateGrid)
       container.style.backgroundImage = ''
     }
-  }, [showGrid, gridSize])
+  // cyInstance in deps ensures the listener is re-registered on every new cy instance,
+  // not just when showGrid or gridSize changes.
+  }, [showGrid, gridSize, cyInstance])
 
   return (
     <div
@@ -175,11 +203,7 @@ export function TrailGraph({ trail, showGrid = false, gridSize = 40, editable = 
         elements={elements}
         stylesheet={stylesheet}
         layout={layoutConfig as cytoscape.LayoutOptions}
-        cy={(cy) => {
-          cyRef.current = cy
-          cy.autoungrabify(!editable)
-          cy.layout(layoutConfig as cytoscape.LayoutOptions).run()
-        }}
+        cy={handleCy}
         style={{
           width: '100%',
           height: '100%' 
