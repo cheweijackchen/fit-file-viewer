@@ -438,7 +438,7 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
                     editPaceMultiplier={editPaceMultiplier}
                     planPaceMultiplier={plan.paceMultiplier}
                     prevDayLastStopId={prevDayLastStopId}
-                    showDuration={showDuration && !isEditing}
+                    showDuration={showDuration}
                     onEnterEditMode={enterEditMode}
                     onSetEditingDayId={setEditingDayId}
                     onSetEditStopIds={setEditStopIds}
