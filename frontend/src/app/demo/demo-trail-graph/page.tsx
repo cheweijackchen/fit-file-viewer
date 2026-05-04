@@ -3,7 +3,7 @@
 import { Button, Group, Loader, SegmentedControl, Select, Switch, Text, Title } from '@mantine/core'
 import type { ElementDefinition, StylesheetStyle } from 'cytoscape'
 import dynamic from 'next/dynamic'
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { HIKING_TRAIL_MAP, HIKING_TRAILS } from '@/constants/hikingTrails'
 
 const CytoscapeComponent = dynamic(
@@ -135,6 +135,7 @@ export default function DemoTrailGraph() {
   const containerRef = useRef<HTMLDivElement>(null)
   const [showGrid, setShowGrid] = useState(false)
   const [snapToGrid, setSnapToGrid] = useState(false)
+  const [cyInstance, setCyInstance] = useState<cytoscape.Core | null>(null)
 
   const selectedTrail = HIKING_TRAIL_MAP[selectedTrailId]
   const activeLayoutConfigs: Record<string, object> = useMemo(() => {
@@ -173,8 +174,21 @@ export default function DemoTrailGraph() {
   function applyLayout(cy: cytoscape.Core, layoutName: string) {
     const config = activeLayoutConfigs[layoutName]
     console.log('applying layout:', JSON.stringify(config, null, 2))
-    cy.layout(activeLayoutConfigs[layoutName] as cytoscape.LayoutOptions).run()
+    cy.layout(config as cytoscape.LayoutOptions).run()
   }
+
+  const handleCy = useCallback((cy: cytoscape.Core) => {
+    cyRef.current = cy
+    setCyInstance(cy)
+  }, [])
+
+  useEffect(() => {
+    if (!cyInstance) {
+      return
+    }
+    applyLayout(cyInstance, selectedLayout)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [cyInstance])
 
   function handleLayoutChange(value: string) {
     setSelectedLayout(value)
@@ -191,9 +205,8 @@ export default function DemoTrailGraph() {
   }
 
   useEffect(() => {
-    const cy = cyRef.current
     const container = containerRef.current
-    if (!cy || !container) {
+    if (!cyInstance || !container) {
       return
     }
     if (!showGrid) {
@@ -201,8 +214,8 @@ export default function DemoTrailGraph() {
       return
     }
     function updateGrid() {
-      const pan = cy!.pan()
-      const zoom = cy!.zoom()
+      const pan = cyInstance!.pan()
+      const zoom = cyInstance!.zoom()
       const size = GRID_SIZE * zoom
       container!.style.backgroundSize = `${size}px ${size}px`
       container!.style.backgroundPosition = `${pan.x}px ${pan.y}px`
@@ -210,16 +223,15 @@ export default function DemoTrailGraph() {
         'linear-gradient(to right, #e9ecef 1px, transparent 1px), linear-gradient(to bottom, #e9ecef 1px, transparent 1px)'
     }
     updateGrid()
-    cy.on('zoom pan', updateGrid)
+    cyInstance.on('zoom pan', updateGrid)
     return () => {
-      cy.off('zoom pan', updateGrid)
+      cyInstance.off('zoom pan', updateGrid)
       container.style.backgroundImage = ''
     }
-  }, [showGrid])
+  }, [showGrid, cyInstance])
 
   useEffect(() => {
-    const cy = cyRef.current
-    if (!cy || !snapToGrid) {
+    if (!cyInstance || !snapToGrid) {
       return
     }
     function snapNode(e: cytoscape.EventObject) {
@@ -230,11 +242,11 @@ export default function DemoTrailGraph() {
         y: Math.round(pos.y / GRID_SIZE) * GRID_SIZE,
       })
     }
-    cy.on('dragfree', 'node', snapNode)
+    cyInstance.on('dragfree', 'node', snapNode)
     return () => {
-      cy.off('dragfree', 'node', snapNode)
+      cyInstance.off('dragfree', 'node', snapNode)
     }
-  }, [snapToGrid])
+  }, [snapToGrid, cyInstance])
 
   function handleExport() {
     const cy = cyRef.current
@@ -341,10 +353,7 @@ export default function DemoTrailGraph() {
           elements={elements}
           stylesheet={stylesheet}
           layout={activeLayoutConfigs[selectedLayout] as cytoscape.LayoutOptions}
-          cy={(cy) => {
-            cyRef.current = cy
-            applyLayout(cy, selectedLayout)
-          }}
+          cy={handleCy}
           style={{
             width: '100%',
             height: '100%'
