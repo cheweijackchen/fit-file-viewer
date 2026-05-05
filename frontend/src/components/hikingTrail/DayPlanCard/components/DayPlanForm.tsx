@@ -126,45 +126,30 @@ export function DayPlanForm({
 
       {/* Starting Point + Starting Time */}
       <div className="flex flex-col gap-3 md:flex-row md:gap-4">
-
-        {/* Starting Point */}
-        <div className="flex flex-col gap-1.5 md:flex-1">
-          <Text
-            c="stone.6"
-            size="xs"
-            component="span"
-            className="font-semibold"
-          >
-            {t('planDetail.dayPlanCard.form.startingPointLabel')}
-          </Text>
-          <Select
-            searchable
-            data={selectData}
-            value={startingNodeId}
-            placeholder={t('planDetail.dayPlanCard.form.startingPointPlaceholder')}
-            classNames={{ input: classes.selectInput }}
-            onChange={(val) => val && onStartingNodeChange(val)}
-          />
-        </div>
-
-        {/* Starting Time */}
-        <div className="flex flex-col gap-1.5 md:flex-1">
-          <Text
-            c="stone.6"
-            size="xs"
-            component="span"
-            className="font-semibold"
-          >
-            {t('planDetail.dayPlanCard.form.startingTimeLabel')}
-          </Text>
-          <TimePicker
-            clearable
-            value={startingTime ?? ''}
-            classNames={{ input: classes.selectInput }}
-            onChange={(val) => onStartingTimeChange?.(val)}
-          />
-        </div>
-
+        <Select
+          searchable
+          label={t('planDetail.dayPlanCard.form.startingPointLabel')}
+          data={selectData}
+          value={startingNodeId}
+          placeholder={t('planDetail.dayPlanCard.form.startingPointPlaceholder')}
+          classNames={{
+            root: 'md:flex-1',
+            input: classes.selectInput,
+            label: 'text-xs! text-(--mantine-color-stone-6)' 
+          }}
+          onChange={(val) => val && onStartingNodeChange(val)}
+        />
+        <TimePicker
+          clearable
+          label={t('planDetail.dayPlanCard.form.startingTimeLabel')}
+          value={startingTime ?? ''}
+          classNames={{
+            root: 'md:flex-1',
+            input: classes.selectInput,
+            label: 'text-xs! text-(--mantine-color-stone-6)' 
+          }}
+          onChange={(val) => onStartingTimeChange?.(val)}
+        />
       </div>
 
       {/* Route Summary */}
