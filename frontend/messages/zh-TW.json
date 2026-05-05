@@ -265,7 +265,8 @@
         }
       },
       "dayItinerary": {
-        "title": "第 {day} 天行程"
+        "title": "第 {day} 天行程",
+        "travelTime": "{adjustedTime} ・上河基準 {originalTime} × {paceMultiplier}"
       }
     }
   },

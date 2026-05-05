@@ -17,7 +17,7 @@ export const yushanGroup: Trail = {
       id: 'yushan-group_checkpost',
       name: '檢查哨',
       i18nKey: 'yushan-group.checkpost',
-      nodeType: 'hut' 
+      nodeType: 'other' 
     },
     {
       id: 'yushan-group_tataka-saddle',

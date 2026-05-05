@@ -87,7 +87,8 @@ export function DayItineraryModal({
         <Timeline
           active={stops.length - 1}
           bulletSize={16}
-          lineWidth={2}
+          lineWidth={4}
+          mx="lg"
         >
           {stops.map((stop, i) => {
             const node = nodeMap[stop.nodeId]
@@ -97,17 +98,21 @@ export function DayItineraryModal({
                 ? getEdge(adj, stop.nodeId, stops[i + 1]!.nodeId)
                 : undefined
             const travelToNext = edgeToNext
-              ? formatTrailMinutes(Math.round(edgeToNext.minutes * paceMultiplier))
+              ? t('planDetail.dayItinerary.travelTime', {
+                adjustedTime: formatTrailMinutes(Math.round(edgeToNext.minutes * paceMultiplier)),
+                originalTime: formatTrailMinutes(edgeToNext.minutes),
+                paceMultiplier,
+              })
               : null
             const showBadge = node?.nodeType !== undefined && BADGE_TYPES.has(node.nodeType)
 
             return (
               <Timeline.Item
                 key={stop.nodeId}
+                mt="md"
                 title={
                   <Text
-                    size="xs"
-                    c="stone.5"
+                    size="sm"
                     fw={500}
                   >
                     {departureTime}
@@ -126,8 +131,8 @@ export function DayItineraryModal({
                 {travelToNext !== null && (
                   <Text
                     size="xs"
-                    c="stone.5"
-                    mt={2}
+                    c="stone.6"
+                    mt="sm"
                   >{travelToNext}</Text>
                 )}
               </Timeline.Item>

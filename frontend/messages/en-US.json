@@ -265,7 +265,8 @@
         }
       },
       "dayItinerary": {
-        "title": "Day {day} Itinerary"
+        "title": "Day {day} Itinerary",
+        "travelTime": "{adjustedTime} ・Ref. {originalTime} × {paceMultiplier}"
       }
     }
   },
