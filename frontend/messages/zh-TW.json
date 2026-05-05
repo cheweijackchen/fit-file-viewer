@@ -263,6 +263,9 @@
           "clearRoute": "清除路線",
           "delete": "刪除"
         }
+      },
+      "dayItinerary": {
+        "title": "第 {day} 天行程"
       }
     }
   },

@@ -263,6 +263,9 @@
           "clearRoute": "Clear Route",
           "delete": "Delete"
         }
+      },
+      "dayItinerary": {
+        "title": "Day {day} Itinerary"
       }
     }
   },

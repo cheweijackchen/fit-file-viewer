@@ -39,6 +39,7 @@ export interface DayPlan {
   id: string;
   badges: InfoBadgeType[];
   stops: RouteStop[];
+  startingTime?: string;
 }
 
 export interface HikingPlan {

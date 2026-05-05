@@ -3,12 +3,13 @@
 import { ActionIcon, Divider, Menu, Text } from '@mantine/core'
 import { IconDotsVertical, IconEraser, IconPencil, IconPencilOff, IconTrash } from '@tabler/icons-react'
 import { useTranslations } from 'next-intl'
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import { PACE_TIERS } from '@/constants/hiking-trails/dayPlanCard'
 import { TrailNodeType } from '@/constants/hiking-trails/hikingTrail'
 import { formatTrailMinutes } from '@/lib/timeFormatter'
 import { buildTrailAdjacencyList, calculatePathTime } from '@/lib/trailGraph'
 import type { DayPlan, Trail } from '@/model/hikingTrail'
+import { DayItineraryModal } from './components/DayItineraryModal'
 import { DayPlanForm } from './components/DayPlanForm'
 import { NodeTypeBadge } from './components/NodeTypeBadge'
 import { RouteIndicator } from './components/RouteIndicator'
@@ -34,6 +35,7 @@ interface Props {
   onUndo?: () => void;
   onCompleteRoute?: () => void;
   onRouteExtended?: (newStops: string[]) => void;
+  onStartingTimeChange?: (time: string) => void;
 }
 
 const ACCOMMODATION_TYPES = new Set<TrailNodeType>([TrailNodeType.Hut, TrailNodeType.Camp])
@@ -60,8 +62,10 @@ export function DayPlanCard({
   onUndo,
   onCompleteRoute,
   onRouteExtended,
+  onStartingTimeChange,
 }: Props) {
   const t = useTranslations('hiking-trail-planner')
+  const [itineraryModalOpen, setItineraryModalOpen] = useState(false)
 
   const adj = useMemo(() => buildTrailAdjacencyList(trail), [trail])
 
@@ -434,7 +438,9 @@ export function DayPlanCard({
           rawMinutes={formRawMinutes}
           weightedMinutes={formWeightedMinutes}
           prevDayLastStopId={prevDayLastStopId}
+          startingTime={dayPlan.startingTime}
           onStartingNodeChange={onStartingNodeChange ?? (() => {})}
+          onStartingTimeChange={onStartingTimeChange}
           onNodeSelect={onNodeSelect ?? (() => {})}
           onUndo={onUndo ?? (() => {})}
           onCompleteRoute={onCompleteRoute ?? (() => {})}
@@ -445,10 +451,23 @@ export function DayPlanCard({
   }
 
   return (
-    <div className={`${cardCls}`}>
+    <div
+      className={`${cardCls}${!showOptions ? ' cursor-pointer' : ''}`}
+      onClick={!showOptions ? () => setItineraryModalOpen(true) : undefined}
+    >
       <div className="flex flex-col gap-3 @md/day-plan:flex-row @md/day-plan:items-center @md/day-plan:gap-5">
         {cardRow}
       </div>
+      <DayItineraryModal
+        opened={itineraryModalOpen}
+        dayPlan={dayPlan}
+        trail={trail}
+        paceMultiplier={paceMultiplier}
+        dayIndex={dayIndex}
+        adj={adj}
+        nodeMap={nodeMap}
+        onClose={() => setItineraryModalOpen(false)}
+      />
     </div>
   )
 }

@@ -1,6 +1,7 @@
 'use client'
 
 import { Alert, Button, Select, Text } from '@mantine/core'
+import { TimePicker } from '@mantine/dates'
 import { IconAlertTriangle, IconArrowBackUp, IconCheck } from '@tabler/icons-react'
 import { useEffect, useState } from 'react'
 import { formatTrailMinutes } from '@/lib/timeFormatter'
@@ -20,7 +21,9 @@ interface Props {
   weightedMinutes: number;
   rawMinutes: number;
   prevDayLastStopId?: string;
+  startingTime?: string;
   onStartingNodeChange: (nodeId: string) => void;
+  onStartingTimeChange?: (time: string) => void;
   onNodeSelect: (nodeId: string) => void;
   onUndo: () => void;
   onCompleteRoute: () => void;
@@ -36,7 +39,9 @@ export function DayPlanForm({
   weightedMinutes,
   rawMinutes,
   prevDayLastStopId,
+  startingTime,
   onStartingNodeChange,
+  onStartingTimeChange,
   onNodeSelect,
   onUndo,
   onCompleteRoute,
@@ -77,7 +82,7 @@ export function DayPlanForm({
           icon={<IconAlertTriangle
             size={14}
             stroke={2}
-          />}
+                />}
           py="xs"
           px="sm"
           fz="xs"
@@ -134,6 +139,24 @@ export function DayPlanForm({
           placeholder="選擇起點"
           classNames={{ input: classes.selectInput }}
           onChange={(val) => val && onStartingNodeChange(val)}
+        />
+      </div>
+
+      {/* Starting Time */}
+      <div className="flex flex-col gap-1.5">
+        <Text
+          c="stone.6"
+          size="xs"
+          component="span"
+          className="font-semibold"
+        >
+          Starting Time
+        </Text>
+        <TimePicker
+          clearable
+          value={startingTime ?? ''}
+          classNames={{ input: classes.selectInput }}
+          onChange={(val) => onStartingTimeChange?.(val)}
         />
       </div>
 

@@ -1,6 +1,7 @@
 'use client'
 
 import type { Dispatch, SetStateAction } from 'react'
+import { useState } from 'react'
 import { DayPlanCard } from '@/components/hikingTrail/DayPlanCard'
 import type { DayPlan, Trail } from '@/model/hikingTrail'
 
@@ -37,6 +38,8 @@ export function DayPlanCardWrapper({
   onSetEditStopIds,
   onSetEditDays,
 }: Props) {
+  const [editStartingTime, setEditStartingTime] = useState<string | undefined>(undefined)
+
   const isDayEditing = editingDayId === day.id
   const isOtherDayEditing = editingDayId !== null && !isDayEditing
   const paceMultiplier = isEditing ? editPaceMultiplier : planPaceMultiplier
@@ -47,28 +50,33 @@ export function DayPlanCardWrapper({
     }
     onSetEditingDayId(day.id)
     onSetEditStopIds(day.stops.map((s) => s.nodeId))
+    setEditStartingTime(day.startingTime)
   }
 
   function handleCancelEditDay() {
     onSetEditingDayId(null)
     onSetEditStopIds([])
+    setEditStartingTime(undefined)
   }
 
   function handleCompleteRoute() {
     const captured = editStopIds
     const capturedDayId = editingDayId
+    const capturedStartingTime = editStartingTime
     onSetEditDays((prev) =>
       prev.map((d) =>
         d.id === capturedDayId
           ? {
             ...d,
-            stops: captured.map((id) => ({ nodeId: id })) 
+            stops: captured.map((id) => ({ nodeId: id })),
+            startingTime: capturedStartingTime,
           }
           : d,
       ),
     )
     onSetEditingDayId(null)
     onSetEditStopIds([])
+    setEditStartingTime(undefined)
   }
 
   function handleDeleteDay() {
@@ -83,7 +91,12 @@ export function DayPlanCardWrapper({
       showOptions={isEditing}
       editDisabled={isOtherDayEditing}
       showDuration={showDuration}
-      dayPlan={day}
+      dayPlan={isDayEditing
+        ? {
+          ...day,
+          startingTime: editStartingTime,
+        }
+        : day}
       dayIndex={dayIndex}
       trail={trail}
       paceMultiplier={paceMultiplier}
@@ -94,6 +107,7 @@ export function DayPlanCardWrapper({
       onCancelEdit={handleCancelEditDay}
       onClearRoute={() => onSetEditStopIds([])}
       onStartingNodeChange={(nodeId: string) => onSetEditStopIds([nodeId])}
+      onStartingTimeChange={(time) => setEditStartingTime(time || undefined)}
       onNodeSelect={(nodeId: string) => onSetEditStopIds((prev) => [...prev, nodeId])}
       onUndo={() => onSetEditStopIds((prev) => prev.slice(0, -1))}
       onCompleteRoute={handleCompleteRoute}
