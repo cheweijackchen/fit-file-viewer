@@ -5,14 +5,18 @@ import { IconChevronRight, IconDots, IconPencil, IconSettings, IconTrash } from 
 import { useTranslations } from 'next-intl'
 
 interface Props {
+  isEditing: boolean;
   onEnterEditMode: () => void;
+  onCancelEditMode: () => void;
   onDeleteConfirmOpen: () => void;
   showDuration: boolean;
   onShowDurationChange: (value: boolean) => void;
 }
 
 export function PlanDetailMenu({
+  isEditing,
   onEnterEditMode,
+  onCancelEditMode,
   onDeleteConfirmOpen,
   showDuration,
   onShowDurationChange,
@@ -39,9 +43,9 @@ export function PlanDetailMenu({
           c="bright"
           color="stone"
           leftSection={<IconPencil size={14} />}
-          onClick={onEnterEditMode}
+          onClick={isEditing ? onCancelEditMode : onEnterEditMode}
         >
-          {t('planDetail.edit')}
+          {isEditing ? t('planDetail.cancelEdit') : t('planDetail.edit')}
         </Menu.Item>
 
         <Menu

@@ -187,6 +187,7 @@
     "planDetail": {
       "myTrips": "我的旅程",
       "edit": "編輯",
+      "cancelEdit": "取消編輯",
       "delete": "刪除",
       "settings": "設定",
       "showDuration": "顯示地點之間時間",
@@ -262,6 +263,17 @@
           "cancelEdit": "取消編輯",
           "clearRoute": "清除路線",
           "delete": "刪除"
+        },
+        "form": {
+          "overTimeWarning": "目前累積時間已超過 8 小時，考慮是否在此結束本日。",
+          "discontinuousAlert": "起點與前一天終點「{prevDayLastNodeName}」不連續",
+          "usePrevEndpoint": "改用前一天終點",
+          "startingPointLabel": "起點",
+          "startingPointPlaceholder": "選擇起點",
+          "startingTimeLabel": "出發時間",
+          "todaysRoute": "今日路線",
+          "undo": "復原上一步",
+          "completeRoute": "完成路線"
         }
       },
       "dayItinerary": {

@@ -3,6 +3,7 @@
 import { Alert, Button, Select, Text } from '@mantine/core'
 import { TimePicker } from '@mantine/dates'
 import { IconAlertTriangle, IconArrowBackUp, IconCheck } from '@tabler/icons-react'
+import { useTranslations } from 'next-intl'
 import { useEffect, useState } from 'react'
 import { formatTrailMinutes } from '@/lib/timeFormatter'
 import { applyQuickJump } from '@/lib/trailGraph'
@@ -47,6 +48,7 @@ export function DayPlanForm({
   onCompleteRoute,
   onRouteExtended,
 }: Props) {
+  const t = useTranslations('hiking-trail-planner')
   const [jumpModalOpen, setJumpModalOpen] = useState(false)
 
   const showWarning = weightedMinutes / 60 >= 8
@@ -86,7 +88,7 @@ export function DayPlanForm({
           py="xs"
           px="sm"
           fz="xs"
-          title="目前累積時間已超過 8 小時，考慮是否在此結束本日。"
+          title={t('planDetail.dayPlanCard.form.overTimeWarning')}
         >
         </Alert>
       )}
@@ -109,14 +111,14 @@ export function DayPlanForm({
               c="orange" 
               size="sm"
               fw="700"
-            >起點與前一天終點「{prevDayLastNode.name}」不連續</Text>
+            >{t('planDetail.dayPlanCard.form.discontinuousAlert', { prevDayLastNodeName: prevDayLastNode.name })}</Text>
             <Button
               size="compact-xs"
               variant="filled"
               color="orange"
               onClick={() => onStartingNodeChange(prevDayLastStopId!)}
             >
-              改用前一天終點
+              {t('planDetail.dayPlanCard.form.usePrevEndpoint')}
             </Button>
           </div>
         </Alert>
@@ -130,13 +132,13 @@ export function DayPlanForm({
           component="span"
           className="font-semibold"
         >
-          Starting Point
+          {t('planDetail.dayPlanCard.form.startingPointLabel')}
         </Text>
         <Select
           searchable
           data={selectData}
           value={startingNodeId}
-          placeholder="選擇起點"
+          placeholder={t('planDetail.dayPlanCard.form.startingPointPlaceholder')}
           classNames={{ input: classes.selectInput }}
           onChange={(val) => val && onStartingNodeChange(val)}
         />
@@ -150,7 +152,7 @@ export function DayPlanForm({
           component="span"
           className="font-semibold"
         >
-          Starting Time
+          {t('planDetail.dayPlanCard.form.startingTimeLabel')}
         </Text>
         <TimePicker
           clearable
@@ -166,7 +168,7 @@ export function DayPlanForm({
           {/* Left: label + chips */}
           <div className="flex flex-col flex-1 min-w-0 gap-1.5">
             <span className="text-[9px] font-bold tracking-[0.08em] text-(--mantine-color-stone-8)">
-              TODAY&apos;S ROUTE
+              {t('planDetail.dayPlanCard.form.todaysRoute')}
             </span>
             <RouteIndicator
               highlightLast
@@ -228,7 +230,7 @@ export function DayPlanForm({
             color="var(--mantine-color-stone-7)"
           />
           <span className="text-[13px] font-semibold text-(--mantine-color-stone-7)">
-            復原上一步
+            {t('planDetail.dayPlanCard.form.undo')}
           </span>
         </button>
 
@@ -244,7 +246,7 @@ export function DayPlanForm({
             color={hasStops ? 'white' : 'var(--mantine-color-stone-5)'}
           />
           <span className={`text-sm font-bold ${hasStops ? 'text-white' : 'text-(--mantine-color-stone-5)'}`}>
-            完成路線
+            {t('planDetail.dayPlanCard.form.completeRoute')}
           </span>
         </button>
       </div>

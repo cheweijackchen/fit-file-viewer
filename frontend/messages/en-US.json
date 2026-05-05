@@ -187,6 +187,7 @@
     "planDetail": {
       "myTrips": "My Trips",
       "edit": "Edit",
+      "cancelEdit": "Cancel Edit",
       "delete": "Delete",
       "settings": "Settings",
       "showDuration": "Show time between locations",
@@ -262,6 +263,17 @@
           "cancelEdit": "Cancel Edit",
           "clearRoute": "Clear Route",
           "delete": "Delete"
+        },
+        "form": {
+          "overTimeWarning": "Accumulated time exceeds 8 hours. Consider ending today's route here.",
+          "discontinuousAlert": "Starting point is not continuous with the previous day's endpoint \"{prevDayLastNodeName}\"",
+          "usePrevEndpoint": "Use Previous Endpoint",
+          "startingPointLabel": "Starting Point",
+          "startingPointPlaceholder": "Select starting point",
+          "startingTimeLabel": "Starting Time",
+          "todaysRoute": "TODAY'S ROUTE",
+          "undo": "Undo",
+          "completeRoute": "Complete Route"
         }
       },
       "dayItinerary": {

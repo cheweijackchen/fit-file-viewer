@@ -280,8 +280,10 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
             </Text>
           </div>
           <PlanDetailMenu
+            isEditing={isEditing}
             showDuration={showDuration}
             onEnterEditMode={enterEditMode}
+            onCancelEditMode={cancelEditing}
             onDeleteConfirmOpen={() => setDeleteConfirmOpen(true)}
             onShowDurationChange={setShowDuration}
           />
