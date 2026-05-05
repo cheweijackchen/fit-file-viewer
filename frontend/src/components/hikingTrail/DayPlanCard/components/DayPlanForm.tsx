@@ -84,7 +84,7 @@ export function DayPlanForm({
           icon={<IconAlertTriangle
             size={14}
             stroke={2}
-                />}
+          />}
           py="xs"
           px="sm"
           fz="xs"
@@ -126,30 +126,34 @@ export function DayPlanForm({
 
       {/* Starting Point + Starting Time */}
       <div className="flex flex-col gap-3 md:flex-row md:gap-4">
-        <Select
-          searchable
-          label={t('planDetail.dayPlanCard.form.startingPointLabel')}
-          data={selectData}
-          value={startingNodeId}
-          placeholder={t('planDetail.dayPlanCard.form.startingPointPlaceholder')}
-          classNames={{
-            root: 'md:flex-1',
-            input: classes.selectInput,
-            label: 'text-xs! text-(--mantine-color-stone-6)' 
-          }}
-          onChange={(val) => val && onStartingNodeChange(val)}
-        />
-        <TimePicker
-          clearable
-          label={t('planDetail.dayPlanCard.form.startingTimeLabel')}
-          value={startingTime ?? ''}
-          classNames={{
-            root: 'md:flex-1',
-            input: classes.selectInput,
-            label: 'text-xs! text-(--mantine-color-stone-6)' 
-          }}
-          onChange={(val) => onStartingTimeChange?.(val)}
-        />
+        
+        <div className="md:flex-1">
+          <Select
+            searchable
+            label={t('planDetail.dayPlanCard.form.startingPointLabel')}
+            data={selectData}
+            value={startingNodeId}
+            placeholder={t('planDetail.dayPlanCard.form.startingPointPlaceholder')}
+            classNames={{
+              input: classes.selectInput,
+              label: 'text-xs! text-(--mantine-color-stone-6)' 
+            }}
+            onChange={(val) => val && onStartingNodeChange(val)}
+          />
+        </div>
+        <div className="md:flex-1">
+          <TimePicker
+            clearable
+            label={t('planDetail.dayPlanCard.form.startingTimeLabel')}
+            value={startingTime ?? ''}
+            classNames={{
+              input: classes.selectInput,
+              label: 'text-xs! text-(--mantine-color-stone-6)',
+              field: `${classes.timeField} w-6`
+            }}
+            onChange={(val) => onStartingTimeChange?.(val)}
+          />
+        </div>
       </div>
 
       {/* Route Summary */}
