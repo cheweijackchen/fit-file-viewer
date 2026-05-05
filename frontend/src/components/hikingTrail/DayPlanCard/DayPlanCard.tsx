@@ -158,7 +158,8 @@ export function DayPlanCard({
     </Menu.Dropdown>
   )
 
-  const badges = (accommodationBadge !== null || hasWaterSource) ? (
+  const showBadges = false
+  const badges = showBadges && (accommodationBadge !== null || hasWaterSource) ? (
     <div className="flex items-center gap-1.5">
       {accommodationBadge !== null && (
         <NodeTypeBadge nodeType={accommodationBadge} />
