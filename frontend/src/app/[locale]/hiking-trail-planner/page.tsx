@@ -83,6 +83,7 @@ export default function HikingTrailPlannerPage() {
             leftSection={<IconMap size={18} />}
             radius={10}
             fw={600}
+            onClick={handleNewTrip}
           >
             {t('hero.cta')}
           </Button>
