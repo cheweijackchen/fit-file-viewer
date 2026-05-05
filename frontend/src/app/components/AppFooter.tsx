@@ -76,7 +76,7 @@ export function AppFooter() {
   const t = useTranslations('landing')
 
   return (
-    <footer className="bg-(--mantine-color-dark-9)">
+    <footer className="app-footer bg-(--mantine-color-dark-9)">
       <Container
         size="xl"
         className="py-12 pb-8"

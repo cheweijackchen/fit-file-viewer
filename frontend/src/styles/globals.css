@@ -25,3 +25,15 @@
 body {
   font-family: var(--font-inter), var(--font-noto-sans-tc), sans-serif;
 }
+
+@media (display-mode: standalone) {
+  .app-header,
+  .app-footer {
+    display: none !important;
+  }
+
+  /* Reset Mantine AppShell header height so main content fills from top */
+  .mantine-AppShell-root {
+    --app-shell-header-height: 0px !important;
+  }
+}
