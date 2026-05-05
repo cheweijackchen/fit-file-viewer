@@ -458,16 +458,18 @@ export function DayPlanCard({
       <div className="flex flex-col gap-3 @md/day-plan:flex-row @md/day-plan:items-center @md/day-plan:gap-5">
         {cardRow}
       </div>
-      <DayItineraryModal
-        opened={itineraryModalOpen}
-        dayPlan={dayPlan}
-        trail={trail}
-        paceMultiplier={paceMultiplier}
-        dayIndex={dayIndex}
-        adj={adj}
-        nodeMap={nodeMap}
-        onClose={() => setItineraryModalOpen(false)}
-      />
+      <div onClick={(e) => e.stopPropagation()}>
+        <DayItineraryModal
+          opened={itineraryModalOpen}
+          dayPlan={dayPlan}
+          trail={trail}
+          paceMultiplier={paceMultiplier}
+          dayIndex={dayIndex}
+          adj={adj}
+          nodeMap={nodeMap}
+          onClose={() => setItineraryModalOpen(false)}
+        />
+      </div>
     </div>
   )
 }
