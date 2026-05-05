@@ -124,42 +124,47 @@ export function DayPlanForm({
         </Alert>
       )}
 
-      {/* Starting Point */}
-      <div className="flex flex-col gap-1.5">
-        <Text
-          c="stone.6"
-          size="xs"
-          component="span"
-          className="font-semibold"
-        >
-          {t('planDetail.dayPlanCard.form.startingPointLabel')}
-        </Text>
-        <Select
-          searchable
-          data={selectData}
-          value={startingNodeId}
-          placeholder={t('planDetail.dayPlanCard.form.startingPointPlaceholder')}
-          classNames={{ input: classes.selectInput }}
-          onChange={(val) => val && onStartingNodeChange(val)}
-        />
-      </div>
+      {/* Starting Point + Starting Time */}
+      <div className="flex flex-col gap-3 md:flex-row md:gap-4">
 
-      {/* Starting Time */}
-      <div className="flex flex-col gap-1.5">
-        <Text
-          c="stone.6"
-          size="xs"
-          component="span"
-          className="font-semibold"
-        >
-          {t('planDetail.dayPlanCard.form.startingTimeLabel')}
-        </Text>
-        <TimePicker
-          clearable
-          value={startingTime ?? ''}
-          classNames={{ input: classes.selectInput }}
-          onChange={(val) => onStartingTimeChange?.(val)}
-        />
+        {/* Starting Point */}
+        <div className="flex flex-col gap-1.5 md:flex-1">
+          <Text
+            c="stone.6"
+            size="xs"
+            component="span"
+            className="font-semibold"
+          >
+            {t('planDetail.dayPlanCard.form.startingPointLabel')}
+          </Text>
+          <Select
+            searchable
+            data={selectData}
+            value={startingNodeId}
+            placeholder={t('planDetail.dayPlanCard.form.startingPointPlaceholder')}
+            classNames={{ input: classes.selectInput }}
+            onChange={(val) => val && onStartingNodeChange(val)}
+          />
+        </div>
+
+        {/* Starting Time */}
+        <div className="flex flex-col gap-1.5 md:flex-1">
+          <Text
+            c="stone.6"
+            size="xs"
+            component="span"
+            className="font-semibold"
+          >
+            {t('planDetail.dayPlanCard.form.startingTimeLabel')}
+          </Text>
+          <TimePicker
+            clearable
+            value={startingTime ?? ''}
+            classNames={{ input: classes.selectInput }}
+            onChange={(val) => onStartingTimeChange?.(val)}
+          />
+        </div>
+
       </div>
 
       {/* Route Summary */}
