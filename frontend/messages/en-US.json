@@ -177,7 +177,12 @@
       "newTrip": "New Trip"
     },
     "tripCard": {
-      "days": "{count, plural, one {# day} other {# days}}"
+      "days": "{count, plural, one {# day} other {# days}}",
+      "menu": {
+        "view": "View",
+        "edit": "Edit",
+        "delete": "Delete"
+      }
     },
     "planDetail": {
       "myTrips": "My Trips",

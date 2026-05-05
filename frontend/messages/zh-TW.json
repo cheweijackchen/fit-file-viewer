@@ -177,7 +177,12 @@
       "newTrip": "新旅程"
     },
     "tripCard": {
-      "days": "{count} 天"
+      "days": "{count} 天",
+      "menu": {
+        "view": "檢視",
+        "edit": "編輯",
+        "delete": "刪除"
+      }
     },
     "planDetail": {
       "myTrips": "我的旅程",

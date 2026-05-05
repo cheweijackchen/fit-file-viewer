@@ -6,6 +6,7 @@ import { IconDotsVertical, IconEye, IconPencil, IconTrash } from '@tabler/icons-
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import NextImage from 'next/image'
+import { useTranslations } from 'next-intl'
 import mountainImage from '@/assets/mono-alpine-simplified-v2.webp'
 import { HIKING_TRAIL_MAP } from '@/constants/hikingTrails'
 import type { HikingPlan } from '@/model/hikingTrail'
@@ -21,6 +22,7 @@ interface Props {
 }
 
 export function TripCard({ plan, onClick, onView, onEdit, onDelete }: Props) {
+  const t = useTranslations('hiking-trail-planner')
   const trailName = plan.trailIds[0] ? (HIKING_TRAIL_MAP[plan.trailIds[0]]?.name ?? plan.trailIds[0]) : '—'
   const lastEdited = dayjs(plan.updatedAt).fromNow()
 
@@ -95,7 +97,7 @@ export function TripCard({ plan, onClick, onView, onEdit, onDelete }: Props) {
                   onView?.()
                 }}
               >
-                檢視
+                {t('tripCard.menu.view')}
               </Menu.Item>
               <Menu.Item
                 c="bright"
@@ -106,7 +108,7 @@ export function TripCard({ plan, onClick, onView, onEdit, onDelete }: Props) {
                   onEdit?.()
                 }}
               >
-                編輯
+                {t('tripCard.menu.edit')}
               </Menu.Item>
               <Menu.Divider />
               <Menu.Item
@@ -117,7 +119,7 @@ export function TripCard({ plan, onClick, onView, onEdit, onDelete }: Props) {
                   onDelete?.()
                 }}
               >
-                刪除
+                {t('tripCard.menu.delete')}
               </Menu.Item>
             </Menu.Dropdown>
           </Menu>
@@ -141,7 +143,7 @@ export function TripCard({ plan, onClick, onView, onEdit, onDelete }: Props) {
             size="xs"
             c="stone.6"
           >
-            {plan.days.length} 天
+            {t('tripCard.days', { count: plan.days.length })}
           </Text>
           <Text
             size="xs"
