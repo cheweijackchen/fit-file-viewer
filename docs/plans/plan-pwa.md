@@ -62,6 +62,54 @@ TrailKit 目前有四個工具：FIT File Viewer、Peaks Tracker、Trail Map、H
 
 ---
 
+### 方案 B 的 Locale Scope 策略分析
+
+由於專案採用 `localePrefix: 'always'`，實際路由為 `/en-US/peaks/`、`/zh-TW/peaks/`，scope 設計有以下選項：
+
+#### 策略一：Root scope `/`
+
+```json
+{ "scope": "/", "start_url": "/en-US/peaks/" }
+```
+
+- 語言切換完全正常，standalone 不中斷
+- **問題**：同一 origin 只能有一個 SW 控制 root scope，四個工具的 SW 會互相覆蓋，退化成方案 A 行為
+
+#### 策略二：Locale-specific scope（如 `/en-US/peaks/`）
+
+```json
+{ "scope": "/en-US/peaks/", "start_url": "/en-US/peaks/" }
+```
+
+- 四個工具 SW 完全隔離，互不影響
+- **語言切換的影響**：
+  - 切換後 URL 變為 `/zh-TW/peaks/`，已在 scope 外，該頁面不受任何 SW 控制
+  - **功能面不受影響**：app 是 client-side rendering，JS 邏輯、IndexedDB、地圖、FIT 解析皆在 JS runtime，與 SW 無關
+  - **Offline 快取**：切換後的語言頁面不在快取內，只有安裝時的語言有離線保護
+  - **Standalone 外觀破版**：這才是主要風險。Chrome 可能顯示網址列退出全螢幕，iOS Safari 高機率跳出 home screen app 改用 Safari 開啟
+
+#### 策略三：各語言版本作為獨立 App
+
+每個語言的頁面 link 對應語言的 manifest，用戶安裝時選擇語言，安裝後不提供語言切換：
+
+```
+/en-US/peaks/ → link manifest-peaks-en.json (scope: /en-US/peaks/)
+/zh-TW/peaks/ → link manifest-peaks-zh.json (scope: /zh-TW/peaks/)
+```
+
+- **優點**：scope 清晰，standalone 永不中斷，語言切換問題完全消除
+- **前提**：standalone 模式下必須隱藏語言切換器，否則用戶點了仍會出 scope
+
+  ```scss
+  @media (display-mode: standalone) {
+    .languageSwitcher { display: none; }
+  }
+  ```
+
+- **代價**：4 工具 × 2 語言 = 8 個 manifest；若用戶主要使用單一語言（如台灣用戶幾乎全用 zh-TW），可只做 zh-TW 版 PWA，複雜度降回 4 個
+
+---
+
 ### 方案 C：統一 PWA + Shortcuts（折衷）
 
 一個安裝點，manifest 加上 `shortcuts` 指向各工具。
