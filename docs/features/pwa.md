@@ -2,11 +2,12 @@
 
 ## 現況
 
-目前僅 **Hiking Trail Planner** 已作為 PWA 試點實作完成。其餘三個工具（FIT File Viewer、Peaks Tracker、Trail Map）尚未接入 PWA。
+目前 **Hiking Trail Planner** 與 **Peaks Tracker** 已完成 PWA 實作。其餘兩個工具（FIT File Viewer、Trail Map）尚未接入 PWA。
 
 已完成的基礎設施：
 - Serwist service worker（單一 `sw.js`，覆蓋整個 origin）
 - Hiking Trail Planner 的 locale-aware manifest（`en-US`、`zh-TW` 各一份）
+- Peaks Tracker 的 locale-aware manifest（`en-US`、`zh-TW` 各一份）
 - Standalone 模式下隱藏 AppHeader / AppFooter 的 CSS
 
 ---
