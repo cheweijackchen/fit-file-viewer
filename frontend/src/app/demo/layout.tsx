@@ -1,64 +1,22 @@
-'use client'
+import { NextIntlClientProvider } from 'next-intl'
+import { getMessages } from 'next-intl/server'
+import { DemoShell } from './components/DemoShell'
 
-import { AppShell, ScrollArea } from '@mantine/core'
-import { useDisclosure } from '@mantine/hooks'
-import { useDemoStore } from '@/store/demo/useDemoStore'
-import { DemoHeader } from './components/DemoHeader'
-import { DemoNavbar } from './components/DemoNavbar'
-import classes from './DemoLayout.module.scss'
-
-interface DemoLayoutProps {
+interface Props {
   children: React.ReactNode;
 }
 
-const NAVBAR_WIDTH = 260
-const NAVBAR_COLLAPSED_WIDTH = 60
-const HEADER_HEIGHT = 60
-
-export default function DemoLayout({ children }: DemoLayoutProps) {
-
-  const [
-    navbarOpened, {
-      toggle: toggleNavbar,
-      close: closeNavbar
-    }
-  ] = useDisclosure()
-
-  const { isNavbarCollapse } = useDemoStore()
+export default async function DemoLayout({ children }: Props) {
+  const messages = await getMessages({ locale: 'en-US' })
 
   return (
-    <AppShell
-      layout="alt"
-      header={{ height: HEADER_HEIGHT }}
-      navbar={{
-        width: isNavbarCollapse ? NAVBAR_COLLAPSED_WIDTH : NAVBAR_WIDTH,
-        breakpoint: 'md',
-        collapsed: { mobile: !navbarOpened },
-      }}
-      padding="md"
-      classNames={{
-        navbar: classes.navbar,
-      }}
+    <NextIntlClientProvider
+      locale="en-US"
+      messages={messages}
     >
-      <AppShell.Header>
-        <DemoHeader
-          opened={navbarOpened}
-          toggle={toggleNavbar}
-        ></DemoHeader>
-      </AppShell.Header>
-      <AppShell.Navbar
-        data-collapse={isNavbarCollapse}
-      >
-        <AppShell.Section
-          grow
-          component={ScrollArea}
-        >
-          <DemoNavbar closeNavbar={closeNavbar} />
-        </AppShell.Section>
-      </AppShell.Navbar>
-      <AppShell.Main>
+      <DemoShell>
         {children}
-      </AppShell.Main>
-    </AppShell>
+      </DemoShell>
+    </NextIntlClientProvider>
   )
 }
