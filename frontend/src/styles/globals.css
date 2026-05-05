@@ -32,8 +32,9 @@ body {
     display: none !important;
   }
 
-  /* Reset Mantine AppShell header height so main content fills from top */
+  /* Reset Mantine AppShell header offset so main content fills from top */
   .mantine-AppShell-root {
     --app-shell-header-height: 0px !important;
+    --app-shell-header-offset: 0px !important;
   }
 }
