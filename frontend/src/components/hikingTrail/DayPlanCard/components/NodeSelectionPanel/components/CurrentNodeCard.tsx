@@ -77,25 +77,29 @@ export function CurrentNodeCard({ node, enableRest, restMinutes, onRestMinutesCh
             : (
               <div className="flex items-center gap-1.5">
                 <NumberInput
+                  autoFocus
                   size="xs"
                   min={0}
                   max={300}
                   step={5}
                   placeholder="0"
                   value={draft}
-                  onChange={setDraft}
-                  autoFocus
                   className="flex-1"
                   classNames={{ input: 'bg-white/10 border-white/20 text-white placeholder:text-white/30 text-xs' }}
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter') { handleCommit() }
-                    if (e.key === 'Escape') { setExpanded(false) }
-                  }}
-                  onBlur={handleCommit}
                   rightSection={
                     <span className="text-[10px] text-white/50 pr-1">分鐘</span>
                   }
                   rightSectionWidth={36}
+                  onChange={setDraft}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                      handleCommit() 
+                    }
+                    if (e.key === 'Escape') {
+                      setExpanded(false) 
+                    }
+                  }}
+                  onBlur={handleCommit}
                 />
                 <ActionIcon
                   size="sm"
