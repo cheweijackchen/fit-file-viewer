@@ -33,6 +33,7 @@ export type InfoBadgeType = 'tent' | 'house' | 'droplet'
 
 export interface RouteStop {
   nodeId: string;
+  restMinutes?: number;
 }
 
 export interface DayPlan {
