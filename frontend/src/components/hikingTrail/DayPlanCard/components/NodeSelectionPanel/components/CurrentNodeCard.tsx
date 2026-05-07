@@ -1,7 +1,7 @@
 'use client'
 
 import { ActionIcon, NumberInput } from '@mantine/core'
-import { IconCoffee, IconX } from '@tabler/icons-react'
+import { IconClockHour9, IconX } from '@tabler/icons-react'
 import { useTranslations } from 'next-intl'
 import { useState } from 'react'
 
@@ -65,10 +65,10 @@ export function CurrentNodeCard({ node, enableRest, restMinutes, onRestMinutesCh
             ? (
               <button
                 type="button"
-                className="flex items-center gap-1 text-[11px] text-(--mantine-color-stone-4) hover:text-(--mantine-color-stone-2) cursor-pointer transition-colors"
+                className="flex items-center w-full gap-1 text-sm! text-(--mantine-color-stone-4) hover:text-(--mantine-color-stone-2) cursor-pointer transition-colors"
                 onClick={handleOpen}
               >
-                <IconCoffee size={11} />
+                <IconClockHour9 size={14} />
                 {restMinutes !== undefined && restMinutes > 0
                   ? `${restMinutes} 分鐘`
                   : t('planDetail.dayPlanCard.restTime.add')}

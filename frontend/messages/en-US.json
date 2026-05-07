@@ -260,7 +260,7 @@
         "you": "YOU",
         "includesRest": "incl. {minutes}m rest",
         "restTime": {
-          "add": "+ Rest here",
+          "add": "Rest here",
           "popover": {
             "title": "{nodeName} Rest Time",
             "minutesUnit": "min",
