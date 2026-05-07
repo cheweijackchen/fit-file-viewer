@@ -2,7 +2,7 @@
 import { ActionIcon, Button, NumberInput, Popover, UnstyledButton } from '@mantine/core'
 import { IconX } from '@tabler/icons-react'
 import { useTranslations } from 'next-intl'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 interface Props {
   stopIndex: number;
@@ -16,6 +16,14 @@ export function RestPopover({ stopIndex, nodeName, value, onChange, children }: 
   const t = useTranslations('hiking-trail-planner')
   const [opened, setOpened] = useState(false)
   const [draft, setDraft] = useState<number | string>(value ?? '')
+  const inputRef = useRef<HTMLInputElement>(null)
+
+  useEffect(() => {
+    if (opened) {
+      const id = setTimeout(() => inputRef.current?.focus(), 50)
+      return () => clearTimeout(id)
+    }
+  }, [opened])
 
   function handleOpen() {
     setDraft(value ?? '')
@@ -65,6 +73,7 @@ export function RestPopover({ stopIndex, nodeName, value, onChange, children }: 
             </ActionIcon>
           </div>
           <NumberInput
+            ref={inputRef}
             size="xs"
             min={0}
             max={300}
