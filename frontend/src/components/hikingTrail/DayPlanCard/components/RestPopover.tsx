@@ -5,14 +5,14 @@ import { useTranslations } from 'next-intl'
 import { useState } from 'react'
 
 interface Props {
-  nodeId: string;
+  stopIndex: number;
   nodeName: string;
   value: number | undefined;
-  onChange: (nodeId: string, minutes: number | undefined) => void;
+  onChange: (stopIndex: number, minutes: number | undefined) => void;
   children: React.ReactNode;
 }
 
-export function RestPopover({ nodeId, nodeName, value, onChange, children }: Props) {
+export function RestPopover({ stopIndex, nodeName, value, onChange, children }: Props) {
   const t = useTranslations('hiking-trail-planner')
   const [opened, setOpened] = useState(false)
   const [draft, setDraft] = useState<number | string>(value ?? '')
@@ -28,7 +28,7 @@ export function RestPopover({ nodeId, nodeName, value, onChange, children }: Pro
 
   function handleConfirm() {
     const parsed = typeof draft === 'number' ? draft : parseInt(String(draft), 10)
-    onChange(nodeId, !isNaN(parsed) && parsed > 0 ? parsed : undefined)
+    onChange(stopIndex, !isNaN(parsed) && parsed > 0 ? parsed : undefined)
     setOpened(false)
   }
 

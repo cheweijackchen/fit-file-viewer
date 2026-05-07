@@ -14,8 +14,8 @@ interface Props {
   adj?: TrailAdjacencyList;
   // Rest time props
   editMode?: boolean;
-  restMinutes?: Record<string, number>;
-  onRestMinutesChange?: (nodeId: string, minutes: number | undefined) => void;
+  restMinutes?: Record<number, number>;
+  onRestMinutesChange?: (stopIndex: number, minutes: number | undefined) => void;
 }
 
 export function RouteIndicator({
@@ -36,7 +36,7 @@ export function RouteIndicator({
         const isHighlighted = highlightLast && i === stopIds.length - 1
         const bg = isHighlighted ? 'var(--color-sepia-9)' : chipBackground
         const minutes = showDuration ? adj?.get(id)?.get(stopIds[i + 1])?.minutes : undefined
-        const rest = restMinutes?.[id]
+        const rest = restMinutes?.[i]
 
         const chip = (
           <div
@@ -60,13 +60,13 @@ export function RouteIndicator({
 
         return (
           <div
-            key={id}
+            key={i}
             className="flex items-center gap-1"
           >
             {editMode && onRestMinutesChange
               ? (
                 <RestPopover
-                  nodeId={id}
+                  stopIndex={i}
                   nodeName={nodeMap[id]?.name ?? id}
                   value={rest}
                   onChange={onRestMinutesChange}
