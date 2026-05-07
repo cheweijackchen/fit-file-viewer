@@ -23,12 +23,14 @@ interface Props {
   showOptions?: boolean;
   showDuration?: boolean;
   editDisabled?: boolean;
+  enableRest?: boolean;
   onEdit?: () => void;
   onCancelEdit?: () => void;
   onClearRoute?: () => void;
   onDelete?: () => void;
   // Edit mode — in-progress planning state
   editStopIds?: string[];
+  editRestMinutes?: Record<string, number>;
   prevDayLastStopId?: string;
   onStartingNodeChange?: (nodeId: string) => void;
   onNodeSelect?: (nodeId: string) => void;
@@ -36,6 +38,7 @@ interface Props {
   onCompleteRoute?: () => void;
   onRouteExtended?: (newStops: string[]) => void;
   onStartingTimeChange?: (time: string) => void;
+  onRestMinutesChange?: (nodeId: string, minutes: number | undefined) => void;
 }
 
 const ACCOMMODATION_TYPES = new Set<TrailNodeType>([TrailNodeType.Hut, TrailNodeType.Camp])
@@ -51,11 +54,13 @@ export function DayPlanCard({
   showOptions,
   showDuration,
   editDisabled,
+  enableRest,
   onEdit,
   onCancelEdit,
   onClearRoute,
   onDelete,
   editStopIds,
+  editRestMinutes,
   prevDayLastStopId,
   onStartingNodeChange,
   onNodeSelect,
@@ -63,6 +68,7 @@ export function DayPlanCard({
   onCompleteRoute,
   onRouteExtended,
   onStartingTimeChange,
+  onRestMinutesChange,
 }: Props) {
   const t = useTranslations('hiking-trail-planner')
   const [itineraryModalOpen, setItineraryModalOpen] = useState(false)
@@ -95,8 +101,14 @@ export function DayPlanCard({
 
   const weightedMinutes = Math.round(rawMinutes * paceMultiplier)
 
+  const totalRestMinutes = enableRest
+    ? dayPlan.stops.reduce((sum, s) => sum + (s.restMinutes ?? 0), 0)
+    : 0
+  const youMinutes = weightedMinutes + totalRestMinutes
+
   let formRawMinutes = rawMinutes
   let formWeightedMinutes = weightedMinutes
+  let formTotalRestMinutes = 0
   if (mode === 'edit') {
     try {
       formRawMinutes = calculatePathTime(adj, formStopIds)
@@ -104,6 +116,9 @@ export function DayPlanCard({
       // invalid path — show 0
     }
     formWeightedMinutes = Math.round(formRawMinutes * paceMultiplier)
+    if (enableRest && editRestMinutes) {
+      formTotalRestMinutes = Object.values(editRestMinutes).reduce((sum, m) => sum + m, 0)
+    }
   }
 
   const paceTier = PACE_TIERS.find((t) => weightedMinutes / 60 < t.maxHours) ?? PACE_TIERS[PACE_TIERS.length - 1]!
@@ -187,6 +202,9 @@ export function DayPlanCard({
       nodeMap={nodeMap}
       showDuration={showDuration}
       adj={adj}
+      restMinutes={enableRest
+        ? Object.fromEntries(dayPlan.stops.filter(s => s.restMinutes).map(s => [s.nodeId, s.restMinutes!]))
+        : undefined}
     />
   )
 
@@ -267,8 +285,18 @@ export function DayPlanCard({
                     lh={1}
                     className="tracking-[-0.02em]"
                   >
-                    {formatTrailMinutes(weightedMinutes)}
+                    {formatTrailMinutes(youMinutes)}
                   </Text>
+                  {totalRestMinutes > 0 && (
+                    <Text
+                      component="span"
+                      size="2xs"
+                      c="stone.4"
+                      lh={1}
+                    >
+                      {t('planDetail.dayPlanCard.includesRest', { minutes: totalRestMinutes })}
+                    </Text>
+                  )}
                 </div>
               </div>
             )}
@@ -386,8 +414,18 @@ export function DayPlanCard({
             lh={1}
             className="tracking-[-0.02em]"
           >
-            {formatTrailMinutes(weightedMinutes)}
+            {formatTrailMinutes(youMinutes)}
           </Text>
+          {totalRestMinutes > 0 && (
+            <Text
+              component="span"
+              size="2xs"
+              c="stone.4"
+              lh={1}
+            >
+              {t('planDetail.dayPlanCard.includesRest', { minutes: totalRestMinutes })}
+            </Text>
+          )}
         </div>
       </div>
 
@@ -436,7 +474,9 @@ export function DayPlanCard({
           paceMultiplier={paceMultiplier}
           stopIds={formStopIds}
           rawMinutes={formRawMinutes}
-          weightedMinutes={formWeightedMinutes}
+          weightedMinutes={formWeightedMinutes + formTotalRestMinutes}
+          enableRest={enableRest}
+          editRestMinutes={editRestMinutes}
           prevDayLastStopId={prevDayLastStopId}
           startingTime={dayPlan.startingTime}
           onStartingNodeChange={onStartingNodeChange ?? (() => {})}
@@ -445,6 +485,7 @@ export function DayPlanCard({
           onUndo={onUndo ?? (() => {})}
           onCompleteRoute={onCompleteRoute ?? (() => {})}
           onRouteExtended={onRouteExtended}
+          onRestMinutesChange={onRestMinutesChange}
         />
       </div>
     )

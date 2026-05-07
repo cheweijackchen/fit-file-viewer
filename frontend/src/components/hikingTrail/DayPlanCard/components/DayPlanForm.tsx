@@ -29,6 +29,9 @@ interface Props {
   onUndo: () => void;
   onCompleteRoute: () => void;
   onRouteExtended?: (newStops: string[]) => void;
+  enableRest?: boolean;
+  editRestMinutes?: Record<string, number>;
+  onRestMinutesChange?: (nodeId: string, minutes: number | undefined) => void;
 }
 
 export function DayPlanForm({
@@ -47,6 +50,9 @@ export function DayPlanForm({
   onUndo,
   onCompleteRoute,
   onRouteExtended,
+  enableRest,
+  editRestMinutes,
+  onRestMinutesChange,
 }: Props) {
   const t = useTranslations('hiking-trail-planner')
   const [jumpModalOpen, setJumpModalOpen] = useState(false)
@@ -81,10 +87,12 @@ export function DayPlanForm({
         <Alert
           variant="light"
           color="yellow"
-          icon={<IconAlertTriangle
-            size={14}
-            stroke={2}
-          />}
+          icon={
+            <IconAlertTriangle
+              size={14}
+              stroke={2}
+            />
+          }
           py="xs"
           px="sm"
           fz="xs"
@@ -170,6 +178,9 @@ export function DayPlanForm({
               nodeMap={nodeMap}
               chipBackground="var(--mantine-color-stone-2)"
               fontWeight={600}
+              editMode={enableRest}
+              restMinutes={editRestMinutes}
+              onRestMinutesChange={onRestMinutesChange}
             />
           </div>
 
@@ -191,8 +202,16 @@ export function DayPlanForm({
           adj={adj}
           nodeMap={nodeMap}
           stopIds={stopIds}
+          enableRest={enableRest}
+          currentNodeRestMinutes={editRestMinutes?.[stopIds[stopIds.length - 1] ?? '']}
           onNodeSelect={onNodeSelect}
           onQuickJump={onRouteExtended ? () => setJumpModalOpen(true) : undefined}
+          onCurrentNodeRestMinutesChange={(minutes) => {
+            const currentId = stopIds[stopIds.length - 1]
+            if (currentId) {
+              onRestMinutesChange?.(currentId, minutes)
+            }
+          }}
         />
       )}
 
