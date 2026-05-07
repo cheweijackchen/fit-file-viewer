@@ -30,7 +30,7 @@ interface Props {
   onDelete?: () => void;
   // Edit mode — in-progress planning state
   editStopIds?: string[];
-  editRestMinutes?: Record<string, number>;
+  editRestMinutes?: Record<number, number>;
   prevDayLastStopId?: string;
   onStartingNodeChange?: (nodeId: string) => void;
   onNodeSelect?: (nodeId: string) => void;
@@ -38,7 +38,7 @@ interface Props {
   onCompleteRoute?: () => void;
   onRouteExtended?: (newStops: string[]) => void;
   onStartingTimeChange?: (time: string) => void;
-  onRestMinutesChange?: (nodeId: string, minutes: number | undefined) => void;
+  onRestMinutesChange?: (stopIndex: number, minutes: number | undefined) => void;
   editStartingTime?: string;
 }
 
@@ -219,7 +219,7 @@ export function DayPlanCard({
       showDuration={showDuration}
       adj={adj}
       restMinutes={enableRest
-        ? Object.fromEntries(dayPlan.stops.filter(s => s.restMinutes).map(s => [s.nodeId, s.restMinutes!]))
+        ? Object.fromEntries(dayPlan.stops.flatMap((s, i) => s.restMinutes ? [[i, s.restMinutes]] : []))
         : undefined}
     />
   )

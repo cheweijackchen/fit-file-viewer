@@ -30,8 +30,8 @@ interface Props {
   onCompleteRoute: () => void;
   onRouteExtended?: (newStops: string[]) => void;
   enableRest?: boolean;
-  editRestMinutes?: Record<string, number>;
-  onRestMinutesChange?: (nodeId: string, minutes: number | undefined) => void;
+  editRestMinutes?: Record<number, number>;
+  onRestMinutesChange?: (stopIndex: number, minutes: number | undefined) => void;
 }
 
 export function DayPlanForm({
@@ -203,14 +203,11 @@ export function DayPlanForm({
           nodeMap={nodeMap}
           stopIds={stopIds}
           enableRest={enableRest}
-          currentNodeRestMinutes={editRestMinutes?.[stopIds[stopIds.length - 1] ?? '']}
+          currentNodeRestMinutes={editRestMinutes?.[stopIds.length - 1]}
           onNodeSelect={onNodeSelect}
           onQuickJump={onRouteExtended ? () => setJumpModalOpen(true) : undefined}
           onCurrentNodeRestMinutesChange={(minutes) => {
-            const currentId = stopIds[stopIds.length - 1]
-            if (currentId) {
-              onRestMinutesChange?.(currentId, minutes)
-            }
+            onRestMinutesChange?.(stopIds.length - 1, minutes)
           }}
         />
       )}

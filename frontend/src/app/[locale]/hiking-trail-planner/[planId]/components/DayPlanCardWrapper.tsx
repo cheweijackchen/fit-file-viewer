@@ -41,7 +41,7 @@ export function DayPlanCardWrapper({
   onSetEditDays,
 }: Props) {
   const [editStartingTime, setEditStartingTime] = useState<string | undefined>(undefined)
-  const [editRestMinutes, setEditRestMinutes] = useState<Record<string, number>>({})
+  const [editRestMinutes, setEditRestMinutes] = useState<Record<number, number>>({})
 
   const isDayEditing = editingDayId === day.id
   const isOtherDayEditing = editingDayId !== null && !isDayEditing
@@ -55,7 +55,7 @@ export function DayPlanCardWrapper({
     onSetEditStopIds(day.stops.map((s) => s.nodeId))
     setEditStartingTime(day.startingTime)
     setEditRestMinutes(
-      Object.fromEntries(day.stops.filter((s) => s.restMinutes).map((s) => [s.nodeId, s.restMinutes!]))
+      Object.fromEntries(day.stops.map((s, i) => [i, s.restMinutes]).filter(([, r]) => r !== undefined) as [number, number][])
     )
   }
 
@@ -66,12 +66,17 @@ export function DayPlanCardWrapper({
     setEditRestMinutes({})
   }
 
-  function handleRestMinutesChange(nodeId: string, minutes: number | undefined) {
+  function handleRestMinutesChange(stopIndex: number, minutes: number | undefined) {
     setEditRestMinutes((prev) => {
       if (minutes === undefined) {
-        return Object.fromEntries(Object.entries(prev).filter(([k]) => k !== nodeId))
+        const next = { ...prev }
+        delete next[stopIndex]
+        return next
       }
-      return { ...prev, [nodeId]: minutes }
+      return {
+        ...prev,
+        [stopIndex]: minutes,
+      }
     })
   }
 
@@ -85,9 +90,9 @@ export function DayPlanCardWrapper({
         d.id === capturedDayId
           ? {
             ...d,
-            stops: captured.map((id) => ({
+            stops: captured.map((id, i) => ({
               nodeId: id,
-              restMinutes: capturedRestMinutes[id] || undefined,
+              restMinutes: capturedRestMinutes[i] || undefined,
             })),
             startingTime: capturedStartingTime,
           }
