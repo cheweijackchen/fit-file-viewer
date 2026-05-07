@@ -1,9 +1,16 @@
 import path from 'path'
+import withSerwistInit from '@serwist/next'
 import type { NextConfig } from 'next'
 import createNextIntlPlugin from 'next-intl/plugin'
 import { DEFAULT_LOCALE } from './src/i18n/routing'
 
 const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts')
+
+const withSerwist = withSerwistInit({
+  swSrc: 'src/app/sw.ts',
+  swDest: 'public/sw.js',
+  disable: process.env.NODE_ENV === 'development',
+})
 
 const nextConfig: NextConfig = {
   /* config options here */
@@ -31,4 +38,4 @@ const nextConfig: NextConfig = {
   },
 }
 
-export default withNextIntl(nextConfig)
+export default withSerwist(withNextIntl(nextConfig))

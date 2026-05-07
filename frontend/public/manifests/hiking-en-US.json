@@ -1,0 +1,17 @@
+{
+  "name": "Hiking Trail Planner",
+  "short_name": "Trail Planner",
+  "description": "Multi-day hiking trip planning tool",
+  "start_url": "/en-US/hiking-trail-planner/",
+  "scope": "/en-US/hiking-trail-planner/",
+  "display": "standalone",
+  "background_color": "#1a1a1a",
+  "theme_color": "#fab005",
+  "lang": "en-US",
+  "icons": [
+    { "src": "/icons/hiking-trail-planner/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icons/hiking-trail-planner/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "/icons/hiking-trail-planner/icon-maskable-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "/icons/hiking-trail-planner/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

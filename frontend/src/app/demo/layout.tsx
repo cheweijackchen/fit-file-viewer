@@ -2,6 +2,7 @@
 
 import { AppShell, ScrollArea } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
+import { HEADER_HEIGHT } from '@/constants/layout'
 import { useDemoStore } from '@/store/demo/useDemoStore'
 import { DemoHeader } from './components/DemoHeader'
 import { DemoNavbar } from './components/DemoNavbar'
@@ -13,7 +14,6 @@ interface DemoLayoutProps {
 
 const NAVBAR_WIDTH = 260
 const NAVBAR_COLLAPSED_WIDTH = 60
-const HEADER_HEIGHT = 60
 
 export default function DemoLayout({ children }: DemoLayoutProps) {
 

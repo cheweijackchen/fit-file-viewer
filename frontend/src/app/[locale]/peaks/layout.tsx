@@ -1,17 +1,24 @@
-'use client'
+import type { Metadata } from 'next'
+import PeaksShell from './PeaksShell'
 
-import { AppShell } from '@mantine/core'
+type Props = { params: Promise<{ locale: string; }>; }
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params
+  return {
+    manifest: `/manifests/peaks-${locale}.json`,
+    appleWebApp: {
+      capable: true,
+      statusBarStyle: 'default',
+      title: locale === 'zh-TW' ? '百岳紀錄' : 'Peaks Tracker',
+    },
+  }
+}
 
 export default function PeaksLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-    <AppShell>
-      <AppShell.Main>
-        {children}
-      </AppShell.Main>
-    </AppShell>
-  )
+  return <PeaksShell>{children}</PeaksShell>
 }
