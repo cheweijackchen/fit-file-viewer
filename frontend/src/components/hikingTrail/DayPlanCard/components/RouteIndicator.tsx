@@ -1,9 +1,8 @@
-import { ActionIcon, NumberInput, Popover } from '@mantine/core'
-import { IconCoffee, IconX } from '@tabler/icons-react'
+import { IconCoffee } from '@tabler/icons-react'
 import type { CSSProperties } from 'react'
-import { useState } from 'react'
 import { formatTrailMinutes } from '@/lib/timeFormatter'
 import type { TrailAdjacencyList, TrailNode } from '@/model/hikingTrail'
+import { RestPopover } from './RestPopover'
 
 interface Props {
   stopIds: string[];
@@ -17,103 +16,6 @@ interface Props {
   editMode?: boolean;
   restMinutes?: Record<string, number>;
   onRestMinutesChange?: (nodeId: string, minutes: number | undefined) => void;
-}
-
-interface RestPopoverProps {
-  nodeId: string;
-  nodeName: string;
-  value: number | undefined;
-  onChange: (nodeId: string, minutes: number | undefined) => void;
-  children: React.ReactNode;
-}
-
-function RestPopover({ nodeId, nodeName, value, onChange, children }: RestPopoverProps) {
-  const [opened, setOpened] = useState(false)
-  const [draft, setDraft] = useState<number | string>(value ?? '')
-
-  function handleOpen() {
-    setDraft(value ?? '')
-    setOpened(true)
-  }
-
-  function handleConfirm() {
-    const parsed = typeof draft === 'number' ? draft : parseInt(String(draft), 10)
-    onChange(nodeId, !isNaN(parsed) && parsed > 0 ? parsed : undefined)
-    setOpened(false)
-  }
-
-  function handleClear() {
-    onChange(nodeId, undefined)
-    setOpened(false)
-  }
-
-  return (
-    <Popover
-      withArrow
-      withinPortal
-      opened={opened}
-      position="bottom"
-      shadow="md"
-      onClose={handleConfirm}
-    >
-      <Popover.Target>
-        <button
-          type="button"
-          className="cursor-pointer"
-          onClick={handleOpen}
-        >
-          {children}
-        </button>
-      </Popover.Target>
-      <Popover.Dropdown>
-        <div className="flex flex-col gap-2 w-48">
-          <span className="text-xs font-semibold text-(--mantine-color-stone-8)">
-            {nodeName}
-          </span>
-          <div className="flex items-center gap-1.5">
-            <NumberInput
-              size="xs"
-              min={0}
-              max={300}
-              step={5}
-              placeholder="0"
-              value={draft}
-              className="flex-1"
-              rightSection={
-                <span className="text-[10px] text-(--mantine-color-stone-5) pr-1">分鐘</span>
-              }
-              rightSectionWidth={36}
-              onChange={setDraft}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter') {
-                  handleConfirm()
-                }
-                if (e.key === 'Escape') {
-                  setOpened(false)
-                }
-              }}
-            />
-            <ActionIcon
-              size="sm"
-              variant="subtle"
-              color="stone"
-              title="清除"
-              onClick={handleClear}
-            >
-              <IconX size={12} />
-            </ActionIcon>
-          </div>
-          <button
-            type="button"
-            className="text-xs font-semibold text-white bg-(--mantine-color-yellow-5) rounded-md py-1.5 cursor-pointer hover:bg-(--mantine-color-yellow-6)"
-            onClick={handleConfirm}
-          >
-            確認
-          </button>
-        </div>
-      </Popover.Dropdown>
-    </Popover>
-  )
 }
 
 export function RouteIndicator({
