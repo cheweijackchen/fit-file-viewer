@@ -4,7 +4,7 @@ import { Modal, Text, Timeline } from '@mantine/core'
 import { useMediaQuery } from '@mantine/hooks'
 import { useTranslations } from 'next-intl'
 import { TrailNodeType } from '@/constants/hiking-trails/hikingTrail'
-import { formatTrailMinutes } from '@/lib/timeFormatter'
+import { calcDepartureTime, formatTrailMinutes } from '@/lib/timeFormatter'
 import { getEdge } from '@/lib/trailGraph'
 import type { DayPlan, Trail, TrailAdjacencyList, TrailNode } from '@/model/hikingTrail'
 import { NodeTypeBadge } from './NodeTypeBadge'
@@ -26,17 +26,6 @@ const BADGE_TYPES = new Set<TrailNodeType>([
   TrailNodeType.WaterSource,
   TrailNodeType.Peak,
 ])
-
-function calcDepartureTime(startingTime: string | undefined, accumulatedMinutes: number): string {
-  if (!startingTime) {
-    return '—'
-  }
-  const parts = startingTime.split(':')
-  const h = Number(parts[0])
-  const m = Number(parts[1])
-  const total = h * 60 + m + accumulatedMinutes
-  return `${String(Math.floor(total / 60) % 24).padStart(2, '0')}:${String(total % 60).padStart(2, '0')}`
-}
 
 export function DayItineraryModal({
   opened,

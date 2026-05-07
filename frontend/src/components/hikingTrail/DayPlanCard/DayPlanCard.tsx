@@ -6,7 +6,7 @@ import { useTranslations } from 'next-intl'
 import { useMemo, useState } from 'react'
 import { PACE_TIERS } from '@/constants/hiking-trails/dayPlanCard'
 import { TrailNodeType } from '@/constants/hiking-trails/hikingTrail'
-import { formatTrailMinutes } from '@/lib/timeFormatter'
+import { calcDepartureTime, formatTrailMinutes } from '@/lib/timeFormatter'
 import { buildTrailAdjacencyList, calculatePathTime } from '@/lib/trailGraph'
 import type { DayPlan, Trail } from '@/model/hikingTrail'
 import { DayItineraryModal } from './components/DayItineraryModal'
@@ -122,6 +122,20 @@ export function DayPlanCard({
   }
 
   const paceTier = PACE_TIERS.find((t) => weightedMinutes / 60 < t.maxHours) ?? PACE_TIERS[PACE_TIERS.length - 1]!
+
+  const endTime = dayPlan.startingTime && committedStopIds.length > 0
+    ? calcDepartureTime(dayPlan.startingTime, youMinutes)
+    : null
+
+  const timingRow = endTime ? (
+    <Text
+      size="xs"
+      c="stone.5"
+      fw={500}
+    >
+      {dayPlan.startingTime} - {endTime}
+    </Text>
+  ) : null
 
   const lastStop = committedStopIds.length > 0 ? nodeMap[committedStopIds[committedStopIds.length - 1]!] : undefined
   const lastNodeType = lastStop?.nodeType
@@ -330,7 +344,10 @@ export function DayPlanCard({
 
         {/* Route */}
         {mode !== 'edit' && (
-          <div>{route}</div>
+          <div className="flex flex-col gap-1">
+            {timingRow}
+            <div>{route}</div>
+          </div>
         )}
       </div>
 
@@ -367,8 +384,9 @@ export function DayPlanCard({
       />
 
       {/* Content col — badges + route */}
-      <div className={`hidden @md/day-plan:flex flex-col flex-1 min-w-0 gap-[10px] ${mode === 'edit' ? 'opacity-40' : ''}`}>
+      <div className={`hidden @md/day-plan:flex flex-col flex-1 min-w-0 gap-1 ${mode === 'edit' ? 'opacity-40' : ''}`}>
         {badges}
+        {timingRow}
         {route}
       </div>
 
