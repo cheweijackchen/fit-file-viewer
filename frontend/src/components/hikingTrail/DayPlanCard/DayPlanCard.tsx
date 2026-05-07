@@ -39,6 +39,7 @@ interface Props {
   onRouteExtended?: (newStops: string[]) => void;
   onStartingTimeChange?: (time: string) => void;
   onRestMinutesChange?: (nodeId: string, minutes: number | undefined) => void;
+  editStartingTime?: string;
 }
 
 const ACCOMMODATION_TYPES = new Set<TrailNodeType>([TrailNodeType.Hut, TrailNodeType.Camp])
@@ -69,6 +70,7 @@ export function DayPlanCard({
   onRouteExtended,
   onStartingTimeChange,
   onRestMinutesChange,
+  editStartingTime,
 }: Props) {
   const t = useTranslations('hiking-trail-planner')
   const [itineraryModalOpen, setItineraryModalOpen] = useState(false)
@@ -496,7 +498,7 @@ export function DayPlanCard({
           enableRest={enableRest}
           editRestMinutes={editRestMinutes}
           prevDayLastStopId={prevDayLastStopId}
-          startingTime={dayPlan.startingTime}
+          startingTime={editStartingTime ?? dayPlan.startingTime}
           onStartingNodeChange={onStartingNodeChange ?? (() => {})}
           onStartingTimeChange={onStartingTimeChange}
           onNodeSelect={onNodeSelect ?? (() => {})}

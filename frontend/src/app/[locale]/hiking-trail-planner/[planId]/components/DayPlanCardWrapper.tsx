@@ -113,12 +113,8 @@ export function DayPlanCardWrapper({
       editDisabled={isOtherDayEditing}
       showDuration={showDuration}
       enableRest={enableRest}
-      dayPlan={isDayEditing
-        ? {
-          ...day,
-          startingTime: editStartingTime,
-        }
-        : day}
+      dayPlan={day}
+      editStartingTime={isDayEditing ? editStartingTime : undefined}
       dayIndex={dayIndex}
       trail={trail}
       paceMultiplier={paceMultiplier}
