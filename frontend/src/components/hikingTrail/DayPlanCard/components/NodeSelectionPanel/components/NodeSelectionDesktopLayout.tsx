@@ -14,6 +14,9 @@ export interface LayoutProps {
   edgeTimeLabel: (from: string, to: string) => string;
   onNodeSelect: (nodeId: string) => void;
   onQuickJump?: () => void;
+  enableRest?: boolean;
+  currentNodeRestMinutes?: number;
+  onCurrentNodeRestMinutesChange?: (minutes: number | undefined) => void;
 }
 
 export function NodeSelectionDesktopLayout({
@@ -25,6 +28,9 @@ export function NodeSelectionDesktopLayout({
   edgeTimeLabel,
   onNodeSelect,
   onQuickJump,
+  enableRest,
+  currentNodeRestMinutes,
+  onCurrentNodeRestMinutesChange,
 }: LayoutProps) {
   const currentId = currentNode?.id ?? ''
 
@@ -55,7 +61,12 @@ export function NodeSelectionDesktopLayout({
 
       {/* Current node */}
       <div className="flex flex-col gap-2 flex-1 min-w-0">
-        <CurrentNodeCard node={currentNode} />
+        <CurrentNodeCard
+          node={currentNode}
+          enableRest={enableRest}
+          restMinutes={currentNodeRestMinutes}
+          onRestMinutesChange={onCurrentNodeRestMinutesChange}
+        />
         {onQuickJump && <QuickJumpButton onClick={onQuickJump} />}
       </div>
 

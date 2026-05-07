@@ -13,9 +13,12 @@ interface Props {
   stopIds: string[];
   onNodeSelect: (nodeId: string) => void;
   onQuickJump?: () => void;
+  enableRest?: boolean;
+  currentNodeRestMinutes?: number;
+  onCurrentNodeRestMinutesChange?: (minutes: number | undefined) => void;
 }
 
-export function NodeSelectionPanel({ adj, nodeMap, stopIds, onNodeSelect, onQuickJump }: Props) {
+export function NodeSelectionPanel({ adj, nodeMap, stopIds, onNodeSelect, onQuickJump, enableRest, currentNodeRestMinutes, onCurrentNodeRestMinutesChange }: Props) {
   const isMobile = useMediaQuery('(max-width: 768px)')
 
   const currentNodeId = stopIds[stopIds.length - 1]!
@@ -32,6 +35,12 @@ export function NodeSelectionPanel({ adj, nodeMap, stopIds, onNodeSelect, onQuic
     return minutes !== undefined ? formatTrailMinutes(minutes) : '—'
   }
 
+  const restProps = {
+    enableRest,
+    currentNodeRestMinutes,
+    onCurrentNodeRestMinutesChange,
+  }
+
   if (isMobile) {
     return (
       <NodeSelectionMobileLayout
@@ -44,6 +53,7 @@ export function NodeSelectionPanel({ adj, nodeMap, stopIds, onNodeSelect, onQuic
         edgeTimeLabel={edgeTimeLabel}
         onNodeSelect={onNodeSelect}
         onQuickJump={onQuickJump}
+        {...restProps}
       />
     )
   }
@@ -59,6 +69,7 @@ export function NodeSelectionPanel({ adj, nodeMap, stopIds, onNodeSelect, onQuic
       edgeTimeLabel={edgeTimeLabel}
       onNodeSelect={onNodeSelect}
       onQuickJump={onQuickJump}
+      {...restProps}
     />
   )
 }

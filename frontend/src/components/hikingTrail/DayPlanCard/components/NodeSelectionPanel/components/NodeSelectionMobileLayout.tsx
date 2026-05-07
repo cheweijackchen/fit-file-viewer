@@ -14,13 +14,21 @@ export function NodeSelectionMobileLayout({
   edgeTimeLabel,
   onNodeSelect,
   onQuickJump,
+  enableRest,
+  currentNodeRestMinutes,
+  onCurrentNodeRestMinutesChange,
 }: LayoutProps) {
   const currentId = currentNode?.id ?? ''
 
   return (
     <div className="flex flex-col gap-2.5 w-full">
       {/* Current node — full width */}
-      <CurrentNodeCard node={currentNode} />
+      <CurrentNodeCard
+        node={currentNode}
+        enableRest={enableRest}
+        restMinutes={currentNodeRestMinutes}
+        onRestMinutesChange={onCurrentNodeRestMinutesChange}
+      />
       {onQuickJump && <QuickJumpButton onClick={onQuickJump} />}
 
       {/* Two-col: back | forward */}
