@@ -1,4 +1,4 @@
-import { IconCoffee } from '@tabler/icons-react'
+import { IconClockHour9 } from '@tabler/icons-react'
 import type { CSSProperties } from 'react'
 import { formatTrailMinutes } from '@/lib/timeFormatter'
 import type { TrailAdjacencyList, TrailNode } from '@/model/hikingTrail'
@@ -51,7 +51,7 @@ export function RouteIndicator({
             </span>
             {rest !== undefined && rest > 0 && (
               <span className="flex items-center gap-0.5 text-[10px] text-(--mantine-color-stone-5)">
-                <IconCoffee size={10} />
+                <IconClockHour9 size={10} />
                 {formatTrailMinutes(rest)}
               </span>
             )}
