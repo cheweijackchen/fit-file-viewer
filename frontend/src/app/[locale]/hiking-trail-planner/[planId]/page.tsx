@@ -431,6 +431,7 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
                   key={day.id}
                 >
                   <DayPlanCardWrapper
+                    enableRest
                     day={day}
                     dayIndex={idx + 1}
                     trail={trail}

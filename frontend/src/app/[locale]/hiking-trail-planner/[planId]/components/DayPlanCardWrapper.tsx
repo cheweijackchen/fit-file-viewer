@@ -16,6 +16,7 @@ interface Props {
   planPaceMultiplier: number;
   prevDayLastStopId?: string;
   showDuration?: boolean;
+  enableRest?: boolean;
   onEnterEditMode: () => void;
   onSetEditingDayId: Dispatch<SetStateAction<string | null>>;
   onSetEditStopIds: Dispatch<SetStateAction<string[]>>;
@@ -33,12 +34,14 @@ export function DayPlanCardWrapper({
   planPaceMultiplier,
   prevDayLastStopId,
   showDuration,
+  enableRest,
   onEnterEditMode,
   onSetEditingDayId,
   onSetEditStopIds,
   onSetEditDays,
 }: Props) {
   const [editStartingTime, setEditStartingTime] = useState<string | undefined>(undefined)
+  const [editRestMinutes, setEditRestMinutes] = useState<Record<string, number>>({})
 
   const isDayEditing = editingDayId === day.id
   const isOtherDayEditing = editingDayId !== null && !isDayEditing
@@ -51,24 +54,41 @@ export function DayPlanCardWrapper({
     onSetEditingDayId(day.id)
     onSetEditStopIds(day.stops.map((s) => s.nodeId))
     setEditStartingTime(day.startingTime)
+    setEditRestMinutes(
+      Object.fromEntries(day.stops.filter((s) => s.restMinutes).map((s) => [s.nodeId, s.restMinutes!]))
+    )
   }
 
   function handleCancelEditDay() {
     onSetEditingDayId(null)
     onSetEditStopIds([])
     setEditStartingTime(undefined)
+    setEditRestMinutes({})
+  }
+
+  function handleRestMinutesChange(nodeId: string, minutes: number | undefined) {
+    setEditRestMinutes((prev) => {
+      if (minutes === undefined) {
+        return Object.fromEntries(Object.entries(prev).filter(([k]) => k !== nodeId))
+      }
+      return { ...prev, [nodeId]: minutes }
+    })
   }
 
   function handleCompleteRoute() {
     const captured = editStopIds
     const capturedDayId = editingDayId
     const capturedStartingTime = editStartingTime
+    const capturedRestMinutes = editRestMinutes
     onSetEditDays((prev) =>
       prev.map((d) =>
         d.id === capturedDayId
           ? {
             ...d,
-            stops: captured.map((id) => ({ nodeId: id })),
+            stops: captured.map((id) => ({
+              nodeId: id,
+              restMinutes: capturedRestMinutes[id] || undefined,
+            })),
             startingTime: capturedStartingTime,
           }
           : d,
@@ -77,6 +97,7 @@ export function DayPlanCardWrapper({
     onSetEditingDayId(null)
     onSetEditStopIds([])
     setEditStartingTime(undefined)
+    setEditRestMinutes({})
   }
 
   function handleDeleteDay() {
@@ -91,6 +112,7 @@ export function DayPlanCardWrapper({
       showOptions={isEditing}
       editDisabled={isOtherDayEditing}
       showDuration={showDuration}
+      enableRest={enableRest}
       dayPlan={isDayEditing
         ? {
           ...day,
@@ -102,6 +124,7 @@ export function DayPlanCardWrapper({
       paceMultiplier={paceMultiplier}
       mode={isDayEditing ? 'edit' : 'view'}
       editStopIds={isDayEditing ? editStopIds : undefined}
+      editRestMinutes={isDayEditing ? editRestMinutes : undefined}
       prevDayLastStopId={prevDayLastStopId}
       onEdit={handleEditDay}
       onCancelEdit={handleCancelEditDay}
@@ -112,6 +135,7 @@ export function DayPlanCardWrapper({
       onUndo={() => onSetEditStopIds((prev) => prev.slice(0, -1))}
       onCompleteRoute={handleCompleteRoute}
       onRouteExtended={(newStops) => onSetEditStopIds(newStops)}
+      onRestMinutesChange={handleRestMinutesChange}
       onDelete={handleDeleteDay}
     />
   )
