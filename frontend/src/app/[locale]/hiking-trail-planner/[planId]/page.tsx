@@ -1,7 +1,7 @@
 'use client'
 
 import { Button, Container, MultiSelect, Text, TextInput, UnstyledButton } from '@mantine/core'
-import { useScrollIntoView } from '@mantine/hooks'
+import { useMediaQuery, useScrollIntoView } from '@mantine/hooks'
 import { IconPlus } from '@tabler/icons-react'
 import clsx from 'clsx'
 import { useTranslations } from 'next-intl'
@@ -10,6 +10,7 @@ import { ColoredPill } from '@/components/ColoredPill'
 import { ConfirmModal } from '@/components/ConfirmModal'
 import { TrailGraph } from '@/components/TrailGraph'
 import { HIKING_TRAIL_MAP, HIKING_TRAILS } from '@/constants/hikingTrails'
+import { HEADER_HEIGHT } from '@/constants/layout'
 import { useLeaveConfirm } from '@/hooks/useLeaveConfirm'
 import { Link, useRouter } from '@/i18n/navigation'
 import { formatTrailMinutes } from '@/lib/timeFormatter'
@@ -25,7 +26,7 @@ import { PlanDetailMenu } from './components/PlanDetailMenu'
 import { PlanNotFound } from './components/PlanNotFound'
 import { TripStatsSection } from './components/TripStatsSection'
 
-const SCROLL_OFFSET = 90
+const TAB_HEIGHT = 30
 
 const TABS = [
   {
@@ -86,9 +87,12 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
   })
   const [activeTab, setActiveTab] = useState<'itinerary' | 'trip-stats' | 'trail-network'>('itinerary')
 
-  const { scrollIntoView: scrollToItinerary, targetRef: itineraryRef } = useScrollIntoView<HTMLDivElement>({ offset: SCROLL_OFFSET })
-  const { scrollIntoView: scrollToTripStats, targetRef: tripStatsRef } = useScrollIntoView<HTMLDivElement>({ offset: SCROLL_OFFSET })
-  const { scrollIntoView: scrollToTrailNetwork, targetRef: trailNetworkRef } = useScrollIntoView<HTMLDivElement>({ offset: SCROLL_OFFSET })
+  const isPWA = useMediaQuery('(display-mode: standalone)')
+  const scrollOffset = (isPWA ? 0 : HEADER_HEIGHT) + TAB_HEIGHT
+
+  const { scrollIntoView: scrollToItinerary, targetRef: itineraryRef } = useScrollIntoView<HTMLDivElement>({ offset: scrollOffset })
+  const { scrollIntoView: scrollToTripStats, targetRef: tripStatsRef } = useScrollIntoView<HTMLDivElement>({ offset: scrollOffset })
+  const { scrollIntoView: scrollToTrailNetwork, targetRef: trailNetworkRef } = useScrollIntoView<HTMLDivElement>({ offset: scrollOffset })
 
   const tabs = [
     {
@@ -375,7 +379,7 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
 
       {/* ─── Tab Nav ─── */}
       <div
-        className="flex items-center justify-center w-full shrink-0 bg-(--mantine-color-stone-1) border-b border-(--mantine-color-stone-2) sticky top-[60px] z-10"
+        className="flex items-center justify-center w-full shrink-0 bg-(--mantine-color-stone-1) border-b border-(--mantine-color-stone-2) sticky top-(--header-height) z-10"
       >
         <div className="flex h-full">
           {tabs.map((tab) => {

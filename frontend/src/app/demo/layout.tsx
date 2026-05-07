@@ -2,11 +2,11 @@ import { NextIntlClientProvider } from 'next-intl'
 import { getMessages } from 'next-intl/server'
 import { DemoShell } from './components/DemoShell'
 
-interface Props {
+interface DemoLayoutProps {
   children: React.ReactNode;
 }
 
-export default async function DemoLayout({ children }: Props) {
+export default async function DemoLayout({ children }: DemoLayoutProps) {
   const messages = await getMessages({ locale: 'en-US' })
 
   return (

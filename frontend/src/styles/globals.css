@@ -2,7 +2,9 @@
 
 @custom-variant dark (&:where([data-mantine-color-scheme="dark"] *));
 
-/* :root {} */
+:root {
+  --header-height: 60px;
+}
 
 /* Tailwind theme variables */
 @theme {
@@ -24,4 +26,21 @@
 
 body {
   font-family: var(--font-inter), var(--font-noto-sans-tc), sans-serif;
+}
+
+@media (display-mode: standalone) {
+  :root {
+    --header-height: 0px;
+  }
+
+  .app-header,
+  .app-footer {
+    display: none !important;
+  }
+
+  /* Reset Mantine AppShell header offset so main content fills from top */
+  .mantine-AppShell-root {
+    --app-shell-header-height: 0px !important;
+    --app-shell-header-offset: 0px !important;
+  }
 }
