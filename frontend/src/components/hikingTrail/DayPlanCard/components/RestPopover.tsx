@@ -39,7 +39,7 @@ export function RestPopover({ nodeId, nodeName, value, onChange, children }: Pro
       opened={opened}
       position="bottom"
       shadow="md"
-      onClose={handleClose}
+      onDismiss={() => setOpened(false)}
     >
       <Popover.Target>
         <UnstyledButton
