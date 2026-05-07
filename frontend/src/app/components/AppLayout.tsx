@@ -1,14 +1,13 @@
 'use client'
 
 import { AppShell } from '@mantine/core'
+import { HEADER_HEIGHT } from '@/constants/layout'
 import { AppFooter } from './AppFooter'
 import { AppHeader } from './AppHeader'
 
 interface Props {
   children: React.ReactNode;
 }
-
-const HEADER_HEIGHT = 60
 
 export default function AppLayout({ children }: Props) {
   return (

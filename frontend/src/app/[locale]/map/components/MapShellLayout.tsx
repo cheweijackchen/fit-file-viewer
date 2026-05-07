@@ -2,12 +2,11 @@
 
 import { AppShell } from '@mantine/core'
 import { AppHeader } from '@/app/components/AppHeader'
+import { HEADER_HEIGHT } from '@/constants/layout'
 
 interface Props {
   children: React.ReactNode;
 }
-
-const HEADER_HEIGHT = 60
 
 export function MapShellLayout({ children }: Props) {
   return (

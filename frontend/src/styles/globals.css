@@ -2,7 +2,9 @@
 
 @custom-variant dark (&:where([data-mantine-color-scheme="dark"] *));
 
-/* :root {} */
+:root {
+  --header-height: 60px;
+}
 
 /* Tailwind theme variables */
 @theme {
@@ -27,6 +29,10 @@ body {
 }
 
 @media (display-mode: standalone) {
+  :root {
+    --header-height: 0px;
+  }
+
   .app-header,
   .app-footer {
     display: none !important;
