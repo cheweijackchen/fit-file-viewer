@@ -70,7 +70,7 @@ export function CurrentNodeCard({ node, enableRest, restMinutes, onRestMinutesCh
               >
                 <IconClockHour9 size={14} />
                 {restMinutes !== undefined && restMinutes > 0
-                  ? `${restMinutes} 分鐘`
+                  ? `${restMinutes} ${t('planDetail.dayPlanCard.restTime.popover.minutesUnit')}`
                   : t('planDetail.dayPlanCard.restTime.add')}
               </button>
             )
@@ -87,7 +87,7 @@ export function CurrentNodeCard({ node, enableRest, restMinutes, onRestMinutesCh
                   className="flex-1"
                   classNames={{ input: 'bg-white/10 border-white/20 text-white placeholder:text-white/30 text-xs' }}
                   rightSection={
-                    <span className="text-[10px] text-white/50 pr-1">分鐘</span>
+                    <span className="text-xs text-stone pr-1">{t('planDetail.dayPlanCard.restTime.popover.minutesUnit')}</span>
                   }
                   rightSectionWidth={36}
                   onChange={setDraft}
