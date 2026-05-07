@@ -258,6 +258,10 @@
         "currentNode": "目前位置",
         "spec": "SPEC",
         "you": "YOU",
+        "includesRest": "含 {minutes} 分鐘休息",
+        "restTime": {
+          "add": "+ 在此休息"
+        },
         "menu": {
           "edit": "編輯",
           "cancelEdit": "取消編輯",

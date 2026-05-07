@@ -258,6 +258,10 @@
         "currentNode": "Current Node",
         "spec": "SPEC",
         "you": "YOU",
+        "includesRest": "incl. {minutes}m rest",
+        "restTime": {
+          "add": "+ Rest here"
+        },
         "menu": {
           "edit": "Edit",
           "cancelEdit": "Cancel Edit",
