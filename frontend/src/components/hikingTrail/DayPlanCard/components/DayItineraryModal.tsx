@@ -2,6 +2,7 @@
 
 import { Modal, Text, Timeline } from '@mantine/core'
 import { useMediaQuery } from '@mantine/hooks'
+import { IconClockHour9 } from '@tabler/icons-react'
 import { useTranslations } from 'next-intl'
 import { TrailNodeType } from '@/constants/hiking-trails/hikingTrail'
 import { calcDepartureTime, formatTrailMinutes } from '@/lib/timeFormatter'
@@ -47,6 +48,7 @@ export function DayItineraryModal({
   for (let i = 0; i < stops.length; i++) {
     accumulatedMinutes.push(runningMinutes)
     if (i < stops.length - 1) {
+      runningMinutes += stops[i]!.restMinutes ?? 0
       const edge = getEdge(adj, stops[i]!.nodeId, stops[i + 1]!.nodeId)
       runningMinutes += Math.round((edge?.minutes ?? 0) * paceMultiplier)
     }
@@ -117,6 +119,18 @@ export function DayItineraryModal({
                     <NodeTypeBadge nodeType={node.nodeType} />
                   )}
                 </div>
+                {(stop.restMinutes ?? 0) > 0 && (
+                  <div className="flex items-center gap-1 mt-1">
+                    <IconClockHour9
+                      size={12}
+                      color="var(--mantine-color-blue-5)"
+                    />
+                    <Text
+                      size="xs"
+                      c="blue.5"
+                    >{formatTrailMinutes(stop.restMinutes!)}</Text>
+                  </div>
+                )}
                 {travelToNext !== null && (
                   <Text
                     size="xs"
