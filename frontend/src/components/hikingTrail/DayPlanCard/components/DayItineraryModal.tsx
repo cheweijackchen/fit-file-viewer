@@ -1,10 +1,10 @@
 'use client'
 
 import { Modal, Text, Timeline } from '@mantine/core'
-import { useMediaQuery } from '@mantine/hooks'
 import { IconClockHour9 } from '@tabler/icons-react'
 import { useTranslations } from 'next-intl'
 import { TrailNodeType } from '@/constants/hiking-trails/hikingTrail'
+import useScreen from '@/hooks/useScreen'
 import { calcDepartureTime, formatTrailMinutes } from '@/lib/timeFormatter'
 import { getEdge } from '@/lib/trailGraph'
 import type { DayPlan, Trail, TrailAdjacencyList, TrailNode } from '@/model/hikingTrail'
@@ -38,7 +38,7 @@ export function DayItineraryModal({
   nodeMap,
 }: Props) {
   const t = useTranslations('hiking-trail-planner')
-  const isMobile = useMediaQuery('(max-width: 768px)')
+  const { onMobile } = useScreen()
 
   const stops = dayPlan.stops
 
@@ -58,7 +58,7 @@ export function DayItineraryModal({
     <Modal
       centered
       opened={opened}
-      fullScreen={isMobile ?? false}
+      fullScreen={onMobile ?? false}
       title={
         <Text
           fw={700}

@@ -1,6 +1,6 @@
 'use client'
 
-import { useMediaQuery } from '@mantine/hooks'
+import useScreen from '@/hooks/useScreen'
 import { formatTrailMinutes } from '@/lib/timeFormatter'
 import { getEdge, getNeighbors } from '@/lib/trailGraph'
 import type { TrailAdjacencyList, TrailNode } from '@/model/hikingTrail'
@@ -19,7 +19,7 @@ interface Props {
 }
 
 export function NodeSelectionPanel({ adj, nodeMap, stopIds, onNodeSelect, onQuickJump, enableRest, currentNodeRestMinutes, onCurrentNodeRestMinutesChange }: Props) {
-  const isMobile = useMediaQuery('(max-width: 768px)')
+  const { onMobile } = useScreen()
 
   const currentNodeId = stopIds[stopIds.length - 1]!
   const previousNodeId = stopIds.length >= 2 ? stopIds[stopIds.length - 2] : undefined
@@ -41,7 +41,7 @@ export function NodeSelectionPanel({ adj, nodeMap, stopIds, onNodeSelect, onQuic
     onCurrentNodeRestMinutesChange,
   }
 
-  if (isMobile) {
+  if (onMobile) {
     return (
       <NodeSelectionMobileLayout
         adj={adj}
