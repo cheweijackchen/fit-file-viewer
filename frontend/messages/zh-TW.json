@@ -178,19 +178,8 @@
       "subtitle": "選一條精選路線，改成你自己的行程。",
       "cta": "使用此路線",
       "days": "{count} 天",
-      "plans": {
-        "jadeMountain": {
-          "name": "玉山主峰",
-          "trailName": "中央山脈 · 南投"
-        },
-        "hehuanTraverse": {
-          "name": "合歡群峰縱走",
-          "trailName": "中央山脈 · 南投／花蓮"
-        },
-        "snowMountain": {
-          "name": "雪山主峰",
-          "trailName": "雪霸國家公園 · 台中"
-        }
+      "trailNames": {
+        "south-second-section": "南二段"
       }
     },
     "yourTrips": {

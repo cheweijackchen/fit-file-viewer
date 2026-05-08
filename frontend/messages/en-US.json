@@ -178,19 +178,8 @@
       "subtitle": "Choose a curated route — then make it yours.",
       "cta": "Use This Plan",
       "days": "{count, plural, one {# day} other {# days}}",
-      "plans": {
-        "jadeMountain": {
-          "name": "Jade Mountain",
-          "trailName": "Central Mountain Range · Nantou"
-        },
-        "hehuanTraverse": {
-          "name": "Hehuanshan Traverse",
-          "trailName": "Central Range · Nantou / Hualien"
-        },
-        "snowMountain": {
-          "name": "Snow Mountain",
-          "trailName": "Shei-Pa National Park · Taichung"
-        }
+      "trailNames": {
+        "south-second-section": "South Second Section"
       }
     },
     "yourTrips": {
