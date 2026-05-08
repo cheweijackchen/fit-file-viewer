@@ -12,6 +12,7 @@ interface Props {
   fontWeight?: CSSProperties['fontWeight'];
   showDuration?: boolean;
   adj?: TrailAdjacencyList;
+  paceMultiplier?: number;
   // Rest time props
   editMode?: boolean;
   restMinutes?: Record<number, number>;
@@ -26,6 +27,7 @@ export function RouteIndicator({
   fontWeight,
   showDuration = false,
   adj,
+  paceMultiplier = 1,
   editMode = false,
   restMinutes,
   onRestMinutesChange,
@@ -35,7 +37,8 @@ export function RouteIndicator({
       {stopIds.map((id, i) => {
         const isHighlighted = highlightLast && i === stopIds.length - 1
         const bg = isHighlighted ? 'var(--color-sepia-9)' : chipBackground
-        const minutes = showDuration ? adj?.get(id)?.get(stopIds[i + 1])?.minutes : undefined
+        const rawSegmentMinutes = showDuration ? adj?.get(id)?.get(stopIds[i + 1])?.minutes : undefined
+        const minutes = rawSegmentMinutes != null ? Math.round(rawSegmentMinutes * paceMultiplier) : undefined
         const rest = restMinutes?.[i]
 
         const chip = (

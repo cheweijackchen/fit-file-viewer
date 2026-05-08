@@ -218,6 +218,7 @@ export function DayPlanCard({
       nodeMap={nodeMap}
       showDuration={showDuration}
       adj={adj}
+      paceMultiplier={paceMultiplier}
       restMinutes={enableRest
         ? Object.fromEntries(dayPlan.stops.flatMap((s, i) => s.restMinutes ? [[i, s.restMinutes]] : []))
         : undefined}
