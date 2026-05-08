@@ -4,6 +4,7 @@ import { ActionIcon, Divider, Menu, Text } from '@mantine/core'
 import { IconDotsVertical, IconEraser, IconPencil, IconPencilOff, IconTrash } from '@tabler/icons-react'
 import { useTranslations } from 'next-intl'
 import { useMemo, useState } from 'react'
+import { RouteIndicator } from '@/components/hikingTrail/RouteIndicator'
 import { PACE_TIERS } from '@/constants/hiking-trails/dayPlanCard'
 import { TrailNodeType } from '@/constants/hiking-trails/hikingTrail'
 import { calcDepartureTime, formatTrailMinutes } from '@/lib/timeFormatter'
@@ -12,7 +13,6 @@ import type { DayPlan, Trail } from '@/model/hikingTrail'
 import { DayItineraryModal } from './components/DayItineraryModal'
 import { DayPlanForm } from './components/DayPlanForm'
 import { NodeTypeBadge } from './components/NodeTypeBadge'
-import { RouteIndicator } from './components/RouteIndicator'
 
 interface Props {
   dayPlan: DayPlan;

@@ -4,7 +4,7 @@ import { Select, Stack, Text, Title } from '@mantine/core'
 import { useMemo, useState } from 'react'
 import { QuickJumpButton } from '@/components/hikingTrail/DayPlanCard/components/QuickJumpButton'
 import { QuickJumpModal } from '@/components/hikingTrail/DayPlanCard/components/QuickJumpModal'
-import { RouteIndicator } from '@/components/hikingTrail/DayPlanCard/components/RouteIndicator'
+import { RouteIndicator } from '@/components/hikingTrail/RouteIndicator'
 import { HIKING_TRAILS } from '@/constants/hikingTrails'
 import { applyQuickJump, buildTrailAdjacencyList } from '@/lib/trailGraph'
 

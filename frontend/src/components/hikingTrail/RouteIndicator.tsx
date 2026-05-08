@@ -2,7 +2,7 @@ import { IconClockHour9 } from '@tabler/icons-react'
 import type { CSSProperties } from 'react'
 import { formatTrailMinutes } from '@/lib/timeFormatter'
 import type { TrailAdjacencyList, TrailNode } from '@/model/hikingTrail'
-import { RestPopover } from './RestPopover'
+import { RestPopover } from './DayPlanCard/components/RestPopover'
 
 interface Props {
   stopIds: string[];

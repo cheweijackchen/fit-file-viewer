@@ -2,7 +2,7 @@
 
 import { Stack, Text, Title } from '@mantine/core'
 import { useMemo } from 'react'
-import { RouteIndicator } from '@/components/hikingTrail/DayPlanCard/components/RouteIndicator'
+import { RouteIndicator } from '@/components/hikingTrail/RouteIndicator'
 import { southSecondSection } from '@/constants/hiking-trails/southSecondSection'
 import { buildTrailAdjacencyList } from '@/lib/trailGraph'
 

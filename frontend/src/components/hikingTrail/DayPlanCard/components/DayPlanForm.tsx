@@ -5,13 +5,13 @@ import { TimePicker } from '@mantine/dates'
 import { IconAlertTriangle, IconArrowBackUp, IconCheck } from '@tabler/icons-react'
 import { useTranslations } from 'next-intl'
 import { useEffect, useState } from 'react'
+import { RouteIndicator } from '@/components/hikingTrail/RouteIndicator'
 import { formatTrailMinutes } from '@/lib/timeFormatter'
 import { applyQuickJump } from '@/lib/trailGraph'
 import type { Trail, TrailAdjacencyList, TrailNode } from '@/model/hikingTrail'
 import classes from './DayPlanForm.module.scss'
 import { NodeSelectionPanel } from './NodeSelectionPanel'
 import { QuickJumpModal } from './QuickJumpModal'
-import { RouteIndicator } from './RouteIndicator'
 
 interface Props {
   trail: Trail;
