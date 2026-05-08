@@ -70,7 +70,8 @@ export function TrailGraphSearchBar({
     <div className={clsx('flex items-center gap-1', className)}>
       <ActionIcon
         aria-label="search nodes"
-        size="sm"
+        radius="md"
+        size="30"
         variant="default"
         onClick={onToggle}
       >
@@ -80,12 +81,13 @@ export function TrailGraphSearchBar({
         <>
           <TextInput
             autoFocus
-            className="flex-1 min-w-0 sm:flex-none sm:w-48"
+            className="flex-1 min-w-0 sm:flex-none sm:w-40"
             placeholder={placeholder}
             rightSection={rightSection}
             rightSectionPointerEvents="all"
             rightSectionWidth={matchCount !== undefined && matchCount > 1 ? 72 : matchCount ? 36 : undefined}
             size="xs"
+            radius="md"
             value={query}
             onChange={(e) => onQueryChange(e.currentTarget.value)}
             onKeyDown={(e) => e.key === 'Enter' && onSearch()}
@@ -93,6 +95,7 @@ export function TrailGraphSearchBar({
           <Button
             className="shrink-0"
             size="xs"
+            radius="md"
             onClick={onSearch}
           >
             {searchLabel}
