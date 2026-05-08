@@ -2,7 +2,8 @@ import { notifications } from '@mantine/notifications'
 import type cytoscape from 'cytoscape'
 import { useTranslations } from 'next-intl'
 import type { RefObject } from 'react'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
+import { useSearchReducer } from './useSearchReducer'
 
 const MAX_ZOOM = 2.0
 
@@ -36,52 +37,54 @@ export function useTrailGraphSearch(
   searchOpen: boolean
 ): UseTrailGraphSearchReturn {
   const t = useTranslations('hiking-trail-planner')
-  const [searchQuery, setSearchQuery] = useState('')
-  const [matchedNodeIds, setMatchedNodeIds] = useState<string[]>([])
-  const [matchIndex, setMatchIndex] = useState(0)
+  const [{ query, matchedNodeIds, matchIndex }, dispatch] = useSearchReducer()
 
   useEffect(() => {
     if (!searchOpen) {
-      setSearchQuery('')
-      setMatchedNodeIds([])
-      setMatchIndex(0)
+      dispatch({ type: 'RESET' })
     }
-  }, [searchOpen])
+  }, [searchOpen, dispatch])
 
   function handleSearch() {
     const cy = cyRef.current
-    if (!cy || !searchQuery.trim()) {
+    if (!cy || !query.trim()) {
       return
     }
 
     if (matchedNodeIds.length > 0) {
       const next = (matchIndex + 1) % matchedNodeIds.length
-      setMatchIndex(next)
+      dispatch({
+        type: 'SET_INDEX',
+        index: next 
+      })
       focusNode(cy, matchedNodeIds[next])
       return
     }
 
-    const query = searchQuery.trim().toLowerCase()
+    const q = query.trim().toLowerCase()
     const ids = cy.nodes()
-      .filter(node => (node.data('label') as string).toLowerCase().includes(query))
+      .filter(node => (node.data('label') as string).toLowerCase().includes(q))
       .map(node => node.id())
 
     if (ids.length > 0) {
-      setMatchedNodeIds(ids)
-      setMatchIndex(0)
+      dispatch({
+        type: 'SET_RESULTS',
+        ids 
+      })
       focusNode(cy, ids[0])
     } else {
       notifications.show({
-        message: t('planDetail.trailNetwork.searchNotFound', { query: searchQuery }),
+        message: t('planDetail.trailNetwork.searchNotFound', { query }),
         color: 'orange',
       })
     }
   }
 
   function handleQueryChange(q: string) {
-    setSearchQuery(q)
-    setMatchedNodeIds([])
-    setMatchIndex(0)
+    dispatch({
+      type: 'SET_QUERY',
+      query: q 
+    })
   }
 
   function handleNavigatePrev() {
@@ -90,7 +93,10 @@ export function useTrailGraphSearch(
       return
     }
     const prev = (matchIndex - 1 + matchedNodeIds.length) % matchedNodeIds.length
-    setMatchIndex(prev)
+    dispatch({
+      type: 'SET_INDEX',
+      index: prev 
+    })
     focusNode(cy, matchedNodeIds[prev])
   }
 
@@ -100,12 +106,15 @@ export function useTrailGraphSearch(
       return
     }
     const next = (matchIndex + 1) % matchedNodeIds.length
-    setMatchIndex(next)
+    dispatch({
+      type: 'SET_INDEX',
+      index: next 
+    })
     focusNode(cy, matchedNodeIds[next])
   }
 
   return {
-    searchQuery,
+    searchQuery: query,
     matchIndex: matchedNodeIds.length > 0 ? matchIndex : undefined,
     matchCount: matchedNodeIds.length > 0 ? matchedNodeIds.length : undefined,
     handleSearch,
