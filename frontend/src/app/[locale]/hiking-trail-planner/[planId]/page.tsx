@@ -518,6 +518,7 @@ export default function PlanDetailPage({ params, searchParams }: Props) {
             </Text>
           </div>
           <TrailGraph
+            searchable
             trail={trail}
             showGrid={true}
             gridSize={20}

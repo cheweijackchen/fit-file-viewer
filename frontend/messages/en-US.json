@@ -288,6 +288,11 @@
       "dayItinerary": {
         "title": "Day {day} Itinerary",
         "travelTime": "{adjustedTime} ・Ref. {originalTime} × {paceMultiplier}"
+      },
+      "trailNetwork": {
+        "searchPlaceholder": "Search nodes...",
+        "searchButton": "Search",
+        "searchNotFound": "No nodes found for \"{query}\""
       }
     }
   },

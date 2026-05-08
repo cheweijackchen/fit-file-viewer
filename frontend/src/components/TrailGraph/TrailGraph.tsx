@@ -2,11 +2,15 @@
 
 import { Loader, useMantineTheme } from '@mantine/core'
 import { useDebouncedValue, useViewportSize } from '@mantine/hooks'
+import { notifications } from '@mantine/notifications'
+import clsx from 'clsx'
 import type { ElementDefinition, StylesheetStyle } from 'cytoscape'
 import dynamic from 'next/dynamic'
+import { useTranslations } from 'next-intl'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { getTrailPositions } from '@/constants/hiking-trails/positions'
 import type { Trail } from '@/model/hikingTrail'
+import { TrailGraphSearchBar } from './components/TrailGraphSearchBar'
 
 const CytoscapeComponent = dynamic(
   async () => {
@@ -33,16 +37,20 @@ interface Props {
   showGrid?: boolean;
   gridSize?: number;
   editable?: boolean;
+  searchable?: boolean;
 }
 
-export function TrailGraph({ trail, showGrid = false, gridSize = 40, editable = false }: Props) {
+export function TrailGraph({ trail, showGrid = false, gridSize = 40, editable = false, searchable = false }: Props) {
   const theme = useMantineTheme()
+  const t = useTranslations('hiking-trail-planner')
   const cyRef = useRef<cytoscape.Core | null>(null)
   const containerRef = useRef<HTMLDivElement>(null)
   const { width } = useViewportSize()
   const [debouncedWidth] = useDebouncedValue(width, 300)
   const prevWidthRef = useRef(debouncedWidth)
   const [shrinkKey, setShrinkKey] = useState(0)
+  const [searchOpen, setSearchOpen] = useState(false)
+  const [searchQuery, setSearchQuery] = useState('')
   // Track the cy instance in state so effects can declare it as a dependency.
   // cyRef is kept in sync for imperative access; cyInstance drives re-registration
   // of event listeners whenever CytoscapeComponent remounts (trail change or shrinkKey bump).
@@ -136,6 +144,38 @@ export function TrailGraph({ trail, showGrid = false, gridSize = 40, editable = 
     })),
   ], [trail])
 
+  function handleSearch() {
+    const cy = cyRef.current
+    if (!cy || !searchQuery.trim()) {
+      return
+    }
+
+    const query = searchQuery.trim().toLowerCase()
+    const matched = cy.nodes().filter(node =>
+      (node.data('label') as string).toLowerCase().includes(query)
+    )
+
+    if (matched.length > 0) {
+      cy.stop()
+      cy.fit(matched, 80)
+      const MAX_ZOOM = 2.0
+      if (cy.zoom() > MAX_ZOOM) {
+        cy.zoom({
+          level: MAX_ZOOM,
+          renderedPosition: {
+            x: cy.width() / 2,
+            y: cy.height() / 2,
+          },
+        })
+      }
+    } else {
+      notifications.show({
+        message: t('planDetail.trailNetwork.searchNotFound', { query: searchQuery }),
+        color: 'orange',
+      })
+    }
+  }
+
   // Stable callback passed to CytoscapeComponent. useCallback prevents react-cytoscapejs
   // from seeing a new function reference every render, which would cause it to call this
   // repeatedly and re-run the layout on top of the user's current view.
@@ -195,9 +235,21 @@ export function TrailGraph({ trail, showGrid = false, gridSize = 40, editable = 
   return (
     <div
       ref={containerRef}
-      className="w-full rounded-2xl border border-(--mantine-color-stone-2)"
+      className="relative w-full rounded-2xl border border-(--mantine-color-stone-2)"
       style={{ height: 500 }}
     >
+      {searchable && (
+        <TrailGraphSearchBar
+          open={searchOpen}
+          query={searchQuery}
+          placeholder={t('planDetail.trailNetwork.searchPlaceholder')}
+          searchLabel={t('planDetail.trailNetwork.searchButton')}
+          className={clsx('absolute top-2 left-2 z-10', searchOpen && 'right-2')}
+          onToggle={() => setSearchOpen(v => !v)}
+          onQueryChange={setSearchQuery}
+          onSearch={handleSearch}
+        />
+      )}
       <CytoscapeComponent
         key={`${trail.id}-${shrinkKey}`}
         elements={elements}

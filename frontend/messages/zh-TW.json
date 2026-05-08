@@ -288,6 +288,11 @@
       "dayItinerary": {
         "title": "第 {day} 天行程",
         "travelTime": "{adjustedTime} ・上河基準 {originalTime} × {paceMultiplier}"
+      },
+      "trailNetwork": {
+        "searchPlaceholder": "搜尋節點...",
+        "searchButton": "搜尋",
+        "searchNotFound": "找不到符合「{query}」的節點"
       }
     }
   },
