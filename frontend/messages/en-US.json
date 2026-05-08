@@ -293,6 +293,12 @@
           "todaysRoute": "TODAY'S ROUTE",
           "undo": "Undo",
           "completeRoute": "Complete Route"
+        },
+        "quickJump": {
+          "title": "Jump to...",
+          "placeholder": "Select destination",
+          "cancel": "Cancel",
+          "confirm": "Confirm"
         }
       },
       "dayItinerary": {

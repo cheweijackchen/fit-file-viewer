@@ -1,6 +1,7 @@
 'use client'
 
 import { Button, Group, Modal, Select } from '@mantine/core'
+import { useTranslations } from 'next-intl'
 import { useState } from 'react'
 import { TRAIL_NODE_TYPE_BADGE_STYLE } from '@/constants/hiking-trails/dayPlanCard'
 import { TrailNodeType } from '@/constants/hiking-trails/hikingTrail'
@@ -15,6 +16,7 @@ interface Props {
 }
 
 export function QuickJumpModal({ opened, onClose, onConfirm, nodes, currentNodeId }: Props) {
+  const t = useTranslations('hiking-trail-planner')
   const [selectedId, setSelectedId] = useState<string | null>(null)
 
   const nodeTypeMap = new Map(nodes.map(n => [n.id, n.nodeType ?? TrailNodeType.Other]))
@@ -43,14 +45,14 @@ export function QuickJumpModal({ opened, onClose, onConfirm, nodes, currentNodeI
     <Modal
       centered
       opened={opened}
-      title="Jump to..."
+      title={t('planDetail.dayPlanCard.quickJump.title')}
       onClose={handleClose}
     >
       <Select
         searchable
         data={selectData}
         value={selectedId}
-        placeholder="Select destination"
+        placeholder={t('planDetail.dayPlanCard.quickJump.placeholder')}
         renderOption={({ option }) => {
           const nodeType = nodeTypeMap.get(option.value) ?? TrailNodeType.Other
           const { icon: Icon } = TRAIL_NODE_TYPE_BADGE_STYLE[nodeType]
@@ -74,14 +76,14 @@ export function QuickJumpModal({ opened, onClose, onConfirm, nodes, currentNodeI
           variant="default"
           onClick={handleClose}
         >
-          Cancel
+          {t('planDetail.dayPlanCard.quickJump.cancel')}
         </Button>
         <Button
           color="yellow"
           disabled={!selectedId}
           onClick={handleConfirm}
         >
-          Confirm
+          {t('planDetail.dayPlanCard.quickJump.confirm')}
         </Button>
       </Group>
     </Modal>

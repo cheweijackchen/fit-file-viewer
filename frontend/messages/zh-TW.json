@@ -293,6 +293,12 @@
           "todaysRoute": "今日路線",
           "undo": "復原上一步",
           "completeRoute": "完成路線"
+        },
+        "quickJump": {
+          "title": "跳轉至...",
+          "placeholder": "選擇目的地",
+          "cancel": "取消",
+          "confirm": "確認"
         }
       },
       "dayItinerary": {
