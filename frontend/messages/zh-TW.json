@@ -299,6 +299,11 @@
           "placeholder": "選擇目的地",
           "cancel": "取消",
           "confirm": "確認"
+        },
+        "nodeSelection": {
+          "back": "往回走",
+          "forward": "繼續走",
+          "noNodes": "無可繼續的節點"
         }
       },
       "dayItinerary": {

@@ -299,6 +299,11 @@
           "placeholder": "Select destination",
           "cancel": "Cancel",
           "confirm": "Confirm"
+        },
+        "nodeSelection": {
+          "back": "Go Back",
+          "forward": "Continue",
+          "noNodes": "No available nodes"
         }
       },
       "dayItinerary": {

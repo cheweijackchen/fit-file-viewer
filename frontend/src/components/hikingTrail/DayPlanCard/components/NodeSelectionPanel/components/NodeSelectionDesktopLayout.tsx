@@ -1,4 +1,5 @@
 import { IconArrowRight, IconArrowsHorizontal } from '@tabler/icons-react'
+import { useTranslations } from 'next-intl'
 import type { TrailAdjacencyList, TrailNode } from '@/model/hikingTrail'
 import { CurrentNodeCard } from './CurrentNodeCard'
 import { NodeCard } from './NodeCard'
@@ -32,6 +33,7 @@ export function NodeSelectionDesktopLayout({
   currentNodeRestMinutes,
   onCurrentNodeRestMinutesChange,
 }: LayoutProps) {
+  const t = useTranslations('hiking-trail-planner')
   const currentId = currentNode?.id ?? ''
 
   return (
@@ -93,7 +95,7 @@ export function NodeSelectionDesktopLayout({
           ))
         ) : (
           <span className="text-xs text-(--mantine-color-stone-4) pt-3.5">
-            無可繼續的節點
+            {t('planDetail.dayPlanCard.nodeSelection.noNodes')}
           </span>
         )}
       </div>
