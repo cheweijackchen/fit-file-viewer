@@ -11,6 +11,7 @@ import {
 import { useTranslations } from 'next-intl'
 import { useState } from 'react'
 import { ConfirmModal } from '@/components/ConfirmModal'
+import { StartFromPlanSection } from '@/components/hikingTrail/StartFromPlanSection'
 import { TripCard } from '@/components/hikingTrail/TripCard'
 import { useRouter } from '@/i18n/navigation'
 import { useHikingTrailActions, useHikingTrailStore } from '@/store/hikingTrail/useHikingTrailStore'
@@ -193,6 +194,9 @@ export default function HikingTrailPlannerPage() {
           )}
         </Container>
       </section>
+
+      <StartFromPlanSection />
+
       <ConfirmModal
         opened={deletingPlanId !== null}
         title={t('planDetail.deleteConfirm.title')}
