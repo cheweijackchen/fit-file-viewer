@@ -30,6 +30,7 @@
 - [Peaks Tracker](docs/features/peaks-tracker.md)
 - [Trail Map](docs/features/trail-map.md)
 - [Hiking Trail Planner](docs/features/hiking-trail-planner.md)
+- [路線資料整理規則](docs/features/hiking-trail-data-authoring.md)（步程示意圖 → `hiking-trails/*.ts`）
 
 ---
 
