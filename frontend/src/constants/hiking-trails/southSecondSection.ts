@@ -320,34 +320,34 @@ export const southSecondSection: Trail = {
       nodeType: 'peak'
     },
     {
-      id: 'south-second-section_lakuyin-river-hut',
+      id: 'global_lakuyin-river-hut',
       name: '拉庫音溪山屋',
-      i18nKey: 'south-second-section.lakuyin-river-hut',
+      i18nKey: 'global.lakuyin-river-hut',
       nodeType: 'hut'
     },
     // --- 新康山岔路口 → 嘉明湖／三叉山 ---
     {
-      id: 'south-second-section_xinkang-mountain-fork',
+      id: 'global_xinkang-mountain-fork',
       name: '新康山岔路口',
-      i18nKey: 'south-second-section.xinkang-mountain-fork',
+      i18nKey: 'global.xinkang-mountain-fork',
       nodeType: 'fork'
     },
     {
-      id: 'south-second-section_jiaming-lake-fork',
+      id: 'global_jiaming-lake-fork',
       name: '嘉明湖岔路口',
-      i18nKey: 'south-second-section.jiaming-lake-fork',
+      i18nKey: 'global.jiaming-lake-fork',
       nodeType: 'fork'
     },
     {
-      id: 'south-second-section_jiaming-lake',
+      id: 'global_jiaming-lake',
       name: '嘉明湖',
-      i18nKey: 'south-second-section.jiaming-lake',
+      i18nKey: 'global.jiaming-lake',
       nodeType: 'water-source'
     },
     {
-      id: 'south-second-section_sancha-mountain-trailhead',
+      id: 'global_sancha-mountain-trailhead',
       name: '三叉山登山口',
-      i18nKey: 'south-second-section.sancha-mountain-trailhead',
+      i18nKey: 'global.sancha-mountain-trailhead',
       nodeType: 'fork'
     },
     {
@@ -358,15 +358,15 @@ export const southSecondSection: Trail = {
     },
     // --- 北峰下解說牌 → 向陽森林遊樂區 ---
     {
-      id: 'south-second-section_north-peak-sign',
+      id: 'global_north-peak-sign',
       name: '北峰下解說牌',
-      i18nKey: 'south-second-section.north-peak-sign',
+      i18nKey: 'global.north-peak-sign',
       nodeType: 'other'
     },
     {
-      id: 'south-second-section_north-peak-fork',
+      id: 'global_north-peak-fork',
       name: '三岔路口',
-      i18nKey: 'south-second-section.north-peak-fork',
+      i18nKey: 'global.north-peak-fork',
       nodeType: 'fork'
     },
     {
@@ -376,40 +376,40 @@ export const southSecondSection: Trail = {
       nodeType: 'peak'
     },
     {
-      id: 'south-second-section_jiaming-lake-hut',
+      id: 'global_jiaming-lake-hut',
       name: '嘉明湖避難山屋',
-      i18nKey: 'south-second-section.jiaming-lake-hut',
+      i18nKey: 'global.jiaming-lake-hut',
       nodeType: 'hut'
     },
     {
-      id: 'south-second-section_xice-trailhead',
+      id: 'global_xice-trailhead',
       name: '西側登山口',
-      i18nKey: 'south-second-section.xice-trailhead',
+      i18nKey: 'global.xice-trailhead',
       nodeType: 'fork'
     },
     {
-      id: 'south-second-section_xiangyang-hut',
+      id: 'global_xiangyang-hut',
       name: '向陽山屋',
-      i18nKey: 'south-second-section.xiangyang-hut',
+      i18nKey: 'global.xiangyang-hut',
       nodeType: 'hut'
     },
     {
-      id: 'south-second-section_lindao-trailhead',
+      id: 'global_lindao-trailhead',
       name: '林道登山口',
-      i18nKey: 'south-second-section.lindao-trailhead',
+      i18nKey: 'global.lindao-trailhead',
       nodeType: 'fork'
     },
     {
-      id: 'south-second-section_xiangyang-forest-recreation-area',
+      id: 'global_xiangyang-forest-recreation-area',
       name: '向陽森林遊樂區',
-      i18nKey: 'south-second-section.xiangyang-forest-recreation-area',
+      i18nKey: 'global.xiangyang-forest-recreation-area',
       nodeType: 'other'
     },
     // --- 獨立節點（圖上無分鐘數連線）---
     {
-      id: 'south-second-section_pass-hut',
+      id: 'global_pass-hut',
       name: '埡口山莊',
-      i18nKey: 'south-second-section.pass-hut',
+      i18nKey: 'global.pass-hut',
       nodeType: 'hut'
     }
   ],
@@ -1047,177 +1047,177 @@ export const southSecondSection: Trail = {
     // 南雙頭山 <-> 拉庫音溪山屋
     {
       from: 'mountain_nanshuangtou-mountain',
-      to: 'south-second-section_lakuyin-river-hut',
+      to: 'global_lakuyin-river-hut',
       minutes: 110
     },
     {
-      from: 'south-second-section_lakuyin-river-hut',
+      from: 'global_lakuyin-river-hut',
       to: 'mountain_nanshuangtou-mountain',
       minutes: 180
     },
     // 拉庫音溪山屋 <-> 新康山岔路口
     {
-      from: 'south-second-section_lakuyin-river-hut',
-      to: 'south-second-section_xinkang-mountain-fork',
+      from: 'global_lakuyin-river-hut',
+      to: 'global_xinkang-mountain-fork',
       minutes: 220
     },
     {
-      from: 'south-second-section_xinkang-mountain-fork',
-      to: 'south-second-section_lakuyin-river-hut',
+      from: 'global_xinkang-mountain-fork',
+      to: 'global_lakuyin-river-hut',
       minutes: 130
     },
     // 新康山岔路口 <-> 嘉明湖岔路口
     {
-      from: 'south-second-section_xinkang-mountain-fork',
-      to: 'south-second-section_jiaming-lake-fork',
+      from: 'global_xinkang-mountain-fork',
+      to: 'global_jiaming-lake-fork',
       minutes: 30
     },
     {
-      from: 'south-second-section_jiaming-lake-fork',
-      to: 'south-second-section_xinkang-mountain-fork',
+      from: 'global_jiaming-lake-fork',
+      to: 'global_xinkang-mountain-fork',
       minutes: 40
     },
     // 嘉明湖岔路口 <-> 嘉明湖
     {
-      from: 'south-second-section_jiaming-lake-fork',
-      to: 'south-second-section_jiaming-lake',
+      from: 'global_jiaming-lake-fork',
+      to: 'global_jiaming-lake',
       minutes: 15
     },
     {
-      from: 'south-second-section_jiaming-lake',
-      to: 'south-second-section_jiaming-lake-fork',
+      from: 'global_jiaming-lake',
+      to: 'global_jiaming-lake-fork',
       minutes: 20
     },
     // 三叉山登山口 <-> 嘉明湖岔路口
     {
-      from: 'south-second-section_sancha-mountain-trailhead',
-      to: 'south-second-section_jiaming-lake-fork',
+      from: 'global_sancha-mountain-trailhead',
+      to: 'global_jiaming-lake-fork',
       minutes: 30
     },
     {
-      from: 'south-second-section_jiaming-lake-fork',
-      to: 'south-second-section_sancha-mountain-trailhead',
+      from: 'global_jiaming-lake-fork',
+      to: 'global_sancha-mountain-trailhead',
       minutes: 25
     },
     // 三叉山 <-> 嘉明湖岔路口
     {
       from: 'mountain_sancha-mountain',
-      to: 'south-second-section_jiaming-lake-fork',
+      to: 'global_jiaming-lake-fork',
       minutes: 10
     },
     {
-      from: 'south-second-section_jiaming-lake-fork',
+      from: 'global_jiaming-lake-fork',
       to: 'mountain_sancha-mountain',
       minutes: 20
     },
     // 三叉山登山口 <-> 三叉山
     {
-      from: 'south-second-section_sancha-mountain-trailhead',
+      from: 'global_sancha-mountain-trailhead',
       to: 'mountain_sancha-mountain',
       minutes: 25
     },
     {
       from: 'mountain_sancha-mountain',
-      to: 'south-second-section_sancha-mountain-trailhead',
+      to: 'global_sancha-mountain-trailhead',
       minutes: 15
     },
     // 北峰下解說牌 <-> 三叉山登山口
     {
-      from: 'south-second-section_north-peak-sign',
-      to: 'south-second-section_sancha-mountain-trailhead',
+      from: 'global_north-peak-sign',
+      to: 'global_sancha-mountain-trailhead',
       minutes: 80
     },
     {
-      from: 'south-second-section_sancha-mountain-trailhead',
-      to: 'south-second-section_north-peak-sign',
+      from: 'global_sancha-mountain-trailhead',
+      to: 'global_north-peak-sign',
       minutes: 55
     },
     // 三岔路口 <-> 北峰下解說牌
     {
-      from: 'south-second-section_north-peak-fork',
-      to: 'south-second-section_north-peak-sign',
+      from: 'global_north-peak-fork',
+      to: 'global_north-peak-sign',
       minutes: 40
     },
     {
-      from: 'south-second-section_north-peak-sign',
-      to: 'south-second-section_north-peak-fork',
+      from: 'global_north-peak-sign',
+      to: 'global_north-peak-fork',
       minutes: 35
     },
     // 三岔路口 <-> 向陽山
     {
-      from: 'south-second-section_north-peak-fork',
+      from: 'global_north-peak-fork',
       to: 'mountain_xiangyang-mountain',
       minutes: 60
     },
     {
       from: 'mountain_xiangyang-mountain',
-      to: 'south-second-section_north-peak-fork',
+      to: 'global_north-peak-fork',
       minutes: 45
     },
     // 嘉明湖避難山屋 <-> 三岔路口
     {
-      from: 'south-second-section_jiaming-lake-hut',
-      to: 'south-second-section_north-peak-fork',
+      from: 'global_jiaming-lake-hut',
+      to: 'global_north-peak-fork',
       minutes: 15
     },
     {
-      from: 'south-second-section_north-peak-fork',
-      to: 'south-second-section_jiaming-lake-hut',
+      from: 'global_north-peak-fork',
+      to: 'global_jiaming-lake-hut',
       minutes: 15
     },
     // 西側登山口 <-> 嘉明湖避難山屋
     {
-      from: 'south-second-section_xice-trailhead',
-      to: 'south-second-section_jiaming-lake-hut',
+      from: 'global_xice-trailhead',
+      to: 'global_jiaming-lake-hut',
       minutes: 40
     },
     {
-      from: 'south-second-section_jiaming-lake-hut',
-      to: 'south-second-section_xice-trailhead',
+      from: 'global_jiaming-lake-hut',
+      to: 'global_xice-trailhead',
       minutes: 45
     },
     // 西側登山口 <-> 向陽山
     {
-      from: 'south-second-section_xice-trailhead',
+      from: 'global_xice-trailhead',
       to: 'mountain_xiangyang-mountain',
       minutes: 35
     },
     {
       from: 'mountain_xiangyang-mountain',
-      to: 'south-second-section_xice-trailhead',
+      to: 'global_xice-trailhead',
       minutes: 25
     },
     // 向陽山屋 <-> 西側登山口
     {
-      from: 'south-second-section_xiangyang-hut',
-      to: 'south-second-section_xice-trailhead',
+      from: 'global_xiangyang-hut',
+      to: 'global_xice-trailhead',
       minutes: 180
     },
     {
-      from: 'south-second-section_xice-trailhead',
-      to: 'south-second-section_xiangyang-hut',
+      from: 'global_xice-trailhead',
+      to: 'global_xiangyang-hut',
       minutes: 130
     },
     // 林道登山口 <-> 向陽山屋
     {
-      from: 'south-second-section_lindao-trailhead',
-      to: 'south-second-section_xiangyang-hut',
+      from: 'global_lindao-trailhead',
+      to: 'global_xiangyang-hut',
       minutes: 70
     },
     {
-      from: 'south-second-section_xiangyang-hut',
-      to: 'south-second-section_lindao-trailhead',
+      from: 'global_xiangyang-hut',
+      to: 'global_lindao-trailhead',
       minutes: 40
     },
     // 向陽森林遊樂區 <-> 林道登山口
     {
-      from: 'south-second-section_xiangyang-forest-recreation-area',
-      to: 'south-second-section_lindao-trailhead',
+      from: 'global_xiangyang-forest-recreation-area',
+      to: 'global_lindao-trailhead',
       minutes: 80
     },
     {
-      from: 'south-second-section_lindao-trailhead',
-      to: 'south-second-section_xiangyang-forest-recreation-area',
+      from: 'global_lindao-trailhead',
+      to: 'global_xiangyang-forest-recreation-area',
       minutes: 50
     }
   ]

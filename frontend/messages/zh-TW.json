@@ -179,7 +179,16 @@
       "cta": "使用此路線",
       "days": "{count} 天",
       "trailNames": {
-        "south-second-section": "南二段"
+        "south-second-section": "南二段",
+        "north-first-section": "北一段",
+        "yushan-group": "玉山群峰",
+        "ganzhuowan-group": "干卓萬群峰",
+        "nenggao-group": "能高安東軍",
+        "north-second-section": "北二段",
+        "zhongheng-4-spicy": "中橫四辣",
+        "south-first-section": "南一段",
+        "xinkang-traverse": "新康橫斷",
+        "xueshan-group": "雪山群峰"
       }
     },
     "yourTrips": {

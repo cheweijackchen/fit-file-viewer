@@ -179,7 +179,16 @@
       "cta": "Use This Plan",
       "days": "{count, plural, one {# day} other {# days}}",
       "trailNames": {
-        "south-second-section": "South Second Section"
+        "south-second-section": "South Second Section",
+        "north-first-section": "North First Section",
+        "yushan-group": "Yushan Group",
+        "ganzhuowan-group": "Ganzhuowan Group",
+        "nenggao-group": "Nenggao-Andongjun Trail",
+        "north-second-section": "North Second Section",
+        "zhongheng-4-spicy": "Central Cross-Island Four Peaks",
+        "south-first-section": "South First Section",
+        "xinkang-traverse": "Xinkang Traverse",
+        "xueshan-group": "Xueshan Group"
       }
     },
     "yourTrips": {

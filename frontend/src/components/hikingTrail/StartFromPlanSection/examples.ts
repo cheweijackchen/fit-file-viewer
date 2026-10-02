@@ -184,7 +184,7 @@ export const tripExamples: PlanTemplate[] = [{
           'nodeId': 'mountain_nanshuangtou-mountain'
         },
         {
-          'nodeId': 'south-second-section_lakuyin-river-hut'
+          'nodeId': 'global_lakuyin-river-hut'
         }
       ],
       'startingTime': '05:00'
@@ -194,40 +194,40 @@ export const tripExamples: PlanTemplate[] = [{
       'badges': [],
       'stops': [
         {
-          'nodeId': 'south-second-section_lakuyin-river-hut'
+          'nodeId': 'global_lakuyin-river-hut'
         },
         {
-          'nodeId': 'south-second-section_xinkang-mountain-fork'
+          'nodeId': 'global_xinkang-mountain-fork'
         },
         {
-          'nodeId': 'south-second-section_jiaming-lake-fork'
+          'nodeId': 'global_jiaming-lake-fork'
         },
         {
           'nodeId': 'mountain_sancha-mountain'
         },
         {
-          'nodeId': 'south-second-section_sancha-mountain-trailhead'
+          'nodeId': 'global_sancha-mountain-trailhead'
         },
         {
-          'nodeId': 'south-second-section_north-peak-sign'
+          'nodeId': 'global_north-peak-sign'
         },
         {
-          'nodeId': 'south-second-section_north-peak-fork'
+          'nodeId': 'global_north-peak-fork'
         },
         {
-          'nodeId': 'south-second-section_jiaming-lake-hut'
+          'nodeId': 'global_jiaming-lake-hut'
         },
         {
-          'nodeId': 'south-second-section_xice-trailhead'
+          'nodeId': 'global_xice-trailhead'
         },
         {
-          'nodeId': 'south-second-section_xiangyang-hut'
+          'nodeId': 'global_xiangyang-hut'
         },
         {
-          'nodeId': 'south-second-section_lindao-trailhead'
+          'nodeId': 'global_lindao-trailhead'
         },
         {
-          'nodeId': 'south-second-section_xiangyang-forest-recreation-area'
+          'nodeId': 'global_xiangyang-forest-recreation-area'
         }
       ],
       'startingTime': '04:00'

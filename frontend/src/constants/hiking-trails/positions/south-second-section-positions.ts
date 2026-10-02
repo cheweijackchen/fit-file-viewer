@@ -205,23 +205,23 @@ export const southSecondSectionPositions = {
     x: 400,
     y: 2680
   },
-  'south-second-section_lakuyin-river-hut': {
+  'global_lakuyin-river-hut': {
     x: 400,
     y: 2800
   },
-  'south-second-section_xinkang-mountain-fork': {
+  'global_xinkang-mountain-fork': {
     x: 400,
     y: 2920
   },
-  'south-second-section_jiaming-lake-fork': {
+  'global_jiaming-lake-fork': {
     x: 240,
     y: 3000
   },
-  'south-second-section_jiaming-lake': {
+  'global_jiaming-lake': {
     x: 240,
     y: 3120
   },
-  'south-second-section_sancha-mountain-trailhead': {
+  'global_sancha-mountain-trailhead': {
     x: 0,
     y: 3000
   },
@@ -229,11 +229,11 @@ export const southSecondSectionPositions = {
     x: 120,
     y: 2920
   },
-  'south-second-section_north-peak-sign': {
+  'global_north-peak-sign': {
     x: 0,
     y: 3120
   },
-  'south-second-section_north-peak-fork': {
+  'global_north-peak-fork': {
     x: -160,
     y: 3000
   },
@@ -241,27 +241,27 @@ export const southSecondSectionPositions = {
     x: -280,
     y: 2920
   },
-  'south-second-section_jiaming-lake-hut': {
+  'global_jiaming-lake-hut': {
     x: -280,
     y: 3080
   },
-  'south-second-section_xice-trailhead': {
+  'global_xice-trailhead': {
     x: -400,
     y: 3000
   },
-  'south-second-section_xiangyang-hut': {
+  'global_xiangyang-hut': {
     x: -560,
     y: 3000
   },
-  'south-second-section_lindao-trailhead': {
+  'global_lindao-trailhead': {
     x: -560,
     y: 2880
   },
-  'south-second-section_xiangyang-forest-recreation-area': {
+  'global_xiangyang-forest-recreation-area': {
     x: -720,
     y: 3000
   },
-  'south-second-section_pass-hut': {
+  'global_pass-hut': {
     x: -720,
     y: 2880
   },
