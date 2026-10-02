@@ -86,6 +86,11 @@
 | `MaboTraverse` | 馬博橫斷 | `mabo-traverse` |
 | `XinkangTraverse` | 新康橫斷 | `xinkang-traverse` |
 | `GanzhuowanGroup` | 干卓萬群峰 | `ganzhuowan-group` |
+| `HolyRidge` | 聖稜線 | `holy-ridge` |
+| `JundaXiluanda` | 郡大山西巒大山 | `junda-xiluanda` |
+| `QilaiEastRidge` | 奇萊東稜 | `qilai-east-ridge` |
+| `QicaiLake` | 七彩湖 | `qicai-lake` |
+| `Beidawu` | 北大武山 | `beidawu` |
 | `Other` | 其他 | 不適用 |
 
 ### Node id
@@ -99,13 +104,18 @@
 3. **`global_`**：只用於**真正跨圖重合**的節點
    - 條件：該實體地點已存在於另一條路線的資料檔，且兩張圖對它前後的連接方式一致
    - 例：東埔溫泉、雲龍瀑布、樂樂山屋、觀高坪、觀高登山服務站同時出現在 G02 與 G17
-   - **共用路段被簡化時必須詢問，不得自行決定**：某張圖把另一張圖已有的路段畫得較簡略（例：G17 直接畫「八通關登山口 → 雲龍瀑布 120 分」，G02 中間還有三聖宮、樂樂溫泉岔路）時，列出兩圖差異向使用者詢問該怎麼接，並在完成回報中註明
+   - **共用路段的預設政策**（2026-10-02 起，不再逐案詢問）
+     - 同一實體節點出現在兩張圖 → 升為 `global_`，既有檔中以路線 prefix 命名者一併改名（含 positions、範例行程、demo 頁引用）
+     - 兩圖細節不同但逐段加總一致（一張圖省略中間節點）→ 取詳細版，不建簡化直連邊
+     - 兩圖對同一對節點標的分鐘數真的衝突 → 保留既有資料的值，在完成回報列出衝突，由使用者裁決
+     - 一張圖畫的是另一張圖沒有的捷徑或替代路徑（加總不同）→ 兩者都建，捷徑加 `note`
 
 **slug 組成：`<地名>-<類型後綴>`**
 
 - **地名拼寫**
+  - **先查網路，不要拼音硬翻**：每個地名在決定 slug 前，先查有無通用英文名稱（來源優先序：林務局／國家公園官方英文、Wikipedia、百岳英文資料、上河文化）
   - 有通用英文譯名者用通用譯名：`yushan`、`tataka`、`nanhu`、`jiaming`
-  - 其餘用漢語拼音，不加聲調
+  - 查不到才用漢語拼音，不加聲調，並在完成回報列出「查不到、用拼音」的名單
   - 一個地名的音節之間**不加連字號**：`shenmazhen`、`banaiyike`、`dashuiku`（舊例 `mu-gan-saddle`、`da-zhuo-shui-...` 不再沿用）
   - 連字號只用來分隔「地名／方位字／類型後綴／數字」這些獨立成分
 - **類型後綴**：取名稱**結尾**的類型詞查第 6 節對照表（同一張表也決定 nodeType）
@@ -321,3 +331,14 @@
   - 玉山群峰：`da-cliff`（大峭壁）、`datieshan`（大鐵杉）、`monroe-pavilion`（孟祿亭，視為通用譯名）、`yuan-peak-fork`／`yushan-south-peak-fork`／`2k-fork`（三處岔路口）
 - **nodeType 依表修正的既有節點**：陶塞山屋遺址 hut→camp、石洞獵寮 water-source→camp、指標1.0K fork→other、三叉峰 fork→peak（照圖重接後只連兩個節點）、上東埔停車場 fork→other
 - **完整性測試**：`frontend/src/constants/hikingTrails.vitest.test.ts` 檢查 id 前綴、i18nKey、邊的端點與反向邊、positions 對應、跨檔共用節點一致、範例行程連通；新增或修改資料後執行 `yarn test:unit`
+
+### 2026-10-02 新增：干卓萬群峰（G13）、能高安東軍（G12）
+
+- **地名英譯查證**：每個地名都先查網路；有通用英文名者採用（干卓萬 Ganzhuowan、卓社 Zhuoshe、牧山 Mu、武界 Wujie、能高 Nenggao、安東軍 Andongjun、光頭 Guangtou、白石 Baishi、天池 Tianchi、屯原 Tunyuan、雲海保線所 Yunhai Tai-Power Hut、奧萬大 Aowanda、萬大南溪 Wanda South River），其餘路徑點（栗栖溪、乳形峰、十粒溪、縣界埡口、松風嶺等）英文資料查無對應名稱，用拼音
+  - **待覆核**：卡賀爾山採 `kahor`（來源為觀光署搜尋摘要，頁面未能抓取核對）；萬里山西峰查無英文名，用 `wanli-west-peak`
+- **重裝／輕裝（干卓萬）**：3198公尺峰 → 卓社大山東峰叉路口 90（輕 80）、3198公尺峰 → 卓社大山 320（輕 240）、卓社大山東峰叉路口 → 東北鞍營地 40（輕 20）；反方向圖上只標輕裝，填輕裝值並加 `note: '圖僅標輕裝'`
+- **待覆核（干卓萬）**：牧山池 畫在 三叉峰下營地 與 牧山 之間的小岔點上，圖上沒有岔點節點；資料把 牧山池 直接接到兩端（15/15 與 10/10）並加 `note`，分鐘數為圖上兩段相加
+- **替代路徑（能高安東軍）**：第二支流合匯點 ↔ 金杏真路岔路口 120/100，`note: '溪水暴漲時替代路徑'`
+- **雙名節點（能高安東軍）**：圖上以上下兩行並列者，name 以「/」連接（第一獵寮/第一次過溪、鐵皮工寮營地/第三支流合匯點），順序依圖右欄在前
+- **對照表沒有的類型詞**：保線所 `-station`、合匯點 `-confluence`、越嶺點 `-ridge-crossing`、吊橋 `-suspension-bridge`、嶺 `-ridge`、崩壁 `-cliff`、工寮 `-work-shed`、紅磚屋 `-red-brick-house`、停車處 `-parking`、林道 `-forest-road`
+- **待辦：positions 手動微調**：兩條路線的座標依圖上相對位置排列，能高安東軍採 160 間距
