@@ -8,14 +8,14 @@ import { buildTrailAdjacencyList } from '@/lib/trailGraph'
 
 const FOUR_STOPS = [
   'global_dongpu-spring',
-  'global_yunlong-fall',
-  'global_lele-hut',
-  'global_guangao-station',
+  'global_batongguan-trailhead',
+  'global_sanshenggong',
+  'global_lele-spring-fork',
 ]
 
 const TWO_STOPS = [
   'global_dongpu-spring',
-  'global_yunlong-fall',
+  'global_batongguan-trailhead',
 ]
 
 const ONE_STOP = [

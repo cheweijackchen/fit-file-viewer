@@ -17,10 +17,25 @@ export const tripExamples: PlanTemplate[] = [{
           'nodeId': 'global_dongpu-spring'
         },
         {
+          'nodeId': 'global_batongguan-trailhead'
+        },
+        {
+          'nodeId': 'global_sanshenggong'
+        },
+        {
+          'nodeId': 'global_lele-spring-fork'
+        },
+        {
           'nodeId': 'global_yunlong-fall'
         },
         {
           'nodeId': 'global_lele-hut'
+        },
+        {
+          'nodeId': 'global_yinv-fall'
+        },
+        {
+          'nodeId': 'global_duiguan'
         },
         {
           'nodeId': 'global_guangao-ping'
@@ -42,28 +57,34 @@ export const tripExamples: PlanTemplate[] = [{
           'nodeId': 'global_guangao-ping'
         },
         {
-          'nodeId': 'south-second-section_batongguan-meadow'
+          'nodeId': 'global_batongguan-meadow'
         },
         {
-          'nodeId': 'south-second-section_batongguan-trailhead'
+          'nodeId': 'global_batongguan-mountain-trailhead'
+        },
+        {
+          'nodeId': 'global_batongguan-mountain-fork'
         },
         {
           'nodeId': 'mountain_batongguan-mountain'
         },
         {
-          'nodeId': 'south-second-section_batongguan-trailhead'
+          'nodeId': 'global_batongguan-mountain-fork'
+        },
+        {
+          'nodeId': 'global_batongguan-mountain-trailhead'
         },
         {
           'nodeId': 'south-second-section_banaiyike-hut'
         },
         {
-          'nodeId': 'south-second-section_central-gold-fork'
+          'nodeId': 'south-second-section_banaiyike-fork'
         },
         {
-          'nodeId': 'south-second-section_central-gold-hut'
+          'nodeId': 'south-second-section_zhongyangjinkuang-hut'
         },
         {
-          'nodeId': 'south-second-section_baiyang-gold-hut'
+          'nodeId': 'south-second-section_baiyangjinkuang-hut'
         }
       ],
       'startingTime': '05:00'
@@ -73,22 +94,22 @@ export const tripExamples: PlanTemplate[] = [{
       'badges': [],
       'stops': [
         {
-          'nodeId': 'south-second-section_baiyang-gold-hut'
+          'nodeId': 'south-second-section_baiyangjinkuang-hut'
         },
         {
-          'nodeId': 'south-second-section_xiuguping'
+          'nodeId': 'south-second-section_xiuguping-fork'
         },
         {
-          'nodeId': 'south-second-section_xiuguluan-trailhead'
+          'nodeId': 'south-second-section_xiuguluan-mountain-south-trailhead'
         },
         {
           'nodeId': 'mountain_xiuguluan-mountain'
         },
         {
-          'nodeId': 'south-second-section_xiuguluan-trailhead'
+          'nodeId': 'south-second-section_xiuguluan-mountain-south-trailhead'
         },
         {
-          'nodeId': 'south-second-section_xiuguping'
+          'nodeId': 'south-second-section_xiuguping-fork'
         },
         {
           'nodeId': 'mountain_dashuiku-mountain'
@@ -110,13 +131,13 @@ export const tripExamples: PlanTemplate[] = [{
           'nodeId': 'mountain_south-dashuiku-mountain'
         },
         {
-          'nodeId': 'south-second-section_south-three-way-fork'
+          'nodeId': 'south-second-section_heishui-fork'
         },
         {
-          'nodeId': 'south-second-section_black-water-pond'
+          'nodeId': 'south-second-section_heishui-pond'
         },
         {
-          'nodeId': 'south-second-section_jianshan-trailhead'
+          'nodeId': 'south-second-section_dafenjian-mountain-trailhead'
         },
         {
           'nodeId': 'south-second-section_tafengu-hut'
@@ -138,10 +159,10 @@ export const tripExamples: PlanTemplate[] = [{
           'nodeId': 'south-second-section_tafen-pond'
         },
         {
-          'nodeId': 'south-second-section_lulu-trailhead'
+          'nodeId': 'south-second-section_lulu-mountain-trailhead'
         },
         {
-          'nodeId': 'south-second-section_lulu-hut'
+          'nodeId': 'south-second-section_lulugu-hut'
         }
       ],
       'startingTime': '05:00'
@@ -151,19 +172,19 @@ export const tripExamples: PlanTemplate[] = [{
       'badges': [],
       'stops': [
         {
-          'nodeId': 'south-second-section_lulu-hut'
+          'nodeId': 'south-second-section_lulugu-hut'
         },
         {
-          'nodeId': 'south-second-section_yun-mountain-fork-camp'
+          'nodeId': 'south-second-section_yun-peak-east-peak-fork-camp'
         },
         {
-          'nodeId': 'south-second-section_northwest-saddle-camp'
+          'nodeId': 'south-second-section_xibei-saddle-nanshuang-pond-camp'
         },
         {
           'nodeId': 'mountain_nanshuangtou-mountain'
         },
         {
-          'nodeId': 'south-second-section_lakuynxi-hut'
+          'nodeId': 'south-second-section_lakuyin-river-hut'
         }
       ],
       'startingTime': '05:00'
@@ -173,10 +194,10 @@ export const tripExamples: PlanTemplate[] = [{
       'badges': [],
       'stops': [
         {
-          'nodeId': 'south-second-section_lakuynxi-hut'
+          'nodeId': 'south-second-section_lakuyin-river-hut'
         },
         {
-          'nodeId': 'south-second-section_xinkang-fork'
+          'nodeId': 'south-second-section_xinkang-mountain-fork'
         },
         {
           'nodeId': 'south-second-section_jiaming-lake-fork'
@@ -188,19 +209,25 @@ export const tripExamples: PlanTemplate[] = [{
           'nodeId': 'south-second-section_sancha-mountain-trailhead'
         },
         {
-          'nodeId': 'south-second-section_xiangyang-east-fork'
+          'nodeId': 'south-second-section_north-peak-sign'
         },
         {
-          'nodeId': 'south-second-section_jiaming-refuge-hut'
+          'nodeId': 'south-second-section_north-peak-fork'
         },
         {
-          'nodeId': 'south-second-section_xiangyang-fork'
+          'nodeId': 'south-second-section_jiaming-lake-hut'
+        },
+        {
+          'nodeId': 'south-second-section_xice-trailhead'
         },
         {
           'nodeId': 'south-second-section_xiangyang-hut'
         },
         {
-          'nodeId': 'south-second-section_xiangyang-station'
+          'nodeId': 'south-second-section_lindao-trailhead'
+        },
+        {
+          'nodeId': 'south-second-section_xiangyang-forest-recreation-area'
         }
       ],
       'startingTime': '04:00'
