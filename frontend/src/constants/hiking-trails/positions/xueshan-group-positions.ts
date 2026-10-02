@@ -1,15 +1,15 @@
 import type { NodePositions } from '@/model/trailPositions'
 
 export const xueshanGroupPositions = {
-  'xueshan-group_xueshan-trailhead': {
+  'global_xueshan-trailhead': {
     'x': 1360,
     'y': 480
   },
-  'xueshan-group_qika-hut': {
+  'global_qika-hut': {
     'x': 1200,
     'y': 400
   },
-  'xueshan-group_369-hut': {
+  'global_369-hut': {
     'x': 1120,
     'y': 400
   },
@@ -17,8 +17,24 @@ export const xueshanGroupPositions = {
     'x': 960,
     'y': 400
   },
-  'xueshan-group_cuei-pond-hut': {
+  'global_cuei-pond-hut': {
     'x': 720,
+    'y': 400
+  },
+  'global_kupo-pavilion': {
+    'x': 1200,
+    'y': 320
+  },
+  'mountain_xueshan-east-peak': {
+    'x': 1120,
+    'y': 320
+  },
+  'global_cirque-bottom': {
+    'x': 1040,
+    'y': 480
+  },
+  'global_cuei-pond-fork': {
+    'x': 840,
     'y': 400
   },
   'xueshan-group_xiacuei-pond': {
@@ -213,7 +229,7 @@ export const xueshanGroupPositions = {
     'x': 960,
     'y': 720
   },
-  'mountain_zhijiayang': {
+  'mountain_zhijiayang-mountain': {
     'x': 1200,
     'y': 800
   },

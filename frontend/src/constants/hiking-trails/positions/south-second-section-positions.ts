@@ -73,31 +73,31 @@ export const southSecondSectionPositions = {
     x: -400,
     y: 1040
   },
-  'south-second-section_banaiyike-hut': {
+  'global_banaiyike-hut': {
     x: -240,
     y: 1040
   },
-  'south-second-section_banaiyike-fork': {
+  'global_banaiyike-fork': {
     x: -80,
     y: 1040
   },
-  'south-second-section_laonong-river': {
+  'global_laonong-river': {
     x: -80,
     y: 1160
   },
-  'south-second-section_lengxian-fork': {
+  'global_lengxian-fork': {
     x: -80,
     y: 1280
   },
-  'south-second-section_rhododendron-camp': {
+  'global_rhododendron-camp': {
     x: 80,
     y: 1280
   },
-  'south-second-section_rhododendron-fork': {
+  'global_rhododendron-fork': {
     x: 240,
     y: 1280
   },
-  'south-second-section_nan-camp': {
+  'global_nan-camp': {
     x: 400,
     y: 1280
   },
@@ -105,19 +105,19 @@ export const southSecondSectionPositions = {
     x: 240,
     y: 1400
   },
-  'south-second-section_zhongyangjinkuang-hut': {
+  'global_zhongyangjinkuang-hut': {
     x: 80,
     y: 1040
   },
-  'south-second-section_baiyangjinkuang-hut': {
+  'global_baiyangjinkuang-hut': {
     x: 240,
     y: 1040
   },
-  'south-second-section_xiuguping-fork': {
+  'global_xiuguping-fork': {
     x: 400,
     y: 1040
   },
-  'south-second-section_xiuguluan-mountain-south-trailhead': {
+  'global_xiuguluan-mountain-south-trailhead': {
     x: 400,
     y: 920
   },
@@ -125,7 +125,7 @@ export const southSecondSectionPositions = {
     x: 400,
     y: 800
   },
-  'south-second-section_xiuma-hut-ruins': {
+  'global_xiuma-hut-ruins': {
     x: 240,
     y: 800
   },
@@ -133,7 +133,7 @@ export const southSecondSectionPositions = {
     x: 400,
     y: 1160
   },
-  'south-second-section_dashuiku-hut': {
+  'global_dashuiku-hut': {
     x: 560,
     y: 1280
   },

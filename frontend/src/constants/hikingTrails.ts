@@ -1,7 +1,14 @@
+import { beidawu } from '@/constants/hiking-trails/beidawu'
 import { ganzhuowanGroup } from '@/constants/hiking-trails/ganzhuowanGroup'
+import { hehuanGroup } from '@/constants/hiking-trails/hehuanGroup'
+import { holyRidge } from '@/constants/hiking-trails/holyRidge'
+import { jundaXiluanda } from '@/constants/hiking-trails/jundaXiluanda'
+import { maboTraverse } from '@/constants/hiking-trails/maboTraverse'
 import { nenggaoGroup } from '@/constants/hiking-trails/nenggaoGroup'
 import { northFirstSection } from '@/constants/hiking-trails/northFirstSection'
 import { northSecondSection } from '@/constants/hiking-trails/northSecondSection'
+import { qicaiLake } from '@/constants/hiking-trails/qicaiLake'
+import { qilaiGroup } from '@/constants/hiking-trails/qilaiGroup'
 import { southFirstSection } from '@/constants/hiking-trails/southFirstSection'
 import { southSecondSection } from '@/constants/hiking-trails/southSecondSection'
 import { xinkangTraverse } from '@/constants/hiking-trails/xinkangTraverse'
@@ -20,7 +27,14 @@ export const HIKING_TRAILS: Trail[] = [
   zhonghengFourSpicy,
   southFirstSection,
   xinkangTraverse,
-  xueshanGroup
+  xueshanGroup,
+  hehuanGroup,
+  qilaiGroup,
+  jundaXiluanda,
+  qicaiLake,
+  beidawu,
+  maboTraverse,
+  holyRidge
 ]
 
 export const HIKING_TRAIL_MAP: Record<string, Trail> = Object.fromEntries(

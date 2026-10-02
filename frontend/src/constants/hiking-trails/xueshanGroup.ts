@@ -7,22 +7,40 @@ export const xueshanGroup: Trail = {
   i18nKey: 'xueshan-group.xueshan-group',
   nodes: [
     {
-      id: 'xueshan-group_xueshan-trailhead',
+      id: 'global_xueshan-trailhead',
       name: '雪山登山口',
-      i18nKey: 'xueshan-group.xueshan-trailhead',
+      i18nKey: 'global.xueshan-trailhead',
       nodeType: 'fork'
     },
     {
-      id: 'xueshan-group_qika-hut',
+      id: 'global_qika-hut',
       name: '七卡山莊',
-      i18nKey: 'xueshan-group.qika-hut',
+      i18nKey: 'global.qika-hut',
       nodeType: 'hut'
     },
     {
-      id: 'xueshan-group_369-hut',
+      id: 'global_kupo-pavilion',
+      name: '哭坡觀景台',
+      i18nKey: 'global.kupo-pavilion',
+      nodeType: 'other'
+    },
+    {
+      id: 'mountain_xueshan-east-peak',
+      name: '雪山東峰',
+      i18nKey: 'mountain.xueshan-east-peak',
+      nodeType: 'peak'
+    },
+    {
+      id: 'global_369-hut',
       name: '三六九山莊',
-      i18nKey: 'xueshan-group.369-hut',
+      i18nKey: 'global.369-hut',
       nodeType: 'hut'
+    },
+    {
+      id: 'global_cirque-bottom',
+      name: '圈谷底部',
+      i18nKey: 'global.cirque-bottom',
+      nodeType: 'other'
     },
     {
       id: 'mountain_xueshan-main-peak',
@@ -31,9 +49,15 @@ export const xueshanGroup: Trail = {
       nodeType: 'peak'
     },
     {
-      id: 'xueshan-group_cuei-pond-hut',
+      id: 'global_cuei-pond-fork',
+      name: '岔路口',
+      i18nKey: 'global.cuei-pond-fork',
+      nodeType: 'fork'
+    },
+    {
+      id: 'global_cuei-pond-hut',
       name: '翠池山屋',
-      i18nKey: 'xueshan-group.cuei-pond-hut',
+      i18nKey: 'global.cuei-pond-hut',
       nodeType: 'hut'
     },
     {
@@ -325,9 +349,9 @@ export const xueshanGroup: Trail = {
       nodeType: 'peak'
     },
     {
-      id: 'mountain_zhijiayang',
+      id: 'mountain_zhijiayang-mountain',
       name: '志佳陽大山',
-      i18nKey: 'mountain.zhijiayang',
+      i18nKey: 'mountain.zhijiayang-mountain',
       nodeType: 'peak'
     },
     {
@@ -376,57 +400,101 @@ export const xueshanGroup: Trail = {
   edges: [
     // 雪山登山口 <-> 七卡山莊
     {
-      from: 'xueshan-group_xueshan-trailhead',
-      to: 'xueshan-group_qika-hut',
+      from: 'global_xueshan-trailhead',
+      to: 'global_qika-hut',
       minutes: 70
     },
     {
-      from: 'xueshan-group_qika-hut',
-      to: 'xueshan-group_xueshan-trailhead',
+      from: 'global_qika-hut',
+      to: 'global_xueshan-trailhead',
       minutes: 55
     },
-    // 七卡山莊 <-> 三六九山莊
+    // 七卡山莊 <-> 哭坡觀景台
     {
-      from: 'xueshan-group_qika-hut',
-      to: 'xueshan-group_369-hut',
-      minutes: 255
+      from: 'global_qika-hut',
+      to: 'global_kupo-pavilion',
+      minutes: 120
     },
     {
-      from: 'xueshan-group_369-hut',
-      to: 'xueshan-group_qika-hut',
-      minutes: 160
+      from: 'global_kupo-pavilion',
+      to: 'global_qika-hut',
+      minutes: 60
     },
-    // 三六九山莊 <-> 雪山主峰
+    // 哭坡觀景台 <-> 雪山東峰
     {
-      from: 'xueshan-group_369-hut',
-      to: 'mountain_xueshan-main-peak',
-      minutes: 200
+      from: 'global_kupo-pavilion',
+      to: 'mountain_xueshan-east-peak',
+      minutes: 80
     },
     {
-      from: 'mountain_xueshan-main-peak',
-      to: 'xueshan-group_369-hut',
+      from: 'mountain_xueshan-east-peak',
+      to: 'global_kupo-pavilion',
+      minutes: 40
+    },
+    // 雪山東峰 <-> 三六九山莊
+    {
+      from: 'mountain_xueshan-east-peak',
+      to: 'global_369-hut',
+      minutes: 55
+    },
+    {
+      from: 'global_369-hut',
+      to: 'mountain_xueshan-east-peak',
+      minutes: 60
+    },
+    // 三六九山莊 <-> 圈谷底部
+    {
+      from: 'global_369-hut',
+      to: 'global_cirque-bottom',
       minutes: 140
     },
-    // 雪山主峰 <-> 翠池山屋
     {
-      from: 'mountain_xueshan-main-peak',
-      to: 'xueshan-group_cuei-pond-hut',
-      minutes: 95
+      from: 'global_cirque-bottom',
+      to: 'global_369-hut',
+      minutes: 100
+    },
+    // 圈谷底部 <-> 雪山主峰
+    {
+      from: 'global_cirque-bottom',
+      to: 'mountain_xueshan-main-peak',
+      minutes: 60
     },
     {
-      from: 'xueshan-group_cuei-pond-hut',
+      from: 'mountain_xueshan-main-peak',
+      to: 'global_cirque-bottom',
+      minutes: 40
+    },
+    // 雪山主峰 <-> 岔路口
+    {
+      from: 'mountain_xueshan-main-peak',
+      to: 'global_cuei-pond-fork',
+      minutes: 15
+    },
+    {
+      from: 'global_cuei-pond-fork',
       to: 'mountain_xueshan-main-peak',
-      minutes: 130
+      minutes: 20
+    },
+    // 岔路口 <-> 翠池山屋
+    {
+      from: 'global_cuei-pond-fork',
+      to: 'global_cuei-pond-hut',
+      minutes: 80
+    },
+    {
+      from: 'global_cuei-pond-hut',
+      to: 'global_cuei-pond-fork',
+      minutes: 110
     },
     // 翠池山屋 <-> 下翠池
     {
-      from: 'xueshan-group_cuei-pond-hut',
+      from: 'global_cuei-pond-hut',
       to: 'xueshan-group_xiacuei-pond',
       minutes: 50
     },
     {
       from: 'xueshan-group_xiacuei-pond',
-      to: 'xueshan-group_cuei-pond-hut',
+      to: 'global_cuei-pond-hut',
       minutes: 70
     },
     // 下翠池 <-> 博可爾草原
@@ -728,13 +796,13 @@ export const xueshanGroup: Trail = {
     },
     // 翠池山屋 <-> 完美谷營地
     {
-      from: 'xueshan-group_cuei-pond-hut',
+      from: 'global_cuei-pond-hut',
       to: 'xueshan-group_wanmeigu-camp',
       minutes: 240
     },
     {
       from: 'xueshan-group_wanmeigu-camp',
-      to: 'xueshan-group_cuei-pond-hut',
+      to: 'global_cuei-pond-hut',
       minutes: 280
     },
     // 完美谷營地 <-> 雪山西南峰
@@ -950,23 +1018,23 @@ export const xueshanGroup: Trail = {
     // 雪山山莊舊址 <-> 志佳陽大山
     {
       from: 'xueshan-group_xueshan-hut-ruins',
-      to: 'mountain_zhijiayang',
+      to: 'mountain_zhijiayang-mountain',
       minutes: 140
     },
     {
-      from: 'mountain_zhijiayang',
+      from: 'mountain_zhijiayang-mountain',
       to: 'xueshan-group_xueshan-hut-ruins',
       minutes: 200
     },
     // 志佳陽大山 <-> 志佳陽基點峰
     {
-      from: 'mountain_zhijiayang',
+      from: 'mountain_zhijiayang-mountain',
       to: 'mountain_zhijiayang-benchmark-peak',
       minutes: 15
     },
     {
       from: 'mountain_zhijiayang-benchmark-peak',
-      to: 'mountain_zhijiayang',
+      to: 'mountain_zhijiayang-mountain',
       minutes: 20
     },
     // 志佳陽基點峰 <-> 瓢簞山莊

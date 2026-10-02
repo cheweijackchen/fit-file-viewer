@@ -57,6 +57,9 @@ export const tripExamples: PlanTemplate[] = [{
           'nodeId': 'global_guangao-ping'
         },
         {
+          'nodeId': 'global_gudaobengduan-fork'
+        },
+        {
           'nodeId': 'global_batongguan-meadow'
         },
         {
@@ -75,16 +78,16 @@ export const tripExamples: PlanTemplate[] = [{
           'nodeId': 'global_batongguan-mountain-trailhead'
         },
         {
-          'nodeId': 'south-second-section_banaiyike-hut'
+          'nodeId': 'global_banaiyike-hut'
         },
         {
-          'nodeId': 'south-second-section_banaiyike-fork'
+          'nodeId': 'global_banaiyike-fork'
         },
         {
-          'nodeId': 'south-second-section_zhongyangjinkuang-hut'
+          'nodeId': 'global_zhongyangjinkuang-hut'
         },
         {
-          'nodeId': 'south-second-section_baiyangjinkuang-hut'
+          'nodeId': 'global_baiyangjinkuang-hut'
         }
       ],
       'startingTime': '05:00'
@@ -94,28 +97,28 @@ export const tripExamples: PlanTemplate[] = [{
       'badges': [],
       'stops': [
         {
-          'nodeId': 'south-second-section_baiyangjinkuang-hut'
+          'nodeId': 'global_baiyangjinkuang-hut'
         },
         {
-          'nodeId': 'south-second-section_xiuguping-fork'
+          'nodeId': 'global_xiuguping-fork'
         },
         {
-          'nodeId': 'south-second-section_xiuguluan-mountain-south-trailhead'
+          'nodeId': 'global_xiuguluan-mountain-south-trailhead'
         },
         {
           'nodeId': 'mountain_xiuguluan-mountain'
         },
         {
-          'nodeId': 'south-second-section_xiuguluan-mountain-south-trailhead'
+          'nodeId': 'global_xiuguluan-mountain-south-trailhead'
         },
         {
-          'nodeId': 'south-second-section_xiuguping-fork'
+          'nodeId': 'global_xiuguping-fork'
         },
         {
           'nodeId': 'mountain_dashuiku-mountain'
         },
         {
-          'nodeId': 'south-second-section_dashuiku-hut'
+          'nodeId': 'global_dashuiku-hut'
         }
       ],
       'startingTime': '05:00'
@@ -125,7 +128,7 @@ export const tripExamples: PlanTemplate[] = [{
       'badges': [],
       'stops': [
         {
-          'nodeId': 'south-second-section_dashuiku-hut'
+          'nodeId': 'global_dashuiku-hut'
         },
         {
           'nodeId': 'mountain_south-dashuiku-mountain'

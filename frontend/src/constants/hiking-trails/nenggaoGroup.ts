@@ -8,27 +8,27 @@ export const nenggaoGroup: Trail = {
   nodes: [
     // --- 西段：屯原至能高山 ---
     {
-      id: 'nenggao-group_tunyuan-trailhead',
+      id: 'global_tunyuan-trailhead',
       name: '屯原登山口',
-      i18nKey: 'nenggao-group.tunyuan-trailhead',
+      i18nKey: 'global.tunyuan-trailhead',
       nodeType: 'fork'
     },
     {
-      id: 'nenggao-group_yunhai-tai-power-hut',
+      id: 'global_yunhai-tai-power-hut',
       name: '雲海保線所',
-      i18nKey: 'nenggao-group.yunhai-tai-power-hut',
+      i18nKey: 'global.yunhai-tai-power-hut',
       nodeType: 'other'
     },
     {
-      id: 'nenggao-group_tianchi-hut',
+      id: 'global_tianchi-hut',
       name: '天池山莊',
-      i18nKey: 'nenggao-group.tianchi-hut',
+      i18nKey: 'global.tianchi-hut',
       nodeType: 'hut'
     },
     {
-      id: 'nenggao-group_xianjie-pass',
+      id: 'global_xianjie-pass',
       name: '縣界埡口',
-      i18nKey: 'nenggao-group.xianjie-pass',
+      i18nKey: 'global.xianjie-pass',
       nodeType: 'other'
     },
     {
@@ -235,51 +235,94 @@ export const nenggaoGroup: Trail = {
       name: '遊客中心停車場',
       i18nKey: 'nenggao-group.aowanda-visitor-center-parking',
       nodeType: 'other'
+    },
+    // --- 能高越嶺東段 ---
+    {
+      id: 'global_tianchi-fork',
+      name: '天池岔路口',
+      i18nKey: 'global.tianchi-fork',
+      nodeType: 'fork'
+    },
+    {
+      id: 'global_qilai-south-peak-trailhead',
+      name: '南峰登山口',
+      i18nKey: 'global.qilai-south-peak-trailhead',
+      nodeType: 'fork'
+    },
+    {
+      id: 'mountain_qilai-south-peak',
+      name: '奇萊主山南峰',
+      i18nKey: 'mountain.qilai-south-peak',
+      nodeType: 'peak'
+    },
+    {
+      id: 'mountain_nanhua-mountain',
+      name: '南華山',
+      i18nKey: 'mountain.nanhua-mountain',
+      nodeType: 'peak'
+    },
+    {
+      id: 'nenggao-group_guilin-tai-power-hut',
+      name: '檜林保線所',
+      i18nKey: 'nenggao-group.guilin-tai-power-hut',
+      nodeType: 'other'
+    },
+    {
+      id: 'mountain_wujiabeng-mountain',
+      name: '五甲崩山',
+      i18nKey: 'mountain.wujiabeng-mountain',
+      nodeType: 'peak'
+    },
+    {
+      id: 'nenggao-group_qilai-tai-power-hut',
+      name: '奇萊保線所',
+      i18nKey: 'nenggao-group.qilai-tai-power-hut',
+      nodeType: 'other'
     }
   ],
   edges: [
     // 屯原登山口 <-> 雲海保線所
     {
-      from: 'nenggao-group_tunyuan-trailhead',
-      to: 'nenggao-group_yunhai-tai-power-hut',
+      from: 'global_tunyuan-trailhead',
+      to: 'global_yunhai-tai-power-hut',
       minutes: 120
     },
     {
-      from: 'nenggao-group_yunhai-tai-power-hut',
-      to: 'nenggao-group_tunyuan-trailhead',
+      from: 'global_yunhai-tai-power-hut',
+      to: 'global_tunyuan-trailhead',
       minutes: 100
     },
     // 雲海保線所 <-> 天池山莊
     {
-      from: 'nenggao-group_yunhai-tai-power-hut',
-      to: 'nenggao-group_tianchi-hut',
+      from: 'global_yunhai-tai-power-hut',
+      to: 'global_tianchi-hut',
       minutes: 210
     },
     {
-      from: 'nenggao-group_tianchi-hut',
-      to: 'nenggao-group_yunhai-tai-power-hut',
+      from: 'global_tianchi-hut',
+      to: 'global_yunhai-tai-power-hut',
       minutes: 180
     },
     // 天池山莊 <-> 縣界埡口
     {
-      from: 'nenggao-group_tianchi-hut',
-      to: 'nenggao-group_xianjie-pass',
+      from: 'global_tianchi-hut',
+      to: 'global_xianjie-pass',
       minutes: 50
     },
     {
-      from: 'nenggao-group_xianjie-pass',
-      to: 'nenggao-group_tianchi-hut',
+      from: 'global_xianjie-pass',
+      to: 'global_tianchi-hut',
       minutes: 55
     },
     // 縣界埡口 <-> 卡賀爾山
     {
-      from: 'nenggao-group_xianjie-pass',
+      from: 'global_xianjie-pass',
       to: 'mountain_kahor-mountain',
       minutes: 170
     },
     {
       from: 'mountain_kahor-mountain',
-      to: 'nenggao-group_xianjie-pass',
+      to: 'global_xianjie-pass',
       minutes: 140
     },
     // 卡賀爾山 <-> 能高山主峰
@@ -646,6 +689,94 @@ export const nenggaoGroup: Trail = {
       from: 'nenggao-group_aowanda-visitor-center-parking',
       to: 'nenggao-group_aowanda-suspension-bridge',
       minutes: 80
+    },
+    // 天池山莊 <-> 天池岔路口
+    {
+      from: 'global_tianchi-hut',
+      to: 'global_tianchi-fork',
+      minutes: 60
+    },
+    {
+      from: 'global_tianchi-fork',
+      to: 'global_tianchi-hut',
+      minutes: 40
+    },
+    // 天池岔路口 <-> 南峰登山口
+    {
+      from: 'global_tianchi-fork',
+      to: 'global_qilai-south-peak-trailhead',
+      minutes: 20
+    },
+    {
+      from: 'global_qilai-south-peak-trailhead',
+      to: 'global_tianchi-fork',
+      minutes: 15
+    },
+    // 奇萊主山南峰 <-> 南峰登山口
+    {
+      from: 'mountain_qilai-south-peak',
+      to: 'global_qilai-south-peak-trailhead',
+      minutes: 40
+    },
+    {
+      from: 'global_qilai-south-peak-trailhead',
+      to: 'mountain_qilai-south-peak',
+      minutes: 60
+    },
+    // 天池岔路口 <-> 南華山
+    {
+      from: 'global_tianchi-fork',
+      to: 'mountain_nanhua-mountain',
+      minutes: 40
+    },
+    {
+      from: 'mountain_nanhua-mountain',
+      to: 'global_tianchi-fork',
+      minutes: 30
+    },
+    // 縣界埡口 <-> 南華山
+    {
+      from: 'global_xianjie-pass',
+      to: 'mountain_nanhua-mountain',
+      minutes: 120
+    },
+    {
+      from: 'mountain_nanhua-mountain',
+      to: 'global_xianjie-pass',
+      minutes: 80
+    },
+    // 縣界埡口 <-> 檜林保線所
+    {
+      from: 'global_xianjie-pass',
+      to: 'nenggao-group_guilin-tai-power-hut',
+      minutes: 120
+    },
+    {
+      from: 'nenggao-group_guilin-tai-power-hut',
+      to: 'global_xianjie-pass',
+      minutes: 240
+    },
+    // 檜林保線所 <-> 五甲崩山
+    {
+      from: 'nenggao-group_guilin-tai-power-hut',
+      to: 'mountain_wujiabeng-mountain',
+      minutes: 140
+    },
+    {
+      from: 'mountain_wujiabeng-mountain',
+      to: 'nenggao-group_guilin-tai-power-hut',
+      minutes: 170
+    },
+    // 五甲崩山 <-> 奇萊保線所
+    {
+      from: 'mountain_wujiabeng-mountain',
+      to: 'nenggao-group_qilai-tai-power-hut',
+      minutes: 180
+    },
+    {
+      from: 'nenggao-group_qilai-tai-power-hut',
+      to: 'mountain_wujiabeng-mountain',
+      minutes: 260
     }
   ]
 }

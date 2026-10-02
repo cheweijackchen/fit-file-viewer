@@ -35,6 +35,7 @@ const DEMO_DAYS: DayPlan[] = [
       { nodeId: 'global_yinv-fall' },
       { nodeId: 'global_duiguan' },
       { nodeId: 'global_guangao-ping' },
+      { nodeId: 'global_gudaobengduan-fork' },
       { nodeId: 'global_batongguan-meadow' },
     ],
   },

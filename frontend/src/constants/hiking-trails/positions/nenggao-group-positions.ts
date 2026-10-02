@@ -1,19 +1,19 @@
 import type { NodePositions } from '@/model/trailPositions'
 
 export const nenggaoGroupPositions = {
-  'nenggao-group_tunyuan-trailhead': {
+  'global_tunyuan-trailhead': {
     'x': 0,
     'y': 0
   },
-  'nenggao-group_yunhai-tai-power-hut': {
+  'global_yunhai-tai-power-hut': {
     'x': 160,
     'y': 0
   },
-  'nenggao-group_tianchi-hut': {
+  'global_tianchi-hut': {
     'x': 320,
     'y': 0
   },
-  'nenggao-group_xianjie-pass': {
+  'global_xianjie-pass': {
     'x': 480,
     'y': 0
   },
@@ -148,5 +148,33 @@ export const nenggaoGroupPositions = {
   'nenggao-group_aowanda-visitor-center-parking': {
     'x': 320,
     'y': 320
+  },
+  'global_tianchi-fork': {
+    'x': 320,
+    'y': -160
+  },
+  'mountain_nanhua-mountain': {
+    'x': 480,
+    'y': -160
+  },
+  'global_qilai-south-peak-trailhead': {
+    'x': 320,
+    'y': -320
+  },
+  'mountain_qilai-south-peak': {
+    'x': 160,
+    'y': -320
+  },
+  'nenggao-group_guilin-tai-power-hut': {
+    'x': 640,
+    'y': -160
+  },
+  'mountain_wujiabeng-mountain': {
+    'x': 800,
+    'y': -160
+  },
+  'nenggao-group_qilai-tai-power-hut': {
+    'x': 960,
+    'y': -160
   }
 } satisfies NodePositions
