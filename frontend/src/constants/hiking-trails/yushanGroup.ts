@@ -188,13 +188,13 @@ export const yushanGroup: Trail = {
     {
       id: 'global_guangao-ping',
       name: '觀高坪',
-      i18nKey: 'yushan-group.guangao-ping',
+      i18nKey: 'global.guangao-ping',
       nodeType: 'fork' 
     },
     {
       id: 'global_guangao-station',
       name: '觀高登山服務站',
-      i18nKey: 'yushan-group.guangao-station',
+      i18nKey: 'global.guangao-station',
       nodeType: 'hut' 
     },
     {
@@ -212,13 +212,13 @@ export const yushanGroup: Trail = {
     {
       id: 'global_lele-hut',
       name: '樂樂山屋',
-      i18nKey: 'yushan-group.lele-hut',
+      i18nKey: 'global.lele-hut',
       nodeType: 'hut' 
     },
     {
       id: 'global_yunlong-fall',
       name: '雲龍瀑布',
-      i18nKey: 'yushan-group.yunlong-fall',
+      i18nKey: 'global.yunlong-fall',
       nodeType: 'water-source' 
     },
     {
@@ -242,7 +242,7 @@ export const yushanGroup: Trail = {
     {
       id: 'global_dongpu-spring',
       name: '東埔溫泉',
-      i18nKey: 'yushan-group.dongpu-spring',
+      i18nKey: 'global.dongpu-spring',
       nodeType: 'other' 
     }
   ],

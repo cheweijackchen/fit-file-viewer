@@ -9,31 +9,31 @@ export const southSecondSection: Trail = {
     {
       id: 'global_dongpu-spring',
       name: '東埔溫泉',
-      i18nKey: 'south-second-section.dongpu-spring',
+      i18nKey: 'global.dongpu-spring',
       nodeType: 'other' 
     },
     {
       id: 'global_yunlong-fall',
       name: '雲龍瀑布',
-      i18nKey: 'south-second-section.yunlong-fall',
+      i18nKey: 'global.yunlong-fall',
       nodeType: 'water-source' 
     },
     {
       id: 'global_lele-hut',
       name: '樂樂山屋',
-      i18nKey: 'south-second-section.lele-hut',
+      i18nKey: 'global.lele-hut',
       nodeType: 'hut' 
     },
     {
       id: 'global_guangao-station',
       name: '觀高登山服務站',
-      i18nKey: 'south-second-section.guangao-station',
+      i18nKey: 'global.guangao-station',
       nodeType: 'hut' 
     },
     {
       id: 'global_guangao-ping',
       name: '觀高坪',
-      i18nKey: 'south-second-section.guangao-ping',
+      i18nKey: 'global.guangao-ping',
       nodeType: 'fork' 
     },
     {
