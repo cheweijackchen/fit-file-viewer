@@ -276,9 +276,9 @@ export const maboTraverse: Trail = {
       nodeType: 'peak'
     },
     {
-      id: 'mabo-traverse_malijiannan-east-peak-hut',
+      id: 'global_malijiannan-east-peak-hut',
       name: '馬利加南東峰山屋',
-      i18nKey: 'mabo-traverse.malijiannan-east-peak-hut',
+      i18nKey: 'global.malijiannan-east-peak-hut',
       nodeType: 'hut'
     },
     {
@@ -294,9 +294,9 @@ export const maboTraverse: Trail = {
       nodeType: 'peak'
     },
     {
-      id: 'mabo-traverse_mabu-valley-hut',
+      id: 'global_mabu-valley-hut',
       name: '馬布谷山屋',
-      i18nKey: 'mabo-traverse.mabu-valley-hut',
+      i18nKey: 'global.mabu-valley-hut',
       nodeType: 'hut'
     },
     {
@@ -338,9 +338,9 @@ export const maboTraverse: Trail = {
       nodeType: 'fork'
     },
     {
-      id: 'mabo-traverse_taipinggu-nan-exit',
+      id: 'global_taipinggu-nan-exit',
       name: '太平谷南口',
-      i18nKey: 'mabo-traverse.taipinggu-nan-exit',
+      i18nKey: 'global.taipinggu-nan-exit',
       nodeType: 'other'
     },
     {
@@ -393,9 +393,9 @@ export const maboTraverse: Trail = {
       nodeType: 'other'
     },
     {
-      id: 'mabo-traverse_descent-streambed-point',
+      id: 'global_descent-streambed-point',
       name: '下切溪床點',
-      i18nKey: 'mabo-traverse.descent-streambed-point',
+      i18nKey: 'global.descent-streambed-point',
       nodeType: 'other'
     },
     {
@@ -435,9 +435,9 @@ export const maboTraverse: Trail = {
       nodeType: 'other'
     },
     {
-      id: 'mabo-traverse_16-5k-vehicle-road-end',
+      id: 'global_16-5k-vehicle-road-end',
       name: '16.5K行車終點',
-      i18nKey: 'mabo-traverse.16-5k-vehicle-road-end',
+      i18nKey: 'global.16-5k-vehicle-road-end',
       nodeType: 'other'
     }
   ],
@@ -987,23 +987,23 @@ export const maboTraverse: Trail = {
     // 馬利加南山 <-> 馬利加南東峰山屋
     {
       from: 'mountain_malijiannan-mountain',
-      to: 'mabo-traverse_malijiannan-east-peak-hut',
+      to: 'global_malijiannan-east-peak-hut',
       minutes: 80
     },
     {
-      from: 'mabo-traverse_malijiannan-east-peak-hut',
+      from: 'global_malijiannan-east-peak-hut',
       to: 'mountain_malijiannan-mountain',
       minutes: 130
     },
     // 馬利加南東峰山屋 <-> 馬利加南山東峰
     {
-      from: 'mabo-traverse_malijiannan-east-peak-hut',
+      from: 'global_malijiannan-east-peak-hut',
       to: 'mountain_malijiannan-east-peak',
       minutes: 30
     },
     {
       from: 'mountain_malijiannan-east-peak',
-      to: 'mabo-traverse_malijiannan-east-peak-hut',
+      to: 'global_malijiannan-east-peak-hut',
       minutes: 20
     },
     // 馬利加南山東峰 <-> 3191公尺峰
@@ -1020,34 +1020,34 @@ export const maboTraverse: Trail = {
     // 3191公尺峰 <-> 馬布谷山屋
     {
       from: 'mountain_3191-meter-peak',
-      to: 'mabo-traverse_mabu-valley-hut',
+      to: 'global_mabu-valley-hut',
       minutes: 60
     },
     {
-      from: 'mabo-traverse_mabu-valley-hut',
+      from: 'global_mabu-valley-hut',
       to: 'mountain_3191-meter-peak',
       minutes: 90
     },
     // 馬布谷山屋 <-> 布干山
     {
-      from: 'mabo-traverse_mabu-valley-hut',
+      from: 'global_mabu-valley-hut',
       to: 'mountain_bugan-mountain',
       minutes: 70
     },
     {
       from: 'mountain_bugan-mountain',
-      to: 'mabo-traverse_mabu-valley-hut',
+      to: 'global_mabu-valley-hut',
       minutes: 60
     },
     // 馬布谷山屋 <-> 馬西山登山口
     {
-      from: 'mabo-traverse_mabu-valley-hut',
+      from: 'global_mabu-valley-hut',
       to: 'mabo-traverse_maxi-mountain-trailhead',
       minutes: 100
     },
     {
       from: 'mabo-traverse_maxi-mountain-trailhead',
-      to: 'mabo-traverse_mabu-valley-hut',
+      to: 'global_mabu-valley-hut',
       minutes: 70
     },
     // 馬西山登山口 <-> 馬西山
@@ -1108,23 +1108,23 @@ export const maboTraverse: Trail = {
     // 喀西帕南山登山口 <-> 太平谷南口
     {
       from: 'mabo-traverse_kaxipanan-mountain-trailhead',
-      to: 'mabo-traverse_taipinggu-nan-exit',
+      to: 'global_taipinggu-nan-exit',
       minutes: 80
     },
     {
-      from: 'mabo-traverse_taipinggu-nan-exit',
+      from: 'global_taipinggu-nan-exit',
       to: 'mabo-traverse_kaxipanan-mountain-trailhead',
       minutes: 110
     },
     // 太平谷南口 <-> 太平谷東北口
     {
-      from: 'mabo-traverse_taipinggu-nan-exit',
+      from: 'global_taipinggu-nan-exit',
       to: 'mabo-traverse_taipinggu-dongbei-exit',
       minutes: 30
     },
     {
       from: 'mabo-traverse_taipinggu-dongbei-exit',
-      to: 'mabo-traverse_taipinggu-nan-exit',
+      to: 'global_taipinggu-nan-exit',
       minutes: 30
     },
     // 太平谷東北口 <-> 44K林道盡頭
@@ -1207,23 +1207,23 @@ export const maboTraverse: Trail = {
     // 林道玉林橋下切點 <-> 下切溪床點
     {
       from: 'mabo-traverse_forest-road-yulin-bridge-descent-point',
-      to: 'mabo-traverse_descent-streambed-point',
+      to: 'global_descent-streambed-point',
       minutes: 85
     },
     {
-      from: 'mabo-traverse_descent-streambed-point',
+      from: 'global_descent-streambed-point',
       to: 'mabo-traverse_forest-road-yulin-bridge-descent-point',
       minutes: 120
     },
     // 下切溪床點 <-> 大石帆布營地
     {
-      from: 'mabo-traverse_descent-streambed-point',
+      from: 'global_descent-streambed-point',
       to: 'mabo-traverse_dashi-fanbu-camp',
       minutes: 45
     },
     {
       from: 'mabo-traverse_dashi-fanbu-camp',
-      to: 'mabo-traverse_descent-streambed-point',
+      to: 'global_descent-streambed-point',
       minutes: 60
     },
     // 大石帆布營地 <-> 溪谷上切處
@@ -1284,11 +1284,11 @@ export const maboTraverse: Trail = {
     // 17K水泥橋 <-> 16.5K行車終點
     {
       from: 'mabo-traverse_17k-concrete-bridge',
-      to: 'mabo-traverse_16-5k-vehicle-road-end',
+      to: 'global_16-5k-vehicle-road-end',
       minutes: 20
     },
     {
-      from: 'mabo-traverse_16-5k-vehicle-road-end',
+      from: 'global_16-5k-vehicle-road-end',
       to: 'mabo-traverse_17k-concrete-bridge',
       minutes: 20
     }

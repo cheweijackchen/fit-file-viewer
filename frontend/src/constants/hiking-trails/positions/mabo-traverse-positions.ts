@@ -177,7 +177,7 @@ export const maboTraversePositions = {
     'x': 2240,
     'y': 960
   },
-  'mabo-traverse_malijiannan-east-peak-hut': {
+  'global_malijiannan-east-peak-hut': {
     'x': 2400,
     'y': 960
   },
@@ -189,7 +189,7 @@ export const maboTraversePositions = {
     'x': 2720,
     'y': 960
   },
-  'mabo-traverse_mabu-valley-hut': {
+  'global_mabu-valley-hut': {
     'x': 2880,
     'y': 960
   },
@@ -217,7 +217,7 @@ export const maboTraversePositions = {
     'x': 3360,
     'y': 960
   },
-  'mabo-traverse_taipinggu-nan-exit': {
+  'global_taipinggu-nan-exit': {
     'x': 3440,
     'y': 880
   },
@@ -253,7 +253,7 @@ export const maboTraversePositions = {
     'x': 3840,
     'y': 1520
   },
-  'mabo-traverse_descent-streambed-point': {
+  'global_descent-streambed-point': {
     'x': 3840,
     'y': 1760
   },
@@ -281,7 +281,7 @@ export const maboTraversePositions = {
     'x': 3600,
     'y': 2240
   },
-  'mabo-traverse_16-5k-vehicle-road-end': {
+  'global_16-5k-vehicle-road-end': {
     'x': 3760,
     'y': 2240
   }

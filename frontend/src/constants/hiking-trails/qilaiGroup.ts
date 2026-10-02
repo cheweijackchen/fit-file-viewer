@@ -14,34 +14,34 @@ export const qilaiGroup: Trail = {
       nodeType: 'fork'
     },
     {
-      id: 'qilai-group_heishuitang-hut',
+      id: 'global_heishuitang-hut',
       name: '黑水塘山屋',
-      i18nKey: 'qilai-group.heishuitang-hut',
+      i18nKey: 'global.heishuitang-hut',
       nodeType: 'hut'
     },
     {
-      id: 'qilai-group_chenggong-hut',
+      id: 'global_chenggong-hut',
       name: '成功山屋',
-      i18nKey: 'qilai-group.chenggong-hut',
+      i18nKey: 'global.chenggong-hut',
       nodeType: 'hut'
     },
     {
-      id: 'qilai-group_chenggong-1-fort',
+      id: 'global_chenggong-1-fort',
       name: '成功一號堡',
-      i18nKey: 'qilai-group.chenggong-1-fort',
+      i18nKey: 'global.chenggong-1-fort',
       nodeType: 'other'
     },
     {
-      id: 'qilai-group_main-north-fork',
+      id: 'global_main-north-fork',
       name: '主北岔路',
-      i18nKey: 'qilai-group.main-north-fork',
+      i18nKey: 'global.main-north-fork',
       nodeType: 'fork'
     },
     // --- 奇萊北峰與主山 ---
     {
-      id: 'qilai-group_qilai-north-peak-fork',
+      id: 'global_qilai-north-peak-fork',
       name: '奇萊北峰岔路',
-      i18nKey: 'qilai-group.qilai-north-peak-fork',
+      i18nKey: 'global.qilai-north-peak-fork',
       nodeType: 'fork'
     },
     {
@@ -51,15 +51,15 @@ export const qilaiGroup: Trail = {
       nodeType: 'peak'
     },
     {
-      id: 'qilai-group_main-north-three-way-fork',
+      id: 'global_main-north-three-way-fork',
       name: '主北三岔路',
-      i18nKey: 'qilai-group.main-north-three-way-fork',
+      i18nKey: 'global.main-north-three-way-fork',
       nodeType: 'fork'
     },
     {
-      id: 'qilai-group_qilai-hut',
+      id: 'global_qilai-hut',
       name: '奇萊山莊',
-      i18nKey: 'qilai-group.qilai-hut',
+      i18nKey: 'global.qilai-hut',
       nodeType: 'hut'
     },
     {
@@ -148,111 +148,111 @@ export const qilaiGroup: Trail = {
     // 奇萊山登山口/滑雪山莊 <-> 黑水塘山屋
     {
       from: 'global_qilai-mountain-trailhead-ski-hut',
-      to: 'qilai-group_heishuitang-hut',
+      to: 'global_heishuitang-hut',
       minutes: 110
     },
     {
-      from: 'qilai-group_heishuitang-hut',
+      from: 'global_heishuitang-hut',
       to: 'global_qilai-mountain-trailhead-ski-hut',
       minutes: 130
     },
     // 黑水塘山屋 <-> 成功山屋
     {
-      from: 'qilai-group_heishuitang-hut',
-      to: 'qilai-group_chenggong-hut',
+      from: 'global_heishuitang-hut',
+      to: 'global_chenggong-hut',
       minutes: 60
     },
     {
-      from: 'qilai-group_chenggong-hut',
-      to: 'qilai-group_heishuitang-hut',
+      from: 'global_chenggong-hut',
+      to: 'global_heishuitang-hut',
       minutes: 50
     },
     // 成功山屋 <-> 成功一號堡
     {
-      from: 'qilai-group_chenggong-hut',
-      to: 'qilai-group_chenggong-1-fort',
+      from: 'global_chenggong-hut',
+      to: 'global_chenggong-1-fort',
       minutes: 50
     },
     {
-      from: 'qilai-group_chenggong-1-fort',
-      to: 'qilai-group_chenggong-hut',
+      from: 'global_chenggong-1-fort',
+      to: 'global_chenggong-hut',
       minutes: 40
     },
     // 成功一號堡 <-> 主北岔路
     {
-      from: 'qilai-group_chenggong-1-fort',
-      to: 'qilai-group_main-north-fork',
+      from: 'global_chenggong-1-fort',
+      to: 'global_main-north-fork',
       minutes: 30
     },
     {
-      from: 'qilai-group_main-north-fork',
-      to: 'qilai-group_chenggong-1-fort',
+      from: 'global_main-north-fork',
+      to: 'global_chenggong-1-fort',
       minutes: 15
     },
     // 主北岔路 <-> 奇萊北峰岔路
     {
-      from: 'qilai-group_main-north-fork',
-      to: 'qilai-group_qilai-north-peak-fork',
+      from: 'global_main-north-fork',
+      to: 'global_qilai-north-peak-fork',
       minutes: 100
     },
     {
-      from: 'qilai-group_qilai-north-peak-fork',
-      to: 'qilai-group_main-north-fork',
+      from: 'global_qilai-north-peak-fork',
+      to: 'global_main-north-fork',
       minutes: 80
     },
     // 奇萊北峰岔路 <-> 奇萊主山北峰
     {
-      from: 'qilai-group_qilai-north-peak-fork',
+      from: 'global_qilai-north-peak-fork',
       to: 'mountain_qilai-north-peak',
       minutes: 55
     },
     {
       from: 'mountain_qilai-north-peak',
-      to: 'qilai-group_qilai-north-peak-fork',
+      to: 'global_qilai-north-peak-fork',
       minutes: 35
     },
     // 主北岔路 <-> 主北三岔路
     {
-      from: 'qilai-group_main-north-fork',
-      to: 'qilai-group_main-north-three-way-fork',
+      from: 'global_main-north-fork',
+      to: 'global_main-north-three-way-fork',
       minutes: 90
     },
     {
-      from: 'qilai-group_main-north-three-way-fork',
-      to: 'qilai-group_main-north-fork',
+      from: 'global_main-north-three-way-fork',
+      to: 'global_main-north-fork',
       minutes: 70
     },
     // 奇萊北峰岔路 <-> 主北三岔路
     {
-      from: 'qilai-group_qilai-north-peak-fork',
-      to: 'qilai-group_main-north-three-way-fork',
+      from: 'global_qilai-north-peak-fork',
+      to: 'global_main-north-three-way-fork',
       minutes: 30
     },
     {
-      from: 'qilai-group_main-north-three-way-fork',
-      to: 'qilai-group_qilai-north-peak-fork',
+      from: 'global_main-north-three-way-fork',
+      to: 'global_qilai-north-peak-fork',
       minutes: 40
     },
     // 主北三岔路 <-> 奇萊山莊
     {
-      from: 'qilai-group_main-north-three-way-fork',
-      to: 'qilai-group_qilai-hut',
+      from: 'global_main-north-three-way-fork',
+      to: 'global_qilai-hut',
       minutes: 10
     },
     {
-      from: 'qilai-group_qilai-hut',
-      to: 'qilai-group_main-north-three-way-fork',
+      from: 'global_qilai-hut',
+      to: 'global_main-north-three-way-fork',
       minutes: 15
     },
     // 奇萊山莊 <-> 主山登山口
     {
-      from: 'qilai-group_qilai-hut',
+      from: 'global_qilai-hut',
       to: 'qilai-group_qilai-main-peak-trailhead',
       minutes: 90
     },
     {
       from: 'qilai-group_qilai-main-peak-trailhead',
-      to: 'qilai-group_qilai-hut',
+      to: 'global_qilai-hut',
       minutes: 70
     },
     // 主山登山口 <-> 奇萊主山

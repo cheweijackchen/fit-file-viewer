@@ -5,23 +5,23 @@ export const qilaiGroupPositions = {
     'x': 0,
     'y': 320
   },
-  'qilai-group_heishuitang-hut': {
+  'global_heishuitang-hut': {
     'x': 160,
     'y': 320
   },
-  'qilai-group_chenggong-hut': {
+  'global_chenggong-hut': {
     'x': 320,
     'y': 320
   },
-  'qilai-group_chenggong-1-fort': {
+  'global_chenggong-1-fort': {
     'x': 480,
     'y': 320
   },
-  'qilai-group_main-north-fork': {
+  'global_main-north-fork': {
     'x': 640,
     'y': 320
   },
-  'qilai-group_qilai-north-peak-fork': {
+  'global_qilai-north-peak-fork': {
     'x': 800,
     'y': 160
   },
@@ -29,11 +29,11 @@ export const qilaiGroupPositions = {
     'x': 800,
     'y': 0
   },
-  'qilai-group_main-north-three-way-fork': {
+  'global_main-north-three-way-fork': {
     'x': 800,
     'y': 320
   },
-  'qilai-group_qilai-hut': {
+  'global_qilai-hut': {
     'x': 800,
     'y': 480
   },
