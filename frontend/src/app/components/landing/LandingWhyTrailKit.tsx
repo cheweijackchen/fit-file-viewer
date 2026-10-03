@@ -1,7 +1,7 @@
 'use client'
 
 import { Badge, Container, Title } from '@mantine/core'
-import { IconShieldCheck } from '@tabler/icons-react'
+import { IconTools } from '@tabler/icons-react'
 import clsx from 'clsx'
 import { useTranslations } from 'next-intl'
 
@@ -12,24 +12,24 @@ interface StatConfig {
 
 const statConfigs: StatConfig[] = [
   {
-    key: 'processing',
+    key: 'tools',
     valueClass: 'text-(--mantine-color-yellow-4)' 
   },
   {
-    key: 'uploaded',
+    key: 'peaks',
     valueClass: 'text-(--mantine-color-orange-4)' 
   },
   {
-    key: 'account',
+    key: 'formats',
     valueClass: 'text-(--mantine-color-cyan-2)' 
   },
   {
-    key: 'openSource',
+    key: 'planning',
     valueClass: 'text-(--mantine-color-green-1)' 
   },
 ]
 
-export function LandingPrivacy() {
+export function LandingWhyTrailKit() {
   const t = useTranslations('landing')
 
   return (
@@ -40,7 +40,7 @@ export function LandingPrivacy() {
             variant="light"
             size="lg"
             radius="xl"
-            leftSection={<IconShieldCheck size={14} />}
+            leftSection={<IconTools size={14} />}
             styles={{
               root: {
                 textTransform: 'none',
@@ -49,7 +49,7 @@ export function LandingPrivacy() {
               },
             }}
           >
-            {t('privacy.badge')}
+            {t('why-trailkit.badge')}
           </Badge>
 
           <Title
@@ -57,11 +57,11 @@ export function LandingPrivacy() {
             className="text-4xl! max-md:text-3xl! max-w-200 text-center text-(--mantine-color-white)"
             style={{ letterSpacing: -0.5 }}
           >
-            {t('privacy.title')}
+            {t('why-trailkit.title')}
           </Title>
 
           <p className="text-lg text-(--mantine-color-dark-2)">
-            {t('privacy.description')}
+            {t('why-trailkit.description')}
           </p>
         </div>
 
@@ -75,11 +75,11 @@ export function LandingPrivacy() {
                 className={clsx('text-3xl font-bold', stat.valueClass)}
                 style={{ letterSpacing: -1 }}
               >
-                {t(`privacy.stats.${stat.key}.value`)}
+                {t(`why-trailkit.stats.${stat.key}.value`)}
               </span>
 
               <span className="text-sm font-medium text-center text-(--mantine-color-dark-2)">
-                {t(`privacy.stats.${stat.key}.label`)}
+                {t(`why-trailkit.stats.${stat.key}.label`)}
               </span>
             </div>
           ))}

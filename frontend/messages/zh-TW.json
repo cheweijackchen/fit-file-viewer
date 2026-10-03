@@ -1,9 +1,9 @@
 {
   "landing": {
     "hero": {
-      "badge": "免費 · 隱私優先的登山工具",
+      "badge": "登山工具，一站集齊",
       "title": "你的完整登山工具箱",
-      "description": "分析你的路線、追蹤山峰紀錄、視覺化每一次冒險——完全在瀏覽器中完成，資料不會離開你的裝置。",
+      "description": "分析路線、追蹤登頂紀錄、規劃多天行程、視覺化每一次冒險——一個工具箱全部搞定。",
       "ctaPrimary": "探索工具",
       "ctaSecondary": "查看示範"
     },
@@ -25,7 +25,7 @@
         "title": "工具",
         "fitFileViewer": {
           "title": "FIT 檔案檢視器",
-          "description": "在瀏覽器中分析你的 Garmin FIT 檔案"
+          "description": "分析你的 Garmin FIT 活動檔案"
         },
         "peaksTracker": {
           "title": "百岳登頂紀錄",
@@ -44,7 +44,7 @@
     "feature-cards": {
       "badge": "核心工具",
       "title": "登山所需，一應俱全",
-      "description": "專為登山者打造的瀏覽器工具，無需帳號即可使用。",
+      "description": "由登山者為登山者打造的實用工具，挑一個就能直接上路。",
       "cards": {
         "peaks-tracker": {
           "badgeText": "熱門",
@@ -55,7 +55,7 @@
         "fit-file-viewer": {
           "badgeText": "必備",
           "title": "FIT 檔案檢視器",
-          "description": "上傳運動手錶的 FIT 檔案，立即查看心率區間、海拔剖面、GPS 軌跡與詳細的活動摘要。",
+          "description": "匯入運動手錶的 FIT 檔案，立即查看心率區間、海拔剖面、GPS 軌跡與詳細的活動摘要。",
           "linkText": "開啟 FIT 檢視器"
         },
         "trail-map": {
@@ -66,32 +66,32 @@
         }
       }
     },
-    "privacy": {
+    "why-trailkit": {
       "badge": "為何選擇 TRAILKIT",
-      "title": "專為重視隱私的登山者打造",
-      "description": "你的 GPS 資料、心率與路線記錄永遠不會離開你的瀏覽器。就是這樣。",
+      "title": "一個工具箱，陪你走完全程",
+      "description": "從出發前的路線規劃，到下山後的數據回顧，登山所需都在這裡。",
       "stats": {
-        "processing": {
-          "value": "100%",
-          "label": "本地端運算"
+        "tools": {
+          "value": "4 種",
+          "label": "核心工具一站整合"
         },
-        "uploaded": {
-          "value": "0 位元組",
-          "label": "上傳至伺服器"
+        "peaks": {
+          "value": "100 座",
+          "label": "台灣百岳完整收錄"
         },
-        "account": {
-          "value": "無需帳號",
-          "label": "即可開始使用"
+        "formats": {
+          "value": "FIT · GPX",
+          "label": "支援的活動檔格式"
         },
-        "openSource": {
-          "value": "開放原始碼",
-          "label": "永久免費"
+        "planning": {
+          "value": "多天行程",
+          "label": "規劃與步速估算"
         }
       }
     },
     "footer": {
-      "tagline": "完全在瀏覽器中運行的隱私優先登山工具。無伺服器、無追蹤、不妥協。",
-      "copyright": "© 2026 TrailKit。以 MIT 授權開放原始碼。以 ❤️ 為登山社群打造。",
+      "tagline": "實用的登山工具箱——規劃、追蹤、回味每一條山徑。",
+      "copyright": "© 2026 TrailKit。以 ❤️ 為登山社群打造。",
       "nav": {
         "tools": {
           "title": "工具",
@@ -131,7 +131,7 @@
     "coming-soon": {
       "badge": "即將推出",
       "title": "更多工具陸續上線",
-      "description": "我們正在打造更多隱私優先的工具，讓每一次登山體驗更完整。",
+      "description": "我們正在打造更多工具，讓每一次登山體驗更完整。",
       "cards": {
         "trail-planner": {
           "title": "路線規劃器",

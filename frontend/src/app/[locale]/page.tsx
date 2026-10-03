@@ -3,7 +3,7 @@ import { LandingComingSoon } from '../components/landing/LandingComingSoon'
 import { LandingCTA } from '../components/landing/LandingCTA'
 import { LandingFeatureCards } from '../components/landing/LandingFeatureCards'
 import { LandingHero } from '../components/landing/LandingHero'
-import { LandingPrivacy } from '../components/landing/LandingPrivacy'
+import { LandingWhyTrailKit } from '../components/landing/LandingWhyTrailKit'
 
 export default function LandingPage() {
   return (
@@ -11,7 +11,7 @@ export default function LandingPage() {
       <LandingHero />
       <LandingFeatureCards />
       <LandingComingSoon />
-      <LandingPrivacy />
+      <LandingWhyTrailKit />
       <LandingCTA />
     </AppLayout>
   )

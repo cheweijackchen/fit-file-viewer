@@ -7,7 +7,7 @@
 
 ## Overview
 
-The **Trail Planner** is a browser-based, privacy-first tool that helps hikers plan multi-day alpine itineraries. Users select one or more connected routes, explore the trail network, and build a day-by-day route by selecting nodes step by step.
+The **Trail Planner** is a browser-based tool that helps hikers plan multi-day alpine itineraries. Users select one or more connected routes, explore the trail network, and build a day-by-day route by selecting nodes step by step.
 
 ### Terminology
 

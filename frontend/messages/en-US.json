@@ -1,9 +1,9 @@
 {
   "landing": {
     "hero": {
-      "badge": "Free & Privacy-First Hiking Tools",
+      "badge": "Hiking Tools, All in One Place",
       "title": "Your Complete Hiking Toolkit",
-      "description": "Analyze your trails, track your peaks, and visualize every adventure — all in your browser, no data leaves your device.",
+      "description": "Analyze your trails, track your peaks, plan multi-day trips, and visualize every adventure — all from one toolkit.",
       "ctaPrimary": "Explore Tools",
       "ctaSecondary": "View Demo"
     },
@@ -25,7 +25,7 @@
         "title": "Tools",
         "fitFileViewer": {
           "title": "FIT File Viewer",
-          "description": "Analyze your Garmin FIT files in the browser"
+          "description": "Analyze your Garmin FIT activity files"
         },
         "peaksTracker": {
           "title": "Peaks Tracker",
@@ -44,7 +44,7 @@
     "feature-cards": {
       "badge": "CORE TOOLS",
       "title": "Everything You Need on the Trail",
-      "description": "Powerful browser-based tools designed for hikers, by hikers. No account needed.",
+      "description": "Practical tools designed for hikers, by hikers — pick the one you need and get going.",
       "cards": {
         "peaks-tracker": {
           "badgeText": "Popular",
@@ -55,7 +55,7 @@
         "fit-file-viewer": {
           "badgeText": "Essential",
           "title": "FIT File Viewer",
-          "description": "Upload your sports watch FIT files and instantly see heart rate zones, elevation profiles, GPS tracks, and detailed activity summaries.",
+          "description": "Open your sports watch FIT files and instantly see heart rate zones, elevation profiles, GPS tracks, and detailed activity summaries.",
           "linkText": "Open FIT Viewer"
         },
         "trail-map": {
@@ -66,32 +66,32 @@
         }
       }
     },
-    "privacy": {
+    "why-trailkit": {
       "badge": "WHY TRAILKIT",
-      "title": "Built for Hikers Who Care About Privacy",
-      "description": "Your GPS data, heart rate, and trail logs never leave your browser. Period.",
+      "title": "One Toolkit for the Whole Trip",
+      "description": "From planning the route to reviewing your data after the hike — everything a hiker needs in one place.",
       "stats": {
-        "processing": {
-          "value": "100%",
-          "label": "Client-Side Processing"
+        "tools": {
+          "value": "4",
+          "label": "Tools in One Toolkit"
         },
-        "uploaded": {
-          "value": "0 Bytes",
-          "label": "Uploaded to Servers"
+        "peaks": {
+          "value": "100",
+          "label": "Taiwan Peaks to Track"
         },
-        "account": {
-          "value": "No Account",
-          "label": "Required to Get Started"
+        "formats": {
+          "value": "FIT · GPX",
+          "label": "Activity Formats Supported"
         },
-        "openSource": {
-          "value": "Open Source",
-          "label": "Free Forever"
+        "planning": {
+          "value": "Multi-Day",
+          "label": "Trip Planning & Pace Estimate"
         }
       }
     },
     "footer": {
-      "tagline": "Privacy-first hiking tools that run entirely in your browser. No servers, no tracking, no compromise.",
-      "copyright": "© 2026 TrailKit. Open source under MIT License. Made with ❤️ for the hiking community.",
+      "tagline": "A practical toolkit for hikers — plan, track, and relive every trail.",
+      "copyright": "© 2026 TrailKit. Made with ❤️ for the hiking community.",
       "nav": {
         "tools": {
           "title": "Tools",
@@ -131,7 +131,7 @@
     "coming-soon": {
       "badge": "COMING SOON",
       "title": "More Tools on the Way",
-      "description": "We're building more privacy-first tools to make every hike better.",
+      "description": "We're adding more tools to make every hike better.",
       "cards": {
         "trail-planner": {
           "title": "Trail Planner",
