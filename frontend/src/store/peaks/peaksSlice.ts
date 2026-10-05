@@ -33,7 +33,10 @@ const createPeaksSlice: StateCreator<PeaksSlice> = (set) => {
           for (const id of ids) {
             current.add(id)
           }
-          return { ...state, checkedPeakIds: [...current] }
+          return {
+            ...state,
+            checkedPeakIds: [...current] 
+          }
         }),
       uncheckAllInCategory: (ids: string[]) =>
         set((state) => {
@@ -45,11 +48,18 @@ const createPeaksSlice: StateCreator<PeaksSlice> = (set) => {
         }),
       clearAll: () =>
         set((state) => {
-          return { ...state, checkedPeakIds: [], userName: '' }
+          return {
+            ...state,
+            checkedPeakIds: [],
+            userName: '' 
+          }
         }),
       setUserName: (name: string) =>
         set((state) => {
-          return { ...state, userName: name }
+          return {
+            ...state,
+            userName: name 
+          }
         }),
     },
   }

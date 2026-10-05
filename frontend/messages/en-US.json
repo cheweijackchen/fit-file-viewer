@@ -1,0 +1,400 @@
+{
+  "landing": {
+    "hero": {
+      "badge": "Hiking Tools, All in One Place",
+      "title": "Your Complete Hiking Toolkit",
+      "description": "Analyze your trails, track your peaks, plan multi-day trips, and visualize every adventure — all from one toolkit.",
+      "ctaPrimary": "Explore Tools",
+      "ctaSecondary": "View Demo"
+    },
+    "header": {
+      "brand": "TrailKit",
+      "tools": "Tools",
+      "about": "About",
+      "blog": "Blog",
+      "community": "Community",
+      "getStarted": "Get Started",
+      "navigation": "Navigation",
+      "language": "Language",
+      "appearance": "Appearance",
+      "theme": {
+        "light": "Light",
+        "dark": "Dark"
+      },
+      "toolsDropdown": {
+        "title": "Tools",
+        "fitFileViewer": {
+          "title": "FIT File Viewer",
+          "description": "Analyze your Garmin FIT activity files"
+        },
+        "peaksTracker": {
+          "title": "Peaks Tracker",
+          "description": "Track and visualize your peak bagging progress"
+        },
+        "hikingTrailPlanner": {
+          "title": "Hiking Trail Planner",
+          "description": "Plan multi-day routes, estimate pace, and visualize trail connections"
+        },
+        "trailMap": {
+          "title": "Trail Map",
+          "description": "View and explore your GPX tracks on an interactive map"
+        }
+      }
+    },
+    "feature-cards": {
+      "badge": "CORE TOOLS",
+      "title": "Everything You Need on the Trail",
+      "description": "Practical tools designed for hikers, by hikers — pick the one you need and get going.",
+      "cards": {
+        "peaks-tracker": {
+          "badgeText": "Popular",
+          "title": "Peaks Tracker",
+          "description": "Log and visualize every summit you've visited. Check the peaks on an interactive map and share the result with your friends.",
+          "linkText": "Open Peaks Tracker"
+        },
+        "fit-file-viewer": {
+          "badgeText": "Essential",
+          "title": "FIT File Viewer",
+          "description": "Open your sports watch FIT files and instantly see heart rate zones, elevation profiles, GPS tracks, and detailed activity summaries.",
+          "linkText": "Open FIT Viewer"
+        },
+        "trail-map": {
+          "badgeText": "Map",
+          "title": "3D Trail Map",
+          "description": "Visualize your hiking routes on an interactive 3D map with terrain, satellite imagery, contour lines, and animated track playback.",
+          "linkText": "Open Trail Map"
+        }
+      }
+    },
+    "why-trailkit": {
+      "badge": "WHY TRAILKIT",
+      "title": "One Toolkit for the Whole Trip",
+      "description": "From planning the route to reviewing your data after the hike — everything a hiker needs in one place.",
+      "stats": {
+        "tools": {
+          "value": "4",
+          "label": "Tools in One Toolkit"
+        },
+        "peaks": {
+          "value": "100",
+          "label": "Taiwan Peaks to Track"
+        },
+        "formats": {
+          "value": "FIT · GPX",
+          "label": "Activity Formats Supported"
+        },
+        "planning": {
+          "value": "Multi-Day",
+          "label": "Trip Planning & Pace Estimate"
+        }
+      }
+    },
+    "footer": {
+      "tagline": "A practical toolkit for hikers — plan, track, and relive every trail.",
+      "copyright": "© 2026 TrailKit. Made with ❤️ for the hiking community.",
+      "nav": {
+        "tools": {
+          "title": "Tools",
+          "links": {
+            "peaksTracker": "Peaks Tracker",
+            "fitFileViewer": "FIT File Viewer",
+            "interactiveDemo": "Interactive Demo",
+            "gpxConverter": "GPX Converter"
+          }
+        },
+        "resources": {
+          "title": "Resources",
+          "links": {
+            "documentation": "Documentation",
+            "blog": "Blog",
+            "changelog": "Changelog",
+            "github": "GitHub"
+          }
+        },
+        "community": {
+          "title": "Community",
+          "links": {
+            "discord": "Discord",
+            "contribute": "Contribute",
+            "featureRequests": "Feature Requests",
+            "privacyPolicy": "Privacy Policy"
+          }
+        }
+      }
+    },
+    "cta": {
+      "title": "Ready to Explore Your Trip?",
+      "description": "Plan your next hiking adventure — organize your routes, track your progress, and share every trail with your crew.",
+      "ctaPrimary": "Start an Adventure",
+      "ctaSecondary": "View Example Trails"
+    },
+    "coming-soon": {
+      "badge": "COMING SOON",
+      "title": "More Tools on the Way",
+      "description": "We're adding more tools to make every hike better.",
+      "cards": {
+        "trail-planner": {
+          "title": "Trail Planner",
+          "description": "Plan routes, estimate time, and share trails with friends before you go."
+        },
+        "elevation-analyzer": {
+          "title": "Elevation Analyzer",
+          "description": "Detailed elevation gain/loss charts with gradient analysis for trail difficulty."
+        },
+        "weather-overlay": {
+          "title": "Weather Overlay",
+          "description": "See historical weather conditions overlaid on your hike timeline and GPS track."
+        },
+        "gpx-converter": {
+          "title": "GPX Converter",
+          "description": "Convert between FIT, GPX, and KML formats. Merge or split track files effortlessly."
+        }
+      }
+    }
+  },
+  "hiking-trail-planner": {
+    "hero": {
+      "title": "Plan Your Mountain Journey",
+      "description": "Map your multi-day alpine routes, visualize trail connections, and plan each day step by step.",
+      "cta": "Start New Trip"
+    },
+    "features": {
+      "visualTrailGraph": {
+        "title": "Visual Trail Graph",
+        "description": "See every node and connection before you plan"
+      },
+      "multiDayPlanning": {
+        "title": "Multi-Day Planning",
+        "description": "Organize your itinerary day by day with time estimates"
+      },
+      "connectedRoutes": {
+        "title": "Connected Routes",
+        "description": "Combine multiple trails into one seamless journey"
+      }
+    },
+    "startFromPlan": {
+      "eyebrow": "TRAIL PLANS",
+      "title": "Start from a Plan",
+      "subtitle": "Choose a curated route — then make it yours.",
+      "cta": "Use This Plan",
+      "days": "{count, plural, one {# day} other {# days}}",
+      "trailNames": {
+        "south-second-section": "South Second Section",
+        "north-first-section": "North First Section",
+        "yushan-group": "Yushan Group",
+        "ganzhuowan-group": "Ganzhuowan Group",
+        "nenggao-group": "Nenggao-Andongjun Trail",
+        "north-second-section": "North Second Section",
+        "zhongheng-4-spicy": "Central Cross-Island Four Peaks",
+        "south-first-section": "South First Section",
+        "xinkang-traverse": "Xinkang Traverse",
+        "xueshan-group": "Xueshan Group",
+        "hehuan-group": "Hehuan Group",
+        "qilai-group": "Qilai Group",
+        "junda-xiluanda": "Mt. Junda and Mt. Xiluanda",
+        "qicai-lake": "Qicai Lake",
+        "beidawu": "Beidawu Mountain",
+        "mabo-traverse": "Mabolasi Traverse",
+        "holy-ridge": "Holy Ridge",
+        "qilai-east-ridge": "Qilai East Ridge",
+        "south-third-section": "South Third Section"
+      }
+    },
+    "yourTrips": {
+      "heading": "Your Trips",
+      "newTrip": "New Trip"
+    },
+    "tripCard": {
+      "days": "{count, plural, one {# day} other {# days}}",
+      "menu": {
+        "view": "View",
+        "edit": "Edit",
+        "delete": "Delete"
+      }
+    },
+    "planDetail": {
+      "myTrips": "My Trips",
+      "edit": "Edit",
+      "cancelEdit": "Cancel Edit",
+      "delete": "Delete",
+      "settings": "Settings",
+      "showDuration": "Show time between locations",
+      "addDay": "Add Day",
+      "tabs": {
+        "itinerary": "Itinerary",
+        "tripStats": "Trip Stats",
+        "trailNetwork": "Trail Network"
+      },
+      "leaveConfirm": {
+        "title": "Unsaved Changes",
+        "description": "All edits will be lost if you leave. Are you sure?"
+      },
+      "stats": {
+        "days": "{count, plural, one {# day} other {# days}}",
+        "totalTime": "{time} total"
+      },
+      "sections": {
+        "itinerary": "ITINERARY",
+        "trailNetwork": "TRAIL NETWORK",
+        "tripStats": "TRIP STATS",
+        "pace": "PACE",
+        "coverPhoto": "COVER PHOTO"
+      },
+      "coverPhoto": {
+        "placeholder": "Add a cover photo",
+        "alt": "Trip cover photo",
+        "change": "Change photo",
+        "remove": "Remove"
+      },
+      "tripStats": {
+        "rawTime": "Total Time",
+        "weightedTime": "Adjusted ×{multiplier}"
+      },
+      "pace": {
+        "multiplierLabel": "Pace Factor",
+        "updateNote": "Applied to all days. Adjusted times will update automatically.",
+        "alert": {
+          "slow": {
+            "title": "Pace multiplier at 1.2 — 20% slower than reference time",
+            "body": "At this pace, daily hiking hours may become excessive, increasing the risk of hiking in the dark and physical strain. Consider reviewing your itinerary:\n1. Shorten daily distances or add extra camping nights.\n2. Verify water source and campsite locations to ensure arrival in daylight.\n3. If carrying a heavy pack, confirm your team has sufficient endurance for extended hours."
+          },
+          "fast": {
+            "title": "Pace multiplier below 0.7 — extreme speed mode",
+            "body": "Your itinerary is extremely tight with little buffer for unexpected situations. Please address the following in your plan:\n1. Set a clear turn-around time — descend immediately if behind schedule.\n2. Confirm all team members have equal fitness and load-carrying capacity.\n3. For technical sections (scrambles, scree slopes), avoid applying this multiplier — use 1.0 for safety."
+          }
+        }
+      },
+      "trailNetworkPlaceholder": {
+        "title": "Trail Network",
+        "comingSoon": "Visual graph coming soon"
+      },
+      "deleteConfirm": {
+        "title": "Delete Trip",
+        "description": "Are you sure you want to delete \"{name}\"? This action cannot be undone.",
+        "confirm": "Delete"
+      },
+      "editToolbar": {
+        "editing": "Editing",
+        "unsavedChanges": "Unsaved changes",
+        "finishEditing": "Finish Editing"
+      },
+      "trailSelect": {
+        "placeholder": "Add trails",
+        "lockedHint": "Trails with assigned stops cannot be removed"
+      },
+      "dayPlanCard": {
+        "currentNode": "Current Node",
+        "spec": "SPEC",
+        "you": "YOU",
+        "includesRest": "incl. {minutes}m rest",
+        "restTime": {
+          "add": "Rest here",
+          "popover": {
+            "title": "{nodeName} Rest Time",
+            "minutesUnit": "min",
+            "confirm": "Confirm"
+          }
+        },
+        "menu": {
+          "edit": "Edit",
+          "cancelEdit": "Cancel Edit",
+          "clearRoute": "Clear Route",
+          "delete": "Delete"
+        },
+        "form": {
+          "overTimeWarning": "Accumulated time exceeds 8 hours. Consider ending today's route here.",
+          "discontinuousAlert": "Starting point is not continuous with the previous day's endpoint \"{prevDayLastNodeName}\"",
+          "usePrevEndpoint": "Use Previous Endpoint",
+          "startingPointLabel": "Starting Point",
+          "startingPointPlaceholder": "Select starting point",
+          "startingTimeLabel": "Starting Time",
+          "todaysRoute": "TODAY'S ROUTE",
+          "undo": "Undo",
+          "completeRoute": "Complete Route"
+        },
+        "quickJump": {
+          "title": "Jump to...",
+          "placeholder": "Select destination",
+          "cancel": "Cancel",
+          "confirm": "Confirm"
+        },
+        "nodeSelection": {
+          "back": "Go Back",
+          "forward": "Continue",
+          "noNodes": "No available nodes"
+        }
+      },
+      "dayItinerary": {
+        "title": "Day {day} Itinerary",
+        "travelTime": "{adjustedTime} ・Ref. {originalTime} × {paceMultiplier}"
+      },
+      "trailNetwork": {
+        "searchPlaceholder": "Search nodes...",
+        "searchButton": "Search",
+        "searchNotFound": "No nodes found for \"{query}\""
+      }
+    }
+  },
+  "fit-file-viewer": {
+    "banner": {
+      "title": "Fit File Viewer",
+      "heading": "Analyze and Visualize",
+      "headingLine2": "Your Activity Data",
+      "description": "A reliable tool for analyzing and visualizing your activity data. View detailed metrics, track performance, and explore your workouts with precision and clarity."
+    },
+    "header": {
+      "uploadNewFile": "Upload New File"
+    },
+    "summary": {
+      "totalDistance": "Total Distance",
+      "totalTime": "Total Time",
+      "avgHeartRate": "Avg. Heart Rate",
+      "avgPace": "Avg. Pace",
+      "totalAscent": "Total Ascent",
+      "totalDescent": "Total Descent",
+      "calories": "Calories",
+      "avgPower": "Avg. Power"
+    },
+    "upload": {
+      "parsingError": "Parsing Error",
+      "instruction": "Upload your .fit file",
+      "hint": "Drag file here or click to select files, each file should not exceed 5mb."
+    },
+    "altitude": {
+      "title": "Altitude"
+    },
+    "heartRate": {
+      "title": "Heart Rate Zones",
+      "zone1": "Zone 1",
+      "zone2": "Zone 2",
+      "zone3": "Zone 3",
+      "zone4": "Zone 4",
+      "zone5": "Zone 5"
+    },
+    "records": {
+      "title": "Records",
+      "timestamp": "Timestamp",
+      "positionLat": "Position Lat.",
+      "positionLong": "Position Long.",
+      "heartRate": "Heart Rate",
+      "distance": "Distance",
+      "activityType": "Activity Type",
+      "altitude": "Altitude",
+      "enhancedAltitude": "Enhanced Altitude",
+      "enhancedSpeed": "Enhanced Speed",
+      "cadence": "Cadence",
+      "fractionalCadence": "Fractional Cadence",
+      "power": "Power",
+      "showRawData": "Show raw data",
+      "goToPage": "Go to page"
+    },
+    "emptyState": {
+      "noDataFound": "No data found"
+    }
+  },
+  "not-found": {
+    "title": "Nothing to see here",
+    "description": "Page you are trying to open does not exist. You may have mistyped the address, or the page has been moved to another URL. If you think this is an error contact support.",
+    "back": "Take me back to home page"
+  }
+}

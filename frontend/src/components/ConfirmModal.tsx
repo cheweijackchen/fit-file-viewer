@@ -10,6 +10,7 @@ interface Props {
   onCancel: () => void;
   confirmLabel?: string;
   cancelLabel?: string;
+  confirmColor?: string;
 }
 
 export function ConfirmModal({
@@ -20,6 +21,7 @@ export function ConfirmModal({
   onCancel,
   confirmLabel = '確定',
   cancelLabel = '取消',
+  confirmColor,
 }: Props) {
   return (
     <Modal
@@ -42,7 +44,10 @@ export function ConfirmModal({
         >
           {cancelLabel}
         </Button>
-        <Button onClick={onOk}>
+        <Button
+          color={confirmColor}
+          onClick={onOk}
+        >
           {confirmLabel}
         </Button>
       </div>

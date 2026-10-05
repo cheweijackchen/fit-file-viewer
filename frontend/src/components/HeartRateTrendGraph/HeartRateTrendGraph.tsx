@@ -73,12 +73,30 @@ export function HeartRateTrendGraph({ records, restingHeartRate, maxHeartRate }:
       withGradient={false}
       fillOpacity={1}
       series={[
-        { name: 'zone0', color: 'gray.5' },
-        { name: 'zone1', color: 'cyan.5' },
-        { name: 'zone2', color: 'teal.5' },
-        { name: 'zone3', color: 'yellow.4' },
-        { name: 'zone4', color: 'orange.5' },
-        { name: 'zone5', color: 'red.6' },
+        {
+          name: 'zone0',
+          color: 'gray.5' 
+        },
+        {
+          name: 'zone1',
+          color: 'cyan.5' 
+        },
+        {
+          name: 'zone2',
+          color: 'teal.5' 
+        },
+        {
+          name: 'zone3',
+          color: 'yellow.4' 
+        },
+        {
+          name: 'zone4',
+          color: 'orange.5' 
+        },
+        {
+          name: 'zone5',
+          color: 'red.6' 
+        },
       ]}
       areaProps={{
         connectNulls: false

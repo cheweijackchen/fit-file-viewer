@@ -1,0 +1,400 @@
+{
+  "landing": {
+    "hero": {
+      "badge": "登山工具，一站集齊",
+      "title": "你的完整登山工具箱",
+      "description": "分析路線、追蹤登頂紀錄、規劃多天行程、視覺化每一次冒險——一個工具箱全部搞定。",
+      "ctaPrimary": "探索工具",
+      "ctaSecondary": "查看示範"
+    },
+    "header": {
+      "brand": "TrailKit",
+      "tools": "工具",
+      "about": "關於",
+      "blog": "部落格",
+      "community": "社群",
+      "getStarted": "立即開始",
+      "navigation": "導覽",
+      "language": "語言",
+      "appearance": "外觀",
+      "theme": {
+        "light": "淺色",
+        "dark": "深色"
+      },
+      "toolsDropdown": {
+        "title": "工具",
+        "fitFileViewer": {
+          "title": "FIT 檔案檢視器",
+          "description": "分析你的 Garmin FIT 活動檔案"
+        },
+        "peaksTracker": {
+          "title": "百岳登頂紀錄",
+          "description": "追蹤並視覺化你的登頂紀錄"
+        },
+        "hikingTrailPlanner": {
+          "title": "登山路線規劃",
+          "description": "規劃多日路線、估算行程配速，並視覺化路線連結"
+        },
+        "trailMap": {
+          "title": "登山地圖",
+          "description": "在互動式地圖上檢視並探索你的 GPX 軌跡"
+        }
+      }
+    },
+    "feature-cards": {
+      "badge": "核心工具",
+      "title": "登山所需，一應俱全",
+      "description": "由登山者為登山者打造的實用工具，挑一個就能直接上路。",
+      "cards": {
+        "peaks-tracker": {
+          "badgeText": "熱門",
+          "title": "百岳登頂紀錄",
+          "description": "記錄並視覺化你到訪過的每一座山峰。在互動地圖上查看山峰分布，並與朋友分享你的成果。",
+          "linkText": "開啟百岳登頂紀錄"
+        },
+        "fit-file-viewer": {
+          "badgeText": "必備",
+          "title": "FIT 檔案檢視器",
+          "description": "匯入運動手錶的 FIT 檔案，立即查看心率區間、海拔剖面、GPS 軌跡與詳細的活動摘要。",
+          "linkText": "開啟 FIT 檢視器"
+        },
+        "trail-map": {
+          "badgeText": "地圖",
+          "title": "3D 路線地圖",
+          "description": "在互動式 3D 地圖上視覺化你的登山路線，支援地形、衛星影像、等高線與軌跡動畫播放。",
+          "linkText": "開啟路線地圖"
+        }
+      }
+    },
+    "why-trailkit": {
+      "badge": "為何選擇 TRAILKIT",
+      "title": "一個工具箱，陪你走完全程",
+      "description": "從出發前的路線規劃，到下山後的數據回顧，登山所需都在這裡。",
+      "stats": {
+        "tools": {
+          "value": "4 種",
+          "label": "核心工具一站整合"
+        },
+        "peaks": {
+          "value": "100 座",
+          "label": "台灣百岳完整收錄"
+        },
+        "formats": {
+          "value": "FIT · GPX",
+          "label": "支援的活動檔格式"
+        },
+        "planning": {
+          "value": "多天行程",
+          "label": "規劃與步速估算"
+        }
+      }
+    },
+    "footer": {
+      "tagline": "實用的登山工具箱——規劃、追蹤、回味每一條山徑。",
+      "copyright": "© 2026 TrailKit。以 ❤️ 為登山社群打造。",
+      "nav": {
+        "tools": {
+          "title": "工具",
+          "links": {
+            "peaksTracker": "百岳登頂紀錄",
+            "fitFileViewer": "FIT 檔案檢視器",
+            "interactiveDemo": "互動示範",
+            "gpxConverter": "GPX 轉換器"
+          }
+        },
+        "resources": {
+          "title": "資源",
+          "links": {
+            "documentation": "文件",
+            "blog": "部落格",
+            "changelog": "更新日誌",
+            "github": "GitHub"
+          }
+        },
+        "community": {
+          "title": "社群",
+          "links": {
+            "discord": "Discord",
+            "contribute": "參與貢獻",
+            "featureRequests": "功能建議",
+            "privacyPolicy": "隱私政策"
+          }
+        }
+      }
+    },
+    "cta": {
+      "title": "準備好探索山林了嗎？",
+      "description": "規劃你的下一次登山冒險——整理路線、追蹤進度、與夥伴分享每一條山徑。",
+      "ctaPrimary": "開始探險",
+      "ctaSecondary": "查看示範"
+    },
+    "coming-soon": {
+      "badge": "即將推出",
+      "title": "更多工具陸續上線",
+      "description": "我們正在打造更多工具，讓每一次登山體驗更完整。",
+      "cards": {
+        "trail-planner": {
+          "title": "路線規劃器",
+          "description": "規劃路線、估算時間，出發前與朋友分享行程。"
+        },
+        "elevation-analyzer": {
+          "title": "海拔分析器",
+          "description": "詳細的爬升/下降圖表，附帶坡度分析，評估路線難度。"
+        },
+        "weather-overlay": {
+          "title": "天氣疊加層",
+          "description": "將歷史天氣資料疊加在登山時間軸與 GPS 軌跡上。"
+        },
+        "gpx-converter": {
+          "title": "GPX 轉換器",
+          "description": "在 FIT、GPX、KML 格式之間轉換，輕鬆合併或分割軌跡檔案。"
+        }
+      }
+    }
+  },
+  "hiking-trail-planner": {
+    "hero": {
+      "title": "規劃你的山岳旅程",
+      "description": "規劃多日高山路線、視覺化步道連結，逐日安排每個步程。",
+      "cta": "開始新旅程"
+    },
+    "features": {
+      "visualTrailGraph": {
+        "title": "視覺化步道圖",
+        "description": "規劃前一覽所有節點與連結"
+      },
+      "multiDayPlanning": {
+        "title": "多日行程規劃",
+        "description": "以天為單位安排行程，附時間估算"
+      },
+      "connectedRoutes": {
+        "title": "串聯路線",
+        "description": "將多條步道串成一段完整旅程"
+      }
+    },
+    "startFromPlan": {
+      "eyebrow": "精選路線",
+      "title": "從範本開始規劃",
+      "subtitle": "選一條精選路線，改成你自己的行程。",
+      "cta": "使用此路線",
+      "days": "{count} 天",
+      "trailNames": {
+        "south-second-section": "南二段",
+        "north-first-section": "北一段",
+        "yushan-group": "玉山群峰",
+        "ganzhuowan-group": "干卓萬群峰",
+        "nenggao-group": "能高安東軍",
+        "north-second-section": "北二段",
+        "zhongheng-4-spicy": "中橫四辣",
+        "south-first-section": "南一段",
+        "xinkang-traverse": "新康橫斷",
+        "xueshan-group": "雪山群峰",
+        "hehuan-group": "合歡群峰",
+        "qilai-group": "奇萊群峰",
+        "junda-xiluanda": "郡大山西巒大山",
+        "qicai-lake": "七彩湖",
+        "beidawu": "北大武山",
+        "mabo-traverse": "馬博橫斷",
+        "holy-ridge": "聖稜線",
+        "qilai-east-ridge": "奇萊東稜",
+        "south-third-section": "南三段"
+      }
+    },
+    "yourTrips": {
+      "heading": "你的旅程",
+      "newTrip": "新旅程"
+    },
+    "tripCard": {
+      "days": "{count} 天",
+      "menu": {
+        "view": "檢視",
+        "edit": "編輯",
+        "delete": "刪除"
+      }
+    },
+    "planDetail": {
+      "myTrips": "我的旅程",
+      "edit": "編輯",
+      "cancelEdit": "取消編輯",
+      "delete": "刪除",
+      "settings": "設定",
+      "showDuration": "顯示地點之間時間",
+      "addDay": "新增一天",
+      "tabs": {
+        "itinerary": "行程",
+        "tripStats": "行程統計",
+        "trailNetwork": "步道網絡"
+      },
+      "leaveConfirm": {
+        "title": "尚有未儲存的變更",
+        "description": "離開後，所有編輯中的內容將會遺失。確定要離開嗎？"
+      },
+      "stats": {
+        "days": "{count} 天",
+        "totalTime": "{time} 總時間"
+      },
+      "sections": {
+        "itinerary": "ITINERARY",
+        "trailNetwork": "TRAIL NETWORK",
+        "tripStats": "TRIP STATS",
+        "pace": "PACE",
+        "coverPhoto": "封面照片"
+      },
+      "coverPhoto": {
+        "placeholder": "新增封面照片",
+        "alt": "行程封面照片",
+        "change": "更換照片",
+        "remove": "移除"
+      },
+      "tripStats": {
+        "rawTime": "總時間",
+        "weightedTime": "加權時間 ×{multiplier}"
+      },
+      "pace": {
+        "multiplierLabel": "步速係數",
+        "updateNote": "套用至全部 Day，加權時間將同步更新。",
+        "alert": {
+          "slow": {
+            "title": "預計行進係數已達 1.2（較上河時間慢 20%）",
+            "body": "依此估算，每日行進時間可能過長，將增加摸黑風險與體能負荷。建議重新檢視行程節點：\n1. 考慮縮短每日行走里程或增加紮營天數。\n2. 檢核水源與營地位置，確保在光照充足的情況下抵達目的地。\n3. 若為重裝，請確認是否有足夠體力支撐長時間負重。"
+          },
+          "fast": {
+            "title": "預計行進係數低於 0.7（極速模式）",
+            "body": "您的行程安排極為緊湊，缺乏突發狀況的緩衝時間。請在計畫書中補強以下點：\n1. 設定明確的『撤退時間點（Turn-around Time）』，一旦進度落後即刻下撤。\n2. 確認所有團員皆具備同等強健的體能與負載能力。\n3. 針對技術路段（如攀爬、碎石坡）建議不套用此係數，應回歸 1.0 估算以策安全。"
+          }
+        }
+      },
+      "trailNetworkPlaceholder": {
+        "title": "步道網絡",
+        "comingSoon": "視覺化圖表即將推出"
+      },
+      "deleteConfirm": {
+        "title": "刪除行程",
+        "description": "確定要刪除「{name}」嗎？此操作無法復原。",
+        "confirm": "刪除"
+      },
+      "editToolbar": {
+        "editing": "編輯中",
+        "unsavedChanges": "變更尚未儲存",
+        "finishEditing": "完成編輯"
+      },
+      "trailSelect": {
+        "placeholder": "新增路線",
+        "lockedHint": "已安排行程的路線無法移除"
+      },
+      "dayPlanCard": {
+        "currentNode": "目前位置",
+        "spec": "SPEC",
+        "you": "YOU",
+        "includesRest": "含 {minutes} 分鐘休息",
+        "restTime": {
+          "add": "在此休息",
+          "popover": {
+            "title": "{nodeName} 休息時間",
+            "minutesUnit": "分鐘",
+            "confirm": "確認"
+          }
+        },
+        "menu": {
+          "edit": "編輯",
+          "cancelEdit": "取消編輯",
+          "clearRoute": "清除路線",
+          "delete": "刪除"
+        },
+        "form": {
+          "overTimeWarning": "目前累積時間已超過 8 小時，考慮是否在此結束本日。",
+          "discontinuousAlert": "起點與前一天終點「{prevDayLastNodeName}」不連續",
+          "usePrevEndpoint": "改用前一天終點",
+          "startingPointLabel": "起點",
+          "startingPointPlaceholder": "選擇起點",
+          "startingTimeLabel": "出發時間",
+          "todaysRoute": "今日路線",
+          "undo": "復原上一步",
+          "completeRoute": "完成路線"
+        },
+        "quickJump": {
+          "title": "跳轉至...",
+          "placeholder": "選擇目的地",
+          "cancel": "取消",
+          "confirm": "確認"
+        },
+        "nodeSelection": {
+          "back": "往回走",
+          "forward": "繼續走",
+          "noNodes": "無可繼續的節點"
+        }
+      },
+      "dayItinerary": {
+        "title": "第 {day} 天行程",
+        "travelTime": "{adjustedTime} ・上河基準 {originalTime} × {paceMultiplier}"
+      },
+      "trailNetwork": {
+        "searchPlaceholder": "搜尋節點...",
+        "searchButton": "搜尋",
+        "searchNotFound": "找不到符合「{query}」的節點"
+      }
+    }
+  },
+  "fit-file-viewer": {
+    "banner": {
+      "title": "Fit 檔案檢視器",
+      "heading": "分析並視覺化",
+      "headingLine2": "您的活動資料",
+      "description": "一款可靠的分析與視覺化工具，完整呈現您的活動資料。查看詳細指標、追蹤表現，並以精確清晰的方式探索您的訓練紀錄。"
+    },
+    "header": {
+      "uploadNewFile": "上傳新檔案"
+    },
+    "summary": {
+      "totalDistance": "總距離",
+      "totalTime": "總時間",
+      "avgHeartRate": "平均心率",
+      "avgPace": "平均配速",
+      "totalAscent": "總爬升",
+      "totalDescent": "總下降",
+      "calories": "卡路里",
+      "avgPower": "平均功率"
+    },
+    "upload": {
+      "parsingError": "解析錯誤",
+      "instruction": "上傳您的 .fit 檔案",
+      "hint": "拖曳檔案至此或點擊選取，每個檔案不得超過 5MB。"
+    },
+    "altitude": {
+      "title": "海拔"
+    },
+    "heartRate": {
+      "title": "心率區間",
+      "zone1": "區間 1",
+      "zone2": "區間 2",
+      "zone3": "區間 3",
+      "zone4": "區間 4",
+      "zone5": "區間 5"
+    },
+    "records": {
+      "title": "記錄",
+      "timestamp": "時間戳記",
+      "positionLat": "緯度",
+      "positionLong": "經度",
+      "heartRate": "心率",
+      "distance": "距離",
+      "activityType": "活動類型",
+      "altitude": "海拔",
+      "enhancedAltitude": "增強海拔",
+      "enhancedSpeed": "增強速度",
+      "cadence": "步頻",
+      "fractionalCadence": "小數步頻",
+      "power": "功率",
+      "showRawData": "顯示原始資料",
+      "goToPage": "前往頁面"
+    },
+    "emptyState": {
+      "noDataFound": "找不到資料"
+    }
+  },
+  "not-found": {
+    "title": "這裡沒有東西",
+    "description": "你嘗試開啟的頁面不存在。可能是網址輸入錯誤，或頁面已移至其他位置。如果你認為這是錯誤，請聯絡客服。",
+    "back": "回到首頁"
+  }
+}

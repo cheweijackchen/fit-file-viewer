@@ -6,7 +6,7 @@ import { useCallback, useState } from 'react'
 import { useGpxParser } from '@/hooks/useGpxParser'
 import { Sidebar } from './components/Sidebar'
 
-const MapNoSSR = dynamic(() => import('@/components/VectorMap/MapView').then((mod) => mod.MapView), {
+const MapNoSSR = dynamic(() => import('@/components/VectorMap').then((mod) => mod.VectorMap), {
   ssr: false,
   loading: () => (
     <Card

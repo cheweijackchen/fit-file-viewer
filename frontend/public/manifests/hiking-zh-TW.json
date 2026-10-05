@@ -1,0 +1,17 @@
+{
+  "name": "登山行程規劃",
+  "short_name": "登山規劃",
+  "description": "多天登山行程規劃工具",
+  "start_url": "/zh-TW/hiking-trail-planner/",
+  "scope": "/zh-TW/hiking-trail-planner/",
+  "display": "standalone",
+  "background_color": "#1a1a1a",
+  "theme_color": "#fab005",
+  "lang": "zh-TW",
+  "icons": [
+    { "src": "/icons/hiking-trail-planner/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icons/hiking-trail-planner/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "/icons/hiking-trail-planner/icon-maskable-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "/icons/hiking-trail-planner/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

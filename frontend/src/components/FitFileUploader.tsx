@@ -5,6 +5,7 @@ import { Dropzone, type FileWithPath } from '@mantine/dropzone'
 import { notifications } from '@mantine/notifications'
 import { IconBike, IconUpload, IconX } from '@tabler/icons-react'
 import FitParser from 'fit-file-parser'
+import { useTranslations } from 'next-intl'
 import { useState } from 'react'
 import { FIT_PARSER_LENGTH_UNIT, FIT_PARSER_SPEED_UNIT } from '@/constants/fitData'
 import { type ParsedFit } from '@/model/fitParser'
@@ -20,6 +21,7 @@ const MAX_FILE_SIZE_IN_BYTES = 5 * (1024 ** 2)
 export function FitFileUploader({ className, onSuccess }: Props) {
   const [parseLoading, setParseLoading] = useState(false)
   const { setFileName, setFitData } = useFitDataActions()
+  const t = useTranslations('fit-file-viewer')
 
   function onFileDrop(files: FileWithPath[]) {
     handleFitFile(files[0])
@@ -27,7 +29,7 @@ export function FitFileUploader({ className, onSuccess }: Props) {
 
   function showParsingErrorNotification(error: unknown) {
     notifications.show({
-      title: 'Parsing Error',
+      title: t('upload.parsingError'),
       message: JSON.stringify(error),
       color: 'red'
     })
@@ -113,7 +115,7 @@ export function FitFileUploader({ className, onSuccess }: Props) {
             fw="600"
             ff="mono"
           >
-            Upload your .fit file
+            {t('upload.instruction')}
           </Text>
           <Text
             size="sm"
@@ -122,7 +124,7 @@ export function FitFileUploader({ className, onSuccess }: Props) {
             ff="mono"
             className="max-w-120"
           >
-            Drag file here or click to select files, each file should not exceed 5mb.
+            {t('upload.hint')}
           </Text>
         </Stack>
       </Stack>

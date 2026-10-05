@@ -69,14 +69,21 @@ export function useMapInstance({
 
   const isReady = isReadyRef.current
 
-  return { mapRef, isReady }
+  return {
+    mapRef,
+    isReady 
+  }
 }
 
 /**
  * Reset pitch and bearing to default values.
  */
 export function resetMapView(map: Map): void {
-  map.easeTo({ pitch: 45, bearing: 0, duration: 600 })
+  map.easeTo({
+    pitch: 45,
+    bearing: 0,
+    duration: 600 
+  })
 }
 
 export { useCallback }

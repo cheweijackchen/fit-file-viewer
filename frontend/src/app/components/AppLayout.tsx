@@ -1,12 +1,13 @@
-import { AppShell, Divider } from '@mantine/core'
+'use client'
+
+import { AppShell } from '@mantine/core'
+import { HEADER_HEIGHT } from '@/constants/layout'
 import { AppFooter } from './AppFooter'
 import { AppHeader } from './AppHeader'
 
 interface Props {
   children: React.ReactNode;
 }
-
-const HEADER_HEIGHT = 60
 
 export default function AppLayout({ children }: Props) {
   return (
@@ -15,16 +16,16 @@ export default function AppLayout({ children }: Props) {
     >
       <AppShell.Header
         withBorder={false}
+        className="app-header"
       >
-        <AppHeader></AppHeader>
+        <AppHeader />
       </AppShell.Header>
       <AppShell.Main className="flex">
         <div className="flex-1">
           {children}
         </div>
       </AppShell.Main>
-      <Divider className="px-6"></Divider>
-      <AppFooter className="px-6 py-8"></AppFooter>
+      <AppFooter />
     </AppShell>
   )
 }

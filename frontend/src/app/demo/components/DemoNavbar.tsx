@@ -40,7 +40,11 @@ export function DemoNavbar({ closeNavbar }: Props) {
               radius="lg"
               size="lg"
             >
-              <IconDeviceFloppy style={{ width: '70%', height: '70%' }} />
+              <IconDeviceFloppy style={{
+                width: '70%',
+                height: '70%' 
+              }}
+              />
             </ThemeIcon>
             {isNavbarShown && (
               <Text

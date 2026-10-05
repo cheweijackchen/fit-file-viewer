@@ -1,8 +1,8 @@
 'use client'
 
-import { Button, Text, Title } from '@mantine/core'
+import { ActionIcon, Menu, Text, Title, useComputedColorScheme, useMantineColorScheme } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
-import { IconRotate } from '@tabler/icons-react'
+import { IconDotsVertical, IconHome, IconMoon, IconRotate, IconSun } from '@tabler/icons-react'
 import { ConfirmModal } from '@/components/ConfirmModal'
 import useScreen from '@/hooks/useScreen'
 
@@ -14,6 +14,9 @@ interface Props {
 export function PeaksHeader({ showClear, onClear }: Props) {
   const { onMobile } = useScreen()
   const [opened, { open: openConfirmClearDialog, close: closeConfirmClearDialog }] = useDisclosure(false)
+  const { setColorScheme } = useMantineColorScheme()
+  const computedColorScheme = useComputedColorScheme('light', { getInitialValueInEffect: true })
+  const isDark = computedColorScheme === 'dark'
 
   function handleConfirmClear() {
     onClear()
@@ -39,17 +42,50 @@ export function PeaksHeader({ showClear, onClear }: Props) {
           Taiwan 100 Peaks
         </Text>
       </div>
-      {showClear && (
-        <Button
-          variant="default"
-          size="xs"
-          c="dimmed"
-          leftSection={<IconRotate size={14} />}
-          onClick={openConfirmClearDialog}
-        >
-          清除紀錄
-        </Button>
-      )}
+      <Menu position="bottom-start">
+        <Menu.Target>
+          <ActionIcon
+            variant="subtle"
+            size="md"
+            color="dark"
+          >
+            <IconDotsVertical 
+              size={20}
+              stroke={1.5}
+            />
+          </ActionIcon>
+        </Menu.Target>
+        <Menu.Dropdown w="200">
+          <Menu.Item
+            component="a"
+            href="/"
+            leftSection={(
+              <IconHome
+                size={14}
+              />
+            )}
+          >
+            Home
+          </Menu.Item>
+          <Menu.Item
+            leftSection={isDark ? <IconSun size={14} /> : <IconMoon size={14} />}
+            onClick={() => setColorScheme(isDark ? 'light' : 'dark')}
+          >
+            {isDark ? 'Light mode' : 'Dark mode'}
+          </Menu.Item>
+          {showClear && (
+            <>
+              <Menu.Divider />
+              <Menu.Item
+                leftSection={<IconRotate size={14} />}
+                onClick={openConfirmClearDialog}
+              >
+                清除紀錄
+              </Menu.Item>
+            </>
+          )}
+        </Menu.Dropdown>
+      </Menu>
       <ConfirmModal
         opened={opened}
         title="清除紀錄"

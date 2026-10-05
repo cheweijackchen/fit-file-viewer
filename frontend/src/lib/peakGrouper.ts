@@ -21,7 +21,10 @@ function groupPeaksByCategory(): PeakGroup[] {
   for (const [id, peak] of Object.entries(Taiwan100MountainPeak)) {
     const entries = groupMap.get(peak.category)
     if (entries) {
-      entries.push({ id, peak })
+      entries.push({
+        id,
+        peak 
+      })
     }
   }
 

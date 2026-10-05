@@ -30,3 +30,42 @@
     z-index: 1;
   }
 }
+
+.checkbox-hover-effect {
+  cursor: pointer;
+  .mantine-Checkbox-label, .mantine-Checkbox-labelWrapper {
+    cursor: pointer;
+  }
+
+  .mantine-Checkbox-inner {
+    &::before {
+      pointer-events: none;
+      content: '';
+      position: absolute;
+      inset: -6px;
+      border-radius: 50%;
+      background: var(--checkbox-color, currentColor);
+      transform: scale(0);
+      transition: transform .22s cubic-bezier(0, 0, .2, 1);
+
+      @include mantine.light {
+        opacity: 0.2;
+      }
+      @include mantine.dark {
+        opacity: 0.5;
+      }
+    }
+  }
+
+  &.mantine-Checkbox-root:not([data-disabled]):hover .mantine-Checkbox-inner::before {
+    transform: scale(1);
+  }
+}
+
+.light-hover-effect {
+  @media (hover: hover) {
+    &:hover {
+      background-color: light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-6));
+    }
+  }
+}

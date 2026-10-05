@@ -28,40 +28,42 @@ export function HeartRateZoneChartTooltip({ label, payload, restingHeartRate, ma
       return
     }
 
-    return <Flex
-      key={item.name}
-      align="center"
-      justify="space-between"
-           >
+    return (
       <Flex
+        key={item.name}
         align="center"
-        gap="xs"
-        mr="xl"
+        justify="space-between"
       >
-        <svg className="w-3 h-3 min-w-3 min-h-3">
-          <circle
-            r={6}
-            fill={getThemeColor(item.color, theme)}
-            width={12}
-            height={12}
-            cx={6}
-            cy={6}
-          />
-        </svg>
+        <Flex
+          align="center"
+          gap="xs"
+          mr="xl"
+        >
+          <svg className="w-3 h-3 min-w-3 min-h-3">
+            <circle
+              r={6}
+              fill={getThemeColor(item.color, theme)}
+              width={12}
+              height={12}
+              cx={6}
+              cy={6}
+            />
+          </svg>
+          <Text
+            fz="sm"
+            tt="capitalize"
+          >
+            {item.name}
+          </Text>
+        </Flex>
         <Text
           fz="sm"
-          tt="capitalize"
+          c="bright"
         >
-          {item.name}
+          {item.value}
         </Text>
       </Flex>
-      <Text
-        fz="sm"
-        c="bright"
-      >
-        {item.value}
-      </Text>
-    </Flex>
+    )
   }).filter(item => item)
 
   return (

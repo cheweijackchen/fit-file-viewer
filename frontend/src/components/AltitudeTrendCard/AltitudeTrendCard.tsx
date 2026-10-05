@@ -1,6 +1,7 @@
 import { AreaChart } from '@mantine/charts'
 import { Card, Stack, Title, useMantineColorScheme } from '@mantine/core'
 import { LTTB } from 'downsample'
+import { useTranslations } from 'next-intl'
 import { convertFitDataLength } from '@/lib/converter'
 import type { ParsedRecord } from '@/model/fitParser'
 import { AltitudeTooltip } from './components/AltitudeTooltip'
@@ -16,6 +17,7 @@ const FILL_OPACITY_FOR_LIGHT_MODE = 0.5
 
 export function AltitudeTrendCard({ records }: Props) {
   const { colorScheme } = useMantineColorScheme()
+  const t = useTranslations('fit-file-viewer')
   const fillOpacity = (colorScheme === 'dark')
     ? FILL_OPACITY_FOR_DARK_MODE
     : FILL_OPACITY_FOR_LIGHT_MODE
@@ -77,7 +79,7 @@ export function AltitudeTrendCard({ records }: Props) {
           size="h5"
           order={3}
           c="bright"
-        >Altitude</Title>
+        >{t('altitude.title')}</Title>
         <AreaChart
           h={250}
           data={chartData}
@@ -89,7 +91,10 @@ export function AltitudeTrendCard({ records }: Props) {
           fillOpacity={fillOpacity}
           gridAxis="xy"
           gridProps={{ yAxisId: 'left' }} // horizontal grid lines missing without this will be fixed at Recharts 9.0
-          series={[{ name: 'altitude', color: 'yellow.4' }]}
+          series={[{
+            name: 'altitude',
+            color: 'yellow.4' 
+          }]}
           areaProps={{
             connectNulls: false
           }}
