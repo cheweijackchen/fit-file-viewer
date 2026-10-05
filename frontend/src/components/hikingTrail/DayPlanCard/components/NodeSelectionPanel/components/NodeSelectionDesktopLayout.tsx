@@ -1,4 +1,5 @@
 import { IconArrowRight, IconArrowsHorizontal } from '@tabler/icons-react'
+import { useTranslations } from 'next-intl'
 import type { TrailAdjacencyList, TrailNode } from '@/model/hikingTrail'
 import { CurrentNodeCard } from './CurrentNodeCard'
 import { NodeCard } from './NodeCard'
@@ -14,6 +15,9 @@ export interface LayoutProps {
   edgeTimeLabel: (from: string, to: string) => string;
   onNodeSelect: (nodeId: string) => void;
   onQuickJump?: () => void;
+  enableRest?: boolean;
+  currentNodeRestMinutes?: number;
+  onCurrentNodeRestMinutesChange?: (minutes: number | undefined) => void;
 }
 
 export function NodeSelectionDesktopLayout({
@@ -25,7 +29,11 @@ export function NodeSelectionDesktopLayout({
   edgeTimeLabel,
   onNodeSelect,
   onQuickJump,
+  enableRest,
+  currentNodeRestMinutes,
+  onCurrentNodeRestMinutesChange,
 }: LayoutProps) {
+  const t = useTranslations('hiking-trail-planner')
   const currentId = currentNode?.id ?? ''
 
   return (
@@ -55,7 +63,12 @@ export function NodeSelectionDesktopLayout({
 
       {/* Current node */}
       <div className="flex flex-col gap-2 flex-1 min-w-0">
-        <CurrentNodeCard node={currentNode} />
+        <CurrentNodeCard
+          node={currentNode}
+          enableRest={enableRest}
+          restMinutes={currentNodeRestMinutes}
+          onRestMinutesChange={onCurrentNodeRestMinutesChange}
+        />
         {onQuickJump && <QuickJumpButton onClick={onQuickJump} />}
       </div>
 
@@ -82,7 +95,7 @@ export function NodeSelectionDesktopLayout({
           ))
         ) : (
           <span className="text-xs text-(--mantine-color-stone-4) pt-3.5">
-            無可繼續的節點
+            {t('planDetail.dayPlanCard.nodeSelection.noNodes')}
           </span>
         )}
       </div>

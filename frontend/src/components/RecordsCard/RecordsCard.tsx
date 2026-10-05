@@ -299,8 +299,6 @@ export function RecordsCard({ records }: Props) {
             page={page}
             recordsPerPageOptions={PAGE_SIZES}
             paginationWrapBreakpoint="lg"
-            onRecordsPerPageChange={setPageSize}
-            onPageChange={setPage}
             // custom "Jump to page" control using renderPagination callback
             renderPagination={({ state, actions, Controls }) => (
               <>
@@ -323,6 +321,8 @@ export function RecordsCard({ records }: Props) {
                 <Controls.Pagination />
               </>
             )}
+            onRecordsPerPageChange={setPageSize}
+            onPageChange={setPage}
           ></DataTable>
         </Accordion.Panel>
       </Accordion.Item>

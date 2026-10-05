@@ -1,4 +1,5 @@
 import { IconCornerUpLeft, IconCornerUpRight } from '@tabler/icons-react'
+import { useTranslations } from 'next-intl'
 import { CurrentNodeCard } from './CurrentNodeCard'
 import { NodeCard } from './NodeCard'
 import type { LayoutProps } from './NodeSelectionDesktopLayout'
@@ -14,13 +15,22 @@ export function NodeSelectionMobileLayout({
   edgeTimeLabel,
   onNodeSelect,
   onQuickJump,
+  enableRest,
+  currentNodeRestMinutes,
+  onCurrentNodeRestMinutesChange,
 }: LayoutProps) {
+  const t = useTranslations('hiking-trail-planner')
   const currentId = currentNode?.id ?? ''
 
   return (
     <div className="flex flex-col gap-2.5 w-full">
       {/* Current node — full width */}
-      <CurrentNodeCard node={currentNode} />
+      <CurrentNodeCard
+        node={currentNode}
+        enableRest={enableRest}
+        restMinutes={currentNodeRestMinutes}
+        onRestMinutesChange={onCurrentNodeRestMinutesChange}
+      />
       {onQuickJump && <QuickJumpButton onClick={onQuickJump} />}
 
       {/* Two-col: back | forward */}
@@ -30,7 +40,7 @@ export function NodeSelectionMobileLayout({
           <SectionLabel
             muted
             icon={IconCornerUpLeft}
-            label="往回走"
+            label={t('planDetail.dayPlanCard.nodeSelection.back')}
           />
           {previousNode && previousNodeId ? (
             <NodeCard
@@ -48,7 +58,7 @@ export function NodeSelectionMobileLayout({
         <div className="flex flex-col flex-1 gap-2 min-w-0">
           <SectionLabel
             icon={IconCornerUpRight}
-            label="繼續走"
+            label={t('planDetail.dayPlanCard.nodeSelection.forward')}
           />
           {forwardIds.length > 0 ? (
             forwardIds.map((id) => (
@@ -61,7 +71,7 @@ export function NodeSelectionMobileLayout({
               />
             ))
           ) : (
-            <span className="text-xs text-(--mantine-color-stone-4)">無可繼續的節點</span>
+            <span className="text-xs text-(--mantine-color-stone-4)">{t('planDetail.dayPlanCard.nodeSelection.noNodes')}</span>
           )}
         </div>
       </div>

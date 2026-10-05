@@ -8,4 +8,13 @@
   &:focus {
     --input-bd: var(--mantine-color-stone-5);
   }
+  &:focus-within {
+    --input-bd-focus: var(--mantine-color-stone-5);
+  }
+}
+
+.timeField {
+  &:focus-visible {
+    outline: none;
+  }
 }

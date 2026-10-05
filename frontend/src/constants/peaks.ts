@@ -17,6 +17,11 @@ export const MountainCategory = {
   MaboTraverse: '馬博橫斷',
   XinkangTraverse: '新康橫斷',
   GanzhuowanGroup: '干卓萬群峰',
+  HolyRidge: '聖稜線',
+  JundaXiluanda: '郡大山西巒大山',
+  QilaiEastRidge: '奇萊東稜',
+  QicaiLake: '七彩湖',
+  Beidawu: '北大武山',
   Other: '其他'
 } as const
 

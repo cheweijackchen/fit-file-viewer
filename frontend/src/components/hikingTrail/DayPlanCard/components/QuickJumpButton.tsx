@@ -1,4 +1,5 @@
 import { IconBolt } from '@tabler/icons-react'
+import { useTranslations } from 'next-intl'
 
 interface Props {
   onClick: () => void;
@@ -6,6 +7,7 @@ interface Props {
 }
 
 export function QuickJumpButton({ onClick, disabled = false }: Props) {
+  const t = useTranslations('hiking-trail-planner')
   return (
     <button
       type="button"
@@ -19,7 +21,7 @@ export function QuickJumpButton({ onClick, disabled = false }: Props) {
         color="var(--mantine-color-yellow-6)"
       />
       <span className="text-sm font-semibold text-(--mantine-color-yellow-7)">
-        Jump to...
+        {t('planDetail.dayPlanCard.quickJump.title')}
       </span>
     </button>
   )

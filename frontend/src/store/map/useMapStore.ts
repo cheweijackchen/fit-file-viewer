@@ -1,6 +1,6 @@
 import { create } from 'zustand'
-import { createSelectors } from '../utils'
 import type { ParsedTrack } from '@/model/gpx'
+import { createSelectors } from '../utils'
 
 interface MapStoreState {
   track: ParsedTrack | null;
@@ -12,7 +12,10 @@ interface MapStoreState {
 const useMapStoreBase = create<MapStoreState>((set) => ({
   track: null,
   actions: {
-    setTrack: (track) => set((state) => ({ ...state, track })),
+    setTrack: (track) => set((state) => ({
+      ...state,
+      track 
+    })),
   },
 }))
 

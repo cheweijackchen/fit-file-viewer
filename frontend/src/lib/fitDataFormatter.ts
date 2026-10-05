@@ -252,7 +252,13 @@ class FitDataFormatter {
           value: (valueInMPS * 2.23694).toFixed(1),
           unit: 'mph',
         }
-      case 'min/km':
+      case 'min/km': {
+        if (!Number.isFinite(valueInMPS) || valueInMPS <= 0) {
+          return {
+            value: '--:--',
+            unit: 'min/km',
+          }
+        }
         const paceInMinutes = 1000 / (valueInMPS * 60)
         const minutes = Math.floor(paceInMinutes)
         const seconds = Math.round((paceInMinutes - minutes) * 60)
@@ -260,6 +266,7 @@ class FitDataFormatter {
           value: `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`,
           unit: 'min/km',
         }
+      }
     }
   }
 

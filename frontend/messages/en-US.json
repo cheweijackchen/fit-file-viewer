@@ -1,9 +1,9 @@
 {
   "landing": {
     "hero": {
-      "badge": "Free & Privacy-First Hiking Tools",
+      "badge": "Hiking Tools, All in One Place",
       "title": "Your Complete Hiking Toolkit",
-      "description": "Analyze your trails, track your peaks, and visualize every adventure — all in your browser, no data leaves your device.",
+      "description": "Analyze your trails, track your peaks, plan multi-day trips, and visualize every adventure — all from one toolkit.",
       "ctaPrimary": "Explore Tools",
       "ctaSecondary": "View Demo"
     },
@@ -25,7 +25,7 @@
         "title": "Tools",
         "fitFileViewer": {
           "title": "FIT File Viewer",
-          "description": "Analyze your Garmin FIT files in the browser"
+          "description": "Analyze your Garmin FIT activity files"
         },
         "peaksTracker": {
           "title": "Peaks Tracker",
@@ -44,7 +44,7 @@
     "feature-cards": {
       "badge": "CORE TOOLS",
       "title": "Everything You Need on the Trail",
-      "description": "Powerful browser-based tools designed for hikers, by hikers. No account needed.",
+      "description": "Practical tools designed for hikers, by hikers — pick the one you need and get going.",
       "cards": {
         "peaks-tracker": {
           "badgeText": "Popular",
@@ -55,7 +55,7 @@
         "fit-file-viewer": {
           "badgeText": "Essential",
           "title": "FIT File Viewer",
-          "description": "Upload your sports watch FIT files and instantly see heart rate zones, elevation profiles, GPS tracks, and detailed activity summaries.",
+          "description": "Open your sports watch FIT files and instantly see heart rate zones, elevation profiles, GPS tracks, and detailed activity summaries.",
           "linkText": "Open FIT Viewer"
         },
         "trail-map": {
@@ -66,32 +66,32 @@
         }
       }
     },
-    "privacy": {
+    "why-trailkit": {
       "badge": "WHY TRAILKIT",
-      "title": "Built for Hikers Who Care About Privacy",
-      "description": "Your GPS data, heart rate, and trail logs never leave your browser. Period.",
+      "title": "One Toolkit for the Whole Trip",
+      "description": "From planning the route to reviewing your data after the hike — everything a hiker needs in one place.",
       "stats": {
-        "processing": {
-          "value": "100%",
-          "label": "Client-Side Processing"
+        "tools": {
+          "value": "4",
+          "label": "Tools in One Toolkit"
         },
-        "uploaded": {
-          "value": "0 Bytes",
-          "label": "Uploaded to Servers"
+        "peaks": {
+          "value": "100",
+          "label": "Taiwan Peaks to Track"
         },
-        "account": {
-          "value": "No Account",
-          "label": "Required to Get Started"
+        "formats": {
+          "value": "FIT · GPX",
+          "label": "Activity Formats Supported"
         },
-        "openSource": {
-          "value": "Open Source",
-          "label": "Free Forever"
+        "planning": {
+          "value": "Multi-Day",
+          "label": "Trip Planning & Pace Estimate"
         }
       }
     },
     "footer": {
-      "tagline": "Privacy-first hiking tools that run entirely in your browser. No servers, no tracking, no compromise.",
-      "copyright": "© 2026 TrailKit. Open source under MIT License. Made with ❤️ for the hiking community.",
+      "tagline": "A practical toolkit for hikers — plan, track, and relive every trail.",
+      "copyright": "© 2026 TrailKit. Made with ❤️ for the hiking community.",
       "nav": {
         "tools": {
           "title": "Tools",
@@ -131,7 +131,7 @@
     "coming-soon": {
       "badge": "COMING SOON",
       "title": "More Tools on the Way",
-      "description": "We're building more privacy-first tools to make every hike better.",
+      "description": "We're adding more tools to make every hike better.",
       "cards": {
         "trail-planner": {
           "title": "Trail Planner",
@@ -172,16 +172,50 @@
         "description": "Combine multiple trails into one seamless journey"
       }
     },
+    "startFromPlan": {
+      "eyebrow": "TRAIL PLANS",
+      "title": "Start from a Plan",
+      "subtitle": "Choose a curated route — then make it yours.",
+      "cta": "Use This Plan",
+      "days": "{count, plural, one {# day} other {# days}}",
+      "trailNames": {
+        "south-second-section": "South Second Section",
+        "north-first-section": "North First Section",
+        "yushan-group": "Yushan Group",
+        "ganzhuowan-group": "Ganzhuowan Group",
+        "nenggao-group": "Nenggao-Andongjun Trail",
+        "north-second-section": "North Second Section",
+        "zhongheng-4-spicy": "Central Cross-Island Four Peaks",
+        "south-first-section": "South First Section",
+        "xinkang-traverse": "Xinkang Traverse",
+        "xueshan-group": "Xueshan Group",
+        "hehuan-group": "Hehuan Group",
+        "qilai-group": "Qilai Group",
+        "junda-xiluanda": "Mt. Junda and Mt. Xiluanda",
+        "qicai-lake": "Qicai Lake",
+        "beidawu": "Beidawu Mountain",
+        "mabo-traverse": "Mabolasi Traverse",
+        "holy-ridge": "Holy Ridge",
+        "qilai-east-ridge": "Qilai East Ridge",
+        "south-third-section": "South Third Section"
+      }
+    },
     "yourTrips": {
       "heading": "Your Trips",
       "newTrip": "New Trip"
     },
     "tripCard": {
-      "days": "{count, plural, one {# day} other {# days}}"
+      "days": "{count, plural, one {# day} other {# days}}",
+      "menu": {
+        "view": "View",
+        "edit": "Edit",
+        "delete": "Delete"
+      }
     },
     "planDetail": {
       "myTrips": "My Trips",
       "edit": "Edit",
+      "cancelEdit": "Cancel Edit",
       "delete": "Delete",
       "settings": "Settings",
       "showDuration": "Show time between locations",
@@ -252,12 +286,52 @@
         "currentNode": "Current Node",
         "spec": "SPEC",
         "you": "YOU",
+        "includesRest": "incl. {minutes}m rest",
+        "restTime": {
+          "add": "Rest here",
+          "popover": {
+            "title": "{nodeName} Rest Time",
+            "minutesUnit": "min",
+            "confirm": "Confirm"
+          }
+        },
         "menu": {
           "edit": "Edit",
           "cancelEdit": "Cancel Edit",
           "clearRoute": "Clear Route",
           "delete": "Delete"
+        },
+        "form": {
+          "overTimeWarning": "Accumulated time exceeds 8 hours. Consider ending today's route here.",
+          "discontinuousAlert": "Starting point is not continuous with the previous day's endpoint \"{prevDayLastNodeName}\"",
+          "usePrevEndpoint": "Use Previous Endpoint",
+          "startingPointLabel": "Starting Point",
+          "startingPointPlaceholder": "Select starting point",
+          "startingTimeLabel": "Starting Time",
+          "todaysRoute": "TODAY'S ROUTE",
+          "undo": "Undo",
+          "completeRoute": "Complete Route"
+        },
+        "quickJump": {
+          "title": "Jump to...",
+          "placeholder": "Select destination",
+          "cancel": "Cancel",
+          "confirm": "Confirm"
+        },
+        "nodeSelection": {
+          "back": "Go Back",
+          "forward": "Continue",
+          "noNodes": "No available nodes"
         }
+      },
+      "dayItinerary": {
+        "title": "Day {day} Itinerary",
+        "travelTime": "{adjustedTime} ・Ref. {originalTime} × {paceMultiplier}"
+      },
+      "trailNetwork": {
+        "searchPlaceholder": "Search nodes...",
+        "searchButton": "Search",
+        "searchNotFound": "No nodes found for \"{query}\""
       }
     }
   },

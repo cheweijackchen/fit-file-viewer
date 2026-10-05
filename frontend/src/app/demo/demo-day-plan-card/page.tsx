@@ -9,10 +9,10 @@ import type { DayPlan } from '@/model/hikingTrail'
 
 // Segments chosen to demonstrate all four pace tiers at paceMultiplier = 1.0:
 //
-// Day 1 — Easy  (~4h):   東埔溫泉 → 雲龍瀑布 → 樂樂山屋 → 觀高登山服務站
-// Day 2 — Normal (~5.5h): 樂樂山屋 → 觀高坪 → 八通關草原
-// Day 3 — Long  (~8.4h): 轆轆山屋 → 雲峰東峰三岔 → 西北鞍 → 南雙頭山 → 拉庫音溪
-// Day 4 — Exhausting (~13.5h): 轆轆山屋 → ... → 嘉明湖避難山屋
+// Day 1 — Easy  (~3.2h):   東埔溫泉 → 八通關登山口 → 三聖宮 → 樂樂溫泉岔路 → 雲龍瀑布 → 樂樂山屋
+// Day 2 — Normal (~5.7h): 樂樂山屋 → 乙女瀑布 → 對觀 → 觀高坪 → 八通關草原
+// Day 3 — Long  (~9.2h): 轆轆谷山屋 → 雲峰東峰三岔路口營地 → 西北鞍南雙池營地 → 南雙頭山 → 拉庫音溪山屋
+// Day 4 — Exhausting (~15.5h): 轆轆谷山屋 → ... → 嘉明湖避難山屋
 
 const DEMO_DAYS: DayPlan[] = [
   {
@@ -20,9 +20,11 @@ const DEMO_DAYS: DayPlan[] = [
     badges: [],
     stops: [
       { nodeId: 'global_dongpu-spring' },
+      { nodeId: 'global_batongguan-trailhead' },
+      { nodeId: 'global_sanshenggong' },
+      { nodeId: 'global_lele-spring-fork' },
       { nodeId: 'global_yunlong-fall' },
       { nodeId: 'global_lele-hut' },
-      { nodeId: 'global_guangao-station' },
     ],
   },
   {
@@ -30,33 +32,39 @@ const DEMO_DAYS: DayPlan[] = [
     badges: [],
     stops: [
       { nodeId: 'global_lele-hut' },
+      { nodeId: 'global_yinv-fall' },
+      { nodeId: 'global_duiguan' },
       { nodeId: 'global_guangao-ping' },
-      { nodeId: 'south-second-section_batongguan-meadow' },
+      { nodeId: 'global_gudaobengduan-fork' },
+      { nodeId: 'global_batongguan-meadow' },
     ],
   },
   {
     id: 'day-3',
     badges: [],
     stops: [
-      { nodeId: 'south-second-section_lulu-hut' },
-      { nodeId: 'south-second-section_yun-mountain-fork-camp' },
-      { nodeId: 'south-second-section_northwest-saddle-camp' },
+      { nodeId: 'south-second-section_lulugu-hut' },
+      { nodeId: 'south-second-section_yun-peak-east-peak-fork-camp' },
+      { nodeId: 'south-second-section_xibei-saddle-nanshuang-pond-camp' },
       { nodeId: 'mountain_nanshuangtou-mountain' },
-      { nodeId: 'south-second-section_lakuynxi-hut' },
+      { nodeId: 'global_lakuyin-river-hut' },
     ],
   },
   {
     id: 'day-4',
     badges: [],
     stops: [
-      { nodeId: 'south-second-section_lulu-hut' },
-      { nodeId: 'south-second-section_yun-mountain-fork-camp' },
-      { nodeId: 'south-second-section_northwest-saddle-camp' },
+      { nodeId: 'south-second-section_lulugu-hut' },
+      { nodeId: 'south-second-section_yun-peak-east-peak-fork-camp' },
+      { nodeId: 'south-second-section_xibei-saddle-nanshuang-pond-camp' },
       { nodeId: 'mountain_nanshuangtou-mountain' },
-      { nodeId: 'south-second-section_lakuynxi-hut' },
-      { nodeId: 'south-second-section_sancha-mountain-trailhead' },
-      { nodeId: 'south-second-section_jiaming-lake-fork' },
-      { nodeId: 'south-second-section_jiaming-refuge-hut' },
+      { nodeId: 'global_lakuyin-river-hut' },
+      { nodeId: 'global_xinkang-mountain-fork' },
+      { nodeId: 'global_jiaming-lake-fork' },
+      { nodeId: 'global_sancha-mountain-trailhead' },
+      { nodeId: 'global_north-peak-sign' },
+      { nodeId: 'global_north-peak-fork' },
+      { nodeId: 'global_jiaming-lake-hut' },
     ],
   },
 ]

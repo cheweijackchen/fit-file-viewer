@@ -6,7 +6,7 @@
 
 ## 專案概述
 
-**TrailKit** 是一個隱私優先的登山工具平台，所有資料處理皆在瀏覽器端完成，不上傳任何個人資料。
+**TrailKit** 是一個集合多種登山相關功能的工具箱平台。目前架構上所有資料處理皆在瀏覽器端完成，沒有後端。
 
 - 前端目錄：`frontend/`
 - 框架：Next.js 16 (App Router) + React 19
@@ -30,6 +30,7 @@
 - [Peaks Tracker](docs/features/peaks-tracker.md)
 - [Trail Map](docs/features/trail-map.md)
 - [Hiking Trail Planner](docs/features/hiking-trail-planner.md)
+- [路線資料整理規則](docs/features/hiking-trail-data-authoring.md)（步程示意圖 → `hiking-trails/*.ts`）
 
 ---
 

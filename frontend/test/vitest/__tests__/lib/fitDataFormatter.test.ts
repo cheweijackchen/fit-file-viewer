@@ -289,8 +289,13 @@ describe('FitDataFormatter', () => {
 
         const result = formatter.format(FitDataField.speed, zeroSpeed)
 
-        expect(result.value).toBe('0.0')
-        expect(result.unit).toBe('km/h')
+        expect(result.value).toBe('--:--')
+        expect(result.unit).toBe('min/km')
+
+        const kmhResult = formatter.format(FitDataField.speed, zeroSpeed, { speedUnit: 'km/h' })
+
+        expect(kmhResult.value).toBe('0.0')
+        expect(kmhResult.unit).toBe('km/h')
       })
     })
   })
@@ -311,7 +316,7 @@ describe('FitDataFormatter', () => {
 
       const result = formatter.format(FitDataField.pace, speedInMPS, { speedUnit: 'km/h' })
 
-      expect(result.value).toBe('5:00')
+      expect(result.value).toBe('05:00')
       expect(result.unit).toBe('min/km')
     })
 
@@ -320,7 +325,7 @@ describe('FitDataFormatter', () => {
 
       const result = formatter.format(FitDataField.pace, speedInMPS, { speedUnit: 'mph' })
 
-      expect(result.value).toBe('8:03')
+      expect(result.value).toBe('08:03')
       expect(result.unit).toBe('min/mi')
     })
 
@@ -1105,7 +1110,8 @@ describe('FitDataFormatter', () => {
       expect(formatted.distance.value).toBe('10.50')
       expect(formatted.distance.unit).toBe('km')
       expect(formatted.duration.value).toBe('1:01:05')
-      expect(formatted.speed.value).toBe('12.6')
+      expect(formatted.speed.value).toBe('04:46')
+      expect(formatted.speed.unit).toBe('min/km')
       expect(formatted.heartRate.value).toBe('146')
       expect(formatted.elevation.value).toBe('250.00') // TODO: check decimal places of elevation
       expect(formatted.temperature.value).toBe('25.5')
@@ -1177,7 +1183,7 @@ describe('FitDataFormatter', () => {
   describe('OutputPresets', () => {
     it('should have correct metric preset values', () => {
       expect(OutputPresets.metric.lengthUnit).toBe('km')
-      expect(OutputPresets.metric.speedUnit).toBe('km/h')
+      expect(OutputPresets.metric.speedUnit).toBe('min/km')
       expect(OutputPresets.metric.temperatureUnit).toBe('celsius')
       expect(OutputPresets.metric.language).toBe('en-US')
     })

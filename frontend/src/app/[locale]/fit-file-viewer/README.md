@@ -8,7 +8,7 @@ The .FIT format is a binary file protocol developed by ANT+. It is the industry 
 
 ## Key Features
 ### Fit File Handling
-- Instant Parsing: Drag-and-drop .fit files for client-side parsing—no data is ever uploaded to a server, ensuring 100% privacy.
+- Instant Parsing: Drag-and-drop .fit files for client-side parsing—no data is ever uploaded to a server.
 
 ### Data Visualization
 - Activity Dashboard: View high-level metrics at a glance, including total distance, elapsed time, average speed, and total calories burned.

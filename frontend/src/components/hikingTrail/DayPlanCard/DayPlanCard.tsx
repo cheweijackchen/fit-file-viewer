@@ -3,15 +3,16 @@
 import { ActionIcon, Divider, Menu, Text } from '@mantine/core'
 import { IconDotsVertical, IconEraser, IconPencil, IconPencilOff, IconTrash } from '@tabler/icons-react'
 import { useTranslations } from 'next-intl'
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
+import { RouteIndicator } from '@/components/hikingTrail/RouteIndicator'
 import { PACE_TIERS } from '@/constants/hiking-trails/dayPlanCard'
 import { TrailNodeType } from '@/constants/hiking-trails/hikingTrail'
-import { formatTrailMinutes } from '@/lib/timeFormatter'
+import { calcDepartureTime, formatTrailMinutes } from '@/lib/timeFormatter'
 import { buildTrailAdjacencyList, calculatePathTime } from '@/lib/trailGraph'
 import type { DayPlan, Trail } from '@/model/hikingTrail'
+import { DayItineraryModal } from './components/DayItineraryModal'
 import { DayPlanForm } from './components/DayPlanForm'
 import { NodeTypeBadge } from './components/NodeTypeBadge'
-import { RouteIndicator } from './components/RouteIndicator'
 
 interface Props {
   dayPlan: DayPlan;
@@ -22,18 +23,23 @@ interface Props {
   showOptions?: boolean;
   showDuration?: boolean;
   editDisabled?: boolean;
+  enableRest?: boolean;
   onEdit?: () => void;
   onCancelEdit?: () => void;
   onClearRoute?: () => void;
   onDelete?: () => void;
   // Edit mode — in-progress planning state
   editStopIds?: string[];
+  editRestMinutes?: Record<number, number>;
   prevDayLastStopId?: string;
   onStartingNodeChange?: (nodeId: string) => void;
   onNodeSelect?: (nodeId: string) => void;
   onUndo?: () => void;
   onCompleteRoute?: () => void;
   onRouteExtended?: (newStops: string[]) => void;
+  onStartingTimeChange?: (time: string) => void;
+  onRestMinutesChange?: (stopIndex: number, minutes: number | undefined) => void;
+  editStartingTime?: string;
 }
 
 const ACCOMMODATION_TYPES = new Set<TrailNodeType>([TrailNodeType.Hut, TrailNodeType.Camp])
@@ -49,19 +55,25 @@ export function DayPlanCard({
   showOptions,
   showDuration,
   editDisabled,
+  enableRest,
   onEdit,
   onCancelEdit,
   onClearRoute,
   onDelete,
   editStopIds,
+  editRestMinutes,
   prevDayLastStopId,
   onStartingNodeChange,
   onNodeSelect,
   onUndo,
   onCompleteRoute,
   onRouteExtended,
+  onStartingTimeChange,
+  onRestMinutesChange,
+  editStartingTime,
 }: Props) {
   const t = useTranslations('hiking-trail-planner')
+  const [itineraryModalOpen, setItineraryModalOpen] = useState(false)
 
   const adj = useMemo(() => buildTrailAdjacencyList(trail), [trail])
 
@@ -91,8 +103,14 @@ export function DayPlanCard({
 
   const weightedMinutes = Math.round(rawMinutes * paceMultiplier)
 
+  const totalRestMinutes = enableRest
+    ? dayPlan.stops.reduce((sum, s) => sum + (s.restMinutes ?? 0), 0)
+    : 0
+  const youMinutes = weightedMinutes + totalRestMinutes
+
   let formRawMinutes = rawMinutes
   let formWeightedMinutes = weightedMinutes
+  let formTotalRestMinutes = 0
   if (mode === 'edit') {
     try {
       formRawMinutes = calculatePathTime(adj, formStopIds)
@@ -100,9 +118,26 @@ export function DayPlanCard({
       // invalid path — show 0
     }
     formWeightedMinutes = Math.round(formRawMinutes * paceMultiplier)
+    if (enableRest && editRestMinutes) {
+      formTotalRestMinutes = Object.values(editRestMinutes).reduce((sum, m) => sum + m, 0)
+    }
   }
 
   const paceTier = PACE_TIERS.find((t) => weightedMinutes / 60 < t.maxHours) ?? PACE_TIERS[PACE_TIERS.length - 1]!
+
+  const endTime = dayPlan.startingTime && committedStopIds.length > 0
+    ? calcDepartureTime(dayPlan.startingTime, youMinutes)
+    : null
+
+  const timingRow = endTime ? (
+    <Text
+      size="xs"
+      c="stone.5"
+      fw={500}
+    >
+      {dayPlan.startingTime} - {endTime}
+    </Text>
+  ) : null
 
   const lastStop = committedStopIds.length > 0 ? nodeMap[committedStopIds[committedStopIds.length - 1]!] : undefined
   const lastNodeType = lastStop?.nodeType
@@ -158,7 +193,8 @@ export function DayPlanCard({
     </Menu.Dropdown>
   )
 
-  const badges = (accommodationBadge !== null || hasWaterSource) ? (
+  const showBadges = false
+  const badges = showBadges && (accommodationBadge !== null || hasWaterSource) ? (
     <div className="flex items-center gap-1.5">
       {accommodationBadge !== null && (
         <NodeTypeBadge nodeType={accommodationBadge} />
@@ -182,6 +218,10 @@ export function DayPlanCard({
       nodeMap={nodeMap}
       showDuration={showDuration}
       adj={adj}
+      paceMultiplier={paceMultiplier}
+      restMinutes={enableRest
+        ? Object.fromEntries(dayPlan.stops.flatMap((s, i) => s.restMinutes ? [[i, s.restMinutes]] : []))
+        : undefined}
     />
   )
 
@@ -262,8 +302,18 @@ export function DayPlanCard({
                     lh={1}
                     className="tracking-[-0.02em]"
                   >
-                    {formatTrailMinutes(weightedMinutes)}
+                    {formatTrailMinutes(youMinutes)}
                   </Text>
+                  {totalRestMinutes > 0 && (
+                    <Text
+                      component="span"
+                      size="2xs"
+                      c="stone.4"
+                      lh={1}
+                    >
+                      {t('planDetail.dayPlanCard.includesRest', { minutes: totalRestMinutes })}
+                    </Text>
+                  )}
                 </div>
               </div>
             )}
@@ -297,7 +347,10 @@ export function DayPlanCard({
 
         {/* Route */}
         {mode !== 'edit' && (
-          <div>{route}</div>
+          <div className="flex flex-col gap-1">
+            {timingRow}
+            <div>{route}</div>
+          </div>
         )}
       </div>
 
@@ -334,8 +387,9 @@ export function DayPlanCard({
       />
 
       {/* Content col — badges + route */}
-      <div className={`hidden @md/day-plan:flex flex-col flex-1 min-w-0 gap-[10px] ${mode === 'edit' ? 'opacity-40' : ''}`}>
+      <div className={`hidden @md/day-plan:flex flex-col flex-1 min-w-0 gap-1 ${mode === 'edit' ? 'opacity-40' : ''}`}>
         {badges}
+        {timingRow}
         {route}
       </div>
 
@@ -381,8 +435,18 @@ export function DayPlanCard({
             lh={1}
             className="tracking-[-0.02em]"
           >
-            {formatTrailMinutes(weightedMinutes)}
+            {formatTrailMinutes(youMinutes)}
           </Text>
+          {totalRestMinutes > 0 && (
+            <Text
+              component="span"
+              size="2xs"
+              c="stone.4"
+              lh={1}
+            >
+              {t('planDetail.dayPlanCard.includesRest', { minutes: totalRestMinutes })}
+            </Text>
+          )}
         </div>
       </div>
 
@@ -431,22 +495,42 @@ export function DayPlanCard({
           paceMultiplier={paceMultiplier}
           stopIds={formStopIds}
           rawMinutes={formRawMinutes}
-          weightedMinutes={formWeightedMinutes}
+          weightedMinutes={formWeightedMinutes + formTotalRestMinutes}
+          enableRest={enableRest}
+          editRestMinutes={editRestMinutes}
           prevDayLastStopId={prevDayLastStopId}
+          startingTime={editStartingTime ?? dayPlan.startingTime}
           onStartingNodeChange={onStartingNodeChange ?? (() => {})}
+          onStartingTimeChange={onStartingTimeChange}
           onNodeSelect={onNodeSelect ?? (() => {})}
           onUndo={onUndo ?? (() => {})}
           onCompleteRoute={onCompleteRoute ?? (() => {})}
           onRouteExtended={onRouteExtended}
+          onRestMinutesChange={onRestMinutesChange}
         />
       </div>
     )
   }
 
   return (
-    <div className={`${cardCls}`}>
+    <div
+      className={`${cardCls}${!showOptions ? ' cursor-pointer' : ''}`}
+      onClick={!showOptions ? () => setItineraryModalOpen(true) : undefined}
+    >
       <div className="flex flex-col gap-3 @md/day-plan:flex-row @md/day-plan:items-center @md/day-plan:gap-5">
         {cardRow}
+      </div>
+      <div onClick={(e) => e.stopPropagation()}>
+        <DayItineraryModal
+          opened={itineraryModalOpen}
+          dayPlan={dayPlan}
+          trail={trail}
+          paceMultiplier={paceMultiplier}
+          dayIndex={dayIndex}
+          adj={adj}
+          nodeMap={nodeMap}
+          onClose={() => setItineraryModalOpen(false)}
+        />
       </div>
     </div>
   )

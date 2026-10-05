@@ -6,637 +6,924 @@ export const southSecondSection: Trail = {
   nameEn: 'South Second Section',
   i18nKey: 'south-second-section.south-second-section',
   nodes: [
+    // --- 八通關古道：東埔溫泉 → 八通關山登山口（共用節點，與玉山群峰檔一致）---
     {
       id: 'global_dongpu-spring',
       name: '東埔溫泉',
-      i18nKey: 'south-second-section.dongpu-spring',
-      nodeType: 'other' 
+      i18nKey: 'global.dongpu-spring',
+      nodeType: 'other'
+    },
+    {
+      id: 'global_batongguan-trailhead',
+      name: '八通關登山口',
+      i18nKey: 'global.batongguan-trailhead',
+      nodeType: 'fork'
+    },
+    {
+      id: 'global_sanshenggong',
+      name: '三聖宮',
+      i18nKey: 'global.sanshenggong',
+      nodeType: 'other'
+    },
+    {
+      id: 'global_lele-spring-fork',
+      name: '樂樂溫泉岔路',
+      i18nKey: 'global.lele-spring-fork',
+      nodeType: 'fork'
     },
     {
       id: 'global_yunlong-fall',
       name: '雲龍瀑布',
-      i18nKey: 'south-second-section.yunlong-fall',
-      nodeType: 'water-source' 
+      i18nKey: 'global.yunlong-fall',
+      nodeType: 'water-source'
     },
     {
       id: 'global_lele-hut',
       name: '樂樂山屋',
-      i18nKey: 'south-second-section.lele-hut',
-      nodeType: 'hut' 
+      i18nKey: 'global.lele-hut',
+      nodeType: 'hut'
     },
     {
-      id: 'global_guangao-station',
-      name: '觀高登山服務站',
-      i18nKey: 'south-second-section.guangao-station',
-      nodeType: 'hut' 
+      id: 'global_yinv-fall',
+      name: '乙女瀑布',
+      i18nKey: 'global.yinv-fall',
+      nodeType: 'water-source'
+    },
+    {
+      id: 'global_duiguan',
+      name: '對觀',
+      i18nKey: 'global.duiguan',
+      nodeType: 'other'
     },
     {
       id: 'global_guangao-ping',
       name: '觀高坪',
-      i18nKey: 'south-second-section.guangao-ping',
-      nodeType: 'fork' 
+      i18nKey: 'global.guangao-ping',
+      nodeType: 'fork'
     },
     {
-      id: 'south-second-section_batongguan-meadow',
-      name: '八通關草原',
-      i18nKey: 'south-second-section.batongguan-meadow',
-      nodeType: 'camp' 
+      id: 'global_guangao-station',
+      name: '觀高登山服務站',
+      i18nKey: 'global.guangao-station',
+      nodeType: 'hut'
     },
     {
-      id: 'south-second-section_batongguan-trailhead',
-      name: '八通關山登山口',
-      i18nKey: 'south-second-section.batongguan-trailhead',
-      nodeType: 'fork' 
+      id: 'global_gudaobengduan-fork',
+      name: '古道崩斷岔路',
+      i18nKey: 'global.gudaobengduan-fork',
+      nodeType: 'fork'
     },
-    { 
+    {
+      id: 'global_xishui-camp',
+      name: '溪水營地',
+      i18nKey: 'global.xishui-camp',
+      nodeType: 'camp'
+    },
+    {
+      id: 'global_west-peak-fork',
+      name: '西峰岔路',
+      i18nKey: 'global.west-peak-fork',
+      nodeType: 'fork'
+    },
+    {
+      id: 'mountain_batongguan-west-peak',
+      name: '八通關山西峰',
+      i18nKey: 'mountain.batongguan-west-peak',
+      nodeType: 'peak'
+    },
+    {
+      id: 'global_batongguan-mountain-fork',
+      name: '三岔路口',
+      i18nKey: 'global.batongguan-mountain-fork',
+      nodeType: 'fork'
+    },
+    {
       id: 'mountain_batongguan-mountain',
       name: '八通關山',
       i18nKey: 'mountain.batongguan-mountain',
-      nodeType: 'peak' 
+      nodeType: 'peak'
     },
     {
-      id: 'south-second-section_banaiyike-hut',
+      id: 'global_batongguan-meadow',
+      name: '八通關草原',
+      i18nKey: 'global.batongguan-meadow',
+      nodeType: 'camp'
+    },
+    {
+      id: 'global_batongguan-mountain-trailhead',
+      name: '八通關山登山口',
+      i18nKey: 'global.batongguan-mountain-trailhead',
+      nodeType: 'fork'
+    },
+    // --- 巴奈伊克山屋 ---
+    {
+      id: 'global_banaiyike-hut',
       name: '巴奈伊克山屋',
-      i18nKey: 'south-second-section.banaiyike-hut',
-      nodeType: 'hut' 
+      i18nKey: 'global.banaiyike-hut',
+      nodeType: 'hut'
     },
     {
-      id: 'south-second-section_central-gold-fork',
-      name: '中央金礦岔路口',
-      i18nKey: 'south-second-section.central-gold-fork',
-      nodeType: 'fork' 
+      id: 'global_banaiyike-fork',
+      name: '三岔路口',
+      i18nKey: 'global.banaiyike-fork',
+      nodeType: 'fork'
     },
+    // --- 荖濃溪／稜線支線 ---
     {
-      id: 'south-second-section_laonong-river',
+      id: 'global_laonong-river',
       name: '荖濃溪',
-      i18nKey: 'south-second-section.laonong-river',
-      nodeType: 'water-source' 
+      i18nKey: 'global.laonong-river',
+      nodeType: 'water-source'
     },
     {
-      id: 'south-second-section_ridge-trail',
-      name: '稜線古道',
-      i18nKey: 'south-second-section.ridge-trail',
-      nodeType: 'other' 
+      id: 'global_lengxian-fork',
+      name: '稜線岔路',
+      i18nKey: 'global.lengxian-fork',
+      nodeType: 'fork'
     },
     {
-      id: 'south-second-section_rhododendron-camp',
+      id: 'global_rhododendron-camp',
       name: '杜鵑營地',
-      i18nKey: 'south-second-section.rhododendron-camp',
-      nodeType: 'camp' 
+      i18nKey: 'global.rhododendron-camp',
+      nodeType: 'camp'
     },
     {
-      id: 'south-second-section_four-way-fork',
+      id: 'global_rhododendron-fork',
       name: '四岔路口',
-      i18nKey: 'south-second-section.four-way-fork',
-      nodeType: 'fork' 
+      i18nKey: 'global.rhododendron-fork',
+      nodeType: 'fork'
     },
     {
-      id: 'south-second-section_south-camp',
+      id: 'global_nan-camp',
       name: '南營地',
-      i18nKey: 'south-second-section.south-camp',
-      nodeType: 'camp' 
-    },
-    {
-      id: 'south-second-section_central-gold-hut',
-      name: '中央金礦山屋',
-      i18nKey: 'south-second-section.central-gold-hut',
-      nodeType: 'hut' 
-    },
-    {
-      id: 'south-second-section_baiyang-gold-hut',
-      name: '白洋金礦山屋',
-      i18nKey: 'south-second-section.baiyang-gold-hut',
-      nodeType: 'hut' 
-    },
-    {
-      id: 'south-second-section_xiuguping',
-      name: '秀姑坪',
-      i18nKey: 'south-second-section.xiuguping',
-      nodeType: 'fork' 
-    },
-    {
-      id: 'south-second-section_xiuguluan-trailhead',
-      name: '秀姑巒山登山口',
-      i18nKey: 'south-second-section.xiuguluan-trailhead',
-      nodeType: 'fork' 
-    },
-    {
-      id: 'mountain_xiuguluan-mountain',
-      name: '秀姑巒山',
-      i18nKey: 'mountain.xiuguluan-mountain',
-      nodeType: 'peak' 
-    },
-    {
-      id: 'mountain_dashuiku-mountain',
-      name: '大水窟山',
-      i18nKey: 'mountain.dashuiku-mountain',
-      nodeType: 'peak' 
-    },
-    {
-      id: 'south-second-section_dashuiku-hut',
-      name: '大水窟山屋',
-      i18nKey: 'south-second-section.dashuiku-hut',
-      nodeType: 'hut' 
-    },
-    {
-      id: 'mountain_south-dashuiku-mountain',
-      name: '南大水窟山',
-      i18nKey: 'mountain.south-dashuiku-mountain',
-      nodeType: 'peak' 
+      i18nKey: 'global.nan-camp',
+      nodeType: 'camp'
     },
     {
       id: 'south-second-section_laonong-river-bottom-camp',
       name: '老濃溪底營地',
       i18nKey: 'south-second-section.laonong-river-bottom-camp',
-      nodeType: 'camp' 
+      nodeType: 'camp'
+    },
+    // --- 中央金礦山屋 → 秀姑坪 ---
+    {
+      id: 'global_zhongyangjinkuang-hut',
+      name: '中央金礦山屋',
+      i18nKey: 'global.zhongyangjinkuang-hut',
+      nodeType: 'hut'
     },
     {
-      id: 'south-second-section_south-three-way-fork',
+      id: 'global_baiyangjinkuang-hut',
+      name: '白洋金礦山屋',
+      i18nKey: 'global.baiyangjinkuang-hut',
+      nodeType: 'hut'
+    },
+    {
+      id: 'global_xiuguping-fork',
+      name: '秀姑坪岔路',
+      i18nKey: 'global.xiuguping-fork',
+      nodeType: 'fork'
+    },
+    {
+      id: 'global_xiuguluan-mountain-south-trailhead',
+      name: '秀姑巒山南登山口',
+      i18nKey: 'global.xiuguluan-mountain-south-trailhead',
+      nodeType: 'fork'
+    },
+    {
+      id: 'mountain_xiuguluan-mountain',
+      name: '秀姑巒山',
+      i18nKey: 'mountain.xiuguluan-mountain',
+      nodeType: 'peak'
+    },
+    {
+      id: 'global_xiuma-hut-ruins',
+      name: '秀馬山屋舊址',
+      i18nKey: 'global.xiuma-hut-ruins',
+      nodeType: 'camp'
+    },
+    // --- 大水窟山 → 黑水塘 ---
+    {
+      id: 'mountain_dashuiku-mountain',
+      name: '大水窟山',
+      i18nKey: 'mountain.dashuiku-mountain',
+      nodeType: 'peak'
+    },
+    {
+      id: 'global_dashuiku-hut',
+      name: '大水窟山屋',
+      i18nKey: 'global.dashuiku-hut',
+      nodeType: 'hut'
+    },
+    {
+      id: 'mountain_south-dashuiku-mountain',
+      name: '南大水窟山',
+      i18nKey: 'mountain.south-dashuiku-mountain',
+      nodeType: 'peak'
+    },
+    {
+      id: 'south-second-section_heishui-fork',
       name: '三岔路口',
-      i18nKey: 'south-second-section.south-three-way-fork',
-      nodeType: 'fork' 
+      i18nKey: 'south-second-section.heishui-fork',
+      nodeType: 'fork'
     },
     {
-      id: 'south-second-section_black-water-pond',
+      id: 'south-second-section_heishui-pond',
       name: '黑水塘',
-      i18nKey: 'south-second-section.black-water-pond',
-      nodeType: 'water-source' 
+      i18nKey: 'south-second-section.heishui-pond',
+      nodeType: 'water-source'
+    },
+    // --- 達芬尖山登山口 → 轆轆谷山屋 ---
+    {
+      id: 'south-second-section_dafenjian-mountain-trailhead',
+      name: '達芬尖山登山口',
+      i18nKey: 'south-second-section.dafenjian-mountain-trailhead',
+      nodeType: 'fork'
     },
     {
-      id: 'south-second-section_jianshan-trailhead',
-      name: '尖山登山口',
-      i18nKey: 'south-second-section.jianshan-trailhead',
-      nodeType: 'fork' 
-    },
-    {
-      id: 'mountain_dafunjian-mountain',
+      id: 'mountain_dafenjian-mountain',
       name: '達芬尖山',
-      i18nKey: 'mountain.dafunjian-mountain',
-      nodeType: 'peak' 
+      i18nKey: 'mountain.dafenjian-mountain',
+      nodeType: 'peak'
     },
     {
       id: 'south-second-section_tafengu-hut',
       name: '塔芬谷山屋',
       i18nKey: 'south-second-section.tafengu-hut',
-      nodeType: 'hut' 
+      nodeType: 'hut'
     },
     {
       id: 'mountain_tafen-mountain',
       name: '塔芬山',
       i18nKey: 'mountain.tafen-mountain',
-      nodeType: 'peak' 
+      nodeType: 'peak'
     },
     {
       id: 'south-second-section_tafen-pond',
       name: '塔芬池',
       i18nKey: 'south-second-section.tafen-pond',
-      nodeType: 'water-source' 
+      nodeType: 'water-source'
     },
     {
-      id: 'south-second-section_lulu-trailhead',
+      id: 'south-second-section_lulu-mountain-trailhead',
       name: '轆轆山登山口',
-      i18nKey: 'south-second-section.lulu-trailhead',
-      nodeType: 'fork' 
-    },
-    {
-      id: 'south-second-section_lulu-hut',
-      name: '轆轆山屋',
-      i18nKey: 'south-second-section.lulu-hut',
-      nodeType: 'hut' 
+      i18nKey: 'south-second-section.lulu-mountain-trailhead',
+      nodeType: 'fork'
     },
     {
       id: 'mountain_lulu-east-peak',
-      name: '轆轆山東峰',
+      name: '轆轆東峰',
       i18nKey: 'mountain.lulu-east-peak',
-      nodeType: 'peak' 
+      nodeType: 'peak'
     },
     {
       id: 'mountain_lulu-mountain',
       name: '轆轆山',
       i18nKey: 'mountain.lulu-mountain',
-      nodeType: 'peak' 
+      nodeType: 'peak'
     },
     {
-      id: 'south-second-section_yun-mountain-fork-camp',
+      id: 'south-second-section_lulugu-hut',
+      name: '轆轆谷山屋',
+      i18nKey: 'south-second-section.lulugu-hut',
+      nodeType: 'hut'
+    },
+    // --- 雲峰東峰三岔路口營地 → 拉庫音溪山屋 ---
+    {
+      id: 'south-second-section_yun-peak-east-peak-fork-camp',
       name: '雲峰東峰三岔路口營地',
-      i18nKey: 'south-second-section.yun-mountain-fork-camp',
-      nodeType: 'camp' 
-    },
-    {
-      id: 'south-second-section_water-source',
-      name: '水源',
-      i18nKey: 'south-second-section.water-source',
-      nodeType: 'water-source' 
+      i18nKey: 'south-second-section.yun-peak-east-peak-fork-camp',
+      nodeType: 'camp'
     },
     {
       id: 'mountain_yun-peak',
       name: '雲峰',
       i18nKey: 'mountain.yun-peak',
-      nodeType: 'peak' 
+      nodeType: 'peak'
     },
     {
-      id: 'south-second-section_northwest-saddle-camp',
-      name: '西北鞍營地',
-      i18nKey: 'south-second-section.northwest-saddle-camp',
-      nodeType: 'camp' 
+      id: 'south-second-section_yun-peak-water-source',
+      name: '水源',
+      i18nKey: 'south-second-section.yun-peak-water-source',
+      nodeType: 'water-source'
+    },
+    {
+      id: 'south-second-section_xibei-saddle-nanshuang-pond-camp',
+      name: '西北鞍南雙池營地',
+      i18nKey: 'south-second-section.xibei-saddle-nanshuang-pond-camp',
+      nodeType: 'camp'
     },
     {
       id: 'mountain_nanshuangtou-mountain',
       name: '南雙頭山',
       i18nKey: 'mountain.nanshuangtou-mountain',
-      nodeType: 'peak' 
+      nodeType: 'peak'
     },
     {
-      id: 'south-second-section_lakuynxi-hut',
+      id: 'global_lakuyin-river-hut',
       name: '拉庫音溪山屋',
-      i18nKey: 'south-second-section.lakuynxi-hut',
-      nodeType: 'hut' 
+      i18nKey: 'global.lakuyin-river-hut',
+      nodeType: 'hut'
+    },
+    // --- 新康山岔路口 → 嘉明湖／三叉山 ---
+    {
+      id: 'global_xinkang-mountain-fork',
+      name: '新康山岔路口',
+      i18nKey: 'global.xinkang-mountain-fork',
+      nodeType: 'fork'
     },
     {
-      id: 'south-second-section_sancha-mountain-trailhead',
+      id: 'global_jiaming-lake-fork',
+      name: '嘉明湖岔路口',
+      i18nKey: 'global.jiaming-lake-fork',
+      nodeType: 'fork'
+    },
+    {
+      id: 'global_jiaming-lake',
+      name: '嘉明湖',
+      i18nKey: 'global.jiaming-lake',
+      nodeType: 'water-source'
+    },
+    {
+      id: 'global_sancha-mountain-trailhead',
       name: '三叉山登山口',
-      i18nKey: 'south-second-section.sancha-mountain-trailhead',
-      nodeType: 'fork' 
+      i18nKey: 'global.sancha-mountain-trailhead',
+      nodeType: 'fork'
     },
     {
       id: 'mountain_sancha-mountain',
       name: '三叉山',
       i18nKey: 'mountain.sancha-mountain',
-      nodeType: 'peak' 
+      nodeType: 'peak'
+    },
+    // --- 北峰下解說牌 → 向陽森林遊樂區 ---
+    {
+      id: 'global_north-peak-sign',
+      name: '北峰下解說牌',
+      i18nKey: 'global.north-peak-sign',
+      nodeType: 'other'
     },
     {
-      id: 'south-second-section_xinkang-fork',
-      name: '新康山岔路口',
-      i18nKey: 'south-second-section.xinkang-fork',
-      nodeType: 'fork' 
-    },
-    {
-      id: 'south-second-section_jiaming-lake-fork',
-      name: '嘉明湖岔路口',
-      i18nKey: 'south-second-section.jiaming-lake-fork',
-      nodeType: 'fork' 
-    },
-    {
-      id: 'south-second-section_jiaming-lake',
-      name: '嘉明湖',
-      i18nKey: 'south-second-section.jiaming-lake',
-      nodeType: 'water-source' 
-    },
-    {
-      id: 'south-second-section_jiaming-refuge-hut',
-      name: '嘉明湖避難山屋',
-      i18nKey: 'south-second-section.jiaming-refuge-hut',
-      nodeType: 'hut' 
+      id: 'global_north-peak-fork',
+      name: '三岔路口',
+      i18nKey: 'global.north-peak-fork',
+      nodeType: 'fork'
     },
     {
       id: 'mountain_xiangyang-mountain',
       name: '向陽山',
       i18nKey: 'mountain.xiangyang-mountain',
-      nodeType: 'peak' 
+      nodeType: 'peak'
     },
     {
-      id: 'south-second-section_xiangyang-fork',
-      name: '三岔路口',
-      i18nKey: 'south-second-section.xiangyang-fork',
-      nodeType: 'fork' 
+      id: 'global_jiaming-lake-hut',
+      name: '嘉明湖避難山屋',
+      i18nKey: 'global.jiaming-lake-hut',
+      nodeType: 'hut'
     },
     {
-      id: 'south-second-section_xiangyang-east-fork',
-      name: '岔路口',
-      i18nKey: 'south-second-section.xiangyang-east-fork',
-      nodeType: 'fork' 
+      id: 'global_xice-trailhead',
+      name: '西側登山口',
+      i18nKey: 'global.xice-trailhead',
+      nodeType: 'fork'
     },
     {
-      id: 'south-second-section_xiangyang-hut',
+      id: 'global_xiangyang-hut',
       name: '向陽山屋',
-      i18nKey: 'south-second-section.xiangyang-hut',
-      nodeType: 'hut' 
+      i18nKey: 'global.xiangyang-hut',
+      nodeType: 'hut'
     },
     {
-      id: 'south-second-section_xiangyang-station',
-      name: '向陽工作站',
-      i18nKey: 'south-second-section.xiangyang-station',
-      nodeType: 'hut' 
+      id: 'global_lindao-trailhead',
+      name: '林道登山口',
+      i18nKey: 'global.lindao-trailhead',
+      nodeType: 'fork'
+    },
+    {
+      id: 'global_xiangyang-forest-recreation-area',
+      name: '向陽森林遊樂區',
+      i18nKey: 'global.xiangyang-forest-recreation-area',
+      nodeType: 'other'
+    },
+    // --- 獨立節點（圖上無分鐘數連線）---
+    {
+      id: 'global_pass-hut',
+      name: '埡口山莊',
+      i18nKey: 'global.pass-hut',
+      nodeType: 'hut'
     }
   ],
   edges: [
-    // 東埔 <-> 雲龍瀑布
+    // 東埔溫泉 <-> 八通關登山口
     {
       from: 'global_dongpu-spring',
+      to: 'global_batongguan-trailhead',
+      minutes: 10
+    },
+    {
+      from: 'global_batongguan-trailhead',
+      to: 'global_dongpu-spring',
+      minutes: 10
+    },
+    // 八通關登山口 <-> 三聖宮
+    {
+      from: 'global_batongguan-trailhead',
+      to: 'global_sanshenggong',
+      minutes: 25
+    },
+    {
+      from: 'global_sanshenggong',
+      to: 'global_batongguan-trailhead',
+      minutes: 15
+    },
+    // 三聖宮 <-> 樂樂溫泉岔路
+    {
+      from: 'global_sanshenggong',
+      to: 'global_lele-spring-fork',
+      minutes: 50
+    },
+    {
+      from: 'global_lele-spring-fork',
+      to: 'global_sanshenggong',
+      minutes: 45
+    },
+    // 樂樂溫泉岔路 <-> 雲龍瀑布
+    {
+      from: 'global_lele-spring-fork',
       to: 'global_yunlong-fall',
-      minutes: 165
+      minutes: 45
     },
     {
       from: 'global_yunlong-fall',
-      to: 'global_dongpu-spring',
-      minutes: 110
+      to: 'global_lele-spring-fork',
+      minutes: 45
     },
-    // 雲龍瀑布 <-> 樂山屋
+    // 雲龍瀑布 <-> 樂樂山屋
     {
       from: 'global_yunlong-fall',
       to: 'global_lele-hut',
-      minutes: 65
+      minutes: 60
     },
     {
       from: 'global_lele-hut',
       to: 'global_yunlong-fall',
       minutes: 55
     },
-    // 樂樂山屋 <-> 觀高工作站 & 觀高坪
+    // 樂樂山屋 <-> 乙女瀑布
+    {
+      from: 'global_lele-hut',
+      to: 'global_yinv-fall',
+      minutes: 25
+    },
+    {
+      from: 'global_yinv-fall',
+      to: 'global_lele-hut',
+      minutes: 25
+    },
+    // 乙女瀑布 <-> 對觀
+    {
+      from: 'global_yinv-fall',
+      to: 'global_duiguan',
+      minutes: 100
+    },
+    {
+      from: 'global_duiguan',
+      to: 'global_yinv-fall',
+      minutes: 80
+    },
+    // 對觀 <-> 觀高坪
+    {
+      from: 'global_duiguan',
+      to: 'global_guangao-ping',
+      minutes: 150
+    },
+    {
+      from: 'global_guangao-ping',
+      to: 'global_duiguan',
+      minutes: 110
+    },
+    // 觀高坪 <-> 觀高登山服務站
     {
       from: 'global_guangao-ping',
       to: 'global_guangao-station',
-      minutes: 10
+      minutes: 15
     },
     {
       from: 'global_guangao-station',
       to: 'global_guangao-ping',
-      minutes: 10
+      minutes: 15
     },
-    {
-      from: 'global_lele-hut',
-      to: 'global_guangao-ping',
-      minutes: 270
-    },
+    // 觀高坪 <-> 古道崩斷岔路
     {
       from: 'global_guangao-ping',
-      to: 'global_lele-hut',
-      minutes: 135
-    },
-    // 觀高坪 <-> 八通關草原
-    {
-      from: 'global_guangao-ping',
-      to: 'south-second-section_batongguan-meadow',
-      minutes: 60
-    },
-    {
-      from: 'south-second-section_batongguan-meadow',
-      to: 'global_guangao-ping',
-      minutes: 45
-    },
-    // 八通關草原 <-> 登山口
-    {
-      from: 'south-second-section_batongguan-meadow',
-      to: 'south-second-section_batongguan-trailhead',
-      minutes: 70
-    },
-    {
-      from: 'south-second-section_batongguan-trailhead',
-      to: 'south-second-section_batongguan-meadow',
-      minutes: 60
-    },
-    // 登山口 <-> 八通關山
-    {
-      from: 'south-second-section_batongguan-trailhead',
-      to: 'mountain_batongguan-mountain',
-      minutes: 80
-    },
-    {
-      from: 'mountain_batongguan-mountain',
-      to: 'south-second-section_batongguan-trailhead',
-      minutes: 50
-    },
-    // 登山口 <-> 巴奈伊克山屋
-    {
-      from: 'south-second-section_batongguan-trailhead',
-      to: 'south-second-section_banaiyike-hut',
-      minutes: 30
-    },
-    {
-      from: 'south-second-section_banaiyike-hut',
-      to: 'south-second-section_batongguan-trailhead',
-      minutes: 30
-    },
-    // 巴奈伊克山屋 <-> 岔路口
-    {
-      from: 'south-second-section_banaiyike-hut',
-      to: 'south-second-section_central-gold-fork',
-      minutes: 15
-    },
-    {
-      from: 'south-second-section_central-gold-fork',
-      to: 'south-second-section_banaiyike-hut',
-      minutes: 15
-    },
-    // 岔路口 <-> 中央金礦山屋
-    {
-      from: 'south-second-section_central-gold-fork',
-      to: 'south-second-section_central-gold-hut',
-      minutes: 45
-    },
-    {
-      from: 'south-second-section_central-gold-hut',
-      to: 'south-second-section_central-gold-fork',
-      minutes: 40
-    },
-    // 岔路口 <-> 荖濃溪 -> 稜線古道 -> 杜鵑營地 -> 四岔路口
-    {
-      from: 'south-second-section_central-gold-fork',
-      to: 'south-second-section_laonong-river',
-      minutes: 15
-    },
-    {
-      from: 'south-second-section_laonong-river',
-      to: 'south-second-section_central-gold-fork',
-      minutes: 20
-    },
-    {
-      from: 'south-second-section_laonong-river',
-      to: 'south-second-section_ridge-trail',
-      minutes: 105
-    },
-    {
-      from: 'south-second-section_ridge-trail',
-      to: 'south-second-section_laonong-river',
-      minutes: 55
-    },
-    {
-      from: 'south-second-section_ridge-trail',
-      to: 'south-second-section_rhododendron-camp',
-      minutes: 20
-    },
-    {
-      from: 'south-second-section_rhododendron-camp',
-      to: 'south-second-section_ridge-trail',
-      minutes: 20
-    },
-    {
-      from: 'south-second-section_rhododendron-camp',
-      to: 'south-second-section_four-way-fork',
-      minutes: 20
-    },
-    {
-      from: 'south-second-section_four-way-fork',
-      to: 'south-second-section_rhododendron-camp',
-      minutes: 20
-    },
-    // 中央金礦山屋 <-> 白洋金礦山屋 <-> 秀姑坪
-    {
-      from: 'south-second-section_central-gold-hut',
-      to: 'south-second-section_baiyang-gold-hut',
-      minutes: 180
-    },
-    {
-      from: 'south-second-section_baiyang-gold-hut',
-      to: 'south-second-section_central-gold-hut',
-      minutes: 120
-    },
-    {
-      from: 'south-second-section_baiyang-gold-hut',
-      to: 'south-second-section_xiuguping',
-      minutes: 30
-    },
-    {
-      from: 'south-second-section_xiuguping',
-      to: 'south-second-section_baiyang-gold-hut',
-      minutes: 20
-    },
-    // 秀姑坪 <-> 秀姑巒山登山口 <-> 秀姑巒山
-    {
-      from: 'south-second-section_xiuguping',
-      to: 'south-second-section_xiuguluan-trailhead',
-      minutes: 60
-    },
-    {
-      from: 'south-second-section_xiuguluan-trailhead',
-      to: 'south-second-section_xiuguping',
-      minutes: 40
-    },
-    {
-      from: 'south-second-section_xiuguluan-trailhead',
-      to: 'mountain_xiuguluan-mountain',
-      minutes: 45
-    },
-    {
-      from: 'mountain_xiuguluan-mountain',
-      to: 'south-second-section_xiuguluan-trailhead',
-      minutes: 25
-    },
-    // 秀姑坪 <-> 大水窟山 <-> 大水窟山屋 <-> 南大水窟山
-    {
-      from: 'south-second-section_xiuguping',
-      to: 'mountain_dashuiku-mountain',
-      minutes: 90
-    },
-    {
-      from: 'mountain_dashuiku-mountain',
-      to: 'south-second-section_xiuguping',
-      minutes: 140
-    },
-    {
-      from: 'mountain_dashuiku-mountain',
-      to: 'south-second-section_dashuiku-hut',
-      minutes: 120
-    },
-    {
-      from: 'south-second-section_dashuiku-hut',
-      to: 'mountain_dashuiku-mountain',
-      minutes: 70
-    },
-    {
-      from: 'south-second-section_south-camp',
-      to: 'south-second-section_dashuiku-hut',
-      minutes: 70
-    },
-    {
-      from: 'south-second-section_dashuiku-hut',
-      to: 'south-second-section_south-camp',
-      minutes: 70
-    },
-    {
-      from: 'south-second-section_dashuiku-hut',
-      to: 'mountain_south-dashuiku-mountain',
-      minutes: 60
-    },
-    {
-      from: 'mountain_south-dashuiku-mountain',
-      to: 'south-second-section_dashuiku-hut',
-      minutes: 95
-    },
-    // 南大水窟山 <-> 老濃溪底營地 <-> 四岔路口
-    {
-      from: 'mountain_south-dashuiku-mountain',
-      to: 'south-second-section_south-three-way-fork',
-      minutes: 110
-    },
-    {
-      from: 'south-second-section_south-three-way-fork',
-      to: 'mountain_south-dashuiku-mountain',
-      minutes: 140
-    },
-    {
-      from: 'south-second-section_laonong-river-bottom-camp',
-      to: 'south-second-section_four-way-fork',
-      minutes: 140
-    },
-    {
-      from: 'south-second-section_four-way-fork',
-      to: 'south-second-section_laonong-river-bottom-camp',
-      minutes: 55
-    },
-    {
-      from: 'south-second-section_laonong-river-bottom-camp',
-      to: 'south-second-section_south-three-way-fork',
-      minutes: 130
-    },
-    {
-      from: 'south-second-section_south-three-way-fork',
-      to: 'south-second-section_laonong-river-bottom-camp',
-      minutes: 95
-    },
-    // 四岔路口 <-> 南段三岔路口 <-> 黑水塘 <-> 尖山登山口
-    {
-      from: 'south-second-section_four-way-fork',
-      to: 'south-second-section_south-camp',
-      minutes: 55
-    },
-    {
-      from: 'south-second-section_south-camp',
-      to: 'south-second-section_four-way-fork',
-      minutes: 55
-    },
-    {
-      from: 'south-second-section_south-three-way-fork',
-      to: 'south-second-section_black-water-pond',
+      to: 'global_gudaobengduan-fork',
       minutes: 5
     },
     {
-      from: 'south-second-section_black-water-pond',
-      to: 'south-second-section_south-three-way-fork',
-      minutes: 7
+      from: 'global_gudaobengduan-fork',
+      to: 'global_guangao-ping',
+      minutes: 5
+    },
+    // 古道崩斷岔路 <-> 溪水營地
+    {
+      from: 'global_gudaobengduan-fork',
+      to: 'global_xishui-camp',
+      minutes: 60
     },
     {
-      from: 'south-second-section_black-water-pond',
-      to: 'south-second-section_jianshan-trailhead',
-      minutes: 120
+      from: 'global_xishui-camp',
+      to: 'global_gudaobengduan-fork',
+      minutes: 40
+    },
+    // 溪水營地 <-> 西峰岔路
+    {
+      from: 'global_xishui-camp',
+      to: 'global_west-peak-fork',
+      minutes: 40
     },
     {
-      from: 'south-second-section_jianshan-trailhead',
-      to: 'south-second-section_black-water-pond',
-      minutes: 95
+      from: 'global_west-peak-fork',
+      to: 'global_xishui-camp',
+      minutes: 35
     },
-    // 尖山登山口 <-> 達芬尖山
+    // 西峰岔路 <-> 八通關山西峰
     {
-      from: 'south-second-section_jianshan-trailhead',
-      to: 'mountain_dafunjian-mountain',
+      from: 'global_west-peak-fork',
+      to: 'mountain_batongguan-west-peak',
+      minutes: 50
+    },
+    {
+      from: 'mountain_batongguan-west-peak',
+      to: 'global_west-peak-fork',
+      minutes: 30
+    },
+    // 八通關山西峰 <-> 三岔路口
+    {
+      from: 'mountain_batongguan-west-peak',
+      to: 'global_batongguan-mountain-fork',
+      minutes: 50
+    },
+    {
+      from: 'global_batongguan-mountain-fork',
+      to: 'mountain_batongguan-west-peak',
+      minutes: 50
+    },
+    // 三岔路口 <-> 八通關山
+    {
+      from: 'global_batongguan-mountain-fork',
+      to: 'mountain_batongguan-mountain',
+      minutes: 30
+    },
+    {
+      from: 'mountain_batongguan-mountain',
+      to: 'global_batongguan-mountain-fork',
+      minutes: 20
+    },
+    // 西峰岔路 <-> 八通關草原
+    {
+      from: 'global_west-peak-fork',
+      to: 'global_batongguan-meadow',
+      minutes: 50
+    },
+    {
+      from: 'global_batongguan-meadow',
+      to: 'global_west-peak-fork',
+      minutes: 70
+    },
+    // 八通關草原 <-> 八通關山登山口
+    {
+      from: 'global_batongguan-meadow',
+      to: 'global_batongguan-mountain-trailhead',
+      minutes: 80
+    },
+    {
+      from: 'global_batongguan-mountain-trailhead',
+      to: 'global_batongguan-meadow',
+      minutes: 80
+    },
+    // 八通關山登山口 <-> 三岔路口
+    {
+      from: 'global_batongguan-mountain-trailhead',
+      to: 'global_batongguan-mountain-fork',
+      minutes: 60
+    },
+    {
+      from: 'global_batongguan-mountain-fork',
+      to: 'global_batongguan-mountain-trailhead',
+      minutes: 45
+    },
+    // 觀高坪 <-> 八通關草原
+    {
+      from: 'global_gudaobengduan-fork',
+      to: 'global_batongguan-meadow',
+      minutes: 60,
+      note: '稜線捷徑'
+    },
+    {
+      from: 'global_batongguan-meadow',
+      to: 'global_gudaobengduan-fork',
+      minutes: 70,
+      note: '稜線捷徑'
+    },
+    // 八通關山登山口 <-> 巴奈伊克山屋
+    {
+      from: 'global_batongguan-mountain-trailhead',
+      to: 'global_banaiyike-hut',
+      minutes: 30
+    },
+    {
+      from: 'global_banaiyike-hut',
+      to: 'global_batongguan-mountain-trailhead',
+      minutes: 30
+    },
+    // 巴奈伊克山屋 <-> 三岔路口
+    {
+      from: 'global_banaiyike-hut',
+      to: 'global_banaiyike-fork',
+      minutes: 15
+    },
+    {
+      from: 'global_banaiyike-fork',
+      to: 'global_banaiyike-hut',
+      minutes: 15
+    },
+    // 三岔路口 <-> 荖濃溪
+    {
+      from: 'global_banaiyike-fork',
+      to: 'global_laonong-river',
+      minutes: 15
+    },
+    {
+      from: 'global_laonong-river',
+      to: 'global_banaiyike-fork',
+      minutes: 20
+    },
+    // 荖濃溪 <-> 稜線岔路
+    {
+      from: 'global_laonong-river',
+      to: 'global_lengxian-fork',
+      minutes: 105
+    },
+    {
+      from: 'global_lengxian-fork',
+      to: 'global_laonong-river',
+      minutes: 55
+    },
+    // 稜線岔路 <-> 杜鵑營地
+    {
+      from: 'global_lengxian-fork',
+      to: 'global_rhododendron-camp',
+      minutes: 45
+    },
+    {
+      from: 'global_rhododendron-camp',
+      to: 'global_lengxian-fork',
+      minutes: 45
+    },
+    // 杜鵑營地 <-> 四岔路口
+    {
+      from: 'global_rhododendron-camp',
+      to: 'global_rhododendron-fork',
+      minutes: 70
+    },
+    {
+      from: 'global_rhododendron-fork',
+      to: 'global_rhododendron-camp',
+      minutes: 65
+    },
+    // 四岔路口 <-> 南營地
+    {
+      from: 'global_rhododendron-fork',
+      to: 'global_nan-camp',
+      minutes: 55
+    },
+    {
+      from: 'global_nan-camp',
+      to: 'global_rhododendron-fork',
+      minutes: 55
+    },
+    // 四岔路口 <-> 老濃溪底營地
+    {
+      from: 'global_rhododendron-fork',
+      to: 'south-second-section_laonong-river-bottom-camp',
+      minutes: 50
+    },
+    {
+      from: 'south-second-section_laonong-river-bottom-camp',
+      to: 'global_rhododendron-fork',
+      minutes: 90
+    },
+    // 三岔路口 <-> 中央金礦山屋
+    {
+      from: 'global_banaiyike-fork',
+      to: 'global_zhongyangjinkuang-hut',
+      minutes: 35
+    },
+    {
+      from: 'global_zhongyangjinkuang-hut',
+      to: 'global_banaiyike-fork',
+      minutes: 30
+    },
+    // 稜線岔路 <-> 中央金礦山屋
+    {
+      from: 'global_lengxian-fork',
+      to: 'global_zhongyangjinkuang-hut',
+      minutes: 90
+    },
+    {
+      from: 'global_zhongyangjinkuang-hut',
+      to: 'global_lengxian-fork',
+      minutes: 110
+    },
+    // 中央金礦山屋 <-> 白洋金礦山屋
+    {
+      from: 'global_zhongyangjinkuang-hut',
+      to: 'global_baiyangjinkuang-hut',
+      minutes: 190
+    },
+    {
+      from: 'global_baiyangjinkuang-hut',
+      to: 'global_zhongyangjinkuang-hut',
+      minutes: 160
+    },
+    // 白洋金礦山屋 <-> 秀姑坪岔路
+    {
+      from: 'global_baiyangjinkuang-hut',
+      to: 'global_xiuguping-fork',
+      minutes: 30
+    },
+    {
+      from: 'global_xiuguping-fork',
+      to: 'global_baiyangjinkuang-hut',
+      minutes: 20
+    },
+    // 秀姑坪岔路 <-> 秀姑巒山南登山口
+    {
+      from: 'global_xiuguping-fork',
+      to: 'global_xiuguluan-mountain-south-trailhead',
+      minutes: 60
+    },
+    {
+      from: 'global_xiuguluan-mountain-south-trailhead',
+      to: 'global_xiuguping-fork',
+      minutes: 40
+    },
+    // 秀姑巒山南登山口 <-> 秀姑巒山
+    {
+      from: 'global_xiuguluan-mountain-south-trailhead',
+      to: 'mountain_xiuguluan-mountain',
+      minutes: 50
+    },
+    {
+      from: 'mountain_xiuguluan-mountain',
+      to: 'global_xiuguluan-mountain-south-trailhead',
+      minutes: 60,
+      note: '輕裝 30 分'
+    },
+    // 秀姑巒山 <-> 秀馬山屋舊址
+    {
+      from: 'mountain_xiuguluan-mountain',
+      to: 'global_xiuma-hut-ruins',
       minutes: 20
     },
     {
-      from: 'mountain_dafunjian-mountain',
-      to: 'south-second-section_jianshan-trailhead',
+      from: 'global_xiuma-hut-ruins',
+      to: 'mountain_xiuguluan-mountain',
+      minutes: 25
+    },
+    // 秀姑巒山南登山口 <-> 秀馬山屋舊址
+    {
+      from: 'global_xiuguluan-mountain-south-trailhead',
+      to: 'global_xiuma-hut-ruins',
+      minutes: 60
+    },
+    {
+      from: 'global_xiuma-hut-ruins',
+      to: 'global_xiuguluan-mountain-south-trailhead',
+      minutes: 50
+    },
+    // 秀姑坪岔路 <-> 大水窟山
+    {
+      from: 'global_xiuguping-fork',
+      to: 'mountain_dashuiku-mountain',
+      minutes: 140
+    },
+    {
+      from: 'mountain_dashuiku-mountain',
+      to: 'global_xiuguping-fork',
+      minutes: 100
+    },
+    // 四岔路口 <-> 大水窟山
+    {
+      from: 'global_rhododendron-fork',
+      to: 'mountain_dashuiku-mountain',
+      minutes: 140
+    },
+    {
+      from: 'mountain_dashuiku-mountain',
+      to: 'global_rhododendron-fork',
+      minutes: 110
+    },
+    // 大水窟山 <-> 大水窟山屋
+    {
+      from: 'mountain_dashuiku-mountain',
+      to: 'global_dashuiku-hut',
+      minutes: 100
+    },
+    {
+      from: 'global_dashuiku-hut',
+      to: 'mountain_dashuiku-mountain',
+      minutes: 140
+    },
+    // 南營地 <-> 大水窟山屋
+    {
+      from: 'global_nan-camp',
+      to: 'global_dashuiku-hut',
+      minutes: 70
+    },
+    {
+      from: 'global_dashuiku-hut',
+      to: 'global_nan-camp',
+      minutes: 70
+    },
+    // 大水窟山屋 <-> 南大水窟山
+    {
+      from: 'global_dashuiku-hut',
+      to: 'mountain_south-dashuiku-mountain',
+      minutes: 95
+    },
+    {
+      from: 'mountain_south-dashuiku-mountain',
+      to: 'global_dashuiku-hut',
+      minutes: 60
+    },
+    // 南大水窟山 <-> 三岔路口
+    {
+      from: 'mountain_south-dashuiku-mountain',
+      to: 'south-second-section_heishui-fork',
+      minutes: 95
+    },
+    {
+      from: 'south-second-section_heishui-fork',
+      to: 'mountain_south-dashuiku-mountain',
+      minutes: 120
+    },
+    // 老濃溪底營地 <-> 三岔路口
+    {
+      from: 'south-second-section_laonong-river-bottom-camp',
+      to: 'south-second-section_heishui-fork',
+      minutes: 130
+    },
+    {
+      from: 'south-second-section_heishui-fork',
+      to: 'south-second-section_laonong-river-bottom-camp',
+      minutes: 95
+    },
+    // 三岔路口 <-> 黑水塘
+    {
+      from: 'south-second-section_heishui-fork',
+      to: 'south-second-section_heishui-pond',
+      minutes: 5
+    },
+    {
+      from: 'south-second-section_heishui-pond',
+      to: 'south-second-section_heishui-fork',
+      minutes: 7
+    },
+    // 黑水塘 <-> 達芬尖山登山口
+    {
+      from: 'south-second-section_heishui-pond',
+      to: 'south-second-section_dafenjian-mountain-trailhead',
+      minutes: 135
+    },
+    {
+      from: 'south-second-section_dafenjian-mountain-trailhead',
+      to: 'south-second-section_heishui-pond',
+      minutes: 120
+    },
+    // 達芬尖山 <-> 達芬尖山登山口
+    {
+      from: 'mountain_dafenjian-mountain',
+      to: 'south-second-section_dafenjian-mountain-trailhead',
       minutes: 10
     },
-    // 尖山登山口 <-> 塔芬谷山屋 <-> 塔芬山 <-> 塔芬池 <-> 轆轆山登山口 <-> 轆轆山屋
     {
-      from: 'south-second-section_jianshan-trailhead',
+      from: 'south-second-section_dafenjian-mountain-trailhead',
+      to: 'mountain_dafenjian-mountain',
+      minutes: 20
+    },
+    // 達芬尖山登山口 <-> 塔芬谷山屋
+    {
+      from: 'south-second-section_dafenjian-mountain-trailhead',
       to: 'south-second-section_tafengu-hut',
       minutes: 90
     },
     {
       from: 'south-second-section_tafengu-hut',
-      to: 'south-second-section_jianshan-trailhead',
+      to: 'south-second-section_dafenjian-mountain-trailhead',
       minutes: 150
     },
+    // 塔芬谷山屋 <-> 塔芬山
     {
       from: 'south-second-section_tafengu-hut',
       to: 'mountain_tafen-mountain',
@@ -647,6 +934,7 @@ export const southSecondSection: Trail = {
       to: 'south-second-section_tafengu-hut',
       minutes: 80
     },
+    // 塔芬山 <-> 塔芬池
     {
       from: 'mountain_tafen-mountain',
       to: 'south-second-section_tafen-pond',
@@ -655,253 +943,282 @@ export const southSecondSection: Trail = {
     {
       from: 'south-second-section_tafen-pond',
       to: 'mountain_tafen-mountain',
-      minutes: 35
+      minutes: 30
     },
+    // 塔芬池 <-> 轆轆山登山口
     {
       from: 'south-second-section_tafen-pond',
-      to: 'south-second-section_lulu-trailhead',
-      minutes: 235
+      to: 'south-second-section_lulu-mountain-trailhead',
+      minutes: 250
     },
     {
-      from: 'south-second-section_lulu-trailhead',
+      from: 'south-second-section_lulu-mountain-trailhead',
       to: 'south-second-section_tafen-pond',
-      minutes: 185
+      minutes: 210
     },
-    {
-      from: 'south-second-section_lulu-trailhead',
-      to: 'south-second-section_lulu-hut',
-      minutes: 45
-    },
-    {
-      from: 'south-second-section_lulu-hut',
-      to: 'south-second-section_lulu-trailhead',
-      minutes: 70
-    },
-    // 轆轆山登山口 <-> 轆轆山東峰 <-> 轆轆山
-    {
-      from: 'south-second-section_lulu-trailhead',
-      to: 'mountain_lulu-east-peak',
-      minutes: 5
-    },
+    // 轆轆東峰 <-> 轆轆山登山口
     {
       from: 'mountain_lulu-east-peak',
-      to: 'south-second-section_lulu-trailhead',
+      to: 'south-second-section_lulu-mountain-trailhead',
       minutes: 3
     },
     {
-      from: 'mountain_lulu-east-peak',
-      to: 'mountain_lulu-mountain',
-      minutes: 20
+      from: 'south-second-section_lulu-mountain-trailhead',
+      to: 'mountain_lulu-east-peak',
+      minutes: 5
     },
+    // 轆轆山 <-> 轆轆東峰
     {
       from: 'mountain_lulu-mountain',
       to: 'mountain_lulu-east-peak',
       minutes: 15
     },
-    // 轆轆山屋 <-> 雲峰東峰營地 <-> 水源 / 雲峰
     {
-      from: 'south-second-section_lulu-hut',
-      to: 'south-second-section_yun-mountain-fork-camp',
-      minutes: 220
+      from: 'mountain_lulu-east-peak',
+      to: 'mountain_lulu-mountain',
+      minutes: 25
+    },
+    // 轆轆山登山口 <-> 轆轆谷山屋
+    {
+      from: 'south-second-section_lulu-mountain-trailhead',
+      to: 'south-second-section_lulugu-hut',
+      minutes: 45
     },
     {
-      from: 'south-second-section_yun-mountain-fork-camp',
-      to: 'south-second-section_lulu-hut',
-      minutes: 170
+      from: 'south-second-section_lulugu-hut',
+      to: 'south-second-section_lulu-mountain-trailhead',
+      minutes: 70
+    },
+    // 轆轆谷山屋 <-> 雲峰東峰三岔路口營地
+    {
+      from: 'south-second-section_lulugu-hut',
+      to: 'south-second-section_yun-peak-east-peak-fork-camp',
+      minutes: 240
     },
     {
-      from: 'south-second-section_yun-mountain-fork-camp',
-      to: 'south-second-section_water-source',
+      from: 'south-second-section_yun-peak-east-peak-fork-camp',
+      to: 'south-second-section_lulugu-hut',
+      minutes: 200
+    },
+    // 雲峰 <-> 雲峰東峰三岔路口營地
+    {
+      from: 'mountain_yun-peak',
+      to: 'south-second-section_yun-peak-east-peak-fork-camp',
+      minutes: 90
+    },
+    {
+      from: 'south-second-section_yun-peak-east-peak-fork-camp',
+      to: 'mountain_yun-peak',
+      minutes: 120
+    },
+    // 雲峰東峰三岔路口營地 <-> 水源
+    {
+      from: 'south-second-section_yun-peak-east-peak-fork-camp',
+      to: 'south-second-section_yun-peak-water-source',
       minutes: 15
     },
     {
-      from: 'south-second-section_water-source',
-      to: 'south-second-section_yun-mountain-fork-camp',
+      from: 'south-second-section_yun-peak-water-source',
+      to: 'south-second-section_yun-peak-east-peak-fork-camp',
       minutes: 20
     },
+    // 雲峰東峰三岔路口營地 <-> 西北鞍南雙池營地
     {
-      from: 'south-second-section_yun-mountain-fork-camp',
-      to: 'mountain_yun-peak',
-      minutes: 110
+      from: 'south-second-section_yun-peak-east-peak-fork-camp',
+      to: 'south-second-section_xibei-saddle-nanshuang-pond-camp',
+      minutes: 150
     },
     {
-      from: 'mountain_yun-peak',
-      to: 'south-second-section_yun-mountain-fork-camp',
-      minutes: 75
+      from: 'south-second-section_xibei-saddle-nanshuang-pond-camp',
+      to: 'south-second-section_yun-peak-east-peak-fork-camp',
+      minutes: 170
     },
-    // 雲峰東峰營地 <-> 西北鞍營地 <-> 南雙頭山 <-> 拉庫音溪山屋
+    // 西北鞍南雙池營地 <-> 南雙頭山
     {
-      from: 'south-second-section_yun-mountain-fork-camp',
-      to: 'south-second-section_northwest-saddle-camp',
-      minutes: 120
-    },
-    {
-      from: 'south-second-section_northwest-saddle-camp',
-      to: 'south-second-section_yun-mountain-fork-camp',
-      minutes: 130
-    },
-    {
-      from: 'south-second-section_northwest-saddle-camp',
+      from: 'south-second-section_xibei-saddle-nanshuang-pond-camp',
       to: 'mountain_nanshuangtou-mountain',
       minutes: 50
     },
     {
       from: 'mountain_nanshuangtou-mountain',
-      to: 'south-second-section_northwest-saddle-camp',
+      to: 'south-second-section_xibei-saddle-nanshuang-pond-camp',
       minutes: 25
     },
+    // 南雙頭山 <-> 拉庫音溪山屋
     {
       from: 'mountain_nanshuangtou-mountain',
-      to: 'south-second-section_lakuynxi-hut',
-      minutes: 90
+      to: 'global_lakuyin-river-hut',
+      minutes: 110
     },
     {
-      from: 'south-second-section_lakuynxi-hut',
+      from: 'global_lakuyin-river-hut',
       to: 'mountain_nanshuangtou-mountain',
       minutes: 180
     },
-    // 拉庫音溪山屋 <-> 三叉山登山口 <-> 三叉山 / 新康岔 / 嘉明湖岔
+    // 拉庫音溪山屋 <-> 新康山岔路口
     {
-      from: 'south-second-section_lakuynxi-hut',
-      to: 'south-second-section_xinkang-fork',
+      from: 'global_lakuyin-river-hut',
+      to: 'global_xinkang-mountain-fork',
       minutes: 220
     },
     {
-      from: 'south-second-section_xinkang-fork',
-      to: 'south-second-section_lakuynxi-hut',
-      minutes: 100
+      from: 'global_xinkang-mountain-fork',
+      to: 'global_lakuyin-river-hut',
+      minutes: 130
+    },
+    // 新康山岔路口 <-> 嘉明湖岔路口
+    {
+      from: 'global_xinkang-mountain-fork',
+      to: 'global_jiaming-lake-fork',
+      minutes: 30
     },
     {
-      from: 'south-second-section_jiaming-lake-fork',
-      to: 'south-second-section_xinkang-fork',
-      minutes: 220
+      from: 'global_jiaming-lake-fork',
+      to: 'global_xinkang-mountain-fork',
+      minutes: 40
     },
+    // 嘉明湖岔路口 <-> 嘉明湖
     {
-      from: 'south-second-section_xinkang-fork',
-      to: 'south-second-section_jiaming-lake-fork',
-      minutes: 100
-    },
-    {
-      from: 'south-second-section_sancha-mountain-trailhead',
-      to: 'mountain_sancha-mountain',
+      from: 'global_jiaming-lake-fork',
+      to: 'global_jiaming-lake',
       minutes: 15
     },
     {
+      from: 'global_jiaming-lake',
+      to: 'global_jiaming-lake-fork',
+      minutes: 20
+    },
+    // 三叉山登山口 <-> 嘉明湖岔路口
+    {
+      from: 'global_sancha-mountain-trailhead',
+      to: 'global_jiaming-lake-fork',
+      minutes: 30
+    },
+    {
+      from: 'global_jiaming-lake-fork',
+      to: 'global_sancha-mountain-trailhead',
+      minutes: 25
+    },
+    // 三叉山 <-> 嘉明湖岔路口
+    {
       from: 'mountain_sancha-mountain',
-      to: 'south-second-section_sancha-mountain-trailhead',
+      to: 'global_jiaming-lake-fork',
       minutes: 10
     },
     {
-      from: 'south-second-section_sancha-mountain-trailhead',
-      to: 'south-second-section_xiangyang-east-fork',
-      minutes: 90
+      from: 'global_jiaming-lake-fork',
+      to: 'mountain_sancha-mountain',
+      minutes: 20
+    },
+    // 三叉山登山口 <-> 三叉山
+    {
+      from: 'global_sancha-mountain-trailhead',
+      to: 'mountain_sancha-mountain',
+      minutes: 25
     },
     {
-      from: 'south-second-section_xiangyang-east-fork',
-      to: 'south-second-section_sancha-mountain-trailhead',
-      minutes: 120
+      from: 'mountain_sancha-mountain',
+      to: 'global_sancha-mountain-trailhead',
+      minutes: 15
+    },
+    // 北峰下解說牌 <-> 三叉山登山口
+    {
+      from: 'global_north-peak-sign',
+      to: 'global_sancha-mountain-trailhead',
+      minutes: 80
     },
     {
-      from: 'mountain_xiangyang-mountain',
-      to: 'south-second-section_xiangyang-east-fork',
-      minutes: 45
+      from: 'global_sancha-mountain-trailhead',
+      to: 'global_north-peak-sign',
+      minutes: 55
+    },
+    // 三岔路口 <-> 北峰下解說牌
+    {
+      from: 'global_north-peak-fork',
+      to: 'global_north-peak-sign',
+      minutes: 40
     },
     {
-      from: 'south-second-section_xiangyang-east-fork',
+      from: 'global_north-peak-sign',
+      to: 'global_north-peak-fork',
+      minutes: 35
+    },
+    // 三岔路口 <-> 向陽山
+    {
+      from: 'global_north-peak-fork',
       to: 'mountain_xiangyang-mountain',
       minutes: 60
     },
     {
-      from: 'south-second-section_sancha-mountain-trailhead',
-      to: 'south-second-section_jiaming-lake-fork',
-      minutes: 10
-    },
-    {
-      from: 'south-second-section_jiaming-lake-fork',
-      to: 'south-second-section_sancha-mountain-trailhead',
-      minutes: 30
-    },
-    {
-      from: 'south-second-section_sancha-mountain-trailhead',
-      to: 'south-second-section_jiaming-lake-fork',
-      minutes: 30
-    },
-    {
-      from: 'south-second-section_jiaming-lake-fork',
-      to: 'south-second-section_sancha-mountain-trailhead',
-      minutes: 25
-    },
-    // 嘉明湖岔路 <-> 嘉明湖 / 避難山屋
-    {
-      from: 'south-second-section_jiaming-lake-fork',
-      to: 'south-second-section_jiaming-lake',
-      minutes: 15
-    },
-    {
-      from: 'south-second-section_jiaming-lake',
-      to: 'south-second-section_jiaming-lake-fork',
-      minutes: 20
-    },
-    {
-      from: 'south-second-section_xiangyang-east-fork',
-      to: 'south-second-section_jiaming-refuge-hut',
-      minutes: 15
-    },
-    {
-      from: 'south-second-section_jiaming-refuge-hut',
-      to: 'south-second-section_xiangyang-east-fork',
-      minutes: 15
-    },
-    {
-      from: 'mountain_sancha-mountain',
-      to: 'south-second-section_jiaming-lake-fork',
-      minutes: 10
-    },
-    {
-      from: 'south-second-section_jiaming-lake-fork',
-      to: 'mountain_sancha-mountain',
-      minutes: 20
-    },
-    // 避難山屋 <-> 向陽山 <-> 三岔路口 <-> 向陽山屋 <-> 向陽工作站
-    {
-      from: 'south-second-section_jiaming-refuge-hut',
-      to: 'south-second-section_xiangyang-fork',
-      minutes: 55
-    },
-    {
-      from: 'south-second-section_xiangyang-fork',
-      to: 'south-second-section_jiaming-refuge-hut',
+      from: 'mountain_xiangyang-mountain',
+      to: 'global_north-peak-fork',
       minutes: 45
     },
+    // 嘉明湖避難山屋 <-> 三岔路口
     {
-      from: 'mountain_xiangyang-mountain',
-      to: 'south-second-section_xiangyang-fork',
-      minutes: 25
+      from: 'global_jiaming-lake-hut',
+      to: 'global_north-peak-fork',
+      minutes: 15
     },
     {
-      from: 'south-second-section_xiangyang-fork',
+      from: 'global_north-peak-fork',
+      to: 'global_jiaming-lake-hut',
+      minutes: 15
+    },
+    // 西側登山口 <-> 嘉明湖避難山屋
+    {
+      from: 'global_xice-trailhead',
+      to: 'global_jiaming-lake-hut',
+      minutes: 40
+    },
+    {
+      from: 'global_jiaming-lake-hut',
+      to: 'global_xice-trailhead',
+      minutes: 45
+    },
+    // 西側登山口 <-> 向陽山
+    {
+      from: 'global_xice-trailhead',
       to: 'mountain_xiangyang-mountain',
       minutes: 35
     },
     {
-      from: 'south-second-section_xiangyang-fork',
-      to: 'south-second-section_xiangyang-hut',
-      minutes: 170
+      from: 'mountain_xiangyang-mountain',
+      to: 'global_xice-trailhead',
+      minutes: 25
+    },
+    // 向陽山屋 <-> 西側登山口
+    {
+      from: 'global_xiangyang-hut',
+      to: 'global_xice-trailhead',
+      minutes: 180
     },
     {
-      from: 'south-second-section_xiangyang-hut',
-      to: 'south-second-section_xiangyang-fork',
-      minutes: 95
+      from: 'global_xice-trailhead',
+      to: 'global_xiangyang-hut',
+      minutes: 130
+    },
+    // 林道登山口 <-> 向陽山屋
+    {
+      from: 'global_lindao-trailhead',
+      to: 'global_xiangyang-hut',
+      minutes: 70
     },
     {
-      from: 'south-second-section_xiangyang-hut',
-      to: 'south-second-section_xiangyang-station',
-      minutes: 90
+      from: 'global_xiangyang-hut',
+      to: 'global_lindao-trailhead',
+      minutes: 40
+    },
+    // 向陽森林遊樂區 <-> 林道登山口
+    {
+      from: 'global_xiangyang-forest-recreation-area',
+      to: 'global_lindao-trailhead',
+      minutes: 80
     },
     {
-      from: 'south-second-section_xiangyang-station',
-      to: 'south-second-section_xiangyang-hut',
-      minutes: 150
+      from: 'global_lindao-trailhead',
+      to: 'global_xiangyang-forest-recreation-area',
+      minutes: 50
     }
   ]
 }

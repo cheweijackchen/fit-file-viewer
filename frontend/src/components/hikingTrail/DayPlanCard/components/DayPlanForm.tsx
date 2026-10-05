@@ -1,15 +1,17 @@
 'use client'
 
 import { Alert, Button, Select, Text } from '@mantine/core'
+import { TimePicker } from '@mantine/dates'
 import { IconAlertTriangle, IconArrowBackUp, IconCheck } from '@tabler/icons-react'
+import { useTranslations } from 'next-intl'
 import { useEffect, useState } from 'react'
+import { RouteIndicator } from '@/components/hikingTrail/RouteIndicator'
 import { formatTrailMinutes } from '@/lib/timeFormatter'
 import { applyQuickJump } from '@/lib/trailGraph'
 import type { Trail, TrailAdjacencyList, TrailNode } from '@/model/hikingTrail'
 import classes from './DayPlanForm.module.scss'
 import { NodeSelectionPanel } from './NodeSelectionPanel'
 import { QuickJumpModal } from './QuickJumpModal'
-import { RouteIndicator } from './RouteIndicator'
 
 interface Props {
   trail: Trail;
@@ -20,11 +22,16 @@ interface Props {
   weightedMinutes: number;
   rawMinutes: number;
   prevDayLastStopId?: string;
+  startingTime?: string;
   onStartingNodeChange: (nodeId: string) => void;
+  onStartingTimeChange?: (time: string) => void;
   onNodeSelect: (nodeId: string) => void;
   onUndo: () => void;
   onCompleteRoute: () => void;
   onRouteExtended?: (newStops: string[]) => void;
+  enableRest?: boolean;
+  editRestMinutes?: Record<number, number>;
+  onRestMinutesChange?: (stopIndex: number, minutes: number | undefined) => void;
 }
 
 export function DayPlanForm({
@@ -36,12 +43,18 @@ export function DayPlanForm({
   weightedMinutes,
   rawMinutes,
   prevDayLastStopId,
+  startingTime,
   onStartingNodeChange,
+  onStartingTimeChange,
   onNodeSelect,
   onUndo,
   onCompleteRoute,
   onRouteExtended,
+  enableRest,
+  editRestMinutes,
+  onRestMinutesChange,
 }: Props) {
+  const t = useTranslations('hiking-trail-planner')
   const [jumpModalOpen, setJumpModalOpen] = useState(false)
 
   const showWarning = weightedMinutes / 60 >= 8
@@ -74,14 +87,16 @@ export function DayPlanForm({
         <Alert
           variant="light"
           color="yellow"
-          icon={<IconAlertTriangle
-            size={14}
-            stroke={2}
-          />}
+          icon={
+            <IconAlertTriangle
+              size={14}
+              stroke={2}
+            />
+          }
           py="xs"
           px="sm"
           fz="xs"
-          title="目前累積時間已超過 8 小時，考慮是否在此結束本日。"
+          title={t('planDetail.dayPlanCard.form.overTimeWarning')}
         >
         </Alert>
       )}
@@ -104,37 +119,49 @@ export function DayPlanForm({
               c="orange" 
               size="sm"
               fw="700"
-            >起點與前一天終點「{prevDayLastNode.name}」不連續</Text>
+            >{t('planDetail.dayPlanCard.form.discontinuousAlert', { prevDayLastNodeName: prevDayLastNode.name })}</Text>
             <Button
               size="compact-xs"
               variant="filled"
               color="orange"
               onClick={() => onStartingNodeChange(prevDayLastStopId!)}
             >
-              改用前一天終點
+              {t('planDetail.dayPlanCard.form.usePrevEndpoint')}
             </Button>
           </div>
         </Alert>
       )}
 
-      {/* Starting Point */}
-      <div className="flex flex-col gap-1.5">
-        <Text
-          c="stone.6"
-          size="xs"
-          component="span"
-          className="font-semibold"
-        >
-          Starting Point
-        </Text>
-        <Select
-          searchable
-          data={selectData}
-          value={startingNodeId}
-          placeholder="選擇起點"
-          classNames={{ input: classes.selectInput }}
-          onChange={(val) => val && onStartingNodeChange(val)}
-        />
+      {/* Starting Point + Starting Time */}
+      <div className="flex flex-col gap-3 md:flex-row md:gap-4">
+        
+        <div className="md:flex-1">
+          <Select
+            searchable
+            label={t('planDetail.dayPlanCard.form.startingPointLabel')}
+            data={selectData}
+            value={startingNodeId}
+            placeholder={t('planDetail.dayPlanCard.form.startingPointPlaceholder')}
+            classNames={{
+              input: classes.selectInput,
+              label: 'text-xs! text-(--mantine-color-stone-6)' 
+            }}
+            onChange={(val) => val && onStartingNodeChange(val)}
+          />
+        </div>
+        <div className="md:flex-1">
+          <TimePicker
+            clearable
+            label={t('planDetail.dayPlanCard.form.startingTimeLabel')}
+            value={startingTime ?? ''}
+            classNames={{
+              input: classes.selectInput,
+              label: 'text-xs! text-(--mantine-color-stone-6)',
+              field: `${classes.timeField} w-6`
+            }}
+            onChange={(val) => onStartingTimeChange?.(val)}
+          />
+        </div>
       </div>
 
       {/* Route Summary */}
@@ -143,7 +170,7 @@ export function DayPlanForm({
           {/* Left: label + chips */}
           <div className="flex flex-col flex-1 min-w-0 gap-1.5">
             <span className="text-[9px] font-bold tracking-[0.08em] text-(--mantine-color-stone-8)">
-              TODAY&apos;S ROUTE
+              {t('planDetail.dayPlanCard.form.todaysRoute')}
             </span>
             <RouteIndicator
               highlightLast
@@ -151,6 +178,9 @@ export function DayPlanForm({
               nodeMap={nodeMap}
               chipBackground="var(--mantine-color-stone-2)"
               fontWeight={600}
+              editMode={enableRest}
+              restMinutes={editRestMinutes}
+              onRestMinutesChange={onRestMinutesChange}
             />
           </div>
 
@@ -172,8 +202,13 @@ export function DayPlanForm({
           adj={adj}
           nodeMap={nodeMap}
           stopIds={stopIds}
+          enableRest={enableRest}
+          currentNodeRestMinutes={editRestMinutes?.[stopIds.length - 1]}
           onNodeSelect={onNodeSelect}
           onQuickJump={onRouteExtended ? () => setJumpModalOpen(true) : undefined}
+          onCurrentNodeRestMinutesChange={(minutes) => {
+            onRestMinutesChange?.(stopIds.length - 1, minutes)
+          }}
         />
       )}
 
@@ -205,7 +240,7 @@ export function DayPlanForm({
             color="var(--mantine-color-stone-7)"
           />
           <span className="text-[13px] font-semibold text-(--mantine-color-stone-7)">
-            復原上一步
+            {t('planDetail.dayPlanCard.form.undo')}
           </span>
         </button>
 
@@ -221,7 +256,7 @@ export function DayPlanForm({
             color={hasStops ? 'white' : 'var(--mantine-color-stone-5)'}
           />
           <span className={`text-sm font-bold ${hasStops ? 'text-white' : 'text-(--mantine-color-stone-5)'}`}>
-            完成路線
+            {t('planDetail.dayPlanCard.form.completeRoute')}
           </span>
         </button>
       </div>

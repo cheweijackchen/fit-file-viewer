@@ -35,8 +35,8 @@ const jetBrainsMono = JetBrains_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'FitFileViewer',
-  description: 'View the raw content of your fit file.',
+  title: 'TrailKit',
+  description: 'A hiking toolkit: FIT file viewer, Taiwan 100 Peaks tracker, 3D trail map, and multi-day trip planner.',
 }
 
 export default function RootLayout({

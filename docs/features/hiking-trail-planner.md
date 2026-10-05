@@ -2,7 +2,7 @@
 
 ## 功能概述
 
-瀏覽器端、隱私優先的多天登山行程規劃工具。使用者選取路線後，透過逐步點選節點的方式規劃每日行程，並以個人化步速係數估算加權時間。所有資料皆儲存於本地（IndexedDB），不需帳號或後端。
+瀏覽器端的多天登山行程規劃工具。使用者選取路線後，透過逐步點選節點的方式規劃每日行程，並以個人化步速係數估算加權時間。所有資料皆儲存於本地（IndexedDB），不需帳號或後端。
 
 - **路由**：`/hiking-trail-planner`（Landing）、`/hiking-trail-planner/[planId]`（Detail）
 
@@ -105,3 +105,4 @@ Quick Jump（`findShortestPath` / `applyQuickJump`）也在 `lib/trailGraph.ts`�
 
 ### 路線時間資料
 `constants/hiking-trails/` 內的時間資料需參考可靠來源（林務局、上河地圖等），**不可自行編造或估算**。
+從步程示意圖整理資料檔的完整規則（ID、i18nKey、nodeType、邊的讀數方式、新增路線檢查清單）見 [hiking-trail-data-authoring.md](hiking-trail-data-authoring.md)。
