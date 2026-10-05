@@ -81,11 +81,13 @@ export function SummarySection() {
               <Stack
                 gap="xl"
               >
-                {!onMobile && <item.icon
-                  size={30}
-                  color="var(--mantine-primary-color-filled)"
-                  className="mt-4 mx-auto"
-                ></item.icon>}
+                {!onMobile && (
+                  <item.icon
+                    size={30}
+                    color="var(--mantine-primary-color-filled)"
+                    className="mt-4 mx-auto"
+                  />
+                )}
                 <div>
                   <div className="flex items-end gap-1">
                     <Text

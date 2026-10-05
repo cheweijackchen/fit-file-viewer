@@ -11,11 +11,13 @@ export function formatTrailMinutes(minutes: number): string {
 }
 
 export function calcDepartureTime(startingTime: string | undefined, accumulatedMinutes: number): string {
-  if (!startingTime) return '—'
+  if (!startingTime) {
+    return '—'
+  }
   const parts = startingTime.split(':')
   const h = Number(parts[0])
   const m = Number(parts[1])
-  const total = h * 60 + m + accumulatedMinutes
+  const total = (h * 60) + m + accumulatedMinutes
   return `${String(Math.floor(total / 60) % 24).padStart(2, '0')}:${String(total % 60).padStart(2, '0')}`
 }
 

@@ -119,7 +119,7 @@ export function TrackPopupLayer({ map, points, isMapReady, showTrackPoints }: Pr
       for (let i = 0; i < points.length; i++) {
         const p = points[i]!
         const dist =
-          (p.lat - clickedLat) ** 2 + (p.lon - clickedLng) ** 2
+          ((p.lat - clickedLat) ** 2) + ((p.lon - clickedLng) ** 2)
         if (dist < minDist) {
           minDist = dist
           nearestIndex = i

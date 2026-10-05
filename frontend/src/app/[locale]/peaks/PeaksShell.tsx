@@ -3,7 +3,7 @@
 import { AppShell } from '@mantine/core'
 
 interface Props {
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 
 export default function PeaksShell({ children }: Props) {
